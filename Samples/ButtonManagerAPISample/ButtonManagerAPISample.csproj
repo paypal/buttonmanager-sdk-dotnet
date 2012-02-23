@@ -1,0 +1,160 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{1006827F-014C-43AC-9136-0F071AD42C73}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ButtonManagerAPISample</RootNamespace>
+    <AssemblyName>ButtonManagerAPISample</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="APICalls\BMButtonSearch.aspx" />
+    <Content Include="APICalls\BMCreateButton.aspx" />
+    <Content Include="APICalls\BMGetButtonDetails.aspx" />
+    <Content Include="APICalls\BMGetInventory.aspx" />
+    <Content Include="APICalls\BMManageButtonStatus.aspx" />
+    <Content Include="APICalls\BMSetInventory.aspx" />
+    <Content Include="APICalls\BMUpdateButton.aspx" />
+    <Content Include="APICalls\calendar_icon.png" />
+    <Content Include="APICalls\sdk.css" />
+    <Content Include="APIResponse.aspx" />
+    <Content Include="Default.aspx" />
+    <Content Include="Global.asax" />
+    <Content Include="lib\log4net.dll" />
+    <Content Include="Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="APICalls\BMButtonSearch.aspx.cs">
+      <DependentUpon>BMButtonSearch.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="APICalls\BMButtonSearch.aspx.designer.cs">
+      <DependentUpon>BMButtonSearch.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="APICalls\BMCreateButton.aspx.cs">
+      <DependentUpon>BMCreateButton.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="APICalls\BMCreateButton.aspx.designer.cs">
+      <DependentUpon>BMCreateButton.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="APICalls\BMGetButtonDetails.aspx.cs">
+      <DependentUpon>BMGetButtonDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="APICalls\BMGetButtonDetails.aspx.designer.cs">
+      <DependentUpon>BMGetButtonDetails.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="APICalls\BMGetInventory.aspx.cs">
+      <DependentUpon>BMGetInventory.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="APICalls\BMGetInventory.aspx.designer.cs">
+      <DependentUpon>BMGetInventory.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="APICalls\BMManageButtonStatus.aspx.cs">
+      <DependentUpon>BMManageButtonStatus.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="APICalls\BMManageButtonStatus.aspx.designer.cs">
+      <DependentUpon>BMManageButtonStatus.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="APICalls\BMSetInventory.aspx.cs">
+      <DependentUpon>BMSetInventory.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="APICalls\BMSetInventory.aspx.designer.cs">
+      <DependentUpon>BMSetInventory.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="APICalls\BMUpdateButton.aspx.cs">
+      <DependentUpon>BMUpdateButton.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="APICalls\BMUpdateButton.aspx.designer.cs">
+      <DependentUpon>BMUpdateButton.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="APIResponse.aspx.cs">
+      <DependentUpon>APIResponse.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="APIResponse.aspx.designer.cs">
+      <DependentUpon>APIResponse.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="cert_key.pem" />
+    <None Include="paypal_cert.p12" />
+    <None Include="README.md" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\PayPal_ButtonManager_SDK\PayPal_ButtonManager_SDK.csproj">
+      <Project>{BFD0B3F6-9F04-4F46-81DD-B5884A910FF5}</Project>
+      <Name>PayPal_ButtonManager_SDK</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v8.0\WebApplications\Microsoft.WebApplication.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>1188</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>
+          </IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

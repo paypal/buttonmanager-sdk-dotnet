@@ -1,0 +1,8 @@
+
+PayPal Button Manager SDK for .NET - Version 0.6.84 
+---------------------------------------------------
+
+Release Date  - 27-Feb-2012
+
+	This release contains new ButtonManager SDK (SOAP) and samples for ButtonManager api's.
+    

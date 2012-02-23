@@ -1,0 +1,42 @@
+body
+{
+	margin: 10px 10px;
+}
+
+th 
+{
+	font-weight: normal;
+}
+
+td 
+{
+	vertical-align: top;
+}
+
+
+#apidetails 
+{
+	margin: 10px 10px 30px 10px;
+	font-style:italic;
+}
+
+td.label 
+{
+	width: 15%;
+}
+.note 
+{
+	margin: 10px 10px;	
+	font-style: italic;
+}
+
+.section_header 
+{
+	margin: 20px 10px;
+	font-weight: bold;
+}
+
+.submit 
+{
+	margin-top: 20px;
+}

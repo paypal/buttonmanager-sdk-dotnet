@@ -80,10 +80,6 @@ namespace PayPalAPISample.APICalls
             else
             {
                 Session["Response_error"] = null;
-                if (response.TransactionID != null)
-                {
-                    responseParams.Add("Transaction ID", response.TransactionID);
-                }
             }
             Session["Response_keyResponseObject"] = responseParams;
             Response.Redirect("../APIResponse.aspx");

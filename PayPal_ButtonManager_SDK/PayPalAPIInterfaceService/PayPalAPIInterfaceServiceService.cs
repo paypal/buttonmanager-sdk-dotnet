@@ -16,7 +16,7 @@ namespace PayPal.PayPalAPIInterfaceService
     {
 
         private static string serviceName = "PayPalAPIInterfaceService";
-        private static string serviceVersion = "84.0";
+        private static string serviceVersion = "86.0";
 
         public PayPalAPIInterfaceServiceService()
             : base(serviceName, serviceVersion)

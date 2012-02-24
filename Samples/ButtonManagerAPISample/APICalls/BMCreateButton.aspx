@@ -19,11 +19,11 @@
 					<div class="param_value">
 					    <asp:DropDownList ID="buttonType" runat="server">
 							<asp:ListItem value="AUTOBILLING" Text="Auto Billing"/>
-							<asp:ListItem value="BUYNOW" Text="Buy Now"/>
+							<asp:ListItem value="BUYNOW" Text="Buy Now" Selected="True"/>
 							<asp:ListItem value="CART" Text="Cart"/>
 							<asp:ListItem value="DONATE" Text="Donation"/>
 							<asp:ListItem value="GIFTCERTIFICATE" Text="Gift Certificate"/>
-							<asp:ListItem value="PAYMENT" Text="Payment" Select="True"/>
+							<asp:ListItem value="PAYMENT" Text="Payment"/>
 							<asp:ListItem value="PAYMENTPLAN" Text="Payment Plan"/>
 							<asp:ListItem value="SUBSCRIBE" Text="Subscribe"/>
 							<asp:ListItem value="UNSUBSCRIBE" Text="Unsubscribe"/>

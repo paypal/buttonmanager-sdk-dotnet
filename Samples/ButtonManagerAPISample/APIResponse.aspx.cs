@@ -4,7 +4,6 @@ using System.Configuration;
 using System.Collections;
 using System.Collections.Generic;
 using System.Web;
-using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
@@ -96,30 +95,33 @@ namespace PayPalAPISample
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
-            if (Session["Response_keyResponseObject"] != null)
+            if (!IsPostBack)
             {
-                responseValues = (Dictionary<string, string>)Session["Response_keyResponseObject"];
-            }
-            if (Session["Response_apiName"] != null)
-            {
-                apiName = (String) Session["Response_apiName"];
-            }
-            if (Session["Response_redirectURL"] != null)
-            {
-                redirectURL = (String) Session["Response_redirectURL"];
-            }
-            if (Session["Response_requestPayload"] != null)
-            {
-                requestMessage = (String) Session["Response_requestPayload"];
-            }
-            if (Session["Response_responsePayload"] != null)
-            {
-                responseMessage = (String) Session["Response_responsePayload"];
-            }
-            if (Session["Response_error"] != null)
-            {
-                errorMessages = (List<ErrorType>)Session["Response_error"];
+                HttpContext CurrContext = HttpContext.Current;
+                if (CurrContext.Items["Response_keyResponseObject"] != null)
+                {
+                    responseValues = (Dictionary<string, string>)CurrContext.Items["Response_keyResponseObject"];
+                }
+                if (CurrContext.Items["Response_apiName"] != null)
+                {
+                    apiName = (String)CurrContext.Items["Response_apiName"];
+                }
+                if (CurrContext.Items["Response_redirectURL"] != null)
+                {
+                    redirectURL = (String)CurrContext.Items["Response_redirectURL"];
+                }
+                if (CurrContext.Items["Response_requestPayload"] != null)
+                {
+                    requestMessage = (String)CurrContext.Items["Response_requestPayload"];
+                }
+                if (CurrContext.Items["Response_responsePayload"] != null)
+                {
+                    responseMessage = (String)CurrContext.Items["Response_responsePayload"];
+                }
+                if (CurrContext.Items["Response_error"] != null)
+                {
+                    errorMessages = (List<ErrorType>)CurrContext.Items["Response_error"];
+                }
             }
         }
     }

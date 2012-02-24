@@ -54,8 +54,8 @@
     <textarea id="responseMessageDump" rows="8" cols="80" readonly="readonly" ><%=responseMessage %></textarea>
 <%} %>
 <br /><br />
-<a href="Default.aspx">Home</a>&nbsp;&nbsp;
-<a href="APICalls/<%=apiName%>.aspx">Back</a>    
+<a href="../Default.aspx">Home</a>&nbsp;&nbsp;
+<a href="<%=apiName%>.aspx">Back</a>    
 </div>
 </body>
 </html>

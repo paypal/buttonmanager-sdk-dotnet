@@ -1,4 +1,12 @@
 
+
+PayPal Button Manager SDK for .NET - Version 0.6.88 
+---------------------------------------------------
+
+Release Date  - 19-Apr-2012
+
+	This release contains stub changes for PayPal wsdl version 88.0
+
 PayPal Button Manager SDK for .NET - Version 0.6.86 
 ---------------------------------------------------
 

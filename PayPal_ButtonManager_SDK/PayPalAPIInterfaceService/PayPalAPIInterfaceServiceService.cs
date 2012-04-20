@@ -147,22 +147,6 @@ namespace PayPal.PayPalAPIInterfaceService {
 		{
 			return BMButtonSearch(BMButtonSearchReq, null);
 		}
-		/**
-		 *
-		 */
-		public DoCancelResponseType DoCancel(DoCancelReq DoCancelReq, string apiUsername) 
-		{
-			BasePayPalService service = new BasePayPalService(serviceName);
-		setStandardParams(DoCancelReq.getDoCancelRequest);
-			string resp = service.call("DoCancel", DoCancelReq.toXMLString(), apiUsername);
-
-			return new DoCancelResponseType(resp);
-		}
-
-		public DoCancelResponseType DoCancel(DoCancelReq DoCancelReq) 
-		{
-			return DoCancel(DoCancelReq, null);
-		}
 	}
 }
 

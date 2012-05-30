@@ -8,27 +8,28 @@ namespace PayPal.PayPalAPIInterfaceService.Model {
 	using System.Collections.Generic;
 	using PayPal.Util;
 
-public class EnumUtils{
-public static string getDescription(Enum value){
-string description="";DescriptionAttribute[] attributes = (DescriptionAttribute[])value.GetType().GetField(value.ToString()).GetCustomAttributes(typeof(DescriptionAttribute), false);
-			            if (attributes.Length > 0)
-			            {
-			                description= attributes[0].Description;
-			            }
-return description;
-}
-public static object getValue(String value,Type enumType){
-string[] names = Enum.GetNames(enumType);
-			            foreach (string name in names)
-			            {
-			                if (getDescription((Enum)Enum.Parse(enumType, name)).Equals(value))
-			                {
-			                    return Enum.Parse(enumType, name);
-			                }
-			            }
-return null;
+	public class EnumUtils{
+		public static string getDescription(Enum value){
+			string description="";
+			DescriptionAttribute[] attributes = (DescriptionAttribute[])value.GetType().GetField(value.ToString()).GetCustomAttributes(typeof(DescriptionAttribute), false);
+			if (attributes.Length > 0)
+			{
+				description= attributes[0].Description;
+			}
+			return description;
 		}
-}
+		public static object getValue(String value,Type enumType){
+			string[] names = Enum.GetNames(enumType);
+			foreach (string name in names)
+			{
+				if (getDescription((Enum)Enum.Parse(enumType, name)).Equals(value))
+				{
+					return Enum.Parse(enumType, name);
+				}
+			}
+			return null;
+		}
+	}
 		public class DeserializationUtils{
 	 public static bool isWhiteSpaceNode(XmlNode n) {
 		 if (n.NodeType ==XmlNodeType.Text) { 

@@ -11,38 +11,33 @@ namespace PayPal.PayPalAPIInterfaceService {
 	using PayPal.Manager;
 	using PayPal.PayPalAPIInterfaceService.Model;
 
-	public partial class PayPalAPIInterfaceServiceService :BasePayPalService{
+	public partial class PayPalAPIInterfaceServiceService : BasePayPalService{
 
 		private static string serviceName = "PayPalAPIInterfaceService";
+		private static string serviceVersion = "87.0";
 
-
-		private static string serviceVersion"87.0";
-
-
-		 public PayPalAPIInterfaceServiceService() : base(serviceName)
-		        {}
-	/// <summary>
- /// Sets standard parameters common to all requests
- /// </summary>
-   private void setStandardParams(AbstractRequestType request)
-  {
-       if (request.Version == null)
-    {
-      request.Version = serviceVersion;
-     }
-    if(request.ErrorLanguage != null && ConfigManager.Instance.GetProperty("languageCode") != null)
-    {
-    request.ErrorLanguage = ConfigManager.Instance.GetProperty("languageCode");
-   }            
-   }
+		public PayPalAPIInterfaceServiceService() : base(serviceName, serviceVersion) {}
+			/// <summary>
+			/// Sets standard parameters common to all requests
+			/// </summary>
+			private void setStandardParams(AbstractRequestType request)
+			{
+				if (request.Version == null)
+				{
+					request.Version = serviceVersion;
+				}
+				if(request.ErrorLanguage != null && ConfigManager.Instance.GetProperty("languageCode") != null)
+				{
+					request.ErrorLanguage = ConfigManager.Instance.GetProperty("languageCode");
+				}
+			}
 		/**
 		 *
 		 */
 		public BMCreateButtonResponseType BMCreateButton(BMCreateButtonReq BMCreateButtonReq, string apiUsername) 
 		{
-			BasePayPalService service = new BasePayPalService(serviceName);
-		setStandardParams(BMCreateButtonReq.getBMCreateButtonRequest);
-			string resp = service.call("BMCreateButton", BMCreateButtonReq.toXMLString(), apiUsername);
+			setStandardParams(BMCreateButtonReq.BMCreateButtonRequest);
+			string resp = call("BMCreateButton", BMCreateButtonReq.toXMLString(), apiUsername);
 
 			return new BMCreateButtonResponseType(resp);
 		}
@@ -56,9 +51,8 @@ namespace PayPal.PayPalAPIInterfaceService {
 		 */
 		public BMUpdateButtonResponseType BMUpdateButton(BMUpdateButtonReq BMUpdateButtonReq, string apiUsername) 
 		{
-			BasePayPalService service = new BasePayPalService(serviceName);
-		setStandardParams(BMUpdateButtonReq.getBMUpdateButtonRequest);
-			string resp = service.call("BMUpdateButton", BMUpdateButtonReq.toXMLString(), apiUsername);
+			setStandardParams(BMUpdateButtonReq.BMUpdateButtonRequest);
+			string resp = call("BMUpdateButton", BMUpdateButtonReq.toXMLString(), apiUsername);
 
 			return new BMUpdateButtonResponseType(resp);
 		}
@@ -72,9 +66,8 @@ namespace PayPal.PayPalAPIInterfaceService {
 		 */
 		public BMManageButtonStatusResponseType BMManageButtonStatus(BMManageButtonStatusReq BMManageButtonStatusReq, string apiUsername) 
 		{
-			BasePayPalService service = new BasePayPalService(serviceName);
-		setStandardParams(BMManageButtonStatusReq.getBMManageButtonStatusRequest);
-			string resp = service.call("BMManageButtonStatus", BMManageButtonStatusReq.toXMLString(), apiUsername);
+			setStandardParams(BMManageButtonStatusReq.BMManageButtonStatusRequest);
+			string resp = call("BMManageButtonStatus", BMManageButtonStatusReq.toXMLString(), apiUsername);
 
 			return new BMManageButtonStatusResponseType(resp);
 		}
@@ -88,9 +81,8 @@ namespace PayPal.PayPalAPIInterfaceService {
 		 */
 		public BMGetButtonDetailsResponseType BMGetButtonDetails(BMGetButtonDetailsReq BMGetButtonDetailsReq, string apiUsername) 
 		{
-			BasePayPalService service = new BasePayPalService(serviceName);
-		setStandardParams(BMGetButtonDetailsReq.getBMGetButtonDetailsRequest);
-			string resp = service.call("BMGetButtonDetails", BMGetButtonDetailsReq.toXMLString(), apiUsername);
+			setStandardParams(BMGetButtonDetailsReq.BMGetButtonDetailsRequest);
+			string resp = call("BMGetButtonDetails", BMGetButtonDetailsReq.toXMLString(), apiUsername);
 
 			return new BMGetButtonDetailsResponseType(resp);
 		}
@@ -104,9 +96,8 @@ namespace PayPal.PayPalAPIInterfaceService {
 		 */
 		public BMSetInventoryResponseType BMSetInventory(BMSetInventoryReq BMSetInventoryReq, string apiUsername) 
 		{
-			BasePayPalService service = new BasePayPalService(serviceName);
-		setStandardParams(BMSetInventoryReq.getBMSetInventoryRequest);
-			string resp = service.call("BMSetInventory", BMSetInventoryReq.toXMLString(), apiUsername);
+			setStandardParams(BMSetInventoryReq.BMSetInventoryRequest);
+			string resp = call("BMSetInventory", BMSetInventoryReq.toXMLString(), apiUsername);
 
 			return new BMSetInventoryResponseType(resp);
 		}
@@ -120,9 +111,8 @@ namespace PayPal.PayPalAPIInterfaceService {
 		 */
 		public BMGetInventoryResponseType BMGetInventory(BMGetInventoryReq BMGetInventoryReq, string apiUsername) 
 		{
-			BasePayPalService service = new BasePayPalService(serviceName);
-		setStandardParams(BMGetInventoryReq.getBMGetInventoryRequest);
-			string resp = service.call("BMGetInventory", BMGetInventoryReq.toXMLString(), apiUsername);
+			setStandardParams(BMGetInventoryReq.BMGetInventoryRequest);
+			string resp = call("BMGetInventory", BMGetInventoryReq.toXMLString(), apiUsername);
 
 			return new BMGetInventoryResponseType(resp);
 		}
@@ -136,9 +126,8 @@ namespace PayPal.PayPalAPIInterfaceService {
 		 */
 		public BMButtonSearchResponseType BMButtonSearch(BMButtonSearchReq BMButtonSearchReq, string apiUsername) 
 		{
-			BasePayPalService service = new BasePayPalService(serviceName);
-		setStandardParams(BMButtonSearchReq.getBMButtonSearchRequest);
-			string resp = service.call("BMButtonSearch", BMButtonSearchReq.toXMLString(), apiUsername);
+			setStandardParams(BMButtonSearchReq.BMButtonSearchRequest);
+			string resp = call("BMButtonSearch", BMButtonSearchReq.toXMLString(), apiUsername);
 
 			return new BMButtonSearchResponseType(resp);
 		}

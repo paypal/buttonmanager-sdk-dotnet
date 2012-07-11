@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project name="ButtonManager SDK" default="BuildCoreSDK">
+	<property name="Rootdir" value="." />
+	<!-- set a system environment variable 'DEVENV_PATH' containing Visual Studio devenv path 
+	 eg: DEVENV_PATH = C:\Program Files\Microsoft Visual Studio 8\Common7\IDE -->
+	<property name="VS2008Dir" value="${environment::get-variable('DEVENV_PATH')}" />
+	
+	<target name="BuildCoreSDK" description="Build Core SDK Source in Release Mode">
+	        <echo message="Build Core SDK Source in Release Mode"/>
+	        <echo message="build in progress ... "/>
+	        <exec verbose="true" program="${VS2008Dir}/devenv.exe"
+	              commandline="/rebuild Release ${Rootdir}\PayPal_ButtonManager_SDK.sln" />
+	              
+			    
+	</target>
+	
+	
+</project>

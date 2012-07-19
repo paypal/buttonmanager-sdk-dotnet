@@ -55,7 +55,7 @@
     <Compile Include="OAuth\OAuthGenerator.cs" />
     <Compile Include="OAuth\PayPalURLEncoder.cs" />
     <Compile Include="PayPalAPIInterfaceService\PayPalAPIInterfaceServiceService.cs" />
-    <Compile Include="PayPalAPIInterfaceService\PayPalAPIInterfaceServiceStubs.cs" />
+    <Compile Include="PayPalAPIInterfaceService\PayPalPayPalAPIInterfaceServiceModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Util\NVPUtil.cs" />
     <Compile Include="Util\ReadCert.cs" />

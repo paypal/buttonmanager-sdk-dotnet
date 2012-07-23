@@ -1,4 +1,9 @@
 
+Version 0.8.92 - July 17, 2012 
+    - wsdl update version 0.8.92
+------------------------------------------
+		
+
 Version 0.8.88 - July 11, 2012
     - Nant script added for SDK automation.
     

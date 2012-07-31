@@ -29,7 +29,6 @@ namespace PayPal.PayPalAPIInterfaceService {
 		}
 
 		/**	
-          *The Method does not have any comments, this is
           *AUTO_GENERATED
 	 	  */
 	 	public BMCreateButtonResponseType BMCreateButton(BMCreateButtonReq BMCreateButtonReq, string apiUsername)
@@ -41,7 +40,6 @@ namespace PayPal.PayPalAPIInterfaceService {
 	 	}
 	 
 	 	/** 
-          *The Method does not have any comments, this is
           *AUTO_GENERATED
 	 	  */
 	 	public BMCreateButtonResponseType BMCreateButton(BMCreateButtonReq BMCreateButtonReq)
@@ -50,7 +48,6 @@ namespace PayPal.PayPalAPIInterfaceService {
 	 	}
 
 		/**	
-          *The Method does not have any comments, this is
           *AUTO_GENERATED
 	 	  */
 	 	public BMUpdateButtonResponseType BMUpdateButton(BMUpdateButtonReq BMUpdateButtonReq, string apiUsername)
@@ -62,7 +59,6 @@ namespace PayPal.PayPalAPIInterfaceService {
 	 	}
 	 
 	 	/** 
-          *The Method does not have any comments, this is
           *AUTO_GENERATED
 	 	  */
 	 	public BMUpdateButtonResponseType BMUpdateButton(BMUpdateButtonReq BMUpdateButtonReq)
@@ -71,7 +67,6 @@ namespace PayPal.PayPalAPIInterfaceService {
 	 	}
 
 		/**	
-          *The Method does not have any comments, this is
           *AUTO_GENERATED
 	 	  */
 	 	public BMManageButtonStatusResponseType BMManageButtonStatus(BMManageButtonStatusReq BMManageButtonStatusReq, string apiUsername)
@@ -83,7 +78,6 @@ namespace PayPal.PayPalAPIInterfaceService {
 	 	}
 	 
 	 	/** 
-          *The Method does not have any comments, this is
           *AUTO_GENERATED
 	 	  */
 	 	public BMManageButtonStatusResponseType BMManageButtonStatus(BMManageButtonStatusReq BMManageButtonStatusReq)
@@ -92,7 +86,6 @@ namespace PayPal.PayPalAPIInterfaceService {
 	 	}
 
 		/**	
-          *The Method does not have any comments, this is
           *AUTO_GENERATED
 	 	  */
 	 	public BMGetButtonDetailsResponseType BMGetButtonDetails(BMGetButtonDetailsReq BMGetButtonDetailsReq, string apiUsername)
@@ -104,7 +97,6 @@ namespace PayPal.PayPalAPIInterfaceService {
 	 	}
 	 
 	 	/** 
-          *The Method does not have any comments, this is
           *AUTO_GENERATED
 	 	  */
 	 	public BMGetButtonDetailsResponseType BMGetButtonDetails(BMGetButtonDetailsReq BMGetButtonDetailsReq)
@@ -113,7 +105,6 @@ namespace PayPal.PayPalAPIInterfaceService {
 	 	}
 
 		/**	
-          *The Method does not have any comments, this is
           *AUTO_GENERATED
 	 	  */
 	 	public BMSetInventoryResponseType BMSetInventory(BMSetInventoryReq BMSetInventoryReq, string apiUsername)
@@ -125,7 +116,6 @@ namespace PayPal.PayPalAPIInterfaceService {
 	 	}
 	 
 	 	/** 
-          *The Method does not have any comments, this is
           *AUTO_GENERATED
 	 	  */
 	 	public BMSetInventoryResponseType BMSetInventory(BMSetInventoryReq BMSetInventoryReq)
@@ -134,7 +124,6 @@ namespace PayPal.PayPalAPIInterfaceService {
 	 	}
 
 		/**	
-          *The Method does not have any comments, this is
           *AUTO_GENERATED
 	 	  */
 	 	public BMGetInventoryResponseType BMGetInventory(BMGetInventoryReq BMGetInventoryReq, string apiUsername)
@@ -146,7 +135,6 @@ namespace PayPal.PayPalAPIInterfaceService {
 	 	}
 	 
 	 	/** 
-          *The Method does not have any comments, this is
           *AUTO_GENERATED
 	 	  */
 	 	public BMGetInventoryResponseType BMGetInventory(BMGetInventoryReq BMGetInventoryReq)
@@ -155,7 +143,6 @@ namespace PayPal.PayPalAPIInterfaceService {
 	 	}
 
 		/**	
-          *The Method does not have any comments, this is
           *AUTO_GENERATED
 	 	  */
 	 	public BMButtonSearchResponseType BMButtonSearch(BMButtonSearchReq BMButtonSearchReq, string apiUsername)
@@ -167,7 +154,6 @@ namespace PayPal.PayPalAPIInterfaceService {
 	 	}
 	 
 	 	/** 
-          *The Method does not have any comments, this is
           *AUTO_GENERATED
 	 	  */
 	 	public BMButtonSearchResponseType BMButtonSearch(BMButtonSearchReq BMButtonSearchReq)

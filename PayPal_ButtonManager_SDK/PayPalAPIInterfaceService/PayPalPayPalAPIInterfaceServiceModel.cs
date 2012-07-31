@@ -128,7 +128,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private CurrencyCodeType? currencyIDField;
 		public CurrencyCodeType? currencyID
@@ -145,7 +145,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string valueField;
 		public string value
@@ -212,7 +212,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string unitField;
 		public string unit
@@ -229,7 +229,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private decimal? valueField;
 		public decimal? value
@@ -2439,7 +2439,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string ValueField;
 		public string Value
@@ -2492,7 +2492,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string ShortMessageField;
 		public string ShortMessage
@@ -2509,7 +2509,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string LongMessageField;
 		public string LongMessage
@@ -2526,7 +2526,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string ErrorCodeField;
 		public string ErrorCode
@@ -2543,7 +2543,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private SeverityCodeType? SeverityCodeField;
 		public SeverityCodeType? SeverityCode
@@ -2560,7 +2560,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private List<ErrorParameterType> ErrorParametersField = new List<ErrorParameterType>();
 		public List<ErrorParameterType> ErrorParameters
@@ -2646,7 +2646,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private List<DetailLevelCodeType?> DetailLevelField = new List<DetailLevelCodeType?>();
 		public List<DetailLevelCodeType?> DetailLevel
@@ -2663,7 +2663,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string ErrorLanguageField;
 		public string ErrorLanguage
@@ -2680,7 +2680,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string VersionField;
 		public string Version
@@ -2742,7 +2742,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string TimestampField;
 		public string Timestamp
@@ -2759,7 +2759,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private AckCodeType? AckField;
 		public AckCodeType? Ack
@@ -2776,7 +2776,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string CorrelationIDField;
 		public string CorrelationID
@@ -2793,7 +2793,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private List<ErrorType> ErrorsField = new List<ErrorType>();
 		public List<ErrorType> Errors
@@ -2810,7 +2810,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string VersionField;
 		public string Version
@@ -2827,7 +2827,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string BuildField;
 		public string Build
@@ -2918,7 +2918,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string CountryCodeField;
 		public string CountryCode
@@ -2935,7 +2935,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string PhoneNumberField;
 		public string PhoneNumber
@@ -2952,7 +2952,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string ExtensionField;
 		public string Extension
@@ -3008,7 +3008,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string NameField;
 		public string Name
@@ -3025,7 +3025,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string Street1Field;
 		public string Street1
@@ -3042,7 +3042,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string Street2Field;
 		public string Street2
@@ -3059,7 +3059,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string CityNameField;
 		public string CityName
@@ -3076,7 +3076,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string StateOrProvinceField;
 		public string StateOrProvince
@@ -3093,7 +3093,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private CountryCodeType? CountryField;
 		public CountryCodeType? Country
@@ -3110,7 +3110,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string CountryNameField;
 		public string CountryName
@@ -3127,7 +3127,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string PhoneField;
 		public string Phone
@@ -3144,7 +3144,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string PostalCodeField;
 		public string PostalCode
@@ -3161,7 +3161,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string AddressIDField;
 		public string AddressID
@@ -3178,7 +3178,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private AddressOwnerCodeType? AddressOwnerField;
 		public AddressOwnerCodeType? AddressOwner
@@ -3195,7 +3195,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string ExternalAddressIDField;
 		public string ExternalAddressID
@@ -3212,7 +3212,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string InternationalNameField;
 		public string InternationalName
@@ -3229,7 +3229,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string InternationalStateAndCityField;
 		public string InternationalStateAndCity
@@ -3246,7 +3246,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string InternationalStreetField;
 		public string InternationalStreet
@@ -3263,7 +3263,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private AddressStatusCodeType? AddressStatusField;
 		public AddressStatusCodeType? AddressStatus
@@ -3504,7 +3504,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string SalutationField;
 		public string Salutation
@@ -3521,7 +3521,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string FirstNameField;
 		public string FirstName
@@ -3538,7 +3538,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string MiddleNameField;
 		public string MiddleName
@@ -3555,7 +3555,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string LastNameField;
 		public string LastName
@@ -3572,7 +3572,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string SuffixField;
 		public string Suffix
@@ -3681,7 +3681,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string BucketIdField;
 		public string BucketId
@@ -3698,7 +3698,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string ItemIdField;
 		public string ItemId
@@ -3715,7 +3715,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private BasicAmountType IncentiveAmountField;
 		public BasicAmountType IncentiveAmount
@@ -3732,7 +3732,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string SubTypeField;
 		public string SubType
@@ -3806,7 +3806,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string RedemptionCodeField;
 		public string RedemptionCode
@@ -3823,7 +3823,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string DisplayCodeField;
 		public string DisplayCode
@@ -3840,7 +3840,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string ProgramIdField;
 		public string ProgramId
@@ -3857,7 +3857,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private IncentiveTypeCodeType? IncentiveTypeField;
 		public IncentiveTypeCodeType? IncentiveType
@@ -3874,7 +3874,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string IncentiveDescriptionField;
 		public string IncentiveDescription
@@ -3891,7 +3891,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private List<IncentiveAppliedToType> AppliedToField = new List<IncentiveAppliedToType>();
 		public List<IncentiveAppliedToType> AppliedTo
@@ -3908,7 +3908,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string StatusField;
 		public string Status
@@ -3925,7 +3925,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string ErrorCodeField;
 		public string ErrorCode
@@ -4030,7 +4030,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string ItemIdField;
 		public string ItemId
@@ -4047,7 +4047,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string PurchaseTimeField;
 		public string PurchaseTime
@@ -4064,7 +4064,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string ItemCategoryListField;
 		public string ItemCategoryList
@@ -4081,7 +4081,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private BasicAmountType ItemPriceField;
 		public BasicAmountType ItemPrice
@@ -4098,7 +4098,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private int? ItemQuantityField;
 		public int? ItemQuantity
@@ -4164,7 +4164,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private List<IncentiveItemType> ItemsField = new List<IncentiveItemType>();
 		public List<IncentiveItemType> Items
@@ -4181,7 +4181,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string BucketIdField;
 		public string BucketId
@@ -4198,7 +4198,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string SellerIdField;
 		public string SellerId
@@ -4215,7 +4215,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string ExternalSellerIdField;
 		public string ExternalSellerId
@@ -4232,7 +4232,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private BasicAmountType BucketSubtotalAmtField;
 		public BasicAmountType BucketSubtotalAmt
@@ -4249,7 +4249,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private BasicAmountType BucketShippingAmtField;
 		public BasicAmountType BucketShippingAmt
@@ -4266,7 +4266,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private BasicAmountType BucketInsuranceAmtField;
 		public BasicAmountType BucketInsuranceAmt
@@ -4283,7 +4283,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private BasicAmountType BucketSalesTaxAmtField;
 		public BasicAmountType BucketSalesTaxAmt
@@ -4300,7 +4300,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private BasicAmountType BucketTotalAmtField;
 		public BasicAmountType BucketTotalAmt
@@ -4395,7 +4395,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string RequestIdField;
 		public string RequestId
@@ -4412,7 +4412,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private IncentiveRequestCodeType? RequestTypeField;
 		public IncentiveRequestCodeType? RequestType
@@ -4429,7 +4429,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private IncentiveRequestDetailLevelCodeType? RequestDetailLevelField;
 		public IncentiveRequestDetailLevelCodeType? RequestDetailLevel
@@ -4484,7 +4484,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string ExternalBuyerIdField;
 		public string ExternalBuyerId
@@ -4501,7 +4501,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private List<string> IncentiveCodesField = new List<string>();
 		public List<string> IncentiveCodes
@@ -4518,7 +4518,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private List<IncentiveApplyIndicationType> ApplyIndicationField = new List<IncentiveApplyIndicationType>();
 		public List<IncentiveApplyIndicationType> ApplyIndication
@@ -4535,7 +4535,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private List<IncentiveBucketType> BucketsField = new List<IncentiveBucketType>();
 		public List<IncentiveBucketType> Buckets
@@ -4552,7 +4552,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private BasicAmountType CartTotalAmtField;
 		public BasicAmountType CartTotalAmt
@@ -4569,7 +4569,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private IncentiveRequestDetailsType RequestDetailsField;
 		public IncentiveRequestDetailsType RequestDetails
@@ -4655,7 +4655,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private List<IncentiveDetailType> IncentiveDetailsField = new List<IncentiveDetailType>();
 		public List<IncentiveDetailType> IncentiveDetails
@@ -4672,7 +4672,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string RequestIdField;
 		public string RequestId
@@ -4743,7 +4743,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private BasicAmountType OrderTotalField;
 		public BasicAmountType OrderTotal
@@ -4760,7 +4760,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string ReturnURLField;
 		public string ReturnURL
@@ -4777,7 +4777,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string CancelURLField;
 		public string CancelURL
@@ -4794,7 +4794,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string TrackingImageURLField;
 		public string TrackingImageURL
@@ -4811,7 +4811,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string giropaySuccessURLField;
 		public string giropaySuccessURL
@@ -4828,7 +4828,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string giropayCancelURLField;
 		public string giropayCancelURL
@@ -4845,7 +4845,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string BanktxnPendingURLField;
 		public string BanktxnPendingURL
@@ -4862,7 +4862,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string TokenField;
 		public string Token
@@ -4879,7 +4879,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private BasicAmountType MaxAmountField;
 		public BasicAmountType MaxAmount
@@ -4896,7 +4896,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string OrderDescriptionField;
 		public string OrderDescription
@@ -4913,7 +4913,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string CustomField;
 		public string Custom
@@ -4930,7 +4930,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string InvoiceIDField;
 		public string InvoiceID
@@ -4947,7 +4947,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string ReqConfirmShippingField;
 		public string ReqConfirmShipping
@@ -4964,7 +4964,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string ReqBillingAddressField;
 		public string ReqBillingAddress
@@ -4981,7 +4981,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private AddressType BillingAddressField;
 		public AddressType BillingAddress
@@ -4998,7 +4998,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string NoShippingField;
 		public string NoShipping
@@ -5015,7 +5015,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string AddressOverrideField;
 		public string AddressOverride
@@ -5032,7 +5032,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string LocaleCodeField;
 		public string LocaleCode
@@ -5049,7 +5049,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string PageStyleField;
 		public string PageStyle
@@ -5066,7 +5066,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string cppHeaderImageField;
 		public string cppHeaderImage
@@ -5083,7 +5083,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string cppHeaderBorderColorField;
 		public string cppHeaderBorderColor
@@ -5100,7 +5100,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string cppHeaderBackColorField;
 		public string cppHeaderBackColor
@@ -5117,7 +5117,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string cppPayflowColorField;
 		public string cppPayflowColor
@@ -5134,7 +5134,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string cppCartBorderColorField;
 		public string cppCartBorderColor
@@ -5151,7 +5151,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string cppLogoImageField;
 		public string cppLogoImage
@@ -5168,7 +5168,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private AddressType AddressField;
 		public AddressType Address
@@ -5185,7 +5185,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private PaymentActionCodeType? PaymentActionField;
 		public PaymentActionCodeType? PaymentAction
@@ -5202,7 +5202,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private SolutionTypeType? SolutionTypeField;
 		public SolutionTypeType? SolutionType
@@ -5219,7 +5219,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private LandingPageType? LandingPageField;
 		public LandingPageType? LandingPage
@@ -5236,7 +5236,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string BuyerEmailField;
 		public string BuyerEmail
@@ -5253,7 +5253,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private ChannelType? ChannelTypeField;
 		public ChannelType? ChannelType
@@ -5270,7 +5270,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private List<BillingAgreementDetailsType> BillingAgreementDetailsField = new List<BillingAgreementDetailsType>();
 		public List<BillingAgreementDetailsType> BillingAgreementDetails
@@ -5287,7 +5287,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private List<string> PromoCodesField = new List<string>();
 		public List<string> PromoCodes
@@ -5304,7 +5304,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string PayPalCheckOutBtnTypeField;
 		public string PayPalCheckOutBtnType
@@ -5321,7 +5321,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private ProductCategoryType? ProductCategoryField;
 		public ProductCategoryType? ProductCategory
@@ -5338,7 +5338,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private ShippingServiceCodeType? ShippingMethodField;
 		public ShippingServiceCodeType? ShippingMethod
@@ -5355,7 +5355,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string ProfileAddressChangeDateField;
 		public string ProfileAddressChangeDate
@@ -5372,7 +5372,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string AllowNoteField;
 		public string AllowNote
@@ -5389,7 +5389,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private FundingSourceDetailsType FundingSourceDetailsField;
 		public FundingSourceDetailsType FundingSourceDetails
@@ -5406,7 +5406,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string BrandNameField;
 		public string BrandName
@@ -5423,7 +5423,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string CallbackURLField;
 		public string CallbackURL
@@ -5440,7 +5440,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private EnhancedCheckoutDataType EnhancedCheckoutDataField;
 		public EnhancedCheckoutDataType EnhancedCheckoutData
@@ -5457,7 +5457,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private List<OtherPaymentMethodDetailsType> OtherPaymentMethodsField = new List<OtherPaymentMethodDetailsType>();
 		public List<OtherPaymentMethodDetailsType> OtherPaymentMethods
@@ -5474,7 +5474,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private BuyerDetailsType BuyerDetailsField;
 		public BuyerDetailsType BuyerDetails
@@ -5491,7 +5491,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private List<PaymentDetailsType> PaymentDetailsField = new List<PaymentDetailsType>();
 		public List<PaymentDetailsType> PaymentDetails
@@ -5508,7 +5508,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private List<ShippingOptionType> FlatRateShippingOptionsField = new List<ShippingOptionType>();
 		public List<ShippingOptionType> FlatRateShippingOptions
@@ -5525,7 +5525,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string CallbackTimeoutField;
 		public string CallbackTimeout
@@ -5542,7 +5542,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string CallbackVersionField;
 		public string CallbackVersion
@@ -5559,7 +5559,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string CustomerServiceNumberField;
 		public string CustomerServiceNumber
@@ -5576,7 +5576,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string GiftMessageEnableField;
 		public string GiftMessageEnable
@@ -5593,7 +5593,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string GiftReceiptEnableField;
 		public string GiftReceiptEnable
@@ -5610,7 +5610,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string GiftWrapEnableField;
 		public string GiftWrapEnable
@@ -5627,7 +5627,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string GiftWrapNameField;
 		public string GiftWrapName
@@ -5644,7 +5644,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private BasicAmountType GiftWrapAmountField;
 		public BasicAmountType GiftWrapAmount
@@ -5661,7 +5661,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string BuyerEmailOptInEnableField;
 		public string BuyerEmailOptInEnable
@@ -5678,7 +5678,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string SurveyEnableField;
 		public string SurveyEnable
@@ -5695,7 +5695,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string SurveyQuestionField;
 		public string SurveyQuestion
@@ -5712,7 +5712,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private List<string> SurveyChoiceField = new List<string>();
 		public List<string> SurveyChoice
@@ -5729,7 +5729,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private TotalType? TotalTypeField;
 		public TotalType? TotalType
@@ -5746,7 +5746,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string NoteToBuyerField;
 		public string NoteToBuyer
@@ -5763,7 +5763,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private List<IncentiveInfoType> IncentivesField = new List<IncentiveInfoType>();
 		public List<IncentiveInfoType> Incentives
@@ -5780,7 +5780,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string ReqInstrumentDetailsField;
 		public string ReqInstrumentDetails
@@ -5797,7 +5797,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private ExternalRememberMeOptInDetailsType ExternalRememberMeOptInDetailsField;
 		public ExternalRememberMeOptInDetailsType ExternalRememberMeOptInDetails
@@ -5814,7 +5814,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private FlowControlDetailsType FlowControlDetailsField;
 		public FlowControlDetailsType FlowControlDetails
@@ -5831,7 +5831,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private DisplayControlDetailsType DisplayControlDetailsField;
 		public DisplayControlDetailsType DisplayControlDetails
@@ -5848,7 +5848,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private ExternalPartnerTrackingDetailsType ExternalPartnerTrackingDetailsField;
 		public ExternalPartnerTrackingDetailsType ExternalPartnerTrackingDetails
@@ -6270,7 +6270,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string TokenField;
 		public string Token
@@ -6287,7 +6287,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private SetDataRequestType SetDataRequestField;
 		public SetDataRequestType SetDataRequest
@@ -6304,7 +6304,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private AuthorizationRequestType AuthorizationRequestField;
 		public AuthorizationRequestType AuthorizationRequest
@@ -6368,7 +6368,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private List<BillingApprovalDetailsType> BillingApprovalDetailsField = new List<BillingApprovalDetailsType>();
 		public List<BillingApprovalDetailsType> BillingApprovalDetails
@@ -6385,7 +6385,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private BuyerDetailType BuyerDetailField;
 		public BuyerDetailType BuyerDetail
@@ -6402,7 +6402,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private InfoSharingDirectivesType InfoSharingDirectivesField;
 		public InfoSharingDirectivesType InfoSharingDirectives
@@ -6464,7 +6464,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private bool? IsRequestedField;
 		public bool? IsRequested
@@ -6517,7 +6517,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private ApprovalTypeType? ApprovalTypeField;
 		public ApprovalTypeType? ApprovalType
@@ -6534,7 +6534,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private ApprovalSubTypeType? ApprovalSubTypeField;
 		public ApprovalSubTypeType? ApprovalSubType
@@ -6551,7 +6551,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private OrderDetailsType OrderDetailsField;
 		public OrderDetailsType OrderDetails
@@ -6568,7 +6568,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private PaymentDirectivesType PaymentDirectivesField;
 		public PaymentDirectivesType PaymentDirectives
@@ -6585,7 +6585,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string CustomField;
 		public string Custom
@@ -6661,7 +6661,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string ReqBillingAddressField;
 		public string ReqBillingAddress
@@ -6706,7 +6706,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string DescriptionField;
 		public string Description
@@ -6723,7 +6723,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private BasicAmountType MaxAmountField;
 		public BasicAmountType MaxAmount
@@ -6774,7 +6774,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private MerchantPullPaymentCodeType? PaymentTypeField;
 		public MerchantPullPaymentCodeType? PaymentType
@@ -6821,7 +6821,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private IdentificationInfoType IdentificationInfoField;
 		public IdentificationInfoType IdentificationInfo
@@ -6867,7 +6867,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private MobileIDInfoType MobileIDInfoField;
 		public MobileIDInfoType MobileIDInfo
@@ -6884,7 +6884,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private RememberMeIDInfoType RememberMeIDInfoField;
 		public RememberMeIDInfoType RememberMeIDInfo
@@ -6901,7 +6901,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private IdentityTokenInfoType IdentityTokenInfoField;
 		public IdentityTokenInfoType IdentityTokenInfo
@@ -6959,7 +6959,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string SessionTokenField;
 		public string SessionToken
@@ -7010,7 +7010,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string ExternalRememberMeIDField;
 		public string ExternalRememberMeID
@@ -7055,7 +7055,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string AccessTokenField;
 		public string AccessToken
@@ -7110,7 +7110,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string AllowPushFundingField;
 		public string AllowPushFunding
@@ -7127,7 +7127,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private UserSelectedFundingSourceType? UserSelectedFundingSourceField;
 		public UserSelectedFundingSourceType? UserSelectedFundingSource
@@ -7177,7 +7177,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private BillingCodeType? BillingTypeField;
 		public BillingCodeType? BillingType
@@ -7194,7 +7194,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string BillingAgreementDescriptionField;
 		public string BillingAgreementDescription
@@ -7211,7 +7211,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private MerchantPullPaymentCodeType? PaymentTypeField;
 		public MerchantPullPaymentCodeType? PaymentType
@@ -7228,7 +7228,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string BillingAgreementCustomField;
 		public string BillingAgreementCustom
@@ -7298,7 +7298,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string TokenField;
 		public string Token
@@ -7315,7 +7315,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private PayerInfoType PayerInfoField;
 		public PayerInfoType PayerInfo
@@ -7332,7 +7332,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string CustomField;
 		public string Custom
@@ -7349,7 +7349,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string InvoiceIDField;
 		public string InvoiceID
@@ -7366,7 +7366,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string ContactPhoneField;
 		public string ContactPhone
@@ -7383,7 +7383,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private bool? BillingAgreementAcceptedStatusField;
 		public bool? BillingAgreementAcceptedStatus
@@ -7400,7 +7400,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string RedirectRequiredField;
 		public string RedirectRequired
@@ -7417,7 +7417,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private AddressType BillingAddressField;
 		public AddressType BillingAddress
@@ -7434,7 +7434,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string NoteField;
 		public string Note
@@ -7451,7 +7451,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string CheckoutStatusField;
 		public string CheckoutStatus
@@ -7468,7 +7468,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private BasicAmountType PayPalAdjustmentField;
 		public BasicAmountType PayPalAdjustment
@@ -7485,7 +7485,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private List<PaymentDetailsType> PaymentDetailsField = new List<PaymentDetailsType>();
 		public List<PaymentDetailsType> PaymentDetails
@@ -7502,7 +7502,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private UserSelectedOptionType UserSelectedOptionsField;
 		public UserSelectedOptionType UserSelectedOptions
@@ -7519,7 +7519,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private List<IncentiveDetailsType> IncentiveDetailsField = new List<IncentiveDetailsType>();
 		public List<IncentiveDetailsType> IncentiveDetails
@@ -7536,7 +7536,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string GiftMessageField;
 		public string GiftMessage
@@ -7553,7 +7553,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string GiftReceiptEnableField;
 		public string GiftReceiptEnable
@@ -7570,7 +7570,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string GiftWrapNameField;
 		public string GiftWrapName
@@ -7587,7 +7587,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private BasicAmountType GiftWrapAmountField;
 		public BasicAmountType GiftWrapAmount
@@ -7604,7 +7604,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string BuyerMarketingEmailField;
 		public string BuyerMarketingEmail
@@ -7621,7 +7621,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string SurveyQuestionField;
 		public string SurveyQuestion
@@ -7638,7 +7638,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private List<string> SurveyChoiceSelectedField = new List<string>();
 		public List<string> SurveyChoiceSelected
@@ -7655,7 +7655,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private List<PaymentRequestInfoType> PaymentRequestInfoField = new List<PaymentRequestInfoType>();
 		public List<PaymentRequestInfoType> PaymentRequestInfo
@@ -7672,7 +7672,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private ExternalRememberMeStatusDetailsType ExternalRememberMeStatusDetailsField;
 		public ExternalRememberMeStatusDetailsType ExternalRememberMeStatusDetails
@@ -7909,7 +7909,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private SetDataResponseType SetDataResponseField;
 		public SetDataResponseType SetDataResponse
@@ -7926,7 +7926,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private AuthorizationResponseType AuthorizationResponseField;
 		public AuthorizationResponseType AuthorizationResponse
@@ -7989,7 +7989,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string TokenField;
 		public string Token
@@ -8006,7 +8006,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private List<ErrorType> SetDataErrorField = new List<ErrorType>();
 		public List<ErrorType> SetDataError
@@ -8070,7 +8070,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private AckCodeType? StatusField;
 		public AckCodeType? Status
@@ -8087,7 +8087,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private List<ErrorType> AuthorizationErrorField = new List<ErrorType>();
 		public List<ErrorType> AuthorizationError
@@ -8160,7 +8160,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private PaymentActionCodeType? PaymentActionField;
 		public PaymentActionCodeType? PaymentAction
@@ -8177,7 +8177,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string TokenField;
 		public string Token
@@ -8194,7 +8194,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string PayerIDField;
 		public string PayerID
@@ -8211,7 +8211,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string OrderURLField;
 		public string OrderURL
@@ -8228,7 +8228,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private List<PaymentDetailsType> PaymentDetailsField = new List<PaymentDetailsType>();
 		public List<PaymentDetailsType> PaymentDetails
@@ -8245,7 +8245,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string PromoOverrideFlagField;
 		public string PromoOverrideFlag
@@ -8262,7 +8262,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string PromoCodeField;
 		public string PromoCode
@@ -8279,7 +8279,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private EnhancedDataType EnhancedDataField;
 		public EnhancedDataType EnhancedData
@@ -8296,7 +8296,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string SoftDescriptorField;
 		public string SoftDescriptor
@@ -8313,7 +8313,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private UserSelectedOptionType UserSelectedOptionsField;
 		public UserSelectedOptionType UserSelectedOptions
@@ -8330,7 +8330,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string GiftMessageField;
 		public string GiftMessage
@@ -8347,7 +8347,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string GiftReceiptEnableField;
 		public string GiftReceiptEnable
@@ -8364,7 +8364,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string GiftWrapNameField;
 		public string GiftWrapName
@@ -8381,7 +8381,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private BasicAmountType GiftWrapAmountField;
 		public BasicAmountType GiftWrapAmount
@@ -8398,7 +8398,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string BuyerMarketingEmailField;
 		public string BuyerMarketingEmail
@@ -8415,7 +8415,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string SurveyQuestionField;
 		public string SurveyQuestion
@@ -8432,7 +8432,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private List<string> SurveyChoiceSelectedField = new List<string>();
 		public List<string> SurveyChoiceSelected
@@ -8449,7 +8449,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string ButtonSourceField;
 		public string ButtonSource
@@ -8466,7 +8466,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private bool? SkipBACreationField;
 		public bool? SkipBACreation
@@ -8616,7 +8616,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string TokenField;
 		public string Token
@@ -8633,7 +8633,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private List<PaymentInfoType> PaymentInfoField = new List<PaymentInfoType>();
 		public List<PaymentInfoType> PaymentInfo
@@ -8650,7 +8650,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string BillingAgreementIDField;
 		public string BillingAgreementID
@@ -8667,7 +8667,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string RedirectRequiredField;
 		public string RedirectRequired
@@ -8684,7 +8684,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string NoteField;
 		public string Note
@@ -8701,7 +8701,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string SuccessPageRedirectRequestedField;
 		public string SuccessPageRedirectRequested
@@ -8718,7 +8718,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private UserSelectedOptionType UserSelectedOptionsField;
 		public UserSelectedOptionType UserSelectedOptions
@@ -8820,7 +8820,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string AuthorizationIDField;
 		public string AuthorizationID
@@ -8837,7 +8837,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private PaymentInfoType PaymentInfoField;
 		public PaymentInfoType PaymentInfo
@@ -8903,7 +8903,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private PaymentActionCodeType? PaymentActionField;
 		public PaymentActionCodeType? PaymentAction
@@ -8920,7 +8920,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private PaymentDetailsType PaymentDetailsField;
 		public PaymentDetailsType PaymentDetails
@@ -8937,7 +8937,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private CreditCardDetailsType CreditCardField;
 		public CreditCardDetailsType CreditCard
@@ -8954,7 +8954,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string IPAddressField;
 		public string IPAddress
@@ -8971,7 +8971,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string MerchantSessionIdField;
 		public string MerchantSessionId
@@ -8988,7 +8988,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private bool? ReturnFMFDetailsField;
 		public bool? ReturnFMFDetails
@@ -9060,7 +9060,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private MobilePaymentCodeType? PaymentTypeField;
 		public MobilePaymentCodeType? PaymentType
@@ -9077,7 +9077,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private PaymentActionCodeType? PaymentActionField;
 		public PaymentActionCodeType? PaymentAction
@@ -9094,7 +9094,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private PhoneNumberType SenderPhoneField;
 		public PhoneNumberType SenderPhone
@@ -9111,7 +9111,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private MobileRecipientCodeType? RecipientTypeField;
 		public MobileRecipientCodeType? RecipientType
@@ -9128,7 +9128,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string RecipientEmailField;
 		public string RecipientEmail
@@ -9145,7 +9145,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private PhoneNumberType RecipientPhoneField;
 		public PhoneNumberType RecipientPhone
@@ -9162,7 +9162,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private BasicAmountType ItemAmountField;
 		public BasicAmountType ItemAmount
@@ -9179,7 +9179,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private BasicAmountType TaxField;
 		public BasicAmountType Tax
@@ -9196,7 +9196,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private BasicAmountType ShippingField;
 		public BasicAmountType Shipping
@@ -9213,7 +9213,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string ItemNameField;
 		public string ItemName
@@ -9230,7 +9230,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string ItemNumberField;
 		public string ItemNumber
@@ -9247,7 +9247,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string NoteField;
 		public string Note
@@ -9264,7 +9264,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string CustomIDField;
 		public string CustomID
@@ -9281,7 +9281,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private int? SharePhoneNumberField;
 		public int? SharePhoneNumber
@@ -9298,7 +9298,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private int? ShareHomeAddressField;
 		public int? ShareHomeAddress
@@ -9418,7 +9418,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private PhoneNumberType PhoneField;
 		public PhoneNumberType Phone
@@ -9466,7 +9466,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string ReturnURLField;
 		public string ReturnURL
@@ -9483,7 +9483,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string CancelURLField;
 		public string CancelURL
@@ -9500,7 +9500,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string LogoutURLField;
 		public string LogoutURL
@@ -9517,7 +9517,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string InitFlowTypeField;
 		public string InitFlowType
@@ -9534,7 +9534,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string SkipLoginPageField;
 		public string SkipLoginPage
@@ -9551,7 +9551,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string ServiceName1Field;
 		public string ServiceName1
@@ -9568,7 +9568,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string ServiceDefReq1Field;
 		public string ServiceDefReq1
@@ -9585,7 +9585,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string ServiceName2Field;
 		public string ServiceName2
@@ -9602,7 +9602,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string ServiceDefReq2Field;
 		public string ServiceDefReq2
@@ -9619,7 +9619,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string LocaleCodeField;
 		public string LocaleCode
@@ -9636,7 +9636,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string PageStyleField;
 		public string PageStyle
@@ -9653,7 +9653,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string cppHeaderImageField;
 		public string cppHeaderImage
@@ -9670,7 +9670,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string cppHeaderBorderColorField;
 		public string cppHeaderBorderColor
@@ -9687,7 +9687,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string cppHeaderBackColorField;
 		public string cppHeaderBackColor
@@ -9704,7 +9704,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string cppPayflowColorField;
 		public string cppPayflowColor
@@ -9721,7 +9721,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string FirstNameField;
 		public string FirstName
@@ -9738,7 +9738,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string LastNameField;
 		public string LastName
@@ -9755,7 +9755,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private AddressType AddressField;
 		public AddressType Address
@@ -9887,7 +9887,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string FirstNameField;
 		public string FirstName
@@ -9904,7 +9904,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string LastNameField;
 		public string LastName
@@ -9921,7 +9921,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string EmailField;
 		public string Email
@@ -9938,7 +9938,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string PayerIDField;
 		public string PayerID
@@ -10012,7 +10012,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string ReturnURLField;
 		public string ReturnURL
@@ -10029,7 +10029,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string CancelURLField;
 		public string CancelURL
@@ -10046,7 +10046,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string LogoutURLField;
 		public string LogoutURL
@@ -10063,7 +10063,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string InitFlowTypeField;
 		public string InitFlowType
@@ -10080,7 +10080,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string SkipLoginPageField;
 		public string SkipLoginPage
@@ -10097,7 +10097,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private List<string> RequiredAccessPermissionsField = new List<string>();
 		public List<string> RequiredAccessPermissions
@@ -10114,7 +10114,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private List<string> OptionalAccessPermissionsField = new List<string>();
 		public List<string> OptionalAccessPermissions
@@ -10131,7 +10131,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string LocaleCodeField;
 		public string LocaleCode
@@ -10148,7 +10148,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string PageStyleField;
 		public string PageStyle
@@ -10165,7 +10165,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string cppHeaderImageField;
 		public string cppHeaderImage
@@ -10182,7 +10182,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string cppHeaderBorderColorField;
 		public string cppHeaderBorderColor
@@ -10199,7 +10199,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string cppHeaderBackColorField;
 		public string cppHeaderBackColor
@@ -10216,7 +10216,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string cppPayflowColorField;
 		public string cppPayflowColor
@@ -10233,7 +10233,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string FirstNameField;
 		public string FirstName
@@ -10250,7 +10250,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string LastNameField;
 		public string LastName
@@ -10267,7 +10267,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private AddressType AddressField;
 		public AddressType Address
@@ -10397,7 +10397,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string FirstNameField;
 		public string FirstName
@@ -10414,7 +10414,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string LastNameField;
 		public string LastName
@@ -10431,7 +10431,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string EmailField;
 		public string Email
@@ -10448,7 +10448,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private List<string> AccessPermissionNameField = new List<string>();
 		public List<string> AccessPermissionName
@@ -10465,7 +10465,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private List<string> AccessPermissionStatusField = new List<string>();
 		public List<string> AccessPermissionStatus
@@ -10482,7 +10482,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string PayerIDField;
 		public string PayerID
@@ -10578,7 +10578,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string BillingAgreementIDField;
 		public string BillingAgreementID
@@ -10595,7 +10595,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string BillingAgreementDescriptionField;
 		public string BillingAgreementDescription
@@ -10612,7 +10612,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private MerchantPullStatusCodeType? BillingAgreementStatusField;
 		public MerchantPullStatusCodeType? BillingAgreementStatus
@@ -10629,7 +10629,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string BillingAgreementCustomField;
 		public string BillingAgreementCustom
@@ -10646,7 +10646,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private PayerInfoType PayerInfoField;
 		public PayerInfoType PayerInfo
@@ -10663,7 +10663,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private BasicAmountType BillingAgreementMaxField;
 		public BasicAmountType BillingAgreementMax
@@ -10680,7 +10680,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private AddressType BillingAddressField;
 		public AddressType BillingAddress
@@ -10780,7 +10780,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private PayerInfoType PayerInfoField;
 		public PayerInfoType PayerInfo
@@ -10797,7 +10797,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private PaymentInfoType PaymentInfoField;
 		public PaymentInfoType PaymentInfo
@@ -10814,7 +10814,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private MerchantPullInfoType MerchantPullInfoField;
 		public MerchantPullInfoType MerchantPullInfo
@@ -10885,7 +10885,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private MerchantPullStatusCodeType? MpStatusField;
 		public MerchantPullStatusCodeType? MpStatus
@@ -10902,7 +10902,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private BasicAmountType MpMaxField;
 		public BasicAmountType MpMax
@@ -10919,7 +10919,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string MpCustomField;
 		public string MpCustom
@@ -10936,7 +10936,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string DescField;
 		public string Desc
@@ -10953,7 +10953,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string InvoiceField;
 		public string Invoice
@@ -10970,7 +10970,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string CustomField;
 		public string Custom
@@ -10987,7 +10987,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string PaymentSourceIDField;
 		public string PaymentSourceID
@@ -11083,7 +11083,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string TimestampField;
 		public string Timestamp
@@ -11100,7 +11100,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string TimezoneField;
 		public string Timezone
@@ -11117,7 +11117,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string TypeField;
 		public string Type
@@ -11134,7 +11134,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string PayerField;
 		public string Payer
@@ -11151,7 +11151,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string PayerDisplayNameField;
 		public string PayerDisplayName
@@ -11168,7 +11168,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string TransactionIDField;
 		public string TransactionID
@@ -11185,7 +11185,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string StatusField;
 		public string Status
@@ -11202,7 +11202,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private BasicAmountType GrossAmountField;
 		public BasicAmountType GrossAmount
@@ -11219,7 +11219,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private BasicAmountType FeeAmountField;
 		public BasicAmountType FeeAmount
@@ -11236,7 +11236,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private BasicAmountType NetAmountField;
 		public BasicAmountType NetAmount
@@ -11357,7 +11357,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private BasicAmountType AmountField;
 		public BasicAmountType Amount
@@ -11374,7 +11374,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string MpIDField;
 		public string MpID
@@ -11391,7 +11391,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private MerchantPullPaymentCodeType? PaymentTypeField;
 		public MerchantPullPaymentCodeType? PaymentType
@@ -11408,7 +11408,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string MemoField;
 		public string Memo
@@ -11425,7 +11425,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string EmailSubjectField;
 		public string EmailSubject
@@ -11442,7 +11442,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private BasicAmountType TaxField;
 		public BasicAmountType Tax
@@ -11459,7 +11459,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private BasicAmountType ShippingField;
 		public BasicAmountType Shipping
@@ -11476,7 +11476,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private BasicAmountType HandlingField;
 		public BasicAmountType Handling
@@ -11493,7 +11493,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string ItemNameField;
 		public string ItemName
@@ -11510,7 +11510,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string ItemNumberField;
 		public string ItemNumber
@@ -11527,7 +11527,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string InvoiceField;
 		public string Invoice
@@ -11544,7 +11544,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string CustomField;
 		public string Custom
@@ -11561,7 +11561,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string ButtonSourceField;
 		public string ButtonSource
@@ -11578,7 +11578,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string SoftDescriptorField;
 		public string SoftDescriptor
@@ -11693,7 +11693,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private ReceiverInfoType ReceiverInfoField;
 		public ReceiverInfoType ReceiverInfo
@@ -11710,7 +11710,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private PayerInfoType PayerInfoField;
 		public PayerInfoType PayerInfo
@@ -11727,7 +11727,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private PaymentInfoType PaymentInfoField;
 		public PaymentInfoType PaymentInfo
@@ -11744,7 +11744,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private PaymentItemInfoType PaymentItemInfoField;
 		public PaymentItemInfoType PaymentItemInfo
@@ -11761,7 +11761,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private OfferCouponInfoType OfferCouponInfoField;
 		public OfferCouponInfoType OfferCouponInfo
@@ -11778,7 +11778,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private UserSelectedOptionType UserSelectedOptionsField;
 		public UserSelectedOptionType UserSelectedOptions
@@ -11795,7 +11795,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string GiftMessageField;
 		public string GiftMessage
@@ -11812,7 +11812,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string GiftReceiptField;
 		public string GiftReceipt
@@ -11829,7 +11829,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string GiftWrapNameField;
 		public string GiftWrapName
@@ -11846,7 +11846,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private BasicAmountType GiftWrapAmountField;
 		public BasicAmountType GiftWrapAmount
@@ -11863,7 +11863,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string BuyerEmailOptInField;
 		public string BuyerEmailOptIn
@@ -11880,7 +11880,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string SurveyQuestionField;
 		public string SurveyQuestion
@@ -11897,7 +11897,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private List<string> SurveyChoiceSelectedField = new List<string>();
 		public List<string> SurveyChoiceSelected
@@ -12051,7 +12051,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string BusinessField;
 		public string Business
@@ -12068,7 +12068,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string ReceiverField;
 		public string Receiver
@@ -12085,7 +12085,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string ReceiverIDField;
 		public string ReceiverID
@@ -12150,7 +12150,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string PayerField;
 		public string Payer
@@ -12167,7 +12167,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string PayerIDField;
 		public string PayerID
@@ -12184,7 +12184,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private PayPalUserStatusCodeType? PayerStatusField;
 		public PayPalUserStatusCodeType? PayerStatus
@@ -12201,7 +12201,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private PersonNameType PayerNameField;
 		public PersonNameType PayerName
@@ -12218,7 +12218,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private CountryCodeType? PayerCountryField;
 		public CountryCodeType? PayerCountry
@@ -12235,7 +12235,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string PayerBusinessField;
 		public string PayerBusiness
@@ -12252,7 +12252,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private AddressType AddressField;
 		public AddressType Address
@@ -12269,7 +12269,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string ContactPhoneField;
 		public string ContactPhone
@@ -12286,7 +12286,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private TaxIdDetailsType TaxIdDetailsField;
 		public TaxIdDetailsType TaxIdDetails
@@ -12303,7 +12303,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private EnhancedPayerInfoType EnhancedPayerInfoField;
 		public EnhancedPayerInfoType EnhancedPayerInfo
@@ -12484,7 +12484,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string InstrumentCategoryField;
 		public string InstrumentCategory
@@ -12535,7 +12535,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string OfferTrackingIDField;
 		public string OfferTrackingID
@@ -12596,7 +12596,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string OfferCodeField;
 		public string OfferCode
@@ -12613,7 +12613,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private BMLOfferInfoType BMLOfferInfoField;
 		public BMLOfferInfoType BMLOfferInfo
@@ -12689,7 +12689,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string TransactionIDField;
 		public string TransactionID
@@ -12706,7 +12706,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string EbayTransactionIDField;
 		public string EbayTransactionID
@@ -12723,7 +12723,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string ParentTransactionIDField;
 		public string ParentTransactionID
@@ -12740,7 +12740,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string ReceiptIDField;
 		public string ReceiptID
@@ -12757,7 +12757,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private PaymentTransactionCodeType? TransactionTypeField;
 		public PaymentTransactionCodeType? TransactionType
@@ -12774,7 +12774,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private PaymentCodeType? PaymentTypeField;
 		public PaymentCodeType? PaymentType
@@ -12791,7 +12791,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private RefundSourceCodeType? RefundSourceCodeTypeField;
 		public RefundSourceCodeType? RefundSourceCodeType
@@ -12808,7 +12808,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string ExpectedeCheckClearDateField;
 		public string ExpectedeCheckClearDate
@@ -12825,7 +12825,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string PaymentDateField;
 		public string PaymentDate
@@ -12842,7 +12842,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private BasicAmountType GrossAmountField;
 		public BasicAmountType GrossAmount
@@ -12859,7 +12859,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private BasicAmountType FeeAmountField;
 		public BasicAmountType FeeAmount
@@ -12876,7 +12876,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private BasicAmountType SettleAmountField;
 		public BasicAmountType SettleAmount
@@ -12893,7 +12893,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private BasicAmountType TaxAmountField;
 		public BasicAmountType TaxAmount
@@ -12910,7 +12910,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string ExchangeRateField;
 		public string ExchangeRate
@@ -12927,7 +12927,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private PaymentStatusCodeType? PaymentStatusField;
 		public PaymentStatusCodeType? PaymentStatus
@@ -12944,7 +12944,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private PendingStatusCodeType? PendingReasonField;
 		public PendingStatusCodeType? PendingReason
@@ -12961,7 +12961,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private ReversalReasonCodeType? ReasonCodeField;
 		public ReversalReasonCodeType? ReasonCode
@@ -12978,7 +12978,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string HoldDecisionField;
 		public string HoldDecision
@@ -12995,7 +12995,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string ShippingMethodField;
 		public string ShippingMethod
@@ -13012,7 +13012,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string ProtectionEligibilityField;
 		public string ProtectionEligibility
@@ -13029,7 +13029,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string ProtectionEligibilityTypeField;
 		public string ProtectionEligibilityType
@@ -13046,7 +13046,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string ShipAmountField;
 		public string ShipAmount
@@ -13063,7 +13063,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string ShipHandleAmountField;
 		public string ShipHandleAmount
@@ -13080,7 +13080,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string ShipDiscountField;
 		public string ShipDiscount
@@ -13097,7 +13097,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string InsuranceAmountField;
 		public string InsuranceAmount
@@ -13114,7 +13114,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string SubjectField;
 		public string Subject
@@ -13131,7 +13131,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string StoreIDField;
 		public string StoreID
@@ -13148,7 +13148,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string TerminalIDField;
 		public string TerminalID
@@ -13165,7 +13165,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private SellerDetailsType SellerDetailsField;
 		public SellerDetailsType SellerDetails
@@ -13182,7 +13182,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string PaymentRequestIDField;
 		public string PaymentRequestID
@@ -13199,7 +13199,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private FMFDetailsType FMFDetailsField;
 		public FMFDetailsType FMFDetails
@@ -13216,7 +13216,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private EnhancedPaymentInfoType EnhancedPaymentInfoField;
 		public EnhancedPaymentInfoType EnhancedPaymentInfo
@@ -13233,7 +13233,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private ErrorType PaymentErrorField;
 		public ErrorType PaymentError
@@ -13250,7 +13250,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private InstrumentDetailsType InstrumentDetailsField;
 		public InstrumentDetailsType InstrumentDetails
@@ -13267,7 +13267,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private OfferDetailsType OfferDetailsField;
 		public OfferDetailsType OfferDetails
@@ -13576,7 +13576,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private BasicAmountType AmountField;
 		public BasicAmountType Amount
@@ -13630,7 +13630,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string SubscriptionIDField;
 		public string SubscriptionID
@@ -13647,7 +13647,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string SubscriptionDateField;
 		public string SubscriptionDate
@@ -13664,7 +13664,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string EffectiveDateField;
 		public string EffectiveDate
@@ -13681,7 +13681,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string RetryTimeField;
 		public string RetryTime
@@ -13698,7 +13698,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string UsernameField;
 		public string Username
@@ -13715,7 +13715,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string PasswordField;
 		public string Password
@@ -13732,7 +13732,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string RecurrencesField;
 		public string Recurrences
@@ -13749,7 +13749,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private List<SubscriptionTermsType> TermsField = new List<SubscriptionTermsType>();
 		public List<SubscriptionTermsType> Terms
@@ -13854,7 +13854,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string BuyerIDField;
 		public string BuyerID
@@ -13871,7 +13871,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string ClosingDateField;
 		public string ClosingDate
@@ -13957,7 +13957,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string ItemNumberField;
 		public string ItemNumber
@@ -13974,7 +13974,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string AuctionTransactionIdField;
 		public string AuctionTransactionId
@@ -13991,7 +13991,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string OrderIdField;
 		public string OrderId
@@ -14008,7 +14008,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string CartIDField;
 		public string CartID
@@ -14105,7 +14105,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string NameField;
 		public string Name
@@ -14122,7 +14122,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string NumberField;
 		public string Number
@@ -14139,7 +14139,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private int? QuantityField;
 		public int? Quantity
@@ -14156,7 +14156,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private BasicAmountType TaxField;
 		public BasicAmountType Tax
@@ -14173,7 +14173,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private BasicAmountType AmountField;
 		public BasicAmountType Amount
@@ -14190,7 +14190,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private EbayItemPaymentDetailsItemType EbayItemPaymentDetailsItemField;
 		public EbayItemPaymentDetailsItemType EbayItemPaymentDetailsItem
@@ -14207,7 +14207,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string PromoCodeField;
 		public string PromoCode
@@ -14224,7 +14224,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private ProductCategoryType? ProductCategoryField;
 		public ProductCategoryType? ProductCategory
@@ -14241,7 +14241,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string DescriptionField;
 		public string Description
@@ -14258,7 +14258,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private MeasureType ItemWeightField;
 		public MeasureType ItemWeight
@@ -14275,7 +14275,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private MeasureType ItemLengthField;
 		public MeasureType ItemLength
@@ -14292,7 +14292,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private MeasureType ItemWidthField;
 		public MeasureType ItemWidth
@@ -14309,7 +14309,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private MeasureType ItemHeightField;
 		public MeasureType ItemHeight
@@ -14326,7 +14326,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string ItemURLField;
 		public string ItemURL
@@ -14343,7 +14343,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private EnhancedItemDataType EnhancedItemDataField;
 		public EnhancedItemDataType EnhancedItemData
@@ -14360,7 +14360,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private ItemCategoryType? ItemCategoryField;
 		public ItemCategoryType? ItemCategory
@@ -14625,7 +14625,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string EbayItemTxnIdField;
 		public string EbayItemTxnId
@@ -14642,7 +14642,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string NameField;
 		public string Name
@@ -14659,7 +14659,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string NumberField;
 		public string Number
@@ -14676,7 +14676,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string QuantityField;
 		public string Quantity
@@ -14693,7 +14693,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string SalesTaxField;
 		public string SalesTax
@@ -14710,7 +14710,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string ShippingAmountField;
 		public string ShippingAmount
@@ -14727,7 +14727,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string HandlingAmountField;
 		public string HandlingAmount
@@ -14744,7 +14744,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string CouponIDField;
 		public string CouponID
@@ -14761,7 +14761,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string CouponAmountField;
 		public string CouponAmount
@@ -14778,7 +14778,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string CouponAmountCurrencyField;
 		public string CouponAmountCurrency
@@ -14795,7 +14795,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string LoyaltyCardDiscountAmountField;
 		public string LoyaltyCardDiscountAmount
@@ -14812,7 +14812,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string LoyaltyCardDiscountCurrencyField;
 		public string LoyaltyCardDiscountCurrency
@@ -14829,7 +14829,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private BasicAmountType AmountField;
 		public BasicAmountType Amount
@@ -14846,7 +14846,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private List<OptionType> OptionsField = new List<OptionType>();
 		public List<OptionType> Options
@@ -14995,7 +14995,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string InvoiceIDField;
 		public string InvoiceID
@@ -15012,7 +15012,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string CustomField;
 		public string Custom
@@ -15029,7 +15029,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string MemoField;
 		public string Memo
@@ -15046,7 +15046,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string SalesTaxField;
 		public string SalesTax
@@ -15063,7 +15063,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private List<PaymentItemType> PaymentItemField = new List<PaymentItemType>();
 		public List<PaymentItemType> PaymentItem
@@ -15080,7 +15080,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private SubscriptionInfoType SubscriptionField;
 		public SubscriptionInfoType Subscription
@@ -15097,7 +15097,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private AuctionInfoType AuctionField;
 		public AuctionInfoType Auction
@@ -15200,7 +15200,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string TypeField;
 		public string Type
@@ -15217,7 +15217,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string IDField;
 		public string ID
@@ -15234,7 +15234,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string AmountField;
 		public string Amount
@@ -15251,7 +15251,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string AmountCurrencyField;
 		public string AmountCurrency
@@ -15324,7 +15324,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private BasicAmountType OrderTotalField;
 		public BasicAmountType OrderTotal
@@ -15341,7 +15341,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private BasicAmountType ItemTotalField;
 		public BasicAmountType ItemTotal
@@ -15358,7 +15358,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private BasicAmountType ShippingTotalField;
 		public BasicAmountType ShippingTotal
@@ -15375,7 +15375,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private BasicAmountType HandlingTotalField;
 		public BasicAmountType HandlingTotal
@@ -15392,7 +15392,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private BasicAmountType TaxTotalField;
 		public BasicAmountType TaxTotal
@@ -15409,7 +15409,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string OrderDescriptionField;
 		public string OrderDescription
@@ -15426,7 +15426,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string CustomField;
 		public string Custom
@@ -15443,7 +15443,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string InvoiceIDField;
 		public string InvoiceID
@@ -15460,7 +15460,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string ButtonSourceField;
 		public string ButtonSource
@@ -15477,7 +15477,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string NotifyURLField;
 		public string NotifyURL
@@ -15494,7 +15494,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private AddressType ShipToAddressField;
 		public AddressType ShipToAddress
@@ -15511,7 +15511,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private ShippingServiceCodeType? ShippingMethodField;
 		public ShippingServiceCodeType? ShippingMethod
@@ -15528,7 +15528,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string ProfileAddressChangeDateField;
 		public string ProfileAddressChangeDate
@@ -15545,7 +15545,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private List<PaymentDetailsItemType> PaymentDetailsItemField = new List<PaymentDetailsItemType>();
 		public List<PaymentDetailsItemType> PaymentDetailsItem
@@ -15562,7 +15562,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private BasicAmountType InsuranceTotalField;
 		public BasicAmountType InsuranceTotal
@@ -15579,7 +15579,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private BasicAmountType ShippingDiscountField;
 		public BasicAmountType ShippingDiscount
@@ -15596,7 +15596,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string InsuranceOptionOfferedField;
 		public string InsuranceOptionOffered
@@ -15613,7 +15613,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private AllowedPaymentMethodType? AllowedPaymentMethodField;
 		public AllowedPaymentMethodType? AllowedPaymentMethod
@@ -15630,7 +15630,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private EnhancedPaymentDataType EnhancedPaymentDataField;
 		public EnhancedPaymentDataType EnhancedPaymentData
@@ -15647,7 +15647,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private SellerDetailsType SellerDetailsField;
 		public SellerDetailsType SellerDetails
@@ -15664,7 +15664,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string NoteTextField;
 		public string NoteText
@@ -15681,7 +15681,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string TransactionIdField;
 		public string TransactionId
@@ -15698,7 +15698,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private PaymentActionCodeType? PaymentActionField;
 		public PaymentActionCodeType? PaymentAction
@@ -15715,7 +15715,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string PaymentRequestIDField;
 		public string PaymentRequestID
@@ -15732,7 +15732,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string OrderURLField;
 		public string OrderURL
@@ -15749,7 +15749,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string SoftDescriptorField;
 		public string SoftDescriptor
@@ -15766,7 +15766,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private int? BranchLevelField;
 		public int? BranchLevel
@@ -15783,7 +15783,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private OfferDetailsType OfferDetailsField;
 		public OfferDetailsType OfferDetails
@@ -15800,7 +15800,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private RecurringFlagType? RecurringField;
 		public RecurringFlagType? Recurring
@@ -15817,7 +15817,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private PaymentReasonType? PaymentReasonField;
 		public PaymentReasonType? PaymentReason
@@ -16270,7 +16270,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string UniqueIdentifierField;
 		public string UniqueIdentifier
@@ -16287,7 +16287,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private IncentiveSiteAppliedOnType? SiteAppliedOnField;
 		public IncentiveSiteAppliedOnType? SiteAppliedOn
@@ -16304,7 +16304,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private BasicAmountType TotalDiscountAmountField;
 		public BasicAmountType TotalDiscountAmount
@@ -16321,7 +16321,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private IncentiveAppliedStatusType? StatusField;
 		public IncentiveAppliedStatusType? Status
@@ -16338,7 +16338,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private int? ErrorCodeField;
 		public int? ErrorCode
@@ -16355,7 +16355,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private List<IncentiveAppliedDetailsType> IncentiveAppliedDetailsField = new List<IncentiveAppliedDetailsType>();
 		public List<IncentiveAppliedDetailsType> IncentiveAppliedDetails
@@ -16448,7 +16448,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string PaymentRequestIDField;
 		public string PaymentRequestID
@@ -16465,7 +16465,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string ItemIdField;
 		public string ItemId
@@ -16482,7 +16482,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string ExternalTxnIdField;
 		public string ExternalTxnId
@@ -16499,7 +16499,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private BasicAmountType DiscountAmountField;
 		public BasicAmountType DiscountAmount
@@ -16516,7 +16516,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string SubTypeField;
 		public string SubType
@@ -16597,7 +16597,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string SellerIdField;
 		public string SellerId
@@ -16614,7 +16614,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string SellerUserNameField;
 		public string SellerUserName
@@ -16631,7 +16631,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string SellerRegistrationDateField;
 		public string SellerRegistrationDate
@@ -16648,7 +16648,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string PayPalAccountIDField;
 		public string PayPalAccountID
@@ -16665,7 +16665,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string SecureMerchantAccountIDField;
 		public string SecureMerchantAccountID
@@ -16775,7 +16775,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string OtherPaymentMethodIdField;
 		public string OtherPaymentMethodId
@@ -16792,7 +16792,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string OtherPaymentMethodTypeField;
 		public string OtherPaymentMethodType
@@ -16809,7 +16809,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string OtherPaymentMethodLabelField;
 		public string OtherPaymentMethodLabel
@@ -16826,7 +16826,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string OtherPaymentMethodLabelDescriptionField;
 		public string OtherPaymentMethodLabelDescription
@@ -16843,7 +16843,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string OtherPaymentMethodLongDescriptionTitleField;
 		public string OtherPaymentMethodLongDescriptionTitle
@@ -16860,7 +16860,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string OtherPaymentMethodLongDescriptionField;
 		public string OtherPaymentMethodLongDescription
@@ -16877,7 +16877,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string OtherPaymentMethodIconField;
 		public string OtherPaymentMethodIcon
@@ -16894,7 +16894,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private bool? OtherPaymentMethodHideLabelField;
 		public bool? OtherPaymentMethodHideLabel
@@ -16975,7 +16975,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string BuyerIdField;
 		public string BuyerId
@@ -16992,7 +16992,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string BuyerUserNameField;
 		public string BuyerUserName
@@ -17009,7 +17009,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string BuyerRegistrationDateField;
 		public string BuyerRegistrationDate
@@ -17026,7 +17026,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private TaxIdDetailsType TaxIdDetailsField;
 		public TaxIdDetailsType TaxIdDetails
@@ -17043,7 +17043,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private IdentificationInfoType IdentificationInfoField;
 		public IdentificationInfoType IdentificationInfo
@@ -17111,7 +17111,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string TaxIdTypeField;
 		public string TaxIdType
@@ -17128,7 +17128,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string TaxIdField;
 		public string TaxId
@@ -17201,7 +17201,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string Eci3dsField;
 		public string Eci3ds
@@ -17218,7 +17218,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string CavvField;
 		public string Cavv
@@ -17235,7 +17235,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string XidField;
 		public string Xid
@@ -17252,7 +17252,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string MpiVendor3dsField;
 		public string MpiVendor3ds
@@ -17269,7 +17269,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string AuthStatus3dsField;
 		public string AuthStatus3ds
@@ -17378,7 +17378,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string VpasField;
 		public string Vpas
@@ -17395,7 +17395,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string EciSubmitted3DSField;
 		public string EciSubmitted3DS
@@ -17453,7 +17453,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private ThreeDSecureRequestType ThreeDSecureRequestField;
 		public ThreeDSecureRequestType ThreeDSecureRequest
@@ -17470,7 +17470,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private ThreeDSecureResponseType ThreeDSecureResponseField;
 		public ThreeDSecureResponseType ThreeDSecureResponse
@@ -17532,7 +17532,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private CreditCardTypeType? CreditCardTypeField;
 		public CreditCardTypeType? CreditCardType
@@ -17549,7 +17549,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string CreditCardNumberField;
 		public string CreditCardNumber
@@ -17566,7 +17566,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private int? ExpMonthField;
 		public int? ExpMonth
@@ -17583,7 +17583,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private int? ExpYearField;
 		public int? ExpYear
@@ -17600,7 +17600,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private PayerInfoType CardOwnerField;
 		public PayerInfoType CardOwner
@@ -17617,7 +17617,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string CVV2Field;
 		public string CVV2
@@ -17634,7 +17634,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private int? StartMonthField;
 		public int? StartMonth
@@ -17651,7 +17651,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private int? StartYearField;
 		public int? StartYear
@@ -17668,7 +17668,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string IssueNumberField;
 		public string IssueNumber
@@ -17685,7 +17685,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private ThreeDSecureRequestType ThreeDSecureRequestField;
 		public ThreeDSecureRequestType ThreeDSecureRequest
@@ -17860,7 +17860,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string ShippingOptionIsDefaultField;
 		public string ShippingOptionIsDefault
@@ -17877,7 +17877,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private BasicAmountType ShippingOptionAmountField;
 		public BasicAmountType ShippingOptionAmount
@@ -17894,7 +17894,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string ShippingOptionNameField;
 		public string ShippingOptionName
@@ -17950,7 +17950,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string ShippingCalculationModeField;
 		public string ShippingCalculationMode
@@ -17967,7 +17967,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string InsuranceOptionSelectedField;
 		public string InsuranceOptionSelected
@@ -17984,7 +17984,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string ShippingOptionIsDefaultField;
 		public string ShippingOptionIsDefault
@@ -18001,7 +18001,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private BasicAmountType ShippingOptionAmountField;
 		public BasicAmountType ShippingOptionAmount
@@ -18018,7 +18018,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string ShippingOptionNameField;
 		public string ShippingOptionName
@@ -18130,7 +18130,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private CreditCardTypeType? CreditCardTypeField;
 		public CreditCardTypeType? CreditCardType
@@ -18147,7 +18147,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string CreditCardNumberField;
 		public string CreditCardNumber
@@ -18198,7 +18198,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private CreditCardNumberTypeType CreditCardNumberTypeField;
 		public CreditCardNumberTypeType CreditCardNumberType
@@ -18215,7 +18215,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private int? ExpMonthField;
 		public int? ExpMonth
@@ -18232,7 +18232,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private int? ExpYearField;
 		public int? ExpYear
@@ -18249,7 +18249,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private PersonNameType CardOwnerNameField;
 		public PersonNameType CardOwnerName
@@ -18266,7 +18266,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private AddressType BillingAddressField;
 		public AddressType BillingAddress
@@ -18283,7 +18283,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string CVV2Field;
 		public string CVV2
@@ -18300,7 +18300,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private int? StartMonthField;
 		public int? StartMonth
@@ -18317,7 +18317,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private int? StartYearField;
 		public int? StartYear
@@ -18334,7 +18334,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string IssueNumberField;
 		public string IssueNumber
@@ -18422,7 +18422,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private BillingAgreementDetailsType BillingAgreementDetailsField;
 		public BillingAgreementDetailsType BillingAgreementDetails
@@ -18439,7 +18439,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string ReturnURLField;
 		public string ReturnURL
@@ -18456,7 +18456,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string CancelURLField;
 		public string CancelURL
@@ -18473,7 +18473,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string LocaleCodeField;
 		public string LocaleCode
@@ -18490,7 +18490,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string PageStyleField;
 		public string PageStyle
@@ -18507,7 +18507,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string cppHeaderImageField;
 		public string cppHeaderImage
@@ -18524,7 +18524,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string cppHeaderBorderColorField;
 		public string cppHeaderBorderColor
@@ -18541,7 +18541,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string cppHeaderBackColorField;
 		public string cppHeaderBackColor
@@ -18558,7 +18558,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string cppPayflowColorField;
 		public string cppPayflowColor
@@ -18575,7 +18575,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string BuyerEmailField;
 		public string BuyerEmail
@@ -18592,7 +18592,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string ReqBillingAddressField;
 		public string ReqBillingAddress
@@ -18697,7 +18697,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private PayerInfoType PayerInfoField;
 		public PayerInfoType PayerInfo
@@ -18714,7 +18714,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private AddressType BillingAddressField;
 		public AddressType BillingAddress
@@ -18778,7 +18778,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string DeviceIDField;
 		public string DeviceID
@@ -18823,7 +18823,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private DeviceDetailsType DeviceDetailsField;
 		public DeviceDetailsType DeviceDetails
@@ -18869,7 +18869,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string ReferenceIDField;
 		public string ReferenceID
@@ -18886,7 +18886,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private PaymentActionCodeType? PaymentActionField;
 		public PaymentActionCodeType? PaymentAction
@@ -18903,7 +18903,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private MerchantPullPaymentCodeType? PaymentTypeField;
 		public MerchantPullPaymentCodeType? PaymentType
@@ -18920,7 +18920,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private PaymentDetailsType PaymentDetailsField;
 		public PaymentDetailsType PaymentDetails
@@ -18937,7 +18937,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private ReferenceCreditCardDetailsType CreditCardField;
 		public ReferenceCreditCardDetailsType CreditCard
@@ -18954,7 +18954,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string IPAddressField;
 		public string IPAddress
@@ -18971,7 +18971,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string MerchantSessionIdField;
 		public string MerchantSessionId
@@ -18988,7 +18988,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string ReqConfirmShippingField;
 		public string ReqConfirmShipping
@@ -19005,7 +19005,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string SoftDescriptorField;
 		public string SoftDescriptor
@@ -19022,7 +19022,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private SenderDetailsType SenderDetailsField;
 		public SenderDetailsType SenderDetails
@@ -19124,7 +19124,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string BillingAgreementIDField;
 		public string BillingAgreementID
@@ -19141,7 +19141,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private PaymentInfoType PaymentInfoField;
 		public PaymentInfoType PaymentInfo
@@ -19158,7 +19158,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private BasicAmountType AmountField;
 		public BasicAmountType Amount
@@ -19175,7 +19175,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string AVSCodeField;
 		public string AVSCode
@@ -19192,7 +19192,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string CVV2CodeField;
 		public string CVV2Code
@@ -19209,7 +19209,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string TransactionIDField;
 		public string TransactionID
@@ -19226,7 +19226,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string PaymentAdviceCodeField;
 		public string PaymentAdviceCode
@@ -19323,7 +19323,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private BasicAmountType AmountField;
 		public BasicAmountType Amount
@@ -19340,7 +19340,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private BasicAmountType NetAmountField;
 		public BasicAmountType NetAmount
@@ -19357,7 +19357,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private BasicAmountType TaxAmountField;
 		public BasicAmountType TaxAmount
@@ -19374,7 +19374,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private BasicAmountType ShippingAmountField;
 		public BasicAmountType ShippingAmount
@@ -19391,7 +19391,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private CreditCardDetailsType CreditCardField;
 		public CreditCardDetailsType CreditCard
@@ -19408,7 +19408,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string ReceiverEmailField;
 		public string ReceiverEmail
@@ -19425,7 +19425,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string CommentField;
 		public string Comment
@@ -19505,7 +19505,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private BasicAmountType AmountField;
 		public BasicAmountType Amount
@@ -19522,7 +19522,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string TransactionIDField;
 		public string TransactionID
@@ -19584,7 +19584,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string ProgramCodeField;
 		public string ProgramCode
@@ -19601,7 +19601,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string ProductListField;
 		public string ProductList
@@ -19618,7 +19618,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string PartnerCustomField;
 		public string PartnerCustom
@@ -19635,7 +19635,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string ImageUrlField;
 		public string ImageUrl
@@ -19652,7 +19652,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private MarketingCategoryType? MarketingCategoryField;
 		public MarketingCategoryType? MarketingCategory
@@ -19669,7 +19669,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private BusinessInfoType BusinessInfoField;
 		public BusinessInfoType BusinessInfo
@@ -19686,7 +19686,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private BusinessOwnerInfoType OwnerInfoField;
 		public BusinessOwnerInfoType OwnerInfo
@@ -19703,7 +19703,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private BankAccountDetailsType BankAccountField;
 		public BankAccountDetailsType BankAccount
@@ -19786,7 +19786,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private BusinessTypeType? TypeField;
 		public BusinessTypeType? Type
@@ -19803,7 +19803,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string NameField;
 		public string Name
@@ -19820,7 +19820,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private AddressType AddressField;
 		public AddressType Address
@@ -19837,7 +19837,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string WorkPhoneField;
 		public string WorkPhone
@@ -19854,7 +19854,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private BusinessCategoryType? CategoryField;
 		public BusinessCategoryType? Category
@@ -19871,7 +19871,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private BusinessSubCategoryType? SubCategoryField;
 		public BusinessSubCategoryType? SubCategory
@@ -19888,7 +19888,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private AverageTransactionPriceType? AveragePriceField;
 		public AverageTransactionPriceType? AveragePrice
@@ -19905,7 +19905,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private AverageMonthlyVolumeType? AverageMonthlyVolumeField;
 		public AverageMonthlyVolumeType? AverageMonthlyVolume
@@ -19922,7 +19922,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private SalesVenueType? SalesVenueField;
 		public SalesVenueType? SalesVenue
@@ -19939,7 +19939,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string WebsiteField;
 		public string Website
@@ -19956,7 +19956,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private PercentageRevenueFromOnlineSalesType? RevenueFromOnlineSalesField;
 		public PercentageRevenueFromOnlineSalesType? RevenueFromOnlineSales
@@ -19973,7 +19973,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string BusinessEstablishedField;
 		public string BusinessEstablished
@@ -19990,7 +19990,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string CustomerServiceEmailField;
 		public string CustomerServiceEmail
@@ -20007,7 +20007,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string CustomerServicePhoneField;
 		public string CustomerServicePhone
@@ -20118,7 +20118,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private PayerInfoType OwnerField;
 		public PayerInfoType Owner
@@ -20135,7 +20135,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string HomePhoneField;
 		public string HomePhone
@@ -20152,7 +20152,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string MobilePhoneField;
 		public string MobilePhone
@@ -20169,7 +20169,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string SSNField;
 		public string SSN
@@ -20230,7 +20230,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string NameField;
 		public string Name
@@ -20247,7 +20247,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private BankAccountTypeType? TypeField;
 		public BankAccountTypeType? Type
@@ -20264,7 +20264,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string RoutingNumberField;
 		public string RoutingNumber
@@ -20281,7 +20281,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string AccountNumberField;
 		public string AccountNumber
@@ -20343,7 +20343,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private BoardingStatusType? StatusField;
 		public BoardingStatusType? Status
@@ -20360,7 +20360,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string StartDateField;
 		public string StartDate
@@ -20377,7 +20377,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string LastUpdatedField;
 		public string LastUpdated
@@ -20394,7 +20394,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string ReasonField;
 		public string Reason
@@ -20411,7 +20411,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string ProgramNameField;
 		public string ProgramName
@@ -20428,7 +20428,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string ProgramCodeField;
 		public string ProgramCode
@@ -20445,7 +20445,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string CampaignIDField;
 		public string CampaignID
@@ -20462,7 +20462,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private UserWithdrawalLimitTypeType? UserWithdrawalLimitField;
 		public UserWithdrawalLimitTypeType? UserWithdrawalLimit
@@ -20479,7 +20479,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string PartnerCustomField;
 		public string PartnerCustom
@@ -20496,7 +20496,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private PayerInfoType AccountOwnerField;
 		public PayerInfoType AccountOwner
@@ -20513,7 +20513,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private APICredentialsType CredentialsField;
 		public APICredentialsType Credentials
@@ -20530,7 +20530,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string ConfigureAPIsField;
 		public string ConfigureAPIs
@@ -20547,7 +20547,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string EmailVerificationStatusField;
 		public string EmailVerificationStatus
@@ -20564,7 +20564,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string VettingStatusField;
 		public string VettingStatus
@@ -20581,7 +20581,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string BankAccountVerificationStatusField;
 		public string BankAccountVerificationStatus
@@ -20734,7 +20734,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string UsernameField;
 		public string Username
@@ -20751,7 +20751,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string PasswordField;
 		public string Password
@@ -20768,7 +20768,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string SignatureField;
 		public string Signature
@@ -20785,7 +20785,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string CertificateField;
 		public string Certificate
@@ -20802,7 +20802,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private APIAuthenticationType? TypeField;
 		public APIAuthenticationType? Type
@@ -20882,7 +20882,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private PhoneNumberType BuyerPhoneField;
 		public PhoneNumberType BuyerPhone
@@ -20899,7 +20899,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private BasicAmountType ItemAmountField;
 		public BasicAmountType ItemAmount
@@ -20916,7 +20916,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private BasicAmountType TaxField;
 		public BasicAmountType Tax
@@ -20933,7 +20933,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private BasicAmountType ShippingField;
 		public BasicAmountType Shipping
@@ -20950,7 +20950,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string ItemNameField;
 		public string ItemName
@@ -20967,7 +20967,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string ItemNumberField;
 		public string ItemNumber
@@ -20984,7 +20984,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string CustomField;
 		public string Custom
@@ -21001,7 +21001,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string InvoiceIDField;
 		public string InvoiceID
@@ -21018,7 +21018,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string ReturnURLField;
 		public string ReturnURL
@@ -21035,7 +21035,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string CancelURLField;
 		public string CancelURL
@@ -21052,7 +21052,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private int? AddressDisplayOptionsField;
 		public int? AddressDisplayOptions
@@ -21069,7 +21069,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private int? SharePhoneField;
 		public int? SharePhone
@@ -21086,7 +21086,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private AddressType ShipToAddressField;
 		public AddressType ShipToAddress
@@ -21103,7 +21103,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string BuyerEmailField;
 		public string BuyerEmail
@@ -21230,7 +21230,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string CustomField;
 		public string Custom
@@ -21247,7 +21247,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string InvoiceIDField;
 		public string InvoiceID
@@ -21264,7 +21264,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private PayerInfoType PayerInfoField;
 		public PayerInfoType PayerInfo
@@ -21281,7 +21281,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private PaymentInfoType PaymentInfoField;
 		public PaymentInfoType PaymentInfo
@@ -21357,7 +21357,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string UATPNumberField;
 		public string UATPNumber
@@ -21374,7 +21374,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private int? ExpMonthField;
 		public int? ExpMonth
@@ -21391,7 +21391,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private int? ExpYearField;
 		public int? ExpYear
@@ -21476,7 +21476,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string NextBillingDateField;
 		public string NextBillingDate
@@ -21493,7 +21493,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private int? NumberCyclesCompletedField;
 		public int? NumberCyclesCompleted
@@ -21510,7 +21510,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private int? NumberCyclesRemainingField;
 		public int? NumberCyclesRemaining
@@ -21527,7 +21527,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private BasicAmountType OutstandingBalanceField;
 		public BasicAmountType OutstandingBalance
@@ -21544,7 +21544,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private int? FailedPaymentCountField;
 		public int? FailedPaymentCount
@@ -21561,7 +21561,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string LastPaymentDateField;
 		public string LastPaymentDate
@@ -21578,7 +21578,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private BasicAmountType LastPaymentAmountField;
 		public BasicAmountType LastPaymentAmount
@@ -21675,7 +21675,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private BasicAmountType InitialAmountField;
 		public BasicAmountType InitialAmount
@@ -21692,7 +21692,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private FailedPaymentActionType? FailedInitialAmountActionField;
 		public FailedPaymentActionType? FailedInitialAmountAction
@@ -21750,7 +21750,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private BillingPeriodType? BillingPeriodField;
 		public BillingPeriodType? BillingPeriod
@@ -21767,7 +21767,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private int? BillingFrequencyField;
 		public int? BillingFrequency
@@ -21784,7 +21784,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private int? TotalBillingCyclesField;
 		public int? TotalBillingCycles
@@ -21801,7 +21801,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private BasicAmountType AmountField;
 		public BasicAmountType Amount
@@ -21818,7 +21818,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private BasicAmountType ShippingAmountField;
 		public BasicAmountType ShippingAmount
@@ -21835,7 +21835,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private BasicAmountType TaxAmountField;
 		public BasicAmountType TaxAmount
@@ -21974,7 +21974,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private BillingPeriodType? BillingPeriodField;
 		public BillingPeriodType? BillingPeriod
@@ -21991,7 +21991,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private int? BillingFrequencyField;
 		public int? BillingFrequency
@@ -22008,7 +22008,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private int? TotalBillingCyclesField;
 		public int? TotalBillingCycles
@@ -22025,7 +22025,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private BasicAmountType AmountField;
 		public BasicAmountType Amount
@@ -22042,7 +22042,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private BasicAmountType ShippingAmountField;
 		public BasicAmountType ShippingAmount
@@ -22059,7 +22059,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private BasicAmountType TaxAmountField;
 		public BasicAmountType TaxAmount
@@ -22132,7 +22132,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string DescriptionField;
 		public string Description
@@ -22149,7 +22149,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private BillingPeriodDetailsType TrialPeriodField;
 		public BillingPeriodDetailsType TrialPeriod
@@ -22166,7 +22166,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private BillingPeriodDetailsType PaymentPeriodField;
 		public BillingPeriodDetailsType PaymentPeriod
@@ -22183,7 +22183,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private int? MaxFailedPaymentsField;
 		public int? MaxFailedPayments
@@ -22200,7 +22200,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private ActivationDetailsType ActivationDetailsField;
 		public ActivationDetailsType ActivationDetails
@@ -22217,7 +22217,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private AutoBillType? AutoBillOutstandingAmountField;
 		public AutoBillType? AutoBillOutstandingAmount
@@ -22299,7 +22299,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string SubscriberNameField;
 		public string SubscriberName
@@ -22316,7 +22316,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private AddressType SubscriberShippingAddressField;
 		public AddressType SubscriberShippingAddress
@@ -22333,7 +22333,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string BillingStartDateField;
 		public string BillingStartDate
@@ -22350,7 +22350,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string ProfileReferenceField;
 		public string ProfileReference
@@ -22457,7 +22457,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string TokenField;
 		public string Token
@@ -22474,7 +22474,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private CreditCardDetailsType CreditCardField;
 		public CreditCardDetailsType CreditCard
@@ -22491,7 +22491,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private RecurringPaymentsProfileDetailsType RecurringPaymentsProfileDetailsField;
 		public RecurringPaymentsProfileDetailsType RecurringPaymentsProfileDetails
@@ -22508,7 +22508,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private ScheduleDetailsType ScheduleDetailsField;
 		public ScheduleDetailsType ScheduleDetails
@@ -22525,7 +22525,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private List<PaymentDetailsItemType> PaymentDetailsItemField = new List<PaymentDetailsItemType>();
 		public List<PaymentDetailsItemType> PaymentDetailsItem
@@ -22606,7 +22606,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string ProfileIDField;
 		public string ProfileID
@@ -22623,7 +22623,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private RecurringPaymentsProfileStatusType? ProfileStatusField;
 		public RecurringPaymentsProfileStatusType? ProfileStatus
@@ -22640,7 +22640,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string TransactionIDField;
 		public string TransactionID
@@ -22657,7 +22657,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string DCCProcessorResponseField;
 		public string DCCProcessorResponse
@@ -22674,7 +22674,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string DCCReturnCodeField;
 		public string DCCReturnCode
@@ -22753,7 +22753,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string ProfileIDField;
 		public string ProfileID
@@ -22770,7 +22770,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private RecurringPaymentsProfileStatusType? ProfileStatusField;
 		public RecurringPaymentsProfileStatusType? ProfileStatus
@@ -22787,7 +22787,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string DescriptionField;
 		public string Description
@@ -22804,7 +22804,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private AutoBillType? AutoBillOutstandingAmountField;
 		public AutoBillType? AutoBillOutstandingAmount
@@ -22821,7 +22821,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private int? MaxFailedPaymentsField;
 		public int? MaxFailedPayments
@@ -22838,7 +22838,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private RecurringPaymentsProfileDetailsType RecurringPaymentsProfileDetailsField;
 		public RecurringPaymentsProfileDetailsType RecurringPaymentsProfileDetails
@@ -22855,7 +22855,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private BillingPeriodDetailsType CurrentRecurringPaymentsPeriodField;
 		public BillingPeriodDetailsType CurrentRecurringPaymentsPeriod
@@ -22872,7 +22872,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private RecurringPaymentsSummaryType RecurringPaymentsSummaryField;
 		public RecurringPaymentsSummaryType RecurringPaymentsSummary
@@ -22889,7 +22889,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private CreditCardDetailsType CreditCardField;
 		public CreditCardDetailsType CreditCard
@@ -22906,7 +22906,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private BillingPeriodDetailsType TrialRecurringPaymentsPeriodField;
 		public BillingPeriodDetailsType TrialRecurringPaymentsPeriod
@@ -22923,7 +22923,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private BillingPeriodDetailsType RegularRecurringPaymentsPeriodField;
 		public BillingPeriodDetailsType RegularRecurringPaymentsPeriod
@@ -22940,7 +22940,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private BasicAmountType TrialAmountPaidField;
 		public BasicAmountType TrialAmountPaid
@@ -22957,7 +22957,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private BasicAmountType RegularAmountPaidField;
 		public BasicAmountType RegularAmountPaid
@@ -22974,7 +22974,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private BasicAmountType AggregateAmountField;
 		public BasicAmountType AggregateAmount
@@ -22991,7 +22991,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private BasicAmountType AggregateOptionalAmountField;
 		public BasicAmountType AggregateOptionalAmount
@@ -23008,7 +23008,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string FinalPaymentDueDateField;
 		public string FinalPaymentDueDate
@@ -23184,7 +23184,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string ProfileIDField;
 		public string ProfileID
@@ -23201,7 +23201,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private StatusChangeActionType? ActionField;
 		public StatusChangeActionType? Action
@@ -23218,7 +23218,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string NoteField;
 		public string Note
@@ -23281,7 +23281,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string ProfileIDField;
 		public string ProfileID
@@ -23332,7 +23332,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string ProfileIDField;
 		public string ProfileID
@@ -23349,7 +23349,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private BasicAmountType AmountField;
 		public BasicAmountType Amount
@@ -23366,7 +23366,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string NoteField;
 		public string Note
@@ -23429,7 +23429,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string ProfileIDField;
 		public string ProfileID
@@ -23480,7 +23480,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string ProfileIDField;
 		public string ProfileID
@@ -23497,7 +23497,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string NoteField;
 		public string Note
@@ -23514,7 +23514,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string DescriptionField;
 		public string Description
@@ -23531,7 +23531,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string SubscriberNameField;
 		public string SubscriberName
@@ -23548,7 +23548,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private AddressType SubscriberShippingAddressField;
 		public AddressType SubscriberShippingAddress
@@ -23565,7 +23565,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string ProfileReferenceField;
 		public string ProfileReference
@@ -23582,7 +23582,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private int? AdditionalBillingCyclesField;
 		public int? AdditionalBillingCycles
@@ -23599,7 +23599,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private BasicAmountType AmountField;
 		public BasicAmountType Amount
@@ -23616,7 +23616,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private BasicAmountType ShippingAmountField;
 		public BasicAmountType ShippingAmount
@@ -23633,7 +23633,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private BasicAmountType TaxAmountField;
 		public BasicAmountType TaxAmount
@@ -23650,7 +23650,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private BasicAmountType OutstandingBalanceField;
 		public BasicAmountType OutstandingBalance
@@ -23667,7 +23667,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private AutoBillType? AutoBillOutstandingAmountField;
 		public AutoBillType? AutoBillOutstandingAmount
@@ -23684,7 +23684,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private int? MaxFailedPaymentsField;
 		public int? MaxFailedPayments
@@ -23701,7 +23701,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private CreditCardDetailsType CreditCardField;
 		public CreditCardDetailsType CreditCard
@@ -23718,7 +23718,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string BillingStartDateField;
 		public string BillingStartDate
@@ -23735,7 +23735,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private BillingPeriodDetailsType_Update TrialPeriodField;
 		public BillingPeriodDetailsType_Update TrialPeriod
@@ -23752,7 +23752,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private BillingPeriodDetailsType_Update PaymentPeriodField;
 		public BillingPeriodDetailsType_Update PaymentPeriod
@@ -23892,7 +23892,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string ProfileIDField;
 		public string ProfileID
@@ -23943,7 +23943,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private int? IdField;
 		public int? Id
@@ -23960,7 +23960,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string NameField;
 		public string Name
@@ -23977,7 +23977,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string DescriptionField;
 		public string Description
@@ -24042,7 +24042,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private List<RiskFilterDetailsType> FiltersField = new List<RiskFilterDetailsType>();
 		public List<RiskFilterDetailsType> Filters
@@ -24099,7 +24099,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private RiskFilterListType AcceptFiltersField;
 		public RiskFilterListType AcceptFilters
@@ -24116,7 +24116,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private RiskFilterListType PendingFiltersField;
 		public RiskFilterListType PendingFilters
@@ -24133,7 +24133,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private RiskFilterListType DenyFiltersField;
 		public RiskFilterListType DenyFilters
@@ -24150,7 +24150,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private RiskFilterListType ReportFiltersField;
 		public RiskFilterListType ReportFilters
@@ -24230,7 +24230,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private AirlineItineraryType AirlineItineraryField;
 		public AirlineItineraryType AirlineItinerary
@@ -24276,7 +24276,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string PassengerNameField;
 		public string PassengerName
@@ -24293,7 +24293,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string IssueDateField;
 		public string IssueDate
@@ -24310,7 +24310,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string TravelAgencyNameField;
 		public string TravelAgencyName
@@ -24327,7 +24327,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string TravelAgencyCodeField;
 		public string TravelAgencyCode
@@ -24344,7 +24344,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string TicketNumberField;
 		public string TicketNumber
@@ -24361,7 +24361,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string IssuingCarrierCodeField;
 		public string IssuingCarrierCode
@@ -24378,7 +24378,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string CustomerCodeField;
 		public string CustomerCode
@@ -24395,7 +24395,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private BasicAmountType TotalFareField;
 		public BasicAmountType TotalFare
@@ -24412,7 +24412,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private BasicAmountType TotalTaxesField;
 		public BasicAmountType TotalTaxes
@@ -24429,7 +24429,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private BasicAmountType TotalFeeField;
 		public BasicAmountType TotalFee
@@ -24446,7 +24446,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string RestrictedTicketField;
 		public string RestrictedTicket
@@ -24463,7 +24463,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string ClearingSequenceField;
 		public string ClearingSequence
@@ -24480,7 +24480,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string ClearingCountField;
 		public string ClearingCount
@@ -24497,7 +24497,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private List<FlightDetailsType> FlightDetailsField = new List<FlightDetailsType>();
 		public List<FlightDetailsType> FlightDetails
@@ -24615,7 +24615,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string ConjuctionTicketField;
 		public string ConjuctionTicket
@@ -24632,7 +24632,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string ExchangeTicketField;
 		public string ExchangeTicket
@@ -24649,7 +24649,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string CouponNumberField;
 		public string CouponNumber
@@ -24666,7 +24666,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string ServiceClassField;
 		public string ServiceClass
@@ -24683,7 +24683,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string TravelDateField;
 		public string TravelDate
@@ -24700,7 +24700,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string CarrierCodeField;
 		public string CarrierCode
@@ -24717,7 +24717,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string StopOverPermittedField;
 		public string StopOverPermitted
@@ -24734,7 +24734,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string DepartureAirportField;
 		public string DepartureAirport
@@ -24751,7 +24751,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string ArrivalAirportField;
 		public string ArrivalAirport
@@ -24768,7 +24768,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string FlightNumberField;
 		public string FlightNumber
@@ -24785,7 +24785,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string DepartureTimeField;
 		public string DepartureTime
@@ -24802,7 +24802,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string ArrivalTimeField;
 		public string ArrivalTime
@@ -24819,7 +24819,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string FareBasisCodeField;
 		public string FareBasisCode
@@ -24836,7 +24836,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private BasicAmountType FareField;
 		public BasicAmountType Fare
@@ -24853,7 +24853,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private BasicAmountType TaxesField;
 		public BasicAmountType Taxes
@@ -24870,7 +24870,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private BasicAmountType FeeField;
 		public BasicAmountType Fee
@@ -24887,7 +24887,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string EndorsementOrRestrictionsField;
 		public string EndorsementOrRestrictions
@@ -25015,7 +25015,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private PaymentStatusCodeType? PaymentStatusField;
 		public PaymentStatusCodeType? PaymentStatus
@@ -25032,7 +25032,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private PendingStatusCodeType? PendingReasonField;
 		public PendingStatusCodeType? PendingReason
@@ -25049,7 +25049,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string ProtectionEligibilityField;
 		public string ProtectionEligibility
@@ -25066,7 +25066,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string ProtectionEligibilityTypeField;
 		public string ProtectionEligibilityType
@@ -25138,7 +25138,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string OptionNumberField;
 		public string OptionNumber
@@ -25155,7 +25155,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string OptionQtyField;
 		public string OptionQty
@@ -25172,7 +25172,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string OptionSelectField;
 		public string OptionSelect
@@ -25189,7 +25189,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string OptionQtyDeltaField;
 		public string OptionQtyDelta
@@ -25206,7 +25206,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string OptionAlertField;
 		public string OptionAlert
@@ -25223,7 +25223,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string OptionCostField;
 		public string OptionCost
@@ -25344,7 +25344,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string ItemNumberField;
 		public string ItemNumber
@@ -25361,7 +25361,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string ItemQtyField;
 		public string ItemQty
@@ -25378,7 +25378,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string ItemQtyDeltaField;
 		public string ItemQtyDelta
@@ -25395,7 +25395,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string ItemAlertField;
 		public string ItemAlert
@@ -25412,7 +25412,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string ItemCostField;
 		public string ItemCost
@@ -25521,7 +25521,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string HostedButtonIDField;
 		public string HostedButtonID
@@ -25538,7 +25538,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string ButtonTypeField;
 		public string ButtonType
@@ -25555,7 +25555,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string ItemNameField;
 		public string ItemName
@@ -25572,7 +25572,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string ModifyDateField;
 		public string ModifyDate
@@ -25646,7 +25646,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string TransactionIDField;
 		public string TransactionID
@@ -25693,7 +25693,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string ReverseTransactionIDField;
 		public string ReverseTransactionID
@@ -25710,7 +25710,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string StatusField;
 		public string Status
@@ -25768,7 +25768,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string IncentiveCodeField;
 		public string IncentiveCode
@@ -25785,7 +25785,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private List<IncentiveApplyIndicationType> ApplyIndicationField = new List<IncentiveApplyIndicationType>();
 		public List<IncentiveApplyIndicationType> ApplyIndication
@@ -25841,7 +25841,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string PaymentRequestIDField;
 		public string PaymentRequestID
@@ -25858,7 +25858,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string ItemIdField;
 		public string ItemId
@@ -25909,7 +25909,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string TransactionIdField;
 		public string TransactionId
@@ -25926,7 +25926,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string PaymentRequestIDField;
 		public string PaymentRequestID
@@ -25943,7 +25943,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private ErrorType PaymentErrorField;
 		public ErrorType PaymentError
@@ -26011,7 +26011,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string ExternalRememberMeOwnerIDTypeField;
 		public string ExternalRememberMeOwnerIDType
@@ -26028,7 +26028,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string ExternalRememberMeOwnerIDField;
 		public string ExternalRememberMeOwnerID
@@ -26081,7 +26081,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string ExternalRememberMeOptInField;
 		public string ExternalRememberMeOptIn
@@ -26098,7 +26098,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private ExternalRememberMeOwnerDetailsType ExternalRememberMeOwnerDetailsField;
 		public ExternalRememberMeOwnerDetailsType ExternalRememberMeOwnerDetails
@@ -26149,7 +26149,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string ErrorURLField;
 		public string ErrorURL
@@ -26166,7 +26166,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string InContextReturnURLField;
 		public string InContextReturnURL
@@ -26217,7 +26217,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private int? ExternalRememberMeStatusField;
 		public int? ExternalRememberMeStatus
@@ -26234,7 +26234,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string ExternalRememberMeIDField;
 		public string ExternalRememberMeID
@@ -26293,7 +26293,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string InContextPaymentButtonImageField;
 		public string InContextPaymentButtonImage
@@ -26339,7 +26339,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string ExternalPartnerSegmentIDField;
 		public string ExternalPartnerSegmentID
@@ -26385,7 +26385,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string StoreIDField;
 		public string StoreID
@@ -26402,7 +26402,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string TerminalIDField;
 		public string TerminalID
@@ -26459,7 +26459,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string TypeField;
 		public string Type
@@ -26476,7 +26476,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private BasicAmountType AmountField;
 		public BasicAmountType Amount
@@ -26527,7 +26527,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string NameField;
 		public string Name
@@ -26544,7 +26544,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string DescriptionField;
 		public string Description
@@ -26561,7 +26561,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private BasicAmountType AmountField;
 		public BasicAmountType Amount
@@ -26578,7 +26578,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private RedeemedOfferType? RedeemedOfferTypeField;
 		public RedeemedOfferType? RedeemedOfferType
@@ -26595,7 +26595,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string RedeemedOfferIDField;
 		public string RedeemedOfferID
@@ -26668,7 +26668,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string NameField;
 		public string Name
@@ -26685,7 +26685,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string DescriptionField;
 		public string Description
@@ -26702,7 +26702,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string EANField;
 		public string EAN
@@ -26719,7 +26719,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string SKUField;
 		public string SKU
@@ -26736,7 +26736,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string ReturnPolicyIdentifierField;
 		public string ReturnPolicyIdentifier
@@ -26753,7 +26753,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private BasicAmountType PriceField;
 		public BasicAmountType Price
@@ -26770,7 +26770,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private BasicAmountType ItemPriceField;
 		public BasicAmountType ItemPrice
@@ -26787,7 +26787,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private decimal? ItemCountField;
 		public decimal? ItemCount
@@ -26804,7 +26804,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private UnitOfMeasure? ItemCountUnitField;
 		public UnitOfMeasure? ItemCountUnit
@@ -26821,7 +26821,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private List<DiscountType> DiscountField = new List<DiscountType>();
 		public List<DiscountType> Discount
@@ -26838,7 +26838,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private bool? TaxableField;
 		public bool? Taxable
@@ -26855,7 +26855,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private decimal? TaxRateField;
 		public decimal? TaxRate
@@ -26872,7 +26872,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private List<AdditionalFeeType> AdditionalFeesField = new List<AdditionalFeeType>();
 		public List<AdditionalFeeType> AdditionalFees
@@ -26889,7 +26889,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private bool? ReimbursableField;
 		public bool? Reimbursable
@@ -26906,7 +26906,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string MPNField;
 		public string MPN
@@ -26923,7 +26923,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string ISBNField;
 		public string ISBN
@@ -26940,7 +26940,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string PLUField;
 		public string PLU
@@ -26957,7 +26957,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string ModelNumberField;
 		public string ModelNumber
@@ -26974,7 +26974,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string StyleNumberField;
 		public string StyleNumber
@@ -27121,7 +27121,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private PaymentStatusCodeType? RefundStatusField;
 		public PaymentStatusCodeType? RefundStatus
@@ -27138,7 +27138,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private PendingStatusCodeType? PendingReasonField;
 		public PendingStatusCodeType? PendingReason
@@ -27438,7 +27438,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private BillingPeriodType? BillingPeriodField;
 		public BillingPeriodType? BillingPeriod
@@ -27455,7 +27455,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private int? BillingFrequencyField;
 		public int? BillingFrequency
@@ -27472,7 +27472,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private int? TotalBillingCyclesField;
 		public int? TotalBillingCycles
@@ -27489,7 +27489,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string AmountField;
 		public string Amount
@@ -27506,7 +27506,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string ShippingAmountField;
 		public string ShippingAmount
@@ -27523,7 +27523,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string TaxAmountField;
 		public string TaxAmount
@@ -27645,7 +27645,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string OptionSelectionField;
 		public string OptionSelection
@@ -27662,7 +27662,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string PriceField;
 		public string Price
@@ -27679,7 +27679,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private OptionTypeListType? OptionTypeField;
 		public OptionTypeListType? OptionType
@@ -27696,7 +27696,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private List<InstallmentDetailsType> PaymentPeriodField = new List<InstallmentDetailsType>();
 		public List<InstallmentDetailsType> PaymentPeriod
@@ -27810,7 +27810,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string OptionNameField;
 		public string OptionName
@@ -27827,7 +27827,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private List<OptionSelectionDetailsType> OptionSelectionDetailsField = new List<OptionSelectionDetailsType>();
 		public List<OptionSelectionDetailsType> OptionSelectionDetails
@@ -27917,7 +27917,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private BMCreateButtonRequestType BMCreateButtonRequestField;
 		public BMCreateButtonRequestType BMCreateButtonRequest
@@ -27967,7 +27967,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private ButtonTypeType? ButtonTypeField;
 		public ButtonTypeType? ButtonType
@@ -27984,7 +27984,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private ButtonCodeType? ButtonCodeField;
 		public ButtonCodeType? ButtonCode
@@ -28001,7 +28001,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private ButtonSubTypeType? ButtonSubTypeField;
 		public ButtonSubTypeType? ButtonSubType
@@ -28018,7 +28018,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private List<string> ButtonVarField = new List<string>();
 		public List<string> ButtonVar
@@ -28035,7 +28035,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private List<OptionDetailsType> OptionDetailsField = new List<OptionDetailsType>();
 		public List<OptionDetailsType> OptionDetails
@@ -28052,7 +28052,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private List<string> TextBoxField = new List<string>();
 		public List<string> TextBox
@@ -28069,7 +28069,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private ButtonImageType? ButtonImageField;
 		public ButtonImageType? ButtonImage
@@ -28086,7 +28086,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string ButtonImageURLField;
 		public string ButtonImageURL
@@ -28103,7 +28103,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private BuyNowTextType? BuyNowTextField;
 		public BuyNowTextType? BuyNowText
@@ -28120,7 +28120,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private SubscribeTextType? SubscribeTextField;
 		public SubscribeTextType? SubscribeText
@@ -28137,7 +28137,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private CountryCodeType? ButtonCountryField;
 		public CountryCodeType? ButtonCountry
@@ -28154,7 +28154,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string ButtonLanguageField;
 		public string ButtonLanguage
@@ -28268,7 +28268,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string WebsiteField;
 		public string Website
@@ -28285,7 +28285,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string EmailField;
 		public string Email
@@ -28302,7 +28302,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string MobileField;
 		public string Mobile
@@ -28319,7 +28319,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string HostedButtonIDField;
 		public string HostedButtonID
@@ -28391,7 +28391,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private BMUpdateButtonRequestType BMUpdateButtonRequestField;
 		public BMUpdateButtonRequestType BMUpdateButtonRequest
@@ -28441,7 +28441,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string HostedButtonIDField;
 		public string HostedButtonID
@@ -28458,7 +28458,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private ButtonTypeType? ButtonTypeField;
 		public ButtonTypeType? ButtonType
@@ -28475,7 +28475,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private ButtonCodeType? ButtonCodeField;
 		public ButtonCodeType? ButtonCode
@@ -28492,7 +28492,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private ButtonSubTypeType? ButtonSubTypeField;
 		public ButtonSubTypeType? ButtonSubType
@@ -28509,7 +28509,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private List<string> ButtonVarField = new List<string>();
 		public List<string> ButtonVar
@@ -28526,7 +28526,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private List<OptionDetailsType> OptionDetailsField = new List<OptionDetailsType>();
 		public List<OptionDetailsType> OptionDetails
@@ -28543,7 +28543,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private List<string> TextBoxField = new List<string>();
 		public List<string> TextBox
@@ -28560,7 +28560,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private ButtonImageType? ButtonImageField;
 		public ButtonImageType? ButtonImage
@@ -28577,7 +28577,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string ButtonImageURLField;
 		public string ButtonImageURL
@@ -28594,7 +28594,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private BuyNowTextType? BuyNowTextField;
 		public BuyNowTextType? BuyNowText
@@ -28611,7 +28611,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private SubscribeTextType? SubscribeTextField;
 		public SubscribeTextType? SubscribeText
@@ -28628,7 +28628,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private CountryCodeType? ButtonCountryField;
 		public CountryCodeType? ButtonCountry
@@ -28645,7 +28645,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string ButtonLanguageField;
 		public string ButtonLanguage
@@ -28771,7 +28771,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string WebsiteField;
 		public string Website
@@ -28788,7 +28788,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string EmailField;
 		public string Email
@@ -28805,7 +28805,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string MobileField;
 		public string Mobile
@@ -28822,7 +28822,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string HostedButtonIDField;
 		public string HostedButtonID
@@ -28894,7 +28894,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private BMManageButtonStatusRequestType BMManageButtonStatusRequestField;
 		public BMManageButtonStatusRequestType BMManageButtonStatusRequest
@@ -28943,7 +28943,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string HostedButtonIDField;
 		public string HostedButtonID
@@ -28960,7 +28960,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private ButtonStatusType? ButtonStatusField;
 		public ButtonStatusType? ButtonStatus
@@ -29038,7 +29038,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private BMGetButtonDetailsRequestType BMGetButtonDetailsRequestField;
 		public BMGetButtonDetailsRequestType BMGetButtonDetailsRequest
@@ -29087,7 +29087,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string HostedButtonIDField;
 		public string HostedButtonID
@@ -29142,7 +29142,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string WebsiteField;
 		public string Website
@@ -29159,7 +29159,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string EmailField;
 		public string Email
@@ -29176,7 +29176,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string MobileField;
 		public string Mobile
@@ -29193,7 +29193,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string HostedButtonIDField;
 		public string HostedButtonID
@@ -29210,7 +29210,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private ButtonTypeType? ButtonTypeField;
 		public ButtonTypeType? ButtonType
@@ -29227,7 +29227,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private ButtonCodeType? ButtonCodeField;
 		public ButtonCodeType? ButtonCode
@@ -29244,7 +29244,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private ButtonSubTypeType? ButtonSubTypeField;
 		public ButtonSubTypeType? ButtonSubType
@@ -29261,7 +29261,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private List<string> ButtonVarField = new List<string>();
 		public List<string> ButtonVar
@@ -29278,7 +29278,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private List<OptionDetailsType> OptionDetailsField = new List<OptionDetailsType>();
 		public List<OptionDetailsType> OptionDetails
@@ -29295,7 +29295,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private List<string> TextBoxField = new List<string>();
 		public List<string> TextBox
@@ -29312,7 +29312,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private ButtonImageType? ButtonImageField;
 		public ButtonImageType? ButtonImage
@@ -29329,7 +29329,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string ButtonImageURLField;
 		public string ButtonImageURL
@@ -29346,7 +29346,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private BuyNowTextType? BuyNowTextField;
 		public BuyNowTextType? BuyNowText
@@ -29363,7 +29363,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private SubscribeTextType? SubscribeTextField;
 		public SubscribeTextType? SubscribeText
@@ -29380,7 +29380,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private CountryCodeType? ButtonCountryField;
 		public CountryCodeType? ButtonCountry
@@ -29397,7 +29397,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string ButtonLanguageField;
 		public string ButtonLanguage
@@ -29568,7 +29568,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private BMSetInventoryRequestType BMSetInventoryRequestField;
 		public BMSetInventoryRequestType BMSetInventoryRequest
@@ -29618,7 +29618,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string HostedButtonIDField;
 		public string HostedButtonID
@@ -29635,7 +29635,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string TrackInvField;
 		public string TrackInv
@@ -29652,7 +29652,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string TrackPnlField;
 		public string TrackPnl
@@ -29669,7 +29669,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private ItemTrackingDetailsType ItemTrackingDetailsField;
 		public ItemTrackingDetailsType ItemTrackingDetails
@@ -29686,7 +29686,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string OptionIndexField;
 		public string OptionIndex
@@ -29703,7 +29703,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private List<OptionTrackingDetailsType> OptionTrackingDetailsField = new List<OptionTrackingDetailsType>();
 		public List<OptionTrackingDetailsType> OptionTrackingDetails
@@ -29720,7 +29720,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string SoldoutURLField;
 		public string SoldoutURL
@@ -29737,7 +29737,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string ReuseDigitalDownloadKeysField;
 		public string ReuseDigitalDownloadKeys
@@ -29754,7 +29754,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string AppendDigitalDownloadKeysField;
 		public string AppendDigitalDownloadKeys
@@ -29771,7 +29771,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private List<string> DigitalDownloadKeysField = new List<string>();
 		public List<string> DigitalDownloadKeys
@@ -29908,7 +29908,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private BMGetInventoryRequestType BMGetInventoryRequestField;
 		public BMGetInventoryRequestType BMGetInventoryRequest
@@ -29958,7 +29958,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string HostedButtonIDField;
 		public string HostedButtonID
@@ -30011,7 +30011,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string HostedButtonIDField;
 		public string HostedButtonID
@@ -30028,7 +30028,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string TrackInvField;
 		public string TrackInv
@@ -30045,7 +30045,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string TrackPnlField;
 		public string TrackPnl
@@ -30062,7 +30062,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private ItemTrackingDetailsType ItemTrackingDetailsField;
 		public ItemTrackingDetailsType ItemTrackingDetails
@@ -30079,7 +30079,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string OptionIndexField;
 		public string OptionIndex
@@ -30096,7 +30096,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string OptionNameField;
 		public string OptionName
@@ -30113,7 +30113,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private List<OptionTrackingDetailsType> OptionTrackingDetailsField = new List<OptionTrackingDetailsType>();
 		public List<OptionTrackingDetailsType> OptionTrackingDetails
@@ -30130,7 +30130,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string SoldoutURLField;
 		public string SoldoutURL
@@ -30147,7 +30147,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private List<string> DigitalDownloadKeysField = new List<string>();
 		public List<string> DigitalDownloadKeys
@@ -30266,7 +30266,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private BMButtonSearchRequestType BMButtonSearchRequestField;
 		public BMButtonSearchRequestType BMButtonSearchRequest
@@ -30315,7 +30315,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string StartDateField;
 		public string StartDate
@@ -30332,7 +30332,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string EndDateField;
 		public string EndDate
@@ -30383,7 +30383,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private List<ButtonSearchResultType> ButtonSearchResultField = new List<ButtonSearchResultType>();
 		public List<ButtonSearchResultType> ButtonSearchResult
@@ -30439,7 +30439,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private RefundTransactionRequestType RefundTransactionRequestField;
 		public RefundTransactionRequestType RefundTransactionRequest
@@ -30489,7 +30489,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string TransactionIDField;
 		public string TransactionID
@@ -30506,7 +30506,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string InvoiceIDField;
 		public string InvoiceID
@@ -30523,7 +30523,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private RefundType? RefundTypeField;
 		public RefundType? RefundType
@@ -30540,7 +30540,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private BasicAmountType AmountField;
 		public BasicAmountType Amount
@@ -30557,7 +30557,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string MemoField;
 		public string Memo
@@ -30574,7 +30574,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string RetryUntilField;
 		public string RetryUntil
@@ -30591,7 +30591,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private RefundSourceCodeType? RefundSourceField;
 		public RefundSourceCodeType? RefundSource
@@ -30608,7 +30608,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private bool? RefundAdviceField;
 		public bool? RefundAdvice
@@ -30625,7 +30625,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private MerchantStoreDetailsType MerchantStoreDetailsField;
 		public MerchantStoreDetailsType MerchantStoreDetails
@@ -30642,7 +30642,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private List<InvoiceItemType> RefundItemDetailsField = new List<InvoiceItemType>();
 		public List<InvoiceItemType> RefundItemDetails
@@ -30659,7 +30659,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string MsgSubIDField;
 		public string MsgSubID
@@ -30763,7 +30763,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string RefundTransactionIDField;
 		public string RefundTransactionID
@@ -30780,7 +30780,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private BasicAmountType NetRefundAmountField;
 		public BasicAmountType NetRefundAmount
@@ -30797,7 +30797,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private BasicAmountType FeeRefundAmountField;
 		public BasicAmountType FeeRefundAmount
@@ -30814,7 +30814,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private BasicAmountType GrossRefundAmountField;
 		public BasicAmountType GrossRefundAmount
@@ -30831,7 +30831,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private BasicAmountType TotalRefundedAmountField;
 		public BasicAmountType TotalRefundedAmount
@@ -30848,7 +30848,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private RefundInfoType RefundInfoField;
 		public RefundInfoType RefundInfo
@@ -30865,7 +30865,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string ReceiptDataField;
 		public string ReceiptData
@@ -30882,7 +30882,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string MsgSubIDField;
 		public string MsgSubID
@@ -30992,7 +30992,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private InitiateRecoupRequestType InitiateRecoupRequestField;
 		public InitiateRecoupRequestType InitiateRecoupRequest
@@ -31040,7 +31040,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private EnhancedInitiateRecoupRequestDetailsType EnhancedInitiateRecoupRequestDetailsField;
 		public EnhancedInitiateRecoupRequestDetailsType EnhancedInitiateRecoupRequestDetails
@@ -31121,7 +31121,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private CompleteRecoupRequestType CompleteRecoupRequestField;
 		public CompleteRecoupRequestType CompleteRecoupRequest
@@ -31169,7 +31169,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private EnhancedCompleteRecoupRequestDetailsType EnhancedCompleteRecoupRequestDetailsField;
 		public EnhancedCompleteRecoupRequestDetailsType EnhancedCompleteRecoupRequestDetails
@@ -31223,7 +31223,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private EnhancedCompleteRecoupResponseDetailsType EnhancedCompleteRecoupResponseDetailsField;
 		public EnhancedCompleteRecoupResponseDetailsType EnhancedCompleteRecoupResponseDetails
@@ -31276,7 +31276,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private CancelRecoupRequestType CancelRecoupRequestField;
 		public CancelRecoupRequestType CancelRecoupRequest
@@ -31324,7 +31324,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private EnhancedCancelRecoupRequestDetailsType EnhancedCancelRecoupRequestDetailsField;
 		public EnhancedCancelRecoupRequestDetailsType EnhancedCancelRecoupRequestDetails
@@ -31405,7 +31405,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private GetTransactionDetailsRequestType GetTransactionDetailsRequestField;
 		public GetTransactionDetailsRequestType GetTransactionDetailsRequest
@@ -31457,7 +31457,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string TransactionIDField;
 		public string TransactionID
@@ -31503,7 +31503,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private PaymentTransactionType PaymentTransactionDetailsField;
 		public PaymentTransactionType PaymentTransactionDetails
@@ -31520,7 +31520,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private ThreeDSecureInfoType ThreeDSecureDetailsField;
 		public ThreeDSecureInfoType ThreeDSecureDetails
@@ -31582,7 +31582,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private BillUserRequestType BillUserRequestField;
 		public BillUserRequestType BillUserRequest
@@ -31631,7 +31631,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private MerchantPullPaymentType MerchantPullPaymentDetailsField;
 		public MerchantPullPaymentType MerchantPullPaymentDetails
@@ -31648,7 +31648,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private int? ReturnFMFDetailsField;
 		public int? ReturnFMFDetails
@@ -31700,7 +31700,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private MerchantPullPaymentResponseType BillUserResponseDetailsField;
 		public MerchantPullPaymentResponseType BillUserResponseDetails
@@ -31717,7 +31717,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private FMFDetailsType FMFDetailsField;
 		public FMFDetailsType FMFDetails
@@ -31779,7 +31779,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private TransactionSearchRequestType TransactionSearchRequestField;
 		public TransactionSearchRequestType TransactionSearchRequest
@@ -31828,7 +31828,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string StartDateField;
 		public string StartDate
@@ -31845,7 +31845,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string EndDateField;
 		public string EndDate
@@ -31862,7 +31862,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string PayerField;
 		public string Payer
@@ -31879,7 +31879,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string ReceiverField;
 		public string Receiver
@@ -31896,7 +31896,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string ReceiptIDField;
 		public string ReceiptID
@@ -31913,7 +31913,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string TransactionIDField;
 		public string TransactionID
@@ -31930,7 +31930,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string ProfileIDField;
 		public string ProfileID
@@ -31947,7 +31947,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private PersonNameType PayerNameField;
 		public PersonNameType PayerName
@@ -31964,7 +31964,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string AuctionItemNumberField;
 		public string AuctionItemNumber
@@ -31981,7 +31981,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string InvoiceIDField;
 		public string InvoiceID
@@ -31998,7 +31998,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string CardNumberField;
 		public string CardNumber
@@ -32015,7 +32015,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private PaymentTransactionClassCodeType? TransactionClassField;
 		public PaymentTransactionClassCodeType? TransactionClass
@@ -32032,7 +32032,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private BasicAmountType AmountField;
 		public BasicAmountType Amount
@@ -32049,7 +32049,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private CurrencyCodeType? CurrencyCodeField;
 		public CurrencyCodeType? CurrencyCode
@@ -32066,7 +32066,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private PaymentTransactionStatusCodeType? StatusField;
 		public PaymentTransactionStatusCodeType? Status
@@ -32191,7 +32191,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private List<PaymentTransactionSearchResultType> PaymentTransactionsField = new List<PaymentTransactionSearchResultType>();
 		public List<PaymentTransactionSearchResultType> PaymentTransactions
@@ -32247,7 +32247,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private MassPayRequestType MassPayRequestField;
 		public MassPayRequestType MassPayRequest
@@ -32298,7 +32298,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string EmailSubjectField;
 		public string EmailSubject
@@ -32315,7 +32315,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private ReceiverInfoCodeType? ReceiverTypeField;
 		public ReceiverInfoCodeType? ReceiverType
@@ -32332,7 +32332,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string ButtonSourceField;
 		public string ButtonSource
@@ -32349,7 +32349,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private List<MassPayRequestItemType> MassPayItemField = new List<MassPayRequestItemType>();
 		public List<MassPayRequestItemType> MassPayItem
@@ -32449,7 +32449,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string ReceiverEmailField;
 		public string ReceiverEmail
@@ -32466,7 +32466,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string ReceiverPhoneField;
 		public string ReceiverPhone
@@ -32483,7 +32483,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string ReceiverIDField;
 		public string ReceiverID
@@ -32500,7 +32500,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private BasicAmountType AmountField;
 		public BasicAmountType Amount
@@ -32517,7 +32517,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string UniqueIdField;
 		public string UniqueId
@@ -32534,7 +32534,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string NoteField;
 		public string Note
@@ -32612,7 +32612,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private BAUpdateRequestType BAUpdateRequestField;
 		public BAUpdateRequestType BAUpdateRequest
@@ -32660,7 +32660,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string ReferenceIDField;
 		public string ReferenceID
@@ -32677,7 +32677,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string BillingAgreementDescriptionField;
 		public string BillingAgreementDescription
@@ -32694,7 +32694,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private MerchantPullStatusCodeType? BillingAgreementStatusField;
 		public MerchantPullStatusCodeType? BillingAgreementStatus
@@ -32711,7 +32711,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string BillingAgreementCustomField;
 		public string BillingAgreementCustom
@@ -32779,7 +32779,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private BAUpdateResponseDetailsType BAUpdateResponseDetailsField;
 		public BAUpdateResponseDetailsType BAUpdateResponseDetails
@@ -32832,7 +32832,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private AddressVerifyRequestType AddressVerifyRequestField;
 		public AddressVerifyRequestType AddressVerifyRequest
@@ -32882,7 +32882,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string EmailField;
 		public string Email
@@ -32899,7 +32899,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string StreetField;
 		public string Street
@@ -32916,7 +32916,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string ZipField;
 		public string Zip
@@ -32986,7 +32986,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private AddressStatusCodeType? ConfirmationCodeField;
 		public AddressStatusCodeType? ConfirmationCode
@@ -33003,7 +33003,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private MatchStatusCodeType? StreetMatchField;
 		public MatchStatusCodeType? StreetMatch
@@ -33020,7 +33020,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private MatchStatusCodeType? ZipMatchField;
 		public MatchStatusCodeType? ZipMatch
@@ -33037,7 +33037,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private CountryCodeType? CountryCodeField;
 		public CountryCodeType? CountryCode
@@ -33054,7 +33054,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string PayPalTokenField;
 		public string PayPalToken
@@ -33133,7 +33133,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private EnterBoardingRequestType EnterBoardingRequestField;
 		public EnterBoardingRequestType EnterBoardingRequest
@@ -33181,7 +33181,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private EnterBoardingRequestDetailsType EnterBoardingRequestDetailsField;
 		public EnterBoardingRequestDetailsType EnterBoardingRequestDetails
@@ -33238,7 +33238,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string TokenField;
 		public string Token
@@ -33289,7 +33289,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private GetBoardingDetailsRequestType GetBoardingDetailsRequestField;
 		public GetBoardingDetailsRequestType GetBoardingDetailsRequest
@@ -33340,7 +33340,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string TokenField;
 		public string Token
@@ -33393,7 +33393,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private GetBoardingDetailsResponseDetailsType GetBoardingDetailsResponseDetailsField;
 		public GetBoardingDetailsResponseDetailsType GetBoardingDetailsResponseDetails
@@ -33446,7 +33446,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private SetAuthFlowParamRequestType SetAuthFlowParamRequestField;
 		public SetAuthFlowParamRequestType SetAuthFlowParamRequest
@@ -33494,7 +33494,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private SetAuthFlowParamRequestDetailsType SetAuthFlowParamRequestDetailsField;
 		public SetAuthFlowParamRequestDetailsType SetAuthFlowParamRequestDetails
@@ -33551,7 +33551,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string TokenField;
 		public string Token
@@ -33602,7 +33602,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private GetAuthDetailsRequestType GetAuthDetailsRequestField;
 		public GetAuthDetailsRequestType GetAuthDetailsRequest
@@ -33652,7 +33652,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string TokenField;
 		public string Token
@@ -33705,7 +33705,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private GetAuthDetailsResponseDetailsType GetAuthDetailsResponseDetailsField;
 		public GetAuthDetailsResponseDetailsType GetAuthDetailsResponseDetails
@@ -33758,7 +33758,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private SetAccessPermissionsRequestType SetAccessPermissionsRequestField;
 		public SetAccessPermissionsRequestType SetAccessPermissionsRequest
@@ -33806,7 +33806,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private SetAccessPermissionsRequestDetailsType SetAccessPermissionsRequestDetailsField;
 		public SetAccessPermissionsRequestDetailsType SetAccessPermissionsRequestDetails
@@ -33863,7 +33863,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string TokenField;
 		public string Token
@@ -33914,7 +33914,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private UpdateAccessPermissionsRequestType UpdateAccessPermissionsRequestField;
 		public UpdateAccessPermissionsRequestType UpdateAccessPermissionsRequest
@@ -33964,7 +33964,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string PayerIDField;
 		public string PayerID
@@ -34018,7 +34018,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string StatusField;
 		public string Status
@@ -34069,7 +34069,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private GetAccessPermissionDetailsRequestType GetAccessPermissionDetailsRequestField;
 		public GetAccessPermissionDetailsRequestType GetAccessPermissionDetailsRequest
@@ -34119,7 +34119,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string TokenField;
 		public string Token
@@ -34172,7 +34172,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private GetAccessPermissionDetailsResponseDetailsType GetAccessPermissionDetailsResponseDetailsField;
 		public GetAccessPermissionDetailsResponseDetailsType GetAccessPermissionDetailsResponseDetails
@@ -34225,7 +34225,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private GetIncentiveEvaluationRequestType GetIncentiveEvaluationRequestField;
 		public GetIncentiveEvaluationRequestType GetIncentiveEvaluationRequest
@@ -34273,7 +34273,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private GetIncentiveEvaluationRequestDetailsType GetIncentiveEvaluationRequestDetailsField;
 		public GetIncentiveEvaluationRequestDetailsType GetIncentiveEvaluationRequestDetails
@@ -34327,7 +34327,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private GetIncentiveEvaluationResponseDetailsType GetIncentiveEvaluationResponseDetailsField;
 		public GetIncentiveEvaluationResponseDetailsType GetIncentiveEvaluationResponseDetails
@@ -34380,7 +34380,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private SetExpressCheckoutRequestType SetExpressCheckoutRequestField;
 		public SetExpressCheckoutRequestType SetExpressCheckoutRequest
@@ -34428,7 +34428,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private SetExpressCheckoutRequestDetailsType SetExpressCheckoutRequestDetailsField;
 		public SetExpressCheckoutRequestDetailsType SetExpressCheckoutRequestDetails
@@ -34487,7 +34487,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string TokenField;
 		public string Token
@@ -34538,7 +34538,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private ExecuteCheckoutOperationsRequestType ExecuteCheckoutOperationsRequestField;
 		public ExecuteCheckoutOperationsRequestType ExecuteCheckoutOperationsRequest
@@ -34586,7 +34586,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private ExecuteCheckoutOperationsRequestDetailsType ExecuteCheckoutOperationsRequestDetailsField;
 		public ExecuteCheckoutOperationsRequestDetailsType ExecuteCheckoutOperationsRequestDetails
@@ -34640,7 +34640,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private ExecuteCheckoutOperationsResponseDetailsType ExecuteCheckoutOperationsResponseDetailsField;
 		public ExecuteCheckoutOperationsResponseDetailsType ExecuteCheckoutOperationsResponseDetails
@@ -34693,7 +34693,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private GetExpressCheckoutDetailsRequestType GetExpressCheckoutDetailsRequestField;
 		public GetExpressCheckoutDetailsRequestType GetExpressCheckoutDetailsRequest
@@ -34743,7 +34743,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string TokenField;
 		public string Token
@@ -34796,7 +34796,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private GetExpressCheckoutDetailsResponseDetailsType GetExpressCheckoutDetailsResponseDetailsField;
 		public GetExpressCheckoutDetailsResponseDetailsType GetExpressCheckoutDetailsResponseDetails
@@ -34849,7 +34849,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private DoExpressCheckoutPaymentRequestType DoExpressCheckoutPaymentRequestField;
 		public DoExpressCheckoutPaymentRequestType DoExpressCheckoutPaymentRequest
@@ -34898,7 +34898,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private DoExpressCheckoutPaymentRequestDetailsType DoExpressCheckoutPaymentRequestDetailsField;
 		public DoExpressCheckoutPaymentRequestDetailsType DoExpressCheckoutPaymentRequestDetails
@@ -34915,7 +34915,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private int? ReturnFMFDetailsField;
 		public int? ReturnFMFDetails
@@ -34974,7 +34974,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private DoExpressCheckoutPaymentResponseDetailsType DoExpressCheckoutPaymentResponseDetailsField;
 		public DoExpressCheckoutPaymentResponseDetailsType DoExpressCheckoutPaymentResponseDetails
@@ -34991,7 +34991,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private FMFDetailsType FMFDetailsField;
 		public FMFDetailsType FMFDetails
@@ -35053,7 +35053,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private DoUATPExpressCheckoutPaymentRequestType DoUATPExpressCheckoutPaymentRequestField;
 		public DoUATPExpressCheckoutPaymentRequestType DoUATPExpressCheckoutPaymentRequest
@@ -35125,7 +35125,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private UATPDetailsType UATPDetailsField;
 		public UATPDetailsType UATPDetails
@@ -35178,7 +35178,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private ManagePendingTransactionStatusRequestType ManagePendingTransactionStatusRequestField;
 		public ManagePendingTransactionStatusRequestType ManagePendingTransactionStatusRequest
@@ -35226,7 +35226,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string TransactionIDField;
 		public string TransactionID
@@ -35243,7 +35243,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private FMFPendingTransactionActionType? ActionField;
 		public FMFPendingTransactionActionType? Action
@@ -35302,7 +35302,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string TransactionIDField;
 		public string TransactionID
@@ -35319,7 +35319,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string StatusField;
 		public string Status
@@ -35377,7 +35377,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private DoDirectPaymentRequestType DoDirectPaymentRequestField;
 		public DoDirectPaymentRequestType DoDirectPaymentRequest
@@ -35426,7 +35426,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private DoDirectPaymentRequestDetailsType DoDirectPaymentRequestDetailsField;
 		public DoDirectPaymentRequestDetailsType DoDirectPaymentRequestDetails
@@ -35443,7 +35443,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private int? ReturnFMFDetailsField;
 		public int? ReturnFMFDetails
@@ -35503,7 +35503,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private BasicAmountType AmountField;
 		public BasicAmountType Amount
@@ -35520,7 +35520,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string AVSCodeField;
 		public string AVSCode
@@ -35537,7 +35537,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string CVV2CodeField;
 		public string CVV2Code
@@ -35554,7 +35554,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string TransactionIDField;
 		public string TransactionID
@@ -35571,7 +35571,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private PendingStatusCodeType? PendingReasonField;
 		public PendingStatusCodeType? PendingReason
@@ -35588,7 +35588,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private PaymentStatusCodeType? PaymentStatusField;
 		public PaymentStatusCodeType? PaymentStatus
@@ -35605,7 +35605,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private FMFDetailsType FMFDetailsField;
 		public FMFDetailsType FMFDetails
@@ -35622,7 +35622,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private ThreeDSecureResponseType ThreeDSecureResponseField;
 		public ThreeDSecureResponseType ThreeDSecureResponse
@@ -35639,7 +35639,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string PaymentAdviceCodeField;
 		public string PaymentAdviceCode
@@ -35752,7 +35752,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private DoCancelRequestType DoCancelRequestField;
 		public DoCancelRequestType DoCancelRequest
@@ -35800,7 +35800,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string CancelMsgSubIDField;
 		public string CancelMsgSubID
@@ -35817,7 +35817,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private APIType? APITypeField;
 		public APIType? APIType
@@ -35903,7 +35903,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private DoCaptureRequestType DoCaptureRequestField;
 		public DoCaptureRequestType DoCaptureRequest
@@ -35953,7 +35953,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string AuthorizationIDField;
 		public string AuthorizationID
@@ -35970,7 +35970,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private BasicAmountType AmountField;
 		public BasicAmountType Amount
@@ -35987,7 +35987,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private CompleteCodeType? CompleteTypeField;
 		public CompleteCodeType? CompleteType
@@ -36004,7 +36004,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string NoteField;
 		public string Note
@@ -36021,7 +36021,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string InvoiceIDField;
 		public string InvoiceID
@@ -36038,7 +36038,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private EnhancedDataType EnhancedDataField;
 		public EnhancedDataType EnhancedData
@@ -36055,7 +36055,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string DescriptorField;
 		public string Descriptor
@@ -36072,7 +36072,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private MerchantStoreDetailsType MerchantStoreDetailsField;
 		public MerchantStoreDetailsType MerchantStoreDetails
@@ -36089,7 +36089,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string MsgSubIDField;
 		public string MsgSubID
@@ -36187,7 +36187,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private DoCaptureResponseDetailsType DoCaptureResponseDetailsField;
 		public DoCaptureResponseDetailsType DoCaptureResponseDetails
@@ -36240,7 +36240,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private DoReauthorizationRequestType DoReauthorizationRequestField;
 		public DoReauthorizationRequestType DoReauthorizationRequest
@@ -36293,7 +36293,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string AuthorizationIDField;
 		public string AuthorizationID
@@ -36310,7 +36310,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private BasicAmountType AmountField;
 		public BasicAmountType Amount
@@ -36371,7 +36371,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string AuthorizationIDField;
 		public string AuthorizationID
@@ -36388,7 +36388,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private AuthorizationInfoType AuthorizationInfoField;
 		public AuthorizationInfoType AuthorizationInfo
@@ -36448,7 +36448,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private DoVoidRequestType DoVoidRequestField;
 		public DoVoidRequestType DoVoidRequest
@@ -36501,7 +36501,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string AuthorizationIDField;
 		public string AuthorizationID
@@ -36518,7 +36518,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string NoteField;
 		public string Note
@@ -36578,7 +36578,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string AuthorizationIDField;
 		public string AuthorizationID
@@ -36629,7 +36629,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private DoAuthorizationRequestType DoAuthorizationRequestField;
 		public DoAuthorizationRequestType DoAuthorizationRequest
@@ -36679,7 +36679,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string TransactionIDField;
 		public string TransactionID
@@ -36696,7 +36696,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private TransactionEntityType? TransactionEntityField;
 		public TransactionEntityType? TransactionEntity
@@ -36713,7 +36713,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private BasicAmountType AmountField;
 		public BasicAmountType Amount
@@ -36730,7 +36730,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string MsgSubIDField;
 		public string MsgSubID
@@ -36801,7 +36801,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string TransactionIDField;
 		public string TransactionID
@@ -36818,7 +36818,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private BasicAmountType AmountField;
 		public BasicAmountType Amount
@@ -36835,7 +36835,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private AuthorizationInfoType AuthorizationInfoField;
 		public AuthorizationInfoType AuthorizationInfo
@@ -36852,7 +36852,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string MsgSubIDField;
 		public string MsgSubID
@@ -36928,7 +36928,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private DoUATPAuthorizationRequestType DoUATPAuthorizationRequestField;
 		public DoUATPAuthorizationRequestType DoUATPAuthorizationRequest
@@ -36976,7 +36976,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private UATPDetailsType UATPDetailsField;
 		public UATPDetailsType UATPDetails
@@ -36993,7 +36993,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private TransactionEntityType? TransactionEntityField;
 		public TransactionEntityType? TransactionEntity
@@ -37010,7 +37010,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private BasicAmountType AmountField;
 		public BasicAmountType Amount
@@ -37027,7 +37027,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string InvoiceIDField;
 		public string InvoiceID
@@ -37044,7 +37044,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string MsgSubIDField;
 		public string MsgSubID
@@ -37120,7 +37120,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private UATPDetailsType UATPDetailsField;
 		public UATPDetailsType UATPDetails
@@ -37137,7 +37137,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string AuthorizationCodeField;
 		public string AuthorizationCode
@@ -37154,7 +37154,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string InvoiceIDField;
 		public string InvoiceID
@@ -37171,7 +37171,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string MsgSubIDField;
 		public string MsgSubID
@@ -37245,7 +37245,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private CreateMobilePaymentRequestType CreateMobilePaymentRequestField;
 		public CreateMobilePaymentRequestType CreateMobilePaymentRequest
@@ -37293,7 +37293,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private CreateMobilePaymentRequestDetailsType CreateMobilePaymentRequestDetailsField;
 		public CreateMobilePaymentRequestDetailsType CreateMobilePaymentRequestDetails
@@ -37374,7 +37374,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private GetMobileStatusRequestType GetMobileStatusRequestField;
 		public GetMobileStatusRequestType GetMobileStatusRequest
@@ -37422,7 +37422,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private GetMobileStatusRequestDetailsType GetMobileStatusRequestDetailsField;
 		public GetMobileStatusRequestDetailsType GetMobileStatusRequestDetails
@@ -37477,7 +37477,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private int? IsActivatedField;
 		public int? IsActivated
@@ -37494,7 +37494,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private int? PaymentPendingField;
 		public int? PaymentPending
@@ -37552,7 +37552,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private SetMobileCheckoutRequestType SetMobileCheckoutRequestField;
 		public SetMobileCheckoutRequestType SetMobileCheckoutRequest
@@ -37600,7 +37600,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private SetMobileCheckoutRequestDetailsType SetMobileCheckoutRequestDetailsField;
 		public SetMobileCheckoutRequestDetailsType SetMobileCheckoutRequestDetails
@@ -37657,7 +37657,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string TokenField;
 		public string Token
@@ -37708,7 +37708,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private DoMobileCheckoutPaymentRequestType DoMobileCheckoutPaymentRequestField;
 		public DoMobileCheckoutPaymentRequestType DoMobileCheckoutPaymentRequest
@@ -37758,7 +37758,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string TokenField;
 		public string Token
@@ -37811,7 +37811,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private DoMobileCheckoutPaymentResponseDetailsType DoMobileCheckoutPaymentResponseDetailsField;
 		public DoMobileCheckoutPaymentResponseDetailsType DoMobileCheckoutPaymentResponseDetails
@@ -37864,7 +37864,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private GetBalanceRequestType GetBalanceRequestField;
 		public GetBalanceRequestType GetBalanceRequest
@@ -37912,7 +37912,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string ReturnAllCurrenciesField;
 		public string ReturnAllCurrencies
@@ -37958,7 +37958,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private BasicAmountType BalanceField;
 		public BasicAmountType Balance
@@ -37975,7 +37975,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string BalanceTimeStampField;
 		public string BalanceTimeStamp
@@ -37992,7 +37992,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private List<BasicAmountType> BalanceHoldingsField = new List<BasicAmountType>();
 		public List<BasicAmountType> BalanceHoldings
@@ -38064,7 +38064,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private SetCustomerBillingAgreementRequestType SetCustomerBillingAgreementRequestField;
 		public SetCustomerBillingAgreementRequestType SetCustomerBillingAgreementRequest
@@ -38112,7 +38112,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private SetCustomerBillingAgreementRequestDetailsType SetCustomerBillingAgreementRequestDetailsField;
 		public SetCustomerBillingAgreementRequestDetailsType SetCustomerBillingAgreementRequestDetails
@@ -38166,7 +38166,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string TokenField;
 		public string Token
@@ -38217,7 +38217,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private GetBillingAgreementCustomerDetailsRequestType GetBillingAgreementCustomerDetailsRequestField;
 		public GetBillingAgreementCustomerDetailsRequestType GetBillingAgreementCustomerDetailsRequest
@@ -38265,7 +38265,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string TokenField;
 		public string Token
@@ -38318,7 +38318,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private GetBillingAgreementCustomerDetailsResponseDetailsType GetBillingAgreementCustomerDetailsResponseDetailsField;
 		public GetBillingAgreementCustomerDetailsResponseDetailsType GetBillingAgreementCustomerDetailsResponseDetails
@@ -38371,7 +38371,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private CreateBillingAgreementRequestType CreateBillingAgreementRequestField;
 		public CreateBillingAgreementRequestType CreateBillingAgreementRequest
@@ -38419,7 +38419,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string TokenField;
 		public string Token
@@ -38472,7 +38472,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string BillingAgreementIDField;
 		public string BillingAgreementID
@@ -38523,7 +38523,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private DoReferenceTransactionRequestType DoReferenceTransactionRequestField;
 		public DoReferenceTransactionRequestType DoReferenceTransactionRequest
@@ -38572,7 +38572,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private DoReferenceTransactionRequestDetailsType DoReferenceTransactionRequestDetailsField;
 		public DoReferenceTransactionRequestDetailsType DoReferenceTransactionRequestDetails
@@ -38589,7 +38589,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private int? ReturnFMFDetailsField;
 		public int? ReturnFMFDetails
@@ -38648,7 +38648,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private DoReferenceTransactionResponseDetailsType DoReferenceTransactionResponseDetailsField;
 		public DoReferenceTransactionResponseDetailsType DoReferenceTransactionResponseDetails
@@ -38665,7 +38665,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private FMFDetailsType FMFDetailsField;
 		public FMFDetailsType FMFDetails
@@ -38727,7 +38727,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private DoNonReferencedCreditRequestType DoNonReferencedCreditRequestField;
 		public DoNonReferencedCreditRequestType DoNonReferencedCreditRequest
@@ -38775,7 +38775,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private DoNonReferencedCreditRequestDetailsType DoNonReferencedCreditRequestDetailsField;
 		public DoNonReferencedCreditRequestDetailsType DoNonReferencedCreditRequestDetails
@@ -38829,7 +38829,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private DoNonReferencedCreditResponseDetailsType DoNonReferencedCreditResponseDetailsField;
 		public DoNonReferencedCreditResponseDetailsType DoNonReferencedCreditResponseDetails
@@ -38882,7 +38882,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private CreateRecurringPaymentsProfileRequestType CreateRecurringPaymentsProfileRequestField;
 		public CreateRecurringPaymentsProfileRequestType CreateRecurringPaymentsProfileRequest
@@ -38930,7 +38930,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private CreateRecurringPaymentsProfileRequestDetailsType CreateRecurringPaymentsProfileRequestDetailsField;
 		public CreateRecurringPaymentsProfileRequestDetailsType CreateRecurringPaymentsProfileRequestDetails
@@ -38977,7 +38977,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private CreateRecurringPaymentsProfileResponseDetailsType CreateRecurringPaymentsProfileResponseDetailsField;
 		public CreateRecurringPaymentsProfileResponseDetailsType CreateRecurringPaymentsProfileResponseDetails
@@ -39030,7 +39030,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private GetRecurringPaymentsProfileDetailsRequestType GetRecurringPaymentsProfileDetailsRequestField;
 		public GetRecurringPaymentsProfileDetailsRequestType GetRecurringPaymentsProfileDetailsRequest
@@ -39078,7 +39078,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string ProfileIDField;
 		public string ProfileID
@@ -39131,7 +39131,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private GetRecurringPaymentsProfileDetailsResponseDetailsType GetRecurringPaymentsProfileDetailsResponseDetailsField;
 		public GetRecurringPaymentsProfileDetailsResponseDetailsType GetRecurringPaymentsProfileDetailsResponseDetails
@@ -39184,7 +39184,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private ManageRecurringPaymentsProfileStatusRequestType ManageRecurringPaymentsProfileStatusRequestField;
 		public ManageRecurringPaymentsProfileStatusRequestType ManageRecurringPaymentsProfileStatusRequest
@@ -39232,7 +39232,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private ManageRecurringPaymentsProfileStatusRequestDetailsType ManageRecurringPaymentsProfileStatusRequestDetailsField;
 		public ManageRecurringPaymentsProfileStatusRequestDetailsType ManageRecurringPaymentsProfileStatusRequestDetails
@@ -39279,7 +39279,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private ManageRecurringPaymentsProfileStatusResponseDetailsType ManageRecurringPaymentsProfileStatusResponseDetailsField;
 		public ManageRecurringPaymentsProfileStatusResponseDetailsType ManageRecurringPaymentsProfileStatusResponseDetails
@@ -39332,7 +39332,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private BillOutstandingAmountRequestType BillOutstandingAmountRequestField;
 		public BillOutstandingAmountRequestType BillOutstandingAmountRequest
@@ -39380,7 +39380,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private BillOutstandingAmountRequestDetailsType BillOutstandingAmountRequestDetailsField;
 		public BillOutstandingAmountRequestDetailsType BillOutstandingAmountRequestDetails
@@ -39427,7 +39427,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private BillOutstandingAmountResponseDetailsType BillOutstandingAmountResponseDetailsField;
 		public BillOutstandingAmountResponseDetailsType BillOutstandingAmountResponseDetails
@@ -39480,7 +39480,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private UpdateRecurringPaymentsProfileRequestType UpdateRecurringPaymentsProfileRequestField;
 		public UpdateRecurringPaymentsProfileRequestType UpdateRecurringPaymentsProfileRequest
@@ -39528,7 +39528,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private UpdateRecurringPaymentsProfileRequestDetailsType UpdateRecurringPaymentsProfileRequestDetailsField;
 		public UpdateRecurringPaymentsProfileRequestDetailsType UpdateRecurringPaymentsProfileRequestDetails
@@ -39575,7 +39575,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private UpdateRecurringPaymentsProfileResponseDetailsType UpdateRecurringPaymentsProfileResponseDetailsField;
 		public UpdateRecurringPaymentsProfileResponseDetailsType UpdateRecurringPaymentsProfileResponseDetails
@@ -39628,7 +39628,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private GetPalDetailsRequestType GetPalDetailsRequestField;
 		public GetPalDetailsRequestType GetPalDetailsRequest
@@ -39700,7 +39700,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string PalField;
 		public string Pal
@@ -39717,7 +39717,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string LocaleField;
 		public string Locale
@@ -39775,7 +39775,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private ReverseTransactionRequestType ReverseTransactionRequestField;
 		public ReverseTransactionRequestType ReverseTransactionRequest
@@ -39823,7 +39823,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private ReverseTransactionRequestDetailsType ReverseTransactionRequestDetailsField;
 		public ReverseTransactionRequestDetailsType ReverseTransactionRequestDetails
@@ -39877,7 +39877,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private ReverseTransactionResponseDetailsType ReverseTransactionResponseDetailsField;
 		public ReverseTransactionResponseDetailsType ReverseTransactionResponseDetails
@@ -39930,7 +39930,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private ExternalRememberMeOptOutRequestType ExternalRememberMeOptOutRequestField;
 		public ExternalRememberMeOptOutRequestType ExternalRememberMeOptOutRequest
@@ -39982,7 +39982,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	{
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private string ExternalRememberMeIDField;
 		public string ExternalRememberMeID
@@ -39999,7 +39999,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *No Document Comments
+          *
 		  */
 		private ExternalRememberMeOwnerDetailsType ExternalRememberMeOwnerDetailsField;
 		public ExternalRememberMeOwnerDetailsType ExternalRememberMeOwnerDetails

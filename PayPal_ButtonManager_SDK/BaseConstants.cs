@@ -51,7 +51,7 @@ namespace PayPal
         public static readonly Encoding ENCODING_FORMAT = Encoding.UTF8;
         
         public const string SDK_NAME = "sdk-buttonmanager-dotnet";
-        public const string SDK_VERSION = "0.8.92";
+        public const string SDK_VERSION = "1.0.92";
 
         public class ErrorMessages
         {

@@ -11,8 +11,31 @@
 	        <exec verbose="true" program="${VS2008Dir}/devenv.exe"
 	              commandline="/rebuild Release ${Rootdir}\PayPal_ButtonManager_SDK.sln" />
 	              
-			    
+			<call target="clean" />        
 	</target>
-	
+	<target name="clean">
+            <foreach item="Folder" property="foldername">
+                    <in>
+                        <items basedir=".">
+                            <include name="**\obj" />
+                        </items>
+                    </in>
+                    <do>
+                        <delete dir="${foldername}" />
+                    </do>
+            </foreach>
+            <foreach item="File" property="filename">
+                <in>
+                    <items basedir=".">
+                        <include name="**\*.pdb" />
+                        <include name="**\*.user" />
+                        <include name="**\*.suo" />
+                    </items>
+                </in>
+                <do>
+                    <delete file="${filename}" />
+                </do>
+            </foreach> 
+    </target>
 	
 </project>

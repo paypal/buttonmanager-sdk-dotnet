@@ -48,7 +48,11 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			if (n.NodeType == XmlNodeType.Text)
 			{
 				string val = n.InnerText;
-				return val.Trim().Length == 0;
+				return (val.Trim().Length == 0);
+			}
+			else if (n.NodeType == XmlNodeType.Element)
+			{
+				return (n.ChildNodes.Count == 0);
 			}
 			else
 			{
@@ -1332,7 +1336,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       */
 	public enum ApprovalSubTypeType {
 		[Description("None")]NONE,	
-		[Description("MerchantInitiatedBilling")]MERCHANTINITIATEDBILLING	
+		[Description("MerchantInitiatedBilling")]MERCHANTINITIATEDBILLING,	
+		[Description("MerchantInitiatedBillingSingleAgreement")]MERCHANTINITIATEDBILLINGSINGLEAGREEMENT,	
+		[Description("ChannelInitiatedBilling")]CHANNELINITIATEDBILLING	
 	}
 
 
@@ -2427,6 +2433,27 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	public enum RecurringFlagType {
 		[Description("Y")]Y1,	
 		[Description("y")]Y2	
+	}
+
+
+
+
+	/**
+      * Defines couple relationship type between buckets 
+      */
+	public enum CoupleType {
+		[Description("LifeTime")]LIFETIME	
+	}
+
+
+
+
+	/**
+      * Category of payment like international shipping
+      * 
+      */
+	public enum PaymentCategoryType {
+		[Description("InternationalShipping")]INTERNATIONALSHIPPING	
 	}
 
 
@@ -5865,6 +5892,23 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
+          *
+		  */
+		private List<CoupledBucketsType> CoupledBucketsField = new List<CoupledBucketsType>();
+		public List<CoupledBucketsType> CoupledBuckets
+		{
+			get
+			{
+				return this.CoupledBucketsField;
+			}
+			set
+			{
+				this.CoupledBucketsField = value;
+			}
+		}
+		
+
+		/**
 	 	  * Default Constructor
 	 	  */
 	 	public SetExpressCheckoutRequestDetailsType(){
@@ -6248,6 +6292,16 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 				sb.Append("<ebl:ExternalPartnerTrackingDetails>");
 				sb.Append(ExternalPartnerTrackingDetails.toXMLString());
 				sb.Append("</ebl:ExternalPartnerTrackingDetails>");
+			}
+			if(CoupledBuckets != null)
+			{
+				for(int i = 0; i < CoupledBuckets.Count; i++)
+				{
+					sb.Append("<ebl:CoupledBuckets>");
+					sb.Append(CoupledBuckets[i].toXMLString());
+					sb.Append("</ebl:CoupledBuckets>");
+				
+				}
 			}
 			return sb.ToString();
 		}
@@ -8483,6 +8537,23 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
+          *
+		  */
+		private List<CoupledBucketsType> CoupledBucketsField = new List<CoupledBucketsType>();
+		public List<CoupledBucketsType> CoupledBuckets
+		{
+			get
+			{
+				return this.CoupledBucketsField;
+			}
+			set
+			{
+				this.CoupledBucketsField = value;
+			}
+		}
+		
+
+		/**
 	 	  * Default Constructor
 	 	  */
 	 	public DoExpressCheckoutPaymentRequestDetailsType(){
@@ -8598,6 +8669,16 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			{
 				sb.Append("<ebl:SkipBACreation>").Append(SkipBACreation);
 				sb.Append("</ebl:SkipBACreation>");
+			}
+			if(CoupledBuckets != null)
+			{
+				for(int i = 0; i < CoupledBuckets.Count; i++)
+				{
+					sb.Append("<ebl:CoupledBuckets>");
+					sb.Append(CoupledBuckets[i].toXMLString());
+					sb.Append("</ebl:CoupledBuckets>");
+				
+				}
 			}
 			return sb.ToString();
 		}
@@ -8735,6 +8816,23 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
+          *
+		  */
+		private List<CoupledPaymentInfoType> CoupledPaymentInfoField = new List<CoupledPaymentInfoType>();
+		public List<CoupledPaymentInfoType> CoupledPaymentInfo
+		{
+			get
+			{
+				return this.CoupledPaymentInfoField;
+			}
+			set
+			{
+				this.CoupledPaymentInfoField = value;
+			}
+		}
+		
+
+		/**
 	 	  * Default Constructor
 	 	  */
 	 	public DoExpressCheckoutPaymentResponseDetailsType(){
@@ -8803,6 +8901,18 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 					this.UserSelectedOptions =  new UserSelectedOptionType(xmlString);
 				}
 			}
+			if(document.GetElementsByTagName("CoupledPaymentInfo").Count != 0)
+			{
+				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("CoupledPaymentInfo")[0]))
+				{
+					nodeList = document.GetElementsByTagName("CoupledPaymentInfo");
+					for(int i = 0; i < nodeList.Count; i++)
+					{
+						xmlString = DeserializationUtils.convertToXML(nodeList[i]);
+						this.CoupledPaymentInfo.Add(new CoupledPaymentInfoType(xmlString));
+					}
+				}
+			}
 	
 		}
 		
@@ -8854,6 +8964,23 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
+          *
+		  */
+		private string MsgSubIDField;
+		public string MsgSubID
+		{
+			get
+			{
+				return this.MsgSubIDField;
+			}
+			set
+			{
+				this.MsgSubIDField = value;
+			}
+		}
+		
+
+		/**
 	 	  * Default Constructor
 	 	  */
 	 	public DoCaptureResponseDetailsType(){
@@ -8882,6 +9009,13 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 					this.PaymentInfo =  new PaymentInfoType(xmlString);
 				}
 			}
+		if(document.GetElementsByTagName("MsgSubID").Count != 0)
+		{
+			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("MsgSubID")[0]))
+			{
+				this.MsgSubID = (string)document.GetElementsByTagName("MsgSubID")[0].InnerText;
+			}
+		}
 	
 		}
 		
@@ -11780,6 +11914,23 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		/**
           *
 		  */
+		private AddressType SecondaryAddressField;
+		public AddressType SecondaryAddress
+		{
+			get
+			{
+				return this.SecondaryAddressField;
+			}
+			set
+			{
+				this.SecondaryAddressField = value;
+			}
+		}
+		
+
+		/**
+          *
+		  */
 		private UserSelectedOptionType UserSelectedOptionsField;
 		public UserSelectedOptionType UserSelectedOptions
 		{
@@ -11969,6 +12120,15 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 					nodeList = document.GetElementsByTagName("OfferCouponInfo");
 					xmlString = DeserializationUtils.convertToXML(nodeList[0]);
 					this.OfferCouponInfo =  new OfferCouponInfoType(xmlString);
+				}
+			}
+			if(document.GetElementsByTagName("SecondaryAddress").Count != 0)
+			{
+				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("SecondaryAddress")[0]))
+				{
+					nodeList = document.GetElementsByTagName("SecondaryAddress");
+					xmlString = DeserializationUtils.convertToXML(nodeList[0]);
+					this.SecondaryAddress =  new AddressType(xmlString);
 				}
 			}
 			if(document.GetElementsByTagName("UserSelectedOptions").Count != 0)
@@ -15513,6 +15673,40 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		/**
           *
 		  */
+		private AddressType FulfillmentAddressField;
+		public AddressType FulfillmentAddress
+		{
+			get
+			{
+				return this.FulfillmentAddressField;
+			}
+			set
+			{
+				this.FulfillmentAddressField = value;
+			}
+		}
+		
+
+		/**
+          *
+		  */
+		private PaymentCategoryType? PaymentCategoryTypeField;
+		public PaymentCategoryType? PaymentCategoryType
+		{
+			get
+			{
+				return this.PaymentCategoryTypeField;
+			}
+			set
+			{
+				this.PaymentCategoryTypeField = value;
+			}
+		}
+		
+
+		/**
+          *
+		  */
 		private ShippingServiceCodeType? ShippingMethodField;
 		public ShippingServiceCodeType? ShippingMethod
 		{
@@ -15904,6 +16098,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 				sb.Append(ShipToAddress.toXMLString());
 				sb.Append("</ebl:ShipToAddress>");
 			}
+			if(FulfillmentAddress != null)
+			{
+				sb.Append("<ebl:FulfillmentAddress>");
+				sb.Append(FulfillmentAddress.toXMLString());
+				sb.Append("</ebl:FulfillmentAddress>");
+			}
+			if(PaymentCategoryType != null)
+			{
+				sb.Append("<ebl:PaymentCategoryType>").Append(EnumUtils.getDescription(PaymentCategoryType));
+				sb.Append("</ebl:PaymentCategoryType>");
+			}
 			if(ShippingMethod != null)
 			{
 				sb.Append("<ebl:ShippingMethod>").Append(EnumUtils.getDescription(ShippingMethod));
@@ -16104,6 +16309,22 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 					nodeList = document.GetElementsByTagName("ShipToAddress");
 					xmlString = DeserializationUtils.convertToXML(nodeList[0]);
 					this.ShipToAddress =  new AddressType(xmlString);
+				}
+			}
+			if(document.GetElementsByTagName("FulfillmentAddress").Count != 0)
+			{
+				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("FulfillmentAddress")[0]))
+				{
+					nodeList = document.GetElementsByTagName("FulfillmentAddress");
+					xmlString = DeserializationUtils.convertToXML(nodeList[0]);
+					this.FulfillmentAddress =  new AddressType(xmlString);
+				}
+			}
+			if(document.GetElementsByTagName("PaymentCategoryType").Count != 0)
+			{
+				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("PaymentCategoryType")[0]))
+				{
+					this.PaymentCategoryType = (PaymentCategoryType)EnumUtils.getValue(document.GetElementsByTagName("PaymentCategoryType")[0].InnerText,typeof(PaymentCategoryType));
 				}
 			}
 			if(document.GetElementsByTagName("ShippingMethod").Count != 0)
@@ -19039,6 +19260,23 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
+          *
+		  */
+		private string MsgSubIDField;
+		public string MsgSubID
+		{
+			get
+			{
+				return this.MsgSubIDField;
+			}
+			set
+			{
+				this.MsgSubIDField = value;
+			}
+		}
+		
+
+		/**
 	 	  * Constructor with arguments
 	 	  */
 	 	public DoReferenceTransactionRequestDetailsType(string ReferenceID, PaymentActionCodeType? PaymentAction, PaymentDetailsType PaymentDetails){
@@ -19109,6 +19347,11 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 				sb.Append("<ebl:SenderDetails>");
 				sb.Append(SenderDetails.toXMLString());
 				sb.Append("</ebl:SenderDetails>");
+			}
+			if(MsgSubID != null)
+			{
+				sb.Append("<ebl:MsgSubID>").Append(MsgSubID);
+				sb.Append("</ebl:MsgSubID>");
 			}
 			return sb.ToString();
 		}
@@ -19243,6 +19486,23 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
+          *
+		  */
+		private string MsgSubIDField;
+		public string MsgSubID
+		{
+			get
+			{
+				return this.MsgSubIDField;
+			}
+			set
+			{
+				this.MsgSubIDField = value;
+			}
+		}
+		
+
+		/**
 	 	  * Default Constructor
 	 	  */
 	 	public DoReferenceTransactionResponseDetailsType(){
@@ -19306,6 +19566,13 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("PaymentAdviceCode")[0]))
 			{
 				this.PaymentAdviceCode = (string)document.GetElementsByTagName("PaymentAdviceCode")[0].InnerText;
+			}
+		}
+		if(document.GetElementsByTagName("MsgSubID").Count != 0)
+		{
+			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("MsgSubID")[0]))
+			{
+				this.MsgSubID = (string)document.GetElementsByTagName("MsgSubID")[0].InnerText;
 			}
 		}
 	
@@ -27181,6 +27448,181 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 					this.PendingReason = (PendingStatusCodeType)EnumUtils.getValue(document.GetElementsByTagName("PendingReason")[0].InnerText,typeof(PendingStatusCodeType));
 				}
 			}
+	
+		}
+		
+	}
+
+
+
+
+	/**
+      *Defines relationship between buckets 
+      */
+	public partial class CoupledBucketsType	
+	{
+
+		/**
+          *
+		  */
+		private CoupleType? CoupleTypeField;
+		public CoupleType? CoupleType
+		{
+			get
+			{
+				return this.CoupleTypeField;
+			}
+			set
+			{
+				this.CoupleTypeField = value;
+			}
+		}
+		
+
+		/**
+          *
+		  */
+		private string CoupledPaymentRequestIDField;
+		public string CoupledPaymentRequestID
+		{
+			get
+			{
+				return this.CoupledPaymentRequestIDField;
+			}
+			set
+			{
+				this.CoupledPaymentRequestIDField = value;
+			}
+		}
+		
+
+		/**
+          *
+		  */
+		private List<string> PaymentRequestIDField = new List<string>();
+		public List<string> PaymentRequestID
+		{
+			get
+			{
+				return this.PaymentRequestIDField;
+			}
+			set
+			{
+				this.PaymentRequestIDField = value;
+			}
+		}
+		
+
+		/**
+	 	  * Constructor with arguments
+	 	  */
+	 	public CoupledBucketsType(List<string> PaymentRequestID){
+			this.PaymentRequestID = PaymentRequestID;
+		}
+
+		/**
+	 	  * Default Constructor
+	 	  */
+	 	public CoupledBucketsType(){
+		}
+
+
+		public string toXMLString()
+		{
+			StringBuilder sb = new StringBuilder();
+			if(CoupleType != null)
+			{
+				sb.Append("<ebl:CoupleType>").Append(EnumUtils.getDescription(CoupleType));
+				sb.Append("</ebl:CoupleType>");
+			}
+			if(CoupledPaymentRequestID != null)
+			{
+				sb.Append("<ebl:CoupledPaymentRequestID>").Append(CoupledPaymentRequestID);
+				sb.Append("</ebl:CoupledPaymentRequestID>");
+			}
+			if(PaymentRequestID != null)
+			{
+				for(int i = 0; i < PaymentRequestID.Count; i++)
+				{
+					sb.Append("<ebl:PaymentRequestID>").Append(PaymentRequestID[i]);
+					sb.Append("</ebl:PaymentRequestID>");
+				
+				}
+			}
+			return sb.ToString();
+		}
+	}
+
+
+
+
+	/**
+      *Information about Coupled Payment transactions. 
+      */
+	public partial class CoupledPaymentInfoType	
+	{
+
+		/**
+          *
+		  */
+		private string CoupledPaymentRequestIDField;
+		public string CoupledPaymentRequestID
+		{
+			get
+			{
+				return this.CoupledPaymentRequestIDField;
+			}
+			set
+			{
+				this.CoupledPaymentRequestIDField = value;
+			}
+		}
+		
+
+		/**
+          *
+		  */
+		private string CoupledPaymentIDField;
+		public string CoupledPaymentID
+		{
+			get
+			{
+				return this.CoupledPaymentIDField;
+			}
+			set
+			{
+				this.CoupledPaymentIDField = value;
+			}
+		}
+		
+
+		/**
+	 	  * Default Constructor
+	 	  */
+	 	public CoupledPaymentInfoType(){
+		}
+
+
+		public CoupledPaymentInfoType(Object xmlSoap)
+		{
+			XmlDocument document = new XmlDocument();
+			document.LoadXml(xmlSoap.ToString());
+			XmlNodeList nodeList = null;
+			string xmlString = "";
+		if(document.GetElementsByTagName("CoupledPaymentRequestID").Count != 0)
+		{
+			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("CoupledPaymentRequestID")[0]))
+			{
+				this.CoupledPaymentRequestID = (string)document.GetElementsByTagName("CoupledPaymentRequestID")[0].InnerText;
+			}
+		}
+		if(document.GetElementsByTagName("CoupledPaymentID").Count != 0)
+		{
+			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("CoupledPaymentID")[0]))
+			{
+				this.CoupledPaymentID = (string)document.GetElementsByTagName("CoupledPaymentID")[0].InnerText;
+			}
+		}
 	
 		}
 		

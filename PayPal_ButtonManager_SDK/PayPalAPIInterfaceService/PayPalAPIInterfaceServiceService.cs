@@ -8,7 +8,7 @@ namespace PayPal.PayPalAPIInterfaceService {
 	public partial class PayPalAPIInterfaceServiceService : BasePayPalService {
 
 		// Service Version
-		private static string ServiceVersion = "92.0";
+		private static string ServiceVersion = "93.0";
 
 		// Service Name
 		private static string ServiceName = "PayPalAPIInterfaceService";
@@ -37,6 +37,7 @@ namespace PayPal.PayPalAPIInterfaceService {
 		
 			string resp = call("BMCreateButton", BMCreateButtonReq.toXMLString(), apiUsername);
 			return new BMCreateButtonResponseType(resp);
+			
 	 	}
 	 
 	 	/** 
@@ -56,6 +57,7 @@ namespace PayPal.PayPalAPIInterfaceService {
 		
 			string resp = call("BMUpdateButton", BMUpdateButtonReq.toXMLString(), apiUsername);
 			return new BMUpdateButtonResponseType(resp);
+			
 	 	}
 	 
 	 	/** 
@@ -75,6 +77,7 @@ namespace PayPal.PayPalAPIInterfaceService {
 		
 			string resp = call("BMManageButtonStatus", BMManageButtonStatusReq.toXMLString(), apiUsername);
 			return new BMManageButtonStatusResponseType(resp);
+			
 	 	}
 	 
 	 	/** 
@@ -94,6 +97,7 @@ namespace PayPal.PayPalAPIInterfaceService {
 		
 			string resp = call("BMGetButtonDetails", BMGetButtonDetailsReq.toXMLString(), apiUsername);
 			return new BMGetButtonDetailsResponseType(resp);
+			
 	 	}
 	 
 	 	/** 
@@ -113,6 +117,7 @@ namespace PayPal.PayPalAPIInterfaceService {
 		
 			string resp = call("BMSetInventory", BMSetInventoryReq.toXMLString(), apiUsername);
 			return new BMSetInventoryResponseType(resp);
+			
 	 	}
 	 
 	 	/** 
@@ -132,6 +137,7 @@ namespace PayPal.PayPalAPIInterfaceService {
 		
 			string resp = call("BMGetInventory", BMGetInventoryReq.toXMLString(), apiUsername);
 			return new BMGetInventoryResponseType(resp);
+			
 	 	}
 	 
 	 	/** 
@@ -151,6 +157,7 @@ namespace PayPal.PayPalAPIInterfaceService {
 		
 			string resp = call("BMButtonSearch", BMButtonSearchReq.toXMLString(), apiUsername);
 			return new BMButtonSearchResponseType(resp);
+			
 	 	}
 	 
 	 	/** 

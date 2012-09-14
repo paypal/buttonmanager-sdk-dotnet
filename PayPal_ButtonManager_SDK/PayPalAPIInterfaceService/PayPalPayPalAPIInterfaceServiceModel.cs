@@ -4,11 +4,12 @@
   */
 using System;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Xml;
 using System.Collections;
-using System.ComponentModel;
 using System.Collections.Generic;
+using System.ComponentModel;
 using PayPal.Util;
 
 namespace PayPal.PayPalAPIInterfaceService.Model
@@ -48,7 +49,11 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			if (n.NodeType == XmlNodeType.Text)
 			{
 				string val = n.InnerText;
-				return val.Trim().Length == 0;
+				return (val.Trim().Length == 0);
+			}
+			else if (n.NodeType == XmlNodeType.Element)
+			{
+				return (n.ChildNodes.Count == 0);
 			}
 			else
 			{
@@ -56,62 +61,55 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 		}
 		
-		public static string convertToXML(XmlNode n)
+		public static string escapeInvalidXmlCharsRegex(string textContent)
         {
-            string name = n.Name;
-            if (XmlNodeType.CDATA == n.NodeType)
+            string response = null;
+            if (textContent != null && textContent.Length > 0)
             {
-                return "$lt;![CDATA[" + n.Value + "]]&gt;";
+                response = Regex.Replace(
+                                Regex.Replace(
+                                    Regex.Replace(
+                                        Regex.Replace(
+                                            Regex.Replace(textContent, "&(?!(amp;|lt;|gt;|quot;|apos;))", "&amp;"), 
+                                        "<", "&lt;"), 
+                                    ">", "&gt;"), 
+                                "\"", "&quot;"), 
+                           "'", "&apos;");
             }
-            if (name.StartsWith("#"))
+            return response;
+        }
+        
+        public static string escapeInvalidXmlCharsRegex(int? intContent)
+        {
+            string response = null;
+            if (intContent != null)
             {
-                return "";
+                string textContent = intContent.ToString();
+                response = escapeInvalidXmlCharsRegex(textContent);
             }
-            StringBuilder sb = new StringBuilder();
-            sb.Append("<").Append(name);
-            XmlNamedNodeMap attrs = n.Attributes;
-            if (attrs != null)
+            return response;
+        }
+
+        public static string escapeInvalidXmlCharsRegex(decimal? decimalContent)
+        {
+            string response = null;
+            if (decimalContent != null)
             {
-                for (int i = 0; i < attrs.Count; i++)
-                {
-                    XmlNode attr = attrs.Item(i);
-                    if (!attr.Value.Contains(":"))
-                        sb.Append(" ").Append(attr.Name).Append("=\"").Append(attr.Value).Append("\"");
-                }
+                string textContent = decimalContent.ToString();
+                response = escapeInvalidXmlCharsRegex(textContent);
             }
-            string textContent = null;
-            XmlNodeList children = n.ChildNodes;
-            if (children.Count == 0)
+            return response;
+        }
+
+        public static string escapeInvalidXmlCharsRegex(bool? boolContent)
+        {
+            string response = null;
+            if (boolContent != null)
             {
-                if (((textContent = n.InnerText) != null) && (!"".Equals(textContent)))
-                {
-                    sb.Append(textContent).Append("</").Append(name).Append(">");
-                }
-                else
-                {
-                    sb.Append("/>");
-                }
+                string textContent = boolContent.ToString();
+                response = escapeInvalidXmlCharsRegex(textContent);
             }
-            else
-            {
-                sb.Append(">");
-                bool hasValidChildren = false;
-                for (int i = 0; i < children.Count; i++)
-                {
-                    string childToString = DeserializationUtils.convertToXML(children[i]);
-                    if (!"".Equals(childToString))
-                    {
-                        sb.Append(childToString);
-                        hasValidChildren = true;
-                    }
-                }
-                if ((!hasValidChildren) && ((textContent = n.InnerText) != null))
-                {
-                    sb.Append(textContent);
-                }
-                sb.Append("</").Append(name).Append(">");
-            }
-            return sb.ToString();
+            return response;
         }
 	}
 
@@ -181,25 +179,26 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			StringBuilder sb = new StringBuilder();
 			if(currencyID != null)
 			{
-				sb.Append(" currencyID=\"").Append(EnumUtils.getDescription(currencyID)).Append("\">");
+				sb.Append(" currencyID=\"").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(currencyID))).Append("\">");
 			}
 			if(value != null)
 			{
-				sb.Append(value);
+				sb.Append(DeserializationUtils.escapeInvalidXmlCharsRegex(value));
 			}
 			return sb.ToString();
 		}
-		public BasicAmountType(Object xmlSoap)
+		public BasicAmountType(XmlNode xmlNode)
 		{
-			XmlDocument document = new XmlDocument();
-			document.LoadXml(xmlSoap.ToString());
-			XmlNodeList nodeList = null;
-			string xmlString = "";
-			this.currencyID = (CurrencyCodeType)EnumUtils.getValue(document.ChildNodes[0].Attributes.GetNamedItem("currencyID").Value, typeof(CurrencyCodeType));
-		this.value = (string)document.ChildNodes[0].InnerText;
+			XmlNode ChildNode = null;
+			XmlNodeList ChildNodeList = null;
+			ChildNode = xmlNode.SelectSingleNode("@*[local-name() = 'currencyID']");
+			if (ChildNode != null)
+			{
+				this.currencyID = (CurrencyCodeType)EnumUtils.getValue(ChildNode.Value, typeof(CurrencyCodeType));	
+			}
+			this.value = xmlNode.InnerText;
 	
 		}
-		
 	}
 
 
@@ -265,32 +264,27 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			StringBuilder sb = new StringBuilder();
 			if(unit != null)
 			{
-				sb.Append("<cc:unit>").Append(unit);
+				sb.Append("<cc:unit>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(unit));
 				sb.Append("</cc:unit>");
 			}
 			if(value != null)
 			{
-				sb.Append(value);
+				sb.Append(DeserializationUtils.escapeInvalidXmlCharsRegex(value));
 			}
 			return sb.ToString();
 		}
-		public MeasureType(Object xmlSoap)
+		public MeasureType(XmlNode xmlNode)
 		{
-			XmlDocument document = new XmlDocument();
-			document.LoadXml(xmlSoap.ToString());
-			XmlNodeList nodeList = null;
-			string xmlString = "";
-		if(document.GetElementsByTagName("unit").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("unit")[0]))
+			XmlNode ChildNode = null;
+			XmlNodeList ChildNodeList = null;
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'unit']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.unit = (string)document.GetElementsByTagName("unit")[0].InnerText;
+				this.unit = ChildNode.InnerText;
 			}
-		}
-		this.value = System.Convert.ToDecimal(document.ChildNodes[0].InnerText);
+			this.value = System.Convert.ToDecimal(xmlNode.InnerText);
 	
 		}
-		
 	}
 
 
@@ -1332,7 +1326,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       */
 	public enum ApprovalSubTypeType {
 		[Description("None")]NONE,	
-		[Description("MerchantInitiatedBilling")]MERCHANTINITIATEDBILLING	
+		[Description("MerchantInitiatedBilling")]MERCHANTINITIATEDBILLING,	
+		[Description("MerchantInitiatedBillingSingleAgreement")]MERCHANTINITIATEDBILLINGSINGLEAGREEMENT,	
+		[Description("ChannelInitiatedBilling")]CHANNELINITIATEDBILLING	
 	}
 
 
@@ -2433,6 +2429,27 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 	/**
+      * Defines couple relationship type between buckets 
+      */
+	public enum CoupleType {
+		[Description("LifeTime")]LIFETIME	
+	}
+
+
+
+
+	/**
+      * Category of payment like international shipping
+      * 
+      */
+	public enum PaymentCategoryType {
+		[Description("InternationalShipping")]INTERNATIONALSHIPPING	
+	}
+
+
+
+
+	/**
       *Value of the application-specific error parameter.  
       */
 	public partial class ErrorParameterType	
@@ -2462,22 +2479,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public ErrorParameterType(Object xmlSoap)
+		public ErrorParameterType(XmlNode xmlNode)
 		{
-			XmlDocument document = new XmlDocument();
-			document.LoadXml(xmlSoap.ToString());
-			XmlNodeList nodeList = null;
-			string xmlString = "";
-		if(document.GetElementsByTagName("Value").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("Value")[0]))
+			XmlNode ChildNode = null;
+			XmlNodeList ChildNodeList = null;
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'Value']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.Value = (string)document.GetElementsByTagName("Value")[0].InnerText;
+				this.Value = ChildNode.InnerText;
 			}
-		}
 	
 		}
-		
 	}
 
 
@@ -2583,55 +2595,41 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public ErrorType(Object xmlSoap)
+		public ErrorType(XmlNode xmlNode)
 		{
-			XmlDocument document = new XmlDocument();
-			document.LoadXml(xmlSoap.ToString());
-			XmlNodeList nodeList = null;
-			string xmlString = "";
-		if(document.GetElementsByTagName("ShortMessage").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("ShortMessage")[0]))
+			XmlNode ChildNode = null;
+			XmlNodeList ChildNodeList = null;
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'ShortMessage']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.ShortMessage = (string)document.GetElementsByTagName("ShortMessage")[0].InnerText;
+				this.ShortMessage = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("LongMessage").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("LongMessage")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'LongMessage']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.LongMessage = (string)document.GetElementsByTagName("LongMessage")[0].InnerText;
+				this.LongMessage = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("ErrorCode").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("ErrorCode")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'ErrorCode']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.ErrorCode = (string)document.GetElementsByTagName("ErrorCode")[0].InnerText;
+				this.ErrorCode = ChildNode.InnerText;
 			}
-		}
-			if(document.GetElementsByTagName("SeverityCode").Count != 0)
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'SeverityCode']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("SeverityCode")[0]))
+				this.SeverityCode = (SeverityCodeType)EnumUtils.getValue(ChildNode.InnerText,typeof(SeverityCodeType));
+			}
+			ChildNodeList = xmlNode.SelectNodes("*[local-name() = 'ErrorParameters']");
+			if (ChildNodeList != null && ChildNodeList.Count > 0)
+			{
+				for(int i = 0; i < ChildNodeList.Count; i++)
 				{
-					this.SeverityCode = (SeverityCodeType)EnumUtils.getValue(document.GetElementsByTagName("SeverityCode")[0].InnerText,typeof(SeverityCodeType));
-				}
-			}
-			if(document.GetElementsByTagName("ErrorParameters").Count != 0)
-			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("ErrorParameters")[0]))
-				{
-					nodeList = document.GetElementsByTagName("ErrorParameters");
-					for(int i = 0; i < nodeList.Count; i++)
-					{
-						xmlString = DeserializationUtils.convertToXML(nodeList[i]);
-						this.ErrorParameters.Add(new ErrorParameterType(xmlString));
-					}
+					XmlNode subNode = ChildNodeList.Item(i);
+					this.ErrorParameters.Add(new ErrorParameterType(subNode));
 				}
 			}
 	
 		}
-		
 	}
 
 
@@ -2710,18 +2708,18 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			{
 				for(int i = 0; i < DetailLevel.Count; i++)
 				{
-					sb.Append("<ebl:DetailLevel>").Append(EnumUtils.getDescription(DetailLevel[i])).Append("</ebl:DetailLevel>");
+					sb.Append("<ebl:DetailLevel>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(DetailLevel[i]))).Append("</ebl:DetailLevel>");
 				
 				}
 			}
 			if(ErrorLanguage != null)
 			{
-				sb.Append("<ebl:ErrorLanguage>").Append(ErrorLanguage);
+				sb.Append("<ebl:ErrorLanguage>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(ErrorLanguage));
 				sb.Append("</ebl:ErrorLanguage>");
 			}
 			if(Version != null)
 			{
-				sb.Append("<ebl:Version>").Append(Version);
+				sb.Append("<ebl:Version>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(Version));
 				sb.Append("</ebl:Version>");
 			}
 			return sb.ToString();
@@ -2850,62 +2848,46 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public AbstractResponseType(Object xmlSoap)
+		public AbstractResponseType(XmlNode xmlNode)
 		{
-			XmlDocument document = new XmlDocument();
-			document.LoadXml(xmlSoap.ToString());
-			XmlNodeList nodeList = null;
-			string xmlString = "";
-		if(document.GetElementsByTagName("Timestamp").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("Timestamp")[0]))
+			XmlNode ChildNode = null;
+			XmlNodeList ChildNodeList = null;
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'Timestamp']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.Timestamp = (string)document.GetElementsByTagName("Timestamp")[0].InnerText;
+				this.Timestamp = ChildNode.InnerText;
 			}
-		}
-			if(document.GetElementsByTagName("Ack").Count != 0)
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'Ack']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("Ack")[0]))
+				this.Ack = (AckCodeType)EnumUtils.getValue(ChildNode.InnerText,typeof(AckCodeType));
+			}
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'CorrelationID']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
+			{
+				this.CorrelationID = ChildNode.InnerText;
+			}
+			ChildNodeList = xmlNode.SelectNodes("*[local-name() = 'Errors']");
+			if (ChildNodeList != null && ChildNodeList.Count > 0)
+			{
+				for(int i = 0; i < ChildNodeList.Count; i++)
 				{
-					this.Ack = (AckCodeType)EnumUtils.getValue(document.GetElementsByTagName("Ack")[0].InnerText,typeof(AckCodeType));
+					XmlNode subNode = ChildNodeList.Item(i);
+					this.Errors.Add(new ErrorType(subNode));
 				}
 			}
-		if(document.GetElementsByTagName("CorrelationID").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("CorrelationID")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'Version']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.CorrelationID = (string)document.GetElementsByTagName("CorrelationID")[0].InnerText;
+				this.Version = ChildNode.InnerText;
 			}
-		}
-			if(document.GetElementsByTagName("Errors").Count != 0)
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'Build']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("Errors")[0]))
-				{
-					nodeList = document.GetElementsByTagName("Errors");
-					for(int i = 0; i < nodeList.Count; i++)
-					{
-						xmlString = DeserializationUtils.convertToXML(nodeList[i]);
-						this.Errors.Add(new ErrorType(xmlString));
-					}
-				}
+				this.Build = ChildNode.InnerText;
 			}
-		if(document.GetElementsByTagName("Version").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("Version")[0]))
-			{
-				this.Version = (string)document.GetElementsByTagName("Version")[0].InnerText;
-			}
-		}
-		if(document.GetElementsByTagName("Build").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("Build")[0]))
-			{
-				this.Build = (string)document.GetElementsByTagName("Build")[0].InnerText;
-			}
-		}
 	
 		}
-		
 	}
 
 
@@ -2980,17 +2962,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			StringBuilder sb = new StringBuilder();
 			if(CountryCode != null)
 			{
-				sb.Append("<ebl:CountryCode>").Append(CountryCode);
+				sb.Append("<ebl:CountryCode>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(CountryCode));
 				sb.Append("</ebl:CountryCode>");
 			}
 			if(PhoneNumber != null)
 			{
-				sb.Append("<ebl:PhoneNumber>").Append(PhoneNumber);
+				sb.Append("<ebl:PhoneNumber>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(PhoneNumber));
 				sb.Append("</ebl:PhoneNumber>");
 			}
 			if(Extension != null)
 			{
-				sb.Append("<ebl:Extension>").Append(Extension);
+				sb.Append("<ebl:Extension>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(Extension));
 				sb.Append("</ebl:Extension>");
 			}
 			return sb.ToString();
@@ -3291,207 +3273,172 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			StringBuilder sb = new StringBuilder();
 			if(Name != null)
 			{
-				sb.Append("<ebl:Name>").Append(Name);
+				sb.Append("<ebl:Name>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(Name));
 				sb.Append("</ebl:Name>");
 			}
 			if(Street1 != null)
 			{
-				sb.Append("<ebl:Street1>").Append(Street1);
+				sb.Append("<ebl:Street1>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(Street1));
 				sb.Append("</ebl:Street1>");
 			}
 			if(Street2 != null)
 			{
-				sb.Append("<ebl:Street2>").Append(Street2);
+				sb.Append("<ebl:Street2>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(Street2));
 				sb.Append("</ebl:Street2>");
 			}
 			if(CityName != null)
 			{
-				sb.Append("<ebl:CityName>").Append(CityName);
+				sb.Append("<ebl:CityName>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(CityName));
 				sb.Append("</ebl:CityName>");
 			}
 			if(StateOrProvince != null)
 			{
-				sb.Append("<ebl:StateOrProvince>").Append(StateOrProvince);
+				sb.Append("<ebl:StateOrProvince>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(StateOrProvince));
 				sb.Append("</ebl:StateOrProvince>");
 			}
 			if(Country != null)
 			{
-				sb.Append("<ebl:Country>").Append(EnumUtils.getDescription(Country));
+				sb.Append("<ebl:Country>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(Country)));
 				sb.Append("</ebl:Country>");
 			}
 			if(CountryName != null)
 			{
-				sb.Append("<ebl:CountryName>").Append(CountryName);
+				sb.Append("<ebl:CountryName>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(CountryName));
 				sb.Append("</ebl:CountryName>");
 			}
 			if(Phone != null)
 			{
-				sb.Append("<ebl:Phone>").Append(Phone);
+				sb.Append("<ebl:Phone>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(Phone));
 				sb.Append("</ebl:Phone>");
 			}
 			if(PostalCode != null)
 			{
-				sb.Append("<ebl:PostalCode>").Append(PostalCode);
+				sb.Append("<ebl:PostalCode>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(PostalCode));
 				sb.Append("</ebl:PostalCode>");
 			}
 			if(AddressID != null)
 			{
-				sb.Append("<ebl:AddressID>").Append(AddressID);
+				sb.Append("<ebl:AddressID>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(AddressID));
 				sb.Append("</ebl:AddressID>");
 			}
 			if(AddressOwner != null)
 			{
-				sb.Append("<ebl:AddressOwner>").Append(EnumUtils.getDescription(AddressOwner));
+				sb.Append("<ebl:AddressOwner>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(AddressOwner)));
 				sb.Append("</ebl:AddressOwner>");
 			}
 			if(ExternalAddressID != null)
 			{
-				sb.Append("<ebl:ExternalAddressID>").Append(ExternalAddressID);
+				sb.Append("<ebl:ExternalAddressID>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(ExternalAddressID));
 				sb.Append("</ebl:ExternalAddressID>");
 			}
 			if(InternationalName != null)
 			{
-				sb.Append("<ebl:InternationalName>").Append(InternationalName);
+				sb.Append("<ebl:InternationalName>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(InternationalName));
 				sb.Append("</ebl:InternationalName>");
 			}
 			if(InternationalStateAndCity != null)
 			{
-				sb.Append("<ebl:InternationalStateAndCity>").Append(InternationalStateAndCity);
+				sb.Append("<ebl:InternationalStateAndCity>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(InternationalStateAndCity));
 				sb.Append("</ebl:InternationalStateAndCity>");
 			}
 			if(InternationalStreet != null)
 			{
-				sb.Append("<ebl:InternationalStreet>").Append(InternationalStreet);
+				sb.Append("<ebl:InternationalStreet>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(InternationalStreet));
 				sb.Append("</ebl:InternationalStreet>");
 			}
 			if(AddressStatus != null)
 			{
-				sb.Append("<ebl:AddressStatus>").Append(EnumUtils.getDescription(AddressStatus));
+				sb.Append("<ebl:AddressStatus>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(AddressStatus)));
 				sb.Append("</ebl:AddressStatus>");
 			}
 			return sb.ToString();
 		}
-		public AddressType(Object xmlSoap)
+		public AddressType(XmlNode xmlNode)
 		{
-			XmlDocument document = new XmlDocument();
-			document.LoadXml(xmlSoap.ToString());
-			XmlNodeList nodeList = null;
-			string xmlString = "";
-		if(document.GetElementsByTagName("Name").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("Name")[0]))
+			XmlNode ChildNode = null;
+			XmlNodeList ChildNodeList = null;
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'Name']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.Name = (string)document.GetElementsByTagName("Name")[0].InnerText;
+				this.Name = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("Street1").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("Street1")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'Street1']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.Street1 = (string)document.GetElementsByTagName("Street1")[0].InnerText;
+				this.Street1 = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("Street2").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("Street2")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'Street2']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.Street2 = (string)document.GetElementsByTagName("Street2")[0].InnerText;
+				this.Street2 = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("CityName").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("CityName")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'CityName']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.CityName = (string)document.GetElementsByTagName("CityName")[0].InnerText;
+				this.CityName = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("StateOrProvince").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("StateOrProvince")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'StateOrProvince']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.StateOrProvince = (string)document.GetElementsByTagName("StateOrProvince")[0].InnerText;
+				this.StateOrProvince = ChildNode.InnerText;
 			}
-		}
-			if(document.GetElementsByTagName("Country").Count != 0)
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'Country']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("Country")[0]))
-				{
-					this.Country = (CountryCodeType)EnumUtils.getValue(document.GetElementsByTagName("Country")[0].InnerText,typeof(CountryCodeType));
-				}
+				this.Country = (CountryCodeType)EnumUtils.getValue(ChildNode.InnerText,typeof(CountryCodeType));
 			}
-		if(document.GetElementsByTagName("CountryName").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("CountryName")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'CountryName']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.CountryName = (string)document.GetElementsByTagName("CountryName")[0].InnerText;
+				this.CountryName = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("Phone").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("Phone")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'Phone']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.Phone = (string)document.GetElementsByTagName("Phone")[0].InnerText;
+				this.Phone = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("PostalCode").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("PostalCode")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'PostalCode']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.PostalCode = (string)document.GetElementsByTagName("PostalCode")[0].InnerText;
+				this.PostalCode = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("AddressID").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("AddressID")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'AddressID']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.AddressID = (string)document.GetElementsByTagName("AddressID")[0].InnerText;
+				this.AddressID = ChildNode.InnerText;
 			}
-		}
-			if(document.GetElementsByTagName("AddressOwner").Count != 0)
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'AddressOwner']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("AddressOwner")[0]))
-				{
-					this.AddressOwner = (AddressOwnerCodeType)EnumUtils.getValue(document.GetElementsByTagName("AddressOwner")[0].InnerText,typeof(AddressOwnerCodeType));
-				}
+				this.AddressOwner = (AddressOwnerCodeType)EnumUtils.getValue(ChildNode.InnerText,typeof(AddressOwnerCodeType));
 			}
-		if(document.GetElementsByTagName("ExternalAddressID").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("ExternalAddressID")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'ExternalAddressID']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.ExternalAddressID = (string)document.GetElementsByTagName("ExternalAddressID")[0].InnerText;
+				this.ExternalAddressID = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("InternationalName").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("InternationalName")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'InternationalName']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.InternationalName = (string)document.GetElementsByTagName("InternationalName")[0].InnerText;
+				this.InternationalName = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("InternationalStateAndCity").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("InternationalStateAndCity")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'InternationalStateAndCity']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.InternationalStateAndCity = (string)document.GetElementsByTagName("InternationalStateAndCity")[0].InnerText;
+				this.InternationalStateAndCity = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("InternationalStreet").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("InternationalStreet")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'InternationalStreet']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.InternationalStreet = (string)document.GetElementsByTagName("InternationalStreet")[0].InnerText;
+				this.InternationalStreet = ChildNode.InnerText;
 			}
-		}
-			if(document.GetElementsByTagName("AddressStatus").Count != 0)
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'AddressStatus']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("AddressStatus")[0]))
-				{
-					this.AddressStatus = (AddressStatusCodeType)EnumUtils.getValue(document.GetElementsByTagName("AddressStatus")[0].InnerText,typeof(AddressStatusCodeType));
-				}
+				this.AddressStatus = (AddressStatusCodeType)EnumUtils.getValue(ChildNode.InnerText,typeof(AddressStatusCodeType));
 			}
 	
 		}
-		
 	}
 
 
@@ -3600,75 +3547,62 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			StringBuilder sb = new StringBuilder();
 			if(Salutation != null)
 			{
-				sb.Append("<ebl:Salutation>").Append(Salutation);
+				sb.Append("<ebl:Salutation>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(Salutation));
 				sb.Append("</ebl:Salutation>");
 			}
 			if(FirstName != null)
 			{
-				sb.Append("<ebl:FirstName>").Append(FirstName);
+				sb.Append("<ebl:FirstName>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(FirstName));
 				sb.Append("</ebl:FirstName>");
 			}
 			if(MiddleName != null)
 			{
-				sb.Append("<ebl:MiddleName>").Append(MiddleName);
+				sb.Append("<ebl:MiddleName>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(MiddleName));
 				sb.Append("</ebl:MiddleName>");
 			}
 			if(LastName != null)
 			{
-				sb.Append("<ebl:LastName>").Append(LastName);
+				sb.Append("<ebl:LastName>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(LastName));
 				sb.Append("</ebl:LastName>");
 			}
 			if(Suffix != null)
 			{
-				sb.Append("<ebl:Suffix>").Append(Suffix);
+				sb.Append("<ebl:Suffix>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(Suffix));
 				sb.Append("</ebl:Suffix>");
 			}
 			return sb.ToString();
 		}
-		public PersonNameType(Object xmlSoap)
+		public PersonNameType(XmlNode xmlNode)
 		{
-			XmlDocument document = new XmlDocument();
-			document.LoadXml(xmlSoap.ToString());
-			XmlNodeList nodeList = null;
-			string xmlString = "";
-		if(document.GetElementsByTagName("Salutation").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("Salutation")[0]))
+			XmlNode ChildNode = null;
+			XmlNodeList ChildNodeList = null;
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'Salutation']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.Salutation = (string)document.GetElementsByTagName("Salutation")[0].InnerText;
+				this.Salutation = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("FirstName").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("FirstName")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'FirstName']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.FirstName = (string)document.GetElementsByTagName("FirstName")[0].InnerText;
+				this.FirstName = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("MiddleName").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("MiddleName")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'MiddleName']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.MiddleName = (string)document.GetElementsByTagName("MiddleName")[0].InnerText;
+				this.MiddleName = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("LastName").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("LastName")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'LastName']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.LastName = (string)document.GetElementsByTagName("LastName")[0].InnerText;
+				this.LastName = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("Suffix").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("Suffix")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'Suffix']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.Suffix = (string)document.GetElementsByTagName("Suffix")[0].InnerText;
+				this.Suffix = ChildNode.InnerText;
 			}
-		}
 	
 		}
-		
 	}
 
 
@@ -3755,45 +3689,32 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public IncentiveAppliedToType(Object xmlSoap)
+		public IncentiveAppliedToType(XmlNode xmlNode)
 		{
-			XmlDocument document = new XmlDocument();
-			document.LoadXml(xmlSoap.ToString());
-			XmlNodeList nodeList = null;
-			string xmlString = "";
-		if(document.GetElementsByTagName("BucketId").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("BucketId")[0]))
+			XmlNode ChildNode = null;
+			XmlNodeList ChildNodeList = null;
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'BucketId']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.BucketId = (string)document.GetElementsByTagName("BucketId")[0].InnerText;
+				this.BucketId = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("ItemId").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("ItemId")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'ItemId']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.ItemId = (string)document.GetElementsByTagName("ItemId")[0].InnerText;
+				this.ItemId = ChildNode.InnerText;
 			}
-		}
-			if(document.GetElementsByTagName("IncentiveAmount").Count != 0)
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'IncentiveAmount']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("IncentiveAmount")[0]))
-				{
-					nodeList = document.GetElementsByTagName("IncentiveAmount");
-					xmlString = DeserializationUtils.convertToXML(nodeList[0]);
-					this.IncentiveAmount =  new BasicAmountType(xmlString);
-				}
+				this.IncentiveAmount =  new BasicAmountType(ChildNode);
 			}
-		if(document.GetElementsByTagName("SubType").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("SubType")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'SubType']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.SubType = (string)document.GetElementsByTagName("SubType")[0].InnerText;
+				this.SubType = ChildNode.InnerText;
 			}
-		}
 	
 		}
-		
 	}
 
 
@@ -3948,76 +3869,56 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public IncentiveDetailType(Object xmlSoap)
+		public IncentiveDetailType(XmlNode xmlNode)
 		{
-			XmlDocument document = new XmlDocument();
-			document.LoadXml(xmlSoap.ToString());
-			XmlNodeList nodeList = null;
-			string xmlString = "";
-		if(document.GetElementsByTagName("RedemptionCode").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("RedemptionCode")[0]))
+			XmlNode ChildNode = null;
+			XmlNodeList ChildNodeList = null;
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'RedemptionCode']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.RedemptionCode = (string)document.GetElementsByTagName("RedemptionCode")[0].InnerText;
+				this.RedemptionCode = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("DisplayCode").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("DisplayCode")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'DisplayCode']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.DisplayCode = (string)document.GetElementsByTagName("DisplayCode")[0].InnerText;
+				this.DisplayCode = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("ProgramId").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("ProgramId")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'ProgramId']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.ProgramId = (string)document.GetElementsByTagName("ProgramId")[0].InnerText;
+				this.ProgramId = ChildNode.InnerText;
 			}
-		}
-			if(document.GetElementsByTagName("IncentiveType").Count != 0)
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'IncentiveType']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("IncentiveType")[0]))
+				this.IncentiveType = (IncentiveTypeCodeType)EnumUtils.getValue(ChildNode.InnerText,typeof(IncentiveTypeCodeType));
+			}
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'IncentiveDescription']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
+			{
+				this.IncentiveDescription = ChildNode.InnerText;
+			}
+			ChildNodeList = xmlNode.SelectNodes("*[local-name() = 'AppliedTo']");
+			if (ChildNodeList != null && ChildNodeList.Count > 0)
+			{
+				for(int i = 0; i < ChildNodeList.Count; i++)
 				{
-					this.IncentiveType = (IncentiveTypeCodeType)EnumUtils.getValue(document.GetElementsByTagName("IncentiveType")[0].InnerText,typeof(IncentiveTypeCodeType));
+					XmlNode subNode = ChildNodeList.Item(i);
+					this.AppliedTo.Add(new IncentiveAppliedToType(subNode));
 				}
 			}
-		if(document.GetElementsByTagName("IncentiveDescription").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("IncentiveDescription")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'Status']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.IncentiveDescription = (string)document.GetElementsByTagName("IncentiveDescription")[0].InnerText;
+				this.Status = ChildNode.InnerText;
 			}
-		}
-			if(document.GetElementsByTagName("AppliedTo").Count != 0)
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'ErrorCode']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("AppliedTo")[0]))
-				{
-					nodeList = document.GetElementsByTagName("AppliedTo");
-					for(int i = 0; i < nodeList.Count; i++)
-					{
-						xmlString = DeserializationUtils.convertToXML(nodeList[i]);
-						this.AppliedTo.Add(new IncentiveAppliedToType(xmlString));
-					}
-				}
+				this.ErrorCode = ChildNode.InnerText;
 			}
-		if(document.GetElementsByTagName("Status").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("Status")[0]))
-			{
-				this.Status = (string)document.GetElementsByTagName("Status")[0].InnerText;
-			}
-		}
-		if(document.GetElementsByTagName("ErrorCode").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("ErrorCode")[0]))
-			{
-				this.ErrorCode = (string)document.GetElementsByTagName("ErrorCode")[0].InnerText;
-			}
-		}
 	
 		}
-		
 	}
 
 
@@ -4126,17 +4027,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			StringBuilder sb = new StringBuilder();
 			if(ItemId != null)
 			{
-				sb.Append("<ebl:ItemId>").Append(ItemId);
+				sb.Append("<ebl:ItemId>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(ItemId));
 				sb.Append("</ebl:ItemId>");
 			}
 			if(PurchaseTime != null)
 			{
-				sb.Append("<ebl:PurchaseTime>").Append(PurchaseTime);
+				sb.Append("<ebl:PurchaseTime>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(PurchaseTime));
 				sb.Append("</ebl:PurchaseTime>");
 			}
 			if(ItemCategoryList != null)
 			{
-				sb.Append("<ebl:ItemCategoryList>").Append(ItemCategoryList);
+				sb.Append("<ebl:ItemCategoryList>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(ItemCategoryList));
 				sb.Append("</ebl:ItemCategoryList>");
 			}
 			if(ItemPrice != null)
@@ -4147,7 +4048,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(ItemQuantity != null)
 			{
-				sb.Append("<ebl:ItemQuantity>").Append(ItemQuantity);
+				sb.Append("<ebl:ItemQuantity>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(ItemQuantity));
 				sb.Append("</ebl:ItemQuantity>");
 			}
 			return sb.ToString();
@@ -4338,17 +4239,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(BucketId != null)
 			{
-				sb.Append("<ebl:BucketId>").Append(BucketId);
+				sb.Append("<ebl:BucketId>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(BucketId));
 				sb.Append("</ebl:BucketId>");
 			}
 			if(SellerId != null)
 			{
-				sb.Append("<ebl:SellerId>").Append(SellerId);
+				sb.Append("<ebl:SellerId>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(SellerId));
 				sb.Append("</ebl:SellerId>");
 			}
 			if(ExternalSellerId != null)
 			{
-				sb.Append("<ebl:ExternalSellerId>").Append(ExternalSellerId);
+				sb.Append("<ebl:ExternalSellerId>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(ExternalSellerId));
 				sb.Append("</ebl:ExternalSellerId>");
 			}
 			if(BucketSubtotalAmt != null)
@@ -4457,17 +4358,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			StringBuilder sb = new StringBuilder();
 			if(RequestId != null)
 			{
-				sb.Append("<ebl:RequestId>").Append(RequestId);
+				sb.Append("<ebl:RequestId>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(RequestId));
 				sb.Append("</ebl:RequestId>");
 			}
 			if(RequestType != null)
 			{
-				sb.Append("<ebl:RequestType>").Append(EnumUtils.getDescription(RequestType));
+				sb.Append("<ebl:RequestType>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(RequestType)));
 				sb.Append("</ebl:RequestType>");
 			}
 			if(RequestDetailLevel != null)
 			{
-				sb.Append("<ebl:RequestDetailLevel>").Append(EnumUtils.getDescription(RequestDetailLevel));
+				sb.Append("<ebl:RequestDetailLevel>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(RequestDetailLevel)));
 				sb.Append("</ebl:RequestDetailLevel>");
 			}
 			return sb.ToString();
@@ -4597,14 +4498,14 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			StringBuilder sb = new StringBuilder();
 			if(ExternalBuyerId != null)
 			{
-				sb.Append("<ebl:ExternalBuyerId>").Append(ExternalBuyerId);
+				sb.Append("<ebl:ExternalBuyerId>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(ExternalBuyerId));
 				sb.Append("</ebl:ExternalBuyerId>");
 			}
 			if(IncentiveCodes != null)
 			{
 				for(int i = 0; i < IncentiveCodes.Count; i++)
 				{
-					sb.Append("<ebl:IncentiveCodes>").Append(IncentiveCodes[i]);
+					sb.Append("<ebl:IncentiveCodes>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(IncentiveCodes[i]));
 					sb.Append("</ebl:IncentiveCodes>");
 				
 				}
@@ -4695,34 +4596,26 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public GetIncentiveEvaluationResponseDetailsType(Object xmlSoap)
+		public GetIncentiveEvaluationResponseDetailsType(XmlNode xmlNode)
 		{
-			XmlDocument document = new XmlDocument();
-			document.LoadXml(xmlSoap.ToString());
-			XmlNodeList nodeList = null;
-			string xmlString = "";
-			if(document.GetElementsByTagName("IncentiveDetails").Count != 0)
+			XmlNode ChildNode = null;
+			XmlNodeList ChildNodeList = null;
+			ChildNodeList = xmlNode.SelectNodes("*[local-name() = 'IncentiveDetails']");
+			if (ChildNodeList != null && ChildNodeList.Count > 0)
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("IncentiveDetails")[0]))
+				for(int i = 0; i < ChildNodeList.Count; i++)
 				{
-					nodeList = document.GetElementsByTagName("IncentiveDetails");
-					for(int i = 0; i < nodeList.Count; i++)
-					{
-						xmlString = DeserializationUtils.convertToXML(nodeList[i]);
-						this.IncentiveDetails.Add(new IncentiveDetailType(xmlString));
-					}
+					XmlNode subNode = ChildNodeList.Item(i);
+					this.IncentiveDetails.Add(new IncentiveDetailType(subNode));
 				}
 			}
-		if(document.GetElementsByTagName("RequestId").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("RequestId")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'RequestId']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.RequestId = (string)document.GetElementsByTagName("RequestId")[0].InnerText;
+				this.RequestId = ChildNode.InnerText;
 			}
-		}
 	
 		}
-		
 	}
 
 
@@ -5865,6 +5758,23 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
+          *
+		  */
+		private List<CoupledBucketsType> CoupledBucketsField = new List<CoupledBucketsType>();
+		public List<CoupledBucketsType> CoupledBuckets
+		{
+			get
+			{
+				return this.CoupledBucketsField;
+			}
+			set
+			{
+				this.CoupledBucketsField = value;
+			}
+		}
+		
+
+		/**
 	 	  * Default Constructor
 	 	  */
 	 	public SetExpressCheckoutRequestDetailsType(){
@@ -5882,37 +5792,37 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(ReturnURL != null)
 			{
-				sb.Append("<ebl:ReturnURL>").Append(ReturnURL);
+				sb.Append("<ebl:ReturnURL>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(ReturnURL));
 				sb.Append("</ebl:ReturnURL>");
 			}
 			if(CancelURL != null)
 			{
-				sb.Append("<ebl:CancelURL>").Append(CancelURL);
+				sb.Append("<ebl:CancelURL>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(CancelURL));
 				sb.Append("</ebl:CancelURL>");
 			}
 			if(TrackingImageURL != null)
 			{
-				sb.Append("<ebl:TrackingImageURL>").Append(TrackingImageURL);
+				sb.Append("<ebl:TrackingImageURL>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(TrackingImageURL));
 				sb.Append("</ebl:TrackingImageURL>");
 			}
 			if(giropaySuccessURL != null)
 			{
-				sb.Append("<ebl:giropaySuccessURL>").Append(giropaySuccessURL);
+				sb.Append("<ebl:giropaySuccessURL>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(giropaySuccessURL));
 				sb.Append("</ebl:giropaySuccessURL>");
 			}
 			if(giropayCancelURL != null)
 			{
-				sb.Append("<ebl:giropayCancelURL>").Append(giropayCancelURL);
+				sb.Append("<ebl:giropayCancelURL>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(giropayCancelURL));
 				sb.Append("</ebl:giropayCancelURL>");
 			}
 			if(BanktxnPendingURL != null)
 			{
-				sb.Append("<ebl:BanktxnPendingURL>").Append(BanktxnPendingURL);
+				sb.Append("<ebl:BanktxnPendingURL>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(BanktxnPendingURL));
 				sb.Append("</ebl:BanktxnPendingURL>");
 			}
 			if(Token != null)
 			{
-				sb.Append("<ebl:Token>").Append(Token);
+				sb.Append("<ebl:Token>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(Token));
 				sb.Append("</ebl:Token>");
 			}
 			if(MaxAmount != null)
@@ -5923,27 +5833,27 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(OrderDescription != null)
 			{
-				sb.Append("<ebl:OrderDescription>").Append(OrderDescription);
+				sb.Append("<ebl:OrderDescription>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(OrderDescription));
 				sb.Append("</ebl:OrderDescription>");
 			}
 			if(Custom != null)
 			{
-				sb.Append("<ebl:Custom>").Append(Custom);
+				sb.Append("<ebl:Custom>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(Custom));
 				sb.Append("</ebl:Custom>");
 			}
 			if(InvoiceID != null)
 			{
-				sb.Append("<ebl:InvoiceID>").Append(InvoiceID);
+				sb.Append("<ebl:InvoiceID>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(InvoiceID));
 				sb.Append("</ebl:InvoiceID>");
 			}
 			if(ReqConfirmShipping != null)
 			{
-				sb.Append("<ebl:ReqConfirmShipping>").Append(ReqConfirmShipping);
+				sb.Append("<ebl:ReqConfirmShipping>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(ReqConfirmShipping));
 				sb.Append("</ebl:ReqConfirmShipping>");
 			}
 			if(ReqBillingAddress != null)
 			{
-				sb.Append("<ebl:ReqBillingAddress>").Append(ReqBillingAddress);
+				sb.Append("<ebl:ReqBillingAddress>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(ReqBillingAddress));
 				sb.Append("</ebl:ReqBillingAddress>");
 			}
 			if(BillingAddress != null)
@@ -5954,53 +5864,53 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(NoShipping != null)
 			{
-				sb.Append("<ebl:NoShipping>").Append(NoShipping);
+				sb.Append("<ebl:NoShipping>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(NoShipping));
 				sb.Append("</ebl:NoShipping>");
 			}
 			if(AddressOverride != null)
 			{
-				sb.Append("<ebl:AddressOverride>").Append(AddressOverride);
+				sb.Append("<ebl:AddressOverride>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(AddressOverride));
 				sb.Append("</ebl:AddressOverride>");
 			}
 			if(LocaleCode != null)
 			{
-				sb.Append("<ebl:LocaleCode>").Append(LocaleCode);
+				sb.Append("<ebl:LocaleCode>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(LocaleCode));
 				sb.Append("</ebl:LocaleCode>");
 			}
 			if(PageStyle != null)
 			{
-				sb.Append("<ebl:PageStyle>").Append(PageStyle);
+				sb.Append("<ebl:PageStyle>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(PageStyle));
 				sb.Append("</ebl:PageStyle>");
 			}
 			if(cppHeaderImage != null)
 			{
-				sb.Append("<ebl:cpp-header-image>").Append(cppHeaderImage);
-				sb.Append("</ebl:cpp-header-image>");
+				sb.Append("<ebl:cppHeaderImage>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(cppHeaderImage));
+				sb.Append("</ebl:cppHeaderImage>");
 			}
 			if(cppHeaderBorderColor != null)
 			{
-				sb.Append("<ebl:cpp-header-border-color>").Append(cppHeaderBorderColor);
-				sb.Append("</ebl:cpp-header-border-color>");
+				sb.Append("<ebl:cppHeaderBorderColor>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(cppHeaderBorderColor));
+				sb.Append("</ebl:cppHeaderBorderColor>");
 			}
 			if(cppHeaderBackColor != null)
 			{
-				sb.Append("<ebl:cpp-header-back-color>").Append(cppHeaderBackColor);
-				sb.Append("</ebl:cpp-header-back-color>");
+				sb.Append("<ebl:cppHeaderBackColor>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(cppHeaderBackColor));
+				sb.Append("</ebl:cppHeaderBackColor>");
 			}
 			if(cppPayflowColor != null)
 			{
-				sb.Append("<ebl:cpp-payflow-color>").Append(cppPayflowColor);
-				sb.Append("</ebl:cpp-payflow-color>");
+				sb.Append("<ebl:cppPayflowColor>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(cppPayflowColor));
+				sb.Append("</ebl:cppPayflowColor>");
 			}
 			if(cppCartBorderColor != null)
 			{
-				sb.Append("<ebl:cpp-cart-border-color>").Append(cppCartBorderColor);
-				sb.Append("</ebl:cpp-cart-border-color>");
+				sb.Append("<ebl:cppCartBorderColor>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(cppCartBorderColor));
+				sb.Append("</ebl:cppCartBorderColor>");
 			}
 			if(cppLogoImage != null)
 			{
-				sb.Append("<ebl:cpp-logo-image>").Append(cppLogoImage);
-				sb.Append("</ebl:cpp-logo-image>");
+				sb.Append("<ebl:cppLogoImage>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(cppLogoImage));
+				sb.Append("</ebl:cppLogoImage>");
 			}
 			if(Address != null)
 			{
@@ -6010,27 +5920,27 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(PaymentAction != null)
 			{
-				sb.Append("<ebl:PaymentAction>").Append(EnumUtils.getDescription(PaymentAction));
+				sb.Append("<ebl:PaymentAction>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(PaymentAction)));
 				sb.Append("</ebl:PaymentAction>");
 			}
 			if(SolutionType != null)
 			{
-				sb.Append("<ebl:SolutionType>").Append(EnumUtils.getDescription(SolutionType));
+				sb.Append("<ebl:SolutionType>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(SolutionType)));
 				sb.Append("</ebl:SolutionType>");
 			}
 			if(LandingPage != null)
 			{
-				sb.Append("<ebl:LandingPage>").Append(EnumUtils.getDescription(LandingPage));
+				sb.Append("<ebl:LandingPage>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(LandingPage)));
 				sb.Append("</ebl:LandingPage>");
 			}
 			if(BuyerEmail != null)
 			{
-				sb.Append("<ebl:BuyerEmail>").Append(BuyerEmail);
+				sb.Append("<ebl:BuyerEmail>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(BuyerEmail));
 				sb.Append("</ebl:BuyerEmail>");
 			}
 			if(ChannelType != null)
 			{
-				sb.Append("<ebl:ChannelType>").Append(EnumUtils.getDescription(ChannelType));
+				sb.Append("<ebl:ChannelType>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(ChannelType)));
 				sb.Append("</ebl:ChannelType>");
 			}
 			if(BillingAgreementDetails != null)
@@ -6047,34 +5957,34 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			{
 				for(int i = 0; i < PromoCodes.Count; i++)
 				{
-					sb.Append("<ebl:PromoCodes>").Append(PromoCodes[i]);
+					sb.Append("<ebl:PromoCodes>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(PromoCodes[i]));
 					sb.Append("</ebl:PromoCodes>");
 				
 				}
 			}
 			if(PayPalCheckOutBtnType != null)
 			{
-				sb.Append("<ebl:PayPalCheckOutBtnType>").Append(PayPalCheckOutBtnType);
+				sb.Append("<ebl:PayPalCheckOutBtnType>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(PayPalCheckOutBtnType));
 				sb.Append("</ebl:PayPalCheckOutBtnType>");
 			}
 			if(ProductCategory != null)
 			{
-				sb.Append("<ebl:ProductCategory>").Append(EnumUtils.getDescription(ProductCategory));
+				sb.Append("<ebl:ProductCategory>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(ProductCategory)));
 				sb.Append("</ebl:ProductCategory>");
 			}
 			if(ShippingMethod != null)
 			{
-				sb.Append("<ebl:ShippingMethod>").Append(EnumUtils.getDescription(ShippingMethod));
+				sb.Append("<ebl:ShippingMethod>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(ShippingMethod)));
 				sb.Append("</ebl:ShippingMethod>");
 			}
 			if(ProfileAddressChangeDate != null)
 			{
-				sb.Append("<ebl:ProfileAddressChangeDate>").Append(ProfileAddressChangeDate);
+				sb.Append("<ebl:ProfileAddressChangeDate>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(ProfileAddressChangeDate));
 				sb.Append("</ebl:ProfileAddressChangeDate>");
 			}
 			if(AllowNote != null)
 			{
-				sb.Append("<ebl:AllowNote>").Append(AllowNote);
+				sb.Append("<ebl:AllowNote>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(AllowNote));
 				sb.Append("</ebl:AllowNote>");
 			}
 			if(FundingSourceDetails != null)
@@ -6085,12 +5995,12 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(BrandName != null)
 			{
-				sb.Append("<ebl:BrandName>").Append(BrandName);
+				sb.Append("<ebl:BrandName>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(BrandName));
 				sb.Append("</ebl:BrandName>");
 			}
 			if(CallbackURL != null)
 			{
-				sb.Append("<ebl:CallbackURL>").Append(CallbackURL);
+				sb.Append("<ebl:CallbackURL>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(CallbackURL));
 				sb.Append("</ebl:CallbackURL>");
 			}
 			if(EnhancedCheckoutData != null)
@@ -6137,37 +6047,37 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(CallbackTimeout != null)
 			{
-				sb.Append("<ebl:CallbackTimeout>").Append(CallbackTimeout);
+				sb.Append("<ebl:CallbackTimeout>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(CallbackTimeout));
 				sb.Append("</ebl:CallbackTimeout>");
 			}
 			if(CallbackVersion != null)
 			{
-				sb.Append("<ebl:CallbackVersion>").Append(CallbackVersion);
+				sb.Append("<ebl:CallbackVersion>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(CallbackVersion));
 				sb.Append("</ebl:CallbackVersion>");
 			}
 			if(CustomerServiceNumber != null)
 			{
-				sb.Append("<ebl:CustomerServiceNumber>").Append(CustomerServiceNumber);
+				sb.Append("<ebl:CustomerServiceNumber>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(CustomerServiceNumber));
 				sb.Append("</ebl:CustomerServiceNumber>");
 			}
 			if(GiftMessageEnable != null)
 			{
-				sb.Append("<ebl:GiftMessageEnable>").Append(GiftMessageEnable);
+				sb.Append("<ebl:GiftMessageEnable>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(GiftMessageEnable));
 				sb.Append("</ebl:GiftMessageEnable>");
 			}
 			if(GiftReceiptEnable != null)
 			{
-				sb.Append("<ebl:GiftReceiptEnable>").Append(GiftReceiptEnable);
+				sb.Append("<ebl:GiftReceiptEnable>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(GiftReceiptEnable));
 				sb.Append("</ebl:GiftReceiptEnable>");
 			}
 			if(GiftWrapEnable != null)
 			{
-				sb.Append("<ebl:GiftWrapEnable>").Append(GiftWrapEnable);
+				sb.Append("<ebl:GiftWrapEnable>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(GiftWrapEnable));
 				sb.Append("</ebl:GiftWrapEnable>");
 			}
 			if(GiftWrapName != null)
 			{
-				sb.Append("<ebl:GiftWrapName>").Append(GiftWrapName);
+				sb.Append("<ebl:GiftWrapName>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(GiftWrapName));
 				sb.Append("</ebl:GiftWrapName>");
 			}
 			if(GiftWrapAmount != null)
@@ -6178,36 +6088,36 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(BuyerEmailOptInEnable != null)
 			{
-				sb.Append("<ebl:BuyerEmailOptInEnable>").Append(BuyerEmailOptInEnable);
+				sb.Append("<ebl:BuyerEmailOptInEnable>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(BuyerEmailOptInEnable));
 				sb.Append("</ebl:BuyerEmailOptInEnable>");
 			}
 			if(SurveyEnable != null)
 			{
-				sb.Append("<ebl:SurveyEnable>").Append(SurveyEnable);
+				sb.Append("<ebl:SurveyEnable>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(SurveyEnable));
 				sb.Append("</ebl:SurveyEnable>");
 			}
 			if(SurveyQuestion != null)
 			{
-				sb.Append("<ebl:SurveyQuestion>").Append(SurveyQuestion);
+				sb.Append("<ebl:SurveyQuestion>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(SurveyQuestion));
 				sb.Append("</ebl:SurveyQuestion>");
 			}
 			if(SurveyChoice != null)
 			{
 				for(int i = 0; i < SurveyChoice.Count; i++)
 				{
-					sb.Append("<ebl:SurveyChoice>").Append(SurveyChoice[i]);
+					sb.Append("<ebl:SurveyChoice>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(SurveyChoice[i]));
 					sb.Append("</ebl:SurveyChoice>");
 				
 				}
 			}
 			if(TotalType != null)
 			{
-				sb.Append("<ebl:TotalType>").Append(EnumUtils.getDescription(TotalType));
+				sb.Append("<ebl:TotalType>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(TotalType)));
 				sb.Append("</ebl:TotalType>");
 			}
 			if(NoteToBuyer != null)
 			{
-				sb.Append("<ebl:NoteToBuyer>").Append(NoteToBuyer);
+				sb.Append("<ebl:NoteToBuyer>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(NoteToBuyer));
 				sb.Append("</ebl:NoteToBuyer>");
 			}
 			if(Incentives != null)
@@ -6222,7 +6132,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(ReqInstrumentDetails != null)
 			{
-				sb.Append("<ebl:ReqInstrumentDetails>").Append(ReqInstrumentDetails);
+				sb.Append("<ebl:ReqInstrumentDetails>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(ReqInstrumentDetails));
 				sb.Append("</ebl:ReqInstrumentDetails>");
 			}
 			if(ExternalRememberMeOptInDetails != null)
@@ -6248,6 +6158,16 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 				sb.Append("<ebl:ExternalPartnerTrackingDetails>");
 				sb.Append(ExternalPartnerTrackingDetails.toXMLString());
 				sb.Append("</ebl:ExternalPartnerTrackingDetails>");
+			}
+			if(CoupledBuckets != null)
+			{
+				for(int i = 0; i < CoupledBuckets.Count; i++)
+				{
+					sb.Append("<ebl:CoupledBuckets>");
+					sb.Append(CoupledBuckets[i].toXMLString());
+					sb.Append("</ebl:CoupledBuckets>");
+				
+				}
 			}
 			return sb.ToString();
 		}
@@ -6339,7 +6259,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			StringBuilder sb = new StringBuilder();
 			if(Token != null)
 			{
-				sb.Append("<ebl:Token>").Append(Token);
+				sb.Append("<ebl:Token>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(Token));
 				sb.Append("</ebl:Token>");
 			}
 			if(SetDataRequest != null)
@@ -6499,7 +6419,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			StringBuilder sb = new StringBuilder();
 			if(IsRequested != null)
 			{
-				sb.Append("<ebl:IsRequested>").Append(IsRequested);
+				sb.Append("<ebl:IsRequested>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(IsRequested));
 				sb.Append("</ebl:IsRequested>");
 			}
 			return sb.ToString();
@@ -6620,12 +6540,12 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			StringBuilder sb = new StringBuilder();
 			if(ApprovalType != null)
 			{
-				sb.Append("<ebl:ApprovalType>").Append(EnumUtils.getDescription(ApprovalType));
+				sb.Append("<ebl:ApprovalType>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(ApprovalType)));
 				sb.Append("</ebl:ApprovalType>");
 			}
 			if(ApprovalSubType != null)
 			{
-				sb.Append("<ebl:ApprovalSubType>").Append(EnumUtils.getDescription(ApprovalSubType));
+				sb.Append("<ebl:ApprovalSubType>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(ApprovalSubType)));
 				sb.Append("</ebl:ApprovalSubType>");
 			}
 			if(OrderDetails != null)
@@ -6642,7 +6562,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(Custom != null)
 			{
-				sb.Append("<ebl:Custom>").Append(Custom);
+				sb.Append("<ebl:Custom>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(Custom));
 				sb.Append("</ebl:Custom>");
 			}
 			return sb.ToString();
@@ -6689,7 +6609,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			StringBuilder sb = new StringBuilder();
 			if(ReqBillingAddress != null)
 			{
-				sb.Append("<ebl:ReqBillingAddress>").Append(ReqBillingAddress);
+				sb.Append("<ebl:ReqBillingAddress>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(ReqBillingAddress));
 				sb.Append("</ebl:ReqBillingAddress>");
 			}
 			return sb.ToString();
@@ -6751,7 +6671,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			StringBuilder sb = new StringBuilder();
 			if(Description != null)
 			{
-				sb.Append("<ebl:Description>").Append(Description);
+				sb.Append("<ebl:Description>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(Description));
 				sb.Append("</ebl:Description>");
 			}
 			if(MaxAmount != null)
@@ -6802,7 +6722,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			StringBuilder sb = new StringBuilder();
 			if(PaymentType != null)
 			{
-				sb.Append("<ebl:PaymentType>").Append(EnumUtils.getDescription(PaymentType));
+				sb.Append("<ebl:PaymentType>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(PaymentType)));
 				sb.Append("</ebl:PaymentType>");
 			}
 			return sb.ToString();
@@ -6987,7 +6907,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			StringBuilder sb = new StringBuilder();
 			if(SessionToken != null)
 			{
-				sb.Append("<ebl:SessionToken>").Append(SessionToken);
+				sb.Append("<ebl:SessionToken>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(SessionToken));
 				sb.Append("</ebl:SessionToken>");
 			}
 			return sb.ToString();
@@ -7038,7 +6958,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			StringBuilder sb = new StringBuilder();
 			if(ExternalRememberMeID != null)
 			{
-				sb.Append("<ebl:ExternalRememberMeID>").Append(ExternalRememberMeID);
+				sb.Append("<ebl:ExternalRememberMeID>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(ExternalRememberMeID));
 				sb.Append("</ebl:ExternalRememberMeID>");
 			}
 			return sb.ToString();
@@ -7090,7 +7010,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			StringBuilder sb = new StringBuilder();
 			if(AccessToken != null)
 			{
-				sb.Append("<ebl:AccessToken>").Append(AccessToken);
+				sb.Append("<ebl:AccessToken>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(AccessToken));
 				sb.Append("</ebl:AccessToken>");
 			}
 			return sb.ToString();
@@ -7155,12 +7075,12 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			StringBuilder sb = new StringBuilder();
 			if(AllowPushFunding != null)
 			{
-				sb.Append("<ebl:AllowPushFunding>").Append(AllowPushFunding);
+				sb.Append("<ebl:AllowPushFunding>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(AllowPushFunding));
 				sb.Append("</ebl:AllowPushFunding>");
 			}
 			if(UserSelectedFundingSource != null)
 			{
-				sb.Append("<ebl:UserSelectedFundingSource>").Append(EnumUtils.getDescription(UserSelectedFundingSource));
+				sb.Append("<ebl:UserSelectedFundingSource>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(UserSelectedFundingSource)));
 				sb.Append("</ebl:UserSelectedFundingSource>");
 			}
 			return sb.ToString();
@@ -7263,22 +7183,22 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			StringBuilder sb = new StringBuilder();
 			if(BillingType != null)
 			{
-				sb.Append("<ebl:BillingType>").Append(EnumUtils.getDescription(BillingType));
+				sb.Append("<ebl:BillingType>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(BillingType)));
 				sb.Append("</ebl:BillingType>");
 			}
 			if(BillingAgreementDescription != null)
 			{
-				sb.Append("<ebl:BillingAgreementDescription>").Append(BillingAgreementDescription);
+				sb.Append("<ebl:BillingAgreementDescription>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(BillingAgreementDescription));
 				sb.Append("</ebl:BillingAgreementDescription>");
 			}
 			if(PaymentType != null)
 			{
-				sb.Append("<ebl:PaymentType>").Append(EnumUtils.getDescription(PaymentType));
+				sb.Append("<ebl:PaymentType>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(PaymentType)));
 				sb.Append("</ebl:PaymentType>");
 			}
 			if(BillingAgreementCustom != null)
 			{
-				sb.Append("<ebl:BillingAgreementCustom>").Append(BillingAgreementCustom);
+				sb.Append("<ebl:BillingAgreementCustom>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(BillingAgreementCustom));
 				sb.Append("</ebl:BillingAgreementCustom>");
 			}
 			return sb.ToString();
@@ -7695,208 +7615,143 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public GetExpressCheckoutDetailsResponseDetailsType(Object xmlSoap)
+		public GetExpressCheckoutDetailsResponseDetailsType(XmlNode xmlNode)
 		{
-			XmlDocument document = new XmlDocument();
-			document.LoadXml(xmlSoap.ToString());
-			XmlNodeList nodeList = null;
-			string xmlString = "";
-		if(document.GetElementsByTagName("Token").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("Token")[0]))
+			XmlNode ChildNode = null;
+			XmlNodeList ChildNodeList = null;
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'Token']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.Token = (string)document.GetElementsByTagName("Token")[0].InnerText;
+				this.Token = ChildNode.InnerText;
 			}
-		}
-			if(document.GetElementsByTagName("PayerInfo").Count != 0)
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'PayerInfo']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("PayerInfo")[0]))
+				this.PayerInfo =  new PayerInfoType(ChildNode);
+			}
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'Custom']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
+			{
+				this.Custom = ChildNode.InnerText;
+			}
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'InvoiceID']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
+			{
+				this.InvoiceID = ChildNode.InnerText;
+			}
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'ContactPhone']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
+			{
+				this.ContactPhone = ChildNode.InnerText;
+			}
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'BillingAgreementAcceptedStatus']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
+			{
+				this.BillingAgreementAcceptedStatus = System.Convert.ToBoolean(ChildNode.InnerText);
+			}
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'RedirectRequired']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
+			{
+				this.RedirectRequired = ChildNode.InnerText;
+			}
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'BillingAddress']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
+			{
+				this.BillingAddress =  new AddressType(ChildNode);
+			}
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'Note']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
+			{
+				this.Note = ChildNode.InnerText;
+			}
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'CheckoutStatus']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
+			{
+				this.CheckoutStatus = ChildNode.InnerText;
+			}
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'PayPalAdjustment']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
+			{
+				this.PayPalAdjustment =  new BasicAmountType(ChildNode);
+			}
+			ChildNodeList = xmlNode.SelectNodes("*[local-name() = 'PaymentDetails']");
+			if (ChildNodeList != null && ChildNodeList.Count > 0)
+			{
+				for(int i = 0; i < ChildNodeList.Count; i++)
 				{
-					nodeList = document.GetElementsByTagName("PayerInfo");
-					xmlString = DeserializationUtils.convertToXML(nodeList[0]);
-					this.PayerInfo =  new PayerInfoType(xmlString);
+					XmlNode subNode = ChildNodeList.Item(i);
+					this.PaymentDetails.Add(new PaymentDetailsType(subNode));
 				}
 			}
-		if(document.GetElementsByTagName("Custom").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("Custom")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'UserSelectedOptions']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.Custom = (string)document.GetElementsByTagName("Custom")[0].InnerText;
+				this.UserSelectedOptions =  new UserSelectedOptionType(ChildNode);
 			}
-		}
-		if(document.GetElementsByTagName("InvoiceID").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("InvoiceID")[0]))
+			ChildNodeList = xmlNode.SelectNodes("*[local-name() = 'IncentiveDetails']");
+			if (ChildNodeList != null && ChildNodeList.Count > 0)
 			{
-				this.InvoiceID = (string)document.GetElementsByTagName("InvoiceID")[0].InnerText;
-			}
-		}
-		if(document.GetElementsByTagName("ContactPhone").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("ContactPhone")[0]))
-			{
-				this.ContactPhone = (string)document.GetElementsByTagName("ContactPhone")[0].InnerText;
-			}
-		}
-		if(document.GetElementsByTagName("BillingAgreementAcceptedStatus").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("BillingAgreementAcceptedStatus")[0]))
-			{
-				this.BillingAgreementAcceptedStatus = System.Convert.ToBoolean(document.GetElementsByTagName("BillingAgreementAcceptedStatus")[0].InnerText);
-			}
-		}
-		if(document.GetElementsByTagName("RedirectRequired").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("RedirectRequired")[0]))
-			{
-				this.RedirectRequired = (string)document.GetElementsByTagName("RedirectRequired")[0].InnerText;
-			}
-		}
-			if(document.GetElementsByTagName("BillingAddress").Count != 0)
-			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("BillingAddress")[0]))
+				for(int i = 0; i < ChildNodeList.Count; i++)
 				{
-					nodeList = document.GetElementsByTagName("BillingAddress");
-					xmlString = DeserializationUtils.convertToXML(nodeList[0]);
-					this.BillingAddress =  new AddressType(xmlString);
+					XmlNode subNode = ChildNodeList.Item(i);
+					this.IncentiveDetails.Add(new IncentiveDetailsType(subNode));
 				}
 			}
-		if(document.GetElementsByTagName("Note").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("Note")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'GiftMessage']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.Note = (string)document.GetElementsByTagName("Note")[0].InnerText;
+				this.GiftMessage = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("CheckoutStatus").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("CheckoutStatus")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'GiftReceiptEnable']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.CheckoutStatus = (string)document.GetElementsByTagName("CheckoutStatus")[0].InnerText;
+				this.GiftReceiptEnable = ChildNode.InnerText;
 			}
-		}
-			if(document.GetElementsByTagName("PayPalAdjustment").Count != 0)
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'GiftWrapName']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("PayPalAdjustment")[0]))
+				this.GiftWrapName = ChildNode.InnerText;
+			}
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'GiftWrapAmount']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
+			{
+				this.GiftWrapAmount =  new BasicAmountType(ChildNode);
+			}
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'BuyerMarketingEmail']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
+			{
+				this.BuyerMarketingEmail = ChildNode.InnerText;
+			}
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'SurveyQuestion']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
+			{
+				this.SurveyQuestion = ChildNode.InnerText;
+			}
+			ChildNodeList = xmlNode.SelectNodes("*[local-name() = 'SurveyChoiceSelected']");
+			if (ChildNodeList != null && ChildNodeList.Count > 0)
+			{
+				for(int i = 0; i < ChildNodeList.Count; i++)
 				{
-					nodeList = document.GetElementsByTagName("PayPalAdjustment");
-					xmlString = DeserializationUtils.convertToXML(nodeList[0]);
-					this.PayPalAdjustment =  new BasicAmountType(xmlString);
+					string value = ChildNodeList[i].InnerText;
+					this.SurveyChoiceSelected.Add(value);
 				}
 			}
-			if(document.GetElementsByTagName("PaymentDetails").Count != 0)
+			ChildNodeList = xmlNode.SelectNodes("*[local-name() = 'PaymentRequestInfo']");
+			if (ChildNodeList != null && ChildNodeList.Count > 0)
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("PaymentDetails")[0]))
+				for(int i = 0; i < ChildNodeList.Count; i++)
 				{
-					nodeList = document.GetElementsByTagName("PaymentDetails");
-					for(int i = 0; i < nodeList.Count; i++)
-					{
-						xmlString = DeserializationUtils.convertToXML(nodeList[i]);
-						this.PaymentDetails.Add(new PaymentDetailsType(xmlString));
-					}
+					XmlNode subNode = ChildNodeList.Item(i);
+					this.PaymentRequestInfo.Add(new PaymentRequestInfoType(subNode));
 				}
 			}
-			if(document.GetElementsByTagName("UserSelectedOptions").Count != 0)
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'ExternalRememberMeStatusDetails']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("UserSelectedOptions")[0]))
-				{
-					nodeList = document.GetElementsByTagName("UserSelectedOptions");
-					xmlString = DeserializationUtils.convertToXML(nodeList[0]);
-					this.UserSelectedOptions =  new UserSelectedOptionType(xmlString);
-				}
-			}
-			if(document.GetElementsByTagName("IncentiveDetails").Count != 0)
-			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("IncentiveDetails")[0]))
-				{
-					nodeList = document.GetElementsByTagName("IncentiveDetails");
-					for(int i = 0; i < nodeList.Count; i++)
-					{
-						xmlString = DeserializationUtils.convertToXML(nodeList[i]);
-						this.IncentiveDetails.Add(new IncentiveDetailsType(xmlString));
-					}
-				}
-			}
-		if(document.GetElementsByTagName("GiftMessage").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("GiftMessage")[0]))
-			{
-				this.GiftMessage = (string)document.GetElementsByTagName("GiftMessage")[0].InnerText;
-			}
-		}
-		if(document.GetElementsByTagName("GiftReceiptEnable").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("GiftReceiptEnable")[0]))
-			{
-				this.GiftReceiptEnable = (string)document.GetElementsByTagName("GiftReceiptEnable")[0].InnerText;
-			}
-		}
-		if(document.GetElementsByTagName("GiftWrapName").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("GiftWrapName")[0]))
-			{
-				this.GiftWrapName = (string)document.GetElementsByTagName("GiftWrapName")[0].InnerText;
-			}
-		}
-			if(document.GetElementsByTagName("GiftWrapAmount").Count != 0)
-			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("GiftWrapAmount")[0]))
-				{
-					nodeList = document.GetElementsByTagName("GiftWrapAmount");
-					xmlString = DeserializationUtils.convertToXML(nodeList[0]);
-					this.GiftWrapAmount =  new BasicAmountType(xmlString);
-				}
-			}
-		if(document.GetElementsByTagName("BuyerMarketingEmail").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("BuyerMarketingEmail")[0]))
-			{
-				this.BuyerMarketingEmail = (string)document.GetElementsByTagName("BuyerMarketingEmail")[0].InnerText;
-			}
-		}
-		if(document.GetElementsByTagName("SurveyQuestion").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("SurveyQuestion")[0]))
-			{
-				this.SurveyQuestion = (string)document.GetElementsByTagName("SurveyQuestion")[0].InnerText;
-			}
-		}
-			if(document.GetElementsByTagName("SurveyChoiceSelected").Count != 0)
-			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("SurveyChoiceSelected")[0]))
-				{
-					nodeList = document.GetElementsByTagName("SurveyChoiceSelected");
-					for(int i = 0; i < nodeList.Count; i++)
-					{
-						string value = nodeList[i].InnerText;
-						this.SurveyChoiceSelected.Add(value);
-					}
-				}
-			}
-			if(document.GetElementsByTagName("PaymentRequestInfo").Count != 0)
-			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("PaymentRequestInfo")[0]))
-				{
-					nodeList = document.GetElementsByTagName("PaymentRequestInfo");
-					for(int i = 0; i < nodeList.Count; i++)
-					{
-						xmlString = DeserializationUtils.convertToXML(nodeList[i]);
-						this.PaymentRequestInfo.Add(new PaymentRequestInfoType(xmlString));
-					}
-				}
-			}
-			if(document.GetElementsByTagName("ExternalRememberMeStatusDetails").Count != 0)
-			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("ExternalRememberMeStatusDetails")[0]))
-				{
-					nodeList = document.GetElementsByTagName("ExternalRememberMeStatusDetails");
-					xmlString = DeserializationUtils.convertToXML(nodeList[0]);
-					this.ExternalRememberMeStatusDetails =  new ExternalRememberMeStatusDetailsType(xmlString);
-				}
+				this.ExternalRememberMeStatusDetails =  new ExternalRememberMeStatusDetailsType(ChildNode);
 			}
 	
 		}
-		
 	}
 
 
@@ -7949,33 +7804,22 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public ExecuteCheckoutOperationsResponseDetailsType(Object xmlSoap)
+		public ExecuteCheckoutOperationsResponseDetailsType(XmlNode xmlNode)
 		{
-			XmlDocument document = new XmlDocument();
-			document.LoadXml(xmlSoap.ToString());
-			XmlNodeList nodeList = null;
-			string xmlString = "";
-			if(document.GetElementsByTagName("SetDataResponse").Count != 0)
+			XmlNode ChildNode = null;
+			XmlNodeList ChildNodeList = null;
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'SetDataResponse']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("SetDataResponse")[0]))
-				{
-					nodeList = document.GetElementsByTagName("SetDataResponse");
-					xmlString = DeserializationUtils.convertToXML(nodeList[0]);
-					this.SetDataResponse =  new SetDataResponseType(xmlString);
-				}
+				this.SetDataResponse =  new SetDataResponseType(ChildNode);
 			}
-			if(document.GetElementsByTagName("AuthorizationResponse").Count != 0)
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'AuthorizationResponse']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("AuthorizationResponse")[0]))
-				{
-					nodeList = document.GetElementsByTagName("AuthorizationResponse");
-					xmlString = DeserializationUtils.convertToXML(nodeList[0]);
-					this.AuthorizationResponse =  new AuthorizationResponseType(xmlString);
-				}
+				this.AuthorizationResponse =  new AuthorizationResponseType(ChildNode);
 			}
 	
 		}
-		
 	}
 
 
@@ -8029,34 +7873,26 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public SetDataResponseType(Object xmlSoap)
+		public SetDataResponseType(XmlNode xmlNode)
 		{
-			XmlDocument document = new XmlDocument();
-			document.LoadXml(xmlSoap.ToString());
-			XmlNodeList nodeList = null;
-			string xmlString = "";
-		if(document.GetElementsByTagName("Token").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("Token")[0]))
+			XmlNode ChildNode = null;
+			XmlNodeList ChildNodeList = null;
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'Token']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.Token = (string)document.GetElementsByTagName("Token")[0].InnerText;
+				this.Token = ChildNode.InnerText;
 			}
-		}
-			if(document.GetElementsByTagName("SetDataError").Count != 0)
+			ChildNodeList = xmlNode.SelectNodes("*[local-name() = 'SetDataError']");
+			if (ChildNodeList != null && ChildNodeList.Count > 0)
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("SetDataError")[0]))
+				for(int i = 0; i < ChildNodeList.Count; i++)
 				{
-					nodeList = document.GetElementsByTagName("SetDataError");
-					for(int i = 0; i < nodeList.Count; i++)
-					{
-						xmlString = DeserializationUtils.convertToXML(nodeList[i]);
-						this.SetDataError.Add(new ErrorType(xmlString));
-					}
+					XmlNode subNode = ChildNodeList.Item(i);
+					this.SetDataError.Add(new ErrorType(subNode));
 				}
 			}
 	
 		}
-		
 	}
 
 
@@ -8110,34 +7946,26 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public AuthorizationResponseType(Object xmlSoap)
+		public AuthorizationResponseType(XmlNode xmlNode)
 		{
-			XmlDocument document = new XmlDocument();
-			document.LoadXml(xmlSoap.ToString());
-			XmlNodeList nodeList = null;
-			string xmlString = "";
-			if(document.GetElementsByTagName("Status").Count != 0)
+			XmlNode ChildNode = null;
+			XmlNodeList ChildNodeList = null;
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'Status']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("Status")[0]))
-				{
-					this.Status = (AckCodeType)EnumUtils.getValue(document.GetElementsByTagName("Status")[0].InnerText,typeof(AckCodeType));
-				}
+				this.Status = (AckCodeType)EnumUtils.getValue(ChildNode.InnerText,typeof(AckCodeType));
 			}
-			if(document.GetElementsByTagName("AuthorizationError").Count != 0)
+			ChildNodeList = xmlNode.SelectNodes("*[local-name() = 'AuthorizationError']");
+			if (ChildNodeList != null && ChildNodeList.Count > 0)
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("AuthorizationError")[0]))
+				for(int i = 0; i < ChildNodeList.Count; i++)
 				{
-					nodeList = document.GetElementsByTagName("AuthorizationError");
-					for(int i = 0; i < nodeList.Count; i++)
-					{
-						xmlString = DeserializationUtils.convertToXML(nodeList[i]);
-						this.AuthorizationError.Add(new ErrorType(xmlString));
-					}
+					XmlNode subNode = ChildNodeList.Item(i);
+					this.AuthorizationError.Add(new ErrorType(subNode));
 				}
 			}
 	
 		}
-		
 	}
 
 
@@ -8483,6 +8311,23 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
+          *
+		  */
+		private List<CoupledBucketsType> CoupledBucketsField = new List<CoupledBucketsType>();
+		public List<CoupledBucketsType> CoupledBuckets
+		{
+			get
+			{
+				return this.CoupledBucketsField;
+			}
+			set
+			{
+				this.CoupledBucketsField = value;
+			}
+		}
+		
+
+		/**
 	 	  * Default Constructor
 	 	  */
 	 	public DoExpressCheckoutPaymentRequestDetailsType(){
@@ -8494,22 +8339,22 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			StringBuilder sb = new StringBuilder();
 			if(PaymentAction != null)
 			{
-				sb.Append("<ebl:PaymentAction>").Append(EnumUtils.getDescription(PaymentAction));
+				sb.Append("<ebl:PaymentAction>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(PaymentAction)));
 				sb.Append("</ebl:PaymentAction>");
 			}
 			if(Token != null)
 			{
-				sb.Append("<ebl:Token>").Append(Token);
+				sb.Append("<ebl:Token>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(Token));
 				sb.Append("</ebl:Token>");
 			}
 			if(PayerID != null)
 			{
-				sb.Append("<ebl:PayerID>").Append(PayerID);
+				sb.Append("<ebl:PayerID>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(PayerID));
 				sb.Append("</ebl:PayerID>");
 			}
 			if(OrderURL != null)
 			{
-				sb.Append("<ebl:OrderURL>").Append(OrderURL);
+				sb.Append("<ebl:OrderURL>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(OrderURL));
 				sb.Append("</ebl:OrderURL>");
 			}
 			if(PaymentDetails != null)
@@ -8524,12 +8369,12 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(PromoOverrideFlag != null)
 			{
-				sb.Append("<ebl:PromoOverrideFlag>").Append(PromoOverrideFlag);
+				sb.Append("<ebl:PromoOverrideFlag>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(PromoOverrideFlag));
 				sb.Append("</ebl:PromoOverrideFlag>");
 			}
 			if(PromoCode != null)
 			{
-				sb.Append("<ebl:PromoCode>").Append(PromoCode);
+				sb.Append("<ebl:PromoCode>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(PromoCode));
 				sb.Append("</ebl:PromoCode>");
 			}
 			if(EnhancedData != null)
@@ -8540,7 +8385,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(SoftDescriptor != null)
 			{
-				sb.Append("<ebl:SoftDescriptor>").Append(SoftDescriptor);
+				sb.Append("<ebl:SoftDescriptor>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(SoftDescriptor));
 				sb.Append("</ebl:SoftDescriptor>");
 			}
 			if(UserSelectedOptions != null)
@@ -8551,17 +8396,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(GiftMessage != null)
 			{
-				sb.Append("<ebl:GiftMessage>").Append(GiftMessage);
+				sb.Append("<ebl:GiftMessage>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(GiftMessage));
 				sb.Append("</ebl:GiftMessage>");
 			}
 			if(GiftReceiptEnable != null)
 			{
-				sb.Append("<ebl:GiftReceiptEnable>").Append(GiftReceiptEnable);
+				sb.Append("<ebl:GiftReceiptEnable>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(GiftReceiptEnable));
 				sb.Append("</ebl:GiftReceiptEnable>");
 			}
 			if(GiftWrapName != null)
 			{
-				sb.Append("<ebl:GiftWrapName>").Append(GiftWrapName);
+				sb.Append("<ebl:GiftWrapName>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(GiftWrapName));
 				sb.Append("</ebl:GiftWrapName>");
 			}
 			if(GiftWrapAmount != null)
@@ -8572,32 +8417,42 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(BuyerMarketingEmail != null)
 			{
-				sb.Append("<ebl:BuyerMarketingEmail>").Append(BuyerMarketingEmail);
+				sb.Append("<ebl:BuyerMarketingEmail>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(BuyerMarketingEmail));
 				sb.Append("</ebl:BuyerMarketingEmail>");
 			}
 			if(SurveyQuestion != null)
 			{
-				sb.Append("<ebl:SurveyQuestion>").Append(SurveyQuestion);
+				sb.Append("<ebl:SurveyQuestion>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(SurveyQuestion));
 				sb.Append("</ebl:SurveyQuestion>");
 			}
 			if(SurveyChoiceSelected != null)
 			{
 				for(int i = 0; i < SurveyChoiceSelected.Count; i++)
 				{
-					sb.Append("<ebl:SurveyChoiceSelected>").Append(SurveyChoiceSelected[i]);
+					sb.Append("<ebl:SurveyChoiceSelected>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(SurveyChoiceSelected[i]));
 					sb.Append("</ebl:SurveyChoiceSelected>");
 				
 				}
 			}
 			if(ButtonSource != null)
 			{
-				sb.Append("<ebl:ButtonSource>").Append(ButtonSource);
+				sb.Append("<ebl:ButtonSource>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(ButtonSource));
 				sb.Append("</ebl:ButtonSource>");
 			}
 			if(SkipBACreation != null)
 			{
-				sb.Append("<ebl:SkipBACreation>").Append(SkipBACreation);
+				sb.Append("<ebl:SkipBACreation>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(SkipBACreation));
 				sb.Append("</ebl:SkipBACreation>");
+			}
+			if(CoupledBuckets != null)
+			{
+				for(int i = 0; i < CoupledBuckets.Count; i++)
+				{
+					sb.Append("<ebl:CoupledBuckets>");
+					sb.Append(CoupledBuckets[i].toXMLString());
+					sb.Append("</ebl:CoupledBuckets>");
+				
+				}
 			}
 			return sb.ToString();
 		}
@@ -8735,77 +8590,83 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
+          *
+		  */
+		private List<CoupledPaymentInfoType> CoupledPaymentInfoField = new List<CoupledPaymentInfoType>();
+		public List<CoupledPaymentInfoType> CoupledPaymentInfo
+		{
+			get
+			{
+				return this.CoupledPaymentInfoField;
+			}
+			set
+			{
+				this.CoupledPaymentInfoField = value;
+			}
+		}
+		
+
+		/**
 	 	  * Default Constructor
 	 	  */
 	 	public DoExpressCheckoutPaymentResponseDetailsType(){
 		}
 
 
-		public DoExpressCheckoutPaymentResponseDetailsType(Object xmlSoap)
+		public DoExpressCheckoutPaymentResponseDetailsType(XmlNode xmlNode)
 		{
-			XmlDocument document = new XmlDocument();
-			document.LoadXml(xmlSoap.ToString());
-			XmlNodeList nodeList = null;
-			string xmlString = "";
-		if(document.GetElementsByTagName("Token").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("Token")[0]))
+			XmlNode ChildNode = null;
+			XmlNodeList ChildNodeList = null;
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'Token']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.Token = (string)document.GetElementsByTagName("Token")[0].InnerText;
+				this.Token = ChildNode.InnerText;
 			}
-		}
-			if(document.GetElementsByTagName("PaymentInfo").Count != 0)
+			ChildNodeList = xmlNode.SelectNodes("*[local-name() = 'PaymentInfo']");
+			if (ChildNodeList != null && ChildNodeList.Count > 0)
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("PaymentInfo")[0]))
+				for(int i = 0; i < ChildNodeList.Count; i++)
 				{
-					nodeList = document.GetElementsByTagName("PaymentInfo");
-					for(int i = 0; i < nodeList.Count; i++)
-					{
-						xmlString = DeserializationUtils.convertToXML(nodeList[i]);
-						this.PaymentInfo.Add(new PaymentInfoType(xmlString));
-					}
+					XmlNode subNode = ChildNodeList.Item(i);
+					this.PaymentInfo.Add(new PaymentInfoType(subNode));
 				}
 			}
-		if(document.GetElementsByTagName("BillingAgreementID").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("BillingAgreementID")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'BillingAgreementID']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.BillingAgreementID = (string)document.GetElementsByTagName("BillingAgreementID")[0].InnerText;
+				this.BillingAgreementID = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("RedirectRequired").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("RedirectRequired")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'RedirectRequired']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.RedirectRequired = (string)document.GetElementsByTagName("RedirectRequired")[0].InnerText;
+				this.RedirectRequired = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("Note").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("Note")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'Note']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.Note = (string)document.GetElementsByTagName("Note")[0].InnerText;
+				this.Note = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("SuccessPageRedirectRequested").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("SuccessPageRedirectRequested")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'SuccessPageRedirectRequested']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.SuccessPageRedirectRequested = (string)document.GetElementsByTagName("SuccessPageRedirectRequested")[0].InnerText;
+				this.SuccessPageRedirectRequested = ChildNode.InnerText;
 			}
-		}
-			if(document.GetElementsByTagName("UserSelectedOptions").Count != 0)
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'UserSelectedOptions']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("UserSelectedOptions")[0]))
+				this.UserSelectedOptions =  new UserSelectedOptionType(ChildNode);
+			}
+			ChildNodeList = xmlNode.SelectNodes("*[local-name() = 'CoupledPaymentInfo']");
+			if (ChildNodeList != null && ChildNodeList.Count > 0)
+			{
+				for(int i = 0; i < ChildNodeList.Count; i++)
 				{
-					nodeList = document.GetElementsByTagName("UserSelectedOptions");
-					xmlString = DeserializationUtils.convertToXML(nodeList[0]);
-					this.UserSelectedOptions =  new UserSelectedOptionType(xmlString);
+					XmlNode subNode = ChildNodeList.Item(i);
+					this.CoupledPaymentInfo.Add(new CoupledPaymentInfoType(subNode));
 				}
 			}
 	
 		}
-		
 	}
 
 
@@ -8854,37 +8715,50 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
+          *
+		  */
+		private string MsgSubIDField;
+		public string MsgSubID
+		{
+			get
+			{
+				return this.MsgSubIDField;
+			}
+			set
+			{
+				this.MsgSubIDField = value;
+			}
+		}
+		
+
+		/**
 	 	  * Default Constructor
 	 	  */
 	 	public DoCaptureResponseDetailsType(){
 		}
 
 
-		public DoCaptureResponseDetailsType(Object xmlSoap)
+		public DoCaptureResponseDetailsType(XmlNode xmlNode)
 		{
-			XmlDocument document = new XmlDocument();
-			document.LoadXml(xmlSoap.ToString());
-			XmlNodeList nodeList = null;
-			string xmlString = "";
-		if(document.GetElementsByTagName("AuthorizationID").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("AuthorizationID")[0]))
+			XmlNode ChildNode = null;
+			XmlNodeList ChildNodeList = null;
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'AuthorizationID']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.AuthorizationID = (string)document.GetElementsByTagName("AuthorizationID")[0].InnerText;
+				this.AuthorizationID = ChildNode.InnerText;
 			}
-		}
-			if(document.GetElementsByTagName("PaymentInfo").Count != 0)
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'PaymentInfo']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("PaymentInfo")[0]))
-				{
-					nodeList = document.GetElementsByTagName("PaymentInfo");
-					xmlString = DeserializationUtils.convertToXML(nodeList[0]);
-					this.PaymentInfo =  new PaymentInfoType(xmlString);
-				}
+				this.PaymentInfo =  new PaymentInfoType(ChildNode);
+			}
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'MsgSubID']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
+			{
+				this.MsgSubID = ChildNode.InnerText;
 			}
 	
 		}
-		
 	}
 
 
@@ -9016,7 +8890,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			StringBuilder sb = new StringBuilder();
 			if(PaymentAction != null)
 			{
-				sb.Append("<ebl:PaymentAction>").Append(EnumUtils.getDescription(PaymentAction));
+				sb.Append("<ebl:PaymentAction>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(PaymentAction)));
 				sb.Append("</ebl:PaymentAction>");
 			}
 			if(PaymentDetails != null)
@@ -9033,17 +8907,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(IPAddress != null)
 			{
-				sb.Append("<ebl:IPAddress>").Append(IPAddress);
+				sb.Append("<ebl:IPAddress>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(IPAddress));
 				sb.Append("</ebl:IPAddress>");
 			}
 			if(MerchantSessionId != null)
 			{
-				sb.Append("<ebl:MerchantSessionId>").Append(MerchantSessionId);
+				sb.Append("<ebl:MerchantSessionId>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(MerchantSessionId));
 				sb.Append("</ebl:MerchantSessionId>");
 			}
 			if(ReturnFMFDetails != null)
 			{
-				sb.Append("<ebl:ReturnFMFDetails>").Append(ReturnFMFDetails);
+				sb.Append("<ebl:ReturnFMFDetails>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(ReturnFMFDetails));
 				sb.Append("</ebl:ReturnFMFDetails>");
 			}
 			return sb.ToString();
@@ -9326,12 +9200,12 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			StringBuilder sb = new StringBuilder();
 			if(PaymentType != null)
 			{
-				sb.Append("<ebl:PaymentType>").Append(EnumUtils.getDescription(PaymentType));
+				sb.Append("<ebl:PaymentType>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(PaymentType)));
 				sb.Append("</ebl:PaymentType>");
 			}
 			if(PaymentAction != null)
 			{
-				sb.Append("<ebl:PaymentAction>").Append(EnumUtils.getDescription(PaymentAction));
+				sb.Append("<ebl:PaymentAction>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(PaymentAction)));
 				sb.Append("</ebl:PaymentAction>");
 			}
 			if(SenderPhone != null)
@@ -9342,12 +9216,12 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(RecipientType != null)
 			{
-				sb.Append("<ebl:RecipientType>").Append(EnumUtils.getDescription(RecipientType));
+				sb.Append("<ebl:RecipientType>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(RecipientType)));
 				sb.Append("</ebl:RecipientType>");
 			}
 			if(RecipientEmail != null)
 			{
-				sb.Append("<ebl:RecipientEmail>").Append(RecipientEmail);
+				sb.Append("<ebl:RecipientEmail>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(RecipientEmail));
 				sb.Append("</ebl:RecipientEmail>");
 			}
 			if(RecipientPhone != null)
@@ -9376,32 +9250,32 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(ItemName != null)
 			{
-				sb.Append("<ebl:ItemName>").Append(ItemName);
+				sb.Append("<ebl:ItemName>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(ItemName));
 				sb.Append("</ebl:ItemName>");
 			}
 			if(ItemNumber != null)
 			{
-				sb.Append("<ebl:ItemNumber>").Append(ItemNumber);
+				sb.Append("<ebl:ItemNumber>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(ItemNumber));
 				sb.Append("</ebl:ItemNumber>");
 			}
 			if(Note != null)
 			{
-				sb.Append("<ebl:Note>").Append(Note);
+				sb.Append("<ebl:Note>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(Note));
 				sb.Append("</ebl:Note>");
 			}
 			if(CustomID != null)
 			{
-				sb.Append("<ebl:CustomID>").Append(CustomID);
+				sb.Append("<ebl:CustomID>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(CustomID));
 				sb.Append("</ebl:CustomID>");
 			}
 			if(SharePhoneNumber != null)
 			{
-				sb.Append("<ebl:SharePhoneNumber>").Append(SharePhoneNumber);
+				sb.Append("<ebl:SharePhoneNumber>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(SharePhoneNumber));
 				sb.Append("</ebl:SharePhoneNumber>");
 			}
 			if(ShareHomeAddress != null)
 			{
-				sb.Append("<ebl:ShareHomeAddress>").Append(ShareHomeAddress);
+				sb.Append("<ebl:ShareHomeAddress>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(ShareHomeAddress));
 				sb.Append("</ebl:ShareHomeAddress>");
 			}
 			return sb.ToString();
@@ -9783,87 +9657,87 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			StringBuilder sb = new StringBuilder();
 			if(ReturnURL != null)
 			{
-				sb.Append("<ebl:ReturnURL>").Append(ReturnURL);
+				sb.Append("<ebl:ReturnURL>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(ReturnURL));
 				sb.Append("</ebl:ReturnURL>");
 			}
 			if(CancelURL != null)
 			{
-				sb.Append("<ebl:CancelURL>").Append(CancelURL);
+				sb.Append("<ebl:CancelURL>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(CancelURL));
 				sb.Append("</ebl:CancelURL>");
 			}
 			if(LogoutURL != null)
 			{
-				sb.Append("<ebl:LogoutURL>").Append(LogoutURL);
+				sb.Append("<ebl:LogoutURL>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(LogoutURL));
 				sb.Append("</ebl:LogoutURL>");
 			}
 			if(InitFlowType != null)
 			{
-				sb.Append("<ebl:InitFlowType>").Append(InitFlowType);
+				sb.Append("<ebl:InitFlowType>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(InitFlowType));
 				sb.Append("</ebl:InitFlowType>");
 			}
 			if(SkipLoginPage != null)
 			{
-				sb.Append("<ebl:SkipLoginPage>").Append(SkipLoginPage);
+				sb.Append("<ebl:SkipLoginPage>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(SkipLoginPage));
 				sb.Append("</ebl:SkipLoginPage>");
 			}
 			if(ServiceName1 != null)
 			{
-				sb.Append("<ebl:ServiceName1>").Append(ServiceName1);
+				sb.Append("<ebl:ServiceName1>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(ServiceName1));
 				sb.Append("</ebl:ServiceName1>");
 			}
 			if(ServiceDefReq1 != null)
 			{
-				sb.Append("<ebl:ServiceDefReq1>").Append(ServiceDefReq1);
+				sb.Append("<ebl:ServiceDefReq1>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(ServiceDefReq1));
 				sb.Append("</ebl:ServiceDefReq1>");
 			}
 			if(ServiceName2 != null)
 			{
-				sb.Append("<ebl:ServiceName2>").Append(ServiceName2);
+				sb.Append("<ebl:ServiceName2>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(ServiceName2));
 				sb.Append("</ebl:ServiceName2>");
 			}
 			if(ServiceDefReq2 != null)
 			{
-				sb.Append("<ebl:ServiceDefReq2>").Append(ServiceDefReq2);
+				sb.Append("<ebl:ServiceDefReq2>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(ServiceDefReq2));
 				sb.Append("</ebl:ServiceDefReq2>");
 			}
 			if(LocaleCode != null)
 			{
-				sb.Append("<ebl:LocaleCode>").Append(LocaleCode);
+				sb.Append("<ebl:LocaleCode>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(LocaleCode));
 				sb.Append("</ebl:LocaleCode>");
 			}
 			if(PageStyle != null)
 			{
-				sb.Append("<ebl:PageStyle>").Append(PageStyle);
+				sb.Append("<ebl:PageStyle>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(PageStyle));
 				sb.Append("</ebl:PageStyle>");
 			}
 			if(cppHeaderImage != null)
 			{
-				sb.Append("<ebl:cpp-header-image>").Append(cppHeaderImage);
-				sb.Append("</ebl:cpp-header-image>");
+				sb.Append("<ebl:cppHeaderImage>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(cppHeaderImage));
+				sb.Append("</ebl:cppHeaderImage>");
 			}
 			if(cppHeaderBorderColor != null)
 			{
-				sb.Append("<ebl:cpp-header-border-color>").Append(cppHeaderBorderColor);
-				sb.Append("</ebl:cpp-header-border-color>");
+				sb.Append("<ebl:cppHeaderBorderColor>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(cppHeaderBorderColor));
+				sb.Append("</ebl:cppHeaderBorderColor>");
 			}
 			if(cppHeaderBackColor != null)
 			{
-				sb.Append("<ebl:cpp-header-back-color>").Append(cppHeaderBackColor);
-				sb.Append("</ebl:cpp-header-back-color>");
+				sb.Append("<ebl:cppHeaderBackColor>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(cppHeaderBackColor));
+				sb.Append("</ebl:cppHeaderBackColor>");
 			}
 			if(cppPayflowColor != null)
 			{
-				sb.Append("<ebl:cpp-payflow-color>").Append(cppPayflowColor);
-				sb.Append("</ebl:cpp-payflow-color>");
+				sb.Append("<ebl:cppPayflowColor>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(cppPayflowColor));
+				sb.Append("</ebl:cppPayflowColor>");
 			}
 			if(FirstName != null)
 			{
-				sb.Append("<ebl:FirstName>").Append(FirstName);
+				sb.Append("<ebl:FirstName>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(FirstName));
 				sb.Append("</ebl:FirstName>");
 			}
 			if(LastName != null)
 			{
-				sb.Append("<ebl:LastName>").Append(LastName);
+				sb.Append("<ebl:LastName>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(LastName));
 				sb.Append("</ebl:LastName>");
 			}
 			if(Address != null)
@@ -9961,43 +9835,32 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public GetAuthDetailsResponseDetailsType(Object xmlSoap)
+		public GetAuthDetailsResponseDetailsType(XmlNode xmlNode)
 		{
-			XmlDocument document = new XmlDocument();
-			document.LoadXml(xmlSoap.ToString());
-			XmlNodeList nodeList = null;
-			string xmlString = "";
-		if(document.GetElementsByTagName("FirstName").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("FirstName")[0]))
+			XmlNode ChildNode = null;
+			XmlNodeList ChildNodeList = null;
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'FirstName']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.FirstName = (string)document.GetElementsByTagName("FirstName")[0].InnerText;
+				this.FirstName = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("LastName").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("LastName")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'LastName']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.LastName = (string)document.GetElementsByTagName("LastName")[0].InnerText;
+				this.LastName = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("Email").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("Email")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'Email']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.Email = (string)document.GetElementsByTagName("Email")[0].InnerText;
+				this.Email = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("PayerID").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("PayerID")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'PayerID']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.PayerID = (string)document.GetElementsByTagName("PayerID")[0].InnerText;
+				this.PayerID = ChildNode.InnerText;
 			}
-		}
 	
 		}
-		
 	}
 
 
@@ -10295,34 +10158,34 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			StringBuilder sb = new StringBuilder();
 			if(ReturnURL != null)
 			{
-				sb.Append("<ebl:ReturnURL>").Append(ReturnURL);
+				sb.Append("<ebl:ReturnURL>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(ReturnURL));
 				sb.Append("</ebl:ReturnURL>");
 			}
 			if(CancelURL != null)
 			{
-				sb.Append("<ebl:CancelURL>").Append(CancelURL);
+				sb.Append("<ebl:CancelURL>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(CancelURL));
 				sb.Append("</ebl:CancelURL>");
 			}
 			if(LogoutURL != null)
 			{
-				sb.Append("<ebl:LogoutURL>").Append(LogoutURL);
+				sb.Append("<ebl:LogoutURL>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(LogoutURL));
 				sb.Append("</ebl:LogoutURL>");
 			}
 			if(InitFlowType != null)
 			{
-				sb.Append("<ebl:InitFlowType>").Append(InitFlowType);
+				sb.Append("<ebl:InitFlowType>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(InitFlowType));
 				sb.Append("</ebl:InitFlowType>");
 			}
 			if(SkipLoginPage != null)
 			{
-				sb.Append("<ebl:SkipLoginPage>").Append(SkipLoginPage);
+				sb.Append("<ebl:SkipLoginPage>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(SkipLoginPage));
 				sb.Append("</ebl:SkipLoginPage>");
 			}
 			if(RequiredAccessPermissions != null)
 			{
 				for(int i = 0; i < RequiredAccessPermissions.Count; i++)
 				{
-					sb.Append("<ebl:RequiredAccessPermissions>").Append(RequiredAccessPermissions[i]);
+					sb.Append("<ebl:RequiredAccessPermissions>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(RequiredAccessPermissions[i]));
 					sb.Append("</ebl:RequiredAccessPermissions>");
 				
 				}
@@ -10331,49 +10194,49 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			{
 				for(int i = 0; i < OptionalAccessPermissions.Count; i++)
 				{
-					sb.Append("<ebl:OptionalAccessPermissions>").Append(OptionalAccessPermissions[i]);
+					sb.Append("<ebl:OptionalAccessPermissions>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(OptionalAccessPermissions[i]));
 					sb.Append("</ebl:OptionalAccessPermissions>");
 				
 				}
 			}
 			if(LocaleCode != null)
 			{
-				sb.Append("<ebl:LocaleCode>").Append(LocaleCode);
+				sb.Append("<ebl:LocaleCode>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(LocaleCode));
 				sb.Append("</ebl:LocaleCode>");
 			}
 			if(PageStyle != null)
 			{
-				sb.Append("<ebl:PageStyle>").Append(PageStyle);
+				sb.Append("<ebl:PageStyle>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(PageStyle));
 				sb.Append("</ebl:PageStyle>");
 			}
 			if(cppHeaderImage != null)
 			{
-				sb.Append("<ebl:cpp-header-image>").Append(cppHeaderImage);
-				sb.Append("</ebl:cpp-header-image>");
+				sb.Append("<ebl:cppHeaderImage>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(cppHeaderImage));
+				sb.Append("</ebl:cppHeaderImage>");
 			}
 			if(cppHeaderBorderColor != null)
 			{
-				sb.Append("<ebl:cpp-header-border-color>").Append(cppHeaderBorderColor);
-				sb.Append("</ebl:cpp-header-border-color>");
+				sb.Append("<ebl:cppHeaderBorderColor>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(cppHeaderBorderColor));
+				sb.Append("</ebl:cppHeaderBorderColor>");
 			}
 			if(cppHeaderBackColor != null)
 			{
-				sb.Append("<ebl:cpp-header-back-color>").Append(cppHeaderBackColor);
-				sb.Append("</ebl:cpp-header-back-color>");
+				sb.Append("<ebl:cppHeaderBackColor>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(cppHeaderBackColor));
+				sb.Append("</ebl:cppHeaderBackColor>");
 			}
 			if(cppPayflowColor != null)
 			{
-				sb.Append("<ebl:cpp-payflow-color>").Append(cppPayflowColor);
-				sb.Append("</ebl:cpp-payflow-color>");
+				sb.Append("<ebl:cppPayflowColor>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(cppPayflowColor));
+				sb.Append("</ebl:cppPayflowColor>");
 			}
 			if(FirstName != null)
 			{
-				sb.Append("<ebl:FirstName>").Append(FirstName);
+				sb.Append("<ebl:FirstName>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(FirstName));
 				sb.Append("</ebl:FirstName>");
 			}
 			if(LastName != null)
 			{
-				sb.Append("<ebl:LastName>").Append(LastName);
+				sb.Append("<ebl:LastName>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(LastName));
 				sb.Append("</ebl:LastName>");
 			}
 			if(Address != null)
@@ -10505,67 +10368,50 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public GetAccessPermissionDetailsResponseDetailsType(Object xmlSoap)
+		public GetAccessPermissionDetailsResponseDetailsType(XmlNode xmlNode)
 		{
-			XmlDocument document = new XmlDocument();
-			document.LoadXml(xmlSoap.ToString());
-			XmlNodeList nodeList = null;
-			string xmlString = "";
-		if(document.GetElementsByTagName("FirstName").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("FirstName")[0]))
+			XmlNode ChildNode = null;
+			XmlNodeList ChildNodeList = null;
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'FirstName']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.FirstName = (string)document.GetElementsByTagName("FirstName")[0].InnerText;
+				this.FirstName = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("LastName").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("LastName")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'LastName']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.LastName = (string)document.GetElementsByTagName("LastName")[0].InnerText;
+				this.LastName = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("Email").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("Email")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'Email']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.Email = (string)document.GetElementsByTagName("Email")[0].InnerText;
+				this.Email = ChildNode.InnerText;
 			}
-		}
-			if(document.GetElementsByTagName("AccessPermissionName").Count != 0)
+			ChildNodeList = xmlNode.SelectNodes("*[local-name() = 'AccessPermissionName']");
+			if (ChildNodeList != null && ChildNodeList.Count > 0)
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("AccessPermissionName")[0]))
+				for(int i = 0; i < ChildNodeList.Count; i++)
 				{
-					nodeList = document.GetElementsByTagName("AccessPermissionName");
-					for(int i = 0; i < nodeList.Count; i++)
-					{
-						string value = nodeList[i].InnerText;
-						this.AccessPermissionName.Add(value);
-					}
+					string value = ChildNodeList[i].InnerText;
+					this.AccessPermissionName.Add(value);
 				}
 			}
-			if(document.GetElementsByTagName("AccessPermissionStatus").Count != 0)
+			ChildNodeList = xmlNode.SelectNodes("*[local-name() = 'AccessPermissionStatus']");
+			if (ChildNodeList != null && ChildNodeList.Count > 0)
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("AccessPermissionStatus")[0]))
+				for(int i = 0; i < ChildNodeList.Count; i++)
 				{
-					nodeList = document.GetElementsByTagName("AccessPermissionStatus");
-					for(int i = 0; i < nodeList.Count; i++)
-					{
-						string value = nodeList[i].InnerText;
-						this.AccessPermissionStatus.Add(value);
-					}
+					string value = ChildNodeList[i].InnerText;
+					this.AccessPermissionStatus.Add(value);
 				}
 			}
-		if(document.GetElementsByTagName("PayerID").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("PayerID")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'PayerID']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.PayerID = (string)document.GetElementsByTagName("PayerID")[0].InnerText;
+				this.PayerID = ChildNode.InnerText;
 			}
-		}
 	
 		}
-		
 	}
 
 
@@ -10703,70 +10549,47 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public BAUpdateResponseDetailsType(Object xmlSoap)
+		public BAUpdateResponseDetailsType(XmlNode xmlNode)
 		{
-			XmlDocument document = new XmlDocument();
-			document.LoadXml(xmlSoap.ToString());
-			XmlNodeList nodeList = null;
-			string xmlString = "";
-		if(document.GetElementsByTagName("BillingAgreementID").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("BillingAgreementID")[0]))
+			XmlNode ChildNode = null;
+			XmlNodeList ChildNodeList = null;
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'BillingAgreementID']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.BillingAgreementID = (string)document.GetElementsByTagName("BillingAgreementID")[0].InnerText;
+				this.BillingAgreementID = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("BillingAgreementDescription").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("BillingAgreementDescription")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'BillingAgreementDescription']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.BillingAgreementDescription = (string)document.GetElementsByTagName("BillingAgreementDescription")[0].InnerText;
+				this.BillingAgreementDescription = ChildNode.InnerText;
 			}
-		}
-			if(document.GetElementsByTagName("BillingAgreementStatus").Count != 0)
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'BillingAgreementStatus']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("BillingAgreementStatus")[0]))
-				{
-					this.BillingAgreementStatus = (MerchantPullStatusCodeType)EnumUtils.getValue(document.GetElementsByTagName("BillingAgreementStatus")[0].InnerText,typeof(MerchantPullStatusCodeType));
-				}
+				this.BillingAgreementStatus = (MerchantPullStatusCodeType)EnumUtils.getValue(ChildNode.InnerText,typeof(MerchantPullStatusCodeType));
 			}
-		if(document.GetElementsByTagName("BillingAgreementCustom").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("BillingAgreementCustom")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'BillingAgreementCustom']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.BillingAgreementCustom = (string)document.GetElementsByTagName("BillingAgreementCustom")[0].InnerText;
+				this.BillingAgreementCustom = ChildNode.InnerText;
 			}
-		}
-			if(document.GetElementsByTagName("PayerInfo").Count != 0)
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'PayerInfo']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("PayerInfo")[0]))
-				{
-					nodeList = document.GetElementsByTagName("PayerInfo");
-					xmlString = DeserializationUtils.convertToXML(nodeList[0]);
-					this.PayerInfo =  new PayerInfoType(xmlString);
-				}
+				this.PayerInfo =  new PayerInfoType(ChildNode);
 			}
-			if(document.GetElementsByTagName("BillingAgreementMax").Count != 0)
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'BillingAgreementMax']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("BillingAgreementMax")[0]))
-				{
-					nodeList = document.GetElementsByTagName("BillingAgreementMax");
-					xmlString = DeserializationUtils.convertToXML(nodeList[0]);
-					this.BillingAgreementMax =  new BasicAmountType(xmlString);
-				}
+				this.BillingAgreementMax =  new BasicAmountType(ChildNode);
 			}
-			if(document.GetElementsByTagName("BillingAddress").Count != 0)
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'BillingAddress']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("BillingAddress")[0]))
-				{
-					nodeList = document.GetElementsByTagName("BillingAddress");
-					xmlString = DeserializationUtils.convertToXML(nodeList[0]);
-					this.BillingAddress =  new AddressType(xmlString);
-				}
+				this.BillingAddress =  new AddressType(ChildNode);
 			}
 	
 		}
-		
 	}
 
 
@@ -10837,42 +10660,27 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public MerchantPullPaymentResponseType(Object xmlSoap)
+		public MerchantPullPaymentResponseType(XmlNode xmlNode)
 		{
-			XmlDocument document = new XmlDocument();
-			document.LoadXml(xmlSoap.ToString());
-			XmlNodeList nodeList = null;
-			string xmlString = "";
-			if(document.GetElementsByTagName("PayerInfo").Count != 0)
+			XmlNode ChildNode = null;
+			XmlNodeList ChildNodeList = null;
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'PayerInfo']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("PayerInfo")[0]))
-				{
-					nodeList = document.GetElementsByTagName("PayerInfo");
-					xmlString = DeserializationUtils.convertToXML(nodeList[0]);
-					this.PayerInfo =  new PayerInfoType(xmlString);
-				}
+				this.PayerInfo =  new PayerInfoType(ChildNode);
 			}
-			if(document.GetElementsByTagName("PaymentInfo").Count != 0)
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'PaymentInfo']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("PaymentInfo")[0]))
-				{
-					nodeList = document.GetElementsByTagName("PaymentInfo");
-					xmlString = DeserializationUtils.convertToXML(nodeList[0]);
-					this.PaymentInfo =  new PaymentInfoType(xmlString);
-				}
+				this.PaymentInfo =  new PaymentInfoType(ChildNode);
 			}
-			if(document.GetElementsByTagName("MerchantPullInfo").Count != 0)
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'MerchantPullInfo']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("MerchantPullInfo")[0]))
-				{
-					nodeList = document.GetElementsByTagName("MerchantPullInfo");
-					xmlString = DeserializationUtils.convertToXML(nodeList[0]);
-					this.MerchantPullInfo =  new MerchantPullInfoType(xmlString);
-				}
+				this.MerchantPullInfo =  new MerchantPullInfoType(ChildNode);
 			}
 	
 		}
-		
 	}
 
 
@@ -11010,66 +10818,47 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public MerchantPullInfoType(Object xmlSoap)
+		public MerchantPullInfoType(XmlNode xmlNode)
 		{
-			XmlDocument document = new XmlDocument();
-			document.LoadXml(xmlSoap.ToString());
-			XmlNodeList nodeList = null;
-			string xmlString = "";
-			if(document.GetElementsByTagName("MpStatus").Count != 0)
+			XmlNode ChildNode = null;
+			XmlNodeList ChildNodeList = null;
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'MpStatus']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("MpStatus")[0]))
-				{
-					this.MpStatus = (MerchantPullStatusCodeType)EnumUtils.getValue(document.GetElementsByTagName("MpStatus")[0].InnerText,typeof(MerchantPullStatusCodeType));
-				}
+				this.MpStatus = (MerchantPullStatusCodeType)EnumUtils.getValue(ChildNode.InnerText,typeof(MerchantPullStatusCodeType));
 			}
-			if(document.GetElementsByTagName("MpMax").Count != 0)
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'MpMax']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("MpMax")[0]))
-				{
-					nodeList = document.GetElementsByTagName("MpMax");
-					xmlString = DeserializationUtils.convertToXML(nodeList[0]);
-					this.MpMax =  new BasicAmountType(xmlString);
-				}
+				this.MpMax =  new BasicAmountType(ChildNode);
 			}
-		if(document.GetElementsByTagName("MpCustom").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("MpCustom")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'MpCustom']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.MpCustom = (string)document.GetElementsByTagName("MpCustom")[0].InnerText;
+				this.MpCustom = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("Desc").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("Desc")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'Desc']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.Desc = (string)document.GetElementsByTagName("Desc")[0].InnerText;
+				this.Desc = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("Invoice").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("Invoice")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'Invoice']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.Invoice = (string)document.GetElementsByTagName("Invoice")[0].InnerText;
+				this.Invoice = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("Custom").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("Custom")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'Custom']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.Custom = (string)document.GetElementsByTagName("Custom")[0].InnerText;
+				this.Custom = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("PaymentSourceID").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("PaymentSourceID")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'PaymentSourceID']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.PaymentSourceID = (string)document.GetElementsByTagName("PaymentSourceID")[0].InnerText;
+				this.PaymentSourceID = ChildNode.InnerText;
 			}
-		}
 	
 		}
-		
 	}
 
 
@@ -11259,91 +11048,62 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public PaymentTransactionSearchResultType(Object xmlSoap)
+		public PaymentTransactionSearchResultType(XmlNode xmlNode)
 		{
-			XmlDocument document = new XmlDocument();
-			document.LoadXml(xmlSoap.ToString());
-			XmlNodeList nodeList = null;
-			string xmlString = "";
-		if(document.GetElementsByTagName("Timestamp").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("Timestamp")[0]))
+			XmlNode ChildNode = null;
+			XmlNodeList ChildNodeList = null;
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'Timestamp']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.Timestamp = (string)document.GetElementsByTagName("Timestamp")[0].InnerText;
+				this.Timestamp = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("Timezone").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("Timezone")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'Timezone']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.Timezone = (string)document.GetElementsByTagName("Timezone")[0].InnerText;
+				this.Timezone = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("Type").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("Type")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'Type']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.Type = (string)document.GetElementsByTagName("Type")[0].InnerText;
+				this.Type = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("Payer").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("Payer")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'Payer']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.Payer = (string)document.GetElementsByTagName("Payer")[0].InnerText;
+				this.Payer = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("PayerDisplayName").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("PayerDisplayName")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'PayerDisplayName']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.PayerDisplayName = (string)document.GetElementsByTagName("PayerDisplayName")[0].InnerText;
+				this.PayerDisplayName = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("TransactionID").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("TransactionID")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'TransactionID']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.TransactionID = (string)document.GetElementsByTagName("TransactionID")[0].InnerText;
+				this.TransactionID = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("Status").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("Status")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'Status']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.Status = (string)document.GetElementsByTagName("Status")[0].InnerText;
+				this.Status = ChildNode.InnerText;
 			}
-		}
-			if(document.GetElementsByTagName("GrossAmount").Count != 0)
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'GrossAmount']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("GrossAmount")[0]))
-				{
-					nodeList = document.GetElementsByTagName("GrossAmount");
-					xmlString = DeserializationUtils.convertToXML(nodeList[0]);
-					this.GrossAmount =  new BasicAmountType(xmlString);
-				}
+				this.GrossAmount =  new BasicAmountType(ChildNode);
 			}
-			if(document.GetElementsByTagName("FeeAmount").Count != 0)
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'FeeAmount']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("FeeAmount")[0]))
-				{
-					nodeList = document.GetElementsByTagName("FeeAmount");
-					xmlString = DeserializationUtils.convertToXML(nodeList[0]);
-					this.FeeAmount =  new BasicAmountType(xmlString);
-				}
+				this.FeeAmount =  new BasicAmountType(ChildNode);
 			}
-			if(document.GetElementsByTagName("NetAmount").Count != 0)
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'NetAmount']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("NetAmount")[0]))
-				{
-					nodeList = document.GetElementsByTagName("NetAmount");
-					xmlString = DeserializationUtils.convertToXML(nodeList[0]);
-					this.NetAmount =  new BasicAmountType(xmlString);
-				}
+				this.NetAmount =  new BasicAmountType(ChildNode);
 			}
 	
 		}
-		
 	}
 
 
@@ -11612,22 +11372,22 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(MpID != null)
 			{
-				sb.Append("<ebl:MpID>").Append(MpID);
+				sb.Append("<ebl:MpID>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(MpID));
 				sb.Append("</ebl:MpID>");
 			}
 			if(PaymentType != null)
 			{
-				sb.Append("<ebl:PaymentType>").Append(EnumUtils.getDescription(PaymentType));
+				sb.Append("<ebl:PaymentType>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(PaymentType)));
 				sb.Append("</ebl:PaymentType>");
 			}
 			if(Memo != null)
 			{
-				sb.Append("<ebl:Memo>").Append(Memo);
+				sb.Append("<ebl:Memo>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(Memo));
 				sb.Append("</ebl:Memo>");
 			}
 			if(EmailSubject != null)
 			{
-				sb.Append("<ebl:EmailSubject>").Append(EmailSubject);
+				sb.Append("<ebl:EmailSubject>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EmailSubject));
 				sb.Append("</ebl:EmailSubject>");
 			}
 			if(Tax != null)
@@ -11650,32 +11410,32 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(ItemName != null)
 			{
-				sb.Append("<ebl:ItemName>").Append(ItemName);
+				sb.Append("<ebl:ItemName>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(ItemName));
 				sb.Append("</ebl:ItemName>");
 			}
 			if(ItemNumber != null)
 			{
-				sb.Append("<ebl:ItemNumber>").Append(ItemNumber);
+				sb.Append("<ebl:ItemNumber>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(ItemNumber));
 				sb.Append("</ebl:ItemNumber>");
 			}
 			if(Invoice != null)
 			{
-				sb.Append("<ebl:Invoice>").Append(Invoice);
+				sb.Append("<ebl:Invoice>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(Invoice));
 				sb.Append("</ebl:Invoice>");
 			}
 			if(Custom != null)
 			{
-				sb.Append("<ebl:Custom>").Append(Custom);
+				sb.Append("<ebl:Custom>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(Custom));
 				sb.Append("</ebl:Custom>");
 			}
 			if(ButtonSource != null)
 			{
-				sb.Append("<ebl:ButtonSource>").Append(ButtonSource);
+				sb.Append("<ebl:ButtonSource>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(ButtonSource));
 				sb.Append("</ebl:ButtonSource>");
 			}
 			if(SoftDescriptor != null)
 			{
-				sb.Append("<ebl:SoftDescriptor>").Append(SoftDescriptor);
+				sb.Append("<ebl:SoftDescriptor>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(SoftDescriptor));
 				sb.Append("</ebl:SoftDescriptor>");
 			}
 			return sb.ToString();
@@ -11773,6 +11533,23 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			set
 			{
 				this.OfferCouponInfoField = value;
+			}
+		}
+		
+
+		/**
+          *
+		  */
+		private AddressType SecondaryAddressField;
+		public AddressType SecondaryAddress
+		{
+			get
+			{
+				return this.SecondaryAddressField;
+			}
+			set
+			{
+				this.SecondaryAddressField = value;
 			}
 		}
 		
@@ -11920,125 +11697,86 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public PaymentTransactionType(Object xmlSoap)
+		public PaymentTransactionType(XmlNode xmlNode)
 		{
-			XmlDocument document = new XmlDocument();
-			document.LoadXml(xmlSoap.ToString());
-			XmlNodeList nodeList = null;
-			string xmlString = "";
-			if(document.GetElementsByTagName("ReceiverInfo").Count != 0)
+			XmlNode ChildNode = null;
+			XmlNodeList ChildNodeList = null;
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'ReceiverInfo']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("ReceiverInfo")[0]))
+				this.ReceiverInfo =  new ReceiverInfoType(ChildNode);
+			}
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'PayerInfo']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
+			{
+				this.PayerInfo =  new PayerInfoType(ChildNode);
+			}
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'PaymentInfo']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
+			{
+				this.PaymentInfo =  new PaymentInfoType(ChildNode);
+			}
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'PaymentItemInfo']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
+			{
+				this.PaymentItemInfo =  new PaymentItemInfoType(ChildNode);
+			}
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'OfferCouponInfo']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
+			{
+				this.OfferCouponInfo =  new OfferCouponInfoType(ChildNode);
+			}
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'SecondaryAddress']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
+			{
+				this.SecondaryAddress =  new AddressType(ChildNode);
+			}
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'UserSelectedOptions']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
+			{
+				this.UserSelectedOptions =  new UserSelectedOptionType(ChildNode);
+			}
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'GiftMessage']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
+			{
+				this.GiftMessage = ChildNode.InnerText;
+			}
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'GiftReceipt']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
+			{
+				this.GiftReceipt = ChildNode.InnerText;
+			}
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'GiftWrapName']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
+			{
+				this.GiftWrapName = ChildNode.InnerText;
+			}
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'GiftWrapAmount']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
+			{
+				this.GiftWrapAmount =  new BasicAmountType(ChildNode);
+			}
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'BuyerEmailOptIn']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
+			{
+				this.BuyerEmailOptIn = ChildNode.InnerText;
+			}
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'SurveyQuestion']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
+			{
+				this.SurveyQuestion = ChildNode.InnerText;
+			}
+			ChildNodeList = xmlNode.SelectNodes("*[local-name() = 'SurveyChoiceSelected']");
+			if (ChildNodeList != null && ChildNodeList.Count > 0)
+			{
+				for(int i = 0; i < ChildNodeList.Count; i++)
 				{
-					nodeList = document.GetElementsByTagName("ReceiverInfo");
-					xmlString = DeserializationUtils.convertToXML(nodeList[0]);
-					this.ReceiverInfo =  new ReceiverInfoType(xmlString);
-				}
-			}
-			if(document.GetElementsByTagName("PayerInfo").Count != 0)
-			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("PayerInfo")[0]))
-				{
-					nodeList = document.GetElementsByTagName("PayerInfo");
-					xmlString = DeserializationUtils.convertToXML(nodeList[0]);
-					this.PayerInfo =  new PayerInfoType(xmlString);
-				}
-			}
-			if(document.GetElementsByTagName("PaymentInfo").Count != 0)
-			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("PaymentInfo")[0]))
-				{
-					nodeList = document.GetElementsByTagName("PaymentInfo");
-					xmlString = DeserializationUtils.convertToXML(nodeList[0]);
-					this.PaymentInfo =  new PaymentInfoType(xmlString);
-				}
-			}
-			if(document.GetElementsByTagName("PaymentItemInfo").Count != 0)
-			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("PaymentItemInfo")[0]))
-				{
-					nodeList = document.GetElementsByTagName("PaymentItemInfo");
-					xmlString = DeserializationUtils.convertToXML(nodeList[0]);
-					this.PaymentItemInfo =  new PaymentItemInfoType(xmlString);
-				}
-			}
-			if(document.GetElementsByTagName("OfferCouponInfo").Count != 0)
-			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("OfferCouponInfo")[0]))
-				{
-					nodeList = document.GetElementsByTagName("OfferCouponInfo");
-					xmlString = DeserializationUtils.convertToXML(nodeList[0]);
-					this.OfferCouponInfo =  new OfferCouponInfoType(xmlString);
-				}
-			}
-			if(document.GetElementsByTagName("UserSelectedOptions").Count != 0)
-			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("UserSelectedOptions")[0]))
-				{
-					nodeList = document.GetElementsByTagName("UserSelectedOptions");
-					xmlString = DeserializationUtils.convertToXML(nodeList[0]);
-					this.UserSelectedOptions =  new UserSelectedOptionType(xmlString);
-				}
-			}
-		if(document.GetElementsByTagName("GiftMessage").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("GiftMessage")[0]))
-			{
-				this.GiftMessage = (string)document.GetElementsByTagName("GiftMessage")[0].InnerText;
-			}
-		}
-		if(document.GetElementsByTagName("GiftReceipt").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("GiftReceipt")[0]))
-			{
-				this.GiftReceipt = (string)document.GetElementsByTagName("GiftReceipt")[0].InnerText;
-			}
-		}
-		if(document.GetElementsByTagName("GiftWrapName").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("GiftWrapName")[0]))
-			{
-				this.GiftWrapName = (string)document.GetElementsByTagName("GiftWrapName")[0].InnerText;
-			}
-		}
-			if(document.GetElementsByTagName("GiftWrapAmount").Count != 0)
-			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("GiftWrapAmount")[0]))
-				{
-					nodeList = document.GetElementsByTagName("GiftWrapAmount");
-					xmlString = DeserializationUtils.convertToXML(nodeList[0]);
-					this.GiftWrapAmount =  new BasicAmountType(xmlString);
-				}
-			}
-		if(document.GetElementsByTagName("BuyerEmailOptIn").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("BuyerEmailOptIn")[0]))
-			{
-				this.BuyerEmailOptIn = (string)document.GetElementsByTagName("BuyerEmailOptIn")[0].InnerText;
-			}
-		}
-		if(document.GetElementsByTagName("SurveyQuestion").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("SurveyQuestion")[0]))
-			{
-				this.SurveyQuestion = (string)document.GetElementsByTagName("SurveyQuestion")[0].InnerText;
-			}
-		}
-			if(document.GetElementsByTagName("SurveyChoiceSelected").Count != 0)
-			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("SurveyChoiceSelected")[0]))
-				{
-					nodeList = document.GetElementsByTagName("SurveyChoiceSelected");
-					for(int i = 0; i < nodeList.Count; i++)
-					{
-						string value = nodeList[i].InnerText;
-						this.SurveyChoiceSelected.Add(value);
-					}
+					string value = ChildNodeList[i].InnerText;
+					this.SurveyChoiceSelected.Add(value);
 				}
 			}
 	
 		}
-		
 	}
 
 
@@ -12108,36 +11846,27 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public ReceiverInfoType(Object xmlSoap)
+		public ReceiverInfoType(XmlNode xmlNode)
 		{
-			XmlDocument document = new XmlDocument();
-			document.LoadXml(xmlSoap.ToString());
-			XmlNodeList nodeList = null;
-			string xmlString = "";
-		if(document.GetElementsByTagName("Business").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("Business")[0]))
+			XmlNode ChildNode = null;
+			XmlNodeList ChildNodeList = null;
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'Business']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.Business = (string)document.GetElementsByTagName("Business")[0].InnerText;
+				this.Business = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("Receiver").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("Receiver")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'Receiver']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.Receiver = (string)document.GetElementsByTagName("Receiver")[0].InnerText;
+				this.Receiver = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("ReceiverID").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("ReceiverID")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'ReceiverID']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.ReceiverID = (string)document.GetElementsByTagName("ReceiverID")[0].InnerText;
+				this.ReceiverID = ChildNode.InnerText;
 			}
-		}
 	
 		}
-		
 	}
 
 
@@ -12331,17 +12060,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			StringBuilder sb = new StringBuilder();
 			if(Payer != null)
 			{
-				sb.Append("<ebl:Payer>").Append(Payer);
+				sb.Append("<ebl:Payer>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(Payer));
 				sb.Append("</ebl:Payer>");
 			}
 			if(PayerID != null)
 			{
-				sb.Append("<ebl:PayerID>").Append(PayerID);
+				sb.Append("<ebl:PayerID>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(PayerID));
 				sb.Append("</ebl:PayerID>");
 			}
 			if(PayerStatus != null)
 			{
-				sb.Append("<ebl:PayerStatus>").Append(EnumUtils.getDescription(PayerStatus));
+				sb.Append("<ebl:PayerStatus>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(PayerStatus)));
 				sb.Append("</ebl:PayerStatus>");
 			}
 			if(PayerName != null)
@@ -12352,12 +12081,12 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(PayerCountry != null)
 			{
-				sb.Append("<ebl:PayerCountry>").Append(EnumUtils.getDescription(PayerCountry));
+				sb.Append("<ebl:PayerCountry>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(PayerCountry)));
 				sb.Append("</ebl:PayerCountry>");
 			}
 			if(PayerBusiness != null)
 			{
-				sb.Append("<ebl:PayerBusiness>").Append(PayerBusiness);
+				sb.Append("<ebl:PayerBusiness>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(PayerBusiness));
 				sb.Append("</ebl:PayerBusiness>");
 			}
 			if(Address != null)
@@ -12368,7 +12097,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(ContactPhone != null)
 			{
-				sb.Append("<ebl:ContactPhone>").Append(ContactPhone);
+				sb.Append("<ebl:ContactPhone>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(ContactPhone));
 				sb.Append("</ebl:ContactPhone>");
 			}
 			if(TaxIdDetails != null)
@@ -12385,93 +12114,62 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			return sb.ToString();
 		}
-		public PayerInfoType(Object xmlSoap)
+		public PayerInfoType(XmlNode xmlNode)
 		{
-			XmlDocument document = new XmlDocument();
-			document.LoadXml(xmlSoap.ToString());
-			XmlNodeList nodeList = null;
-			string xmlString = "";
-		if(document.GetElementsByTagName("Payer").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("Payer")[0]))
+			XmlNode ChildNode = null;
+			XmlNodeList ChildNodeList = null;
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'Payer']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.Payer = (string)document.GetElementsByTagName("Payer")[0].InnerText;
+				this.Payer = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("PayerID").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("PayerID")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'PayerID']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.PayerID = (string)document.GetElementsByTagName("PayerID")[0].InnerText;
+				this.PayerID = ChildNode.InnerText;
 			}
-		}
-			if(document.GetElementsByTagName("PayerStatus").Count != 0)
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'PayerStatus']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("PayerStatus")[0]))
-				{
-					this.PayerStatus = (PayPalUserStatusCodeType)EnumUtils.getValue(document.GetElementsByTagName("PayerStatus")[0].InnerText,typeof(PayPalUserStatusCodeType));
-				}
+				this.PayerStatus = (PayPalUserStatusCodeType)EnumUtils.getValue(ChildNode.InnerText,typeof(PayPalUserStatusCodeType));
 			}
-			if(document.GetElementsByTagName("PayerName").Count != 0)
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'PayerName']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("PayerName")[0]))
-				{
-					nodeList = document.GetElementsByTagName("PayerName");
-					xmlString = DeserializationUtils.convertToXML(nodeList[0]);
-					this.PayerName =  new PersonNameType(xmlString);
-				}
+				this.PayerName =  new PersonNameType(ChildNode);
 			}
-			if(document.GetElementsByTagName("PayerCountry").Count != 0)
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'PayerCountry']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("PayerCountry")[0]))
-				{
-					this.PayerCountry = (CountryCodeType)EnumUtils.getValue(document.GetElementsByTagName("PayerCountry")[0].InnerText,typeof(CountryCodeType));
-				}
+				this.PayerCountry = (CountryCodeType)EnumUtils.getValue(ChildNode.InnerText,typeof(CountryCodeType));
 			}
-		if(document.GetElementsByTagName("PayerBusiness").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("PayerBusiness")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'PayerBusiness']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.PayerBusiness = (string)document.GetElementsByTagName("PayerBusiness")[0].InnerText;
+				this.PayerBusiness = ChildNode.InnerText;
 			}
-		}
-			if(document.GetElementsByTagName("Address").Count != 0)
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'Address']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("Address")[0]))
-				{
-					nodeList = document.GetElementsByTagName("Address");
-					xmlString = DeserializationUtils.convertToXML(nodeList[0]);
-					this.Address =  new AddressType(xmlString);
-				}
+				this.Address =  new AddressType(ChildNode);
 			}
-		if(document.GetElementsByTagName("ContactPhone").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("ContactPhone")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'ContactPhone']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.ContactPhone = (string)document.GetElementsByTagName("ContactPhone")[0].InnerText;
+				this.ContactPhone = ChildNode.InnerText;
 			}
-		}
-			if(document.GetElementsByTagName("TaxIdDetails").Count != 0)
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'TaxIdDetails']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("TaxIdDetails")[0]))
-				{
-					nodeList = document.GetElementsByTagName("TaxIdDetails");
-					xmlString = DeserializationUtils.convertToXML(nodeList[0]);
-					this.TaxIdDetails =  new TaxIdDetailsType(xmlString);
-				}
+				this.TaxIdDetails =  new TaxIdDetailsType(ChildNode);
 			}
-			if(document.GetElementsByTagName("EnhancedPayerInfo").Count != 0)
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'EnhancedPayerInfo']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("EnhancedPayerInfo")[0]))
-				{
-					nodeList = document.GetElementsByTagName("EnhancedPayerInfo");
-					xmlString = DeserializationUtils.convertToXML(nodeList[0]);
-					this.EnhancedPayerInfo =  new EnhancedPayerInfoType(xmlString);
-				}
+				this.EnhancedPayerInfo =  new EnhancedPayerInfoType(ChildNode);
 			}
 	
 		}
-		
 	}
 
 
@@ -12507,22 +12205,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public InstrumentDetailsType(Object xmlSoap)
+		public InstrumentDetailsType(XmlNode xmlNode)
 		{
-			XmlDocument document = new XmlDocument();
-			document.LoadXml(xmlSoap.ToString());
-			XmlNodeList nodeList = null;
-			string xmlString = "";
-		if(document.GetElementsByTagName("InstrumentCategory").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("InstrumentCategory")[0]))
+			XmlNode ChildNode = null;
+			XmlNodeList ChildNodeList = null;
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'InstrumentCategory']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.InstrumentCategory = (string)document.GetElementsByTagName("InstrumentCategory")[0].InnerText;
+				this.InstrumentCategory = ChildNode.InnerText;
 			}
-		}
 	
 		}
-		
 	}
 
 
@@ -12563,27 +12256,22 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			StringBuilder sb = new StringBuilder();
 			if(OfferTrackingID != null)
 			{
-				sb.Append("<ebl:OfferTrackingID>").Append(OfferTrackingID);
+				sb.Append("<ebl:OfferTrackingID>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(OfferTrackingID));
 				sb.Append("</ebl:OfferTrackingID>");
 			}
 			return sb.ToString();
 		}
-		public BMLOfferInfoType(Object xmlSoap)
+		public BMLOfferInfoType(XmlNode xmlNode)
 		{
-			XmlDocument document = new XmlDocument();
-			document.LoadXml(xmlSoap.ToString());
-			XmlNodeList nodeList = null;
-			string xmlString = "";
-		if(document.GetElementsByTagName("OfferTrackingID").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("OfferTrackingID")[0]))
+			XmlNode ChildNode = null;
+			XmlNodeList ChildNodeList = null;
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'OfferTrackingID']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.OfferTrackingID = (string)document.GetElementsByTagName("OfferTrackingID")[0].InnerText;
+				this.OfferTrackingID = ChildNode.InnerText;
 			}
-		}
 	
 		}
-		
 	}
 
 
@@ -12641,7 +12329,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			StringBuilder sb = new StringBuilder();
 			if(OfferCode != null)
 			{
-				sb.Append("<ebl:OfferCode>").Append(OfferCode);
+				sb.Append("<ebl:OfferCode>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(OfferCode));
 				sb.Append("</ebl:OfferCode>");
 			}
 			if(BMLOfferInfo != null)
@@ -12652,31 +12340,22 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			return sb.ToString();
 		}
-		public OfferDetailsType(Object xmlSoap)
+		public OfferDetailsType(XmlNode xmlNode)
 		{
-			XmlDocument document = new XmlDocument();
-			document.LoadXml(xmlSoap.ToString());
-			XmlNodeList nodeList = null;
-			string xmlString = "";
-		if(document.GetElementsByTagName("OfferCode").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("OfferCode")[0]))
+			XmlNode ChildNode = null;
+			XmlNodeList ChildNodeList = null;
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'OfferCode']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.OfferCode = (string)document.GetElementsByTagName("OfferCode")[0].InnerText;
+				this.OfferCode = ChildNode.InnerText;
 			}
-		}
-			if(document.GetElementsByTagName("BMLOfferInfo").Count != 0)
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'BMLOfferInfo']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("BMLOfferInfo")[0]))
-				{
-					nodeList = document.GetElementsByTagName("BMLOfferInfo");
-					xmlString = DeserializationUtils.convertToXML(nodeList[0]);
-					this.BMLOfferInfo =  new BMLOfferInfoType(xmlString);
-				}
+				this.BMLOfferInfo =  new BMLOfferInfoType(ChildNode);
 			}
 	
 		}
-		
 	}
 
 
@@ -13290,280 +12969,187 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public PaymentInfoType(Object xmlSoap)
+		public PaymentInfoType(XmlNode xmlNode)
 		{
-			XmlDocument document = new XmlDocument();
-			document.LoadXml(xmlSoap.ToString());
-			XmlNodeList nodeList = null;
-			string xmlString = "";
-		if(document.GetElementsByTagName("TransactionID").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("TransactionID")[0]))
+			XmlNode ChildNode = null;
+			XmlNodeList ChildNodeList = null;
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'TransactionID']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.TransactionID = (string)document.GetElementsByTagName("TransactionID")[0].InnerText;
+				this.TransactionID = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("EbayTransactionID").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("EbayTransactionID")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'EbayTransactionID']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.EbayTransactionID = (string)document.GetElementsByTagName("EbayTransactionID")[0].InnerText;
+				this.EbayTransactionID = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("ParentTransactionID").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("ParentTransactionID")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'ParentTransactionID']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.ParentTransactionID = (string)document.GetElementsByTagName("ParentTransactionID")[0].InnerText;
+				this.ParentTransactionID = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("ReceiptID").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("ReceiptID")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'ReceiptID']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.ReceiptID = (string)document.GetElementsByTagName("ReceiptID")[0].InnerText;
+				this.ReceiptID = ChildNode.InnerText;
 			}
-		}
-			if(document.GetElementsByTagName("TransactionType").Count != 0)
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'TransactionType']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("TransactionType")[0]))
-				{
-					this.TransactionType = (PaymentTransactionCodeType)EnumUtils.getValue(document.GetElementsByTagName("TransactionType")[0].InnerText,typeof(PaymentTransactionCodeType));
-				}
+				this.TransactionType = (PaymentTransactionCodeType)EnumUtils.getValue(ChildNode.InnerText,typeof(PaymentTransactionCodeType));
 			}
-			if(document.GetElementsByTagName("PaymentType").Count != 0)
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'PaymentType']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("PaymentType")[0]))
-				{
-					this.PaymentType = (PaymentCodeType)EnumUtils.getValue(document.GetElementsByTagName("PaymentType")[0].InnerText,typeof(PaymentCodeType));
-				}
+				this.PaymentType = (PaymentCodeType)EnumUtils.getValue(ChildNode.InnerText,typeof(PaymentCodeType));
 			}
-			if(document.GetElementsByTagName("RefundSourceCodeType").Count != 0)
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'RefundSourceCodeType']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("RefundSourceCodeType")[0]))
-				{
-					this.RefundSourceCodeType = (RefundSourceCodeType)EnumUtils.getValue(document.GetElementsByTagName("RefundSourceCodeType")[0].InnerText,typeof(RefundSourceCodeType));
-				}
+				this.RefundSourceCodeType = (RefundSourceCodeType)EnumUtils.getValue(ChildNode.InnerText,typeof(RefundSourceCodeType));
 			}
-		if(document.GetElementsByTagName("ExpectedeCheckClearDate").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("ExpectedeCheckClearDate")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'ExpectedeCheckClearDate']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.ExpectedeCheckClearDate = (string)document.GetElementsByTagName("ExpectedeCheckClearDate")[0].InnerText;
+				this.ExpectedeCheckClearDate = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("PaymentDate").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("PaymentDate")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'PaymentDate']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.PaymentDate = (string)document.GetElementsByTagName("PaymentDate")[0].InnerText;
+				this.PaymentDate = ChildNode.InnerText;
 			}
-		}
-			if(document.GetElementsByTagName("GrossAmount").Count != 0)
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'GrossAmount']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("GrossAmount")[0]))
-				{
-					nodeList = document.GetElementsByTagName("GrossAmount");
-					xmlString = DeserializationUtils.convertToXML(nodeList[0]);
-					this.GrossAmount =  new BasicAmountType(xmlString);
-				}
+				this.GrossAmount =  new BasicAmountType(ChildNode);
 			}
-			if(document.GetElementsByTagName("FeeAmount").Count != 0)
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'FeeAmount']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("FeeAmount")[0]))
-				{
-					nodeList = document.GetElementsByTagName("FeeAmount");
-					xmlString = DeserializationUtils.convertToXML(nodeList[0]);
-					this.FeeAmount =  new BasicAmountType(xmlString);
-				}
+				this.FeeAmount =  new BasicAmountType(ChildNode);
 			}
-			if(document.GetElementsByTagName("SettleAmount").Count != 0)
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'SettleAmount']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("SettleAmount")[0]))
-				{
-					nodeList = document.GetElementsByTagName("SettleAmount");
-					xmlString = DeserializationUtils.convertToXML(nodeList[0]);
-					this.SettleAmount =  new BasicAmountType(xmlString);
-				}
+				this.SettleAmount =  new BasicAmountType(ChildNode);
 			}
-			if(document.GetElementsByTagName("TaxAmount").Count != 0)
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'TaxAmount']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("TaxAmount")[0]))
-				{
-					nodeList = document.GetElementsByTagName("TaxAmount");
-					xmlString = DeserializationUtils.convertToXML(nodeList[0]);
-					this.TaxAmount =  new BasicAmountType(xmlString);
-				}
+				this.TaxAmount =  new BasicAmountType(ChildNode);
 			}
-		if(document.GetElementsByTagName("ExchangeRate").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("ExchangeRate")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'ExchangeRate']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.ExchangeRate = (string)document.GetElementsByTagName("ExchangeRate")[0].InnerText;
+				this.ExchangeRate = ChildNode.InnerText;
 			}
-		}
-			if(document.GetElementsByTagName("PaymentStatus").Count != 0)
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'PaymentStatus']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("PaymentStatus")[0]))
-				{
-					this.PaymentStatus = (PaymentStatusCodeType)EnumUtils.getValue(document.GetElementsByTagName("PaymentStatus")[0].InnerText,typeof(PaymentStatusCodeType));
-				}
+				this.PaymentStatus = (PaymentStatusCodeType)EnumUtils.getValue(ChildNode.InnerText,typeof(PaymentStatusCodeType));
 			}
-			if(document.GetElementsByTagName("PendingReason").Count != 0)
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'PendingReason']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("PendingReason")[0]))
-				{
-					this.PendingReason = (PendingStatusCodeType)EnumUtils.getValue(document.GetElementsByTagName("PendingReason")[0].InnerText,typeof(PendingStatusCodeType));
-				}
+				this.PendingReason = (PendingStatusCodeType)EnumUtils.getValue(ChildNode.InnerText,typeof(PendingStatusCodeType));
 			}
-			if(document.GetElementsByTagName("ReasonCode").Count != 0)
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'ReasonCode']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("ReasonCode")[0]))
-				{
-					this.ReasonCode = (ReversalReasonCodeType)EnumUtils.getValue(document.GetElementsByTagName("ReasonCode")[0].InnerText,typeof(ReversalReasonCodeType));
-				}
+				this.ReasonCode = (ReversalReasonCodeType)EnumUtils.getValue(ChildNode.InnerText,typeof(ReversalReasonCodeType));
 			}
-		if(document.GetElementsByTagName("HoldDecision").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("HoldDecision")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'HoldDecision']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.HoldDecision = (string)document.GetElementsByTagName("HoldDecision")[0].InnerText;
+				this.HoldDecision = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("ShippingMethod").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("ShippingMethod")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'ShippingMethod']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.ShippingMethod = (string)document.GetElementsByTagName("ShippingMethod")[0].InnerText;
+				this.ShippingMethod = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("ProtectionEligibility").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("ProtectionEligibility")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'ProtectionEligibility']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.ProtectionEligibility = (string)document.GetElementsByTagName("ProtectionEligibility")[0].InnerText;
+				this.ProtectionEligibility = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("ProtectionEligibilityType").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("ProtectionEligibilityType")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'ProtectionEligibilityType']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.ProtectionEligibilityType = (string)document.GetElementsByTagName("ProtectionEligibilityType")[0].InnerText;
+				this.ProtectionEligibilityType = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("ShipAmount").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("ShipAmount")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'ShipAmount']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.ShipAmount = (string)document.GetElementsByTagName("ShipAmount")[0].InnerText;
+				this.ShipAmount = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("ShipHandleAmount").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("ShipHandleAmount")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'ShipHandleAmount']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.ShipHandleAmount = (string)document.GetElementsByTagName("ShipHandleAmount")[0].InnerText;
+				this.ShipHandleAmount = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("ShipDiscount").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("ShipDiscount")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'ShipDiscount']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.ShipDiscount = (string)document.GetElementsByTagName("ShipDiscount")[0].InnerText;
+				this.ShipDiscount = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("InsuranceAmount").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("InsuranceAmount")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'InsuranceAmount']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.InsuranceAmount = (string)document.GetElementsByTagName("InsuranceAmount")[0].InnerText;
+				this.InsuranceAmount = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("Subject").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("Subject")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'Subject']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.Subject = (string)document.GetElementsByTagName("Subject")[0].InnerText;
+				this.Subject = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("StoreID").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("StoreID")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'StoreID']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.StoreID = (string)document.GetElementsByTagName("StoreID")[0].InnerText;
+				this.StoreID = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("TerminalID").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("TerminalID")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'TerminalID']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.TerminalID = (string)document.GetElementsByTagName("TerminalID")[0].InnerText;
+				this.TerminalID = ChildNode.InnerText;
 			}
-		}
-			if(document.GetElementsByTagName("SellerDetails").Count != 0)
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'SellerDetails']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("SellerDetails")[0]))
-				{
-					nodeList = document.GetElementsByTagName("SellerDetails");
-					xmlString = DeserializationUtils.convertToXML(nodeList[0]);
-					this.SellerDetails =  new SellerDetailsType(xmlString);
-				}
+				this.SellerDetails =  new SellerDetailsType(ChildNode);
 			}
-		if(document.GetElementsByTagName("PaymentRequestID").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("PaymentRequestID")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'PaymentRequestID']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.PaymentRequestID = (string)document.GetElementsByTagName("PaymentRequestID")[0].InnerText;
+				this.PaymentRequestID = ChildNode.InnerText;
 			}
-		}
-			if(document.GetElementsByTagName("FMFDetails").Count != 0)
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'FMFDetails']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("FMFDetails")[0]))
-				{
-					nodeList = document.GetElementsByTagName("FMFDetails");
-					xmlString = DeserializationUtils.convertToXML(nodeList[0]);
-					this.FMFDetails =  new FMFDetailsType(xmlString);
-				}
+				this.FMFDetails =  new FMFDetailsType(ChildNode);
 			}
-			if(document.GetElementsByTagName("EnhancedPaymentInfo").Count != 0)
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'EnhancedPaymentInfo']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("EnhancedPaymentInfo")[0]))
-				{
-					nodeList = document.GetElementsByTagName("EnhancedPaymentInfo");
-					xmlString = DeserializationUtils.convertToXML(nodeList[0]);
-					this.EnhancedPaymentInfo =  new EnhancedPaymentInfoType(xmlString);
-				}
+				this.EnhancedPaymentInfo =  new EnhancedPaymentInfoType(ChildNode);
 			}
-			if(document.GetElementsByTagName("PaymentError").Count != 0)
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'PaymentError']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("PaymentError")[0]))
-				{
-					nodeList = document.GetElementsByTagName("PaymentError");
-					xmlString = DeserializationUtils.convertToXML(nodeList[0]);
-					this.PaymentError =  new ErrorType(xmlString);
-				}
+				this.PaymentError =  new ErrorType(ChildNode);
 			}
-			if(document.GetElementsByTagName("InstrumentDetails").Count != 0)
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'InstrumentDetails']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("InstrumentDetails")[0]))
-				{
-					nodeList = document.GetElementsByTagName("InstrumentDetails");
-					xmlString = DeserializationUtils.convertToXML(nodeList[0]);
-					this.InstrumentDetails =  new InstrumentDetailsType(xmlString);
-				}
+				this.InstrumentDetails =  new InstrumentDetailsType(ChildNode);
 			}
-			if(document.GetElementsByTagName("OfferDetails").Count != 0)
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'OfferDetails']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("OfferDetails")[0]))
-				{
-					nodeList = document.GetElementsByTagName("OfferDetails");
-					xmlString = DeserializationUtils.convertToXML(nodeList[0]);
-					this.OfferDetails =  new OfferDetailsType(xmlString);
-				}
+				this.OfferDetails =  new OfferDetailsType(ChildNode);
 			}
 	
 		}
-		
 	}
 
 
@@ -13599,24 +13185,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public SubscriptionTermsType(Object xmlSoap)
+		public SubscriptionTermsType(XmlNode xmlNode)
 		{
-			XmlDocument document = new XmlDocument();
-			document.LoadXml(xmlSoap.ToString());
-			XmlNodeList nodeList = null;
-			string xmlString = "";
-			if(document.GetElementsByTagName("Amount").Count != 0)
+			XmlNode ChildNode = null;
+			XmlNodeList ChildNodeList = null;
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'Amount']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("Amount")[0]))
-				{
-					nodeList = document.GetElementsByTagName("Amount");
-					xmlString = DeserializationUtils.convertToXML(nodeList[0]);
-					this.Amount =  new BasicAmountType(xmlString);
-				}
+				this.Amount =  new BasicAmountType(ChildNode);
 			}
 	
 		}
-		
 	}
 
 
@@ -13772,76 +13351,56 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public SubscriptionInfoType(Object xmlSoap)
+		public SubscriptionInfoType(XmlNode xmlNode)
 		{
-			XmlDocument document = new XmlDocument();
-			document.LoadXml(xmlSoap.ToString());
-			XmlNodeList nodeList = null;
-			string xmlString = "";
-		if(document.GetElementsByTagName("SubscriptionID").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("SubscriptionID")[0]))
+			XmlNode ChildNode = null;
+			XmlNodeList ChildNodeList = null;
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'SubscriptionID']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.SubscriptionID = (string)document.GetElementsByTagName("SubscriptionID")[0].InnerText;
+				this.SubscriptionID = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("SubscriptionDate").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("SubscriptionDate")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'SubscriptionDate']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.SubscriptionDate = (string)document.GetElementsByTagName("SubscriptionDate")[0].InnerText;
+				this.SubscriptionDate = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("EffectiveDate").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("EffectiveDate")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'EffectiveDate']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.EffectiveDate = (string)document.GetElementsByTagName("EffectiveDate")[0].InnerText;
+				this.EffectiveDate = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("RetryTime").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("RetryTime")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'RetryTime']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.RetryTime = (string)document.GetElementsByTagName("RetryTime")[0].InnerText;
+				this.RetryTime = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("Username").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("Username")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'Username']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.Username = (string)document.GetElementsByTagName("Username")[0].InnerText;
+				this.Username = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("Password").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("Password")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'Password']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.Password = (string)document.GetElementsByTagName("Password")[0].InnerText;
+				this.Password = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("Recurrences").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("Recurrences")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'Recurrences']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.Recurrences = (string)document.GetElementsByTagName("Recurrences")[0].InnerText;
+				this.Recurrences = ChildNode.InnerText;
 			}
-		}
-			if(document.GetElementsByTagName("Terms").Count != 0)
+			ChildNodeList = xmlNode.SelectNodes("*[local-name() = 'Terms']");
+			if (ChildNodeList != null && ChildNodeList.Count > 0)
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("Terms")[0]))
+				for(int i = 0; i < ChildNodeList.Count; i++)
 				{
-					nodeList = document.GetElementsByTagName("Terms");
-					for(int i = 0; i < nodeList.Count; i++)
-					{
-						xmlString = DeserializationUtils.convertToXML(nodeList[i]);
-						this.Terms.Add(new SubscriptionTermsType(xmlString));
-					}
+					XmlNode subNode = ChildNodeList.Item(i);
+					this.Terms.Add(new SubscriptionTermsType(subNode));
 				}
 			}
 	
 		}
-		
 	}
 
 
@@ -13894,29 +13453,22 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public AuctionInfoType(Object xmlSoap)
+		public AuctionInfoType(XmlNode xmlNode)
 		{
-			XmlDocument document = new XmlDocument();
-			document.LoadXml(xmlSoap.ToString());
-			XmlNodeList nodeList = null;
-			string xmlString = "";
-		if(document.GetElementsByTagName("BuyerID").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("BuyerID")[0]))
+			XmlNode ChildNode = null;
+			XmlNodeList ChildNodeList = null;
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'BuyerID']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.BuyerID = (string)document.GetElementsByTagName("BuyerID")[0].InnerText;
+				this.BuyerID = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("ClosingDate").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("ClosingDate")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'ClosingDate']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.ClosingDate = (string)document.GetElementsByTagName("ClosingDate")[0].InnerText;
+				this.ClosingDate = ChildNode.InnerText;
 			}
-		}
 	
 		}
-		
 	}
 
 
@@ -13935,15 +13487,12 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public OptionType(Object xmlSoap)
+		public OptionType(XmlNode xmlNode)
 		{
-			XmlDocument document = new XmlDocument();
-			document.LoadXml(xmlSoap.ToString());
-			XmlNodeList nodeList = null;
-			string xmlString = "";
+			XmlNode ChildNode = null;
+			XmlNodeList ChildNodeList = null;
 	
 		}
-		
 	}
 
 
@@ -14036,63 +13585,52 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			StringBuilder sb = new StringBuilder();
 			if(ItemNumber != null)
 			{
-				sb.Append("<ebl:ItemNumber>").Append(ItemNumber);
+				sb.Append("<ebl:ItemNumber>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(ItemNumber));
 				sb.Append("</ebl:ItemNumber>");
 			}
 			if(AuctionTransactionId != null)
 			{
-				sb.Append("<ebl:AuctionTransactionId>").Append(AuctionTransactionId);
+				sb.Append("<ebl:AuctionTransactionId>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(AuctionTransactionId));
 				sb.Append("</ebl:AuctionTransactionId>");
 			}
 			if(OrderId != null)
 			{
-				sb.Append("<ebl:OrderId>").Append(OrderId);
+				sb.Append("<ebl:OrderId>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(OrderId));
 				sb.Append("</ebl:OrderId>");
 			}
 			if(CartID != null)
 			{
-				sb.Append("<ebl:CartID>").Append(CartID);
+				sb.Append("<ebl:CartID>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(CartID));
 				sb.Append("</ebl:CartID>");
 			}
 			return sb.ToString();
 		}
-		public EbayItemPaymentDetailsItemType(Object xmlSoap)
+		public EbayItemPaymentDetailsItemType(XmlNode xmlNode)
 		{
-			XmlDocument document = new XmlDocument();
-			document.LoadXml(xmlSoap.ToString());
-			XmlNodeList nodeList = null;
-			string xmlString = "";
-		if(document.GetElementsByTagName("ItemNumber").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("ItemNumber")[0]))
+			XmlNode ChildNode = null;
+			XmlNodeList ChildNodeList = null;
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'ItemNumber']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.ItemNumber = (string)document.GetElementsByTagName("ItemNumber")[0].InnerText;
+				this.ItemNumber = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("AuctionTransactionId").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("AuctionTransactionId")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'AuctionTransactionId']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.AuctionTransactionId = (string)document.GetElementsByTagName("AuctionTransactionId")[0].InnerText;
+				this.AuctionTransactionId = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("OrderId").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("OrderId")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'OrderId']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.OrderId = (string)document.GetElementsByTagName("OrderId")[0].InnerText;
+				this.OrderId = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("CartID").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("CartID")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'CartID']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.CartID = (string)document.GetElementsByTagName("CartID")[0].InnerText;
+				this.CartID = ChildNode.InnerText;
 			}
-		}
 	
 		}
-		
 	}
 
 
@@ -14388,17 +13926,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			StringBuilder sb = new StringBuilder();
 			if(Name != null)
 			{
-				sb.Append("<ebl:Name>").Append(Name);
+				sb.Append("<ebl:Name>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(Name));
 				sb.Append("</ebl:Name>");
 			}
 			if(Number != null)
 			{
-				sb.Append("<ebl:Number>").Append(Number);
+				sb.Append("<ebl:Number>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(Number));
 				sb.Append("</ebl:Number>");
 			}
 			if(Quantity != null)
 			{
-				sb.Append("<ebl:Quantity>").Append(Quantity);
+				sb.Append("<ebl:Quantity>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(Quantity));
 				sb.Append("</ebl:Quantity>");
 			}
 			if(Tax != null)
@@ -14421,17 +13959,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(PromoCode != null)
 			{
-				sb.Append("<ebl:PromoCode>").Append(PromoCode);
+				sb.Append("<ebl:PromoCode>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(PromoCode));
 				sb.Append("</ebl:PromoCode>");
 			}
 			if(ProductCategory != null)
 			{
-				sb.Append("<ebl:ProductCategory>").Append(EnumUtils.getDescription(ProductCategory));
+				sb.Append("<ebl:ProductCategory>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(ProductCategory)));
 				sb.Append("</ebl:ProductCategory>");
 			}
 			if(Description != null)
 			{
-				sb.Append("<ebl:Description>").Append(Description);
+				sb.Append("<ebl:Description>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(Description));
 				sb.Append("</ebl:Description>");
 			}
 			if(ItemWeight != null)
@@ -14460,7 +13998,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(ItemURL != null)
 			{
-				sb.Append("<ebl:ItemURL>").Append(ItemURL);
+				sb.Append("<ebl:ItemURL>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(ItemURL));
 				sb.Append("</ebl:ItemURL>");
 			}
 			if(EnhancedItemData != null)
@@ -14471,148 +14009,97 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(ItemCategory != null)
 			{
-				sb.Append("<ebl:ItemCategory>").Append(EnumUtils.getDescription(ItemCategory));
+				sb.Append("<ebl:ItemCategory>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(ItemCategory)));
 				sb.Append("</ebl:ItemCategory>");
 			}
 			return sb.ToString();
 		}
-		public PaymentDetailsItemType(Object xmlSoap)
+		public PaymentDetailsItemType(XmlNode xmlNode)
 		{
-			XmlDocument document = new XmlDocument();
-			document.LoadXml(xmlSoap.ToString());
-			XmlNodeList nodeList = null;
-			string xmlString = "";
-		if(document.GetElementsByTagName("Name").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("Name")[0]))
+			XmlNode ChildNode = null;
+			XmlNodeList ChildNodeList = null;
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'Name']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.Name = (string)document.GetElementsByTagName("Name")[0].InnerText;
+				this.Name = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("Number").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("Number")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'Number']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.Number = (string)document.GetElementsByTagName("Number")[0].InnerText;
+				this.Number = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("Quantity").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("Quantity")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'Quantity']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.Quantity = System.Convert.ToInt32(document.GetElementsByTagName("Quantity")[0].InnerText);
+				this.Quantity = System.Convert.ToInt32(ChildNode.InnerText);
 			}
-		}
-			if(document.GetElementsByTagName("Tax").Count != 0)
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'Tax']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("Tax")[0]))
-				{
-					nodeList = document.GetElementsByTagName("Tax");
-					xmlString = DeserializationUtils.convertToXML(nodeList[0]);
-					this.Tax =  new BasicAmountType(xmlString);
-				}
+				this.Tax =  new BasicAmountType(ChildNode);
 			}
-			if(document.GetElementsByTagName("Amount").Count != 0)
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'Amount']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("Amount")[0]))
-				{
-					nodeList = document.GetElementsByTagName("Amount");
-					xmlString = DeserializationUtils.convertToXML(nodeList[0]);
-					this.Amount =  new BasicAmountType(xmlString);
-				}
+				this.Amount =  new BasicAmountType(ChildNode);
 			}
-			if(document.GetElementsByTagName("EbayItemPaymentDetailsItem").Count != 0)
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'EbayItemPaymentDetailsItem']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("EbayItemPaymentDetailsItem")[0]))
-				{
-					nodeList = document.GetElementsByTagName("EbayItemPaymentDetailsItem");
-					xmlString = DeserializationUtils.convertToXML(nodeList[0]);
-					this.EbayItemPaymentDetailsItem =  new EbayItemPaymentDetailsItemType(xmlString);
-				}
+				this.EbayItemPaymentDetailsItem =  new EbayItemPaymentDetailsItemType(ChildNode);
 			}
-		if(document.GetElementsByTagName("PromoCode").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("PromoCode")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'PromoCode']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.PromoCode = (string)document.GetElementsByTagName("PromoCode")[0].InnerText;
+				this.PromoCode = ChildNode.InnerText;
 			}
-		}
-			if(document.GetElementsByTagName("ProductCategory").Count != 0)
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'ProductCategory']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("ProductCategory")[0]))
-				{
-					this.ProductCategory = (ProductCategoryType)EnumUtils.getValue(document.GetElementsByTagName("ProductCategory")[0].InnerText,typeof(ProductCategoryType));
-				}
+				this.ProductCategory = (ProductCategoryType)EnumUtils.getValue(ChildNode.InnerText,typeof(ProductCategoryType));
 			}
-		if(document.GetElementsByTagName("Description").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("Description")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'Description']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.Description = (string)document.GetElementsByTagName("Description")[0].InnerText;
+				this.Description = ChildNode.InnerText;
 			}
-		}
-			if(document.GetElementsByTagName("ItemWeight").Count != 0)
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'ItemWeight']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("ItemWeight")[0]))
-				{
-					nodeList = document.GetElementsByTagName("ItemWeight");
-					xmlString = DeserializationUtils.convertToXML(nodeList[0]);
-					this.ItemWeight =  new MeasureType(xmlString);
-				}
+				this.ItemWeight =  new MeasureType(ChildNode);
 			}
-			if(document.GetElementsByTagName("ItemLength").Count != 0)
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'ItemLength']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("ItemLength")[0]))
-				{
-					nodeList = document.GetElementsByTagName("ItemLength");
-					xmlString = DeserializationUtils.convertToXML(nodeList[0]);
-					this.ItemLength =  new MeasureType(xmlString);
-				}
+				this.ItemLength =  new MeasureType(ChildNode);
 			}
-			if(document.GetElementsByTagName("ItemWidth").Count != 0)
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'ItemWidth']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("ItemWidth")[0]))
-				{
-					nodeList = document.GetElementsByTagName("ItemWidth");
-					xmlString = DeserializationUtils.convertToXML(nodeList[0]);
-					this.ItemWidth =  new MeasureType(xmlString);
-				}
+				this.ItemWidth =  new MeasureType(ChildNode);
 			}
-			if(document.GetElementsByTagName("ItemHeight").Count != 0)
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'ItemHeight']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("ItemHeight")[0]))
-				{
-					nodeList = document.GetElementsByTagName("ItemHeight");
-					xmlString = DeserializationUtils.convertToXML(nodeList[0]);
-					this.ItemHeight =  new MeasureType(xmlString);
-				}
+				this.ItemHeight =  new MeasureType(ChildNode);
 			}
-		if(document.GetElementsByTagName("ItemURL").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("ItemURL")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'ItemURL']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.ItemURL = (string)document.GetElementsByTagName("ItemURL")[0].InnerText;
+				this.ItemURL = ChildNode.InnerText;
 			}
-		}
-			if(document.GetElementsByTagName("EnhancedItemData").Count != 0)
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'EnhancedItemData']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("EnhancedItemData")[0]))
-				{
-					nodeList = document.GetElementsByTagName("EnhancedItemData");
-					xmlString = DeserializationUtils.convertToXML(nodeList[0]);
-					this.EnhancedItemData =  new EnhancedItemDataType(xmlString);
-				}
+				this.EnhancedItemData =  new EnhancedItemDataType(ChildNode);
 			}
-			if(document.GetElementsByTagName("ItemCategory").Count != 0)
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'ItemCategory']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("ItemCategory")[0]))
-				{
-					this.ItemCategory = (ItemCategoryType)EnumUtils.getValue(document.GetElementsByTagName("ItemCategory")[0].InnerText,typeof(ItemCategoryType));
-				}
+				this.ItemCategory = (ItemCategoryType)EnumUtils.getValue(ChildNode.InnerText,typeof(ItemCategoryType));
 			}
 	
 		}
-		
 	}
 
 
@@ -14869,120 +14356,86 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public PaymentItemType(Object xmlSoap)
+		public PaymentItemType(XmlNode xmlNode)
 		{
-			XmlDocument document = new XmlDocument();
-			document.LoadXml(xmlSoap.ToString());
-			XmlNodeList nodeList = null;
-			string xmlString = "";
-		if(document.GetElementsByTagName("EbayItemTxnId").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("EbayItemTxnId")[0]))
+			XmlNode ChildNode = null;
+			XmlNodeList ChildNodeList = null;
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'EbayItemTxnId']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.EbayItemTxnId = (string)document.GetElementsByTagName("EbayItemTxnId")[0].InnerText;
+				this.EbayItemTxnId = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("Name").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("Name")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'Name']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.Name = (string)document.GetElementsByTagName("Name")[0].InnerText;
+				this.Name = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("Number").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("Number")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'Number']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.Number = (string)document.GetElementsByTagName("Number")[0].InnerText;
+				this.Number = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("Quantity").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("Quantity")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'Quantity']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.Quantity = (string)document.GetElementsByTagName("Quantity")[0].InnerText;
+				this.Quantity = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("SalesTax").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("SalesTax")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'SalesTax']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.SalesTax = (string)document.GetElementsByTagName("SalesTax")[0].InnerText;
+				this.SalesTax = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("ShippingAmount").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("ShippingAmount")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'ShippingAmount']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.ShippingAmount = (string)document.GetElementsByTagName("ShippingAmount")[0].InnerText;
+				this.ShippingAmount = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("HandlingAmount").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("HandlingAmount")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'HandlingAmount']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.HandlingAmount = (string)document.GetElementsByTagName("HandlingAmount")[0].InnerText;
+				this.HandlingAmount = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("CouponID").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("CouponID")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'CouponID']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.CouponID = (string)document.GetElementsByTagName("CouponID")[0].InnerText;
+				this.CouponID = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("CouponAmount").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("CouponAmount")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'CouponAmount']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.CouponAmount = (string)document.GetElementsByTagName("CouponAmount")[0].InnerText;
+				this.CouponAmount = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("CouponAmountCurrency").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("CouponAmountCurrency")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'CouponAmountCurrency']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.CouponAmountCurrency = (string)document.GetElementsByTagName("CouponAmountCurrency")[0].InnerText;
+				this.CouponAmountCurrency = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("LoyaltyCardDiscountAmount").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("LoyaltyCardDiscountAmount")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'LoyaltyCardDiscountAmount']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.LoyaltyCardDiscountAmount = (string)document.GetElementsByTagName("LoyaltyCardDiscountAmount")[0].InnerText;
+				this.LoyaltyCardDiscountAmount = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("LoyaltyCardDiscountCurrency").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("LoyaltyCardDiscountCurrency")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'LoyaltyCardDiscountCurrency']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.LoyaltyCardDiscountCurrency = (string)document.GetElementsByTagName("LoyaltyCardDiscountCurrency")[0].InnerText;
+				this.LoyaltyCardDiscountCurrency = ChildNode.InnerText;
 			}
-		}
-			if(document.GetElementsByTagName("Amount").Count != 0)
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'Amount']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("Amount")[0]))
+				this.Amount =  new BasicAmountType(ChildNode);
+			}
+			ChildNodeList = xmlNode.SelectNodes("*[local-name() = 'Options']");
+			if (ChildNodeList != null && ChildNodeList.Count > 0)
+			{
+				for(int i = 0; i < ChildNodeList.Count; i++)
 				{
-					nodeList = document.GetElementsByTagName("Amount");
-					xmlString = DeserializationUtils.convertToXML(nodeList[0]);
-					this.Amount =  new BasicAmountType(xmlString);
-				}
-			}
-			if(document.GetElementsByTagName("Options").Count != 0)
-			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("Options")[0]))
-				{
-					nodeList = document.GetElementsByTagName("Options");
-					for(int i = 0; i < nodeList.Count; i++)
-					{
-						xmlString = DeserializationUtils.convertToXML(nodeList[i]);
-						this.Options.Add(new OptionType(xmlString));
-					}
+					XmlNode subNode = ChildNodeList.Item(i);
+					this.Options.Add(new OptionType(subNode));
 				}
 			}
 	
 		}
-		
 	}
 
 
@@ -15120,73 +14573,51 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public PaymentItemInfoType(Object xmlSoap)
+		public PaymentItemInfoType(XmlNode xmlNode)
 		{
-			XmlDocument document = new XmlDocument();
-			document.LoadXml(xmlSoap.ToString());
-			XmlNodeList nodeList = null;
-			string xmlString = "";
-		if(document.GetElementsByTagName("InvoiceID").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("InvoiceID")[0]))
+			XmlNode ChildNode = null;
+			XmlNodeList ChildNodeList = null;
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'InvoiceID']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.InvoiceID = (string)document.GetElementsByTagName("InvoiceID")[0].InnerText;
+				this.InvoiceID = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("Custom").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("Custom")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'Custom']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.Custom = (string)document.GetElementsByTagName("Custom")[0].InnerText;
+				this.Custom = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("Memo").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("Memo")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'Memo']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.Memo = (string)document.GetElementsByTagName("Memo")[0].InnerText;
+				this.Memo = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("SalesTax").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("SalesTax")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'SalesTax']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.SalesTax = (string)document.GetElementsByTagName("SalesTax")[0].InnerText;
+				this.SalesTax = ChildNode.InnerText;
 			}
-		}
-			if(document.GetElementsByTagName("PaymentItem").Count != 0)
+			ChildNodeList = xmlNode.SelectNodes("*[local-name() = 'PaymentItem']");
+			if (ChildNodeList != null && ChildNodeList.Count > 0)
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("PaymentItem")[0]))
+				for(int i = 0; i < ChildNodeList.Count; i++)
 				{
-					nodeList = document.GetElementsByTagName("PaymentItem");
-					for(int i = 0; i < nodeList.Count; i++)
-					{
-						xmlString = DeserializationUtils.convertToXML(nodeList[i]);
-						this.PaymentItem.Add(new PaymentItemType(xmlString));
-					}
+					XmlNode subNode = ChildNodeList.Item(i);
+					this.PaymentItem.Add(new PaymentItemType(subNode));
 				}
 			}
-			if(document.GetElementsByTagName("Subscription").Count != 0)
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'Subscription']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("Subscription")[0]))
-				{
-					nodeList = document.GetElementsByTagName("Subscription");
-					xmlString = DeserializationUtils.convertToXML(nodeList[0]);
-					this.Subscription =  new SubscriptionInfoType(xmlString);
-				}
+				this.Subscription =  new SubscriptionInfoType(ChildNode);
 			}
-			if(document.GetElementsByTagName("Auction").Count != 0)
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'Auction']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("Auction")[0]))
-				{
-					nodeList = document.GetElementsByTagName("Auction");
-					xmlString = DeserializationUtils.convertToXML(nodeList[0]);
-					this.Auction =  new AuctionInfoType(xmlString);
-				}
+				this.Auction =  new AuctionInfoType(ChildNode);
 			}
 	
 		}
-		
 	}
 
 
@@ -15274,43 +14705,32 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public OfferCouponInfoType(Object xmlSoap)
+		public OfferCouponInfoType(XmlNode xmlNode)
 		{
-			XmlDocument document = new XmlDocument();
-			document.LoadXml(xmlSoap.ToString());
-			XmlNodeList nodeList = null;
-			string xmlString = "";
-		if(document.GetElementsByTagName("Type").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("Type")[0]))
+			XmlNode ChildNode = null;
+			XmlNodeList ChildNodeList = null;
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'Type']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.Type = (string)document.GetElementsByTagName("Type")[0].InnerText;
+				this.Type = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("ID").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("ID")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'ID']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.ID = (string)document.GetElementsByTagName("ID")[0].InnerText;
+				this.ID = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("Amount").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("Amount")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'Amount']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.Amount = (string)document.GetElementsByTagName("Amount")[0].InnerText;
+				this.Amount = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("AmountCurrency").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("AmountCurrency")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'AmountCurrency']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.AmountCurrency = (string)document.GetElementsByTagName("AmountCurrency")[0].InnerText;
+				this.AmountCurrency = ChildNode.InnerText;
 			}
-		}
 	
 		}
-		
 	}
 
 
@@ -15506,6 +14926,40 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			set
 			{
 				this.ShipToAddressField = value;
+			}
+		}
+		
+
+		/**
+          *
+		  */
+		private AddressType FulfillmentAddressField;
+		public AddressType FulfillmentAddress
+		{
+			get
+			{
+				return this.FulfillmentAddressField;
+			}
+			set
+			{
+				this.FulfillmentAddressField = value;
+			}
+		}
+		
+
+		/**
+          *
+		  */
+		private PaymentCategoryType? PaymentCategoryTypeField;
+		public PaymentCategoryType? PaymentCategoryType
+		{
+			get
+			{
+				return this.PaymentCategoryTypeField;
+			}
+			set
+			{
+				this.PaymentCategoryTypeField = value;
 			}
 		}
 		
@@ -15875,27 +15329,27 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(OrderDescription != null)
 			{
-				sb.Append("<ebl:OrderDescription>").Append(OrderDescription);
+				sb.Append("<ebl:OrderDescription>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(OrderDescription));
 				sb.Append("</ebl:OrderDescription>");
 			}
 			if(Custom != null)
 			{
-				sb.Append("<ebl:Custom>").Append(Custom);
+				sb.Append("<ebl:Custom>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(Custom));
 				sb.Append("</ebl:Custom>");
 			}
 			if(InvoiceID != null)
 			{
-				sb.Append("<ebl:InvoiceID>").Append(InvoiceID);
+				sb.Append("<ebl:InvoiceID>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(InvoiceID));
 				sb.Append("</ebl:InvoiceID>");
 			}
 			if(ButtonSource != null)
 			{
-				sb.Append("<ebl:ButtonSource>").Append(ButtonSource);
+				sb.Append("<ebl:ButtonSource>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(ButtonSource));
 				sb.Append("</ebl:ButtonSource>");
 			}
 			if(NotifyURL != null)
 			{
-				sb.Append("<ebl:NotifyURL>").Append(NotifyURL);
+				sb.Append("<ebl:NotifyURL>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(NotifyURL));
 				sb.Append("</ebl:NotifyURL>");
 			}
 			if(ShipToAddress != null)
@@ -15904,14 +15358,25 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 				sb.Append(ShipToAddress.toXMLString());
 				sb.Append("</ebl:ShipToAddress>");
 			}
+			if(FulfillmentAddress != null)
+			{
+				sb.Append("<ebl:FulfillmentAddress>");
+				sb.Append(FulfillmentAddress.toXMLString());
+				sb.Append("</ebl:FulfillmentAddress>");
+			}
+			if(PaymentCategoryType != null)
+			{
+				sb.Append("<ebl:PaymentCategoryType>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(PaymentCategoryType)));
+				sb.Append("</ebl:PaymentCategoryType>");
+			}
 			if(ShippingMethod != null)
 			{
-				sb.Append("<ebl:ShippingMethod>").Append(EnumUtils.getDescription(ShippingMethod));
+				sb.Append("<ebl:ShippingMethod>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(ShippingMethod)));
 				sb.Append("</ebl:ShippingMethod>");
 			}
 			if(ProfileAddressChangeDate != null)
 			{
-				sb.Append("<ebl:ProfileAddressChangeDate>").Append(ProfileAddressChangeDate);
+				sb.Append("<ebl:ProfileAddressChangeDate>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(ProfileAddressChangeDate));
 				sb.Append("</ebl:ProfileAddressChangeDate>");
 			}
 			if(PaymentDetailsItem != null)
@@ -15938,12 +15403,12 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(InsuranceOptionOffered != null)
 			{
-				sb.Append("<ebl:InsuranceOptionOffered>").Append(InsuranceOptionOffered);
+				sb.Append("<ebl:InsuranceOptionOffered>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(InsuranceOptionOffered));
 				sb.Append("</ebl:InsuranceOptionOffered>");
 			}
 			if(AllowedPaymentMethod != null)
 			{
-				sb.Append("<ebl:AllowedPaymentMethod>").Append(EnumUtils.getDescription(AllowedPaymentMethod));
+				sb.Append("<ebl:AllowedPaymentMethod>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(AllowedPaymentMethod)));
 				sb.Append("</ebl:AllowedPaymentMethod>");
 			}
 			if(EnhancedPaymentData != null)
@@ -15960,37 +15425,37 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(NoteText != null)
 			{
-				sb.Append("<ebl:NoteText>").Append(NoteText);
+				sb.Append("<ebl:NoteText>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(NoteText));
 				sb.Append("</ebl:NoteText>");
 			}
 			if(TransactionId != null)
 			{
-				sb.Append("<ebl:TransactionId>").Append(TransactionId);
+				sb.Append("<ebl:TransactionId>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(TransactionId));
 				sb.Append("</ebl:TransactionId>");
 			}
 			if(PaymentAction != null)
 			{
-				sb.Append("<ebl:PaymentAction>").Append(EnumUtils.getDescription(PaymentAction));
+				sb.Append("<ebl:PaymentAction>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(PaymentAction)));
 				sb.Append("</ebl:PaymentAction>");
 			}
 			if(PaymentRequestID != null)
 			{
-				sb.Append("<ebl:PaymentRequestID>").Append(PaymentRequestID);
+				sb.Append("<ebl:PaymentRequestID>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(PaymentRequestID));
 				sb.Append("</ebl:PaymentRequestID>");
 			}
 			if(OrderURL != null)
 			{
-				sb.Append("<ebl:OrderURL>").Append(OrderURL);
+				sb.Append("<ebl:OrderURL>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(OrderURL));
 				sb.Append("</ebl:OrderURL>");
 			}
 			if(SoftDescriptor != null)
 			{
-				sb.Append("<ebl:SoftDescriptor>").Append(SoftDescriptor);
+				sb.Append("<ebl:SoftDescriptor>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(SoftDescriptor));
 				sb.Append("</ebl:SoftDescriptor>");
 			}
 			if(BranchLevel != null)
 			{
-				sb.Append("<ebl:BranchLevel>").Append(BranchLevel);
+				sb.Append("<ebl:BranchLevel>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(BranchLevel));
 				sb.Append("</ebl:BranchLevel>");
 			}
 			if(OfferDetails != null)
@@ -16001,262 +15466,186 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(Recurring != null)
 			{
-				sb.Append("<ebl:Recurring>").Append(EnumUtils.getDescription(Recurring));
+				sb.Append("<ebl:Recurring>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(Recurring)));
 				sb.Append("</ebl:Recurring>");
 			}
 			if(PaymentReason != null)
 			{
-				sb.Append("<ebl:PaymentReason>").Append(EnumUtils.getDescription(PaymentReason));
+				sb.Append("<ebl:PaymentReason>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(PaymentReason)));
 				sb.Append("</ebl:PaymentReason>");
 			}
 			return sb.ToString();
 		}
-		public PaymentDetailsType(Object xmlSoap)
+		public PaymentDetailsType(XmlNode xmlNode)
 		{
-			XmlDocument document = new XmlDocument();
-			document.LoadXml(xmlSoap.ToString());
-			XmlNodeList nodeList = null;
-			string xmlString = "";
-			if(document.GetElementsByTagName("OrderTotal").Count != 0)
+			XmlNode ChildNode = null;
+			XmlNodeList ChildNodeList = null;
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'OrderTotal']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("OrderTotal")[0]))
+				this.OrderTotal =  new BasicAmountType(ChildNode);
+			}
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'ItemTotal']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
+			{
+				this.ItemTotal =  new BasicAmountType(ChildNode);
+			}
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'ShippingTotal']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
+			{
+				this.ShippingTotal =  new BasicAmountType(ChildNode);
+			}
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'HandlingTotal']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
+			{
+				this.HandlingTotal =  new BasicAmountType(ChildNode);
+			}
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'TaxTotal']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
+			{
+				this.TaxTotal =  new BasicAmountType(ChildNode);
+			}
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'OrderDescription']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
+			{
+				this.OrderDescription = ChildNode.InnerText;
+			}
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'Custom']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
+			{
+				this.Custom = ChildNode.InnerText;
+			}
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'InvoiceID']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
+			{
+				this.InvoiceID = ChildNode.InnerText;
+			}
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'ButtonSource']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
+			{
+				this.ButtonSource = ChildNode.InnerText;
+			}
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'NotifyURL']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
+			{
+				this.NotifyURL = ChildNode.InnerText;
+			}
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'ShipToAddress']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
+			{
+				this.ShipToAddress =  new AddressType(ChildNode);
+			}
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'FulfillmentAddress']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
+			{
+				this.FulfillmentAddress =  new AddressType(ChildNode);
+			}
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'PaymentCategoryType']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
+			{
+				this.PaymentCategoryType = (PaymentCategoryType)EnumUtils.getValue(ChildNode.InnerText,typeof(PaymentCategoryType));
+			}
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'ShippingMethod']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
+			{
+				this.ShippingMethod = (ShippingServiceCodeType)EnumUtils.getValue(ChildNode.InnerText,typeof(ShippingServiceCodeType));
+			}
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'ProfileAddressChangeDate']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
+			{
+				this.ProfileAddressChangeDate = ChildNode.InnerText;
+			}
+			ChildNodeList = xmlNode.SelectNodes("*[local-name() = 'PaymentDetailsItem']");
+			if (ChildNodeList != null && ChildNodeList.Count > 0)
+			{
+				for(int i = 0; i < ChildNodeList.Count; i++)
 				{
-					nodeList = document.GetElementsByTagName("OrderTotal");
-					xmlString = DeserializationUtils.convertToXML(nodeList[0]);
-					this.OrderTotal =  new BasicAmountType(xmlString);
+					XmlNode subNode = ChildNodeList.Item(i);
+					this.PaymentDetailsItem.Add(new PaymentDetailsItemType(subNode));
 				}
 			}
-			if(document.GetElementsByTagName("ItemTotal").Count != 0)
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'InsuranceTotal']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("ItemTotal")[0]))
-				{
-					nodeList = document.GetElementsByTagName("ItemTotal");
-					xmlString = DeserializationUtils.convertToXML(nodeList[0]);
-					this.ItemTotal =  new BasicAmountType(xmlString);
-				}
+				this.InsuranceTotal =  new BasicAmountType(ChildNode);
 			}
-			if(document.GetElementsByTagName("ShippingTotal").Count != 0)
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'ShippingDiscount']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("ShippingTotal")[0]))
-				{
-					nodeList = document.GetElementsByTagName("ShippingTotal");
-					xmlString = DeserializationUtils.convertToXML(nodeList[0]);
-					this.ShippingTotal =  new BasicAmountType(xmlString);
-				}
+				this.ShippingDiscount =  new BasicAmountType(ChildNode);
 			}
-			if(document.GetElementsByTagName("HandlingTotal").Count != 0)
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'InsuranceOptionOffered']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("HandlingTotal")[0]))
-				{
-					nodeList = document.GetElementsByTagName("HandlingTotal");
-					xmlString = DeserializationUtils.convertToXML(nodeList[0]);
-					this.HandlingTotal =  new BasicAmountType(xmlString);
-				}
+				this.InsuranceOptionOffered = ChildNode.InnerText;
 			}
-			if(document.GetElementsByTagName("TaxTotal").Count != 0)
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'AllowedPaymentMethod']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("TaxTotal")[0]))
-				{
-					nodeList = document.GetElementsByTagName("TaxTotal");
-					xmlString = DeserializationUtils.convertToXML(nodeList[0]);
-					this.TaxTotal =  new BasicAmountType(xmlString);
-				}
+				this.AllowedPaymentMethod = (AllowedPaymentMethodType)EnumUtils.getValue(ChildNode.InnerText,typeof(AllowedPaymentMethodType));
 			}
-		if(document.GetElementsByTagName("OrderDescription").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("OrderDescription")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'EnhancedPaymentData']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.OrderDescription = (string)document.GetElementsByTagName("OrderDescription")[0].InnerText;
+				this.EnhancedPaymentData =  new EnhancedPaymentDataType(ChildNode);
 			}
-		}
-		if(document.GetElementsByTagName("Custom").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("Custom")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'SellerDetails']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.Custom = (string)document.GetElementsByTagName("Custom")[0].InnerText;
+				this.SellerDetails =  new SellerDetailsType(ChildNode);
 			}
-		}
-		if(document.GetElementsByTagName("InvoiceID").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("InvoiceID")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'NoteText']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.InvoiceID = (string)document.GetElementsByTagName("InvoiceID")[0].InnerText;
+				this.NoteText = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("ButtonSource").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("ButtonSource")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'TransactionId']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.ButtonSource = (string)document.GetElementsByTagName("ButtonSource")[0].InnerText;
+				this.TransactionId = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("NotifyURL").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("NotifyURL")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'PaymentAction']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.NotifyURL = (string)document.GetElementsByTagName("NotifyURL")[0].InnerText;
+				this.PaymentAction = (PaymentActionCodeType)EnumUtils.getValue(ChildNode.InnerText,typeof(PaymentActionCodeType));
 			}
-		}
-			if(document.GetElementsByTagName("ShipToAddress").Count != 0)
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'PaymentRequestID']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("ShipToAddress")[0]))
-				{
-					nodeList = document.GetElementsByTagName("ShipToAddress");
-					xmlString = DeserializationUtils.convertToXML(nodeList[0]);
-					this.ShipToAddress =  new AddressType(xmlString);
-				}
+				this.PaymentRequestID = ChildNode.InnerText;
 			}
-			if(document.GetElementsByTagName("ShippingMethod").Count != 0)
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'OrderURL']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("ShippingMethod")[0]))
-				{
-					this.ShippingMethod = (ShippingServiceCodeType)EnumUtils.getValue(document.GetElementsByTagName("ShippingMethod")[0].InnerText,typeof(ShippingServiceCodeType));
-				}
+				this.OrderURL = ChildNode.InnerText;
 			}
-		if(document.GetElementsByTagName("ProfileAddressChangeDate").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("ProfileAddressChangeDate")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'SoftDescriptor']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.ProfileAddressChangeDate = (string)document.GetElementsByTagName("ProfileAddressChangeDate")[0].InnerText;
+				this.SoftDescriptor = ChildNode.InnerText;
 			}
-		}
-			if(document.GetElementsByTagName("PaymentDetailsItem").Count != 0)
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'BranchLevel']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("PaymentDetailsItem")[0]))
-				{
-					nodeList = document.GetElementsByTagName("PaymentDetailsItem");
-					for(int i = 0; i < nodeList.Count; i++)
-					{
-						xmlString = DeserializationUtils.convertToXML(nodeList[i]);
-						this.PaymentDetailsItem.Add(new PaymentDetailsItemType(xmlString));
-					}
-				}
+				this.BranchLevel = System.Convert.ToInt32(ChildNode.InnerText);
 			}
-			if(document.GetElementsByTagName("InsuranceTotal").Count != 0)
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'OfferDetails']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("InsuranceTotal")[0]))
-				{
-					nodeList = document.GetElementsByTagName("InsuranceTotal");
-					xmlString = DeserializationUtils.convertToXML(nodeList[0]);
-					this.InsuranceTotal =  new BasicAmountType(xmlString);
-				}
+				this.OfferDetails =  new OfferDetailsType(ChildNode);
 			}
-			if(document.GetElementsByTagName("ShippingDiscount").Count != 0)
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'Recurring']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("ShippingDiscount")[0]))
-				{
-					nodeList = document.GetElementsByTagName("ShippingDiscount");
-					xmlString = DeserializationUtils.convertToXML(nodeList[0]);
-					this.ShippingDiscount =  new BasicAmountType(xmlString);
-				}
+				this.Recurring = (RecurringFlagType)EnumUtils.getValue(ChildNode.InnerText,typeof(RecurringFlagType));
 			}
-		if(document.GetElementsByTagName("InsuranceOptionOffered").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("InsuranceOptionOffered")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'PaymentReason']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.InsuranceOptionOffered = (string)document.GetElementsByTagName("InsuranceOptionOffered")[0].InnerText;
-			}
-		}
-			if(document.GetElementsByTagName("AllowedPaymentMethod").Count != 0)
-			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("AllowedPaymentMethod")[0]))
-				{
-					this.AllowedPaymentMethod = (AllowedPaymentMethodType)EnumUtils.getValue(document.GetElementsByTagName("AllowedPaymentMethod")[0].InnerText,typeof(AllowedPaymentMethodType));
-				}
-			}
-			if(document.GetElementsByTagName("EnhancedPaymentData").Count != 0)
-			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("EnhancedPaymentData")[0]))
-				{
-					nodeList = document.GetElementsByTagName("EnhancedPaymentData");
-					xmlString = DeserializationUtils.convertToXML(nodeList[0]);
-					this.EnhancedPaymentData =  new EnhancedPaymentDataType(xmlString);
-				}
-			}
-			if(document.GetElementsByTagName("SellerDetails").Count != 0)
-			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("SellerDetails")[0]))
-				{
-					nodeList = document.GetElementsByTagName("SellerDetails");
-					xmlString = DeserializationUtils.convertToXML(nodeList[0]);
-					this.SellerDetails =  new SellerDetailsType(xmlString);
-				}
-			}
-		if(document.GetElementsByTagName("NoteText").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("NoteText")[0]))
-			{
-				this.NoteText = (string)document.GetElementsByTagName("NoteText")[0].InnerText;
-			}
-		}
-		if(document.GetElementsByTagName("TransactionId").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("TransactionId")[0]))
-			{
-				this.TransactionId = (string)document.GetElementsByTagName("TransactionId")[0].InnerText;
-			}
-		}
-			if(document.GetElementsByTagName("PaymentAction").Count != 0)
-			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("PaymentAction")[0]))
-				{
-					this.PaymentAction = (PaymentActionCodeType)EnumUtils.getValue(document.GetElementsByTagName("PaymentAction")[0].InnerText,typeof(PaymentActionCodeType));
-				}
-			}
-		if(document.GetElementsByTagName("PaymentRequestID").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("PaymentRequestID")[0]))
-			{
-				this.PaymentRequestID = (string)document.GetElementsByTagName("PaymentRequestID")[0].InnerText;
-			}
-		}
-		if(document.GetElementsByTagName("OrderURL").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("OrderURL")[0]))
-			{
-				this.OrderURL = (string)document.GetElementsByTagName("OrderURL")[0].InnerText;
-			}
-		}
-		if(document.GetElementsByTagName("SoftDescriptor").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("SoftDescriptor")[0]))
-			{
-				this.SoftDescriptor = (string)document.GetElementsByTagName("SoftDescriptor")[0].InnerText;
-			}
-		}
-		if(document.GetElementsByTagName("BranchLevel").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("BranchLevel")[0]))
-			{
-				this.BranchLevel = System.Convert.ToInt32(document.GetElementsByTagName("BranchLevel")[0].InnerText);
-			}
-		}
-			if(document.GetElementsByTagName("OfferDetails").Count != 0)
-			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("OfferDetails")[0]))
-				{
-					nodeList = document.GetElementsByTagName("OfferDetails");
-					xmlString = DeserializationUtils.convertToXML(nodeList[0]);
-					this.OfferDetails =  new OfferDetailsType(xmlString);
-				}
-			}
-			if(document.GetElementsByTagName("Recurring").Count != 0)
-			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("Recurring")[0]))
-				{
-					this.Recurring = (RecurringFlagType)EnumUtils.getValue(document.GetElementsByTagName("Recurring")[0].InnerText,typeof(RecurringFlagType));
-				}
-			}
-			if(document.GetElementsByTagName("PaymentReason").Count != 0)
-			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("PaymentReason")[0]))
-				{
-					this.PaymentReason = (PaymentReasonType)EnumUtils.getValue(document.GetElementsByTagName("PaymentReason")[0].InnerText,typeof(PaymentReasonType));
-				}
+				this.PaymentReason = (PaymentReasonType)EnumUtils.getValue(ChildNode.InnerText,typeof(PaymentReasonType));
 			}
 	
 		}
-		
 	}
 
 
@@ -16378,64 +15767,46 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public IncentiveDetailsType(Object xmlSoap)
+		public IncentiveDetailsType(XmlNode xmlNode)
 		{
-			XmlDocument document = new XmlDocument();
-			document.LoadXml(xmlSoap.ToString());
-			XmlNodeList nodeList = null;
-			string xmlString = "";
-		if(document.GetElementsByTagName("UniqueIdentifier").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("UniqueIdentifier")[0]))
+			XmlNode ChildNode = null;
+			XmlNodeList ChildNodeList = null;
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'UniqueIdentifier']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.UniqueIdentifier = (string)document.GetElementsByTagName("UniqueIdentifier")[0].InnerText;
+				this.UniqueIdentifier = ChildNode.InnerText;
 			}
-		}
-			if(document.GetElementsByTagName("SiteAppliedOn").Count != 0)
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'SiteAppliedOn']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("SiteAppliedOn")[0]))
+				this.SiteAppliedOn = (IncentiveSiteAppliedOnType)EnumUtils.getValue(ChildNode.InnerText,typeof(IncentiveSiteAppliedOnType));
+			}
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'TotalDiscountAmount']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
+			{
+				this.TotalDiscountAmount =  new BasicAmountType(ChildNode);
+			}
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'Status']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
+			{
+				this.Status = (IncentiveAppliedStatusType)EnumUtils.getValue(ChildNode.InnerText,typeof(IncentiveAppliedStatusType));
+			}
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'ErrorCode']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
+			{
+				this.ErrorCode = System.Convert.ToInt32(ChildNode.InnerText);
+			}
+			ChildNodeList = xmlNode.SelectNodes("*[local-name() = 'IncentiveAppliedDetails']");
+			if (ChildNodeList != null && ChildNodeList.Count > 0)
+			{
+				for(int i = 0; i < ChildNodeList.Count; i++)
 				{
-					this.SiteAppliedOn = (IncentiveSiteAppliedOnType)EnumUtils.getValue(document.GetElementsByTagName("SiteAppliedOn")[0].InnerText,typeof(IncentiveSiteAppliedOnType));
-				}
-			}
-			if(document.GetElementsByTagName("TotalDiscountAmount").Count != 0)
-			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("TotalDiscountAmount")[0]))
-				{
-					nodeList = document.GetElementsByTagName("TotalDiscountAmount");
-					xmlString = DeserializationUtils.convertToXML(nodeList[0]);
-					this.TotalDiscountAmount =  new BasicAmountType(xmlString);
-				}
-			}
-			if(document.GetElementsByTagName("Status").Count != 0)
-			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("Status")[0]))
-				{
-					this.Status = (IncentiveAppliedStatusType)EnumUtils.getValue(document.GetElementsByTagName("Status")[0].InnerText,typeof(IncentiveAppliedStatusType));
-				}
-			}
-		if(document.GetElementsByTagName("ErrorCode").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("ErrorCode")[0]))
-			{
-				this.ErrorCode = System.Convert.ToInt32(document.GetElementsByTagName("ErrorCode")[0].InnerText);
-			}
-		}
-			if(document.GetElementsByTagName("IncentiveAppliedDetails").Count != 0)
-			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("IncentiveAppliedDetails")[0]))
-				{
-					nodeList = document.GetElementsByTagName("IncentiveAppliedDetails");
-					for(int i = 0; i < nodeList.Count; i++)
-					{
-						xmlString = DeserializationUtils.convertToXML(nodeList[i]);
-						this.IncentiveAppliedDetails.Add(new IncentiveAppliedDetailsType(xmlString));
-					}
+					XmlNode subNode = ChildNodeList.Item(i);
+					this.IncentiveAppliedDetails.Add(new IncentiveAppliedDetailsType(subNode));
 				}
 			}
 	
 		}
-		
 	}
 
 
@@ -16539,52 +15910,37 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public IncentiveAppliedDetailsType(Object xmlSoap)
+		public IncentiveAppliedDetailsType(XmlNode xmlNode)
 		{
-			XmlDocument document = new XmlDocument();
-			document.LoadXml(xmlSoap.ToString());
-			XmlNodeList nodeList = null;
-			string xmlString = "";
-		if(document.GetElementsByTagName("PaymentRequestID").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("PaymentRequestID")[0]))
+			XmlNode ChildNode = null;
+			XmlNodeList ChildNodeList = null;
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'PaymentRequestID']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.PaymentRequestID = (string)document.GetElementsByTagName("PaymentRequestID")[0].InnerText;
+				this.PaymentRequestID = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("ItemId").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("ItemId")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'ItemId']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.ItemId = (string)document.GetElementsByTagName("ItemId")[0].InnerText;
+				this.ItemId = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("ExternalTxnId").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("ExternalTxnId")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'ExternalTxnId']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.ExternalTxnId = (string)document.GetElementsByTagName("ExternalTxnId")[0].InnerText;
+				this.ExternalTxnId = ChildNode.InnerText;
 			}
-		}
-			if(document.GetElementsByTagName("DiscountAmount").Count != 0)
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'DiscountAmount']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("DiscountAmount")[0]))
-				{
-					nodeList = document.GetElementsByTagName("DiscountAmount");
-					xmlString = DeserializationUtils.convertToXML(nodeList[0]);
-					this.DiscountAmount =  new BasicAmountType(xmlString);
-				}
+				this.DiscountAmount =  new BasicAmountType(ChildNode);
 			}
-		if(document.GetElementsByTagName("SubType").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("SubType")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'SubType']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.SubType = (string)document.GetElementsByTagName("SubType")[0].InnerText;
+				this.SubType = ChildNode.InnerText;
 			}
-		}
 	
 		}
-		
 	}
 
 
@@ -16693,75 +16049,62 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			StringBuilder sb = new StringBuilder();
 			if(SellerId != null)
 			{
-				sb.Append("<ebl:SellerId>").Append(SellerId);
+				sb.Append("<ebl:SellerId>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(SellerId));
 				sb.Append("</ebl:SellerId>");
 			}
 			if(SellerUserName != null)
 			{
-				sb.Append("<ebl:SellerUserName>").Append(SellerUserName);
+				sb.Append("<ebl:SellerUserName>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(SellerUserName));
 				sb.Append("</ebl:SellerUserName>");
 			}
 			if(SellerRegistrationDate != null)
 			{
-				sb.Append("<ebl:SellerRegistrationDate>").Append(SellerRegistrationDate);
+				sb.Append("<ebl:SellerRegistrationDate>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(SellerRegistrationDate));
 				sb.Append("</ebl:SellerRegistrationDate>");
 			}
 			if(PayPalAccountID != null)
 			{
-				sb.Append("<ebl:PayPalAccountID>").Append(PayPalAccountID);
+				sb.Append("<ebl:PayPalAccountID>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(PayPalAccountID));
 				sb.Append("</ebl:PayPalAccountID>");
 			}
 			if(SecureMerchantAccountID != null)
 			{
-				sb.Append("<ebl:SecureMerchantAccountID>").Append(SecureMerchantAccountID);
+				sb.Append("<ebl:SecureMerchantAccountID>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(SecureMerchantAccountID));
 				sb.Append("</ebl:SecureMerchantAccountID>");
 			}
 			return sb.ToString();
 		}
-		public SellerDetailsType(Object xmlSoap)
+		public SellerDetailsType(XmlNode xmlNode)
 		{
-			XmlDocument document = new XmlDocument();
-			document.LoadXml(xmlSoap.ToString());
-			XmlNodeList nodeList = null;
-			string xmlString = "";
-		if(document.GetElementsByTagName("SellerId").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("SellerId")[0]))
+			XmlNode ChildNode = null;
+			XmlNodeList ChildNodeList = null;
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'SellerId']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.SellerId = (string)document.GetElementsByTagName("SellerId")[0].InnerText;
+				this.SellerId = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("SellerUserName").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("SellerUserName")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'SellerUserName']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.SellerUserName = (string)document.GetElementsByTagName("SellerUserName")[0].InnerText;
+				this.SellerUserName = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("SellerRegistrationDate").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("SellerRegistrationDate")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'SellerRegistrationDate']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.SellerRegistrationDate = (string)document.GetElementsByTagName("SellerRegistrationDate")[0].InnerText;
+				this.SellerRegistrationDate = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("PayPalAccountID").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("PayPalAccountID")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'PayPalAccountID']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.PayPalAccountID = (string)document.GetElementsByTagName("PayPalAccountID")[0].InnerText;
+				this.PayPalAccountID = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("SecureMerchantAccountID").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("SecureMerchantAccountID")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'SecureMerchantAccountID']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.SecureMerchantAccountID = (string)document.GetElementsByTagName("SecureMerchantAccountID")[0].InnerText;
+				this.SecureMerchantAccountID = ChildNode.InnerText;
 			}
-		}
 	
 		}
-		
 	}
 
 
@@ -16922,42 +16265,42 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			StringBuilder sb = new StringBuilder();
 			if(OtherPaymentMethodId != null)
 			{
-				sb.Append("<ebl:OtherPaymentMethodId>").Append(OtherPaymentMethodId);
+				sb.Append("<ebl:OtherPaymentMethodId>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(OtherPaymentMethodId));
 				sb.Append("</ebl:OtherPaymentMethodId>");
 			}
 			if(OtherPaymentMethodType != null)
 			{
-				sb.Append("<ebl:OtherPaymentMethodType>").Append(OtherPaymentMethodType);
+				sb.Append("<ebl:OtherPaymentMethodType>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(OtherPaymentMethodType));
 				sb.Append("</ebl:OtherPaymentMethodType>");
 			}
 			if(OtherPaymentMethodLabel != null)
 			{
-				sb.Append("<ebl:OtherPaymentMethodLabel>").Append(OtherPaymentMethodLabel);
+				sb.Append("<ebl:OtherPaymentMethodLabel>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(OtherPaymentMethodLabel));
 				sb.Append("</ebl:OtherPaymentMethodLabel>");
 			}
 			if(OtherPaymentMethodLabelDescription != null)
 			{
-				sb.Append("<ebl:OtherPaymentMethodLabelDescription>").Append(OtherPaymentMethodLabelDescription);
+				sb.Append("<ebl:OtherPaymentMethodLabelDescription>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(OtherPaymentMethodLabelDescription));
 				sb.Append("</ebl:OtherPaymentMethodLabelDescription>");
 			}
 			if(OtherPaymentMethodLongDescriptionTitle != null)
 			{
-				sb.Append("<ebl:OtherPaymentMethodLongDescriptionTitle>").Append(OtherPaymentMethodLongDescriptionTitle);
+				sb.Append("<ebl:OtherPaymentMethodLongDescriptionTitle>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(OtherPaymentMethodLongDescriptionTitle));
 				sb.Append("</ebl:OtherPaymentMethodLongDescriptionTitle>");
 			}
 			if(OtherPaymentMethodLongDescription != null)
 			{
-				sb.Append("<ebl:OtherPaymentMethodLongDescription>").Append(OtherPaymentMethodLongDescription);
+				sb.Append("<ebl:OtherPaymentMethodLongDescription>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(OtherPaymentMethodLongDescription));
 				sb.Append("</ebl:OtherPaymentMethodLongDescription>");
 			}
 			if(OtherPaymentMethodIcon != null)
 			{
-				sb.Append("<ebl:OtherPaymentMethodIcon>").Append(OtherPaymentMethodIcon);
+				sb.Append("<ebl:OtherPaymentMethodIcon>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(OtherPaymentMethodIcon));
 				sb.Append("</ebl:OtherPaymentMethodIcon>");
 			}
 			if(OtherPaymentMethodHideLabel != null)
 			{
-				sb.Append("<ebl:OtherPaymentMethodHideLabel>").Append(OtherPaymentMethodHideLabel);
+				sb.Append("<ebl:OtherPaymentMethodHideLabel>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(OtherPaymentMethodHideLabel));
 				sb.Append("</ebl:OtherPaymentMethodHideLabel>");
 			}
 			return sb.ToString();
@@ -17071,17 +16414,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			StringBuilder sb = new StringBuilder();
 			if(BuyerId != null)
 			{
-				sb.Append("<ebl:BuyerId>").Append(BuyerId);
+				sb.Append("<ebl:BuyerId>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(BuyerId));
 				sb.Append("</ebl:BuyerId>");
 			}
 			if(BuyerUserName != null)
 			{
-				sb.Append("<ebl:BuyerUserName>").Append(BuyerUserName);
+				sb.Append("<ebl:BuyerUserName>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(BuyerUserName));
 				sb.Append("</ebl:BuyerUserName>");
 			}
 			if(BuyerRegistrationDate != null)
 			{
-				sb.Append("<ebl:BuyerRegistrationDate>").Append(BuyerRegistrationDate);
+				sb.Append("<ebl:BuyerRegistrationDate>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(BuyerRegistrationDate));
 				sb.Append("</ebl:BuyerRegistrationDate>");
 			}
 			if(TaxIdDetails != null)
@@ -17156,39 +16499,32 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			StringBuilder sb = new StringBuilder();
 			if(TaxIdType != null)
 			{
-				sb.Append("<ebl:TaxIdType>").Append(TaxIdType);
+				sb.Append("<ebl:TaxIdType>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(TaxIdType));
 				sb.Append("</ebl:TaxIdType>");
 			}
 			if(TaxId != null)
 			{
-				sb.Append("<ebl:TaxId>").Append(TaxId);
+				sb.Append("<ebl:TaxId>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(TaxId));
 				sb.Append("</ebl:TaxId>");
 			}
 			return sb.ToString();
 		}
-		public TaxIdDetailsType(Object xmlSoap)
+		public TaxIdDetailsType(XmlNode xmlNode)
 		{
-			XmlDocument document = new XmlDocument();
-			document.LoadXml(xmlSoap.ToString());
-			XmlNodeList nodeList = null;
-			string xmlString = "";
-		if(document.GetElementsByTagName("TaxIdType").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("TaxIdType")[0]))
+			XmlNode ChildNode = null;
+			XmlNodeList ChildNodeList = null;
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'TaxIdType']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.TaxIdType = (string)document.GetElementsByTagName("TaxIdType")[0].InnerText;
+				this.TaxIdType = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("TaxId").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("TaxId")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'TaxId']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.TaxId = (string)document.GetElementsByTagName("TaxId")[0].InnerText;
+				this.TaxId = ChildNode.InnerText;
 			}
-		}
 	
 		}
-		
 	}
 
 
@@ -17297,75 +16633,62 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			StringBuilder sb = new StringBuilder();
 			if(Eci3ds != null)
 			{
-				sb.Append("<ebl:Eci3ds>").Append(Eci3ds);
+				sb.Append("<ebl:Eci3ds>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(Eci3ds));
 				sb.Append("</ebl:Eci3ds>");
 			}
 			if(Cavv != null)
 			{
-				sb.Append("<ebl:Cavv>").Append(Cavv);
+				sb.Append("<ebl:Cavv>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(Cavv));
 				sb.Append("</ebl:Cavv>");
 			}
 			if(Xid != null)
 			{
-				sb.Append("<ebl:Xid>").Append(Xid);
+				sb.Append("<ebl:Xid>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(Xid));
 				sb.Append("</ebl:Xid>");
 			}
 			if(MpiVendor3ds != null)
 			{
-				sb.Append("<ebl:MpiVendor3ds>").Append(MpiVendor3ds);
+				sb.Append("<ebl:MpiVendor3ds>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(MpiVendor3ds));
 				sb.Append("</ebl:MpiVendor3ds>");
 			}
 			if(AuthStatus3ds != null)
 			{
-				sb.Append("<ebl:AuthStatus3ds>").Append(AuthStatus3ds);
+				sb.Append("<ebl:AuthStatus3ds>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(AuthStatus3ds));
 				sb.Append("</ebl:AuthStatus3ds>");
 			}
 			return sb.ToString();
 		}
-		public ThreeDSecureRequestType(Object xmlSoap)
+		public ThreeDSecureRequestType(XmlNode xmlNode)
 		{
-			XmlDocument document = new XmlDocument();
-			document.LoadXml(xmlSoap.ToString());
-			XmlNodeList nodeList = null;
-			string xmlString = "";
-		if(document.GetElementsByTagName("Eci3ds").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("Eci3ds")[0]))
+			XmlNode ChildNode = null;
+			XmlNodeList ChildNodeList = null;
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'Eci3ds']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.Eci3ds = (string)document.GetElementsByTagName("Eci3ds")[0].InnerText;
+				this.Eci3ds = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("Cavv").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("Cavv")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'Cavv']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.Cavv = (string)document.GetElementsByTagName("Cavv")[0].InnerText;
+				this.Cavv = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("Xid").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("Xid")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'Xid']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.Xid = (string)document.GetElementsByTagName("Xid")[0].InnerText;
+				this.Xid = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("MpiVendor3ds").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("MpiVendor3ds")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'MpiVendor3ds']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.MpiVendor3ds = (string)document.GetElementsByTagName("MpiVendor3ds")[0].InnerText;
+				this.MpiVendor3ds = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("AuthStatus3ds").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("AuthStatus3ds")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'AuthStatus3ds']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.AuthStatus3ds = (string)document.GetElementsByTagName("AuthStatus3ds")[0].InnerText;
+				this.AuthStatus3ds = ChildNode.InnerText;
 			}
-		}
 	
 		}
-		
 	}
 
 
@@ -17418,29 +16741,22 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public ThreeDSecureResponseType(Object xmlSoap)
+		public ThreeDSecureResponseType(XmlNode xmlNode)
 		{
-			XmlDocument document = new XmlDocument();
-			document.LoadXml(xmlSoap.ToString());
-			XmlNodeList nodeList = null;
-			string xmlString = "";
-		if(document.GetElementsByTagName("Vpas").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("Vpas")[0]))
+			XmlNode ChildNode = null;
+			XmlNodeList ChildNodeList = null;
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'Vpas']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.Vpas = (string)document.GetElementsByTagName("Vpas")[0].InnerText;
+				this.Vpas = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("EciSubmitted3DS").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("EciSubmitted3DS")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'EciSubmitted3DS']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.EciSubmitted3DS = (string)document.GetElementsByTagName("EciSubmitted3DS")[0].InnerText;
+				this.EciSubmitted3DS = ChildNode.InnerText;
 			}
-		}
 	
 		}
-		
 	}
 
 
@@ -17493,33 +16809,22 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public ThreeDSecureInfoType(Object xmlSoap)
+		public ThreeDSecureInfoType(XmlNode xmlNode)
 		{
-			XmlDocument document = new XmlDocument();
-			document.LoadXml(xmlSoap.ToString());
-			XmlNodeList nodeList = null;
-			string xmlString = "";
-			if(document.GetElementsByTagName("ThreeDSecureRequest").Count != 0)
+			XmlNode ChildNode = null;
+			XmlNodeList ChildNodeList = null;
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'ThreeDSecureRequest']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("ThreeDSecureRequest")[0]))
-				{
-					nodeList = document.GetElementsByTagName("ThreeDSecureRequest");
-					xmlString = DeserializationUtils.convertToXML(nodeList[0]);
-					this.ThreeDSecureRequest =  new ThreeDSecureRequestType(xmlString);
-				}
+				this.ThreeDSecureRequest =  new ThreeDSecureRequestType(ChildNode);
 			}
-			if(document.GetElementsByTagName("ThreeDSecureResponse").Count != 0)
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'ThreeDSecureResponse']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("ThreeDSecureResponse")[0]))
-				{
-					nodeList = document.GetElementsByTagName("ThreeDSecureResponse");
-					xmlString = DeserializationUtils.convertToXML(nodeList[0]);
-					this.ThreeDSecureResponse =  new ThreeDSecureResponseType(xmlString);
-				}
+				this.ThreeDSecureResponse =  new ThreeDSecureResponseType(ChildNode);
 			}
 	
 		}
-		
 	}
 
 
@@ -17713,22 +17018,22 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			StringBuilder sb = new StringBuilder();
 			if(CreditCardType != null)
 			{
-				sb.Append("<ebl:CreditCardType>").Append(EnumUtils.getDescription(CreditCardType));
+				sb.Append("<ebl:CreditCardType>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(CreditCardType)));
 				sb.Append("</ebl:CreditCardType>");
 			}
 			if(CreditCardNumber != null)
 			{
-				sb.Append("<ebl:CreditCardNumber>").Append(CreditCardNumber);
+				sb.Append("<ebl:CreditCardNumber>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(CreditCardNumber));
 				sb.Append("</ebl:CreditCardNumber>");
 			}
 			if(ExpMonth != null)
 			{
-				sb.Append("<ebl:ExpMonth>").Append(ExpMonth);
+				sb.Append("<ebl:ExpMonth>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(ExpMonth));
 				sb.Append("</ebl:ExpMonth>");
 			}
 			if(ExpYear != null)
 			{
-				sb.Append("<ebl:ExpYear>").Append(ExpYear);
+				sb.Append("<ebl:ExpYear>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(ExpYear));
 				sb.Append("</ebl:ExpYear>");
 			}
 			if(CardOwner != null)
@@ -17739,22 +17044,22 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(CVV2 != null)
 			{
-				sb.Append("<ebl:CVV2>").Append(CVV2);
+				sb.Append("<ebl:CVV2>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(CVV2));
 				sb.Append("</ebl:CVV2>");
 			}
 			if(StartMonth != null)
 			{
-				sb.Append("<ebl:StartMonth>").Append(StartMonth);
+				sb.Append("<ebl:StartMonth>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(StartMonth));
 				sb.Append("</ebl:StartMonth>");
 			}
 			if(StartYear != null)
 			{
-				sb.Append("<ebl:StartYear>").Append(StartYear);
+				sb.Append("<ebl:StartYear>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(StartYear));
 				sb.Append("</ebl:StartYear>");
 			}
 			if(IssueNumber != null)
 			{
-				sb.Append("<ebl:IssueNumber>").Append(IssueNumber);
+				sb.Append("<ebl:IssueNumber>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(IssueNumber));
 				sb.Append("</ebl:IssueNumber>");
 			}
 			if(ThreeDSecureRequest != null)
@@ -17765,89 +17070,62 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			return sb.ToString();
 		}
-		public CreditCardDetailsType(Object xmlSoap)
+		public CreditCardDetailsType(XmlNode xmlNode)
 		{
-			XmlDocument document = new XmlDocument();
-			document.LoadXml(xmlSoap.ToString());
-			XmlNodeList nodeList = null;
-			string xmlString = "";
-			if(document.GetElementsByTagName("CreditCardType").Count != 0)
+			XmlNode ChildNode = null;
+			XmlNodeList ChildNodeList = null;
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'CreditCardType']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("CreditCardType")[0]))
-				{
-					this.CreditCardType = (CreditCardTypeType)EnumUtils.getValue(document.GetElementsByTagName("CreditCardType")[0].InnerText,typeof(CreditCardTypeType));
-				}
+				this.CreditCardType = (CreditCardTypeType)EnumUtils.getValue(ChildNode.InnerText,typeof(CreditCardTypeType));
 			}
-		if(document.GetElementsByTagName("CreditCardNumber").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("CreditCardNumber")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'CreditCardNumber']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.CreditCardNumber = (string)document.GetElementsByTagName("CreditCardNumber")[0].InnerText;
+				this.CreditCardNumber = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("ExpMonth").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("ExpMonth")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'ExpMonth']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.ExpMonth = System.Convert.ToInt32(document.GetElementsByTagName("ExpMonth")[0].InnerText);
+				this.ExpMonth = System.Convert.ToInt32(ChildNode.InnerText);
 			}
-		}
-		if(document.GetElementsByTagName("ExpYear").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("ExpYear")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'ExpYear']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.ExpYear = System.Convert.ToInt32(document.GetElementsByTagName("ExpYear")[0].InnerText);
+				this.ExpYear = System.Convert.ToInt32(ChildNode.InnerText);
 			}
-		}
-			if(document.GetElementsByTagName("CardOwner").Count != 0)
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'CardOwner']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("CardOwner")[0]))
-				{
-					nodeList = document.GetElementsByTagName("CardOwner");
-					xmlString = DeserializationUtils.convertToXML(nodeList[0]);
-					this.CardOwner =  new PayerInfoType(xmlString);
-				}
+				this.CardOwner =  new PayerInfoType(ChildNode);
 			}
-		if(document.GetElementsByTagName("CVV2").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("CVV2")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'CVV2']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.CVV2 = (string)document.GetElementsByTagName("CVV2")[0].InnerText;
+				this.CVV2 = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("StartMonth").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("StartMonth")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'StartMonth']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.StartMonth = System.Convert.ToInt32(document.GetElementsByTagName("StartMonth")[0].InnerText);
+				this.StartMonth = System.Convert.ToInt32(ChildNode.InnerText);
 			}
-		}
-		if(document.GetElementsByTagName("StartYear").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("StartYear")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'StartYear']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.StartYear = System.Convert.ToInt32(document.GetElementsByTagName("StartYear")[0].InnerText);
+				this.StartYear = System.Convert.ToInt32(ChildNode.InnerText);
 			}
-		}
-		if(document.GetElementsByTagName("IssueNumber").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("IssueNumber")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'IssueNumber']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.IssueNumber = (string)document.GetElementsByTagName("IssueNumber")[0].InnerText;
+				this.IssueNumber = ChildNode.InnerText;
 			}
-		}
-			if(document.GetElementsByTagName("ThreeDSecureRequest").Count != 0)
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'ThreeDSecureRequest']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("ThreeDSecureRequest")[0]))
-				{
-					nodeList = document.GetElementsByTagName("ThreeDSecureRequest");
-					xmlString = DeserializationUtils.convertToXML(nodeList[0]);
-					this.ThreeDSecureRequest =  new ThreeDSecureRequestType(xmlString);
-				}
+				this.ThreeDSecureRequest =  new ThreeDSecureRequestType(ChildNode);
 			}
 	
 		}
-		
 	}
 
 
@@ -17922,7 +17200,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			StringBuilder sb = new StringBuilder();
 			if(ShippingOptionIsDefault != null)
 			{
-				sb.Append("<ebl:ShippingOptionIsDefault>").Append(ShippingOptionIsDefault);
+				sb.Append("<ebl:ShippingOptionIsDefault>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(ShippingOptionIsDefault));
 				sb.Append("</ebl:ShippingOptionIsDefault>");
 			}
 			if(ShippingOptionAmount != null)
@@ -17933,7 +17211,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(ShippingOptionName != null)
 			{
-				sb.Append("<ebl:ShippingOptionName>").Append(ShippingOptionName);
+				sb.Append("<ebl:ShippingOptionName>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(ShippingOptionName));
 				sb.Append("</ebl:ShippingOptionName>");
 			}
 			return sb.ToString();
@@ -18046,17 +17324,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			StringBuilder sb = new StringBuilder();
 			if(ShippingCalculationMode != null)
 			{
-				sb.Append("<ebl:ShippingCalculationMode>").Append(ShippingCalculationMode);
+				sb.Append("<ebl:ShippingCalculationMode>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(ShippingCalculationMode));
 				sb.Append("</ebl:ShippingCalculationMode>");
 			}
 			if(InsuranceOptionSelected != null)
 			{
-				sb.Append("<ebl:InsuranceOptionSelected>").Append(InsuranceOptionSelected);
+				sb.Append("<ebl:InsuranceOptionSelected>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(InsuranceOptionSelected));
 				sb.Append("</ebl:InsuranceOptionSelected>");
 			}
 			if(ShippingOptionIsDefault != null)
 			{
-				sb.Append("<ebl:ShippingOptionIsDefault>").Append(ShippingOptionIsDefault);
+				sb.Append("<ebl:ShippingOptionIsDefault>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(ShippingOptionIsDefault));
 				sb.Append("</ebl:ShippingOptionIsDefault>");
 			}
 			if(ShippingOptionAmount != null)
@@ -18067,57 +17345,42 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(ShippingOptionName != null)
 			{
-				sb.Append("<ebl:ShippingOptionName>").Append(ShippingOptionName);
+				sb.Append("<ebl:ShippingOptionName>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(ShippingOptionName));
 				sb.Append("</ebl:ShippingOptionName>");
 			}
 			return sb.ToString();
 		}
-		public UserSelectedOptionType(Object xmlSoap)
+		public UserSelectedOptionType(XmlNode xmlNode)
 		{
-			XmlDocument document = new XmlDocument();
-			document.LoadXml(xmlSoap.ToString());
-			XmlNodeList nodeList = null;
-			string xmlString = "";
-		if(document.GetElementsByTagName("ShippingCalculationMode").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("ShippingCalculationMode")[0]))
+			XmlNode ChildNode = null;
+			XmlNodeList ChildNodeList = null;
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'ShippingCalculationMode']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.ShippingCalculationMode = (string)document.GetElementsByTagName("ShippingCalculationMode")[0].InnerText;
+				this.ShippingCalculationMode = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("InsuranceOptionSelected").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("InsuranceOptionSelected")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'InsuranceOptionSelected']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.InsuranceOptionSelected = (string)document.GetElementsByTagName("InsuranceOptionSelected")[0].InnerText;
+				this.InsuranceOptionSelected = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("ShippingOptionIsDefault").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("ShippingOptionIsDefault")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'ShippingOptionIsDefault']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.ShippingOptionIsDefault = (string)document.GetElementsByTagName("ShippingOptionIsDefault")[0].InnerText;
+				this.ShippingOptionIsDefault = ChildNode.InnerText;
 			}
-		}
-			if(document.GetElementsByTagName("ShippingOptionAmount").Count != 0)
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'ShippingOptionAmount']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("ShippingOptionAmount")[0]))
-				{
-					nodeList = document.GetElementsByTagName("ShippingOptionAmount");
-					xmlString = DeserializationUtils.convertToXML(nodeList[0]);
-					this.ShippingOptionAmount =  new BasicAmountType(xmlString);
-				}
+				this.ShippingOptionAmount =  new BasicAmountType(ChildNode);
 			}
-		if(document.GetElementsByTagName("ShippingOptionName").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("ShippingOptionName")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'ShippingOptionName']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.ShippingOptionName = (string)document.GetElementsByTagName("ShippingOptionName")[0].InnerText;
+				this.ShippingOptionName = ChildNode.InnerText;
 			}
-		}
 	
 		}
-		
 	}
 
 
@@ -18175,12 +17438,12 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			StringBuilder sb = new StringBuilder();
 			if(CreditCardType != null)
 			{
-				sb.Append("<ebl:CreditCardType>").Append(EnumUtils.getDescription(CreditCardType));
+				sb.Append("<ebl:CreditCardType>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(CreditCardType)));
 				sb.Append("</ebl:CreditCardType>");
 			}
 			if(CreditCardNumber != null)
 			{
-				sb.Append("<ebl:CreditCardNumber>").Append(CreditCardNumber);
+				sb.Append("<ebl:CreditCardNumber>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(CreditCardNumber));
 				sb.Append("</ebl:CreditCardNumber>");
 			}
 			return sb.ToString();
@@ -18368,12 +17631,12 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(ExpMonth != null)
 			{
-				sb.Append("<ebl:ExpMonth>").Append(ExpMonth);
+				sb.Append("<ebl:ExpMonth>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(ExpMonth));
 				sb.Append("</ebl:ExpMonth>");
 			}
 			if(ExpYear != null)
 			{
-				sb.Append("<ebl:ExpYear>").Append(ExpYear);
+				sb.Append("<ebl:ExpYear>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(ExpYear));
 				sb.Append("</ebl:ExpYear>");
 			}
 			if(CardOwnerName != null)
@@ -18390,22 +17653,22 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(CVV2 != null)
 			{
-				sb.Append("<ebl:CVV2>").Append(CVV2);
+				sb.Append("<ebl:CVV2>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(CVV2));
 				sb.Append("</ebl:CVV2>");
 			}
 			if(StartMonth != null)
 			{
-				sb.Append("<ebl:StartMonth>").Append(StartMonth);
+				sb.Append("<ebl:StartMonth>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(StartMonth));
 				sb.Append("</ebl:StartMonth>");
 			}
 			if(StartYear != null)
 			{
-				sb.Append("<ebl:StartYear>").Append(StartYear);
+				sb.Append("<ebl:StartYear>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(StartYear));
 				sb.Append("</ebl:StartYear>");
 			}
 			if(IssueNumber != null)
 			{
-				sb.Append("<ebl:IssueNumber>").Append(IssueNumber);
+				sb.Append("<ebl:IssueNumber>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(IssueNumber));
 				sb.Append("</ebl:IssueNumber>");
 			}
 			return sb.ToString();
@@ -18635,52 +17898,52 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(ReturnURL != null)
 			{
-				sb.Append("<ebl:ReturnURL>").Append(ReturnURL);
+				sb.Append("<ebl:ReturnURL>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(ReturnURL));
 				sb.Append("</ebl:ReturnURL>");
 			}
 			if(CancelURL != null)
 			{
-				sb.Append("<ebl:CancelURL>").Append(CancelURL);
+				sb.Append("<ebl:CancelURL>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(CancelURL));
 				sb.Append("</ebl:CancelURL>");
 			}
 			if(LocaleCode != null)
 			{
-				sb.Append("<ebl:LocaleCode>").Append(LocaleCode);
+				sb.Append("<ebl:LocaleCode>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(LocaleCode));
 				sb.Append("</ebl:LocaleCode>");
 			}
 			if(PageStyle != null)
 			{
-				sb.Append("<ebl:PageStyle>").Append(PageStyle);
+				sb.Append("<ebl:PageStyle>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(PageStyle));
 				sb.Append("</ebl:PageStyle>");
 			}
 			if(cppHeaderImage != null)
 			{
-				sb.Append("<ebl:cpp-header-image>").Append(cppHeaderImage);
-				sb.Append("</ebl:cpp-header-image>");
+				sb.Append("<ebl:cppHeaderImage>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(cppHeaderImage));
+				sb.Append("</ebl:cppHeaderImage>");
 			}
 			if(cppHeaderBorderColor != null)
 			{
-				sb.Append("<ebl:cpp-header-border-color>").Append(cppHeaderBorderColor);
-				sb.Append("</ebl:cpp-header-border-color>");
+				sb.Append("<ebl:cppHeaderBorderColor>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(cppHeaderBorderColor));
+				sb.Append("</ebl:cppHeaderBorderColor>");
 			}
 			if(cppHeaderBackColor != null)
 			{
-				sb.Append("<ebl:cpp-header-back-color>").Append(cppHeaderBackColor);
-				sb.Append("</ebl:cpp-header-back-color>");
+				sb.Append("<ebl:cppHeaderBackColor>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(cppHeaderBackColor));
+				sb.Append("</ebl:cppHeaderBackColor>");
 			}
 			if(cppPayflowColor != null)
 			{
-				sb.Append("<ebl:cpp-payflow-color>").Append(cppPayflowColor);
-				sb.Append("</ebl:cpp-payflow-color>");
+				sb.Append("<ebl:cppPayflowColor>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(cppPayflowColor));
+				sb.Append("</ebl:cppPayflowColor>");
 			}
 			if(BuyerEmail != null)
 			{
-				sb.Append("<ebl:BuyerEmail>").Append(BuyerEmail);
+				sb.Append("<ebl:BuyerEmail>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(BuyerEmail));
 				sb.Append("</ebl:BuyerEmail>");
 			}
 			if(ReqBillingAddress != null)
 			{
-				sb.Append("<ebl:ReqBillingAddress>").Append(ReqBillingAddress);
+				sb.Append("<ebl:ReqBillingAddress>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(ReqBillingAddress));
 				sb.Append("</ebl:ReqBillingAddress>");
 			}
 			return sb.ToString();
@@ -18737,33 +18000,22 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public GetBillingAgreementCustomerDetailsResponseDetailsType(Object xmlSoap)
+		public GetBillingAgreementCustomerDetailsResponseDetailsType(XmlNode xmlNode)
 		{
-			XmlDocument document = new XmlDocument();
-			document.LoadXml(xmlSoap.ToString());
-			XmlNodeList nodeList = null;
-			string xmlString = "";
-			if(document.GetElementsByTagName("PayerInfo").Count != 0)
+			XmlNode ChildNode = null;
+			XmlNodeList ChildNodeList = null;
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'PayerInfo']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("PayerInfo")[0]))
-				{
-					nodeList = document.GetElementsByTagName("PayerInfo");
-					xmlString = DeserializationUtils.convertToXML(nodeList[0]);
-					this.PayerInfo =  new PayerInfoType(xmlString);
-				}
+				this.PayerInfo =  new PayerInfoType(ChildNode);
 			}
-			if(document.GetElementsByTagName("BillingAddress").Count != 0)
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'BillingAddress']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("BillingAddress")[0]))
-				{
-					nodeList = document.GetElementsByTagName("BillingAddress");
-					xmlString = DeserializationUtils.convertToXML(nodeList[0]);
-					this.BillingAddress =  new AddressType(xmlString);
-				}
+				this.BillingAddress =  new AddressType(ChildNode);
 			}
 	
 		}
-		
 	}
 
 
@@ -18806,7 +18058,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			StringBuilder sb = new StringBuilder();
 			if(DeviceID != null)
 			{
-				sb.Append("<ebl:DeviceID>").Append(DeviceID);
+				sb.Append("<ebl:DeviceID>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(DeviceID));
 				sb.Append("</ebl:DeviceID>");
 			}
 			return sb.ToString();
@@ -19039,6 +18291,23 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
+          *
+		  */
+		private string MsgSubIDField;
+		public string MsgSubID
+		{
+			get
+			{
+				return this.MsgSubIDField;
+			}
+			set
+			{
+				this.MsgSubIDField = value;
+			}
+		}
+		
+
+		/**
 	 	  * Constructor with arguments
 	 	  */
 	 	public DoReferenceTransactionRequestDetailsType(string ReferenceID, PaymentActionCodeType? PaymentAction, PaymentDetailsType PaymentDetails){
@@ -19059,17 +18328,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			StringBuilder sb = new StringBuilder();
 			if(ReferenceID != null)
 			{
-				sb.Append("<ebl:ReferenceID>").Append(ReferenceID);
+				sb.Append("<ebl:ReferenceID>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(ReferenceID));
 				sb.Append("</ebl:ReferenceID>");
 			}
 			if(PaymentAction != null)
 			{
-				sb.Append("<ebl:PaymentAction>").Append(EnumUtils.getDescription(PaymentAction));
+				sb.Append("<ebl:PaymentAction>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(PaymentAction)));
 				sb.Append("</ebl:PaymentAction>");
 			}
 			if(PaymentType != null)
 			{
-				sb.Append("<ebl:PaymentType>").Append(EnumUtils.getDescription(PaymentType));
+				sb.Append("<ebl:PaymentType>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(PaymentType)));
 				sb.Append("</ebl:PaymentType>");
 			}
 			if(PaymentDetails != null)
@@ -19086,22 +18355,22 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(IPAddress != null)
 			{
-				sb.Append("<ebl:IPAddress>").Append(IPAddress);
+				sb.Append("<ebl:IPAddress>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(IPAddress));
 				sb.Append("</ebl:IPAddress>");
 			}
 			if(MerchantSessionId != null)
 			{
-				sb.Append("<ebl:MerchantSessionId>").Append(MerchantSessionId);
+				sb.Append("<ebl:MerchantSessionId>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(MerchantSessionId));
 				sb.Append("</ebl:MerchantSessionId>");
 			}
 			if(ReqConfirmShipping != null)
 			{
-				sb.Append("<ebl:ReqConfirmShipping>").Append(ReqConfirmShipping);
+				sb.Append("<ebl:ReqConfirmShipping>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(ReqConfirmShipping));
 				sb.Append("</ebl:ReqConfirmShipping>");
 			}
 			if(SoftDescriptor != null)
 			{
-				sb.Append("<ebl:SoftDescriptor>").Append(SoftDescriptor);
+				sb.Append("<ebl:SoftDescriptor>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(SoftDescriptor));
 				sb.Append("</ebl:SoftDescriptor>");
 			}
 			if(SenderDetails != null)
@@ -19109,6 +18378,11 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 				sb.Append("<ebl:SenderDetails>");
 				sb.Append(SenderDetails.toXMLString());
 				sb.Append("</ebl:SenderDetails>");
+			}
+			if(MsgSubID != null)
+			{
+				sb.Append("<ebl:MsgSubID>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(MsgSubID));
+				sb.Append("</ebl:MsgSubID>");
 			}
 			return sb.ToString();
 		}
@@ -19243,74 +18517,75 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
+          *
+		  */
+		private string MsgSubIDField;
+		public string MsgSubID
+		{
+			get
+			{
+				return this.MsgSubIDField;
+			}
+			set
+			{
+				this.MsgSubIDField = value;
+			}
+		}
+		
+
+		/**
 	 	  * Default Constructor
 	 	  */
 	 	public DoReferenceTransactionResponseDetailsType(){
 		}
 
 
-		public DoReferenceTransactionResponseDetailsType(Object xmlSoap)
+		public DoReferenceTransactionResponseDetailsType(XmlNode xmlNode)
 		{
-			XmlDocument document = new XmlDocument();
-			document.LoadXml(xmlSoap.ToString());
-			XmlNodeList nodeList = null;
-			string xmlString = "";
-		if(document.GetElementsByTagName("BillingAgreementID").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("BillingAgreementID")[0]))
+			XmlNode ChildNode = null;
+			XmlNodeList ChildNodeList = null;
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'BillingAgreementID']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.BillingAgreementID = (string)document.GetElementsByTagName("BillingAgreementID")[0].InnerText;
+				this.BillingAgreementID = ChildNode.InnerText;
 			}
-		}
-			if(document.GetElementsByTagName("PaymentInfo").Count != 0)
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'PaymentInfo']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("PaymentInfo")[0]))
-				{
-					nodeList = document.GetElementsByTagName("PaymentInfo");
-					xmlString = DeserializationUtils.convertToXML(nodeList[0]);
-					this.PaymentInfo =  new PaymentInfoType(xmlString);
-				}
+				this.PaymentInfo =  new PaymentInfoType(ChildNode);
 			}
-			if(document.GetElementsByTagName("Amount").Count != 0)
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'Amount']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("Amount")[0]))
-				{
-					nodeList = document.GetElementsByTagName("Amount");
-					xmlString = DeserializationUtils.convertToXML(nodeList[0]);
-					this.Amount =  new BasicAmountType(xmlString);
-				}
+				this.Amount =  new BasicAmountType(ChildNode);
 			}
-		if(document.GetElementsByTagName("AVSCode").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("AVSCode")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'AVSCode']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.AVSCode = (string)document.GetElementsByTagName("AVSCode")[0].InnerText;
+				this.AVSCode = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("CVV2Code").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("CVV2Code")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'CVV2Code']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.CVV2Code = (string)document.GetElementsByTagName("CVV2Code")[0].InnerText;
+				this.CVV2Code = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("TransactionID").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("TransactionID")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'TransactionID']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.TransactionID = (string)document.GetElementsByTagName("TransactionID")[0].InnerText;
+				this.TransactionID = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("PaymentAdviceCode").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("PaymentAdviceCode")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'PaymentAdviceCode']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.PaymentAdviceCode = (string)document.GetElementsByTagName("PaymentAdviceCode")[0].InnerText;
+				this.PaymentAdviceCode = ChildNode.InnerText;
 			}
-		}
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'MsgSubID']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
+			{
+				this.MsgSubID = ChildNode.InnerText;
+			}
 	
 		}
-		
 	}
 
 
@@ -19483,12 +18758,12 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(ReceiverEmail != null)
 			{
-				sb.Append("<ebl:ReceiverEmail>").Append(ReceiverEmail);
+				sb.Append("<ebl:ReceiverEmail>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(ReceiverEmail));
 				sb.Append("</ebl:ReceiverEmail>");
 			}
 			if(Comment != null)
 			{
-				sb.Append("<ebl:Comment>").Append(Comment);
+				sb.Append("<ebl:Comment>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(Comment));
 				sb.Append("</ebl:Comment>");
 			}
 			return sb.ToString();
@@ -19545,31 +18820,22 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public DoNonReferencedCreditResponseDetailsType(Object xmlSoap)
+		public DoNonReferencedCreditResponseDetailsType(XmlNode xmlNode)
 		{
-			XmlDocument document = new XmlDocument();
-			document.LoadXml(xmlSoap.ToString());
-			XmlNodeList nodeList = null;
-			string xmlString = "";
-			if(document.GetElementsByTagName("Amount").Count != 0)
+			XmlNode ChildNode = null;
+			XmlNodeList ChildNodeList = null;
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'Amount']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("Amount")[0]))
-				{
-					nodeList = document.GetElementsByTagName("Amount");
-					xmlString = DeserializationUtils.convertToXML(nodeList[0]);
-					this.Amount =  new BasicAmountType(xmlString);
-				}
+				this.Amount =  new BasicAmountType(ChildNode);
 			}
-		if(document.GetElementsByTagName("TransactionID").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("TransactionID")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'TransactionID']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.TransactionID = (string)document.GetElementsByTagName("TransactionID")[0].InnerText;
+				this.TransactionID = ChildNode.InnerText;
 			}
-		}
 	
 		}
-		
 	}
 
 
@@ -19731,27 +18997,27 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			StringBuilder sb = new StringBuilder();
 			if(ProgramCode != null)
 			{
-				sb.Append("<ebl:ProgramCode>").Append(ProgramCode);
+				sb.Append("<ebl:ProgramCode>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(ProgramCode));
 				sb.Append("</ebl:ProgramCode>");
 			}
 			if(ProductList != null)
 			{
-				sb.Append("<ebl:ProductList>").Append(ProductList);
+				sb.Append("<ebl:ProductList>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(ProductList));
 				sb.Append("</ebl:ProductList>");
 			}
 			if(PartnerCustom != null)
 			{
-				sb.Append("<ebl:PartnerCustom>").Append(PartnerCustom);
+				sb.Append("<ebl:PartnerCustom>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(PartnerCustom));
 				sb.Append("</ebl:PartnerCustom>");
 			}
 			if(ImageUrl != null)
 			{
-				sb.Append("<ebl:ImageUrl>").Append(ImageUrl);
+				sb.Append("<ebl:ImageUrl>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(ImageUrl));
 				sb.Append("</ebl:ImageUrl>");
 			}
 			if(MarketingCategory != null)
 			{
-				sb.Append("<ebl:MarketingCategory>").Append(EnumUtils.getDescription(MarketingCategory));
+				sb.Append("<ebl:MarketingCategory>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(MarketingCategory)));
 				sb.Append("</ebl:MarketingCategory>");
 			}
 			if(BusinessInfo != null)
@@ -20035,12 +19301,12 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			StringBuilder sb = new StringBuilder();
 			if(Type != null)
 			{
-				sb.Append("<ebl:Type>").Append(EnumUtils.getDescription(Type));
+				sb.Append("<ebl:Type>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(Type)));
 				sb.Append("</ebl:Type>");
 			}
 			if(Name != null)
 			{
-				sb.Append("<ebl:Name>").Append(Name);
+				sb.Append("<ebl:Name>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(Name));
 				sb.Append("</ebl:Name>");
 			}
 			if(Address != null)
@@ -20051,57 +19317,57 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(WorkPhone != null)
 			{
-				sb.Append("<ebl:WorkPhone>").Append(WorkPhone);
+				sb.Append("<ebl:WorkPhone>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(WorkPhone));
 				sb.Append("</ebl:WorkPhone>");
 			}
 			if(Category != null)
 			{
-				sb.Append("<ebl:Category>").Append(EnumUtils.getDescription(Category));
+				sb.Append("<ebl:Category>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(Category)));
 				sb.Append("</ebl:Category>");
 			}
 			if(SubCategory != null)
 			{
-				sb.Append("<ebl:SubCategory>").Append(EnumUtils.getDescription(SubCategory));
+				sb.Append("<ebl:SubCategory>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(SubCategory)));
 				sb.Append("</ebl:SubCategory>");
 			}
 			if(AveragePrice != null)
 			{
-				sb.Append("<ebl:AveragePrice>").Append(EnumUtils.getDescription(AveragePrice));
+				sb.Append("<ebl:AveragePrice>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(AveragePrice)));
 				sb.Append("</ebl:AveragePrice>");
 			}
 			if(AverageMonthlyVolume != null)
 			{
-				sb.Append("<ebl:AverageMonthlyVolume>").Append(EnumUtils.getDescription(AverageMonthlyVolume));
+				sb.Append("<ebl:AverageMonthlyVolume>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(AverageMonthlyVolume)));
 				sb.Append("</ebl:AverageMonthlyVolume>");
 			}
 			if(SalesVenue != null)
 			{
-				sb.Append("<ebl:SalesVenue>").Append(EnumUtils.getDescription(SalesVenue));
+				sb.Append("<ebl:SalesVenue>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(SalesVenue)));
 				sb.Append("</ebl:SalesVenue>");
 			}
 			if(Website != null)
 			{
-				sb.Append("<ebl:Website>").Append(Website);
+				sb.Append("<ebl:Website>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(Website));
 				sb.Append("</ebl:Website>");
 			}
 			if(RevenueFromOnlineSales != null)
 			{
-				sb.Append("<ebl:RevenueFromOnlineSales>").Append(EnumUtils.getDescription(RevenueFromOnlineSales));
+				sb.Append("<ebl:RevenueFromOnlineSales>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(RevenueFromOnlineSales)));
 				sb.Append("</ebl:RevenueFromOnlineSales>");
 			}
 			if(BusinessEstablished != null)
 			{
-				sb.Append("<ebl:BusinessEstablished>").Append(BusinessEstablished);
+				sb.Append("<ebl:BusinessEstablished>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(BusinessEstablished));
 				sb.Append("</ebl:BusinessEstablished>");
 			}
 			if(CustomerServiceEmail != null)
 			{
-				sb.Append("<ebl:CustomerServiceEmail>").Append(CustomerServiceEmail);
+				sb.Append("<ebl:CustomerServiceEmail>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(CustomerServiceEmail));
 				sb.Append("</ebl:CustomerServiceEmail>");
 			}
 			if(CustomerServicePhone != null)
 			{
-				sb.Append("<ebl:CustomerServicePhone>").Append(CustomerServicePhone);
+				sb.Append("<ebl:CustomerServicePhone>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(CustomerServicePhone));
 				sb.Append("</ebl:CustomerServicePhone>");
 			}
 			return sb.ToString();
@@ -20203,17 +19469,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(HomePhone != null)
 			{
-				sb.Append("<ebl:HomePhone>").Append(HomePhone);
+				sb.Append("<ebl:HomePhone>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(HomePhone));
 				sb.Append("</ebl:HomePhone>");
 			}
 			if(MobilePhone != null)
 			{
-				sb.Append("<ebl:MobilePhone>").Append(MobilePhone);
+				sb.Append("<ebl:MobilePhone>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(MobilePhone));
 				sb.Append("</ebl:MobilePhone>");
 			}
 			if(SSN != null)
 			{
-				sb.Append("<ebl:SSN>").Append(SSN);
+				sb.Append("<ebl:SSN>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(SSN));
 				sb.Append("</ebl:SSN>");
 			}
 			return sb.ToString();
@@ -20309,22 +19575,22 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			StringBuilder sb = new StringBuilder();
 			if(Name != null)
 			{
-				sb.Append("<ebl:Name>").Append(Name);
+				sb.Append("<ebl:Name>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(Name));
 				sb.Append("</ebl:Name>");
 			}
 			if(Type != null)
 			{
-				sb.Append("<ebl:Type>").Append(EnumUtils.getDescription(Type));
+				sb.Append("<ebl:Type>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(Type)));
 				sb.Append("</ebl:Type>");
 			}
 			if(RoutingNumber != null)
 			{
-				sb.Append("<ebl:RoutingNumber>").Append(RoutingNumber);
+				sb.Append("<ebl:RoutingNumber>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(RoutingNumber));
 				sb.Append("</ebl:RoutingNumber>");
 			}
 			if(AccountNumber != null)
 			{
-				sb.Append("<ebl:AccountNumber>").Append(AccountNumber);
+				sb.Append("<ebl:AccountNumber>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(AccountNumber));
 				sb.Append("</ebl:AccountNumber>");
 			}
 			return sb.ToString();
@@ -20604,124 +19870,87 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public GetBoardingDetailsResponseDetailsType(Object xmlSoap)
+		public GetBoardingDetailsResponseDetailsType(XmlNode xmlNode)
 		{
-			XmlDocument document = new XmlDocument();
-			document.LoadXml(xmlSoap.ToString());
-			XmlNodeList nodeList = null;
-			string xmlString = "";
-			if(document.GetElementsByTagName("Status").Count != 0)
+			XmlNode ChildNode = null;
+			XmlNodeList ChildNodeList = null;
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'Status']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("Status")[0]))
-				{
-					this.Status = (BoardingStatusType)EnumUtils.getValue(document.GetElementsByTagName("Status")[0].InnerText,typeof(BoardingStatusType));
-				}
+				this.Status = (BoardingStatusType)EnumUtils.getValue(ChildNode.InnerText,typeof(BoardingStatusType));
 			}
-		if(document.GetElementsByTagName("StartDate").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("StartDate")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'StartDate']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.StartDate = (string)document.GetElementsByTagName("StartDate")[0].InnerText;
+				this.StartDate = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("LastUpdated").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("LastUpdated")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'LastUpdated']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.LastUpdated = (string)document.GetElementsByTagName("LastUpdated")[0].InnerText;
+				this.LastUpdated = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("Reason").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("Reason")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'Reason']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.Reason = (string)document.GetElementsByTagName("Reason")[0].InnerText;
+				this.Reason = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("ProgramName").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("ProgramName")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'ProgramName']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.ProgramName = (string)document.GetElementsByTagName("ProgramName")[0].InnerText;
+				this.ProgramName = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("ProgramCode").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("ProgramCode")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'ProgramCode']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.ProgramCode = (string)document.GetElementsByTagName("ProgramCode")[0].InnerText;
+				this.ProgramCode = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("CampaignID").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("CampaignID")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'CampaignID']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.CampaignID = (string)document.GetElementsByTagName("CampaignID")[0].InnerText;
+				this.CampaignID = ChildNode.InnerText;
 			}
-		}
-			if(document.GetElementsByTagName("UserWithdrawalLimit").Count != 0)
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'UserWithdrawalLimit']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("UserWithdrawalLimit")[0]))
-				{
-					this.UserWithdrawalLimit = (UserWithdrawalLimitTypeType)EnumUtils.getValue(document.GetElementsByTagName("UserWithdrawalLimit")[0].InnerText,typeof(UserWithdrawalLimitTypeType));
-				}
+				this.UserWithdrawalLimit = (UserWithdrawalLimitTypeType)EnumUtils.getValue(ChildNode.InnerText,typeof(UserWithdrawalLimitTypeType));
 			}
-		if(document.GetElementsByTagName("PartnerCustom").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("PartnerCustom")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'PartnerCustom']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.PartnerCustom = (string)document.GetElementsByTagName("PartnerCustom")[0].InnerText;
+				this.PartnerCustom = ChildNode.InnerText;
 			}
-		}
-			if(document.GetElementsByTagName("AccountOwner").Count != 0)
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'AccountOwner']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("AccountOwner")[0]))
-				{
-					nodeList = document.GetElementsByTagName("AccountOwner");
-					xmlString = DeserializationUtils.convertToXML(nodeList[0]);
-					this.AccountOwner =  new PayerInfoType(xmlString);
-				}
+				this.AccountOwner =  new PayerInfoType(ChildNode);
 			}
-			if(document.GetElementsByTagName("Credentials").Count != 0)
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'Credentials']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("Credentials")[0]))
-				{
-					nodeList = document.GetElementsByTagName("Credentials");
-					xmlString = DeserializationUtils.convertToXML(nodeList[0]);
-					this.Credentials =  new APICredentialsType(xmlString);
-				}
+				this.Credentials =  new APICredentialsType(ChildNode);
 			}
-		if(document.GetElementsByTagName("ConfigureAPIs").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("ConfigureAPIs")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'ConfigureAPIs']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.ConfigureAPIs = (string)document.GetElementsByTagName("ConfigureAPIs")[0].InnerText;
+				this.ConfigureAPIs = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("EmailVerificationStatus").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("EmailVerificationStatus")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'EmailVerificationStatus']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.EmailVerificationStatus = (string)document.GetElementsByTagName("EmailVerificationStatus")[0].InnerText;
+				this.EmailVerificationStatus = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("VettingStatus").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("VettingStatus")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'VettingStatus']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.VettingStatus = (string)document.GetElementsByTagName("VettingStatus")[0].InnerText;
+				this.VettingStatus = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("BankAccountVerificationStatus").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("BankAccountVerificationStatus")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'BankAccountVerificationStatus']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.BankAccountVerificationStatus = (string)document.GetElementsByTagName("BankAccountVerificationStatus")[0].InnerText;
+				this.BankAccountVerificationStatus = ChildNode.InnerText;
 			}
-		}
 	
 		}
-		
 	}
 
 
@@ -20825,50 +20054,37 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public APICredentialsType(Object xmlSoap)
+		public APICredentialsType(XmlNode xmlNode)
 		{
-			XmlDocument document = new XmlDocument();
-			document.LoadXml(xmlSoap.ToString());
-			XmlNodeList nodeList = null;
-			string xmlString = "";
-		if(document.GetElementsByTagName("Username").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("Username")[0]))
+			XmlNode ChildNode = null;
+			XmlNodeList ChildNodeList = null;
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'Username']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.Username = (string)document.GetElementsByTagName("Username")[0].InnerText;
+				this.Username = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("Password").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("Password")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'Password']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.Password = (string)document.GetElementsByTagName("Password")[0].InnerText;
+				this.Password = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("Signature").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("Signature")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'Signature']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.Signature = (string)document.GetElementsByTagName("Signature")[0].InnerText;
+				this.Signature = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("Certificate").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("Certificate")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'Certificate']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.Certificate = (string)document.GetElementsByTagName("Certificate")[0].InnerText;
+				this.Certificate = ChildNode.InnerText;
 			}
-		}
-			if(document.GetElementsByTagName("Type").Count != 0)
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'Type']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("Type")[0]))
-				{
-					this.Type = (APIAuthenticationType)EnumUtils.getValue(document.GetElementsByTagName("Type")[0].InnerText,typeof(APIAuthenticationType));
-				}
+				this.Type = (APIAuthenticationType)EnumUtils.getValue(ChildNode.InnerText,typeof(APIAuthenticationType));
 			}
 	
 		}
-		
 	}
 
 
@@ -21164,42 +20380,42 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(ItemName != null)
 			{
-				sb.Append("<ebl:ItemName>").Append(ItemName);
+				sb.Append("<ebl:ItemName>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(ItemName));
 				sb.Append("</ebl:ItemName>");
 			}
 			if(ItemNumber != null)
 			{
-				sb.Append("<ebl:ItemNumber>").Append(ItemNumber);
+				sb.Append("<ebl:ItemNumber>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(ItemNumber));
 				sb.Append("</ebl:ItemNumber>");
 			}
 			if(Custom != null)
 			{
-				sb.Append("<ebl:Custom>").Append(Custom);
+				sb.Append("<ebl:Custom>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(Custom));
 				sb.Append("</ebl:Custom>");
 			}
 			if(InvoiceID != null)
 			{
-				sb.Append("<ebl:InvoiceID>").Append(InvoiceID);
+				sb.Append("<ebl:InvoiceID>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(InvoiceID));
 				sb.Append("</ebl:InvoiceID>");
 			}
 			if(ReturnURL != null)
 			{
-				sb.Append("<ebl:ReturnURL>").Append(ReturnURL);
+				sb.Append("<ebl:ReturnURL>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(ReturnURL));
 				sb.Append("</ebl:ReturnURL>");
 			}
 			if(CancelURL != null)
 			{
-				sb.Append("<ebl:CancelURL>").Append(CancelURL);
+				sb.Append("<ebl:CancelURL>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(CancelURL));
 				sb.Append("</ebl:CancelURL>");
 			}
 			if(AddressDisplayOptions != null)
 			{
-				sb.Append("<ebl:AddressDisplayOptions>").Append(AddressDisplayOptions);
+				sb.Append("<ebl:AddressDisplayOptions>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(AddressDisplayOptions));
 				sb.Append("</ebl:AddressDisplayOptions>");
 			}
 			if(SharePhone != null)
 			{
-				sb.Append("<ebl:SharePhone>").Append(SharePhone);
+				sb.Append("<ebl:SharePhone>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(SharePhone));
 				sb.Append("</ebl:SharePhone>");
 			}
 			if(ShipToAddress != null)
@@ -21210,7 +20426,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(BuyerEmail != null)
 			{
-				sb.Append("<ebl:BuyerEmail>").Append(BuyerEmail);
+				sb.Append("<ebl:BuyerEmail>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(BuyerEmail));
 				sb.Append("</ebl:BuyerEmail>");
 			}
 			return sb.ToString();
@@ -21304,47 +20520,32 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public DoMobileCheckoutPaymentResponseDetailsType(Object xmlSoap)
+		public DoMobileCheckoutPaymentResponseDetailsType(XmlNode xmlNode)
 		{
-			XmlDocument document = new XmlDocument();
-			document.LoadXml(xmlSoap.ToString());
-			XmlNodeList nodeList = null;
-			string xmlString = "";
-		if(document.GetElementsByTagName("Custom").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("Custom")[0]))
+			XmlNode ChildNode = null;
+			XmlNodeList ChildNodeList = null;
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'Custom']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.Custom = (string)document.GetElementsByTagName("Custom")[0].InnerText;
+				this.Custom = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("InvoiceID").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("InvoiceID")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'InvoiceID']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.InvoiceID = (string)document.GetElementsByTagName("InvoiceID")[0].InnerText;
+				this.InvoiceID = ChildNode.InnerText;
 			}
-		}
-			if(document.GetElementsByTagName("PayerInfo").Count != 0)
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'PayerInfo']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("PayerInfo")[0]))
-				{
-					nodeList = document.GetElementsByTagName("PayerInfo");
-					xmlString = DeserializationUtils.convertToXML(nodeList[0]);
-					this.PayerInfo =  new PayerInfoType(xmlString);
-				}
+				this.PayerInfo =  new PayerInfoType(ChildNode);
 			}
-			if(document.GetElementsByTagName("PaymentInfo").Count != 0)
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'PaymentInfo']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("PaymentInfo")[0]))
-				{
-					nodeList = document.GetElementsByTagName("PaymentInfo");
-					xmlString = DeserializationUtils.convertToXML(nodeList[0]);
-					this.PaymentInfo =  new PaymentInfoType(xmlString);
-				}
+				this.PaymentInfo =  new PaymentInfoType(ChildNode);
 			}
 	
 		}
-		
 	}
 
 
@@ -21419,51 +20620,42 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			StringBuilder sb = new StringBuilder();
 			if(UATPNumber != null)
 			{
-				sb.Append("<ebl:UATPNumber>").Append(UATPNumber);
+				sb.Append("<ebl:UATPNumber>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(UATPNumber));
 				sb.Append("</ebl:UATPNumber>");
 			}
 			if(ExpMonth != null)
 			{
-				sb.Append("<ebl:ExpMonth>").Append(ExpMonth);
+				sb.Append("<ebl:ExpMonth>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(ExpMonth));
 				sb.Append("</ebl:ExpMonth>");
 			}
 			if(ExpYear != null)
 			{
-				sb.Append("<ebl:ExpYear>").Append(ExpYear);
+				sb.Append("<ebl:ExpYear>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(ExpYear));
 				sb.Append("</ebl:ExpYear>");
 			}
 			return sb.ToString();
 		}
-		public UATPDetailsType(Object xmlSoap)
+		public UATPDetailsType(XmlNode xmlNode)
 		{
-			XmlDocument document = new XmlDocument();
-			document.LoadXml(xmlSoap.ToString());
-			XmlNodeList nodeList = null;
-			string xmlString = "";
-		if(document.GetElementsByTagName("UATPNumber").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("UATPNumber")[0]))
+			XmlNode ChildNode = null;
+			XmlNodeList ChildNodeList = null;
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'UATPNumber']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.UATPNumber = (string)document.GetElementsByTagName("UATPNumber")[0].InnerText;
+				this.UATPNumber = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("ExpMonth").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("ExpMonth")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'ExpMonth']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.ExpMonth = System.Convert.ToInt32(document.GetElementsByTagName("ExpMonth")[0].InnerText);
+				this.ExpMonth = System.Convert.ToInt32(ChildNode.InnerText);
 			}
-		}
-		if(document.GetElementsByTagName("ExpYear").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("ExpYear")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'ExpYear']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.ExpYear = System.Convert.ToInt32(document.GetElementsByTagName("ExpYear")[0].InnerText);
+				this.ExpYear = System.Convert.ToInt32(ChildNode.InnerText);
 			}
-		}
 	
 		}
-		
 	}
 
 
@@ -21601,68 +20793,47 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public RecurringPaymentsSummaryType(Object xmlSoap)
+		public RecurringPaymentsSummaryType(XmlNode xmlNode)
 		{
-			XmlDocument document = new XmlDocument();
-			document.LoadXml(xmlSoap.ToString());
-			XmlNodeList nodeList = null;
-			string xmlString = "";
-		if(document.GetElementsByTagName("NextBillingDate").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("NextBillingDate")[0]))
+			XmlNode ChildNode = null;
+			XmlNodeList ChildNodeList = null;
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'NextBillingDate']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.NextBillingDate = (string)document.GetElementsByTagName("NextBillingDate")[0].InnerText;
+				this.NextBillingDate = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("NumberCyclesCompleted").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("NumberCyclesCompleted")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'NumberCyclesCompleted']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.NumberCyclesCompleted = System.Convert.ToInt32(document.GetElementsByTagName("NumberCyclesCompleted")[0].InnerText);
+				this.NumberCyclesCompleted = System.Convert.ToInt32(ChildNode.InnerText);
 			}
-		}
-		if(document.GetElementsByTagName("NumberCyclesRemaining").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("NumberCyclesRemaining")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'NumberCyclesRemaining']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.NumberCyclesRemaining = System.Convert.ToInt32(document.GetElementsByTagName("NumberCyclesRemaining")[0].InnerText);
+				this.NumberCyclesRemaining = System.Convert.ToInt32(ChildNode.InnerText);
 			}
-		}
-			if(document.GetElementsByTagName("OutstandingBalance").Count != 0)
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'OutstandingBalance']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("OutstandingBalance")[0]))
-				{
-					nodeList = document.GetElementsByTagName("OutstandingBalance");
-					xmlString = DeserializationUtils.convertToXML(nodeList[0]);
-					this.OutstandingBalance =  new BasicAmountType(xmlString);
-				}
+				this.OutstandingBalance =  new BasicAmountType(ChildNode);
 			}
-		if(document.GetElementsByTagName("FailedPaymentCount").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("FailedPaymentCount")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'FailedPaymentCount']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.FailedPaymentCount = System.Convert.ToInt32(document.GetElementsByTagName("FailedPaymentCount")[0].InnerText);
+				this.FailedPaymentCount = System.Convert.ToInt32(ChildNode.InnerText);
 			}
-		}
-		if(document.GetElementsByTagName("LastPaymentDate").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("LastPaymentDate")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'LastPaymentDate']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.LastPaymentDate = (string)document.GetElementsByTagName("LastPaymentDate")[0].InnerText;
+				this.LastPaymentDate = ChildNode.InnerText;
 			}
-		}
-			if(document.GetElementsByTagName("LastPaymentAmount").Count != 0)
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'LastPaymentAmount']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("LastPaymentAmount")[0]))
-				{
-					nodeList = document.GetElementsByTagName("LastPaymentAmount");
-					xmlString = DeserializationUtils.convertToXML(nodeList[0]);
-					this.LastPaymentAmount =  new BasicAmountType(xmlString);
-				}
+				this.LastPaymentAmount =  new BasicAmountType(ChildNode);
 			}
 	
 		}
-		
 	}
 
 
@@ -21733,7 +20904,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(FailedInitialAmountAction != null)
 			{
-				sb.Append("<ebl:FailedInitialAmountAction>").Append(EnumUtils.getDescription(FailedInitialAmountAction));
+				sb.Append("<ebl:FailedInitialAmountAction>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(FailedInitialAmountAction)));
 				sb.Append("</ebl:FailedInitialAmountAction>");
 			}
 			return sb.ToString();
@@ -21872,17 +21043,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			StringBuilder sb = new StringBuilder();
 			if(BillingPeriod != null)
 			{
-				sb.Append("<ebl:BillingPeriod>").Append(EnumUtils.getDescription(BillingPeriod));
+				sb.Append("<ebl:BillingPeriod>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(BillingPeriod)));
 				sb.Append("</ebl:BillingPeriod>");
 			}
 			if(BillingFrequency != null)
 			{
-				sb.Append("<ebl:BillingFrequency>").Append(BillingFrequency);
+				sb.Append("<ebl:BillingFrequency>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(BillingFrequency));
 				sb.Append("</ebl:BillingFrequency>");
 			}
 			if(TotalBillingCycles != null)
 			{
-				sb.Append("<ebl:TotalBillingCycles>").Append(TotalBillingCycles);
+				sb.Append("<ebl:TotalBillingCycles>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(TotalBillingCycles));
 				sb.Append("</ebl:TotalBillingCycles>");
 			}
 			if(Amount != null)
@@ -21905,63 +21076,42 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			return sb.ToString();
 		}
-		public BillingPeriodDetailsType(Object xmlSoap)
+		public BillingPeriodDetailsType(XmlNode xmlNode)
 		{
-			XmlDocument document = new XmlDocument();
-			document.LoadXml(xmlSoap.ToString());
-			XmlNodeList nodeList = null;
-			string xmlString = "";
-			if(document.GetElementsByTagName("BillingPeriod").Count != 0)
+			XmlNode ChildNode = null;
+			XmlNodeList ChildNodeList = null;
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'BillingPeriod']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("BillingPeriod")[0]))
-				{
-					this.BillingPeriod = (BillingPeriodType)EnumUtils.getValue(document.GetElementsByTagName("BillingPeriod")[0].InnerText,typeof(BillingPeriodType));
-				}
+				this.BillingPeriod = (BillingPeriodType)EnumUtils.getValue(ChildNode.InnerText,typeof(BillingPeriodType));
 			}
-		if(document.GetElementsByTagName("BillingFrequency").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("BillingFrequency")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'BillingFrequency']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.BillingFrequency = System.Convert.ToInt32(document.GetElementsByTagName("BillingFrequency")[0].InnerText);
+				this.BillingFrequency = System.Convert.ToInt32(ChildNode.InnerText);
 			}
-		}
-		if(document.GetElementsByTagName("TotalBillingCycles").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("TotalBillingCycles")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'TotalBillingCycles']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.TotalBillingCycles = System.Convert.ToInt32(document.GetElementsByTagName("TotalBillingCycles")[0].InnerText);
+				this.TotalBillingCycles = System.Convert.ToInt32(ChildNode.InnerText);
 			}
-		}
-			if(document.GetElementsByTagName("Amount").Count != 0)
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'Amount']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("Amount")[0]))
-				{
-					nodeList = document.GetElementsByTagName("Amount");
-					xmlString = DeserializationUtils.convertToXML(nodeList[0]);
-					this.Amount =  new BasicAmountType(xmlString);
-				}
+				this.Amount =  new BasicAmountType(ChildNode);
 			}
-			if(document.GetElementsByTagName("ShippingAmount").Count != 0)
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'ShippingAmount']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("ShippingAmount")[0]))
-				{
-					nodeList = document.GetElementsByTagName("ShippingAmount");
-					xmlString = DeserializationUtils.convertToXML(nodeList[0]);
-					this.ShippingAmount =  new BasicAmountType(xmlString);
-				}
+				this.ShippingAmount =  new BasicAmountType(ChildNode);
 			}
-			if(document.GetElementsByTagName("TaxAmount").Count != 0)
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'TaxAmount']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("TaxAmount")[0]))
-				{
-					nodeList = document.GetElementsByTagName("TaxAmount");
-					xmlString = DeserializationUtils.convertToXML(nodeList[0]);
-					this.TaxAmount =  new BasicAmountType(xmlString);
-				}
+				this.TaxAmount =  new BasicAmountType(ChildNode);
 			}
 	
 		}
-		
 	}
 
 
@@ -22087,17 +21237,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			StringBuilder sb = new StringBuilder();
 			if(BillingPeriod != null)
 			{
-				sb.Append("<ebl:BillingPeriod>").Append(EnumUtils.getDescription(BillingPeriod));
+				sb.Append("<ebl:BillingPeriod>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(BillingPeriod)));
 				sb.Append("</ebl:BillingPeriod>");
 			}
 			if(BillingFrequency != null)
 			{
-				sb.Append("<ebl:BillingFrequency>").Append(BillingFrequency);
+				sb.Append("<ebl:BillingFrequency>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(BillingFrequency));
 				sb.Append("</ebl:BillingFrequency>");
 			}
 			if(TotalBillingCycles != null)
 			{
-				sb.Append("<ebl:TotalBillingCycles>").Append(TotalBillingCycles);
+				sb.Append("<ebl:TotalBillingCycles>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(TotalBillingCycles));
 				sb.Append("</ebl:TotalBillingCycles>");
 			}
 			if(Amount != null)
@@ -22253,7 +21403,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			StringBuilder sb = new StringBuilder();
 			if(Description != null)
 			{
-				sb.Append("<ebl:Description>").Append(Description);
+				sb.Append("<ebl:Description>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(Description));
 				sb.Append("</ebl:Description>");
 			}
 			if(TrialPeriod != null)
@@ -22270,7 +21420,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(MaxFailedPayments != null)
 			{
-				sb.Append("<ebl:MaxFailedPayments>").Append(MaxFailedPayments);
+				sb.Append("<ebl:MaxFailedPayments>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(MaxFailedPayments));
 				sb.Append("</ebl:MaxFailedPayments>");
 			}
 			if(ActivationDetails != null)
@@ -22281,7 +21431,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(AutoBillOutstandingAmount != null)
 			{
-				sb.Append("<ebl:AutoBillOutstandingAmount>").Append(EnumUtils.getDescription(AutoBillOutstandingAmount));
+				sb.Append("<ebl:AutoBillOutstandingAmount>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(AutoBillOutstandingAmount)));
 				sb.Append("</ebl:AutoBillOutstandingAmount>");
 			}
 			return sb.ToString();
@@ -22385,7 +21535,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			StringBuilder sb = new StringBuilder();
 			if(SubscriberName != null)
 			{
-				sb.Append("<ebl:SubscriberName>").Append(SubscriberName);
+				sb.Append("<ebl:SubscriberName>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(SubscriberName));
 				sb.Append("</ebl:SubscriberName>");
 			}
 			if(SubscriberShippingAddress != null)
@@ -22396,55 +21546,42 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(BillingStartDate != null)
 			{
-				sb.Append("<ebl:BillingStartDate>").Append(BillingStartDate);
+				sb.Append("<ebl:BillingStartDate>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(BillingStartDate));
 				sb.Append("</ebl:BillingStartDate>");
 			}
 			if(ProfileReference != null)
 			{
-				sb.Append("<ebl:ProfileReference>").Append(ProfileReference);
+				sb.Append("<ebl:ProfileReference>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(ProfileReference));
 				sb.Append("</ebl:ProfileReference>");
 			}
 			return sb.ToString();
 		}
-		public RecurringPaymentsProfileDetailsType(Object xmlSoap)
+		public RecurringPaymentsProfileDetailsType(XmlNode xmlNode)
 		{
-			XmlDocument document = new XmlDocument();
-			document.LoadXml(xmlSoap.ToString());
-			XmlNodeList nodeList = null;
-			string xmlString = "";
-		if(document.GetElementsByTagName("SubscriberName").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("SubscriberName")[0]))
+			XmlNode ChildNode = null;
+			XmlNodeList ChildNodeList = null;
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'SubscriberName']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.SubscriberName = (string)document.GetElementsByTagName("SubscriberName")[0].InnerText;
+				this.SubscriberName = ChildNode.InnerText;
 			}
-		}
-			if(document.GetElementsByTagName("SubscriberShippingAddress").Count != 0)
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'SubscriberShippingAddress']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("SubscriberShippingAddress")[0]))
-				{
-					nodeList = document.GetElementsByTagName("SubscriberShippingAddress");
-					xmlString = DeserializationUtils.convertToXML(nodeList[0]);
-					this.SubscriberShippingAddress =  new AddressType(xmlString);
-				}
+				this.SubscriberShippingAddress =  new AddressType(ChildNode);
 			}
-		if(document.GetElementsByTagName("BillingStartDate").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("BillingStartDate")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'BillingStartDate']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.BillingStartDate = (string)document.GetElementsByTagName("BillingStartDate")[0].InnerText;
+				this.BillingStartDate = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("ProfileReference").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("ProfileReference")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'ProfileReference']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.ProfileReference = (string)document.GetElementsByTagName("ProfileReference")[0].InnerText;
+				this.ProfileReference = ChildNode.InnerText;
 			}
-		}
 	
 		}
-		
 	}
 
 
@@ -22561,7 +21698,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			StringBuilder sb = new StringBuilder();
 			if(Token != null)
 			{
-				sb.Append("<ebl:Token>").Append(Token);
+				sb.Append("<ebl:Token>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(Token));
 				sb.Append("</ebl:Token>");
 			}
 			if(CreditCard != null)
@@ -22697,50 +21834,37 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public CreateRecurringPaymentsProfileResponseDetailsType(Object xmlSoap)
+		public CreateRecurringPaymentsProfileResponseDetailsType(XmlNode xmlNode)
 		{
-			XmlDocument document = new XmlDocument();
-			document.LoadXml(xmlSoap.ToString());
-			XmlNodeList nodeList = null;
-			string xmlString = "";
-		if(document.GetElementsByTagName("ProfileID").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("ProfileID")[0]))
+			XmlNode ChildNode = null;
+			XmlNodeList ChildNodeList = null;
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'ProfileID']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.ProfileID = (string)document.GetElementsByTagName("ProfileID")[0].InnerText;
+				this.ProfileID = ChildNode.InnerText;
 			}
-		}
-			if(document.GetElementsByTagName("ProfileStatus").Count != 0)
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'ProfileStatus']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("ProfileStatus")[0]))
-				{
-					this.ProfileStatus = (RecurringPaymentsProfileStatusType)EnumUtils.getValue(document.GetElementsByTagName("ProfileStatus")[0].InnerText,typeof(RecurringPaymentsProfileStatusType));
-				}
+				this.ProfileStatus = (RecurringPaymentsProfileStatusType)EnumUtils.getValue(ChildNode.InnerText,typeof(RecurringPaymentsProfileStatusType));
 			}
-		if(document.GetElementsByTagName("TransactionID").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("TransactionID")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'TransactionID']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.TransactionID = (string)document.GetElementsByTagName("TransactionID")[0].InnerText;
+				this.TransactionID = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("DCCProcessorResponse").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("DCCProcessorResponse")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'DCCProcessorResponse']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.DCCProcessorResponse = (string)document.GetElementsByTagName("DCCProcessorResponse")[0].InnerText;
+				this.DCCProcessorResponse = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("DCCReturnCode").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("DCCReturnCode")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'DCCReturnCode']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.DCCReturnCode = (string)document.GetElementsByTagName("DCCReturnCode")[0].InnerText;
+				this.DCCReturnCode = ChildNode.InnerText;
 			}
-		}
 	
 		}
-		
 	}
 
 
@@ -23031,147 +22155,92 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public GetRecurringPaymentsProfileDetailsResponseDetailsType(Object xmlSoap)
+		public GetRecurringPaymentsProfileDetailsResponseDetailsType(XmlNode xmlNode)
 		{
-			XmlDocument document = new XmlDocument();
-			document.LoadXml(xmlSoap.ToString());
-			XmlNodeList nodeList = null;
-			string xmlString = "";
-		if(document.GetElementsByTagName("ProfileID").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("ProfileID")[0]))
+			XmlNode ChildNode = null;
+			XmlNodeList ChildNodeList = null;
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'ProfileID']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.ProfileID = (string)document.GetElementsByTagName("ProfileID")[0].InnerText;
+				this.ProfileID = ChildNode.InnerText;
 			}
-		}
-			if(document.GetElementsByTagName("ProfileStatus").Count != 0)
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'ProfileStatus']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("ProfileStatus")[0]))
-				{
-					this.ProfileStatus = (RecurringPaymentsProfileStatusType)EnumUtils.getValue(document.GetElementsByTagName("ProfileStatus")[0].InnerText,typeof(RecurringPaymentsProfileStatusType));
-				}
+				this.ProfileStatus = (RecurringPaymentsProfileStatusType)EnumUtils.getValue(ChildNode.InnerText,typeof(RecurringPaymentsProfileStatusType));
 			}
-		if(document.GetElementsByTagName("Description").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("Description")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'Description']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.Description = (string)document.GetElementsByTagName("Description")[0].InnerText;
+				this.Description = ChildNode.InnerText;
 			}
-		}
-			if(document.GetElementsByTagName("AutoBillOutstandingAmount").Count != 0)
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'AutoBillOutstandingAmount']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("AutoBillOutstandingAmount")[0]))
-				{
-					this.AutoBillOutstandingAmount = (AutoBillType)EnumUtils.getValue(document.GetElementsByTagName("AutoBillOutstandingAmount")[0].InnerText,typeof(AutoBillType));
-				}
+				this.AutoBillOutstandingAmount = (AutoBillType)EnumUtils.getValue(ChildNode.InnerText,typeof(AutoBillType));
 			}
-		if(document.GetElementsByTagName("MaxFailedPayments").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("MaxFailedPayments")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'MaxFailedPayments']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.MaxFailedPayments = System.Convert.ToInt32(document.GetElementsByTagName("MaxFailedPayments")[0].InnerText);
+				this.MaxFailedPayments = System.Convert.ToInt32(ChildNode.InnerText);
 			}
-		}
-			if(document.GetElementsByTagName("RecurringPaymentsProfileDetails").Count != 0)
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'RecurringPaymentsProfileDetails']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("RecurringPaymentsProfileDetails")[0]))
-				{
-					nodeList = document.GetElementsByTagName("RecurringPaymentsProfileDetails");
-					xmlString = DeserializationUtils.convertToXML(nodeList[0]);
-					this.RecurringPaymentsProfileDetails =  new RecurringPaymentsProfileDetailsType(xmlString);
-				}
+				this.RecurringPaymentsProfileDetails =  new RecurringPaymentsProfileDetailsType(ChildNode);
 			}
-			if(document.GetElementsByTagName("CurrentRecurringPaymentsPeriod").Count != 0)
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'CurrentRecurringPaymentsPeriod']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("CurrentRecurringPaymentsPeriod")[0]))
-				{
-					nodeList = document.GetElementsByTagName("CurrentRecurringPaymentsPeriod");
-					xmlString = DeserializationUtils.convertToXML(nodeList[0]);
-					this.CurrentRecurringPaymentsPeriod =  new BillingPeriodDetailsType(xmlString);
-				}
+				this.CurrentRecurringPaymentsPeriod =  new BillingPeriodDetailsType(ChildNode);
 			}
-			if(document.GetElementsByTagName("RecurringPaymentsSummary").Count != 0)
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'RecurringPaymentsSummary']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("RecurringPaymentsSummary")[0]))
-				{
-					nodeList = document.GetElementsByTagName("RecurringPaymentsSummary");
-					xmlString = DeserializationUtils.convertToXML(nodeList[0]);
-					this.RecurringPaymentsSummary =  new RecurringPaymentsSummaryType(xmlString);
-				}
+				this.RecurringPaymentsSummary =  new RecurringPaymentsSummaryType(ChildNode);
 			}
-			if(document.GetElementsByTagName("CreditCard").Count != 0)
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'CreditCard']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("CreditCard")[0]))
-				{
-					nodeList = document.GetElementsByTagName("CreditCard");
-					xmlString = DeserializationUtils.convertToXML(nodeList[0]);
-					this.CreditCard =  new CreditCardDetailsType(xmlString);
-				}
+				this.CreditCard =  new CreditCardDetailsType(ChildNode);
 			}
-			if(document.GetElementsByTagName("TrialRecurringPaymentsPeriod").Count != 0)
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'TrialRecurringPaymentsPeriod']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("TrialRecurringPaymentsPeriod")[0]))
-				{
-					nodeList = document.GetElementsByTagName("TrialRecurringPaymentsPeriod");
-					xmlString = DeserializationUtils.convertToXML(nodeList[0]);
-					this.TrialRecurringPaymentsPeriod =  new BillingPeriodDetailsType(xmlString);
-				}
+				this.TrialRecurringPaymentsPeriod =  new BillingPeriodDetailsType(ChildNode);
 			}
-			if(document.GetElementsByTagName("RegularRecurringPaymentsPeriod").Count != 0)
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'RegularRecurringPaymentsPeriod']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("RegularRecurringPaymentsPeriod")[0]))
-				{
-					nodeList = document.GetElementsByTagName("RegularRecurringPaymentsPeriod");
-					xmlString = DeserializationUtils.convertToXML(nodeList[0]);
-					this.RegularRecurringPaymentsPeriod =  new BillingPeriodDetailsType(xmlString);
-				}
+				this.RegularRecurringPaymentsPeriod =  new BillingPeriodDetailsType(ChildNode);
 			}
-			if(document.GetElementsByTagName("TrialAmountPaid").Count != 0)
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'TrialAmountPaid']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("TrialAmountPaid")[0]))
-				{
-					nodeList = document.GetElementsByTagName("TrialAmountPaid");
-					xmlString = DeserializationUtils.convertToXML(nodeList[0]);
-					this.TrialAmountPaid =  new BasicAmountType(xmlString);
-				}
+				this.TrialAmountPaid =  new BasicAmountType(ChildNode);
 			}
-			if(document.GetElementsByTagName("RegularAmountPaid").Count != 0)
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'RegularAmountPaid']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("RegularAmountPaid")[0]))
-				{
-					nodeList = document.GetElementsByTagName("RegularAmountPaid");
-					xmlString = DeserializationUtils.convertToXML(nodeList[0]);
-					this.RegularAmountPaid =  new BasicAmountType(xmlString);
-				}
+				this.RegularAmountPaid =  new BasicAmountType(ChildNode);
 			}
-			if(document.GetElementsByTagName("AggregateAmount").Count != 0)
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'AggregateAmount']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("AggregateAmount")[0]))
-				{
-					nodeList = document.GetElementsByTagName("AggregateAmount");
-					xmlString = DeserializationUtils.convertToXML(nodeList[0]);
-					this.AggregateAmount =  new BasicAmountType(xmlString);
-				}
+				this.AggregateAmount =  new BasicAmountType(ChildNode);
 			}
-			if(document.GetElementsByTagName("AggregateOptionalAmount").Count != 0)
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'AggregateOptionalAmount']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("AggregateOptionalAmount")[0]))
-				{
-					nodeList = document.GetElementsByTagName("AggregateOptionalAmount");
-					xmlString = DeserializationUtils.convertToXML(nodeList[0]);
-					this.AggregateOptionalAmount =  new BasicAmountType(xmlString);
-				}
+				this.AggregateOptionalAmount =  new BasicAmountType(ChildNode);
 			}
-		if(document.GetElementsByTagName("FinalPaymentDueDate").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("FinalPaymentDueDate")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'FinalPaymentDueDate']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.FinalPaymentDueDate = (string)document.GetElementsByTagName("FinalPaymentDueDate")[0].InnerText;
+				this.FinalPaymentDueDate = ChildNode.InnerText;
 			}
-		}
 	
 		}
-		
 	}
 
 
@@ -23254,17 +22323,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			StringBuilder sb = new StringBuilder();
 			if(ProfileID != null)
 			{
-				sb.Append("<ebl:ProfileID>").Append(ProfileID);
+				sb.Append("<ebl:ProfileID>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(ProfileID));
 				sb.Append("</ebl:ProfileID>");
 			}
 			if(Action != null)
 			{
-				sb.Append("<ebl:Action>").Append(EnumUtils.getDescription(Action));
+				sb.Append("<ebl:Action>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(Action)));
 				sb.Append("</ebl:Action>");
 			}
 			if(Note != null)
 			{
-				sb.Append("<ebl:Note>").Append(Note);
+				sb.Append("<ebl:Note>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(Note));
 				sb.Append("</ebl:Note>");
 			}
 			return sb.ToString();
@@ -23304,22 +22373,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public ManageRecurringPaymentsProfileStatusResponseDetailsType(Object xmlSoap)
+		public ManageRecurringPaymentsProfileStatusResponseDetailsType(XmlNode xmlNode)
 		{
-			XmlDocument document = new XmlDocument();
-			document.LoadXml(xmlSoap.ToString());
-			XmlNodeList nodeList = null;
-			string xmlString = "";
-		if(document.GetElementsByTagName("ProfileID").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("ProfileID")[0]))
+			XmlNode ChildNode = null;
+			XmlNodeList ChildNodeList = null;
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'ProfileID']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.ProfileID = (string)document.GetElementsByTagName("ProfileID")[0].InnerText;
+				this.ProfileID = ChildNode.InnerText;
 			}
-		}
 	
 		}
-		
 	}
 
 
@@ -23401,7 +22465,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			StringBuilder sb = new StringBuilder();
 			if(ProfileID != null)
 			{
-				sb.Append("<ebl:ProfileID>").Append(ProfileID);
+				sb.Append("<ebl:ProfileID>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(ProfileID));
 				sb.Append("</ebl:ProfileID>");
 			}
 			if(Amount != null)
@@ -23412,7 +22476,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(Note != null)
 			{
-				sb.Append("<ebl:Note>").Append(Note);
+				sb.Append("<ebl:Note>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(Note));
 				sb.Append("</ebl:Note>");
 			}
 			return sb.ToString();
@@ -23452,22 +22516,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public BillOutstandingAmountResponseDetailsType(Object xmlSoap)
+		public BillOutstandingAmountResponseDetailsType(XmlNode xmlNode)
 		{
-			XmlDocument document = new XmlDocument();
-			document.LoadXml(xmlSoap.ToString());
-			XmlNodeList nodeList = null;
-			string xmlString = "";
-		if(document.GetElementsByTagName("ProfileID").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("ProfileID")[0]))
+			XmlNode ChildNode = null;
+			XmlNodeList ChildNodeList = null;
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'ProfileID']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.ProfileID = (string)document.GetElementsByTagName("ProfileID")[0].InnerText;
+				this.ProfileID = ChildNode.InnerText;
 			}
-		}
 	
 		}
-		
 	}
 
 
@@ -23787,22 +22846,22 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			StringBuilder sb = new StringBuilder();
 			if(ProfileID != null)
 			{
-				sb.Append("<ebl:ProfileID>").Append(ProfileID);
+				sb.Append("<ebl:ProfileID>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(ProfileID));
 				sb.Append("</ebl:ProfileID>");
 			}
 			if(Note != null)
 			{
-				sb.Append("<ebl:Note>").Append(Note);
+				sb.Append("<ebl:Note>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(Note));
 				sb.Append("</ebl:Note>");
 			}
 			if(Description != null)
 			{
-				sb.Append("<ebl:Description>").Append(Description);
+				sb.Append("<ebl:Description>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(Description));
 				sb.Append("</ebl:Description>");
 			}
 			if(SubscriberName != null)
 			{
-				sb.Append("<ebl:SubscriberName>").Append(SubscriberName);
+				sb.Append("<ebl:SubscriberName>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(SubscriberName));
 				sb.Append("</ebl:SubscriberName>");
 			}
 			if(SubscriberShippingAddress != null)
@@ -23813,12 +22872,12 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(ProfileReference != null)
 			{
-				sb.Append("<ebl:ProfileReference>").Append(ProfileReference);
+				sb.Append("<ebl:ProfileReference>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(ProfileReference));
 				sb.Append("</ebl:ProfileReference>");
 			}
 			if(AdditionalBillingCycles != null)
 			{
-				sb.Append("<ebl:AdditionalBillingCycles>").Append(AdditionalBillingCycles);
+				sb.Append("<ebl:AdditionalBillingCycles>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(AdditionalBillingCycles));
 				sb.Append("</ebl:AdditionalBillingCycles>");
 			}
 			if(Amount != null)
@@ -23847,12 +22906,12 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(AutoBillOutstandingAmount != null)
 			{
-				sb.Append("<ebl:AutoBillOutstandingAmount>").Append(EnumUtils.getDescription(AutoBillOutstandingAmount));
+				sb.Append("<ebl:AutoBillOutstandingAmount>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(AutoBillOutstandingAmount)));
 				sb.Append("</ebl:AutoBillOutstandingAmount>");
 			}
 			if(MaxFailedPayments != null)
 			{
-				sb.Append("<ebl:MaxFailedPayments>").Append(MaxFailedPayments);
+				sb.Append("<ebl:MaxFailedPayments>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(MaxFailedPayments));
 				sb.Append("</ebl:MaxFailedPayments>");
 			}
 			if(CreditCard != null)
@@ -23863,7 +22922,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(BillingStartDate != null)
 			{
-				sb.Append("<ebl:BillingStartDate>").Append(BillingStartDate);
+				sb.Append("<ebl:BillingStartDate>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(BillingStartDate));
 				sb.Append("</ebl:BillingStartDate>");
 			}
 			if(TrialPeriod != null)
@@ -23915,22 +22974,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public UpdateRecurringPaymentsProfileResponseDetailsType(Object xmlSoap)
+		public UpdateRecurringPaymentsProfileResponseDetailsType(XmlNode xmlNode)
 		{
-			XmlDocument document = new XmlDocument();
-			document.LoadXml(xmlSoap.ToString());
-			XmlNodeList nodeList = null;
-			string xmlString = "";
-		if(document.GetElementsByTagName("ProfileID").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("ProfileID")[0]))
+			XmlNode ChildNode = null;
+			XmlNodeList ChildNodeList = null;
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'ProfileID']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.ProfileID = (string)document.GetElementsByTagName("ProfileID")[0].InnerText;
+				this.ProfileID = ChildNode.InnerText;
 			}
-		}
 	
 		}
-		
 	}
 
 
@@ -24000,36 +23054,27 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public RiskFilterDetailsType(Object xmlSoap)
+		public RiskFilterDetailsType(XmlNode xmlNode)
 		{
-			XmlDocument document = new XmlDocument();
-			document.LoadXml(xmlSoap.ToString());
-			XmlNodeList nodeList = null;
-			string xmlString = "";
-		if(document.GetElementsByTagName("Id").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("Id")[0]))
+			XmlNode ChildNode = null;
+			XmlNodeList ChildNodeList = null;
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'Id']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.Id = System.Convert.ToInt32(document.GetElementsByTagName("Id")[0].InnerText);
+				this.Id = System.Convert.ToInt32(ChildNode.InnerText);
 			}
-		}
-		if(document.GetElementsByTagName("Name").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("Name")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'Name']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.Name = (string)document.GetElementsByTagName("Name")[0].InnerText;
+				this.Name = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("Description").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("Description")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'Description']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.Description = (string)document.GetElementsByTagName("Description")[0].InnerText;
+				this.Description = ChildNode.InnerText;
 			}
-		}
 	
 		}
-		
 	}
 
 
@@ -24065,27 +23110,21 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public RiskFilterListType(Object xmlSoap)
+		public RiskFilterListType(XmlNode xmlNode)
 		{
-			XmlDocument document = new XmlDocument();
-			document.LoadXml(xmlSoap.ToString());
-			XmlNodeList nodeList = null;
-			string xmlString = "";
-			if(document.GetElementsByTagName("Filters").Count != 0)
+			XmlNode ChildNode = null;
+			XmlNodeList ChildNodeList = null;
+			ChildNodeList = xmlNode.SelectNodes("*[local-name() = 'Filters']");
+			if (ChildNodeList != null && ChildNodeList.Count > 0)
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("Filters")[0]))
+				for(int i = 0; i < ChildNodeList.Count; i++)
 				{
-					nodeList = document.GetElementsByTagName("Filters");
-					for(int i = 0; i < nodeList.Count; i++)
-					{
-						xmlString = DeserializationUtils.convertToXML(nodeList[i]);
-						this.Filters.Add(new RiskFilterDetailsType(xmlString));
-					}
+					XmlNode subNode = ChildNodeList.Item(i);
+					this.Filters.Add(new RiskFilterDetailsType(subNode));
 				}
 			}
 	
 		}
-		
 	}
 
 
@@ -24173,51 +23212,32 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public FMFDetailsType(Object xmlSoap)
+		public FMFDetailsType(XmlNode xmlNode)
 		{
-			XmlDocument document = new XmlDocument();
-			document.LoadXml(xmlSoap.ToString());
-			XmlNodeList nodeList = null;
-			string xmlString = "";
-			if(document.GetElementsByTagName("AcceptFilters").Count != 0)
+			XmlNode ChildNode = null;
+			XmlNodeList ChildNodeList = null;
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'AcceptFilters']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("AcceptFilters")[0]))
-				{
-					nodeList = document.GetElementsByTagName("AcceptFilters");
-					xmlString = DeserializationUtils.convertToXML(nodeList[0]);
-					this.AcceptFilters =  new RiskFilterListType(xmlString);
-				}
+				this.AcceptFilters =  new RiskFilterListType(ChildNode);
 			}
-			if(document.GetElementsByTagName("PendingFilters").Count != 0)
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'PendingFilters']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("PendingFilters")[0]))
-				{
-					nodeList = document.GetElementsByTagName("PendingFilters");
-					xmlString = DeserializationUtils.convertToXML(nodeList[0]);
-					this.PendingFilters =  new RiskFilterListType(xmlString);
-				}
+				this.PendingFilters =  new RiskFilterListType(ChildNode);
 			}
-			if(document.GetElementsByTagName("DenyFilters").Count != 0)
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'DenyFilters']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("DenyFilters")[0]))
-				{
-					nodeList = document.GetElementsByTagName("DenyFilters");
-					xmlString = DeserializationUtils.convertToXML(nodeList[0]);
-					this.DenyFilters =  new RiskFilterListType(xmlString);
-				}
+				this.DenyFilters =  new RiskFilterListType(ChildNode);
 			}
-			if(document.GetElementsByTagName("ReportFilters").Count != 0)
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'ReportFilters']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("ReportFilters")[0]))
-				{
-					nodeList = document.GetElementsByTagName("ReportFilters");
-					xmlString = DeserializationUtils.convertToXML(nodeList[0]);
-					this.ReportFilters =  new RiskFilterListType(xmlString);
-				}
+				this.ReportFilters =  new RiskFilterListType(ChildNode);
 			}
 	
 		}
-		
 	}
 
 
@@ -24525,37 +23545,37 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			StringBuilder sb = new StringBuilder();
 			if(PassengerName != null)
 			{
-				sb.Append("<ebl:PassengerName>").Append(PassengerName);
+				sb.Append("<ebl:PassengerName>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(PassengerName));
 				sb.Append("</ebl:PassengerName>");
 			}
 			if(IssueDate != null)
 			{
-				sb.Append("<ebl:IssueDate>").Append(IssueDate);
+				sb.Append("<ebl:IssueDate>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(IssueDate));
 				sb.Append("</ebl:IssueDate>");
 			}
 			if(TravelAgencyName != null)
 			{
-				sb.Append("<ebl:TravelAgencyName>").Append(TravelAgencyName);
+				sb.Append("<ebl:TravelAgencyName>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(TravelAgencyName));
 				sb.Append("</ebl:TravelAgencyName>");
 			}
 			if(TravelAgencyCode != null)
 			{
-				sb.Append("<ebl:TravelAgencyCode>").Append(TravelAgencyCode);
+				sb.Append("<ebl:TravelAgencyCode>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(TravelAgencyCode));
 				sb.Append("</ebl:TravelAgencyCode>");
 			}
 			if(TicketNumber != null)
 			{
-				sb.Append("<ebl:TicketNumber>").Append(TicketNumber);
+				sb.Append("<ebl:TicketNumber>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(TicketNumber));
 				sb.Append("</ebl:TicketNumber>");
 			}
 			if(IssuingCarrierCode != null)
 			{
-				sb.Append("<ebl:IssuingCarrierCode>").Append(IssuingCarrierCode);
+				sb.Append("<ebl:IssuingCarrierCode>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(IssuingCarrierCode));
 				sb.Append("</ebl:IssuingCarrierCode>");
 			}
 			if(CustomerCode != null)
 			{
-				sb.Append("<ebl:CustomerCode>").Append(CustomerCode);
+				sb.Append("<ebl:CustomerCode>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(CustomerCode));
 				sb.Append("</ebl:CustomerCode>");
 			}
 			if(TotalFare != null)
@@ -24578,17 +23598,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(RestrictedTicket != null)
 			{
-				sb.Append("<ebl:RestrictedTicket>").Append(RestrictedTicket);
+				sb.Append("<ebl:RestrictedTicket>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(RestrictedTicket));
 				sb.Append("</ebl:RestrictedTicket>");
 			}
 			if(ClearingSequence != null)
 			{
-				sb.Append("<ebl:ClearingSequence>").Append(ClearingSequence);
+				sb.Append("<ebl:ClearingSequence>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(ClearingSequence));
 				sb.Append("</ebl:ClearingSequence>");
 			}
 			if(ClearingCount != null)
 			{
-				sb.Append("<ebl:ClearingCount>").Append(ClearingCount);
+				sb.Append("<ebl:ClearingCount>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(ClearingCount));
 				sb.Append("</ebl:ClearingCount>");
 			}
 			if(FlightDetails != null)
@@ -24915,67 +23935,67 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			StringBuilder sb = new StringBuilder();
 			if(ConjuctionTicket != null)
 			{
-				sb.Append("<ebl:ConjuctionTicket>").Append(ConjuctionTicket);
+				sb.Append("<ebl:ConjuctionTicket>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(ConjuctionTicket));
 				sb.Append("</ebl:ConjuctionTicket>");
 			}
 			if(ExchangeTicket != null)
 			{
-				sb.Append("<ebl:ExchangeTicket>").Append(ExchangeTicket);
+				sb.Append("<ebl:ExchangeTicket>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(ExchangeTicket));
 				sb.Append("</ebl:ExchangeTicket>");
 			}
 			if(CouponNumber != null)
 			{
-				sb.Append("<ebl:CouponNumber>").Append(CouponNumber);
+				sb.Append("<ebl:CouponNumber>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(CouponNumber));
 				sb.Append("</ebl:CouponNumber>");
 			}
 			if(ServiceClass != null)
 			{
-				sb.Append("<ebl:ServiceClass>").Append(ServiceClass);
+				sb.Append("<ebl:ServiceClass>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(ServiceClass));
 				sb.Append("</ebl:ServiceClass>");
 			}
 			if(TravelDate != null)
 			{
-				sb.Append("<ebl:TravelDate>").Append(TravelDate);
+				sb.Append("<ebl:TravelDate>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(TravelDate));
 				sb.Append("</ebl:TravelDate>");
 			}
 			if(CarrierCode != null)
 			{
-				sb.Append("<ebl:CarrierCode>").Append(CarrierCode);
+				sb.Append("<ebl:CarrierCode>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(CarrierCode));
 				sb.Append("</ebl:CarrierCode>");
 			}
 			if(StopOverPermitted != null)
 			{
-				sb.Append("<ebl:StopOverPermitted>").Append(StopOverPermitted);
+				sb.Append("<ebl:StopOverPermitted>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(StopOverPermitted));
 				sb.Append("</ebl:StopOverPermitted>");
 			}
 			if(DepartureAirport != null)
 			{
-				sb.Append("<ebl:DepartureAirport>").Append(DepartureAirport);
+				sb.Append("<ebl:DepartureAirport>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(DepartureAirport));
 				sb.Append("</ebl:DepartureAirport>");
 			}
 			if(ArrivalAirport != null)
 			{
-				sb.Append("<ebl:ArrivalAirport>").Append(ArrivalAirport);
+				sb.Append("<ebl:ArrivalAirport>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(ArrivalAirport));
 				sb.Append("</ebl:ArrivalAirport>");
 			}
 			if(FlightNumber != null)
 			{
-				sb.Append("<ebl:FlightNumber>").Append(FlightNumber);
+				sb.Append("<ebl:FlightNumber>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(FlightNumber));
 				sb.Append("</ebl:FlightNumber>");
 			}
 			if(DepartureTime != null)
 			{
-				sb.Append("<ebl:DepartureTime>").Append(DepartureTime);
+				sb.Append("<ebl:DepartureTime>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(DepartureTime));
 				sb.Append("</ebl:DepartureTime>");
 			}
 			if(ArrivalTime != null)
 			{
-				sb.Append("<ebl:ArrivalTime>").Append(ArrivalTime);
+				sb.Append("<ebl:ArrivalTime>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(ArrivalTime));
 				sb.Append("</ebl:ArrivalTime>");
 			}
 			if(FareBasisCode != null)
 			{
-				sb.Append("<ebl:FareBasisCode>").Append(FareBasisCode);
+				sb.Append("<ebl:FareBasisCode>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(FareBasisCode));
 				sb.Append("</ebl:FareBasisCode>");
 			}
 			if(Fare != null)
@@ -24998,7 +24018,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(EndorsementOrRestrictions != null)
 			{
-				sb.Append("<ebl:EndorsementOrRestrictions>").Append(EndorsementOrRestrictions);
+				sb.Append("<ebl:EndorsementOrRestrictions>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EndorsementOrRestrictions));
 				sb.Append("</ebl:EndorsementOrRestrictions>");
 			}
 			return sb.ToString();
@@ -25089,43 +24109,32 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public AuthorizationInfoType(Object xmlSoap)
+		public AuthorizationInfoType(XmlNode xmlNode)
 		{
-			XmlDocument document = new XmlDocument();
-			document.LoadXml(xmlSoap.ToString());
-			XmlNodeList nodeList = null;
-			string xmlString = "";
-			if(document.GetElementsByTagName("PaymentStatus").Count != 0)
+			XmlNode ChildNode = null;
+			XmlNodeList ChildNodeList = null;
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'PaymentStatus']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("PaymentStatus")[0]))
-				{
-					this.PaymentStatus = (PaymentStatusCodeType)EnumUtils.getValue(document.GetElementsByTagName("PaymentStatus")[0].InnerText,typeof(PaymentStatusCodeType));
-				}
+				this.PaymentStatus = (PaymentStatusCodeType)EnumUtils.getValue(ChildNode.InnerText,typeof(PaymentStatusCodeType));
 			}
-			if(document.GetElementsByTagName("PendingReason").Count != 0)
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'PendingReason']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("PendingReason")[0]))
-				{
-					this.PendingReason = (PendingStatusCodeType)EnumUtils.getValue(document.GetElementsByTagName("PendingReason")[0].InnerText,typeof(PendingStatusCodeType));
-				}
+				this.PendingReason = (PendingStatusCodeType)EnumUtils.getValue(ChildNode.InnerText,typeof(PendingStatusCodeType));
 			}
-		if(document.GetElementsByTagName("ProtectionEligibility").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("ProtectionEligibility")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'ProtectionEligibility']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.ProtectionEligibility = (string)document.GetElementsByTagName("ProtectionEligibility")[0].InnerText;
+				this.ProtectionEligibility = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("ProtectionEligibilityType").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("ProtectionEligibilityType")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'ProtectionEligibilityType']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.ProtectionEligibilityType = (string)document.GetElementsByTagName("ProtectionEligibilityType")[0].InnerText;
+				this.ProtectionEligibilityType = ChildNode.InnerText;
 			}
-		}
 	
 		}
-		
 	}
 
 
@@ -25251,87 +24260,72 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			StringBuilder sb = new StringBuilder();
 			if(OptionNumber != null)
 			{
-				sb.Append("<ebl:OptionNumber>").Append(OptionNumber);
+				sb.Append("<ebl:OptionNumber>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(OptionNumber));
 				sb.Append("</ebl:OptionNumber>");
 			}
 			if(OptionQty != null)
 			{
-				sb.Append("<ebl:OptionQty>").Append(OptionQty);
+				sb.Append("<ebl:OptionQty>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(OptionQty));
 				sb.Append("</ebl:OptionQty>");
 			}
 			if(OptionSelect != null)
 			{
-				sb.Append("<ebl:OptionSelect>").Append(OptionSelect);
+				sb.Append("<ebl:OptionSelect>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(OptionSelect));
 				sb.Append("</ebl:OptionSelect>");
 			}
 			if(OptionQtyDelta != null)
 			{
-				sb.Append("<ebl:OptionQtyDelta>").Append(OptionQtyDelta);
+				sb.Append("<ebl:OptionQtyDelta>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(OptionQtyDelta));
 				sb.Append("</ebl:OptionQtyDelta>");
 			}
 			if(OptionAlert != null)
 			{
-				sb.Append("<ebl:OptionAlert>").Append(OptionAlert);
+				sb.Append("<ebl:OptionAlert>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(OptionAlert));
 				sb.Append("</ebl:OptionAlert>");
 			}
 			if(OptionCost != null)
 			{
-				sb.Append("<ebl:OptionCost>").Append(OptionCost);
+				sb.Append("<ebl:OptionCost>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(OptionCost));
 				sb.Append("</ebl:OptionCost>");
 			}
 			return sb.ToString();
 		}
-		public OptionTrackingDetailsType(Object xmlSoap)
+		public OptionTrackingDetailsType(XmlNode xmlNode)
 		{
-			XmlDocument document = new XmlDocument();
-			document.LoadXml(xmlSoap.ToString());
-			XmlNodeList nodeList = null;
-			string xmlString = "";
-		if(document.GetElementsByTagName("OptionNumber").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("OptionNumber")[0]))
+			XmlNode ChildNode = null;
+			XmlNodeList ChildNodeList = null;
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'OptionNumber']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.OptionNumber = (string)document.GetElementsByTagName("OptionNumber")[0].InnerText;
+				this.OptionNumber = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("OptionQty").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("OptionQty")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'OptionQty']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.OptionQty = (string)document.GetElementsByTagName("OptionQty")[0].InnerText;
+				this.OptionQty = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("OptionSelect").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("OptionSelect")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'OptionSelect']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.OptionSelect = (string)document.GetElementsByTagName("OptionSelect")[0].InnerText;
+				this.OptionSelect = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("OptionQtyDelta").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("OptionQtyDelta")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'OptionQtyDelta']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.OptionQtyDelta = (string)document.GetElementsByTagName("OptionQtyDelta")[0].InnerText;
+				this.OptionQtyDelta = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("OptionAlert").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("OptionAlert")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'OptionAlert']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.OptionAlert = (string)document.GetElementsByTagName("OptionAlert")[0].InnerText;
+				this.OptionAlert = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("OptionCost").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("OptionCost")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'OptionCost']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.OptionCost = (string)document.GetElementsByTagName("OptionCost")[0].InnerText;
+				this.OptionCost = ChildNode.InnerText;
 			}
-		}
 	
 		}
-		
 	}
 
 
@@ -25440,75 +24434,62 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			StringBuilder sb = new StringBuilder();
 			if(ItemNumber != null)
 			{
-				sb.Append("<ebl:ItemNumber>").Append(ItemNumber);
+				sb.Append("<ebl:ItemNumber>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(ItemNumber));
 				sb.Append("</ebl:ItemNumber>");
 			}
 			if(ItemQty != null)
 			{
-				sb.Append("<ebl:ItemQty>").Append(ItemQty);
+				sb.Append("<ebl:ItemQty>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(ItemQty));
 				sb.Append("</ebl:ItemQty>");
 			}
 			if(ItemQtyDelta != null)
 			{
-				sb.Append("<ebl:ItemQtyDelta>").Append(ItemQtyDelta);
+				sb.Append("<ebl:ItemQtyDelta>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(ItemQtyDelta));
 				sb.Append("</ebl:ItemQtyDelta>");
 			}
 			if(ItemAlert != null)
 			{
-				sb.Append("<ebl:ItemAlert>").Append(ItemAlert);
+				sb.Append("<ebl:ItemAlert>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(ItemAlert));
 				sb.Append("</ebl:ItemAlert>");
 			}
 			if(ItemCost != null)
 			{
-				sb.Append("<ebl:ItemCost>").Append(ItemCost);
+				sb.Append("<ebl:ItemCost>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(ItemCost));
 				sb.Append("</ebl:ItemCost>");
 			}
 			return sb.ToString();
 		}
-		public ItemTrackingDetailsType(Object xmlSoap)
+		public ItemTrackingDetailsType(XmlNode xmlNode)
 		{
-			XmlDocument document = new XmlDocument();
-			document.LoadXml(xmlSoap.ToString());
-			XmlNodeList nodeList = null;
-			string xmlString = "";
-		if(document.GetElementsByTagName("ItemNumber").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("ItemNumber")[0]))
+			XmlNode ChildNode = null;
+			XmlNodeList ChildNodeList = null;
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'ItemNumber']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.ItemNumber = (string)document.GetElementsByTagName("ItemNumber")[0].InnerText;
+				this.ItemNumber = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("ItemQty").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("ItemQty")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'ItemQty']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.ItemQty = (string)document.GetElementsByTagName("ItemQty")[0].InnerText;
+				this.ItemQty = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("ItemQtyDelta").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("ItemQtyDelta")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'ItemQtyDelta']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.ItemQtyDelta = (string)document.GetElementsByTagName("ItemQtyDelta")[0].InnerText;
+				this.ItemQtyDelta = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("ItemAlert").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("ItemAlert")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'ItemAlert']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.ItemAlert = (string)document.GetElementsByTagName("ItemAlert")[0].InnerText;
+				this.ItemAlert = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("ItemCost").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("ItemCost")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'ItemCost']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.ItemCost = (string)document.GetElementsByTagName("ItemCost")[0].InnerText;
+				this.ItemCost = ChildNode.InnerText;
 			}
-		}
 	
 		}
-		
 	}
 
 
@@ -25595,43 +24576,32 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public ButtonSearchResultType(Object xmlSoap)
+		public ButtonSearchResultType(XmlNode xmlNode)
 		{
-			XmlDocument document = new XmlDocument();
-			document.LoadXml(xmlSoap.ToString());
-			XmlNodeList nodeList = null;
-			string xmlString = "";
-		if(document.GetElementsByTagName("HostedButtonID").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("HostedButtonID")[0]))
+			XmlNode ChildNode = null;
+			XmlNodeList ChildNodeList = null;
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'HostedButtonID']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.HostedButtonID = (string)document.GetElementsByTagName("HostedButtonID")[0].InnerText;
+				this.HostedButtonID = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("ButtonType").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("ButtonType")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'ButtonType']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.ButtonType = (string)document.GetElementsByTagName("ButtonType")[0].InnerText;
+				this.ButtonType = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("ItemName").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("ItemName")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'ItemName']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.ItemName = (string)document.GetElementsByTagName("ItemName")[0].InnerText;
+				this.ItemName = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("ModifyDate").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("ModifyDate")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'ModifyDate']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.ModifyDate = (string)document.GetElementsByTagName("ModifyDate")[0].InnerText;
+				this.ModifyDate = ChildNode.InnerText;
 			}
-		}
 	
 		}
-		
 	}
 
 
@@ -25674,7 +24644,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			StringBuilder sb = new StringBuilder();
 			if(TransactionID != null)
 			{
-				sb.Append("<ebl:TransactionID>").Append(TransactionID);
+				sb.Append("<ebl:TransactionID>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(TransactionID));
 				sb.Append("</ebl:TransactionID>");
 			}
 			return sb.ToString();
@@ -25733,29 +24703,22 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public ReverseTransactionResponseDetailsType(Object xmlSoap)
+		public ReverseTransactionResponseDetailsType(XmlNode xmlNode)
 		{
-			XmlDocument document = new XmlDocument();
-			document.LoadXml(xmlSoap.ToString());
-			XmlNodeList nodeList = null;
-			string xmlString = "";
-		if(document.GetElementsByTagName("ReverseTransactionID").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("ReverseTransactionID")[0]))
+			XmlNode ChildNode = null;
+			XmlNodeList ChildNodeList = null;
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'ReverseTransactionID']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.ReverseTransactionID = (string)document.GetElementsByTagName("ReverseTransactionID")[0].InnerText;
+				this.ReverseTransactionID = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("Status").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("Status")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'Status']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.Status = (string)document.GetElementsByTagName("Status")[0].InnerText;
+				this.Status = ChildNode.InnerText;
 			}
-		}
 	
 		}
-		
 	}
 
 
@@ -25813,7 +24776,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			StringBuilder sb = new StringBuilder();
 			if(IncentiveCode != null)
 			{
-				sb.Append("<ebl:IncentiveCode>").Append(IncentiveCode);
+				sb.Append("<ebl:IncentiveCode>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(IncentiveCode));
 				sb.Append("</ebl:IncentiveCode>");
 			}
 			if(ApplyIndication != null)
@@ -25886,12 +24849,12 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			StringBuilder sb = new StringBuilder();
 			if(PaymentRequestID != null)
 			{
-				sb.Append("<ebl:PaymentRequestID>").Append(PaymentRequestID);
+				sb.Append("<ebl:PaymentRequestID>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(PaymentRequestID));
 				sb.Append("</ebl:PaymentRequestID>");
 			}
 			if(ItemId != null)
 			{
-				sb.Append("<ebl:ItemId>").Append(ItemId);
+				sb.Append("<ebl:ItemId>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(ItemId));
 				sb.Append("</ebl:ItemId>");
 			}
 			return sb.ToString();
@@ -25966,38 +24929,27 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public PaymentRequestInfoType(Object xmlSoap)
+		public PaymentRequestInfoType(XmlNode xmlNode)
 		{
-			XmlDocument document = new XmlDocument();
-			document.LoadXml(xmlSoap.ToString());
-			XmlNodeList nodeList = null;
-			string xmlString = "";
-		if(document.GetElementsByTagName("TransactionId").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("TransactionId")[0]))
+			XmlNode ChildNode = null;
+			XmlNodeList ChildNodeList = null;
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'TransactionId']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.TransactionId = (string)document.GetElementsByTagName("TransactionId")[0].InnerText;
+				this.TransactionId = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("PaymentRequestID").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("PaymentRequestID")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'PaymentRequestID']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.PaymentRequestID = (string)document.GetElementsByTagName("PaymentRequestID")[0].InnerText;
+				this.PaymentRequestID = ChildNode.InnerText;
 			}
-		}
-			if(document.GetElementsByTagName("PaymentError").Count != 0)
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'PaymentError']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("PaymentError")[0]))
-				{
-					nodeList = document.GetElementsByTagName("PaymentError");
-					xmlString = DeserializationUtils.convertToXML(nodeList[0]);
-					this.PaymentError =  new ErrorType(xmlString);
-				}
+				this.PaymentError =  new ErrorType(ChildNode);
 			}
 	
 		}
-		
 	}
 
 
@@ -26056,12 +25008,12 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			StringBuilder sb = new StringBuilder();
 			if(ExternalRememberMeOwnerIDType != null)
 			{
-				sb.Append("<ebl:ExternalRememberMeOwnerIDType>").Append(ExternalRememberMeOwnerIDType);
+				sb.Append("<ebl:ExternalRememberMeOwnerIDType>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(ExternalRememberMeOwnerIDType));
 				sb.Append("</ebl:ExternalRememberMeOwnerIDType>");
 			}
 			if(ExternalRememberMeOwnerID != null)
 			{
-				sb.Append("<ebl:ExternalRememberMeOwnerID>").Append(ExternalRememberMeOwnerID);
+				sb.Append("<ebl:ExternalRememberMeOwnerID>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(ExternalRememberMeOwnerID));
 				sb.Append("</ebl:ExternalRememberMeOwnerID>");
 			}
 			return sb.ToString();
@@ -26126,7 +25078,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			StringBuilder sb = new StringBuilder();
 			if(ExternalRememberMeOptIn != null)
 			{
-				sb.Append("<ebl:ExternalRememberMeOptIn>").Append(ExternalRememberMeOptIn);
+				sb.Append("<ebl:ExternalRememberMeOptIn>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(ExternalRememberMeOptIn));
 				sb.Append("</ebl:ExternalRememberMeOptIn>");
 			}
 			if(ExternalRememberMeOwnerDetails != null)
@@ -26194,12 +25146,12 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			StringBuilder sb = new StringBuilder();
 			if(ErrorURL != null)
 			{
-				sb.Append("<ebl:ErrorURL>").Append(ErrorURL);
+				sb.Append("<ebl:ErrorURL>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(ErrorURL));
 				sb.Append("</ebl:ErrorURL>");
 			}
 			if(InContextReturnURL != null)
 			{
-				sb.Append("<ebl:InContextReturnURL>").Append(InContextReturnURL);
+				sb.Append("<ebl:InContextReturnURL>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(InContextReturnURL));
 				sb.Append("</ebl:InContextReturnURL>");
 			}
 			return sb.ToString();
@@ -26257,29 +25209,22 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public ExternalRememberMeStatusDetailsType(Object xmlSoap)
+		public ExternalRememberMeStatusDetailsType(XmlNode xmlNode)
 		{
-			XmlDocument document = new XmlDocument();
-			document.LoadXml(xmlSoap.ToString());
-			XmlNodeList nodeList = null;
-			string xmlString = "";
-		if(document.GetElementsByTagName("ExternalRememberMeStatus").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("ExternalRememberMeStatus")[0]))
+			XmlNode ChildNode = null;
+			XmlNodeList ChildNodeList = null;
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'ExternalRememberMeStatus']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.ExternalRememberMeStatus = System.Convert.ToInt32(document.GetElementsByTagName("ExternalRememberMeStatus")[0].InnerText);
+				this.ExternalRememberMeStatus = System.Convert.ToInt32(ChildNode.InnerText);
 			}
-		}
-		if(document.GetElementsByTagName("ExternalRememberMeID").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("ExternalRememberMeID")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'ExternalRememberMeID']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.ExternalRememberMeID = (string)document.GetElementsByTagName("ExternalRememberMeID")[0].InnerText;
+				this.ExternalRememberMeID = ChildNode.InnerText;
 			}
-		}
 	
 		}
-		
 	}
 
 
@@ -26321,7 +25266,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			StringBuilder sb = new StringBuilder();
 			if(InContextPaymentButtonImage != null)
 			{
-				sb.Append("<ebl:InContextPaymentButtonImage>").Append(InContextPaymentButtonImage);
+				sb.Append("<ebl:InContextPaymentButtonImage>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(InContextPaymentButtonImage));
 				sb.Append("</ebl:InContextPaymentButtonImage>");
 			}
 			return sb.ToString();
@@ -26367,7 +25312,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			StringBuilder sb = new StringBuilder();
 			if(ExternalPartnerSegmentID != null)
 			{
-				sb.Append("<ebl:ExternalPartnerSegmentID>").Append(ExternalPartnerSegmentID);
+				sb.Append("<ebl:ExternalPartnerSegmentID>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(ExternalPartnerSegmentID));
 				sb.Append("</ebl:ExternalPartnerSegmentID>");
 			}
 			return sb.ToString();
@@ -26437,12 +25382,12 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			StringBuilder sb = new StringBuilder();
 			if(StoreID != null)
 			{
-				sb.Append("<ebl:StoreID>").Append(StoreID);
+				sb.Append("<ebl:StoreID>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(StoreID));
 				sb.Append("</ebl:StoreID>");
 			}
 			if(TerminalID != null)
 			{
-				sb.Append("<ebl:TerminalID>").Append(TerminalID);
+				sb.Append("<ebl:TerminalID>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(TerminalID));
 				sb.Append("</ebl:TerminalID>");
 			}
 			return sb.ToString();
@@ -26504,7 +25449,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			StringBuilder sb = new StringBuilder();
 			if(Type != null)
 			{
-				sb.Append("<ebl:Type>").Append(Type);
+				sb.Append("<ebl:Type>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(Type));
 				sb.Append("</ebl:Type>");
 			}
 			if(Amount != null)
@@ -26630,12 +25575,12 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			StringBuilder sb = new StringBuilder();
 			if(Name != null)
 			{
-				sb.Append("<ebl:Name>").Append(Name);
+				sb.Append("<ebl:Name>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(Name));
 				sb.Append("</ebl:Name>");
 			}
 			if(Description != null)
 			{
-				sb.Append("<ebl:Description>").Append(Description);
+				sb.Append("<ebl:Description>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(Description));
 				sb.Append("</ebl:Description>");
 			}
 			if(Amount != null)
@@ -26646,12 +25591,12 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(RedeemedOfferType != null)
 			{
-				sb.Append("<ebl:RedeemedOfferType>").Append(EnumUtils.getDescription(RedeemedOfferType));
+				sb.Append("<ebl:RedeemedOfferType>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(RedeemedOfferType)));
 				sb.Append("</ebl:RedeemedOfferType>");
 			}
 			if(RedeemedOfferID != null)
 			{
-				sb.Append("<ebl:RedeemedOfferID>").Append(RedeemedOfferID);
+				sb.Append("<ebl:RedeemedOfferID>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(RedeemedOfferID));
 				sb.Append("</ebl:RedeemedOfferID>");
 			}
 			return sb.ToString();
@@ -27002,27 +25947,27 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			StringBuilder sb = new StringBuilder();
 			if(Name != null)
 			{
-				sb.Append("<ebl:Name>").Append(Name);
+				sb.Append("<ebl:Name>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(Name));
 				sb.Append("</ebl:Name>");
 			}
 			if(Description != null)
 			{
-				sb.Append("<ebl:Description>").Append(Description);
+				sb.Append("<ebl:Description>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(Description));
 				sb.Append("</ebl:Description>");
 			}
 			if(EAN != null)
 			{
-				sb.Append("<ebl:EAN>").Append(EAN);
+				sb.Append("<ebl:EAN>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EAN));
 				sb.Append("</ebl:EAN>");
 			}
 			if(SKU != null)
 			{
-				sb.Append("<ebl:SKU>").Append(SKU);
+				sb.Append("<ebl:SKU>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(SKU));
 				sb.Append("</ebl:SKU>");
 			}
 			if(ReturnPolicyIdentifier != null)
 			{
-				sb.Append("<ebl:ReturnPolicyIdentifier>").Append(ReturnPolicyIdentifier);
+				sb.Append("<ebl:ReturnPolicyIdentifier>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(ReturnPolicyIdentifier));
 				sb.Append("</ebl:ReturnPolicyIdentifier>");
 			}
 			if(Price != null)
@@ -27039,12 +25984,12 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(ItemCount != null)
 			{
-				sb.Append("<ebl:ItemCount>").Append(ItemCount);
+				sb.Append("<ebl:ItemCount>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(ItemCount));
 				sb.Append("</ebl:ItemCount>");
 			}
 			if(ItemCountUnit != null)
 			{
-				sb.Append("<ebl:ItemCountUnit>").Append(EnumUtils.getDescription(ItemCountUnit));
+				sb.Append("<ebl:ItemCountUnit>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(ItemCountUnit)));
 				sb.Append("</ebl:ItemCountUnit>");
 			}
 			if(Discount != null)
@@ -27059,12 +26004,12 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(Taxable != null)
 			{
-				sb.Append("<ebl:Taxable>").Append(Taxable);
+				sb.Append("<ebl:Taxable>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(Taxable));
 				sb.Append("</ebl:Taxable>");
 			}
 			if(TaxRate != null)
 			{
-				sb.Append("<ebl:TaxRate>").Append(TaxRate);
+				sb.Append("<ebl:TaxRate>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(TaxRate));
 				sb.Append("</ebl:TaxRate>");
 			}
 			if(AdditionalFees != null)
@@ -27079,32 +26024,32 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(Reimbursable != null)
 			{
-				sb.Append("<ebl:Reimbursable>").Append(Reimbursable);
+				sb.Append("<ebl:Reimbursable>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(Reimbursable));
 				sb.Append("</ebl:Reimbursable>");
 			}
 			if(MPN != null)
 			{
-				sb.Append("<ebl:MPN>").Append(MPN);
+				sb.Append("<ebl:MPN>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(MPN));
 				sb.Append("</ebl:MPN>");
 			}
 			if(ISBN != null)
 			{
-				sb.Append("<ebl:ISBN>").Append(ISBN);
+				sb.Append("<ebl:ISBN>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(ISBN));
 				sb.Append("</ebl:ISBN>");
 			}
 			if(PLU != null)
 			{
-				sb.Append("<ebl:PLU>").Append(PLU);
+				sb.Append("<ebl:PLU>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(PLU));
 				sb.Append("</ebl:PLU>");
 			}
 			if(ModelNumber != null)
 			{
-				sb.Append("<ebl:ModelNumber>").Append(ModelNumber);
+				sb.Append("<ebl:ModelNumber>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(ModelNumber));
 				sb.Append("</ebl:ModelNumber>");
 			}
 			if(StyleNumber != null)
 			{
-				sb.Append("<ebl:StyleNumber>").Append(StyleNumber);
+				sb.Append("<ebl:StyleNumber>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(StyleNumber));
 				sb.Append("</ebl:StyleNumber>");
 			}
 			return sb.ToString();
@@ -27161,29 +26106,190 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public RefundInfoType(Object xmlSoap)
+		public RefundInfoType(XmlNode xmlNode)
 		{
-			XmlDocument document = new XmlDocument();
-			document.LoadXml(xmlSoap.ToString());
-			XmlNodeList nodeList = null;
-			string xmlString = "";
-			if(document.GetElementsByTagName("RefundStatus").Count != 0)
+			XmlNode ChildNode = null;
+			XmlNodeList ChildNodeList = null;
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'RefundStatus']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("RefundStatus")[0]))
-				{
-					this.RefundStatus = (PaymentStatusCodeType)EnumUtils.getValue(document.GetElementsByTagName("RefundStatus")[0].InnerText,typeof(PaymentStatusCodeType));
-				}
+				this.RefundStatus = (PaymentStatusCodeType)EnumUtils.getValue(ChildNode.InnerText,typeof(PaymentStatusCodeType));
 			}
-			if(document.GetElementsByTagName("PendingReason").Count != 0)
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'PendingReason']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("PendingReason")[0]))
-				{
-					this.PendingReason = (PendingStatusCodeType)EnumUtils.getValue(document.GetElementsByTagName("PendingReason")[0].InnerText,typeof(PendingStatusCodeType));
-				}
+				this.PendingReason = (PendingStatusCodeType)EnumUtils.getValue(ChildNode.InnerText,typeof(PendingStatusCodeType));
 			}
 	
 		}
+	}
+
+
+
+
+	/**
+      *Defines relationship between buckets 
+      */
+	public partial class CoupledBucketsType	
+	{
+
+		/**
+          *
+		  */
+		private CoupleType? CoupleTypeField;
+		public CoupleType? CoupleType
+		{
+			get
+			{
+				return this.CoupleTypeField;
+			}
+			set
+			{
+				this.CoupleTypeField = value;
+			}
+		}
 		
+
+		/**
+          *
+		  */
+		private string CoupledPaymentRequestIDField;
+		public string CoupledPaymentRequestID
+		{
+			get
+			{
+				return this.CoupledPaymentRequestIDField;
+			}
+			set
+			{
+				this.CoupledPaymentRequestIDField = value;
+			}
+		}
+		
+
+		/**
+          *
+		  */
+		private List<string> PaymentRequestIDField = new List<string>();
+		public List<string> PaymentRequestID
+		{
+			get
+			{
+				return this.PaymentRequestIDField;
+			}
+			set
+			{
+				this.PaymentRequestIDField = value;
+			}
+		}
+		
+
+		/**
+	 	  * Constructor with arguments
+	 	  */
+	 	public CoupledBucketsType(List<string> PaymentRequestID){
+			this.PaymentRequestID = PaymentRequestID;
+		}
+
+		/**
+	 	  * Default Constructor
+	 	  */
+	 	public CoupledBucketsType(){
+		}
+
+
+		public string toXMLString()
+		{
+			StringBuilder sb = new StringBuilder();
+			if(CoupleType != null)
+			{
+				sb.Append("<ebl:CoupleType>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(CoupleType)));
+				sb.Append("</ebl:CoupleType>");
+			}
+			if(CoupledPaymentRequestID != null)
+			{
+				sb.Append("<ebl:CoupledPaymentRequestID>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(CoupledPaymentRequestID));
+				sb.Append("</ebl:CoupledPaymentRequestID>");
+			}
+			if(PaymentRequestID != null)
+			{
+				for(int i = 0; i < PaymentRequestID.Count; i++)
+				{
+					sb.Append("<ebl:PaymentRequestID>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(PaymentRequestID[i]));
+					sb.Append("</ebl:PaymentRequestID>");
+				
+				}
+			}
+			return sb.ToString();
+		}
+	}
+
+
+
+
+	/**
+      *Information about Coupled Payment transactions. 
+      */
+	public partial class CoupledPaymentInfoType	
+	{
+
+		/**
+          *
+		  */
+		private string CoupledPaymentRequestIDField;
+		public string CoupledPaymentRequestID
+		{
+			get
+			{
+				return this.CoupledPaymentRequestIDField;
+			}
+			set
+			{
+				this.CoupledPaymentRequestIDField = value;
+			}
+		}
+		
+
+		/**
+          *
+		  */
+		private string CoupledPaymentIDField;
+		public string CoupledPaymentID
+		{
+			get
+			{
+				return this.CoupledPaymentIDField;
+			}
+			set
+			{
+				this.CoupledPaymentIDField = value;
+			}
+		}
+		
+
+		/**
+	 	  * Default Constructor
+	 	  */
+	 	public CoupledPaymentInfoType(){
+		}
+
+
+		public CoupledPaymentInfoType(XmlNode xmlNode)
+		{
+			XmlNode ChildNode = null;
+			XmlNodeList ChildNodeList = null;
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'CoupledPaymentRequestID']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
+			{
+				this.CoupledPaymentRequestID = ChildNode.InnerText;
+			}
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'CoupledPaymentID']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
+			{
+				this.CoupledPaymentID = ChildNode.InnerText;
+			}
+	
+		}
 	}
 
 
@@ -27230,15 +26336,12 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			StringBuilder sb = new StringBuilder();
 			return sb.ToString();
 		}
-		public EnhancedPaymentDataType(Object xmlSoap)
+		public EnhancedPaymentDataType(XmlNode xmlNode)
 		{
-			XmlDocument document = new XmlDocument();
-			document.LoadXml(xmlSoap.ToString());
-			XmlNodeList nodeList = null;
-			string xmlString = "";
+			XmlNode ChildNode = null;
+			XmlNodeList ChildNodeList = null;
 	
 		}
-		
 	}
 
 
@@ -27262,15 +26365,12 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			StringBuilder sb = new StringBuilder();
 			return sb.ToString();
 		}
-		public EnhancedItemDataType(Object xmlSoap)
+		public EnhancedItemDataType(XmlNode xmlNode)
 		{
-			XmlDocument document = new XmlDocument();
-			document.LoadXml(xmlSoap.ToString());
-			XmlNodeList nodeList = null;
-			string xmlString = "";
+			XmlNode ChildNode = null;
+			XmlNodeList ChildNodeList = null;
 	
 		}
-		
 	}
 
 
@@ -27289,15 +26389,12 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public EnhancedPaymentInfoType(Object xmlSoap)
+		public EnhancedPaymentInfoType(XmlNode xmlNode)
 		{
-			XmlDocument document = new XmlDocument();
-			document.LoadXml(xmlSoap.ToString());
-			XmlNodeList nodeList = null;
-			string xmlString = "";
+			XmlNode ChildNode = null;
+			XmlNodeList ChildNodeList = null;
 	
 		}
-		
 	}
 
 
@@ -27362,15 +26459,12 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public EnhancedCompleteRecoupResponseDetailsType(Object xmlSoap)
+		public EnhancedCompleteRecoupResponseDetailsType(XmlNode xmlNode)
 		{
-			XmlDocument document = new XmlDocument();
-			document.LoadXml(xmlSoap.ToString());
-			XmlNodeList nodeList = null;
-			string xmlString = "";
+			XmlNode ChildNode = null;
+			XmlNodeList ChildNodeList = null;
 	
 		}
-		
 	}
 
 
@@ -27417,15 +26511,12 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			StringBuilder sb = new StringBuilder();
 			return sb.ToString();
 		}
-		public EnhancedPayerInfoType(Object xmlSoap)
+		public EnhancedPayerInfoType(XmlNode xmlNode)
 		{
-			XmlDocument document = new XmlDocument();
-			document.LoadXml(xmlSoap.ToString());
-			XmlNodeList nodeList = null;
-			string xmlString = "";
+			XmlNode ChildNode = null;
+			XmlNodeList ChildNodeList = null;
 	
 		}
-		
 	}
 
 
@@ -27551,87 +26642,72 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			StringBuilder sb = new StringBuilder();
 			if(BillingPeriod != null)
 			{
-				sb.Append("<urn:BillingPeriod>").Append(EnumUtils.getDescription(BillingPeriod));
+				sb.Append("<urn:BillingPeriod>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(BillingPeriod)));
 				sb.Append("</urn:BillingPeriod>");
 			}
 			if(BillingFrequency != null)
 			{
-				sb.Append("<urn:BillingFrequency>").Append(BillingFrequency);
+				sb.Append("<urn:BillingFrequency>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(BillingFrequency));
 				sb.Append("</urn:BillingFrequency>");
 			}
 			if(TotalBillingCycles != null)
 			{
-				sb.Append("<urn:TotalBillingCycles>").Append(TotalBillingCycles);
+				sb.Append("<urn:TotalBillingCycles>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(TotalBillingCycles));
 				sb.Append("</urn:TotalBillingCycles>");
 			}
 			if(Amount != null)
 			{
-				sb.Append("<urn:Amount>").Append(Amount);
+				sb.Append("<urn:Amount>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(Amount));
 				sb.Append("</urn:Amount>");
 			}
 			if(ShippingAmount != null)
 			{
-				sb.Append("<urn:ShippingAmount>").Append(ShippingAmount);
+				sb.Append("<urn:ShippingAmount>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(ShippingAmount));
 				sb.Append("</urn:ShippingAmount>");
 			}
 			if(TaxAmount != null)
 			{
-				sb.Append("<urn:TaxAmount>").Append(TaxAmount);
+				sb.Append("<urn:TaxAmount>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(TaxAmount));
 				sb.Append("</urn:TaxAmount>");
 			}
 			return sb.ToString();
 		}
-		public InstallmentDetailsType(Object xmlSoap)
+		public InstallmentDetailsType(XmlNode xmlNode)
 		{
-			XmlDocument document = new XmlDocument();
-			document.LoadXml(xmlSoap.ToString());
-			XmlNodeList nodeList = null;
-			string xmlString = "";
-			if(document.GetElementsByTagName("BillingPeriod").Count != 0)
+			XmlNode ChildNode = null;
+			XmlNodeList ChildNodeList = null;
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'BillingPeriod']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("BillingPeriod")[0]))
-				{
-					this.BillingPeriod = (BillingPeriodType)EnumUtils.getValue(document.GetElementsByTagName("BillingPeriod")[0].InnerText,typeof(BillingPeriodType));
-				}
+				this.BillingPeriod = (BillingPeriodType)EnumUtils.getValue(ChildNode.InnerText,typeof(BillingPeriodType));
 			}
-		if(document.GetElementsByTagName("BillingFrequency").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("BillingFrequency")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'BillingFrequency']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.BillingFrequency = System.Convert.ToInt32(document.GetElementsByTagName("BillingFrequency")[0].InnerText);
+				this.BillingFrequency = System.Convert.ToInt32(ChildNode.InnerText);
 			}
-		}
-		if(document.GetElementsByTagName("TotalBillingCycles").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("TotalBillingCycles")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'TotalBillingCycles']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.TotalBillingCycles = System.Convert.ToInt32(document.GetElementsByTagName("TotalBillingCycles")[0].InnerText);
+				this.TotalBillingCycles = System.Convert.ToInt32(ChildNode.InnerText);
 			}
-		}
-		if(document.GetElementsByTagName("Amount").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("Amount")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'Amount']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.Amount = (string)document.GetElementsByTagName("Amount")[0].InnerText;
+				this.Amount = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("ShippingAmount").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("ShippingAmount")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'ShippingAmount']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.ShippingAmount = (string)document.GetElementsByTagName("ShippingAmount")[0].InnerText;
+				this.ShippingAmount = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("TaxAmount").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("TaxAmount")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'TaxAmount']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.TaxAmount = (string)document.GetElementsByTagName("TaxAmount")[0].InnerText;
+				this.TaxAmount = ChildNode.InnerText;
 			}
-		}
 	
 		}
-		
 	}
 
 
@@ -27731,17 +26807,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			StringBuilder sb = new StringBuilder();
 			if(OptionSelection != null)
 			{
-				sb.Append("<urn:OptionSelection>").Append(OptionSelection);
+				sb.Append("<urn:OptionSelection>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(OptionSelection));
 				sb.Append("</urn:OptionSelection>");
 			}
 			if(Price != null)
 			{
-				sb.Append("<urn:Price>").Append(Price);
+				sb.Append("<urn:Price>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(Price));
 				sb.Append("</urn:Price>");
 			}
 			if(OptionType != null)
 			{
-				sb.Append("<urn:OptionType>").Append(EnumUtils.getDescription(OptionType));
+				sb.Append("<urn:OptionType>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(OptionType)));
 				sb.Append("</urn:OptionType>");
 			}
 			if(PaymentPeriod != null)
@@ -27756,48 +26832,36 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			return sb.ToString();
 		}
-		public OptionSelectionDetailsType(Object xmlSoap)
+		public OptionSelectionDetailsType(XmlNode xmlNode)
 		{
-			XmlDocument document = new XmlDocument();
-			document.LoadXml(xmlSoap.ToString());
-			XmlNodeList nodeList = null;
-			string xmlString = "";
-		if(document.GetElementsByTagName("OptionSelection").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("OptionSelection")[0]))
+			XmlNode ChildNode = null;
+			XmlNodeList ChildNodeList = null;
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'OptionSelection']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.OptionSelection = (string)document.GetElementsByTagName("OptionSelection")[0].InnerText;
+				this.OptionSelection = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("Price").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("Price")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'Price']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.Price = (string)document.GetElementsByTagName("Price")[0].InnerText;
+				this.Price = ChildNode.InnerText;
 			}
-		}
-			if(document.GetElementsByTagName("OptionType").Count != 0)
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'OptionType']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("OptionType")[0]))
+				this.OptionType = (OptionTypeListType)EnumUtils.getValue(ChildNode.InnerText,typeof(OptionTypeListType));
+			}
+			ChildNodeList = xmlNode.SelectNodes("*[local-name() = 'PaymentPeriod']");
+			if (ChildNodeList != null && ChildNodeList.Count > 0)
+			{
+				for(int i = 0; i < ChildNodeList.Count; i++)
 				{
-					this.OptionType = (OptionTypeListType)EnumUtils.getValue(document.GetElementsByTagName("OptionType")[0].InnerText,typeof(OptionTypeListType));
-				}
-			}
-			if(document.GetElementsByTagName("PaymentPeriod").Count != 0)
-			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("PaymentPeriod")[0]))
-				{
-					nodeList = document.GetElementsByTagName("PaymentPeriod");
-					for(int i = 0; i < nodeList.Count; i++)
-					{
-						xmlString = DeserializationUtils.convertToXML(nodeList[i]);
-						this.PaymentPeriod.Add(new InstallmentDetailsType(xmlString));
-					}
+					XmlNode subNode = ChildNodeList.Item(i);
+					this.PaymentPeriod.Add(new InstallmentDetailsType(subNode));
 				}
 			}
 	
 		}
-		
 	}
 
 
@@ -27862,7 +26926,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			StringBuilder sb = new StringBuilder();
 			if(OptionName != null)
 			{
-				sb.Append("<urn:OptionName>").Append(OptionName);
+				sb.Append("<urn:OptionName>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(OptionName));
 				sb.Append("</urn:OptionName>");
 			}
 			if(OptionSelectionDetails != null)
@@ -27877,34 +26941,26 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			return sb.ToString();
 		}
-		public OptionDetailsType(Object xmlSoap)
+		public OptionDetailsType(XmlNode xmlNode)
 		{
-			XmlDocument document = new XmlDocument();
-			document.LoadXml(xmlSoap.ToString());
-			XmlNodeList nodeList = null;
-			string xmlString = "";
-		if(document.GetElementsByTagName("OptionName").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("OptionName")[0]))
+			XmlNode ChildNode = null;
+			XmlNodeList ChildNodeList = null;
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'OptionName']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.OptionName = (string)document.GetElementsByTagName("OptionName")[0].InnerText;
+				this.OptionName = ChildNode.InnerText;
 			}
-		}
-			if(document.GetElementsByTagName("OptionSelectionDetails").Count != 0)
+			ChildNodeList = xmlNode.SelectNodes("*[local-name() = 'OptionSelectionDetails']");
+			if (ChildNodeList != null && ChildNodeList.Count > 0)
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("OptionSelectionDetails")[0]))
+				for(int i = 0; i < ChildNodeList.Count; i++)
 				{
-					nodeList = document.GetElementsByTagName("OptionSelectionDetails");
-					for(int i = 0; i < nodeList.Count; i++)
-					{
-						xmlString = DeserializationUtils.convertToXML(nodeList[i]);
-						this.OptionSelectionDetails.Add(new OptionSelectionDetailsType(xmlString));
-					}
+					XmlNode subNode = ChildNodeList.Item(i);
+					this.OptionSelectionDetails.Add(new OptionSelectionDetailsType(subNode));
 				}
 			}
 	
 		}
-		
 	}
 
 
@@ -28183,24 +27239,24 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			sb.Append(base.toXMLString());
 			if(ButtonType != null)
 			{
-				sb.Append("<urn:ButtonType>").Append(EnumUtils.getDescription(ButtonType));
+				sb.Append("<urn:ButtonType>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(ButtonType)));
 				sb.Append("</urn:ButtonType>");
 			}
 			if(ButtonCode != null)
 			{
-				sb.Append("<urn:ButtonCode>").Append(EnumUtils.getDescription(ButtonCode));
+				sb.Append("<urn:ButtonCode>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(ButtonCode)));
 				sb.Append("</urn:ButtonCode>");
 			}
 			if(ButtonSubType != null)
 			{
-				sb.Append("<urn:ButtonSubType>").Append(EnumUtils.getDescription(ButtonSubType));
+				sb.Append("<urn:ButtonSubType>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(ButtonSubType)));
 				sb.Append("</urn:ButtonSubType>");
 			}
 			if(ButtonVar != null)
 			{
 				for(int i = 0; i < ButtonVar.Count; i++)
 				{
-					sb.Append("<urn:ButtonVar>").Append(ButtonVar[i]);
+					sb.Append("<urn:ButtonVar>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(ButtonVar[i]));
 					sb.Append("</urn:ButtonVar>");
 				
 				}
@@ -28219,39 +27275,39 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			{
 				for(int i = 0; i < TextBox.Count; i++)
 				{
-					sb.Append("<urn:TextBox>").Append(TextBox[i]);
+					sb.Append("<urn:TextBox>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(TextBox[i]));
 					sb.Append("</urn:TextBox>");
 				
 				}
 			}
 			if(ButtonImage != null)
 			{
-				sb.Append("<urn:ButtonImage>").Append(EnumUtils.getDescription(ButtonImage));
+				sb.Append("<urn:ButtonImage>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(ButtonImage)));
 				sb.Append("</urn:ButtonImage>");
 			}
 			if(ButtonImageURL != null)
 			{
-				sb.Append("<urn:ButtonImageURL>").Append(ButtonImageURL);
+				sb.Append("<urn:ButtonImageURL>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(ButtonImageURL));
 				sb.Append("</urn:ButtonImageURL>");
 			}
 			if(BuyNowText != null)
 			{
-				sb.Append("<urn:BuyNowText>").Append(EnumUtils.getDescription(BuyNowText));
+				sb.Append("<urn:BuyNowText>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(BuyNowText)));
 				sb.Append("</urn:BuyNowText>");
 			}
 			if(SubscribeText != null)
 			{
-				sb.Append("<urn:SubscribeText>").Append(EnumUtils.getDescription(SubscribeText));
+				sb.Append("<urn:SubscribeText>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(SubscribeText)));
 				sb.Append("</urn:SubscribeText>");
 			}
 			if(ButtonCountry != null)
 			{
-				sb.Append("<urn:ButtonCountry>").Append(EnumUtils.getDescription(ButtonCountry));
+				sb.Append("<urn:ButtonCountry>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(ButtonCountry)));
 				sb.Append("</urn:ButtonCountry>");
 			}
 			if(ButtonLanguage != null)
 			{
-				sb.Append("<urn:ButtonLanguage>").Append(ButtonLanguage);
+				sb.Append("<urn:ButtonLanguage>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(ButtonLanguage));
 				sb.Append("</urn:ButtonLanguage>");
 			}
 			return sb.ToString();
@@ -28342,43 +27398,32 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public BMCreateButtonResponseType(Object xmlSoap) : base(xmlSoap)
+		public BMCreateButtonResponseType(XmlNode xmlNode) : base(xmlNode)
 		{
-			XmlDocument document = new XmlDocument();
-			document.LoadXml(xmlSoap.ToString());
-			XmlNodeList nodeList = null;
-			string xmlString = "";
-		if(document.GetElementsByTagName("Website").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("Website")[0]))
+			XmlNode ChildNode = null;
+			XmlNodeList ChildNodeList = null;
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'Website']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.Website = (string)document.GetElementsByTagName("Website")[0].InnerText;
+				this.Website = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("Email").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("Email")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'Email']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.Email = (string)document.GetElementsByTagName("Email")[0].InnerText;
+				this.Email = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("Mobile").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("Mobile")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'Mobile']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.Mobile = (string)document.GetElementsByTagName("Mobile")[0].InnerText;
+				this.Mobile = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("HostedButtonID").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("HostedButtonID")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'HostedButtonID']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.HostedButtonID = (string)document.GetElementsByTagName("HostedButtonID")[0].InnerText;
+				this.HostedButtonID = ChildNode.InnerText;
 			}
-		}
 	
 		}
-		
 	}
 
 
@@ -28681,29 +27726,29 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			sb.Append(base.toXMLString());
 			if(HostedButtonID != null)
 			{
-				sb.Append("<urn:HostedButtonID>").Append(HostedButtonID);
+				sb.Append("<urn:HostedButtonID>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(HostedButtonID));
 				sb.Append("</urn:HostedButtonID>");
 			}
 			if(ButtonType != null)
 			{
-				sb.Append("<urn:ButtonType>").Append(EnumUtils.getDescription(ButtonType));
+				sb.Append("<urn:ButtonType>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(ButtonType)));
 				sb.Append("</urn:ButtonType>");
 			}
 			if(ButtonCode != null)
 			{
-				sb.Append("<urn:ButtonCode>").Append(EnumUtils.getDescription(ButtonCode));
+				sb.Append("<urn:ButtonCode>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(ButtonCode)));
 				sb.Append("</urn:ButtonCode>");
 			}
 			if(ButtonSubType != null)
 			{
-				sb.Append("<urn:ButtonSubType>").Append(EnumUtils.getDescription(ButtonSubType));
+				sb.Append("<urn:ButtonSubType>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(ButtonSubType)));
 				sb.Append("</urn:ButtonSubType>");
 			}
 			if(ButtonVar != null)
 			{
 				for(int i = 0; i < ButtonVar.Count; i++)
 				{
-					sb.Append("<urn:ButtonVar>").Append(ButtonVar[i]);
+					sb.Append("<urn:ButtonVar>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(ButtonVar[i]));
 					sb.Append("</urn:ButtonVar>");
 				
 				}
@@ -28722,39 +27767,39 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			{
 				for(int i = 0; i < TextBox.Count; i++)
 				{
-					sb.Append("<urn:TextBox>").Append(TextBox[i]);
+					sb.Append("<urn:TextBox>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(TextBox[i]));
 					sb.Append("</urn:TextBox>");
 				
 				}
 			}
 			if(ButtonImage != null)
 			{
-				sb.Append("<urn:ButtonImage>").Append(EnumUtils.getDescription(ButtonImage));
+				sb.Append("<urn:ButtonImage>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(ButtonImage)));
 				sb.Append("</urn:ButtonImage>");
 			}
 			if(ButtonImageURL != null)
 			{
-				sb.Append("<urn:ButtonImageURL>").Append(ButtonImageURL);
+				sb.Append("<urn:ButtonImageURL>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(ButtonImageURL));
 				sb.Append("</urn:ButtonImageURL>");
 			}
 			if(BuyNowText != null)
 			{
-				sb.Append("<urn:BuyNowText>").Append(EnumUtils.getDescription(BuyNowText));
+				sb.Append("<urn:BuyNowText>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(BuyNowText)));
 				sb.Append("</urn:BuyNowText>");
 			}
 			if(SubscribeText != null)
 			{
-				sb.Append("<urn:SubscribeText>").Append(EnumUtils.getDescription(SubscribeText));
+				sb.Append("<urn:SubscribeText>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(SubscribeText)));
 				sb.Append("</urn:SubscribeText>");
 			}
 			if(ButtonCountry != null)
 			{
-				sb.Append("<urn:ButtonCountry>").Append(EnumUtils.getDescription(ButtonCountry));
+				sb.Append("<urn:ButtonCountry>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(ButtonCountry)));
 				sb.Append("</urn:ButtonCountry>");
 			}
 			if(ButtonLanguage != null)
 			{
-				sb.Append("<urn:ButtonLanguage>").Append(ButtonLanguage);
+				sb.Append("<urn:ButtonLanguage>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(ButtonLanguage));
 				sb.Append("</urn:ButtonLanguage>");
 			}
 			return sb.ToString();
@@ -28845,43 +27890,32 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public BMUpdateButtonResponseType(Object xmlSoap) : base(xmlSoap)
+		public BMUpdateButtonResponseType(XmlNode xmlNode) : base(xmlNode)
 		{
-			XmlDocument document = new XmlDocument();
-			document.LoadXml(xmlSoap.ToString());
-			XmlNodeList nodeList = null;
-			string xmlString = "";
-		if(document.GetElementsByTagName("Website").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("Website")[0]))
+			XmlNode ChildNode = null;
+			XmlNodeList ChildNodeList = null;
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'Website']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.Website = (string)document.GetElementsByTagName("Website")[0].InnerText;
+				this.Website = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("Email").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("Email")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'Email']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.Email = (string)document.GetElementsByTagName("Email")[0].InnerText;
+				this.Email = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("Mobile").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("Mobile")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'Mobile']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.Mobile = (string)document.GetElementsByTagName("Mobile")[0].InnerText;
+				this.Mobile = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("HostedButtonID").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("HostedButtonID")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'HostedButtonID']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.HostedButtonID = (string)document.GetElementsByTagName("HostedButtonID")[0].InnerText;
+				this.HostedButtonID = ChildNode.InnerText;
 			}
-		}
 	
 		}
-		
 	}
 
 
@@ -28989,12 +28023,12 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			sb.Append(base.toXMLString());
 			if(HostedButtonID != null)
 			{
-				sb.Append("<urn:HostedButtonID>").Append(HostedButtonID);
+				sb.Append("<urn:HostedButtonID>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(HostedButtonID));
 				sb.Append("</urn:HostedButtonID>");
 			}
 			if(ButtonStatus != null)
 			{
-				sb.Append("<urn:ButtonStatus>").Append(EnumUtils.getDescription(ButtonStatus));
+				sb.Append("<urn:ButtonStatus>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(ButtonStatus)));
 				sb.Append("</urn:ButtonStatus>");
 			}
 			return sb.ToString();
@@ -29017,15 +28051,12 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public BMManageButtonStatusResponseType(Object xmlSoap) : base(xmlSoap)
+		public BMManageButtonStatusResponseType(XmlNode xmlNode) : base(xmlNode)
 		{
-			XmlDocument document = new XmlDocument();
-			document.LoadXml(xmlSoap.ToString());
-			XmlNodeList nodeList = null;
-			string xmlString = "";
+			XmlNode ChildNode = null;
+			XmlNodeList ChildNodeList = null;
 	
 		}
-		
 	}
 
 
@@ -29123,7 +28154,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			sb.Append(base.toXMLString());
 			if(HostedButtonID != null)
 			{
-				sb.Append("<urn:HostedButtonID>").Append(HostedButtonID);
+				sb.Append("<urn:HostedButtonID>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(HostedButtonID));
 				sb.Append("</urn:HostedButtonID>");
 			}
 			return sb.ToString();
@@ -29420,142 +28451,104 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public BMGetButtonDetailsResponseType(Object xmlSoap) : base(xmlSoap)
+		public BMGetButtonDetailsResponseType(XmlNode xmlNode) : base(xmlNode)
 		{
-			XmlDocument document = new XmlDocument();
-			document.LoadXml(xmlSoap.ToString());
-			XmlNodeList nodeList = null;
-			string xmlString = "";
-		if(document.GetElementsByTagName("Website").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("Website")[0]))
+			XmlNode ChildNode = null;
+			XmlNodeList ChildNodeList = null;
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'Website']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.Website = (string)document.GetElementsByTagName("Website")[0].InnerText;
+				this.Website = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("Email").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("Email")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'Email']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.Email = (string)document.GetElementsByTagName("Email")[0].InnerText;
+				this.Email = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("Mobile").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("Mobile")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'Mobile']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.Mobile = (string)document.GetElementsByTagName("Mobile")[0].InnerText;
+				this.Mobile = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("HostedButtonID").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("HostedButtonID")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'HostedButtonID']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.HostedButtonID = (string)document.GetElementsByTagName("HostedButtonID")[0].InnerText;
+				this.HostedButtonID = ChildNode.InnerText;
 			}
-		}
-			if(document.GetElementsByTagName("ButtonType").Count != 0)
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'ButtonType']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("ButtonType")[0]))
+				this.ButtonType = (ButtonTypeType)EnumUtils.getValue(ChildNode.InnerText,typeof(ButtonTypeType));
+			}
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'ButtonCode']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
+			{
+				this.ButtonCode = (ButtonCodeType)EnumUtils.getValue(ChildNode.InnerText,typeof(ButtonCodeType));
+			}
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'ButtonSubType']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
+			{
+				this.ButtonSubType = (ButtonSubTypeType)EnumUtils.getValue(ChildNode.InnerText,typeof(ButtonSubTypeType));
+			}
+			ChildNodeList = xmlNode.SelectNodes("*[local-name() = 'ButtonVar']");
+			if (ChildNodeList != null && ChildNodeList.Count > 0)
+			{
+				for(int i = 0; i < ChildNodeList.Count; i++)
 				{
-					this.ButtonType = (ButtonTypeType)EnumUtils.getValue(document.GetElementsByTagName("ButtonType")[0].InnerText,typeof(ButtonTypeType));
+					string value = ChildNodeList[i].InnerText;
+					this.ButtonVar.Add(value);
 				}
 			}
-			if(document.GetElementsByTagName("ButtonCode").Count != 0)
+			ChildNodeList = xmlNode.SelectNodes("*[local-name() = 'OptionDetails']");
+			if (ChildNodeList != null && ChildNodeList.Count > 0)
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("ButtonCode")[0]))
+				for(int i = 0; i < ChildNodeList.Count; i++)
 				{
-					this.ButtonCode = (ButtonCodeType)EnumUtils.getValue(document.GetElementsByTagName("ButtonCode")[0].InnerText,typeof(ButtonCodeType));
+					XmlNode subNode = ChildNodeList.Item(i);
+					this.OptionDetails.Add(new OptionDetailsType(subNode));
 				}
 			}
-			if(document.GetElementsByTagName("ButtonSubType").Count != 0)
+			ChildNodeList = xmlNode.SelectNodes("*[local-name() = 'TextBox']");
+			if (ChildNodeList != null && ChildNodeList.Count > 0)
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("ButtonSubType")[0]))
+				for(int i = 0; i < ChildNodeList.Count; i++)
 				{
-					this.ButtonSubType = (ButtonSubTypeType)EnumUtils.getValue(document.GetElementsByTagName("ButtonSubType")[0].InnerText,typeof(ButtonSubTypeType));
+					string value = ChildNodeList[i].InnerText;
+					this.TextBox.Add(value);
 				}
 			}
-			if(document.GetElementsByTagName("ButtonVar").Count != 0)
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'ButtonImage']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("ButtonVar")[0]))
-				{
-					nodeList = document.GetElementsByTagName("ButtonVar");
-					for(int i = 0; i < nodeList.Count; i++)
-					{
-						string value = nodeList[i].InnerText;
-						this.ButtonVar.Add(value);
-					}
-				}
+				this.ButtonImage = (ButtonImageType)EnumUtils.getValue(ChildNode.InnerText,typeof(ButtonImageType));
 			}
-			if(document.GetElementsByTagName("OptionDetails").Count != 0)
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'ButtonImageURL']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("OptionDetails")[0]))
-				{
-					nodeList = document.GetElementsByTagName("OptionDetails");
-					for(int i = 0; i < nodeList.Count; i++)
-					{
-						xmlString = DeserializationUtils.convertToXML(nodeList[i]);
-						this.OptionDetails.Add(new OptionDetailsType(xmlString));
-					}
-				}
+				this.ButtonImageURL = ChildNode.InnerText;
 			}
-			if(document.GetElementsByTagName("TextBox").Count != 0)
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'BuyNowText']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("TextBox")[0]))
-				{
-					nodeList = document.GetElementsByTagName("TextBox");
-					for(int i = 0; i < nodeList.Count; i++)
-					{
-						string value = nodeList[i].InnerText;
-						this.TextBox.Add(value);
-					}
-				}
+				this.BuyNowText = (BuyNowTextType)EnumUtils.getValue(ChildNode.InnerText,typeof(BuyNowTextType));
 			}
-			if(document.GetElementsByTagName("ButtonImage").Count != 0)
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'SubscribeText']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("ButtonImage")[0]))
-				{
-					this.ButtonImage = (ButtonImageType)EnumUtils.getValue(document.GetElementsByTagName("ButtonImage")[0].InnerText,typeof(ButtonImageType));
-				}
+				this.SubscribeText = (SubscribeTextType)EnumUtils.getValue(ChildNode.InnerText,typeof(SubscribeTextType));
 			}
-		if(document.GetElementsByTagName("ButtonImageURL").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("ButtonImageURL")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'ButtonCountry']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.ButtonImageURL = (string)document.GetElementsByTagName("ButtonImageURL")[0].InnerText;
+				this.ButtonCountry = (CountryCodeType)EnumUtils.getValue(ChildNode.InnerText,typeof(CountryCodeType));
 			}
-		}
-			if(document.GetElementsByTagName("BuyNowText").Count != 0)
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'ButtonLanguage']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("BuyNowText")[0]))
-				{
-					this.BuyNowText = (BuyNowTextType)EnumUtils.getValue(document.GetElementsByTagName("BuyNowText")[0].InnerText,typeof(BuyNowTextType));
-				}
+				this.ButtonLanguage = ChildNode.InnerText;
 			}
-			if(document.GetElementsByTagName("SubscribeText").Count != 0)
-			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("SubscribeText")[0]))
-				{
-					this.SubscribeText = (SubscribeTextType)EnumUtils.getValue(document.GetElementsByTagName("SubscribeText")[0].InnerText,typeof(SubscribeTextType));
-				}
-			}
-			if(document.GetElementsByTagName("ButtonCountry").Count != 0)
-			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("ButtonCountry")[0]))
-				{
-					this.ButtonCountry = (CountryCodeType)EnumUtils.getValue(document.GetElementsByTagName("ButtonCountry")[0].InnerText,typeof(CountryCodeType));
-				}
-			}
-		if(document.GetElementsByTagName("ButtonLanguage").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("ButtonLanguage")[0]))
-			{
-				this.ButtonLanguage = (string)document.GetElementsByTagName("ButtonLanguage")[0].InnerText;
-			}
-		}
 	
 		}
-		
 	}
 
 
@@ -29809,17 +28802,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			sb.Append(base.toXMLString());
 			if(HostedButtonID != null)
 			{
-				sb.Append("<urn:HostedButtonID>").Append(HostedButtonID);
+				sb.Append("<urn:HostedButtonID>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(HostedButtonID));
 				sb.Append("</urn:HostedButtonID>");
 			}
 			if(TrackInv != null)
 			{
-				sb.Append("<urn:TrackInv>").Append(TrackInv);
+				sb.Append("<urn:TrackInv>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(TrackInv));
 				sb.Append("</urn:TrackInv>");
 			}
 			if(TrackPnl != null)
 			{
-				sb.Append("<urn:TrackPnl>").Append(TrackPnl);
+				sb.Append("<urn:TrackPnl>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(TrackPnl));
 				sb.Append("</urn:TrackPnl>");
 			}
 			if(ItemTrackingDetails != null)
@@ -29830,7 +28823,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(OptionIndex != null)
 			{
-				sb.Append("<urn:OptionIndex>").Append(OptionIndex);
+				sb.Append("<urn:OptionIndex>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(OptionIndex));
 				sb.Append("</urn:OptionIndex>");
 			}
 			if(OptionTrackingDetails != null)
@@ -29845,24 +28838,24 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(SoldoutURL != null)
 			{
-				sb.Append("<urn:SoldoutURL>").Append(SoldoutURL);
+				sb.Append("<urn:SoldoutURL>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(SoldoutURL));
 				sb.Append("</urn:SoldoutURL>");
 			}
 			if(ReuseDigitalDownloadKeys != null)
 			{
-				sb.Append("<urn:ReuseDigitalDownloadKeys>").Append(ReuseDigitalDownloadKeys);
+				sb.Append("<urn:ReuseDigitalDownloadKeys>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(ReuseDigitalDownloadKeys));
 				sb.Append("</urn:ReuseDigitalDownloadKeys>");
 			}
 			if(AppendDigitalDownloadKeys != null)
 			{
-				sb.Append("<urn:AppendDigitalDownloadKeys>").Append(AppendDigitalDownloadKeys);
+				sb.Append("<urn:AppendDigitalDownloadKeys>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(AppendDigitalDownloadKeys));
 				sb.Append("</urn:AppendDigitalDownloadKeys>");
 			}
 			if(DigitalDownloadKeys != null)
 			{
 				for(int i = 0; i < DigitalDownloadKeys.Count; i++)
 				{
-					sb.Append("<urn:DigitalDownloadKeys>").Append(DigitalDownloadKeys[i]);
+					sb.Append("<urn:DigitalDownloadKeys>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(DigitalDownloadKeys[i]));
 					sb.Append("</urn:DigitalDownloadKeys>");
 				
 				}
@@ -29887,15 +28880,12 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public BMSetInventoryResponseType(Object xmlSoap) : base(xmlSoap)
+		public BMSetInventoryResponseType(XmlNode xmlNode) : base(xmlNode)
 		{
-			XmlDocument document = new XmlDocument();
-			document.LoadXml(xmlSoap.ToString());
-			XmlNodeList nodeList = null;
-			string xmlString = "";
+			XmlNode ChildNode = null;
+			XmlNodeList ChildNodeList = null;
 	
 		}
-		
 	}
 
 
@@ -29994,7 +28984,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			sb.Append(base.toXMLString());
 			if(HostedButtonID != null)
 			{
-				sb.Append("<urn:HostedButtonID>").Append(HostedButtonID);
+				sb.Append("<urn:HostedButtonID>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(HostedButtonID));
 				sb.Append("</urn:HostedButtonID>");
 			}
 			return sb.ToString();
@@ -30170,90 +29160,65 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public BMGetInventoryResponseType(Object xmlSoap) : base(xmlSoap)
+		public BMGetInventoryResponseType(XmlNode xmlNode) : base(xmlNode)
 		{
-			XmlDocument document = new XmlDocument();
-			document.LoadXml(xmlSoap.ToString());
-			XmlNodeList nodeList = null;
-			string xmlString = "";
-		if(document.GetElementsByTagName("HostedButtonID").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("HostedButtonID")[0]))
+			XmlNode ChildNode = null;
+			XmlNodeList ChildNodeList = null;
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'HostedButtonID']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.HostedButtonID = (string)document.GetElementsByTagName("HostedButtonID")[0].InnerText;
+				this.HostedButtonID = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("TrackInv").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("TrackInv")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'TrackInv']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.TrackInv = (string)document.GetElementsByTagName("TrackInv")[0].InnerText;
+				this.TrackInv = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("TrackPnl").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("TrackPnl")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'TrackPnl']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.TrackPnl = (string)document.GetElementsByTagName("TrackPnl")[0].InnerText;
+				this.TrackPnl = ChildNode.InnerText;
 			}
-		}
-			if(document.GetElementsByTagName("ItemTrackingDetails").Count != 0)
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'ItemTrackingDetails']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("ItemTrackingDetails")[0]))
+				this.ItemTrackingDetails =  new ItemTrackingDetailsType(ChildNode);
+			}
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'OptionIndex']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
+			{
+				this.OptionIndex = ChildNode.InnerText;
+			}
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'OptionName']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
+			{
+				this.OptionName = ChildNode.InnerText;
+			}
+			ChildNodeList = xmlNode.SelectNodes("*[local-name() = 'OptionTrackingDetails']");
+			if (ChildNodeList != null && ChildNodeList.Count > 0)
+			{
+				for(int i = 0; i < ChildNodeList.Count; i++)
 				{
-					nodeList = document.GetElementsByTagName("ItemTrackingDetails");
-					xmlString = DeserializationUtils.convertToXML(nodeList[0]);
-					this.ItemTrackingDetails =  new ItemTrackingDetailsType(xmlString);
+					XmlNode subNode = ChildNodeList.Item(i);
+					this.OptionTrackingDetails.Add(new OptionTrackingDetailsType(subNode));
 				}
 			}
-		if(document.GetElementsByTagName("OptionIndex").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("OptionIndex")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'SoldoutURL']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.OptionIndex = (string)document.GetElementsByTagName("OptionIndex")[0].InnerText;
+				this.SoldoutURL = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("OptionName").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("OptionName")[0]))
+			ChildNodeList = xmlNode.SelectNodes("*[local-name() = 'DigitalDownloadKeys']");
+			if (ChildNodeList != null && ChildNodeList.Count > 0)
 			{
-				this.OptionName = (string)document.GetElementsByTagName("OptionName")[0].InnerText;
-			}
-		}
-			if(document.GetElementsByTagName("OptionTrackingDetails").Count != 0)
-			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("OptionTrackingDetails")[0]))
+				for(int i = 0; i < ChildNodeList.Count; i++)
 				{
-					nodeList = document.GetElementsByTagName("OptionTrackingDetails");
-					for(int i = 0; i < nodeList.Count; i++)
-					{
-						xmlString = DeserializationUtils.convertToXML(nodeList[i]);
-						this.OptionTrackingDetails.Add(new OptionTrackingDetailsType(xmlString));
-					}
-				}
-			}
-		if(document.GetElementsByTagName("SoldoutURL").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("SoldoutURL")[0]))
-			{
-				this.SoldoutURL = (string)document.GetElementsByTagName("SoldoutURL")[0].InnerText;
-			}
-		}
-			if(document.GetElementsByTagName("DigitalDownloadKeys").Count != 0)
-			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("DigitalDownloadKeys")[0]))
-				{
-					nodeList = document.GetElementsByTagName("DigitalDownloadKeys");
-					for(int i = 0; i < nodeList.Count; i++)
-					{
-						string value = nodeList[i].InnerText;
-						this.DigitalDownloadKeys.Add(value);
-					}
+					string value = ChildNodeList[i].InnerText;
+					this.DigitalDownloadKeys.Add(value);
 				}
 			}
 	
 		}
-		
 	}
 
 
@@ -30361,12 +29326,12 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			sb.Append(base.toXMLString());
 			if(StartDate != null)
 			{
-				sb.Append("<urn:StartDate>").Append(StartDate);
+				sb.Append("<urn:StartDate>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(StartDate));
 				sb.Append("</urn:StartDate>");
 			}
 			if(EndDate != null)
 			{
-				sb.Append("<urn:EndDate>").Append(EndDate);
+				sb.Append("<urn:EndDate>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EndDate));
 				sb.Append("</urn:EndDate>");
 			}
 			return sb.ToString();
@@ -30406,27 +29371,21 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public BMButtonSearchResponseType(Object xmlSoap) : base(xmlSoap)
+		public BMButtonSearchResponseType(XmlNode xmlNode) : base(xmlNode)
 		{
-			XmlDocument document = new XmlDocument();
-			document.LoadXml(xmlSoap.ToString());
-			XmlNodeList nodeList = null;
-			string xmlString = "";
-			if(document.GetElementsByTagName("ButtonSearchResult").Count != 0)
+			XmlNode ChildNode = null;
+			XmlNodeList ChildNodeList = null;
+			ChildNodeList = xmlNode.SelectNodes("*[local-name() = 'ButtonSearchResult']");
+			if (ChildNodeList != null && ChildNodeList.Count > 0)
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("ButtonSearchResult")[0]))
+				for(int i = 0; i < ChildNodeList.Count; i++)
 				{
-					nodeList = document.GetElementsByTagName("ButtonSearchResult");
-					for(int i = 0; i < nodeList.Count; i++)
-					{
-						xmlString = DeserializationUtils.convertToXML(nodeList[i]);
-						this.ButtonSearchResult.Add(new ButtonSearchResultType(xmlString));
-					}
+					XmlNode subNode = ChildNodeList.Item(i);
+					this.ButtonSearchResult.Add(new ButtonSearchResultType(subNode));
 				}
 			}
 	
 		}
-		
 	}
 
 
@@ -30688,17 +29647,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			sb.Append(base.toXMLString());
 			if(TransactionID != null)
 			{
-				sb.Append("<urn:TransactionID>").Append(TransactionID);
+				sb.Append("<urn:TransactionID>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(TransactionID));
 				sb.Append("</urn:TransactionID>");
 			}
 			if(InvoiceID != null)
 			{
-				sb.Append("<urn:InvoiceID>").Append(InvoiceID);
+				sb.Append("<urn:InvoiceID>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(InvoiceID));
 				sb.Append("</urn:InvoiceID>");
 			}
 			if(RefundType != null)
 			{
-				sb.Append("<urn:RefundType>").Append(EnumUtils.getDescription(RefundType));
+				sb.Append("<urn:RefundType>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(RefundType)));
 				sb.Append("</urn:RefundType>");
 			}
 			if(Amount != null)
@@ -30709,22 +29668,22 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(Memo != null)
 			{
-				sb.Append("<urn:Memo>").Append(Memo);
+				sb.Append("<urn:Memo>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(Memo));
 				sb.Append("</urn:Memo>");
 			}
 			if(RetryUntil != null)
 			{
-				sb.Append("<urn:RetryUntil>").Append(RetryUntil);
+				sb.Append("<urn:RetryUntil>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(RetryUntil));
 				sb.Append("</urn:RetryUntil>");
 			}
 			if(RefundSource != null)
 			{
-				sb.Append("<urn:RefundSource>").Append(EnumUtils.getDescription(RefundSource));
+				sb.Append("<urn:RefundSource>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(RefundSource)));
 				sb.Append("</urn:RefundSource>");
 			}
 			if(RefundAdvice != null)
 			{
-				sb.Append("<urn:RefundAdvice>").Append(RefundAdvice);
+				sb.Append("<urn:RefundAdvice>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(RefundAdvice));
 				sb.Append("</urn:RefundAdvice>");
 			}
 			if(MerchantStoreDetails != null)
@@ -30745,7 +29704,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(MsgSubID != null)
 			{
-				sb.Append("<urn:MsgSubID>").Append(MsgSubID);
+				sb.Append("<urn:MsgSubID>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(MsgSubID));
 				sb.Append("</urn:MsgSubID>");
 			}
 			return sb.ToString();
@@ -30905,81 +29864,52 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public RefundTransactionResponseType(Object xmlSoap) : base(xmlSoap)
+		public RefundTransactionResponseType(XmlNode xmlNode) : base(xmlNode)
 		{
-			XmlDocument document = new XmlDocument();
-			document.LoadXml(xmlSoap.ToString());
-			XmlNodeList nodeList = null;
-			string xmlString = "";
-		if(document.GetElementsByTagName("RefundTransactionID").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("RefundTransactionID")[0]))
+			XmlNode ChildNode = null;
+			XmlNodeList ChildNodeList = null;
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'RefundTransactionID']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.RefundTransactionID = (string)document.GetElementsByTagName("RefundTransactionID")[0].InnerText;
+				this.RefundTransactionID = ChildNode.InnerText;
 			}
-		}
-			if(document.GetElementsByTagName("NetRefundAmount").Count != 0)
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'NetRefundAmount']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("NetRefundAmount")[0]))
-				{
-					nodeList = document.GetElementsByTagName("NetRefundAmount");
-					xmlString = DeserializationUtils.convertToXML(nodeList[0]);
-					this.NetRefundAmount =  new BasicAmountType(xmlString);
-				}
+				this.NetRefundAmount =  new BasicAmountType(ChildNode);
 			}
-			if(document.GetElementsByTagName("FeeRefundAmount").Count != 0)
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'FeeRefundAmount']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("FeeRefundAmount")[0]))
-				{
-					nodeList = document.GetElementsByTagName("FeeRefundAmount");
-					xmlString = DeserializationUtils.convertToXML(nodeList[0]);
-					this.FeeRefundAmount =  new BasicAmountType(xmlString);
-				}
+				this.FeeRefundAmount =  new BasicAmountType(ChildNode);
 			}
-			if(document.GetElementsByTagName("GrossRefundAmount").Count != 0)
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'GrossRefundAmount']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("GrossRefundAmount")[0]))
-				{
-					nodeList = document.GetElementsByTagName("GrossRefundAmount");
-					xmlString = DeserializationUtils.convertToXML(nodeList[0]);
-					this.GrossRefundAmount =  new BasicAmountType(xmlString);
-				}
+				this.GrossRefundAmount =  new BasicAmountType(ChildNode);
 			}
-			if(document.GetElementsByTagName("TotalRefundedAmount").Count != 0)
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'TotalRefundedAmount']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("TotalRefundedAmount")[0]))
-				{
-					nodeList = document.GetElementsByTagName("TotalRefundedAmount");
-					xmlString = DeserializationUtils.convertToXML(nodeList[0]);
-					this.TotalRefundedAmount =  new BasicAmountType(xmlString);
-				}
+				this.TotalRefundedAmount =  new BasicAmountType(ChildNode);
 			}
-			if(document.GetElementsByTagName("RefundInfo").Count != 0)
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'RefundInfo']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("RefundInfo")[0]))
-				{
-					nodeList = document.GetElementsByTagName("RefundInfo");
-					xmlString = DeserializationUtils.convertToXML(nodeList[0]);
-					this.RefundInfo =  new RefundInfoType(xmlString);
-				}
+				this.RefundInfo =  new RefundInfoType(ChildNode);
 			}
-		if(document.GetElementsByTagName("ReceiptData").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("ReceiptData")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'ReceiptData']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.ReceiptData = (string)document.GetElementsByTagName("ReceiptData")[0].InnerText;
+				this.ReceiptData = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("MsgSubID").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("MsgSubID")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'MsgSubID']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.MsgSubID = (string)document.GetElementsByTagName("MsgSubID")[0].InnerText;
+				this.MsgSubID = ChildNode.InnerText;
 			}
-		}
 	
 		}
-		
 	}
 
 
@@ -31100,15 +30030,12 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public InitiateRecoupResponseType(Object xmlSoap) : base(xmlSoap)
+		public InitiateRecoupResponseType(XmlNode xmlNode) : base(xmlNode)
 		{
-			XmlDocument document = new XmlDocument();
-			document.LoadXml(xmlSoap.ToString());
-			XmlNodeList nodeList = null;
-			string xmlString = "";
+			XmlNode ChildNode = null;
+			XmlNodeList ChildNodeList = null;
 	
 		}
-		
 	}
 
 
@@ -31246,24 +30173,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public CompleteRecoupResponseType(Object xmlSoap) : base(xmlSoap)
+		public CompleteRecoupResponseType(XmlNode xmlNode) : base(xmlNode)
 		{
-			XmlDocument document = new XmlDocument();
-			document.LoadXml(xmlSoap.ToString());
-			XmlNodeList nodeList = null;
-			string xmlString = "";
-			if(document.GetElementsByTagName("EnhancedCompleteRecoupResponseDetails").Count != 0)
+			XmlNode ChildNode = null;
+			XmlNodeList ChildNodeList = null;
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'EnhancedCompleteRecoupResponseDetails']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("EnhancedCompleteRecoupResponseDetails")[0]))
-				{
-					nodeList = document.GetElementsByTagName("EnhancedCompleteRecoupResponseDetails");
-					xmlString = DeserializationUtils.convertToXML(nodeList[0]);
-					this.EnhancedCompleteRecoupResponseDetails =  new EnhancedCompleteRecoupResponseDetailsType(xmlString);
-				}
+				this.EnhancedCompleteRecoupResponseDetails =  new EnhancedCompleteRecoupResponseDetailsType(ChildNode);
 			}
 	
 		}
-		
 	}
 
 
@@ -31384,15 +30304,12 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public CancelRecoupResponseType(Object xmlSoap) : base(xmlSoap)
+		public CancelRecoupResponseType(XmlNode xmlNode) : base(xmlNode)
 		{
-			XmlDocument document = new XmlDocument();
-			document.LoadXml(xmlSoap.ToString());
-			XmlNodeList nodeList = null;
-			string xmlString = "";
+			XmlNode ChildNode = null;
+			XmlNodeList ChildNodeList = null;
 	
 		}
-		
 	}
 
 
@@ -31486,7 +30403,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			sb.Append(base.toXMLString());
 			if(TransactionID != null)
 			{
-				sb.Append("<urn:TransactionID>").Append(TransactionID);
+				sb.Append("<urn:TransactionID>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(TransactionID));
 				sb.Append("</urn:TransactionID>");
 			}
 			return sb.ToString();
@@ -31543,33 +30460,22 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public GetTransactionDetailsResponseType(Object xmlSoap) : base(xmlSoap)
+		public GetTransactionDetailsResponseType(XmlNode xmlNode) : base(xmlNode)
 		{
-			XmlDocument document = new XmlDocument();
-			document.LoadXml(xmlSoap.ToString());
-			XmlNodeList nodeList = null;
-			string xmlString = "";
-			if(document.GetElementsByTagName("PaymentTransactionDetails").Count != 0)
+			XmlNode ChildNode = null;
+			XmlNodeList ChildNodeList = null;
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'PaymentTransactionDetails']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("PaymentTransactionDetails")[0]))
-				{
-					nodeList = document.GetElementsByTagName("PaymentTransactionDetails");
-					xmlString = DeserializationUtils.convertToXML(nodeList[0]);
-					this.PaymentTransactionDetails =  new PaymentTransactionType(xmlString);
-				}
+				this.PaymentTransactionDetails =  new PaymentTransactionType(ChildNode);
 			}
-			if(document.GetElementsByTagName("ThreeDSecureDetails").Count != 0)
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'ThreeDSecureDetails']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("ThreeDSecureDetails")[0]))
-				{
-					nodeList = document.GetElementsByTagName("ThreeDSecureDetails");
-					xmlString = DeserializationUtils.convertToXML(nodeList[0]);
-					this.ThreeDSecureDetails =  new ThreeDSecureInfoType(xmlString);
-				}
+				this.ThreeDSecureDetails =  new ThreeDSecureInfoType(ChildNode);
 			}
 	
 		}
-		
 	}
 
 
@@ -31683,7 +30589,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(ReturnFMFDetails != null)
 			{
-				sb.Append("<urn:ReturnFMFDetails>").Append(ReturnFMFDetails);
+				sb.Append("<urn:ReturnFMFDetails>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(ReturnFMFDetails));
 				sb.Append("</urn:ReturnFMFDetails>");
 			}
 			return sb.ToString();
@@ -31740,33 +30646,22 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public BillUserResponseType(Object xmlSoap) : base(xmlSoap)
+		public BillUserResponseType(XmlNode xmlNode) : base(xmlNode)
 		{
-			XmlDocument document = new XmlDocument();
-			document.LoadXml(xmlSoap.ToString());
-			XmlNodeList nodeList = null;
-			string xmlString = "";
-			if(document.GetElementsByTagName("BillUserResponseDetails").Count != 0)
+			XmlNode ChildNode = null;
+			XmlNodeList ChildNodeList = null;
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'BillUserResponseDetails']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("BillUserResponseDetails")[0]))
-				{
-					nodeList = document.GetElementsByTagName("BillUserResponseDetails");
-					xmlString = DeserializationUtils.convertToXML(nodeList[0]);
-					this.BillUserResponseDetails =  new MerchantPullPaymentResponseType(xmlString);
-				}
+				this.BillUserResponseDetails =  new MerchantPullPaymentResponseType(ChildNode);
 			}
-			if(document.GetElementsByTagName("FMFDetails").Count != 0)
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'FMFDetails']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("FMFDetails")[0]))
-				{
-					nodeList = document.GetElementsByTagName("FMFDetails");
-					xmlString = DeserializationUtils.convertToXML(nodeList[0]);
-					this.FMFDetails =  new FMFDetailsType(xmlString);
-				}
+				this.FMFDetails =  new FMFDetailsType(ChildNode);
 			}
 	
 		}
-		
 	}
 
 
@@ -32102,37 +30997,37 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			sb.Append(base.toXMLString());
 			if(StartDate != null)
 			{
-				sb.Append("<urn:StartDate>").Append(StartDate);
+				sb.Append("<urn:StartDate>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(StartDate));
 				sb.Append("</urn:StartDate>");
 			}
 			if(EndDate != null)
 			{
-				sb.Append("<urn:EndDate>").Append(EndDate);
+				sb.Append("<urn:EndDate>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EndDate));
 				sb.Append("</urn:EndDate>");
 			}
 			if(Payer != null)
 			{
-				sb.Append("<urn:Payer>").Append(Payer);
+				sb.Append("<urn:Payer>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(Payer));
 				sb.Append("</urn:Payer>");
 			}
 			if(Receiver != null)
 			{
-				sb.Append("<urn:Receiver>").Append(Receiver);
+				sb.Append("<urn:Receiver>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(Receiver));
 				sb.Append("</urn:Receiver>");
 			}
 			if(ReceiptID != null)
 			{
-				sb.Append("<urn:ReceiptID>").Append(ReceiptID);
+				sb.Append("<urn:ReceiptID>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(ReceiptID));
 				sb.Append("</urn:ReceiptID>");
 			}
 			if(TransactionID != null)
 			{
-				sb.Append("<urn:TransactionID>").Append(TransactionID);
+				sb.Append("<urn:TransactionID>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(TransactionID));
 				sb.Append("</urn:TransactionID>");
 			}
 			if(ProfileID != null)
 			{
-				sb.Append("<urn:ProfileID>").Append(ProfileID);
+				sb.Append("<urn:ProfileID>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(ProfileID));
 				sb.Append("</urn:ProfileID>");
 			}
 			if(PayerName != null)
@@ -32143,22 +31038,22 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(AuctionItemNumber != null)
 			{
-				sb.Append("<urn:AuctionItemNumber>").Append(AuctionItemNumber);
+				sb.Append("<urn:AuctionItemNumber>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(AuctionItemNumber));
 				sb.Append("</urn:AuctionItemNumber>");
 			}
 			if(InvoiceID != null)
 			{
-				sb.Append("<urn:InvoiceID>").Append(InvoiceID);
+				sb.Append("<urn:InvoiceID>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(InvoiceID));
 				sb.Append("</urn:InvoiceID>");
 			}
 			if(CardNumber != null)
 			{
-				sb.Append("<urn:CardNumber>").Append(CardNumber);
+				sb.Append("<urn:CardNumber>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(CardNumber));
 				sb.Append("</urn:CardNumber>");
 			}
 			if(TransactionClass != null)
 			{
-				sb.Append("<urn:TransactionClass>").Append(EnumUtils.getDescription(TransactionClass));
+				sb.Append("<urn:TransactionClass>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(TransactionClass)));
 				sb.Append("</urn:TransactionClass>");
 			}
 			if(Amount != null)
@@ -32169,12 +31064,12 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(CurrencyCode != null)
 			{
-				sb.Append("<urn:CurrencyCode>").Append(EnumUtils.getDescription(CurrencyCode));
+				sb.Append("<urn:CurrencyCode>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(CurrencyCode)));
 				sb.Append("</urn:CurrencyCode>");
 			}
 			if(Status != null)
 			{
-				sb.Append("<urn:Status>").Append(EnumUtils.getDescription(Status));
+				sb.Append("<urn:Status>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(Status)));
 				sb.Append("</urn:Status>");
 			}
 			return sb.ToString();
@@ -32214,27 +31109,21 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public TransactionSearchResponseType(Object xmlSoap) : base(xmlSoap)
+		public TransactionSearchResponseType(XmlNode xmlNode) : base(xmlNode)
 		{
-			XmlDocument document = new XmlDocument();
-			document.LoadXml(xmlSoap.ToString());
-			XmlNodeList nodeList = null;
-			string xmlString = "";
-			if(document.GetElementsByTagName("PaymentTransactions").Count != 0)
+			XmlNode ChildNode = null;
+			XmlNodeList ChildNodeList = null;
+			ChildNodeList = xmlNode.SelectNodes("*[local-name() = 'PaymentTransactions']");
+			if (ChildNodeList != null && ChildNodeList.Count > 0)
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("PaymentTransactions")[0]))
+				for(int i = 0; i < ChildNodeList.Count; i++)
 				{
-					nodeList = document.GetElementsByTagName("PaymentTransactions");
-					for(int i = 0; i < nodeList.Count; i++)
-					{
-						xmlString = DeserializationUtils.convertToXML(nodeList[i]);
-						this.PaymentTransactions.Add(new PaymentTransactionSearchResultType(xmlString));
-					}
+					XmlNode subNode = ChildNodeList.Item(i);
+					this.PaymentTransactions.Add(new PaymentTransactionSearchResultType(subNode));
 				}
 			}
 	
 		}
-		
 	}
 
 
@@ -32385,17 +31274,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			sb.Append(base.toXMLString());
 			if(EmailSubject != null)
 			{
-				sb.Append("<urn:EmailSubject>").Append(EmailSubject);
+				sb.Append("<urn:EmailSubject>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EmailSubject));
 				sb.Append("</urn:EmailSubject>");
 			}
 			if(ReceiverType != null)
 			{
-				sb.Append("<urn:ReceiverType>").Append(EnumUtils.getDescription(ReceiverType));
+				sb.Append("<urn:ReceiverType>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(ReceiverType)));
 				sb.Append("</urn:ReceiverType>");
 			}
 			if(ButtonSource != null)
 			{
-				sb.Append("<urn:ButtonSource>").Append(ButtonSource);
+				sb.Append("<urn:ButtonSource>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(ButtonSource));
 				sb.Append("</urn:ButtonSource>");
 			}
 			if(MassPayItem != null)
@@ -32428,15 +31317,12 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public MassPayResponseType(Object xmlSoap) : base(xmlSoap)
+		public MassPayResponseType(XmlNode xmlNode) : base(xmlNode)
 		{
-			XmlDocument document = new XmlDocument();
-			document.LoadXml(xmlSoap.ToString());
-			XmlNodeList nodeList = null;
-			string xmlString = "";
+			XmlNode ChildNode = null;
+			XmlNodeList ChildNodeList = null;
 	
 		}
-		
 	}
 
 
@@ -32569,17 +31455,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			StringBuilder sb = new StringBuilder();
 			if(ReceiverEmail != null)
 			{
-				sb.Append("<urn:ReceiverEmail>").Append(ReceiverEmail);
+				sb.Append("<urn:ReceiverEmail>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(ReceiverEmail));
 				sb.Append("</urn:ReceiverEmail>");
 			}
 			if(ReceiverPhone != null)
 			{
-				sb.Append("<urn:ReceiverPhone>").Append(ReceiverPhone);
+				sb.Append("<urn:ReceiverPhone>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(ReceiverPhone));
 				sb.Append("</urn:ReceiverPhone>");
 			}
 			if(ReceiverID != null)
 			{
-				sb.Append("<urn:ReceiverID>").Append(ReceiverID);
+				sb.Append("<urn:ReceiverID>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(ReceiverID));
 				sb.Append("</urn:ReceiverID>");
 			}
 			if(Amount != null)
@@ -32590,12 +31476,12 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(UniqueId != null)
 			{
-				sb.Append("<urn:UniqueId>").Append(UniqueId);
+				sb.Append("<urn:UniqueId>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(UniqueId));
 				sb.Append("</urn:UniqueId>");
 			}
 			if(Note != null)
 			{
-				sb.Append("<urn:Note>").Append(Note);
+				sb.Append("<urn:Note>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(Note));
 				sb.Append("</urn:Note>");
 			}
 			return sb.ToString();
@@ -32747,22 +31633,22 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			sb.Append(base.toXMLString());
 			if(ReferenceID != null)
 			{
-				sb.Append("<urn:ReferenceID>").Append(ReferenceID);
+				sb.Append("<urn:ReferenceID>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(ReferenceID));
 				sb.Append("</urn:ReferenceID>");
 			}
 			if(BillingAgreementDescription != null)
 			{
-				sb.Append("<urn:BillingAgreementDescription>").Append(BillingAgreementDescription);
+				sb.Append("<urn:BillingAgreementDescription>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(BillingAgreementDescription));
 				sb.Append("</urn:BillingAgreementDescription>");
 			}
 			if(BillingAgreementStatus != null)
 			{
-				sb.Append("<urn:BillingAgreementStatus>").Append(EnumUtils.getDescription(BillingAgreementStatus));
+				sb.Append("<urn:BillingAgreementStatus>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(BillingAgreementStatus)));
 				sb.Append("</urn:BillingAgreementStatus>");
 			}
 			if(BillingAgreementCustom != null)
 			{
-				sb.Append("<urn:BillingAgreementCustom>").Append(BillingAgreementCustom);
+				sb.Append("<urn:BillingAgreementCustom>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(BillingAgreementCustom));
 				sb.Append("</urn:BillingAgreementCustom>");
 			}
 			return sb.ToString();
@@ -32802,24 +31688,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public BAUpdateResponseType(Object xmlSoap) : base(xmlSoap)
+		public BAUpdateResponseType(XmlNode xmlNode) : base(xmlNode)
 		{
-			XmlDocument document = new XmlDocument();
-			document.LoadXml(xmlSoap.ToString());
-			XmlNodeList nodeList = null;
-			string xmlString = "";
-			if(document.GetElementsByTagName("BAUpdateResponseDetails").Count != 0)
+			XmlNode ChildNode = null;
+			XmlNodeList ChildNodeList = null;
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'BAUpdateResponseDetails']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("BAUpdateResponseDetails")[0]))
-				{
-					nodeList = document.GetElementsByTagName("BAUpdateResponseDetails");
-					xmlString = DeserializationUtils.convertToXML(nodeList[0]);
-					this.BAUpdateResponseDetails =  new BAUpdateResponseDetailsType(xmlString);
-				}
+				this.BAUpdateResponseDetails =  new BAUpdateResponseDetailsType(ChildNode);
 			}
 	
 		}
-		
 	}
 
 
@@ -32954,17 +31833,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			sb.Append(base.toXMLString());
 			if(Email != null)
 			{
-				sb.Append("<urn:Email>").Append(Email);
+				sb.Append("<urn:Email>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(Email));
 				sb.Append("</urn:Email>");
 			}
 			if(Street != null)
 			{
-				sb.Append("<urn:Street>").Append(Street);
+				sb.Append("<urn:Street>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(Street));
 				sb.Append("</urn:Street>");
 			}
 			if(Zip != null)
 			{
-				sb.Append("<urn:Zip>").Append(Zip);
+				sb.Append("<urn:Zip>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(Zip));
 				sb.Append("</urn:Zip>");
 			}
 			return sb.ToString();
@@ -33077,50 +31956,37 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public AddressVerifyResponseType(Object xmlSoap) : base(xmlSoap)
+		public AddressVerifyResponseType(XmlNode xmlNode) : base(xmlNode)
 		{
-			XmlDocument document = new XmlDocument();
-			document.LoadXml(xmlSoap.ToString());
-			XmlNodeList nodeList = null;
-			string xmlString = "";
-			if(document.GetElementsByTagName("ConfirmationCode").Count != 0)
+			XmlNode ChildNode = null;
+			XmlNodeList ChildNodeList = null;
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'ConfirmationCode']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("ConfirmationCode")[0]))
-				{
-					this.ConfirmationCode = (AddressStatusCodeType)EnumUtils.getValue(document.GetElementsByTagName("ConfirmationCode")[0].InnerText,typeof(AddressStatusCodeType));
-				}
+				this.ConfirmationCode = (AddressStatusCodeType)EnumUtils.getValue(ChildNode.InnerText,typeof(AddressStatusCodeType));
 			}
-			if(document.GetElementsByTagName("StreetMatch").Count != 0)
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'StreetMatch']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("StreetMatch")[0]))
-				{
-					this.StreetMatch = (MatchStatusCodeType)EnumUtils.getValue(document.GetElementsByTagName("StreetMatch")[0].InnerText,typeof(MatchStatusCodeType));
-				}
+				this.StreetMatch = (MatchStatusCodeType)EnumUtils.getValue(ChildNode.InnerText,typeof(MatchStatusCodeType));
 			}
-			if(document.GetElementsByTagName("ZipMatch").Count != 0)
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'ZipMatch']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("ZipMatch")[0]))
-				{
-					this.ZipMatch = (MatchStatusCodeType)EnumUtils.getValue(document.GetElementsByTagName("ZipMatch")[0].InnerText,typeof(MatchStatusCodeType));
-				}
+				this.ZipMatch = (MatchStatusCodeType)EnumUtils.getValue(ChildNode.InnerText,typeof(MatchStatusCodeType));
 			}
-			if(document.GetElementsByTagName("CountryCode").Count != 0)
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'CountryCode']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("CountryCode")[0]))
-				{
-					this.CountryCode = (CountryCodeType)EnumUtils.getValue(document.GetElementsByTagName("CountryCode")[0].InnerText,typeof(CountryCodeType));
-				}
+				this.CountryCode = (CountryCodeType)EnumUtils.getValue(ChildNode.InnerText,typeof(CountryCodeType));
 			}
-		if(document.GetElementsByTagName("PayPalToken").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("PayPalToken")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'PayPalToken']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.PayPalToken = (string)document.GetElementsByTagName("PayPalToken")[0].InnerText;
+				this.PayPalToken = ChildNode.InnerText;
 			}
-		}
 	
 		}
-		
 	}
 
 
@@ -33261,22 +32127,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public EnterBoardingResponseType(Object xmlSoap) : base(xmlSoap)
+		public EnterBoardingResponseType(XmlNode xmlNode) : base(xmlNode)
 		{
-			XmlDocument document = new XmlDocument();
-			document.LoadXml(xmlSoap.ToString());
-			XmlNodeList nodeList = null;
-			string xmlString = "";
-		if(document.GetElementsByTagName("Token").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("Token")[0]))
+			XmlNode ChildNode = null;
+			XmlNodeList ChildNodeList = null;
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'Token']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.Token = (string)document.GetElementsByTagName("Token")[0].InnerText;
+				this.Token = ChildNode.InnerText;
 			}
-		}
 	
 		}
-		
 	}
 
 
@@ -33376,7 +32237,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			sb.Append(base.toXMLString());
 			if(Token != null)
 			{
-				sb.Append("<urn:Token>").Append(Token);
+				sb.Append("<urn:Token>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(Token));
 				sb.Append("</urn:Token>");
 			}
 			return sb.ToString();
@@ -33416,24 +32277,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public GetBoardingDetailsResponseType(Object xmlSoap) : base(xmlSoap)
+		public GetBoardingDetailsResponseType(XmlNode xmlNode) : base(xmlNode)
 		{
-			XmlDocument document = new XmlDocument();
-			document.LoadXml(xmlSoap.ToString());
-			XmlNodeList nodeList = null;
-			string xmlString = "";
-			if(document.GetElementsByTagName("GetBoardingDetailsResponseDetails").Count != 0)
+			XmlNode ChildNode = null;
+			XmlNodeList ChildNodeList = null;
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'GetBoardingDetailsResponseDetails']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("GetBoardingDetailsResponseDetails")[0]))
-				{
-					nodeList = document.GetElementsByTagName("GetBoardingDetailsResponseDetails");
-					xmlString = DeserializationUtils.convertToXML(nodeList[0]);
-					this.GetBoardingDetailsResponseDetails =  new GetBoardingDetailsResponseDetailsType(xmlString);
-				}
+				this.GetBoardingDetailsResponseDetails =  new GetBoardingDetailsResponseDetailsType(ChildNode);
 			}
 	
 		}
-		
 	}
 
 
@@ -33574,22 +32428,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public SetAuthFlowParamResponseType(Object xmlSoap) : base(xmlSoap)
+		public SetAuthFlowParamResponseType(XmlNode xmlNode) : base(xmlNode)
 		{
-			XmlDocument document = new XmlDocument();
-			document.LoadXml(xmlSoap.ToString());
-			XmlNodeList nodeList = null;
-			string xmlString = "";
-		if(document.GetElementsByTagName("Token").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("Token")[0]))
+			XmlNode ChildNode = null;
+			XmlNodeList ChildNodeList = null;
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'Token']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.Token = (string)document.GetElementsByTagName("Token")[0].InnerText;
+				this.Token = ChildNode.InnerText;
 			}
-		}
 	
 		}
-		
 	}
 
 
@@ -33688,7 +32537,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			sb.Append(base.toXMLString());
 			if(Token != null)
 			{
-				sb.Append("<urn:Token>").Append(Token);
+				sb.Append("<urn:Token>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(Token));
 				sb.Append("</urn:Token>");
 			}
 			return sb.ToString();
@@ -33728,24 +32577,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public GetAuthDetailsResponseType(Object xmlSoap) : base(xmlSoap)
+		public GetAuthDetailsResponseType(XmlNode xmlNode) : base(xmlNode)
 		{
-			XmlDocument document = new XmlDocument();
-			document.LoadXml(xmlSoap.ToString());
-			XmlNodeList nodeList = null;
-			string xmlString = "";
-			if(document.GetElementsByTagName("GetAuthDetailsResponseDetails").Count != 0)
+			XmlNode ChildNode = null;
+			XmlNodeList ChildNodeList = null;
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'GetAuthDetailsResponseDetails']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("GetAuthDetailsResponseDetails")[0]))
-				{
-					nodeList = document.GetElementsByTagName("GetAuthDetailsResponseDetails");
-					xmlString = DeserializationUtils.convertToXML(nodeList[0]);
-					this.GetAuthDetailsResponseDetails =  new GetAuthDetailsResponseDetailsType(xmlString);
-				}
+				this.GetAuthDetailsResponseDetails =  new GetAuthDetailsResponseDetailsType(ChildNode);
 			}
 	
 		}
-		
 	}
 
 
@@ -33886,22 +32728,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public SetAccessPermissionsResponseType(Object xmlSoap) : base(xmlSoap)
+		public SetAccessPermissionsResponseType(XmlNode xmlNode) : base(xmlNode)
 		{
-			XmlDocument document = new XmlDocument();
-			document.LoadXml(xmlSoap.ToString());
-			XmlNodeList nodeList = null;
-			string xmlString = "";
-		if(document.GetElementsByTagName("Token").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("Token")[0]))
+			XmlNode ChildNode = null;
+			XmlNodeList ChildNodeList = null;
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'Token']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.Token = (string)document.GetElementsByTagName("Token")[0].InnerText;
+				this.Token = ChildNode.InnerText;
 			}
-		}
 	
 		}
-		
 	}
 
 
@@ -34000,7 +32837,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			sb.Append(base.toXMLString());
 			if(PayerID != null)
 			{
-				sb.Append("<urn:PayerID>").Append(PayerID);
+				sb.Append("<urn:PayerID>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(PayerID));
 				sb.Append("</urn:PayerID>");
 			}
 			return sb.ToString();
@@ -34041,22 +32878,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public UpdateAccessPermissionsResponseType(Object xmlSoap) : base(xmlSoap)
+		public UpdateAccessPermissionsResponseType(XmlNode xmlNode) : base(xmlNode)
 		{
-			XmlDocument document = new XmlDocument();
-			document.LoadXml(xmlSoap.ToString());
-			XmlNodeList nodeList = null;
-			string xmlString = "";
-		if(document.GetElementsByTagName("Status").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("Status")[0]))
+			XmlNode ChildNode = null;
+			XmlNodeList ChildNodeList = null;
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'Status']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.Status = (string)document.GetElementsByTagName("Status")[0].InnerText;
+				this.Status = ChildNode.InnerText;
 			}
-		}
 	
 		}
-		
 	}
 
 
@@ -34155,7 +32987,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			sb.Append(base.toXMLString());
 			if(Token != null)
 			{
-				sb.Append("<urn:Token>").Append(Token);
+				sb.Append("<urn:Token>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(Token));
 				sb.Append("</urn:Token>");
 			}
 			return sb.ToString();
@@ -34195,24 +33027,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public GetAccessPermissionDetailsResponseType(Object xmlSoap) : base(xmlSoap)
+		public GetAccessPermissionDetailsResponseType(XmlNode xmlNode) : base(xmlNode)
 		{
-			XmlDocument document = new XmlDocument();
-			document.LoadXml(xmlSoap.ToString());
-			XmlNodeList nodeList = null;
-			string xmlString = "";
-			if(document.GetElementsByTagName("GetAccessPermissionDetailsResponseDetails").Count != 0)
+			XmlNode ChildNode = null;
+			XmlNodeList ChildNodeList = null;
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'GetAccessPermissionDetailsResponseDetails']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("GetAccessPermissionDetailsResponseDetails")[0]))
-				{
-					nodeList = document.GetElementsByTagName("GetAccessPermissionDetailsResponseDetails");
-					xmlString = DeserializationUtils.convertToXML(nodeList[0]);
-					this.GetAccessPermissionDetailsResponseDetails =  new GetAccessPermissionDetailsResponseDetailsType(xmlString);
-				}
+				this.GetAccessPermissionDetailsResponseDetails =  new GetAccessPermissionDetailsResponseDetailsType(ChildNode);
 			}
 	
 		}
-		
 	}
 
 
@@ -34350,24 +33175,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public GetIncentiveEvaluationResponseType(Object xmlSoap) : base(xmlSoap)
+		public GetIncentiveEvaluationResponseType(XmlNode xmlNode) : base(xmlNode)
 		{
-			XmlDocument document = new XmlDocument();
-			document.LoadXml(xmlSoap.ToString());
-			XmlNodeList nodeList = null;
-			string xmlString = "";
-			if(document.GetElementsByTagName("GetIncentiveEvaluationResponseDetails").Count != 0)
+			XmlNode ChildNode = null;
+			XmlNodeList ChildNodeList = null;
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'GetIncentiveEvaluationResponseDetails']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("GetIncentiveEvaluationResponseDetails")[0]))
-				{
-					nodeList = document.GetElementsByTagName("GetIncentiveEvaluationResponseDetails");
-					xmlString = DeserializationUtils.convertToXML(nodeList[0]);
-					this.GetIncentiveEvaluationResponseDetails =  new GetIncentiveEvaluationResponseDetailsType(xmlString);
-				}
+				this.GetIncentiveEvaluationResponseDetails =  new GetIncentiveEvaluationResponseDetailsType(ChildNode);
 			}
 	
 		}
-		
 	}
 
 
@@ -34510,22 +33328,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public SetExpressCheckoutResponseType(Object xmlSoap) : base(xmlSoap)
+		public SetExpressCheckoutResponseType(XmlNode xmlNode) : base(xmlNode)
 		{
-			XmlDocument document = new XmlDocument();
-			document.LoadXml(xmlSoap.ToString());
-			XmlNodeList nodeList = null;
-			string xmlString = "";
-		if(document.GetElementsByTagName("Token").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("Token")[0]))
+			XmlNode ChildNode = null;
+			XmlNodeList ChildNodeList = null;
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'Token']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.Token = (string)document.GetElementsByTagName("Token")[0].InnerText;
+				this.Token = ChildNode.InnerText;
 			}
-		}
 	
 		}
-		
 	}
 
 
@@ -34663,24 +33476,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public ExecuteCheckoutOperationsResponseType(Object xmlSoap) : base(xmlSoap)
+		public ExecuteCheckoutOperationsResponseType(XmlNode xmlNode) : base(xmlNode)
 		{
-			XmlDocument document = new XmlDocument();
-			document.LoadXml(xmlSoap.ToString());
-			XmlNodeList nodeList = null;
-			string xmlString = "";
-			if(document.GetElementsByTagName("ExecuteCheckoutOperationsResponseDetails").Count != 0)
+			XmlNode ChildNode = null;
+			XmlNodeList ChildNodeList = null;
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'ExecuteCheckoutOperationsResponseDetails']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("ExecuteCheckoutOperationsResponseDetails")[0]))
-				{
-					nodeList = document.GetElementsByTagName("ExecuteCheckoutOperationsResponseDetails");
-					xmlString = DeserializationUtils.convertToXML(nodeList[0]);
-					this.ExecuteCheckoutOperationsResponseDetails =  new ExecuteCheckoutOperationsResponseDetailsType(xmlString);
-				}
+				this.ExecuteCheckoutOperationsResponseDetails =  new ExecuteCheckoutOperationsResponseDetailsType(ChildNode);
 			}
 	
 		}
-		
 	}
 
 
@@ -34779,7 +33585,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			sb.Append(base.toXMLString());
 			if(Token != null)
 			{
-				sb.Append("<urn:Token>").Append(Token);
+				sb.Append("<urn:Token>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(Token));
 				sb.Append("</urn:Token>");
 			}
 			return sb.ToString();
@@ -34819,24 +33625,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public GetExpressCheckoutDetailsResponseType(Object xmlSoap) : base(xmlSoap)
+		public GetExpressCheckoutDetailsResponseType(XmlNode xmlNode) : base(xmlNode)
 		{
-			XmlDocument document = new XmlDocument();
-			document.LoadXml(xmlSoap.ToString());
-			XmlNodeList nodeList = null;
-			string xmlString = "";
-			if(document.GetElementsByTagName("GetExpressCheckoutDetailsResponseDetails").Count != 0)
+			XmlNode ChildNode = null;
+			XmlNodeList ChildNodeList = null;
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'GetExpressCheckoutDetailsResponseDetails']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("GetExpressCheckoutDetailsResponseDetails")[0]))
-				{
-					nodeList = document.GetElementsByTagName("GetExpressCheckoutDetailsResponseDetails");
-					xmlString = DeserializationUtils.convertToXML(nodeList[0]);
-					this.GetExpressCheckoutDetailsResponseDetails =  new GetExpressCheckoutDetailsResponseDetailsType(xmlString);
-				}
+				this.GetExpressCheckoutDetailsResponseDetails =  new GetExpressCheckoutDetailsResponseDetailsType(ChildNode);
 			}
 	
 		}
-		
 	}
 
 
@@ -34957,7 +33756,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(ReturnFMFDetails != null)
 			{
-				sb.Append("<urn:ReturnFMFDetails>").Append(ReturnFMFDetails);
+				sb.Append("<urn:ReturnFMFDetails>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(ReturnFMFDetails));
 				sb.Append("</urn:ReturnFMFDetails>");
 			}
 			return sb.ToString();
@@ -35014,33 +33813,22 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public DoExpressCheckoutPaymentResponseType(Object xmlSoap) : base(xmlSoap)
+		public DoExpressCheckoutPaymentResponseType(XmlNode xmlNode) : base(xmlNode)
 		{
-			XmlDocument document = new XmlDocument();
-			document.LoadXml(xmlSoap.ToString());
-			XmlNodeList nodeList = null;
-			string xmlString = "";
-			if(document.GetElementsByTagName("DoExpressCheckoutPaymentResponseDetails").Count != 0)
+			XmlNode ChildNode = null;
+			XmlNodeList ChildNodeList = null;
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'DoExpressCheckoutPaymentResponseDetails']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("DoExpressCheckoutPaymentResponseDetails")[0]))
-				{
-					nodeList = document.GetElementsByTagName("DoExpressCheckoutPaymentResponseDetails");
-					xmlString = DeserializationUtils.convertToXML(nodeList[0]);
-					this.DoExpressCheckoutPaymentResponseDetails =  new DoExpressCheckoutPaymentResponseDetailsType(xmlString);
-				}
+				this.DoExpressCheckoutPaymentResponseDetails =  new DoExpressCheckoutPaymentResponseDetailsType(ChildNode);
 			}
-			if(document.GetElementsByTagName("FMFDetails").Count != 0)
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'FMFDetails']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("FMFDetails")[0]))
-				{
-					nodeList = document.GetElementsByTagName("FMFDetails");
-					xmlString = DeserializationUtils.convertToXML(nodeList[0]);
-					this.FMFDetails =  new FMFDetailsType(xmlString);
-				}
+				this.FMFDetails =  new FMFDetailsType(ChildNode);
 			}
 	
 		}
-		
 	}
 
 
@@ -35148,24 +33936,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public DoUATPExpressCheckoutPaymentResponseType(Object xmlSoap) : base(xmlSoap)
+		public DoUATPExpressCheckoutPaymentResponseType(XmlNode xmlNode) : base(xmlNode)
 		{
-			XmlDocument document = new XmlDocument();
-			document.LoadXml(xmlSoap.ToString());
-			XmlNodeList nodeList = null;
-			string xmlString = "";
-			if(document.GetElementsByTagName("UATPDetails").Count != 0)
+			XmlNode ChildNode = null;
+			XmlNodeList ChildNodeList = null;
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'UATPDetails']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("UATPDetails")[0]))
-				{
-					nodeList = document.GetElementsByTagName("UATPDetails");
-					xmlString = DeserializationUtils.convertToXML(nodeList[0]);
-					this.UATPDetails =  new UATPDetailsType(xmlString);
-				}
+				this.UATPDetails =  new UATPDetailsType(ChildNode);
 			}
 	
 		}
-		
 	}
 
 
@@ -35280,12 +34061,12 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			sb.Append(base.toXMLString());
 			if(TransactionID != null)
 			{
-				sb.Append("<urn:TransactionID>").Append(TransactionID);
+				sb.Append("<urn:TransactionID>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(TransactionID));
 				sb.Append("</urn:TransactionID>");
 			}
 			if(Action != null)
 			{
-				sb.Append("<urn:Action>").Append(EnumUtils.getDescription(Action));
+				sb.Append("<urn:Action>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(Action)));
 				sb.Append("</urn:Action>");
 			}
 			return sb.ToString();
@@ -35342,29 +34123,22 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public ManagePendingTransactionStatusResponseType(Object xmlSoap) : base(xmlSoap)
+		public ManagePendingTransactionStatusResponseType(XmlNode xmlNode) : base(xmlNode)
 		{
-			XmlDocument document = new XmlDocument();
-			document.LoadXml(xmlSoap.ToString());
-			XmlNodeList nodeList = null;
-			string xmlString = "";
-		if(document.GetElementsByTagName("TransactionID").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("TransactionID")[0]))
+			XmlNode ChildNode = null;
+			XmlNodeList ChildNodeList = null;
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'TransactionID']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.TransactionID = (string)document.GetElementsByTagName("TransactionID")[0].InnerText;
+				this.TransactionID = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("Status").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("Status")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'Status']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.Status = (string)document.GetElementsByTagName("Status")[0].InnerText;
+				this.Status = ChildNode.InnerText;
 			}
-		}
 	
 		}
-		
 	}
 
 
@@ -35485,7 +34259,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(ReturnFMFDetails != null)
 			{
-				sb.Append("<urn:ReturnFMFDetails>").Append(ReturnFMFDetails);
+				sb.Append("<urn:ReturnFMFDetails>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(ReturnFMFDetails));
 				sb.Append("</urn:ReturnFMFDetails>");
 			}
 			return sb.ToString();
@@ -35662,84 +34436,57 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public DoDirectPaymentResponseType(Object xmlSoap) : base(xmlSoap)
+		public DoDirectPaymentResponseType(XmlNode xmlNode) : base(xmlNode)
 		{
-			XmlDocument document = new XmlDocument();
-			document.LoadXml(xmlSoap.ToString());
-			XmlNodeList nodeList = null;
-			string xmlString = "";
-			if(document.GetElementsByTagName("Amount").Count != 0)
+			XmlNode ChildNode = null;
+			XmlNodeList ChildNodeList = null;
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'Amount']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("Amount")[0]))
-				{
-					nodeList = document.GetElementsByTagName("Amount");
-					xmlString = DeserializationUtils.convertToXML(nodeList[0]);
-					this.Amount =  new BasicAmountType(xmlString);
-				}
+				this.Amount =  new BasicAmountType(ChildNode);
 			}
-		if(document.GetElementsByTagName("AVSCode").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("AVSCode")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'AVSCode']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.AVSCode = (string)document.GetElementsByTagName("AVSCode")[0].InnerText;
+				this.AVSCode = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("CVV2Code").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("CVV2Code")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'CVV2Code']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.CVV2Code = (string)document.GetElementsByTagName("CVV2Code")[0].InnerText;
+				this.CVV2Code = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("TransactionID").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("TransactionID")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'TransactionID']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.TransactionID = (string)document.GetElementsByTagName("TransactionID")[0].InnerText;
+				this.TransactionID = ChildNode.InnerText;
 			}
-		}
-			if(document.GetElementsByTagName("PendingReason").Count != 0)
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'PendingReason']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("PendingReason")[0]))
-				{
-					this.PendingReason = (PendingStatusCodeType)EnumUtils.getValue(document.GetElementsByTagName("PendingReason")[0].InnerText,typeof(PendingStatusCodeType));
-				}
+				this.PendingReason = (PendingStatusCodeType)EnumUtils.getValue(ChildNode.InnerText,typeof(PendingStatusCodeType));
 			}
-			if(document.GetElementsByTagName("PaymentStatus").Count != 0)
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'PaymentStatus']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("PaymentStatus")[0]))
-				{
-					this.PaymentStatus = (PaymentStatusCodeType)EnumUtils.getValue(document.GetElementsByTagName("PaymentStatus")[0].InnerText,typeof(PaymentStatusCodeType));
-				}
+				this.PaymentStatus = (PaymentStatusCodeType)EnumUtils.getValue(ChildNode.InnerText,typeof(PaymentStatusCodeType));
 			}
-			if(document.GetElementsByTagName("FMFDetails").Count != 0)
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'FMFDetails']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("FMFDetails")[0]))
-				{
-					nodeList = document.GetElementsByTagName("FMFDetails");
-					xmlString = DeserializationUtils.convertToXML(nodeList[0]);
-					this.FMFDetails =  new FMFDetailsType(xmlString);
-				}
+				this.FMFDetails =  new FMFDetailsType(ChildNode);
 			}
-			if(document.GetElementsByTagName("ThreeDSecureResponse").Count != 0)
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'ThreeDSecureResponse']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("ThreeDSecureResponse")[0]))
-				{
-					nodeList = document.GetElementsByTagName("ThreeDSecureResponse");
-					xmlString = DeserializationUtils.convertToXML(nodeList[0]);
-					this.ThreeDSecureResponse =  new ThreeDSecureResponseType(xmlString);
-				}
+				this.ThreeDSecureResponse =  new ThreeDSecureResponseType(ChildNode);
 			}
-		if(document.GetElementsByTagName("PaymentAdviceCode").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("PaymentAdviceCode")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'PaymentAdviceCode']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.PaymentAdviceCode = (string)document.GetElementsByTagName("PaymentAdviceCode")[0].InnerText;
+				this.PaymentAdviceCode = ChildNode.InnerText;
 			}
-		}
 	
 		}
-		
 	}
 
 
@@ -35854,12 +34601,12 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			sb.Append(base.toXMLString());
 			if(CancelMsgSubID != null)
 			{
-				sb.Append("<urn:CancelMsgSubID>").Append(CancelMsgSubID);
+				sb.Append("<urn:CancelMsgSubID>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(CancelMsgSubID));
 				sb.Append("</urn:CancelMsgSubID>");
 			}
 			if(APIType != null)
 			{
-				sb.Append("<urn:APIType>").Append(EnumUtils.getDescription(APIType));
+				sb.Append("<urn:APIType>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(APIType)));
 				sb.Append("</urn:APIType>");
 			}
 			return sb.ToString();
@@ -35882,15 +34629,12 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public DoCancelResponseType(Object xmlSoap) : base(xmlSoap)
+		public DoCancelResponseType(XmlNode xmlNode) : base(xmlNode)
 		{
-			XmlDocument document = new XmlDocument();
-			document.LoadXml(xmlSoap.ToString());
-			XmlNodeList nodeList = null;
-			string xmlString = "";
+			XmlNode ChildNode = null;
+			XmlNodeList ChildNodeList = null;
 	
 		}
-		
 	}
 
 
@@ -36127,7 +34871,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			sb.Append(base.toXMLString());
 			if(AuthorizationID != null)
 			{
-				sb.Append("<urn:AuthorizationID>").Append(AuthorizationID);
+				sb.Append("<urn:AuthorizationID>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(AuthorizationID));
 				sb.Append("</urn:AuthorizationID>");
 			}
 			if(Amount != null)
@@ -36138,17 +34882,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(CompleteType != null)
 			{
-				sb.Append("<urn:CompleteType>").Append(EnumUtils.getDescription(CompleteType));
+				sb.Append("<urn:CompleteType>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(CompleteType)));
 				sb.Append("</urn:CompleteType>");
 			}
 			if(Note != null)
 			{
-				sb.Append("<urn:Note>").Append(Note);
+				sb.Append("<urn:Note>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(Note));
 				sb.Append("</urn:Note>");
 			}
 			if(InvoiceID != null)
 			{
-				sb.Append("<urn:InvoiceID>").Append(InvoiceID);
+				sb.Append("<urn:InvoiceID>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(InvoiceID));
 				sb.Append("</urn:InvoiceID>");
 			}
 			if(EnhancedData != null)
@@ -36159,7 +34903,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(Descriptor != null)
 			{
-				sb.Append("<urn:Descriptor>").Append(Descriptor);
+				sb.Append("<urn:Descriptor>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(Descriptor));
 				sb.Append("</urn:Descriptor>");
 			}
 			if(MerchantStoreDetails != null)
@@ -36170,7 +34914,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(MsgSubID != null)
 			{
-				sb.Append("<urn:MsgSubID>").Append(MsgSubID);
+				sb.Append("<urn:MsgSubID>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(MsgSubID));
 				sb.Append("</urn:MsgSubID>");
 			}
 			return sb.ToString();
@@ -36210,24 +34954,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public DoCaptureResponseType(Object xmlSoap) : base(xmlSoap)
+		public DoCaptureResponseType(XmlNode xmlNode) : base(xmlNode)
 		{
-			XmlDocument document = new XmlDocument();
-			document.LoadXml(xmlSoap.ToString());
-			XmlNodeList nodeList = null;
-			string xmlString = "";
-			if(document.GetElementsByTagName("DoCaptureResponseDetails").Count != 0)
+			XmlNode ChildNode = null;
+			XmlNodeList ChildNodeList = null;
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'DoCaptureResponseDetails']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("DoCaptureResponseDetails")[0]))
-				{
-					nodeList = document.GetElementsByTagName("DoCaptureResponseDetails");
-					xmlString = DeserializationUtils.convertToXML(nodeList[0]);
-					this.DoCaptureResponseDetails =  new DoCaptureResponseDetailsType(xmlString);
-				}
+				this.DoCaptureResponseDetails =  new DoCaptureResponseDetailsType(ChildNode);
 			}
 	
 		}
-		
 	}
 
 
@@ -36347,7 +35084,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			sb.Append(base.toXMLString());
 			if(AuthorizationID != null)
 			{
-				sb.Append("<urn:AuthorizationID>").Append(AuthorizationID);
+				sb.Append("<urn:AuthorizationID>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(AuthorizationID));
 				sb.Append("</urn:AuthorizationID>");
 			}
 			if(Amount != null)
@@ -36411,31 +35148,22 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public DoReauthorizationResponseType(Object xmlSoap) : base(xmlSoap)
+		public DoReauthorizationResponseType(XmlNode xmlNode) : base(xmlNode)
 		{
-			XmlDocument document = new XmlDocument();
-			document.LoadXml(xmlSoap.ToString());
-			XmlNodeList nodeList = null;
-			string xmlString = "";
-		if(document.GetElementsByTagName("AuthorizationID").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("AuthorizationID")[0]))
+			XmlNode ChildNode = null;
+			XmlNodeList ChildNodeList = null;
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'AuthorizationID']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.AuthorizationID = (string)document.GetElementsByTagName("AuthorizationID")[0].InnerText;
+				this.AuthorizationID = ChildNode.InnerText;
 			}
-		}
-			if(document.GetElementsByTagName("AuthorizationInfo").Count != 0)
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'AuthorizationInfo']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("AuthorizationInfo")[0]))
-				{
-					nodeList = document.GetElementsByTagName("AuthorizationInfo");
-					xmlString = DeserializationUtils.convertToXML(nodeList[0]);
-					this.AuthorizationInfo =  new AuthorizationInfoType(xmlString);
-				}
+				this.AuthorizationInfo =  new AuthorizationInfoType(ChildNode);
 			}
 	
 		}
-		
 	}
 
 
@@ -36554,12 +35282,12 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			sb.Append(base.toXMLString());
 			if(AuthorizationID != null)
 			{
-				sb.Append("<urn:AuthorizationID>").Append(AuthorizationID);
+				sb.Append("<urn:AuthorizationID>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(AuthorizationID));
 				sb.Append("</urn:AuthorizationID>");
 			}
 			if(Note != null)
 			{
-				sb.Append("<urn:Note>").Append(Note);
+				sb.Append("<urn:Note>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(Note));
 				sb.Append("</urn:Note>");
 			}
 			return sb.ToString();
@@ -36601,22 +35329,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public DoVoidResponseType(Object xmlSoap) : base(xmlSoap)
+		public DoVoidResponseType(XmlNode xmlNode) : base(xmlNode)
 		{
-			XmlDocument document = new XmlDocument();
-			document.LoadXml(xmlSoap.ToString());
-			XmlNodeList nodeList = null;
-			string xmlString = "";
-		if(document.GetElementsByTagName("AuthorizationID").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("AuthorizationID")[0]))
+			XmlNode ChildNode = null;
+			XmlNodeList ChildNodeList = null;
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'AuthorizationID']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.AuthorizationID = (string)document.GetElementsByTagName("AuthorizationID")[0].InnerText;
+				this.AuthorizationID = ChildNode.InnerText;
 			}
-		}
 	
 		}
-		
 	}
 
 
@@ -36767,12 +35490,12 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			sb.Append(base.toXMLString());
 			if(TransactionID != null)
 			{
-				sb.Append("<urn:TransactionID>").Append(TransactionID);
+				sb.Append("<urn:TransactionID>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(TransactionID));
 				sb.Append("</urn:TransactionID>");
 			}
 			if(TransactionEntity != null)
 			{
-				sb.Append("<urn:TransactionEntity>").Append(EnumUtils.getDescription(TransactionEntity));
+				sb.Append("<urn:TransactionEntity>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(TransactionEntity)));
 				sb.Append("</urn:TransactionEntity>");
 			}
 			if(Amount != null)
@@ -36783,7 +35506,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(MsgSubID != null)
 			{
-				sb.Append("<urn:MsgSubID>").Append(MsgSubID);
+				sb.Append("<urn:MsgSubID>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(MsgSubID));
 				sb.Append("</urn:MsgSubID>");
 			}
 			return sb.ToString();
@@ -36875,47 +35598,32 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public DoAuthorizationResponseType(Object xmlSoap) : base(xmlSoap)
+		public DoAuthorizationResponseType(XmlNode xmlNode) : base(xmlNode)
 		{
-			XmlDocument document = new XmlDocument();
-			document.LoadXml(xmlSoap.ToString());
-			XmlNodeList nodeList = null;
-			string xmlString = "";
-		if(document.GetElementsByTagName("TransactionID").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("TransactionID")[0]))
+			XmlNode ChildNode = null;
+			XmlNodeList ChildNodeList = null;
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'TransactionID']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.TransactionID = (string)document.GetElementsByTagName("TransactionID")[0].InnerText;
+				this.TransactionID = ChildNode.InnerText;
 			}
-		}
-			if(document.GetElementsByTagName("Amount").Count != 0)
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'Amount']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("Amount")[0]))
-				{
-					nodeList = document.GetElementsByTagName("Amount");
-					xmlString = DeserializationUtils.convertToXML(nodeList[0]);
-					this.Amount =  new BasicAmountType(xmlString);
-				}
+				this.Amount =  new BasicAmountType(ChildNode);
 			}
-			if(document.GetElementsByTagName("AuthorizationInfo").Count != 0)
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'AuthorizationInfo']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("AuthorizationInfo")[0]))
-				{
-					nodeList = document.GetElementsByTagName("AuthorizationInfo");
-					xmlString = DeserializationUtils.convertToXML(nodeList[0]);
-					this.AuthorizationInfo =  new AuthorizationInfoType(xmlString);
-				}
+				this.AuthorizationInfo =  new AuthorizationInfoType(ChildNode);
 			}
-		if(document.GetElementsByTagName("MsgSubID").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("MsgSubID")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'MsgSubID']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.MsgSubID = (string)document.GetElementsByTagName("MsgSubID")[0].InnerText;
+				this.MsgSubID = ChildNode.InnerText;
 			}
-		}
 	
 		}
-		
 	}
 
 
@@ -37087,7 +35795,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(TransactionEntity != null)
 			{
-				sb.Append("<urn:TransactionEntity>").Append(EnumUtils.getDescription(TransactionEntity));
+				sb.Append("<urn:TransactionEntity>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(TransactionEntity)));
 				sb.Append("</urn:TransactionEntity>");
 			}
 			if(Amount != null)
@@ -37098,12 +35806,12 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(InvoiceID != null)
 			{
-				sb.Append("<urn:InvoiceID>").Append(InvoiceID);
+				sb.Append("<urn:InvoiceID>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(InvoiceID));
 				sb.Append("</urn:InvoiceID>");
 			}
 			if(MsgSubID != null)
 			{
-				sb.Append("<urn:MsgSubID>").Append(MsgSubID);
+				sb.Append("<urn:MsgSubID>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(MsgSubID));
 				sb.Append("</urn:MsgSubID>");
 			}
 			return sb.ToString();
@@ -37194,45 +35902,32 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public DoUATPAuthorizationResponseType(Object xmlSoap) : base(xmlSoap)
+		public DoUATPAuthorizationResponseType(XmlNode xmlNode) : base(xmlNode)
 		{
-			XmlDocument document = new XmlDocument();
-			document.LoadXml(xmlSoap.ToString());
-			XmlNodeList nodeList = null;
-			string xmlString = "";
-			if(document.GetElementsByTagName("UATPDetails").Count != 0)
+			XmlNode ChildNode = null;
+			XmlNodeList ChildNodeList = null;
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'UATPDetails']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("UATPDetails")[0]))
-				{
-					nodeList = document.GetElementsByTagName("UATPDetails");
-					xmlString = DeserializationUtils.convertToXML(nodeList[0]);
-					this.UATPDetails =  new UATPDetailsType(xmlString);
-				}
+				this.UATPDetails =  new UATPDetailsType(ChildNode);
 			}
-		if(document.GetElementsByTagName("AuthorizationCode").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("AuthorizationCode")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'AuthorizationCode']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.AuthorizationCode = (string)document.GetElementsByTagName("AuthorizationCode")[0].InnerText;
+				this.AuthorizationCode = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("InvoiceID").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("InvoiceID")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'InvoiceID']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.InvoiceID = (string)document.GetElementsByTagName("InvoiceID")[0].InnerText;
+				this.InvoiceID = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("MsgSubID").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("MsgSubID")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'MsgSubID']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.MsgSubID = (string)document.GetElementsByTagName("MsgSubID")[0].InnerText;
+				this.MsgSubID = ChildNode.InnerText;
 			}
-		}
 	
 		}
-		
 	}
 
 
@@ -37353,15 +36048,12 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public CreateMobilePaymentResponseType(Object xmlSoap) : base(xmlSoap)
+		public CreateMobilePaymentResponseType(XmlNode xmlNode) : base(xmlNode)
 		{
-			XmlDocument document = new XmlDocument();
-			document.LoadXml(xmlSoap.ToString());
-			XmlNodeList nodeList = null;
-			string xmlString = "";
+			XmlNode ChildNode = null;
+			XmlNodeList ChildNodeList = null;
 	
 		}
-		
 	}
 
 
@@ -37517,29 +36209,22 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public GetMobileStatusResponseType(Object xmlSoap) : base(xmlSoap)
+		public GetMobileStatusResponseType(XmlNode xmlNode) : base(xmlNode)
 		{
-			XmlDocument document = new XmlDocument();
-			document.LoadXml(xmlSoap.ToString());
-			XmlNodeList nodeList = null;
-			string xmlString = "";
-		if(document.GetElementsByTagName("IsActivated").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("IsActivated")[0]))
+			XmlNode ChildNode = null;
+			XmlNodeList ChildNodeList = null;
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'IsActivated']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.IsActivated = System.Convert.ToInt32(document.GetElementsByTagName("IsActivated")[0].InnerText);
+				this.IsActivated = System.Convert.ToInt32(ChildNode.InnerText);
 			}
-		}
-		if(document.GetElementsByTagName("PaymentPending").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("PaymentPending")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'PaymentPending']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.PaymentPending = System.Convert.ToInt32(document.GetElementsByTagName("PaymentPending")[0].InnerText);
+				this.PaymentPending = System.Convert.ToInt32(ChildNode.InnerText);
 			}
-		}
 	
 		}
-		
 	}
 
 
@@ -37680,22 +36365,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public SetMobileCheckoutResponseType(Object xmlSoap) : base(xmlSoap)
+		public SetMobileCheckoutResponseType(XmlNode xmlNode) : base(xmlNode)
 		{
-			XmlDocument document = new XmlDocument();
-			document.LoadXml(xmlSoap.ToString());
-			XmlNodeList nodeList = null;
-			string xmlString = "";
-		if(document.GetElementsByTagName("Token").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("Token")[0]))
+			XmlNode ChildNode = null;
+			XmlNodeList ChildNodeList = null;
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'Token']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.Token = (string)document.GetElementsByTagName("Token")[0].InnerText;
+				this.Token = ChildNode.InnerText;
 			}
-		}
 	
 		}
-		
 	}
 
 
@@ -37794,7 +36474,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			sb.Append(base.toXMLString());
 			if(Token != null)
 			{
-				sb.Append("<urn:Token>").Append(Token);
+				sb.Append("<urn:Token>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(Token));
 				sb.Append("</urn:Token>");
 			}
 			return sb.ToString();
@@ -37834,24 +36514,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public DoMobileCheckoutPaymentResponseType(Object xmlSoap) : base(xmlSoap)
+		public DoMobileCheckoutPaymentResponseType(XmlNode xmlNode) : base(xmlNode)
 		{
-			XmlDocument document = new XmlDocument();
-			document.LoadXml(xmlSoap.ToString());
-			XmlNodeList nodeList = null;
-			string xmlString = "";
-			if(document.GetElementsByTagName("DoMobileCheckoutPaymentResponseDetails").Count != 0)
+			XmlNode ChildNode = null;
+			XmlNodeList ChildNodeList = null;
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'DoMobileCheckoutPaymentResponseDetails']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("DoMobileCheckoutPaymentResponseDetails")[0]))
-				{
-					nodeList = document.GetElementsByTagName("DoMobileCheckoutPaymentResponseDetails");
-					xmlString = DeserializationUtils.convertToXML(nodeList[0]);
-					this.DoMobileCheckoutPaymentResponseDetails =  new DoMobileCheckoutPaymentResponseDetailsType(xmlString);
-				}
+				this.DoMobileCheckoutPaymentResponseDetails =  new DoMobileCheckoutPaymentResponseDetailsType(ChildNode);
 			}
 	
 		}
-		
 	}
 
 
@@ -37941,7 +36614,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			sb.Append(base.toXMLString());
 			if(ReturnAllCurrencies != null)
 			{
-				sb.Append("<urn:ReturnAllCurrencies>").Append(ReturnAllCurrencies);
+				sb.Append("<urn:ReturnAllCurrencies>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(ReturnAllCurrencies));
 				sb.Append("</urn:ReturnAllCurrencies>");
 			}
 			return sb.ToString();
@@ -38015,43 +36688,31 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public GetBalanceResponseType(Object xmlSoap) : base(xmlSoap)
+		public GetBalanceResponseType(XmlNode xmlNode) : base(xmlNode)
 		{
-			XmlDocument document = new XmlDocument();
-			document.LoadXml(xmlSoap.ToString());
-			XmlNodeList nodeList = null;
-			string xmlString = "";
-			if(document.GetElementsByTagName("Balance").Count != 0)
+			XmlNode ChildNode = null;
+			XmlNodeList ChildNodeList = null;
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'Balance']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("Balance")[0]))
-				{
-					nodeList = document.GetElementsByTagName("Balance");
-					xmlString = DeserializationUtils.convertToXML(nodeList[0]);
-					this.Balance =  new BasicAmountType(xmlString);
-				}
+				this.Balance =  new BasicAmountType(ChildNode);
 			}
-		if(document.GetElementsByTagName("BalanceTimeStamp").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("BalanceTimeStamp")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'BalanceTimeStamp']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.BalanceTimeStamp = (string)document.GetElementsByTagName("BalanceTimeStamp")[0].InnerText;
+				this.BalanceTimeStamp = ChildNode.InnerText;
 			}
-		}
-			if(document.GetElementsByTagName("BalanceHoldings").Count != 0)
+			ChildNodeList = xmlNode.SelectNodes("*[local-name() = 'BalanceHoldings']");
+			if (ChildNodeList != null && ChildNodeList.Count > 0)
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("BalanceHoldings")[0]))
+				for(int i = 0; i < ChildNodeList.Count; i++)
 				{
-					nodeList = document.GetElementsByTagName("BalanceHoldings");
-					for(int i = 0; i < nodeList.Count; i++)
-					{
-						xmlString = DeserializationUtils.convertToXML(nodeList[i]);
-						this.BalanceHoldings.Add(new BasicAmountType(xmlString));
-					}
+					XmlNode subNode = ChildNodeList.Item(i);
+					this.BalanceHoldings.Add(new BasicAmountType(subNode));
 				}
 			}
 	
 		}
-		
 	}
 
 
@@ -38189,22 +36850,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public SetCustomerBillingAgreementResponseType(Object xmlSoap) : base(xmlSoap)
+		public SetCustomerBillingAgreementResponseType(XmlNode xmlNode) : base(xmlNode)
 		{
-			XmlDocument document = new XmlDocument();
-			document.LoadXml(xmlSoap.ToString());
-			XmlNodeList nodeList = null;
-			string xmlString = "";
-		if(document.GetElementsByTagName("Token").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("Token")[0]))
+			XmlNode ChildNode = null;
+			XmlNodeList ChildNodeList = null;
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'Token']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.Token = (string)document.GetElementsByTagName("Token")[0].InnerText;
+				this.Token = ChildNode.InnerText;
 			}
-		}
 	
 		}
-		
 	}
 
 
@@ -38301,7 +36957,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			sb.Append(base.toXMLString());
 			if(Token != null)
 			{
-				sb.Append("<urn:Token>").Append(Token);
+				sb.Append("<urn:Token>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(Token));
 				sb.Append("</urn:Token>");
 			}
 			return sb.ToString();
@@ -38341,24 +36997,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public GetBillingAgreementCustomerDetailsResponseType(Object xmlSoap) : base(xmlSoap)
+		public GetBillingAgreementCustomerDetailsResponseType(XmlNode xmlNode) : base(xmlNode)
 		{
-			XmlDocument document = new XmlDocument();
-			document.LoadXml(xmlSoap.ToString());
-			XmlNodeList nodeList = null;
-			string xmlString = "";
-			if(document.GetElementsByTagName("GetBillingAgreementCustomerDetailsResponseDetails").Count != 0)
+			XmlNode ChildNode = null;
+			XmlNodeList ChildNodeList = null;
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'GetBillingAgreementCustomerDetailsResponseDetails']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("GetBillingAgreementCustomerDetailsResponseDetails")[0]))
-				{
-					nodeList = document.GetElementsByTagName("GetBillingAgreementCustomerDetailsResponseDetails");
-					xmlString = DeserializationUtils.convertToXML(nodeList[0]);
-					this.GetBillingAgreementCustomerDetailsResponseDetails =  new GetBillingAgreementCustomerDetailsResponseDetailsType(xmlString);
-				}
+				this.GetBillingAgreementCustomerDetailsResponseDetails =  new GetBillingAgreementCustomerDetailsResponseDetailsType(ChildNode);
 			}
 	
 		}
-		
 	}
 
 
@@ -38455,7 +37104,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			sb.Append(base.toXMLString());
 			if(Token != null)
 			{
-				sb.Append("<urn:Token>").Append(Token);
+				sb.Append("<urn:Token>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(Token));
 				sb.Append("</urn:Token>");
 			}
 			return sb.ToString();
@@ -38495,22 +37144,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public CreateBillingAgreementResponseType(Object xmlSoap) : base(xmlSoap)
+		public CreateBillingAgreementResponseType(XmlNode xmlNode) : base(xmlNode)
 		{
-			XmlDocument document = new XmlDocument();
-			document.LoadXml(xmlSoap.ToString());
-			XmlNodeList nodeList = null;
-			string xmlString = "";
-		if(document.GetElementsByTagName("BillingAgreementID").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("BillingAgreementID")[0]))
+			XmlNode ChildNode = null;
+			XmlNodeList ChildNodeList = null;
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'BillingAgreementID']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.BillingAgreementID = (string)document.GetElementsByTagName("BillingAgreementID")[0].InnerText;
+				this.BillingAgreementID = ChildNode.InnerText;
 			}
-		}
 	
 		}
-		
 	}
 
 
@@ -38631,7 +37275,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(ReturnFMFDetails != null)
 			{
-				sb.Append("<urn:ReturnFMFDetails>").Append(ReturnFMFDetails);
+				sb.Append("<urn:ReturnFMFDetails>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(ReturnFMFDetails));
 				sb.Append("</urn:ReturnFMFDetails>");
 			}
 			return sb.ToString();
@@ -38688,33 +37332,22 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public DoReferenceTransactionResponseType(Object xmlSoap) : base(xmlSoap)
+		public DoReferenceTransactionResponseType(XmlNode xmlNode) : base(xmlNode)
 		{
-			XmlDocument document = new XmlDocument();
-			document.LoadXml(xmlSoap.ToString());
-			XmlNodeList nodeList = null;
-			string xmlString = "";
-			if(document.GetElementsByTagName("DoReferenceTransactionResponseDetails").Count != 0)
+			XmlNode ChildNode = null;
+			XmlNodeList ChildNodeList = null;
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'DoReferenceTransactionResponseDetails']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("DoReferenceTransactionResponseDetails")[0]))
-				{
-					nodeList = document.GetElementsByTagName("DoReferenceTransactionResponseDetails");
-					xmlString = DeserializationUtils.convertToXML(nodeList[0]);
-					this.DoReferenceTransactionResponseDetails =  new DoReferenceTransactionResponseDetailsType(xmlString);
-				}
+				this.DoReferenceTransactionResponseDetails =  new DoReferenceTransactionResponseDetailsType(ChildNode);
 			}
-			if(document.GetElementsByTagName("FMFDetails").Count != 0)
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'FMFDetails']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("FMFDetails")[0]))
-				{
-					nodeList = document.GetElementsByTagName("FMFDetails");
-					xmlString = DeserializationUtils.convertToXML(nodeList[0]);
-					this.FMFDetails =  new FMFDetailsType(xmlString);
-				}
+				this.FMFDetails =  new FMFDetailsType(ChildNode);
 			}
 	
 		}
-		
 	}
 
 
@@ -38852,24 +37485,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public DoNonReferencedCreditResponseType(Object xmlSoap) : base(xmlSoap)
+		public DoNonReferencedCreditResponseType(XmlNode xmlNode) : base(xmlNode)
 		{
-			XmlDocument document = new XmlDocument();
-			document.LoadXml(xmlSoap.ToString());
-			XmlNodeList nodeList = null;
-			string xmlString = "";
-			if(document.GetElementsByTagName("DoNonReferencedCreditResponseDetails").Count != 0)
+			XmlNode ChildNode = null;
+			XmlNodeList ChildNodeList = null;
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'DoNonReferencedCreditResponseDetails']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("DoNonReferencedCreditResponseDetails")[0]))
-				{
-					nodeList = document.GetElementsByTagName("DoNonReferencedCreditResponseDetails");
-					xmlString = DeserializationUtils.convertToXML(nodeList[0]);
-					this.DoNonReferencedCreditResponseDetails =  new DoNonReferencedCreditResponseDetailsType(xmlString);
-				}
+				this.DoNonReferencedCreditResponseDetails =  new DoNonReferencedCreditResponseDetailsType(ChildNode);
 			}
 	
 		}
-		
 	}
 
 
@@ -39000,24 +37626,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public CreateRecurringPaymentsProfileResponseType(Object xmlSoap) : base(xmlSoap)
+		public CreateRecurringPaymentsProfileResponseType(XmlNode xmlNode) : base(xmlNode)
 		{
-			XmlDocument document = new XmlDocument();
-			document.LoadXml(xmlSoap.ToString());
-			XmlNodeList nodeList = null;
-			string xmlString = "";
-			if(document.GetElementsByTagName("CreateRecurringPaymentsProfileResponseDetails").Count != 0)
+			XmlNode ChildNode = null;
+			XmlNodeList ChildNodeList = null;
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'CreateRecurringPaymentsProfileResponseDetails']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("CreateRecurringPaymentsProfileResponseDetails")[0]))
-				{
-					nodeList = document.GetElementsByTagName("CreateRecurringPaymentsProfileResponseDetails");
-					xmlString = DeserializationUtils.convertToXML(nodeList[0]);
-					this.CreateRecurringPaymentsProfileResponseDetails =  new CreateRecurringPaymentsProfileResponseDetailsType(xmlString);
-				}
+				this.CreateRecurringPaymentsProfileResponseDetails =  new CreateRecurringPaymentsProfileResponseDetailsType(ChildNode);
 			}
 	
 		}
-		
 	}
 
 
@@ -39114,7 +37733,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			sb.Append(base.toXMLString());
 			if(ProfileID != null)
 			{
-				sb.Append("<urn:ProfileID>").Append(ProfileID);
+				sb.Append("<urn:ProfileID>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(ProfileID));
 				sb.Append("</urn:ProfileID>");
 			}
 			return sb.ToString();
@@ -39154,24 +37773,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public GetRecurringPaymentsProfileDetailsResponseType(Object xmlSoap) : base(xmlSoap)
+		public GetRecurringPaymentsProfileDetailsResponseType(XmlNode xmlNode) : base(xmlNode)
 		{
-			XmlDocument document = new XmlDocument();
-			document.LoadXml(xmlSoap.ToString());
-			XmlNodeList nodeList = null;
-			string xmlString = "";
-			if(document.GetElementsByTagName("GetRecurringPaymentsProfileDetailsResponseDetails").Count != 0)
+			XmlNode ChildNode = null;
+			XmlNodeList ChildNodeList = null;
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'GetRecurringPaymentsProfileDetailsResponseDetails']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("GetRecurringPaymentsProfileDetailsResponseDetails")[0]))
-				{
-					nodeList = document.GetElementsByTagName("GetRecurringPaymentsProfileDetailsResponseDetails");
-					xmlString = DeserializationUtils.convertToXML(nodeList[0]);
-					this.GetRecurringPaymentsProfileDetailsResponseDetails =  new GetRecurringPaymentsProfileDetailsResponseDetailsType(xmlString);
-				}
+				this.GetRecurringPaymentsProfileDetailsResponseDetails =  new GetRecurringPaymentsProfileDetailsResponseDetailsType(ChildNode);
 			}
 	
 		}
-		
 	}
 
 
@@ -39302,24 +37914,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public ManageRecurringPaymentsProfileStatusResponseType(Object xmlSoap) : base(xmlSoap)
+		public ManageRecurringPaymentsProfileStatusResponseType(XmlNode xmlNode) : base(xmlNode)
 		{
-			XmlDocument document = new XmlDocument();
-			document.LoadXml(xmlSoap.ToString());
-			XmlNodeList nodeList = null;
-			string xmlString = "";
-			if(document.GetElementsByTagName("ManageRecurringPaymentsProfileStatusResponseDetails").Count != 0)
+			XmlNode ChildNode = null;
+			XmlNodeList ChildNodeList = null;
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'ManageRecurringPaymentsProfileStatusResponseDetails']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("ManageRecurringPaymentsProfileStatusResponseDetails")[0]))
-				{
-					nodeList = document.GetElementsByTagName("ManageRecurringPaymentsProfileStatusResponseDetails");
-					xmlString = DeserializationUtils.convertToXML(nodeList[0]);
-					this.ManageRecurringPaymentsProfileStatusResponseDetails =  new ManageRecurringPaymentsProfileStatusResponseDetailsType(xmlString);
-				}
+				this.ManageRecurringPaymentsProfileStatusResponseDetails =  new ManageRecurringPaymentsProfileStatusResponseDetailsType(ChildNode);
 			}
 	
 		}
-		
 	}
 
 
@@ -39450,24 +38055,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public BillOutstandingAmountResponseType(Object xmlSoap) : base(xmlSoap)
+		public BillOutstandingAmountResponseType(XmlNode xmlNode) : base(xmlNode)
 		{
-			XmlDocument document = new XmlDocument();
-			document.LoadXml(xmlSoap.ToString());
-			XmlNodeList nodeList = null;
-			string xmlString = "";
-			if(document.GetElementsByTagName("BillOutstandingAmountResponseDetails").Count != 0)
+			XmlNode ChildNode = null;
+			XmlNodeList ChildNodeList = null;
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'BillOutstandingAmountResponseDetails']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("BillOutstandingAmountResponseDetails")[0]))
-				{
-					nodeList = document.GetElementsByTagName("BillOutstandingAmountResponseDetails");
-					xmlString = DeserializationUtils.convertToXML(nodeList[0]);
-					this.BillOutstandingAmountResponseDetails =  new BillOutstandingAmountResponseDetailsType(xmlString);
-				}
+				this.BillOutstandingAmountResponseDetails =  new BillOutstandingAmountResponseDetailsType(ChildNode);
 			}
 	
 		}
-		
 	}
 
 
@@ -39598,24 +38196,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public UpdateRecurringPaymentsProfileResponseType(Object xmlSoap) : base(xmlSoap)
+		public UpdateRecurringPaymentsProfileResponseType(XmlNode xmlNode) : base(xmlNode)
 		{
-			XmlDocument document = new XmlDocument();
-			document.LoadXml(xmlSoap.ToString());
-			XmlNodeList nodeList = null;
-			string xmlString = "";
-			if(document.GetElementsByTagName("UpdateRecurringPaymentsProfileResponseDetails").Count != 0)
+			XmlNode ChildNode = null;
+			XmlNodeList ChildNodeList = null;
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'UpdateRecurringPaymentsProfileResponseDetails']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("UpdateRecurringPaymentsProfileResponseDetails")[0]))
-				{
-					nodeList = document.GetElementsByTagName("UpdateRecurringPaymentsProfileResponseDetails");
-					xmlString = DeserializationUtils.convertToXML(nodeList[0]);
-					this.UpdateRecurringPaymentsProfileResponseDetails =  new UpdateRecurringPaymentsProfileResponseDetailsType(xmlString);
-				}
+				this.UpdateRecurringPaymentsProfileResponseDetails =  new UpdateRecurringPaymentsProfileResponseDetailsType(ChildNode);
 			}
 	
 		}
-		
 	}
 
 
@@ -39740,29 +38331,22 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public GetPalDetailsResponseType(Object xmlSoap) : base(xmlSoap)
+		public GetPalDetailsResponseType(XmlNode xmlNode) : base(xmlNode)
 		{
-			XmlDocument document = new XmlDocument();
-			document.LoadXml(xmlSoap.ToString());
-			XmlNodeList nodeList = null;
-			string xmlString = "";
-		if(document.GetElementsByTagName("Pal").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("Pal")[0]))
+			XmlNode ChildNode = null;
+			XmlNodeList ChildNodeList = null;
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'Pal']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.Pal = (string)document.GetElementsByTagName("Pal")[0].InnerText;
+				this.Pal = ChildNode.InnerText;
 			}
-		}
-		if(document.GetElementsByTagName("Locale").Count != 0)
-		{
-			if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("Locale")[0]))
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'Locale']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.Locale = (string)document.GetElementsByTagName("Locale")[0].InnerText;
+				this.Locale = ChildNode.InnerText;
 			}
-		}
 	
 		}
-		
 	}
 
 
@@ -39900,24 +38484,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public ReverseTransactionResponseType(Object xmlSoap) : base(xmlSoap)
+		public ReverseTransactionResponseType(XmlNode xmlNode) : base(xmlNode)
 		{
-			XmlDocument document = new XmlDocument();
-			document.LoadXml(xmlSoap.ToString());
-			XmlNodeList nodeList = null;
-			string xmlString = "";
-			if(document.GetElementsByTagName("ReverseTransactionResponseDetails").Count != 0)
+			XmlNode ChildNode = null;
+			XmlNodeList ChildNodeList = null;
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'ReverseTransactionResponseDetails']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				if(!DeserializationUtils.isWhiteSpaceNode(document.GetElementsByTagName("ReverseTransactionResponseDetails")[0]))
-				{
-					nodeList = document.GetElementsByTagName("ReverseTransactionResponseDetails");
-					xmlString = DeserializationUtils.convertToXML(nodeList[0]);
-					this.ReverseTransactionResponseDetails =  new ReverseTransactionResponseDetailsType(xmlString);
-				}
+				this.ReverseTransactionResponseDetails =  new ReverseTransactionResponseDetailsType(ChildNode);
 			}
 	
 		}
-		
 	}
 
 
@@ -40035,7 +38612,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			sb.Append(base.toXMLString());
 			if(ExternalRememberMeID != null)
 			{
-				sb.Append("<urn:ExternalRememberMeID>").Append(ExternalRememberMeID);
+				sb.Append("<urn:ExternalRememberMeID>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(ExternalRememberMeID));
 				sb.Append("</urn:ExternalRememberMeID>");
 			}
 			if(ExternalRememberMeOwnerDetails != null)
@@ -40064,15 +38641,12 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public ExternalRememberMeOptOutResponseType(Object xmlSoap) : base(xmlSoap)
+		public ExternalRememberMeOptOutResponseType(XmlNode xmlNode) : base(xmlNode)
 		{
-			XmlDocument document = new XmlDocument();
-			document.LoadXml(xmlSoap.ToString());
-			XmlNodeList nodeList = null;
-			string xmlString = "";
+			XmlNode ChildNode = null;
+			XmlNodeList ChildNodeList = null;
 	
 		}
-		
 	}
 
 

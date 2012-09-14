@@ -31,6 +31,8 @@ namespace PayPalAPISample.APICalls
             request.ButtonCode = (ButtonCodeType)
                 Enum.Parse(typeof(ButtonCodeType), buttonCode.SelectedValue);
 
+            //Selenium Test Case
+            request.HostedButtonID = hostedID.Value.ToString();
 
             /* Add HTML standard button variables that control what is posted to 
              * PayPal when a user clicks on the created button. Refer the

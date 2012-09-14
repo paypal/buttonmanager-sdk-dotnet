@@ -123,7 +123,7 @@ namespace PayPalAPISample.APICalls
             if (response.Ack.Equals(AckCodeType.FAILURE) ||
                 (response.Errors != null && response.Errors.Count > 0))
             {
-                CurrContext.Items.Add("Response_error", response.Errors);
+                CurrContext.Items.Add("Response_error", response.Errors);                
             }
             else
             {
@@ -141,6 +141,9 @@ namespace PayPalAPISample.APICalls
                 {
                     responseParams.Add("Code for email links", response.Email);
                 }
+
+                //Selenium Test Case
+                responseParams.Add("Acknowledgement", response.Ack.ToString());
             }
             CurrContext.Items.Add("Response_keyResponseObject", responseParams);
             Server.Transfer("../APIResponse.aspx");

@@ -82,6 +82,9 @@ namespace PayPalAPISample.APICalls
                         responseParams.Add(label + " Hosted button Id", response.ButtonSearchResult[i].HostedButtonID);
                     }
                 }
+
+                //Selenium Test Case
+                responseParams.Add("Acknowledgement", response.Ack.ToString());
             }
             CurrContext.Items.Add("Response_keyResponseObject", responseParams);
             Server.Transfer("../APIResponse.aspx");

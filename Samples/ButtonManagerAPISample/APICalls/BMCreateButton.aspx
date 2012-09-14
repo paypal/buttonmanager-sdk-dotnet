@@ -61,7 +61,7 @@
 					<div class="param_name">Business Mail</div>
 					<div class="param_value">
 						<input type="text" id="businessMail" name="businessMail" runat="Server"
-							value="" size="50" maxlength="260" />
+							value="jb-us-seller@paypal.com" size="50" maxlength="260" />
 					</div>
 				</div>
 				<div class="params">

@@ -102,6 +102,12 @@ namespace PayPal.Manager
         private static readonly ConfigurationProperty privateKeyPassword =
             new ConfigurationProperty("privateKeyPassword", typeof(string), string.Empty);
 
+        private static readonly ConfigurationProperty signSubject =
+           new ConfigurationProperty("signatureSubject", typeof(string), string.Empty);
+
+        private static readonly ConfigurationProperty certifySubject =
+           new ConfigurationProperty("certificateSubject", typeof(string), string.Empty);
+
         public Account()
         {
             base.Properties.Add(apiUsername);
@@ -110,6 +116,9 @@ namespace PayPal.Manager
             base.Properties.Add(apiSignature);
             base.Properties.Add(apiCertificate);
             base.Properties.Add(privateKeyPassword);
+
+            base.Properties.Add(signSubject);
+            base.Properties.Add(certifySubject);
         }
 
         /// <summary>
@@ -164,6 +173,24 @@ namespace PayPal.Manager
         {
             get { return (string)this[privateKeyPassword]; }
         }
+      
+        /// <summary>
+        /// Signature Subject
+        /// </summary>
+        [ConfigurationProperty("signatureSubject")]
+        public string SignatureSubject
+        {
+            get { return (string)this[signSubject]; }
+        }
+
+        /// <summary>
+        /// Certificate Subject
+        /// </summary>
+        [ConfigurationProperty("certificateSubject")]
+        public string CertificateSubject
+        {
+            get { return (string)this[certifySubject]; }
+        } 
     }
    
 }

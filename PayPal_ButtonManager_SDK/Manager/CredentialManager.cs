@@ -75,6 +75,9 @@ namespace PayPal.Manager
                     cred.CertificateFile = acc.APICertificate;
                     cred.PrivateKeyPassword = acc.PrivateKeyPassword;
                     cred.ApplicationID = acc.ApplicationId;
+
+                    cred.CertificateSubject = acc.CertificateSubject;
+
                     pro = cred;
                 }
                 else
@@ -84,6 +87,9 @@ namespace PayPal.Manager
                     cred.APIPassword = acc.APIPassword;
                     cred.APISignature = acc.APISignature;
                     cred.ApplicationID = acc.ApplicationId;
+
+                    cred.SignatureSubject = acc.SignatureSubject;
+
                     pro = cred;
                 }
 

@@ -14,7 +14,12 @@ namespace PayPal.Authentication
 		/// The API signature used in three-token authentication
 		/// </summary>
 		private string apiSignature;
-	
+
+        /// <summary>
+        /// Signature Subject
+        /// </summary>
+        private string signSubject;
+
 		/// <summary>
 		/// API Signature used to access the PayPal API.  Only used for
 		/// profiles set to Three-Token Authentication instead of Client-Side SSL Certificates.
@@ -30,5 +35,14 @@ namespace PayPal.Authentication
 				this.apiSignature = value;
 			}
 		}
+
+        /// <summary>
+        /// Signature Subject
+        /// </summary>
+        public string SignatureSubject
+        {
+            get { return this.signSubject; }
+            set { this.signSubject = value; }
+        }
 	} 
 } 

@@ -154,6 +154,13 @@ namespace PayPal.Manager
                     soapMsg.Append("<ebl:Signature>"
                     + ((SignatureCredential)apiCredentials).APISignature
                     + "</ebl:Signature>");
+
+                    if (!string.IsNullOrEmpty(((SignatureCredential)apiCredentials).SignatureSubject))
+                    {
+                        soapMsg.Append("<ebl:Subject>"
+                                + ((SignatureCredential)apiCredentials).SignatureSubject
+                                + "</ebl:Subject>");
+                    }
                 }
                 else
                 {
@@ -163,6 +170,13 @@ namespace PayPal.Manager
                     soapMsg.Append("<ebl:Password>"
                             + ((CertificateCredential)apiCredentials).APIPassword
                             + "</ebl:Password>");
+
+                    if (!string.IsNullOrEmpty(((CertificateCredential)apiCredentials).CertificateSubject))
+                    {
+                        soapMsg.Append("<ebl:Subject>"
+                                + ((CertificateCredential)apiCredentials).CertificateSubject
+                                + "</ebl:Subject>");
+                    }
                 }
                 soapMsg.Append("</ebl:Credentials>");
                 soapMsg.Append("</urn:RequesterCredentials>");

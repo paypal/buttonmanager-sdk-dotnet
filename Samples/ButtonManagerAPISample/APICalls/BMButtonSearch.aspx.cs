@@ -18,8 +18,12 @@ namespace PayPalAPISample.APICalls
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            startDate.Text = DateTime.Now.AddDays(-5).ToString("yyyy-MM-ddTHH:mm:ss");
-            endDate.Text = DateTime.Now.ToString("yyyy-MM-ddTHH:mm:ss");
+            //Fix for release
+            if (!Page.IsPostBack)
+            {
+                startDate.Text = DateTime.Now.AddDays(-5).ToString("yyyy-MM-ddTHH:mm:ss");
+                endDate.Text = DateTime.Now.ToString("yyyy-MM-ddTHH:mm:ss");
+            }
         }
         protected void calDate_SelectionChanged(object sender, EventArgs e)
         {

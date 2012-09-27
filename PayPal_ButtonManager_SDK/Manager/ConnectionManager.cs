@@ -59,17 +59,6 @@ namespace PayPal.Manager
                 ConnectionTimeout = BaseConstants.DEFAULT_TIMEOUT;
             httpRequest.Timeout = ConnectionTimeout;
 
-
-            if (Convert.ToBoolean(configMgr.GetProperty("trustAllCertificates")) == true)
-            {
-                // Can the serverCertifcateValidation callback be set on objRequest instead?
-                System.Net.ServicePointManager.ServerCertificateValidationCallback +=
-                delegate(object sender, X509Certificate certificate, X509Chain chain, SslPolicyErrors sslError)
-                {
-                    return true;                    
-                };
-            }
-
             // Set request proxy for tunnelling http requests via a proxy server
             string proxyAddress = configMgr.GetProperty("proxyAddress");
             if (proxyAddress != null)

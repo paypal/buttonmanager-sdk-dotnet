@@ -13,7 +13,7 @@ namespace PayPal.OAuth
     {
         public const string digits = "0123456789abcdef";
 
-        public static string encode(string s, string enc)
+        public static string Encode(string s, string enc)
         {
             if (s == null || enc == null)
             {
@@ -30,7 +30,7 @@ namespace PayPal.OAuth
 
                     if (start >= 0) 
                     {
-                        convert(s.Substring(start, (i-start)), buf, enc);
+                        Convert(s.Substring(start, (i-start)), buf, enc);
                         start = -1;
                     }
                     if (ch != ' ') 
@@ -52,14 +52,14 @@ namespace PayPal.OAuth
             }
             if (start >= 0) 
             {
-                convert(s.Substring(start, (s.Length-start)), buf, enc);
+                Convert(s.Substring(start, (s.Length-start)), buf, enc);
             }
 
             return buf.ToString(0,buf.Length);
         }
 
 
-        private static void convert(string s, StringBuilder buf, string enc)
+        private static void Convert(string s, StringBuilder buf, string enc)
         {
             Encoding encoding = System.Text.Encoding.GetEncoding(enc);
             byte[] bytes = encoding.GetBytes(s);

@@ -12,7 +12,7 @@ namespace PayPal.Util
         /// </summary>
         /// <param name="nvpStr"></param>
         /// <returns></returns>
-        public Dictionary<string, string> parseNVPString(string nvpStr)
+        public Dictionary<string, string> ParseNVPString(string nvpStr)
         {
             Dictionary<string, string> nvpMap = new Dictionary<string, string>();
             string[] keyValuePairs = nvpStr.Split('&');

@@ -61,7 +61,7 @@ namespace PayPal.Manager
 
             // Load and validate credentials
             apiCredentials = credMgr.GetCredentials(ApiUsername);
-            credMgr.validateCredentials(apiCredentials);
+            credMgr.ValidateCredentials(apiCredentials);
 
             if (this.Token != null && this.TokenSecret != null)
             {
@@ -78,9 +78,9 @@ namespace PayPal.Manager
                 sigGenerator.setRequestURI(requestUri);
 
                 //Compute Signature
-                String sig = sigGenerator.ComputeSignature();
+                string sig = sigGenerator.ComputeSignature();
                 log.Debug("Permissions signature: " + sig);
-                String authorization = "token=" + Token + ",signature=" + sig + ",timestamp=" + tokenTimeStamp;
+                string authorization = "token=" + Token + ",signature=" + sig + ",timestamp=" + tokenTimeStamp;
                 log.Debug("Authorization string: " + authorization);
                 httpRequest.Headers.Add(BaseConstants.XPAYPALSECURITYOAUTHSIGN, authorization);
                 ////httpRequest.Headers.Add(BaseConstants.XPAYPALSECURITYCLIENTCERT, "No cert");
@@ -123,10 +123,9 @@ namespace PayPal.Manager
         }
 
 
-        public string appendSoapHeaders(string requestPayload, string accessToken, string accessTokenSecret)
+        public string AppendSoapHeaders(string requestPayload, string accessToken, string accessTokenSecret)
         {
-
-            credMgr.validateCredentials(apiCredentials);
+            credMgr.ValidateCredentials(apiCredentials);
             StringBuilder soapMsg = new StringBuilder("<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:urn=\"urn:ebay:api:PayPalAPI\" xmlns:ebl=\"urn:ebay:apis:eBLBaseComponents\" xmlns:cc=\"urn:ebay:apis:CoreComponentTypes\" xmlns:ed=\"urn:ebay:apis:EnhancedDataTypes\">");
             if (this.Token != null && this.TokenSecret != null)
             {

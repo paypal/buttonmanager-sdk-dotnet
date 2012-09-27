@@ -35,7 +35,7 @@ namespace PayPal.Authentication
 	     * @param ConsumerSecret
 	     *            - Secret shared between PayPal and OAuth consumer
 	     */
-        public OAuthGenerator(String consumerKey, string consumerSecret)
+        public OAuthGenerator(string consumerKey, string consumerSecret)
         {
             
 		    this.QueryParams = new ArrayList();
@@ -51,7 +51,8 @@ namespace PayPal.Authentication
 	     *            - String version of Token. The token could be Access or
 	     *            Request //TODO: access or request
 	     */
-	    public void setToken(String token) {
+        public void setToken(string token)
+        {
 		    this.Token = token;
 	    }
 
@@ -74,7 +75,8 @@ namespace PayPal.Authentication
 	     * @param value
 	     *            parameter value with no URL encoding applied
 	     */
-	    public void addParameter(String name, String value) {
+        public void addParameter(string name, string value)
+        {
 		    QueryParams.Add(new Parameter(name, value));
 	    }
 
@@ -85,7 +87,8 @@ namespace PayPal.Authentication
 	     *            - Script URI which will be normalized to
 	     *            scheme://authority:port/path if not normalized already.
 	     */
-	    public void setRequestURI(String uri) {
+        public void setRequestURI(string uri)
+        {
 		    this.RequestURI = NormalizeURI(uri);
 	    }
 
@@ -95,7 +98,8 @@ namespace PayPal.Authentication
 	     * @param TokenTimestamp
 	     *            - time stamp at which Token request sends. 
 	     */
-	    public void setTokenTimestamp(String timestamp) {
+        public void setTokenTimestamp(string timestamp)
+        {
 		    this.TokenTimestamp = timestamp;
 	    }
 
@@ -111,7 +115,8 @@ namespace PayPal.Authentication
 	     * @param method
 	     *            HTTP method used for sending OAuth request
 	     */
-	    public void setHTTPMethod(string method) {            
+        public void setHTTPMethod(string method)
+        {
             switch (method)
             {
                 case "GET":
@@ -143,26 +148,27 @@ namespace PayPal.Authentication
 	     */
         public string ComputeSignature() 
         {
-            if (ConsumerSecret == null || ConsumerSecret.Length == 0) {
+            if (ConsumerSecret == null || ConsumerSecret.Length == 0)
+            {
 			    throw new OAuthException("Consumer Secret or key not set.");
 		    }
 
 		    if (Token == "" || TokenSecret.Length == 0 || RequestURI == ""
-				    || TokenTimestamp == "") {
+                    || TokenTimestamp == "")
+            {
 			    throw new OAuthException(
 					    "AuthToken or TokenSecret or Request URI or Timestamp not set.");
 		    }
 
 		    string signature = "";
-		    try {
+            try
+            {
                 string consumerSec = System.Text.Encoding.GetEncoding(ENCODING_METHOD).GetString(ConsumerSecret);
                 //TODO: Why encode consumersecret twice?
-                String key = PayPalURLEncoder.encode(consumerSec, ENCODING_METHOD);
+                string key = PayPalURLEncoder.Encode(consumerSec, ENCODING_METHOD);
 			    key += PARAM_DELIMETER;                
                 string tokenSec = System.Text.Encoding.GetEncoding(ENCODING_METHOD).GetString(TokenSecret);
-                key += PayPalURLEncoder.encode(tokenSec, ENCODING_METHOD);
-
-
+                key += PayPalURLEncoder.Encode(tokenSec, ENCODING_METHOD);
                 StringBuilder paramString = new StringBuilder();
 			    ArrayList oAuthParams = QueryParams;                
 			    oAuthParams.Add( new Parameter("oauth_consumer_key", ConsumerKey) );
@@ -175,27 +181,26 @@ namespace PayPal.Authentication
                 for (int counter = 0; counter <= numParams; counter++)
                 {
                     Parameter current = (Parameter)oAuthParams[counter];
-                    paramString.Append(current.getName()).Append(PARAM_SEPERATOR).Append(current.getValue());
+                    paramString.Append(current.ParameterName).Append(PARAM_SEPERATOR).Append(current.ParameterValue);
                     if (counter < numParams)
                         paramString.Append(PARAM_DELIMETER);				   
 			    }
-
-                String signatureBase = this.HttpMethod + PARAM_DELIMETER;
-                signatureBase += PayPalURLEncoder.encode(RequestURI, ENCODING_METHOD) + PARAM_DELIMETER;
-                signatureBase += PayPalURLEncoder.encode(paramString.ToString(), ENCODING_METHOD);
-
-
+                string signatureBase = this.HttpMethod + PARAM_DELIMETER;
+                signatureBase += PayPalURLEncoder.Encode(RequestURI, ENCODING_METHOD) + PARAM_DELIMETER;
+                signatureBase += PayPalURLEncoder.Encode(paramString.ToString(), ENCODING_METHOD);
                 Encoding encoding = System.Text.Encoding.ASCII;
                 byte[] encodedKey = encoding.GetBytes(key);
-                HMACSHA1 keyDigest = new HMACSHA1(encodedKey);
-
+                using (HMACSHA1 keyDigest = new HMACSHA1(encodedKey))
+                {
                 Encoding encoding1 = System.Text.Encoding.ASCII;
                 byte[] SignBase = encoding1.GetBytes(signatureBase);
 
                 byte[] digest = keyDigest.ComputeHash(SignBase);                
                 signature = System.Convert.ToBase64String(digest);
-
-		    } catch (System.Exception e) {
+                }
+            }
+            catch (System.Exception e)
+            {
 			    throw new OAuthException(e.Message, e);
 		    }
 
@@ -209,7 +214,8 @@ namespace PayPal.Authentication
 	     * @throws OAuthException
 	     *             in case there are any failures in signature computation.
 	     */
-	    public Boolean VerifyOAuthSignature(String signature)  {
+        public Boolean VerifyOAuthSignature(string signature)
+        {
 		    string signatureComputed = ComputeSignature();
 		    return signatureComputed != signature ? false : true;
 	    }
@@ -221,7 +227,8 @@ namespace PayPal.Authentication
 	     * @return normalized URI. URI normalized to scheme://authority:port/path
 	     * @throws OAuthException
 	     */
-	    private string NormalizeURI(string uri) {
+        private string NormalizeURI(string uri)
+        {
 		    string normalizedURI = "", port = "", scheme = "", path = "", authority = "";
 		    int i, j, k;
 
@@ -229,9 +236,13 @@ namespace PayPal.Authentication
             {
                 i = uri.IndexOf(":");
                 if (i == -1)
+                {
                     throw new OAuthException("Invalid URI.");
+                }
                 else
+                {
                     scheme = uri.Substring(0, i);
+                }
 
                 // find next : in URL
                 j = uri.IndexOf(":", i + 2);
@@ -308,30 +319,39 @@ namespace PayPal.Authentication
 	     */
         private class Parameter : System.IComparable
         {
+            private string pName;
+            private string pValue;
 
-		    public Parameter(String name, String value) {
-			    this.Name = name;
-			    this.Value = value;
+            public Parameter(string pName, string pValue)
+            {
+                this.pName = pName;
+                this.pValue = pValue;
 		    }
 
-		    public void setName(String name) {
-			    this.Name = name;
+            public string ParameterName
+            {
+                get
+                {
+                    return pName;
+                }
+                set
+                {
+                    pName = value;
+                }
 		    }
 
-		    public void setValue(String val) {
-			    this.Value = val;
+            public string ParameterValue
+            {
+                get
+                {
+                    return pValue;
+		    	}
+                set
+                {
+                    pValue = value;
+		    	}
 		    }
 
-		    public String getName() {
-			    return this.Name;
-		    }
-
-		    public String getValue() {
-			    return this.Value;
-		    }
-
-		    private String Name;
-		    private String Value;
 
             /**
              * Compare by name. If both are equal, compare by value
@@ -345,10 +365,12 @@ namespace PayPal.Authentication
                 int retval = 0;
                 if (param != null)
                 {
-                    retval = this.Name.CompareTo(param.getName());
+                    retval = this.pName.CompareTo(param.ParameterName);
                     // if parameter names are equal then compare parameter values.
                     if (retval == 0)
-                        retval = this.Value.CompareTo(param.getValue());
+					{
+                        retval = this.pValue.CompareTo(param.ParameterValue);
+					}
                 }
                 return retval;
             }

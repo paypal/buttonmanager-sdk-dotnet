@@ -36,7 +36,7 @@ namespace PayPal.Manager
         /// </summary>
         /// <param name="profile"></param>
         /// <returns></returns>
-        public HttpWebRequest getConnection(string url)
+        public HttpWebRequest GetConnection(string url)
         {
 
             ConfigManager configMgr = ConfigManager.Instance;

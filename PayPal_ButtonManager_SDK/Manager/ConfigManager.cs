@@ -39,9 +39,9 @@ namespace PayPal.Manager
             return config.Setting(key);
         }
 
-        public Account GetAccount(string apiUsername)
+        public Account GetAccount(string apiUserName)
         {   
-            return config.Accounts[apiUsername];
+            return config.Accounts[apiUserName];
         }
         public Account GetAccount(int index)
         {

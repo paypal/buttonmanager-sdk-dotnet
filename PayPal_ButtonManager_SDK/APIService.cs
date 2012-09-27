@@ -44,37 +44,40 @@ namespace PayPal
         /// Calls the platform API web service for given payload and returns the response payload.
         /// </summary>
         /// <returns>returns the response payload</returns>
-        public string makeRequest(string method, string requestPayload, string apiUsername,
+        public string MakeRequest(string method, string requestPayload, string apiUserName,
                                     string accessToken, string accessTokenSecret)
         {
 
             ConfigManager configMgr = ConfigManager.Instance;            
             string uri, responseString = string.Empty;
-            AuthenticationHandler authHandler = new AuthenticationHandler(apiUsername);
+            AuthenticationHandler authHandler = new AuthenticationHandler(apiUserName);
             // Construct the URL to invoke
             if (configMgr.GetProperty("binding") != "SOAP")
             {
-                uri = getAPIEndpoint(method);
-
+                uri = GetAPIEndpoint(method);
             }
             else
             {
                 uri = configMgr.GetProperty("endpoint");
-               
             }
             log.Debug("Connecting to " + uri);
 
             // Constructing HttpWebRequest object                
             ConnectionManager conn = ConnectionManager.Instance;            
-            HttpWebRequest httpRequest = conn.getConnection(uri);
+            HttpWebRequest httpRequest = conn.GetConnection(uri);
             httpRequest.Method = RequestMethod;
             
             // Set up Headers            
             if(accessToken != null && accessTokenSecret != null)
+            {
                 authHandler.SetOAuthToken(accessToken, accessTokenSecret);
+            }
+
             authHandler.SetAuthenticationParams(httpRequest, uri);
             if (configMgr.GetProperty("binding") == "SOAP")
-                requestPayload = authHandler.appendSoapHeaders(requestPayload, accessToken, accessTokenSecret);
+            {
+                requestPayload = authHandler.AppendSoapHeaders(requestPayload, accessToken, accessTokenSecret);
+            }
             else
             {
                 httpRequest.Headers.Add(BaseConstants.XPAYPALREQUESTDATAFORMAT, BaseConstants.RequestDataformat);
@@ -108,10 +111,11 @@ namespace PayPal
 
             // Fire request. Retry if configured to do so
             int numRetries = (configMgr.GetProperty("requestRetries") != null ) ? 
-                Int32.Parse(configMgr.GetProperty("requestRetries")) : 0;
+                int.Parse(configMgr.GetProperty("requestRetries")) : 0;
             int retries = 0;
 
-            do {
+            do
+            {
                 try
                 {
                     // calling the plaftform API web service and getting the response
@@ -132,7 +136,7 @@ namespace PayPal
                     HttpStatusCode statusCode =  ( (HttpWebResponse) we.Response ).StatusCode;
                     
                     log.Info("Got " + statusCode.ToString() + " response from server");
-                    if (!requiresRetry(we))
+                    if (!RequiresRetry(we))
                     {
                         throw new ConnectionException("Invalid HTTP response " + we.Message);
                     }
@@ -146,7 +150,8 @@ namespace PayPal
             throw new ConnectionException("Invalid HTTP response");
         }
 
-        private string getAPIEndpoint(string method) {
+        private string GetAPIEndpoint(string method)
+        {
             // PayPal's APIs include the service method name as part of the URL
             ConfigManager configMgr = ConfigManager.Instance;
             return configMgr.GetProperty("endpoint") + this.serviceName + '/' + method;
@@ -157,10 +162,12 @@ namespace PayPal
         /// </summary>
         /// <param name="response"></param>
         /// <returns></returns>
-        private Boolean requiresRetry(WebException ex)
+        private static bool RequiresRetry(WebException ex)
         {
             if (ex.Status != WebExceptionStatus.ProtocolError)
+            {
                 return false;
+            }
             HttpStatusCode status = ((HttpWebResponse)ex.Response).StatusCode;
             return retryCodes.Contains(status); 
         }

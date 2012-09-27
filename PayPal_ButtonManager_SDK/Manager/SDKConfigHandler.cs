@@ -63,7 +63,7 @@ namespace PayPal.Manager
             return (Account)BaseGet(index);
         }
 
-        public Account Account(String value)
+        public Account Account(string value)
         {
             return (Account)BaseGet(value);
         }

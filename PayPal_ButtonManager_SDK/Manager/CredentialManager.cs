@@ -34,7 +34,7 @@ namespace PayPal.Manager
         private CredentialManager()
         { }
 
-        private string getDefaultAccountName()
+        private string GetDefaultAccountName()
         {
             ConfigManager configMgr = ConfigManager.Instance;
             Account firstAccount = configMgr.GetAccount(0);
@@ -45,29 +45,29 @@ namespace PayPal.Manager
             return firstAccount.APIUsername;
         }
 
-        public ICredential GetCredentials(string apiUsername)
+        public ICredential GetCredentials(string apiUserName)
         {
-            if (apiUsername == null)
+            if (apiUserName == null)
             {
-                apiUsername = getDefaultAccountName();
+                apiUserName = GetDefaultAccountName();
             }
 
-            if (this.cachedCredentials.ContainsKey(apiUsername))
+            if (this.cachedCredentials.ContainsKey(apiUserName))
             {
-                log.Debug("Returning cached credentials for " + apiUsername);
-                return this.cachedCredentials[apiUsername];
+                log.Debug("Returning cached credentials for " + apiUserName);
+                return this.cachedCredentials[apiUserName];
             }
             else
             {
                 ICredential pro = null;
 
                 ConfigManager configMgr = ConfigManager.Instance;
-                Account acc = configMgr.GetAccount(apiUsername);
+                Account acc = configMgr.GetAccount(apiUserName);
                 if (acc == null)
                 {
-                    throw new MissingCredentialException("Missing credentials for " + apiUsername);
+                    throw new MissingCredentialException("Missing credentials for " + apiUserName);
                 }
-                if (acc.APICertificate != null && acc.APICertificate.Length > 0)
+                if (!string.IsNullOrEmpty(acc.APICertificate))
                 {
                     CertificateCredential cred = new CertificateCredential();
                     cred.APIUsername = acc.APIUsername;
@@ -92,8 +92,7 @@ namespace PayPal.Manager
 
                     pro = cred;
                 }
-
-                this.cachedCredentials.Add(apiUsername, pro);
+                this.cachedCredentials.Add(apiUserName, pro);
                 return pro;
             }
         }
@@ -102,35 +101,36 @@ namespace PayPal.Manager
         /// Validate API Credentials
         /// </summary>
         /// <param name="apiCredentials"></param>
-        public void validateCredentials(ICredential apiCredentials)
+        public void ValidateCredentials(ICredential apiCredentials)
         {
-            if (apiCredentials.APIUsername == null || apiCredentials.APIUsername == "")
+            if (string.IsNullOrEmpty(apiCredentials.APIUsername))
             {
                 throw new InvalidCredentialException(BaseConstants.ErrorMessages.err_username);
             }
-            if (apiCredentials.APIPassword == null || apiCredentials.APIPassword == "")
+            if (string.IsNullOrEmpty(apiCredentials.APIPassword))
             {
                 throw new InvalidCredentialException(BaseConstants.ErrorMessages.err_passeword);
             }
-            if (apiCredentials.ApplicationID == null || apiCredentials.ApplicationID == "")
+            if (string.IsNullOrEmpty(apiCredentials.ApplicationID))
             {
                 throw new InvalidCredentialException(BaseConstants.ErrorMessages.err_appid);
             }
 
             if ((apiCredentials is SignatureCredential))
             {
-                if (((SignatureCredential)apiCredentials).APISignature == null || ((SignatureCredential)apiCredentials).APISignature == "")
+                if (string.IsNullOrEmpty(((SignatureCredential)apiCredentials).APISignature))                
                 {
                     throw new InvalidCredentialException(BaseConstants.ErrorMessages.err_signature);
                 }
             }
             else
             {
-                if (((CertificateCredential)apiCredentials).CertificateFile == null || ((CertificateCredential)apiCredentials).CertificateFile == "")
+                if (string.IsNullOrEmpty(((CertificateCredential)apiCredentials).CertificateFile))                
                 {
                     throw new InvalidCredentialException(BaseConstants.ErrorMessages.err_certificate);
                 }
-                if (((CertificateCredential)apiCredentials).PrivateKeyPassword == null || ((CertificateCredential)apiCredentials).PrivateKeyPassword == "")
+
+                if (string.IsNullOrEmpty(((CertificateCredential)apiCredentials).PrivateKeyPassword))                
                 {
                     throw new InvalidCredentialException(BaseConstants.ErrorMessages.err_privatekeypassword);
                 }

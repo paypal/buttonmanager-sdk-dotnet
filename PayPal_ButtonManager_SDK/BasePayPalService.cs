@@ -12,7 +12,7 @@ namespace PayPal
         private string AccessToken;
         private string AccessTokenSecret;
         private string LastRequest;
-        private string LastResponse;
+        private string LastResponse;        
 
         public BasePayPalService(string serviceName, string serviceVersion)
         {
@@ -29,7 +29,7 @@ namespace PayPal
         {
             this.AccessTokenSecret = accessTokenSecret;
         }
-
+        
         public string getLastRequest()
         {
             return this.LastRequest;
@@ -38,7 +38,7 @@ namespace PayPal
         public string getLastResponse()
         {
             return this.LastResponse;
-        }
+        }        
 
         /// <summary>
         /// Call method exposed to user
@@ -46,13 +46,13 @@ namespace PayPal
         /// <param name="method"></param>
         /// <param name="requestPayload"></param>
         /// <returns></returns>
-        public string call(String method, string requestPayload, string apiUsername)
-        {            
-            APIService apiService = new APIService(ServiceName, ServiceVersion);
+        public string Call(string method, string requestPayload, string apiUserName)
+        {   
+            APIService apiService = new APIService(ServiceName, ServiceVersion);	
             this.LastRequest = requestPayload;
-            this.LastResponse =  apiService.makeRequest(method, requestPayload, apiUsername, 
+            this.LastResponse =  apiService.MakeRequest(method, requestPayload, apiUserName, 
                                     this.AccessToken, this.AccessTokenSecret);
-            return this.LastResponse;
+            return this.LastResponse;            
         }
     }
 }

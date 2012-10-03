@@ -9,7 +9,7 @@ namespace PayPal.PayPalAPIInterfaceService {
 	public partial class PayPalAPIInterfaceServiceService : BasePayPalService {
 
 		// Service Version
-		private static string ServiceVersion = "93.0";
+		private static string ServiceVersion = "94.0";
 
 		// Service Name
 		private static string ServiceName = "PayPalAPIInterfaceService";
@@ -32,10 +32,10 @@ namespace PayPal.PayPalAPIInterfaceService {
 		/**	
           *AUTO_GENERATED
 	 	  */
-	 	public BMCreateButtonResponseType BMCreateButton(BMCreateButtonReq BMCreateButtonReq, string apiUsername)
+	 	public BMCreateButtonResponseType BMCreateButton(BMCreateButtonReq bMCreateButtonReq, string apiUserName)
 	 	{
-			setStandardParams(BMCreateButtonReq.BMCreateButtonRequest);
-			string response = call("BMCreateButton", BMCreateButtonReq.toXMLString(), apiUsername);
+			setStandardParams(bMCreateButtonReq.BMCreateButtonRequest);
+			string response = Call("BMCreateButton", bMCreateButtonReq.ToXMLString(), apiUserName);
 			XmlDocument xmlDocument = new XmlDocument();
 			xmlDocument.LoadXml(response);
 			XmlNode xmlNode = xmlDocument.SelectSingleNode("*[local-name()='Envelope']/*[local-name()='Body']/*[local-name()='BMCreateButtonResponse']");
@@ -46,18 +46,18 @@ namespace PayPal.PayPalAPIInterfaceService {
 	 	/** 
           *AUTO_GENERATED
 	 	  */
-	 	public BMCreateButtonResponseType BMCreateButton(BMCreateButtonReq BMCreateButtonReq)
+	 	public BMCreateButtonResponseType BMCreateButton(BMCreateButtonReq bMCreateButtonReq)
 	 	{
-	 		return BMCreateButton(BMCreateButtonReq, null);
+	 		return BMCreateButton(bMCreateButtonReq, null);
 	 	}
 
 		/**	
           *AUTO_GENERATED
 	 	  */
-	 	public BMUpdateButtonResponseType BMUpdateButton(BMUpdateButtonReq BMUpdateButtonReq, string apiUsername)
+	 	public BMUpdateButtonResponseType BMUpdateButton(BMUpdateButtonReq bMUpdateButtonReq, string apiUserName)
 	 	{
-			setStandardParams(BMUpdateButtonReq.BMUpdateButtonRequest);
-			string response = call("BMUpdateButton", BMUpdateButtonReq.toXMLString(), apiUsername);
+			setStandardParams(bMUpdateButtonReq.BMUpdateButtonRequest);
+			string response = Call("BMUpdateButton", bMUpdateButtonReq.ToXMLString(), apiUserName);
 			XmlDocument xmlDocument = new XmlDocument();
 			xmlDocument.LoadXml(response);
 			XmlNode xmlNode = xmlDocument.SelectSingleNode("*[local-name()='Envelope']/*[local-name()='Body']/*[local-name()='BMUpdateButtonResponse']");
@@ -68,18 +68,18 @@ namespace PayPal.PayPalAPIInterfaceService {
 	 	/** 
           *AUTO_GENERATED
 	 	  */
-	 	public BMUpdateButtonResponseType BMUpdateButton(BMUpdateButtonReq BMUpdateButtonReq)
+	 	public BMUpdateButtonResponseType BMUpdateButton(BMUpdateButtonReq bMUpdateButtonReq)
 	 	{
-	 		return BMUpdateButton(BMUpdateButtonReq, null);
+	 		return BMUpdateButton(bMUpdateButtonReq, null);
 	 	}
 
 		/**	
           *AUTO_GENERATED
 	 	  */
-	 	public BMManageButtonStatusResponseType BMManageButtonStatus(BMManageButtonStatusReq BMManageButtonStatusReq, string apiUsername)
+	 	public BMManageButtonStatusResponseType BMManageButtonStatus(BMManageButtonStatusReq bMManageButtonStatusReq, string apiUserName)
 	 	{
-			setStandardParams(BMManageButtonStatusReq.BMManageButtonStatusRequest);
-			string response = call("BMManageButtonStatus", BMManageButtonStatusReq.toXMLString(), apiUsername);
+			setStandardParams(bMManageButtonStatusReq.BMManageButtonStatusRequest);
+			string response = Call("BMManageButtonStatus", bMManageButtonStatusReq.ToXMLString(), apiUserName);
 			XmlDocument xmlDocument = new XmlDocument();
 			xmlDocument.LoadXml(response);
 			XmlNode xmlNode = xmlDocument.SelectSingleNode("*[local-name()='Envelope']/*[local-name()='Body']/*[local-name()='BMManageButtonStatusResponse']");
@@ -90,18 +90,18 @@ namespace PayPal.PayPalAPIInterfaceService {
 	 	/** 
           *AUTO_GENERATED
 	 	  */
-	 	public BMManageButtonStatusResponseType BMManageButtonStatus(BMManageButtonStatusReq BMManageButtonStatusReq)
+	 	public BMManageButtonStatusResponseType BMManageButtonStatus(BMManageButtonStatusReq bMManageButtonStatusReq)
 	 	{
-	 		return BMManageButtonStatus(BMManageButtonStatusReq, null);
+	 		return BMManageButtonStatus(bMManageButtonStatusReq, null);
 	 	}
 
 		/**	
           *AUTO_GENERATED
 	 	  */
-	 	public BMGetButtonDetailsResponseType BMGetButtonDetails(BMGetButtonDetailsReq BMGetButtonDetailsReq, string apiUsername)
+	 	public BMGetButtonDetailsResponseType BMGetButtonDetails(BMGetButtonDetailsReq bMGetButtonDetailsReq, string apiUserName)
 	 	{
-			setStandardParams(BMGetButtonDetailsReq.BMGetButtonDetailsRequest);
-			string response = call("BMGetButtonDetails", BMGetButtonDetailsReq.toXMLString(), apiUsername);
+			setStandardParams(bMGetButtonDetailsReq.BMGetButtonDetailsRequest);
+			string response = Call("BMGetButtonDetails", bMGetButtonDetailsReq.ToXMLString(), apiUserName);
 			XmlDocument xmlDocument = new XmlDocument();
 			xmlDocument.LoadXml(response);
 			XmlNode xmlNode = xmlDocument.SelectSingleNode("*[local-name()='Envelope']/*[local-name()='Body']/*[local-name()='BMGetButtonDetailsResponse']");
@@ -112,18 +112,18 @@ namespace PayPal.PayPalAPIInterfaceService {
 	 	/** 
           *AUTO_GENERATED
 	 	  */
-	 	public BMGetButtonDetailsResponseType BMGetButtonDetails(BMGetButtonDetailsReq BMGetButtonDetailsReq)
+	 	public BMGetButtonDetailsResponseType BMGetButtonDetails(BMGetButtonDetailsReq bMGetButtonDetailsReq)
 	 	{
-	 		return BMGetButtonDetails(BMGetButtonDetailsReq, null);
+	 		return BMGetButtonDetails(bMGetButtonDetailsReq, null);
 	 	}
 
 		/**	
           *AUTO_GENERATED
 	 	  */
-	 	public BMSetInventoryResponseType BMSetInventory(BMSetInventoryReq BMSetInventoryReq, string apiUsername)
+	 	public BMSetInventoryResponseType BMSetInventory(BMSetInventoryReq bMSetInventoryReq, string apiUserName)
 	 	{
-			setStandardParams(BMSetInventoryReq.BMSetInventoryRequest);
-			string response = call("BMSetInventory", BMSetInventoryReq.toXMLString(), apiUsername);
+			setStandardParams(bMSetInventoryReq.BMSetInventoryRequest);
+			string response = Call("BMSetInventory", bMSetInventoryReq.ToXMLString(), apiUserName);
 			XmlDocument xmlDocument = new XmlDocument();
 			xmlDocument.LoadXml(response);
 			XmlNode xmlNode = xmlDocument.SelectSingleNode("*[local-name()='Envelope']/*[local-name()='Body']/*[local-name()='BMSetInventoryResponse']");
@@ -134,18 +134,18 @@ namespace PayPal.PayPalAPIInterfaceService {
 	 	/** 
           *AUTO_GENERATED
 	 	  */
-	 	public BMSetInventoryResponseType BMSetInventory(BMSetInventoryReq BMSetInventoryReq)
+	 	public BMSetInventoryResponseType BMSetInventory(BMSetInventoryReq bMSetInventoryReq)
 	 	{
-	 		return BMSetInventory(BMSetInventoryReq, null);
+	 		return BMSetInventory(bMSetInventoryReq, null);
 	 	}
 
 		/**	
           *AUTO_GENERATED
 	 	  */
-	 	public BMGetInventoryResponseType BMGetInventory(BMGetInventoryReq BMGetInventoryReq, string apiUsername)
+	 	public BMGetInventoryResponseType BMGetInventory(BMGetInventoryReq bMGetInventoryReq, string apiUserName)
 	 	{
-			setStandardParams(BMGetInventoryReq.BMGetInventoryRequest);
-			string response = call("BMGetInventory", BMGetInventoryReq.toXMLString(), apiUsername);
+			setStandardParams(bMGetInventoryReq.BMGetInventoryRequest);
+			string response = Call("BMGetInventory", bMGetInventoryReq.ToXMLString(), apiUserName);
 			XmlDocument xmlDocument = new XmlDocument();
 			xmlDocument.LoadXml(response);
 			XmlNode xmlNode = xmlDocument.SelectSingleNode("*[local-name()='Envelope']/*[local-name()='Body']/*[local-name()='BMGetInventoryResponse']");
@@ -156,18 +156,18 @@ namespace PayPal.PayPalAPIInterfaceService {
 	 	/** 
           *AUTO_GENERATED
 	 	  */
-	 	public BMGetInventoryResponseType BMGetInventory(BMGetInventoryReq BMGetInventoryReq)
+	 	public BMGetInventoryResponseType BMGetInventory(BMGetInventoryReq bMGetInventoryReq)
 	 	{
-	 		return BMGetInventory(BMGetInventoryReq, null);
+	 		return BMGetInventory(bMGetInventoryReq, null);
 	 	}
 
 		/**	
           *AUTO_GENERATED
 	 	  */
-	 	public BMButtonSearchResponseType BMButtonSearch(BMButtonSearchReq BMButtonSearchReq, string apiUsername)
+	 	public BMButtonSearchResponseType BMButtonSearch(BMButtonSearchReq bMButtonSearchReq, string apiUserName)
 	 	{
-			setStandardParams(BMButtonSearchReq.BMButtonSearchRequest);
-			string response = call("BMButtonSearch", BMButtonSearchReq.toXMLString(), apiUsername);
+			setStandardParams(bMButtonSearchReq.BMButtonSearchRequest);
+			string response = Call("BMButtonSearch", bMButtonSearchReq.ToXMLString(), apiUserName);
 			XmlDocument xmlDocument = new XmlDocument();
 			xmlDocument.LoadXml(response);
 			XmlNode xmlNode = xmlDocument.SelectSingleNode("*[local-name()='Envelope']/*[local-name()='Body']/*[local-name()='BMButtonSearchResponse']");
@@ -178,9 +178,9 @@ namespace PayPal.PayPalAPIInterfaceService {
 	 	/** 
           *AUTO_GENERATED
 	 	  */
-	 	public BMButtonSearchResponseType BMButtonSearch(BMButtonSearchReq BMButtonSearchReq)
+	 	public BMButtonSearchResponseType BMButtonSearch(BMButtonSearchReq bMButtonSearchReq)
 	 	{
-	 		return BMButtonSearch(BMButtonSearchReq, null);
+	 		return BMButtonSearch(bMButtonSearchReq, null);
 	 	}
 	}
 }

@@ -15,9 +15,9 @@ using PayPal.Util;
 namespace PayPal.PayPalAPIInterfaceService.Model
 {
 
-	public class EnumUtils
+	public static class EnumUtils
 	{
-		public static string getDescription(Enum value)
+		public static string GetDescription(Enum value)
 		{
 			string description = "";
 			DescriptionAttribute[] attributes = (DescriptionAttribute[])value.GetType().GetField(value.ToString()).GetCustomAttributes(typeof(DescriptionAttribute), false);
@@ -28,12 +28,12 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			return description;
 		}
 		
-		public static object getValue(String value,Type enumType)
+		public static object GetValue(string value,Type enumType)
 		{
 			string[] names = Enum.GetNames(enumType);
 			foreach(string name in names)
             {
-            	if (getDescription((Enum)Enum.Parse(enumType, name)).Equals(value))
+            	if (GetDescription((Enum)Enum.Parse(enumType, name)).Equals(value))
             	{
 					return Enum.Parse(enumType, name);
 				}
@@ -122,8 +122,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *be a period (.), and the thousands separator must be a comma
       *(,).
       */
-	public partial class BasicAmountType	
-	{
+	public partial class BasicAmountType	{
 
 		/**
           *
@@ -174,7 +173,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
 			sb.Append(GetAttributeAsXml());
@@ -192,7 +191,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			StringBuilder sb = new StringBuilder();
 		if(currencyID != null)
 		{
-			sb.Append(" currencyID=\"").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(currencyID))).Append("\"");	
+			sb.Append(" currencyID=\"").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(currencyID))).Append("\"");	
 		}
 			
 			return sb.ToString();
@@ -204,7 +203,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			ChildNode = xmlNode.SelectSingleNode("@*[local-name() = 'currencyID']");
 			if (ChildNode != null)
 			{
-				this.currencyID = (CurrencyCodeType)EnumUtils.getValue(ChildNode.Value, typeof(CurrencyCodeType));	
+				this.currencyID = (CurrencyCodeType)EnumUtils.GetValue(ChildNode.Value, typeof(CurrencyCodeType));	
 			}
 			this.value = xmlNode.InnerText;
 	
@@ -217,8 +216,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class MeasureType	
-	{
+	public partial class MeasureType	{
 
 		/**
           *
@@ -269,7 +267,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
 			sb.Append(GetAttributeAsXml());
@@ -321,6 +319,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *    level acknowledgement element.
       * 
       */
+    [Serializable]
 	public enum AckCodeType {
 		[Description("Success")]SUCCESS,	
 		[Description("Failure")]FAILURE,	
@@ -341,6 +340,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *    who owns the user'a address.
       * 
       */
+    [Serializable]
 	public enum AddressOwnerCodeType {
 		[Description("PayPal")]PAYPAL,	
 		[Description("eBay")]EBAY,	
@@ -359,6 +359,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *    the ISO 3166 country code set. 
       * 
       */
+    [Serializable]
 	public enum CountryCodeType {
 		[Description("AF")]AF,	
 		[Description("AL")]AL,	
@@ -706,6 +707,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       * 
       * 
       */
+    [Serializable]
 	public enum CurrencyCodeType {
 		[Description("AFA")]AFA,	
 		[Description("ALL")]ALL,	
@@ -891,6 +893,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       * DetailLevelCodeType   
       * 
       */
+    [Serializable]
 	public enum DetailLevelCodeType {
 		[Description("ReturnAll")]RETURNALL,	
 		[Description("ItemReturnDescription")]ITEMRETURNDESCRIPTION,	
@@ -904,6 +907,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       * This defines if the incentive is applied on Ebay or PayPal.
       *            
       */
+    [Serializable]
 	public enum IncentiveSiteAppliedOnType {
 		[Description("INCENTIVE-SITE-APPLIED-ON-UNKNOWN")]INCENTIVESITEAPPLIEDONUNKNOWN,	
 		[Description("INCENTIVE-SITE-APPLIED-ON-MERCHANT")]INCENTIVESITEAPPLIEDONMERCHANT,	
@@ -918,6 +922,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *not.
       *            
       */
+    [Serializable]
 	public enum IncentiveAppliedStatusType {
 		[Description("INCENTIVE-APPLIED-STATUS-SUCCESS")]INCENTIVEAPPLIEDSTATUSSUCCESS,	
 		[Description("INCENTIVE-APPLIED-STATUS-ERROR")]INCENTIVEAPPLIEDSTATUSERROR	
@@ -933,6 +938,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *dispute)
       * 
       */
+    [Serializable]
 	public enum PaymentReasonType {
 		[Description("None")]NONE,	
 		[Description("Refund")]REFUND,	
@@ -951,6 +957,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *    to the client.
       * 
       */
+    [Serializable]
 	public enum SeverityCodeType {
 		[Description("Warning")]WARNING,	
 		[Description("Error")]ERROR,	
@@ -968,6 +975,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *      service.
       * 
       */
+    [Serializable]
 	public enum ShippingServiceCodeType {
 		[Description("UPSGround")]UPSGROUND,	
 		[Description("UPS3rdDay")]UPSRDDAY,	
@@ -995,6 +1003,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       * This is the credit card type
       * 
       */
+    [Serializable]
 	public enum CreditCardTypeType {
 		[Description("Visa")]VISA,	
 		[Description("MasterCard")]MASTERCARD,	
@@ -1015,6 +1024,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       * supported.
       * 
       */
+    [Serializable]
 	public enum RefundType {
 		[Description("Other")]OTHER,	
 		[Description("Full")]FULL,	
@@ -1029,6 +1039,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       * Based on NRF-ARTS Specification for Units of Measure
       * 
       */
+    [Serializable]
 	public enum UnitOfMeasure {
 		[Description("EA")]EA,	
 		[Description("Hours")]HOURS,	
@@ -1062,6 +1073,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
+    [Serializable]
 	public enum RedeemedOfferType {
 		[Description("MERCHANT_COUPON")]MERCHANTCOUPON,	
 		[Description("LOYALTY_CARD")]LOYALTYCARD,	
@@ -1075,6 +1087,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *Supported API Types for DoCancel operation
       */
+    [Serializable]
 	public enum APIType {
 		[Description("CHECKOUT_AUTHORIZATION")]CHECKOUTAUTHORIZATION,	
 		[Description("CHECKOUT_SALE")]CHECKOUTSALE	
@@ -1091,6 +1104,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *phase.
       * 
       */
+    [Serializable]
 	public enum IncentiveRequestCodeType {
 		[Description("InCheckout")]INCHECKOUT,	
 		[Description("PreCheckout")]PRECHECKOUT	
@@ -1106,6 +1120,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *define the contents and details of the response.
       * 
       */
+    [Serializable]
 	public enum IncentiveRequestDetailLevelCodeType {
 		[Description("Aggregated")]AGGREGATED,	
 		[Description("Detail")]DETAIL	
@@ -1120,6 +1135,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *code.
       * 
       */
+    [Serializable]
 	public enum IncentiveTypeCodeType {
 		[Description("Coupon")]COUPON,	
 		[Description("eBayGiftCertificate")]EBAYGIFTCERTIFICATE,	
@@ -1138,6 +1154,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *from IPN
       * 
       */
+    [Serializable]
 	public enum PaymentTransactionCodeType {
 		[Description("none")]NONE,	
 		[Description("web-accept")]WEBACCEPT,	
@@ -1168,6 +1185,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *output from IPN
       * 
       */
+    [Serializable]
 	public enum PaymentStatusCodeType {
 		[Description("None")]NONE,	
 		[Description("Completed")]COMPLETED,	
@@ -1196,6 +1214,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       * This is the PayPal address status
       * 
       */
+    [Serializable]
 	public enum AddressStatusCodeType {
 		[Description("None")]NONE,	
 		[Description("Confirmed")]CONFIRMED,	
@@ -1211,6 +1230,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *Express Checkout)
       * 
       */
+    [Serializable]
 	public enum PaymentActionCodeType {
 		[Description("None")]NONE,	
 		[Description("Authorization")]AUTHORIZATION,	
@@ -1226,6 +1246,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *Pending Transaction.
       * 
       */
+    [Serializable]
 	public enum FMFPendingTransactionActionType {
 		[Description("Accept")]ACCEPT,	
 		[Description("Deny")]DENY	
@@ -1239,6 +1260,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       * This is the PayPal Channel type (used by Express Checkout)
       * 
       */
+    [Serializable]
 	public enum ChannelType {
 		[Description("Merchant")]MERCHANT,	
 		[Description("eBayItem")]EBAYITEM	
@@ -1252,6 +1274,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       * in MiniCart for UX.
       * 
       */
+    [Serializable]
 	public enum TotalType {
 		[Description("Total")]TOTAL,	
 		[Description("EstimatedTotal")]ESTIMATEDTOTAL	
@@ -1266,6 +1289,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *Express Checkout)
       * 
       */
+    [Serializable]
 	public enum SolutionTypeType {
 		[Description("Mark")]MARK,	
 		[Description("Sole")]SOLE	
@@ -1290,6 +1314,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *merchant profile setting
       * 
       */
+    [Serializable]
 	public enum AllowedPaymentMethodType {
 		[Description("Default")]DEFAULT,	
 		[Description("InstantPaymentOnly")]INSTANTPAYMENTONLY,	
@@ -1306,6 +1331,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *by Express Checkout)
       * 
       */
+    [Serializable]
 	public enum LandingPageType {
 		[Description("None")]NONE,	
 		[Description("Login")]LOGIN,	
@@ -1318,6 +1344,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       * 
       */
+    [Serializable]
 	public enum BillingCodeType {
 		[Description("None")]NONE,	
 		[Description("MerchantInitiatedBilling")]MERCHANTINITIATEDBILLING,	
@@ -1332,6 +1359,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       * 
       */
+    [Serializable]
 	public enum ApprovalTypeType {
 		[Description("BillingAgreement")]BILLINGAGREEMENT,	
 		[Description("Profile")]PROFILE	
@@ -1343,6 +1371,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       * 
       */
+    [Serializable]
 	public enum ApprovalSubTypeType {
 		[Description("None")]NONE,	
 		[Description("MerchantInitiatedBilling")]MERCHANTINITIATEDBILLING,	
@@ -1359,6 +1388,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *matches the output from IPN
       * 
       */
+    [Serializable]
 	public enum PendingStatusCodeType {
 		[Description("none")]NONE,	
 		[Description("echeck")]ECHECK,	
@@ -1382,6 +1412,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       * Payee identifier type for MassPay API
       * 
       */
+    [Serializable]
 	public enum ReceiverInfoCodeType {
 		[Description("EmailAddress")]EMAILADDRESS,	
 		[Description("UserID")]USERID,	
@@ -1397,6 +1428,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *the output from IPN
       * 
       */
+    [Serializable]
 	public enum ReversalReasonCodeType {
 		[Description("none")]NONE,	
 		[Description("chargeback")]CHARGEBACK,	
@@ -1410,11 +1442,27 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 	/**
+      * POSTransactionCodeType
+      * POS Transaction Code Type. F for Forced Post Transaction
+      *and S for Single Call Checkout
+      * 
+      */
+    [Serializable]
+	public enum POSTransactionCodeType {
+		[Description("F")]F,	
+		[Description("S")]S	
+	}
+
+
+
+
+	/**
       * PaymentCodeType 
       * This is the type of PayPal payment which matches the output
       *from IPN.
       * 
       */
+    [Serializable]
 	public enum PaymentCodeType {
 		[Description("none")]NONE,	
 		[Description("echeck")]ECHECK,	
@@ -1438,6 +1486,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *(balance or eCheck)
       * 
       */
+    [Serializable]
 	public enum RefundSourceCodeType {
 		[Description("any")]ANY,	
 		[Description("default")]DEFAULT,	
@@ -1453,6 +1502,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       * PayPal status of a user Address
       * 
       */
+    [Serializable]
 	public enum PayPalUserStatusCodeType {
 		[Description("verified")]VERIFIED,	
 		[Description("unverified")]UNVERIFIED	
@@ -1466,6 +1516,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       * Type of Payment to be initiated by the merchant
       * 
       */
+    [Serializable]
 	public enum MerchantPullPaymentCodeType {
 		[Description("Any")]ANY,	
 		[Description("InstantOnly")]INSTANTONLY,	
@@ -1480,6 +1531,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       * Status of the merchant pull
       * 
       */
+    [Serializable]
 	public enum MerchantPullStatusCodeType {
 		[Description("Active")]ACTIVE,	
 		[Description("Canceled")]CANCELED	
@@ -1493,6 +1545,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       * The status of the PayPal payment.
       * 
       */
+    [Serializable]
 	public enum PaymentTransactionStatusCodeType {
 		[Description("Pending")]PENDING,	
 		[Description("Processing")]PROCESSING,	
@@ -1509,6 +1562,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       * The Type of PayPal payment.
       * 
       */
+    [Serializable]
 	public enum PaymentTransactionClassCodeType {
 		[Description("All")]ALL,	
 		[Description("Sent")]SENT,	
@@ -1529,7 +1583,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		[Description("Reversal")]REVERSAL,	
 		[Description("Shipping")]SHIPPING,	
 		[Description("BalanceAffecting")]BALANCEAFFECTING,	
-		[Description("ECheck")]ECHECK	
+		[Description("ECheck")]ECHECK,	
+		[Description("ForcedPostTransaction")]FORCEDPOSTTRANSACTION,	
+		[Description("NonReferencedRefunds")]NONREFERENCEDREFUNDS	
 	}
 
 
@@ -1540,6 +1596,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       * This is the PayPal (street/zip) match code
       * 
       */
+    [Serializable]
 	public enum MatchStatusCodeType {
 		[Description("None")]NONE,	
 		[Description("Matched")]MATCHED,	
@@ -1554,6 +1611,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       * This is the PayPal DoCapture CompleteType code
       * 
       */
+    [Serializable]
 	public enum CompleteCodeType {
 		[Description("NotComplete")]NOTCOMPLETE,	
 		[Description("Complete")]COMPLETE	
@@ -1568,6 +1626,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *code
       * 
       */
+    [Serializable]
 	public enum TransactionEntityType {
 		[Description("None")]NONE,	
 		[Description("Auth")]AUTH,	
@@ -1585,6 +1644,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *mobile-originated transactions
       * 
       */
+    [Serializable]
 	public enum MobileRecipientCodeType {
 		[Description("PhoneNumber")]PHONENUMBER,	
 		[Description("EmailAddress")]EMAILADDRESS	
@@ -1598,6 +1658,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       * These are the accepted types of mobile payments
       * 
       */
+    [Serializable]
 	public enum MobilePaymentCodeType {
 		[Description("P2P")]PP,	
 		[Description("HardGoods")]HARDGOODS,	
@@ -1612,6 +1673,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       * MarketingCategoryType 
       * 
       */
+    [Serializable]
 	public enum MarketingCategoryType {
 		[Description("Marketing-Category-Default")]MARKETINGCATEGORYDEFAULT,	
 		[Description("Marketing-Category1")]MARKETINGCATEGORY1,	
@@ -1643,6 +1705,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       * BusinessTypeType
       * 
       */
+    [Serializable]
 	public enum BusinessTypeType {
 		[Description("Unknown")]UNKNOWN,	
 		[Description("Individual")]INDIVIDUAL,	
@@ -1660,6 +1723,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       * BusinessCategoryType 
       * 
       */
+    [Serializable]
 	public enum BusinessCategoryType {
 		[Description("Category-Unspecified")]CATEGORYUNSPECIFIED,	
 		[Description("Antiques")]ANTIQUES,	
@@ -1701,6 +1765,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       * BusinessSubCategoryType 
       * 
       */
+    [Serializable]
 	public enum BusinessSubCategoryType {
 		[Description("SubCategory-Unspecified")]SUBCATEGORYUNSPECIFIED,	
 		[Description("ANTIQUES-General")]ANTIQUESGENERAL,	
@@ -2030,6 +2095,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       * 
       * 
       */
+    [Serializable]
 	public enum AverageTransactionPriceType {
 		[Description("AverageTransactionPrice-Not-Applicable")]AVERAGETRANSACTIONPRICENOTAPPLICABLE,	
 		[Description("AverageTransactionPrice-Range1")]AVERAGETRANSACTIONPRICERANGE1,	
@@ -2085,6 +2151,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       * 
       * 
       */
+    [Serializable]
 	public enum AverageMonthlyVolumeType {
 		[Description("AverageMonthlyVolume-Not-Applicable")]AVERAGEMONTHLYVOLUMENOTAPPLICABLE,	
 		[Description("AverageMonthlyVolume-Range1")]AVERAGEMONTHLYVOLUMERANGE1,	
@@ -2102,6 +2169,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       * SalesVenueType 
       * 
       */
+    [Serializable]
 	public enum SalesVenueType {
 		[Description("Venue-Unspecified")]VENUEUNSPECIFIED,	
 		[Description("eBay")]EBAY,	
@@ -2145,6 +2213,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       * 
       * 
       */
+    [Serializable]
 	public enum PercentageRevenueFromOnlineSalesType {
 		[Description("PercentageRevenueFromOnlineSales-Not-Applicable")]PERCENTAGEREVENUEFROMONLINESALESNOTAPPLICABLE,	
 		[Description("PercentageRevenueFromOnlineSales-Range1")]PERCENTAGEREVENUEFROMONLINESALESRANGE1,	
@@ -2160,6 +2229,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       * BankAccountTypeType 
       * 
       */
+    [Serializable]
 	public enum BankAccountTypeType {
 		[Description("Checking")]CHECKING,	
 		[Description("Savings")]SAVINGS	
@@ -2172,6 +2242,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       * Boarding Status 
       * 
       */
+    [Serializable]
 	public enum BoardingStatusType {
 		[Description("Unknown")]UNKNOWN,	
 		[Description("Completed")]COMPLETED,	
@@ -2186,6 +2257,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       * User Withdrawal Limit Type Type 
       * 
       */
+    [Serializable]
 	public enum UserWithdrawalLimitTypeType {
 		[Description("Unknown")]UNKNOWN,	
 		[Description("Limited")]LIMITED,	
@@ -2199,6 +2271,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       * API Authentication Type 
       * 
       */
+    [Serializable]
 	public enum APIAuthenticationType {
 		[Description("Auth-None")]AUTHNONE,	
 		[Description("Cert")]CERT,	
@@ -2211,6 +2284,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       * 
       */
+    [Serializable]
 	public enum RecurringPaymentsProfileStatusType {
 		[Description("ActiveProfile")]ACTIVEPROFILE,	
 		[Description("PendingProfile")]PENDINGPROFILE,	
@@ -2225,6 +2299,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       * 
       */
+    [Serializable]
 	public enum FailedPaymentActionType {
 		[Description("CancelOnFailure")]CANCELONFAILURE,	
 		[Description("ContinueOnFailure")]CONTINUEONFAILURE	
@@ -2236,6 +2311,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       * 
       */
+    [Serializable]
 	public enum AutoBillType {
 		[Description("NoAutoBill")]NOAUTOBILL,	
 		[Description("AddToNextBilling")]ADDTONEXTBILLING	
@@ -2247,6 +2323,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       * 
       */
+    [Serializable]
 	public enum StatusChangeActionType {
 		[Description("Cancel")]CANCEL,	
 		[Description("Suspend")]SUSPEND,	
@@ -2259,6 +2336,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       * 
       */
+    [Serializable]
 	public enum BillingPeriodType {
 		[Description("NoBillingPeriodType")]NOBILLINGPERIODTYPE,	
 		[Description("Day")]DAY,	
@@ -2274,6 +2352,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       * 
       */
+    [Serializable]
 	public enum ProductCategoryType {
 		[Description("Other")]OTHER,	
 		[Description("Airlines")]AIRLINES,	
@@ -2307,6 +2386,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       * Types of button coding
       * 
       */
+    [Serializable]
 	public enum ButtonCodeType {
 		[Description("HOSTED")]HOSTED,	
 		[Description("ENCRYPTED")]ENCRYPTED,	
@@ -2321,6 +2401,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       * Types of buttons
       * 
       */
+    [Serializable]
 	public enum ButtonTypeType {
 		[Description("BUYNOW")]BUYNOW,	
 		[Description("CART")]CART,	
@@ -2341,6 +2422,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       * Types of button sub types
       * 
       */
+    [Serializable]
 	public enum ButtonSubTypeType {
 		[Description("PRODUCTS")]PRODUCTS,	
 		[Description("SERVICES")]SERVICES	
@@ -2353,6 +2435,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       * Types of button images
       * 
       */
+    [Serializable]
 	public enum ButtonImageType {
 		[Description("REG")]REG,	
 		[Description("SML")]SML,	
@@ -2366,6 +2449,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       * values for buynow button text
       * 
       */
+    [Serializable]
 	public enum BuyNowTextType {
 		[Description("BUYNOW")]BUYNOW,	
 		[Description("PAYNOW")]PAYNOW	
@@ -2378,6 +2462,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       * values for subscribe button text
       * 
       */
+    [Serializable]
 	public enum SubscribeTextType {
 		[Description("BUYNOW")]BUYNOW,	
 		[Description("SUBSCRIBE")]SUBSCRIBE	
@@ -2390,6 +2475,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       * values for subscribe button text
       * 
       */
+    [Serializable]
 	public enum ButtonStatusType {
 		[Description("DELETE")]DELETE	
 	}
@@ -2400,6 +2486,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       * 
       */
+    [Serializable]
 	public enum OptionTypeListType {
 		[Description("NoOptionType")]NOOPTIONTYPE,	
 		[Description("FULL")]FULL,	
@@ -2415,6 +2502,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       * User Selected Funding Source (used by Express Checkout)
       * 
       */
+    [Serializable]
 	public enum UserSelectedFundingSourceType {
 		[Description("ELV")]ELV,	
 		[Description("CreditCard")]CREDITCARD,	
@@ -2428,6 +2516,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       * 
       */
+    [Serializable]
 	public enum ItemCategoryType {
 		[Description("Physical")]PHYSICAL,	
 		[Description("Digital")]DIGITAL	
@@ -2439,6 +2528,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       * 
       */
+    [Serializable]
 	public enum RecurringFlagType {
 		[Description("Y")]Y1,	
 		[Description("y")]Y2	
@@ -2450,6 +2540,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       * Defines couple relationship type between buckets 
       */
+    [Serializable]
 	public enum CoupleType {
 		[Description("LifeTime")]LIFETIME	
 	}
@@ -2461,6 +2552,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       * Category of payment like international shipping
       * 
       */
+    [Serializable]
 	public enum PaymentCategoryType {
 		[Description("InternationalShipping")]INTERNATIONALSHIPPING	
 	}
@@ -2471,8 +2563,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *Value of the application-specific error parameter.  
       */
-	public partial class ErrorParameterType	
-	{
+	public partial class ErrorParameterType	{
 
 		/**
           *
@@ -2519,8 +2610,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *debugging a response message. These codes will need to be
       *uniquely defined for each application. 
       */
-	public partial class ErrorType	
-	{
+	public partial class ErrorType	{
 
 		/**
           *
@@ -2636,7 +2726,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'SeverityCode']");
 			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.SeverityCode = (SeverityCodeType)EnumUtils.getValue(ChildNode.InnerText,typeof(SeverityCodeType));
+				this.SeverityCode = (SeverityCodeType)EnumUtils.GetValue(ChildNode.InnerText,typeof(SeverityCodeType));
 			}
 			ChildNodeList = xmlNode.SelectNodes("*[local-name() = 'ErrorParameters']");
 			if (ChildNodeList != null && ChildNodeList.Count > 0)
@@ -2659,8 +2749,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *type of payload content with optional versioning information
       *and detail level requirements. 
       */
-	public partial class AbstractRequestType	
-	{
+	public partial class AbstractRequestType	{
 
 		/**
           *
@@ -2720,14 +2809,14 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
 			if(DetailLevel != null)
 			{
 				for(int i = 0; i < DetailLevel.Count; i++)
 				{
-					sb.Append("<ebl:DetailLevel>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(DetailLevel[i]))).Append("</ebl:DetailLevel>");
+					sb.Append("<ebl:DetailLevel>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(DetailLevel[i]))).Append("</ebl:DetailLevel>");
 				}
 			}
 			if(ErrorLanguage != null)
@@ -2755,8 +2844,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *level acknowledgement, and - application-level errors and
       *warnings. 
       */
-	public partial class AbstractResponseType	
-	{
+	public partial class AbstractResponseType	{
 
 		/**
           *
@@ -2879,7 +2967,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'Ack']");
 			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.Ack = (AckCodeType)EnumUtils.getValue(ChildNode.InnerText,typeof(AckCodeType));
+				this.Ack = (AckCodeType)EnumUtils.GetValue(ChildNode.InnerText,typeof(AckCodeType));
 			}
 			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'CorrelationID']");
 			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
@@ -2915,8 +3003,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *Country code associated with this phone number. 
       */
-	public partial class PhoneNumberType	
-	{
+	public partial class PhoneNumberType	{
 
 		/**
           *
@@ -2976,7 +3063,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
 			if(CountryCode != null)
@@ -3006,8 +3093,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *Person's name associated with this address. Character length
       *and limitations: 32 single-byte alphanumeric characters 
       */
-	public partial class AddressType	
-	{
+	public partial class AddressType	{
 
 		/**
           *
@@ -3288,7 +3374,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
 			if(Name != null)
@@ -3318,7 +3404,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(Country != null)
 			{
-				sb.Append("<ebl:Country>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(Country)));
+				sb.Append("<ebl:Country>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(Country)));
 				sb.Append("</ebl:Country>");
 			}
 			if(CountryName != null)
@@ -3343,7 +3429,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(AddressOwner != null)
 			{
-				sb.Append("<ebl:AddressOwner>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(AddressOwner)));
+				sb.Append("<ebl:AddressOwner>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(AddressOwner)));
 				sb.Append("</ebl:AddressOwner>");
 			}
 			if(ExternalAddressID != null)
@@ -3368,7 +3454,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(AddressStatus != null)
 			{
-				sb.Append("<ebl:AddressStatus>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(AddressStatus)));
+				sb.Append("<ebl:AddressStatus>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(AddressStatus)));
 				sb.Append("</ebl:AddressStatus>");
 			}
 			return sb.ToString();
@@ -3406,7 +3492,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'Country']");
 			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.Country = (CountryCodeType)EnumUtils.getValue(ChildNode.InnerText,typeof(CountryCodeType));
+				this.Country = (CountryCodeType)EnumUtils.GetValue(ChildNode.InnerText,typeof(CountryCodeType));
 			}
 			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'CountryName']");
 			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
@@ -3431,7 +3517,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'AddressOwner']");
 			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.AddressOwner = (AddressOwnerCodeType)EnumUtils.getValue(ChildNode.InnerText,typeof(AddressOwnerCodeType));
+				this.AddressOwner = (AddressOwnerCodeType)EnumUtils.GetValue(ChildNode.InnerText,typeof(AddressOwnerCodeType));
 			}
 			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'ExternalAddressID']");
 			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
@@ -3456,7 +3542,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'AddressStatus']");
 			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.AddressStatus = (AddressStatusCodeType)EnumUtils.getValue(ChildNode.InnerText,typeof(AddressStatusCodeType));
+				this.AddressStatus = (AddressStatusCodeType)EnumUtils.GetValue(ChildNode.InnerText,typeof(AddressStatusCodeType));
 			}
 	
 		}
@@ -3468,8 +3554,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class PersonNameType	
-	{
+	public partial class PersonNameType	{
 
 		/**
           *
@@ -3563,7 +3648,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
 			if(Salutation != null)
@@ -3633,8 +3718,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class IncentiveAppliedToType	
-	{
+	public partial class IncentiveAppliedToType	{
 
 		/**
           *
@@ -3745,8 +3829,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class IncentiveDetailType	
-	{
+	public partial class IncentiveDetailType	{
 
 		/**
           *
@@ -3913,7 +3996,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'IncentiveType']");
 			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.IncentiveType = (IncentiveTypeCodeType)EnumUtils.getValue(ChildNode.InnerText,typeof(IncentiveTypeCodeType));
+				this.IncentiveType = (IncentiveTypeCodeType)EnumUtils.GetValue(ChildNode.InnerText,typeof(IncentiveTypeCodeType));
 			}
 			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'IncentiveDescription']");
 			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
@@ -3949,8 +4032,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class IncentiveItemType	
-	{
+	public partial class IncentiveItemType	{
 
 		/**
           *
@@ -4044,7 +4126,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
 			if(ItemId != null)
@@ -4065,7 +4147,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			if(ItemPrice != null)
 			{
 				sb.Append("<ebl:ItemPrice");
-				sb.Append(ItemPrice.toXMLString());
+				sb.Append(ItemPrice.ToXMLString());
 				sb.Append("</ebl:ItemPrice>");
 			}
 			if(ItemQuantity != null)
@@ -4084,8 +4166,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class IncentiveBucketType	
-	{
+	public partial class IncentiveBucketType	{
 
 		/**
           *
@@ -4247,7 +4328,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
 			if(Items != null)
@@ -4255,7 +4336,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 				for(int i = 0; i < Items.Count; i++)
 				{
 					sb.Append("<ebl:Items>");
-					sb.Append(Items[i].toXMLString());
+					sb.Append(Items[i].ToXMLString());
 					sb.Append("</ebl:Items>");
 				}
 			}
@@ -4277,31 +4358,31 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			if(BucketSubtotalAmt != null)
 			{
 				sb.Append("<ebl:BucketSubtotalAmt");
-				sb.Append(BucketSubtotalAmt.toXMLString());
+				sb.Append(BucketSubtotalAmt.ToXMLString());
 				sb.Append("</ebl:BucketSubtotalAmt>");
 			}
 			if(BucketShippingAmt != null)
 			{
 				sb.Append("<ebl:BucketShippingAmt");
-				sb.Append(BucketShippingAmt.toXMLString());
+				sb.Append(BucketShippingAmt.ToXMLString());
 				sb.Append("</ebl:BucketShippingAmt>");
 			}
 			if(BucketInsuranceAmt != null)
 			{
 				sb.Append("<ebl:BucketInsuranceAmt");
-				sb.Append(BucketInsuranceAmt.toXMLString());
+				sb.Append(BucketInsuranceAmt.ToXMLString());
 				sb.Append("</ebl:BucketInsuranceAmt>");
 			}
 			if(BucketSalesTaxAmt != null)
 			{
 				sb.Append("<ebl:BucketSalesTaxAmt");
-				sb.Append(BucketSalesTaxAmt.toXMLString());
+				sb.Append(BucketSalesTaxAmt.ToXMLString());
 				sb.Append("</ebl:BucketSalesTaxAmt>");
 			}
 			if(BucketTotalAmt != null)
 			{
 				sb.Append("<ebl:BucketTotalAmt");
-				sb.Append(BucketTotalAmt.toXMLString());
+				sb.Append(BucketTotalAmt.ToXMLString());
 				sb.Append("</ebl:BucketTotalAmt>");
 			}
 			return sb.ToString();
@@ -4315,8 +4396,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class IncentiveRequestDetailsType	
-	{
+	public partial class IncentiveRequestDetailsType	{
 
 		/**
           *
@@ -4376,7 +4456,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
 			if(RequestId != null)
@@ -4386,12 +4466,12 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(RequestType != null)
 			{
-				sb.Append("<ebl:RequestType>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(RequestType)));
+				sb.Append("<ebl:RequestType>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(RequestType)));
 				sb.Append("</ebl:RequestType>");
 			}
 			if(RequestDetailLevel != null)
 			{
-				sb.Append("<ebl:RequestDetailLevel>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(RequestDetailLevel)));
+				sb.Append("<ebl:RequestDetailLevel>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(RequestDetailLevel)));
 				sb.Append("</ebl:RequestDetailLevel>");
 			}
 			return sb.ToString();
@@ -4405,8 +4485,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class GetIncentiveEvaluationRequestDetailsType	
-	{
+	public partial class GetIncentiveEvaluationRequestDetailsType	{
 
 		/**
           *
@@ -4517,7 +4596,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
 			if(ExternalBuyerId != null)
@@ -4538,7 +4617,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 				for(int i = 0; i < ApplyIndication.Count; i++)
 				{
 					sb.Append("<ebl:ApplyIndication>");
-					sb.Append(ApplyIndication[i].toXMLString());
+					sb.Append(ApplyIndication[i].ToXMLString());
 					sb.Append("</ebl:ApplyIndication>");
 				}
 			}
@@ -4547,20 +4626,20 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 				for(int i = 0; i < Buckets.Count; i++)
 				{
 					sb.Append("<ebl:Buckets>");
-					sb.Append(Buckets[i].toXMLString());
+					sb.Append(Buckets[i].ToXMLString());
 					sb.Append("</ebl:Buckets>");
 				}
 			}
 			if(CartTotalAmt != null)
 			{
 				sb.Append("<ebl:CartTotalAmt");
-				sb.Append(CartTotalAmt.toXMLString());
+				sb.Append(CartTotalAmt.ToXMLString());
 				sb.Append("</ebl:CartTotalAmt>");
 			}
 			if(RequestDetails != null)
 			{
 				sb.Append("<ebl:RequestDetails>");
-				sb.Append(RequestDetails.toXMLString());
+				sb.Append(RequestDetails.ToXMLString());
 				sb.Append("</ebl:RequestDetails>");
 			}
 			return sb.ToString();
@@ -4574,8 +4653,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class GetIncentiveEvaluationResponseDetailsType	
-	{
+	public partial class GetIncentiveEvaluationResponseDetailsType	{
 
 		/**
           *
@@ -4654,8 +4732,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *be a period (.), and the thousands separator must be a comma
       *(,). 
       */
-	public partial class SetExpressCheckoutRequestDetailsType	
-	{
+	public partial class SetExpressCheckoutRequestDetailsType	{
 
 		/**
           *
@@ -5803,13 +5880,13 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
 			if(OrderTotal != null)
 			{
 				sb.Append("<ebl:OrderTotal");
-				sb.Append(OrderTotal.toXMLString());
+				sb.Append(OrderTotal.ToXMLString());
 				sb.Append("</ebl:OrderTotal>");
 			}
 			if(ReturnURL != null)
@@ -5850,7 +5927,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			if(MaxAmount != null)
 			{
 				sb.Append("<ebl:MaxAmount");
-				sb.Append(MaxAmount.toXMLString());
+				sb.Append(MaxAmount.ToXMLString());
 				sb.Append("</ebl:MaxAmount>");
 			}
 			if(OrderDescription != null)
@@ -5881,7 +5958,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			if(BillingAddress != null)
 			{
 				sb.Append("<ebl:BillingAddress>");
-				sb.Append(BillingAddress.toXMLString());
+				sb.Append(BillingAddress.ToXMLString());
 				sb.Append("</ebl:BillingAddress>");
 			}
 			if(NoShipping != null)
@@ -5906,53 +5983,53 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(cppHeaderImage != null)
 			{
-				sb.Append("<ebl:cppHeaderImage>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(cppHeaderImage));
-				sb.Append("</ebl:cppHeaderImage>");
+				sb.Append("<ebl:cpp-header-image>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(cppHeaderImage));
+				sb.Append("</ebl:cpp-header-image>");
 			}
 			if(cppHeaderBorderColor != null)
 			{
-				sb.Append("<ebl:cppHeaderBorderColor>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(cppHeaderBorderColor));
-				sb.Append("</ebl:cppHeaderBorderColor>");
+				sb.Append("<ebl:cpp-header-border-color>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(cppHeaderBorderColor));
+				sb.Append("</ebl:cpp-header-border-color>");
 			}
 			if(cppHeaderBackColor != null)
 			{
-				sb.Append("<ebl:cppHeaderBackColor>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(cppHeaderBackColor));
-				sb.Append("</ebl:cppHeaderBackColor>");
+				sb.Append("<ebl:cpp-header-back-color>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(cppHeaderBackColor));
+				sb.Append("</ebl:cpp-header-back-color>");
 			}
 			if(cppPayflowColor != null)
 			{
-				sb.Append("<ebl:cppPayflowColor>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(cppPayflowColor));
-				sb.Append("</ebl:cppPayflowColor>");
+				sb.Append("<ebl:cpp-payflow-color>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(cppPayflowColor));
+				sb.Append("</ebl:cpp-payflow-color>");
 			}
 			if(cppCartBorderColor != null)
 			{
-				sb.Append("<ebl:cppCartBorderColor>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(cppCartBorderColor));
-				sb.Append("</ebl:cppCartBorderColor>");
+				sb.Append("<ebl:cpp-cart-border-color>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(cppCartBorderColor));
+				sb.Append("</ebl:cpp-cart-border-color>");
 			}
 			if(cppLogoImage != null)
 			{
-				sb.Append("<ebl:cppLogoImage>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(cppLogoImage));
-				sb.Append("</ebl:cppLogoImage>");
+				sb.Append("<ebl:cpp-logo-image>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(cppLogoImage));
+				sb.Append("</ebl:cpp-logo-image>");
 			}
 			if(Address != null)
 			{
 				sb.Append("<ebl:Address>");
-				sb.Append(Address.toXMLString());
+				sb.Append(Address.ToXMLString());
 				sb.Append("</ebl:Address>");
 			}
 			if(PaymentAction != null)
 			{
-				sb.Append("<ebl:PaymentAction>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(PaymentAction)));
+				sb.Append("<ebl:PaymentAction>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(PaymentAction)));
 				sb.Append("</ebl:PaymentAction>");
 			}
 			if(SolutionType != null)
 			{
-				sb.Append("<ebl:SolutionType>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(SolutionType)));
+				sb.Append("<ebl:SolutionType>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(SolutionType)));
 				sb.Append("</ebl:SolutionType>");
 			}
 			if(LandingPage != null)
 			{
-				sb.Append("<ebl:LandingPage>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(LandingPage)));
+				sb.Append("<ebl:LandingPage>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(LandingPage)));
 				sb.Append("</ebl:LandingPage>");
 			}
 			if(BuyerEmail != null)
@@ -5962,7 +6039,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(ChannelType != null)
 			{
-				sb.Append("<ebl:ChannelType>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(ChannelType)));
+				sb.Append("<ebl:ChannelType>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(ChannelType)));
 				sb.Append("</ebl:ChannelType>");
 			}
 			if(BillingAgreementDetails != null)
@@ -5970,7 +6047,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 				for(int i = 0; i < BillingAgreementDetails.Count; i++)
 				{
 					sb.Append("<ebl:BillingAgreementDetails>");
-					sb.Append(BillingAgreementDetails[i].toXMLString());
+					sb.Append(BillingAgreementDetails[i].ToXMLString());
 					sb.Append("</ebl:BillingAgreementDetails>");
 				}
 			}
@@ -5989,12 +6066,12 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(ProductCategory != null)
 			{
-				sb.Append("<ebl:ProductCategory>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(ProductCategory)));
+				sb.Append("<ebl:ProductCategory>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(ProductCategory)));
 				sb.Append("</ebl:ProductCategory>");
 			}
 			if(ShippingMethod != null)
 			{
-				sb.Append("<ebl:ShippingMethod>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(ShippingMethod)));
+				sb.Append("<ebl:ShippingMethod>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(ShippingMethod)));
 				sb.Append("</ebl:ShippingMethod>");
 			}
 			if(ProfileAddressChangeDate != null)
@@ -6010,7 +6087,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			if(FundingSourceDetails != null)
 			{
 				sb.Append("<ebl:FundingSourceDetails>");
-				sb.Append(FundingSourceDetails.toXMLString());
+				sb.Append(FundingSourceDetails.ToXMLString());
 				sb.Append("</ebl:FundingSourceDetails>");
 			}
 			if(BrandName != null)
@@ -6026,7 +6103,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			if(EnhancedCheckoutData != null)
 			{
 				sb.Append("<ebl:EnhancedCheckoutData>");
-				sb.Append(EnhancedCheckoutData.toXMLString());
+				sb.Append(EnhancedCheckoutData.ToXMLString());
 				sb.Append("</ebl:EnhancedCheckoutData>");
 			}
 			if(OtherPaymentMethods != null)
@@ -6034,14 +6111,14 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 				for(int i = 0; i < OtherPaymentMethods.Count; i++)
 				{
 					sb.Append("<ebl:OtherPaymentMethods>");
-					sb.Append(OtherPaymentMethods[i].toXMLString());
+					sb.Append(OtherPaymentMethods[i].ToXMLString());
 					sb.Append("</ebl:OtherPaymentMethods>");
 				}
 			}
 			if(BuyerDetails != null)
 			{
 				sb.Append("<ebl:BuyerDetails>");
-				sb.Append(BuyerDetails.toXMLString());
+				sb.Append(BuyerDetails.ToXMLString());
 				sb.Append("</ebl:BuyerDetails>");
 			}
 			if(PaymentDetails != null)
@@ -6049,7 +6126,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 				for(int i = 0; i < PaymentDetails.Count; i++)
 				{
 					sb.Append("<ebl:PaymentDetails>");
-					sb.Append(PaymentDetails[i].toXMLString());
+					sb.Append(PaymentDetails[i].ToXMLString());
 					sb.Append("</ebl:PaymentDetails>");
 				}
 			}
@@ -6058,7 +6135,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 				for(int i = 0; i < FlatRateShippingOptions.Count; i++)
 				{
 					sb.Append("<ebl:FlatRateShippingOptions>");
-					sb.Append(FlatRateShippingOptions[i].toXMLString());
+					sb.Append(FlatRateShippingOptions[i].ToXMLString());
 					sb.Append("</ebl:FlatRateShippingOptions>");
 				}
 			}
@@ -6100,7 +6177,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			if(GiftWrapAmount != null)
 			{
 				sb.Append("<ebl:GiftWrapAmount");
-				sb.Append(GiftWrapAmount.toXMLString());
+				sb.Append(GiftWrapAmount.ToXMLString());
 				sb.Append("</ebl:GiftWrapAmount>");
 			}
 			if(BuyerEmailOptInEnable != null)
@@ -6128,7 +6205,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(TotalType != null)
 			{
-				sb.Append("<ebl:TotalType>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(TotalType)));
+				sb.Append("<ebl:TotalType>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(TotalType)));
 				sb.Append("</ebl:TotalType>");
 			}
 			if(NoteToBuyer != null)
@@ -6141,7 +6218,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 				for(int i = 0; i < Incentives.Count; i++)
 				{
 					sb.Append("<ebl:Incentives>");
-					sb.Append(Incentives[i].toXMLString());
+					sb.Append(Incentives[i].ToXMLString());
 					sb.Append("</ebl:Incentives>");
 				}
 			}
@@ -6153,25 +6230,25 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			if(ExternalRememberMeOptInDetails != null)
 			{
 				sb.Append("<ebl:ExternalRememberMeOptInDetails>");
-				sb.Append(ExternalRememberMeOptInDetails.toXMLString());
+				sb.Append(ExternalRememberMeOptInDetails.ToXMLString());
 				sb.Append("</ebl:ExternalRememberMeOptInDetails>");
 			}
 			if(FlowControlDetails != null)
 			{
 				sb.Append("<ebl:FlowControlDetails>");
-				sb.Append(FlowControlDetails.toXMLString());
+				sb.Append(FlowControlDetails.ToXMLString());
 				sb.Append("</ebl:FlowControlDetails>");
 			}
 			if(DisplayControlDetails != null)
 			{
 				sb.Append("<ebl:DisplayControlDetails>");
-				sb.Append(DisplayControlDetails.toXMLString());
+				sb.Append(DisplayControlDetails.ToXMLString());
 				sb.Append("</ebl:DisplayControlDetails>");
 			}
 			if(ExternalPartnerTrackingDetails != null)
 			{
 				sb.Append("<ebl:ExternalPartnerTrackingDetails>");
-				sb.Append(ExternalPartnerTrackingDetails.toXMLString());
+				sb.Append(ExternalPartnerTrackingDetails.ToXMLString());
 				sb.Append("</ebl:ExternalPartnerTrackingDetails>");
 			}
 			if(CoupledBuckets != null)
@@ -6179,7 +6256,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 				for(int i = 0; i < CoupledBuckets.Count; i++)
 				{
 					sb.Append("<ebl:CoupledBuckets>");
-					sb.Append(CoupledBuckets[i].toXMLString());
+					sb.Append(CoupledBuckets[i].ToXMLString());
 					sb.Append("</ebl:CoupledBuckets>");
 				}
 			}
@@ -6201,8 +6278,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *want the customer to edit his shipping address on PayPal.
       *Character length and limitations: 20 single-byte characters 
       */
-	public partial class ExecuteCheckoutOperationsRequestDetailsType	
-	{
+	public partial class ExecuteCheckoutOperationsRequestDetailsType	{
 
 		/**
           *
@@ -6269,7 +6345,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
 			if(Token != null)
@@ -6280,13 +6356,13 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			if(SetDataRequest != null)
 			{
 				sb.Append("<ebl:SetDataRequest>");
-				sb.Append(SetDataRequest.toXMLString());
+				sb.Append(SetDataRequest.ToXMLString());
 				sb.Append("</ebl:SetDataRequest>");
 			}
 			if(AuthorizationRequest != null)
 			{
 				sb.Append("<ebl:AuthorizationRequest>");
-				sb.Append(AuthorizationRequest.toXMLString());
+				sb.Append(AuthorizationRequest.ToXMLString());
 				sb.Append("</ebl:AuthorizationRequest>");
 			}
 			return sb.ToString();
@@ -6300,8 +6376,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *Details about Billing Agreements requested to be created. 
       */
-	public partial class SetDataRequestType	
-	{
+	public partial class SetDataRequestType	{
 
 		/**
           *
@@ -6361,7 +6436,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
 			if(BillingApprovalDetails != null)
@@ -6369,20 +6444,20 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 				for(int i = 0; i < BillingApprovalDetails.Count; i++)
 				{
 					sb.Append("<ebl:BillingApprovalDetails>");
-					sb.Append(BillingApprovalDetails[i].toXMLString());
+					sb.Append(BillingApprovalDetails[i].ToXMLString());
 					sb.Append("</ebl:BillingApprovalDetails>");
 				}
 			}
 			if(BuyerDetail != null)
 			{
 				sb.Append("<ebl:BuyerDetail>");
-				sb.Append(BuyerDetail.toXMLString());
+				sb.Append(BuyerDetail.ToXMLString());
 				sb.Append("</ebl:BuyerDetail>");
 			}
 			if(InfoSharingDirectives != null)
 			{
 				sb.Append("<ebl:InfoSharingDirectives>");
-				sb.Append(InfoSharingDirectives.toXMLString());
+				sb.Append(InfoSharingDirectives.ToXMLString());
 				sb.Append("</ebl:InfoSharingDirectives>");
 			}
 			return sb.ToString();
@@ -6396,8 +6471,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class AuthorizationRequestType	
-	{
+	public partial class AuthorizationRequestType	{
 
 		/**
           *
@@ -6430,7 +6504,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
 			if(IsRequested != null)
@@ -6450,8 +6524,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *The Type of Approval requested - Billing Agreement or
       *Profile 
       */
-	public partial class BillingApprovalDetailsType	
-	{
+	public partial class BillingApprovalDetailsType	{
 
 		/**
           *
@@ -6552,29 +6625,29 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
 			if(ApprovalType != null)
 			{
-				sb.Append("<ebl:ApprovalType>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(ApprovalType)));
+				sb.Append("<ebl:ApprovalType>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(ApprovalType)));
 				sb.Append("</ebl:ApprovalType>");
 			}
 			if(ApprovalSubType != null)
 			{
-				sb.Append("<ebl:ApprovalSubType>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(ApprovalSubType)));
+				sb.Append("<ebl:ApprovalSubType>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(ApprovalSubType)));
 				sb.Append("</ebl:ApprovalSubType>");
 			}
 			if(OrderDetails != null)
 			{
 				sb.Append("<ebl:OrderDetails>");
-				sb.Append(OrderDetails.toXMLString());
+				sb.Append(OrderDetails.ToXMLString());
 				sb.Append("</ebl:OrderDetails>");
 			}
 			if(PaymentDirectives != null)
 			{
 				sb.Append("<ebl:PaymentDirectives>");
-				sb.Append(PaymentDirectives.toXMLString());
+				sb.Append(PaymentDirectives.ToXMLString());
 				sb.Append("</ebl:PaymentDirectives>");
 			}
 			if(Custom != null)
@@ -6595,8 +6668,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *GetExpressCheckoutDetails response, this parameter should be
       *set to yes here 
       */
-	public partial class InfoSharingDirectivesType	
-	{
+	public partial class InfoSharingDirectivesType	{
 
 		/**
           *
@@ -6622,7 +6694,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
 			if(ReqBillingAddress != null)
@@ -6641,8 +6713,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *Description of the Order. 
       */
-	public partial class OrderDetailsType	
-	{
+	public partial class OrderDetailsType	{
 
 		/**
           *
@@ -6685,7 +6756,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
 			if(Description != null)
@@ -6696,7 +6767,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			if(MaxAmount != null)
 			{
 				sb.Append("<ebl:MaxAmount");
-				sb.Append(MaxAmount.toXMLString());
+				sb.Append(MaxAmount.ToXMLString());
 				sb.Append("</ebl:MaxAmount>");
 			}
 			return sb.ToString();
@@ -6710,8 +6781,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *Type of the Payment is it Instant or Echeck or Any. 
       */
-	public partial class PaymentDirectivesType	
-	{
+	public partial class PaymentDirectivesType	{
 
 		/**
           *
@@ -6737,12 +6807,12 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
 			if(PaymentType != null)
 			{
-				sb.Append("<ebl:PaymentType>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(PaymentType)));
+				sb.Append("<ebl:PaymentType>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(PaymentType)));
 				sb.Append("</ebl:PaymentType>");
 			}
 			return sb.ToString();
@@ -6758,8 +6828,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *used for auto authorization. Mandatory if Authorization is
       *requested. 
       */
-	public partial class BuyerDetailType	
-	{
+	public partial class BuyerDetailType	{
 
 		/**
           *
@@ -6785,13 +6854,13 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
 			if(IdentificationInfo != null)
 			{
 				sb.Append("<ebl:IdentificationInfo>");
-				sb.Append(IdentificationInfo.toXMLString());
+				sb.Append(IdentificationInfo.ToXMLString());
 				sb.Append("</ebl:IdentificationInfo>");
 			}
 			return sb.ToString();
@@ -6805,8 +6874,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *Mobile specific buyer identification. 
       */
-	public partial class IdentificationInfoType	
-	{
+	public partial class IdentificationInfoType	{
 
 		/**
           *
@@ -6866,25 +6934,25 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
 			if(MobileIDInfo != null)
 			{
 				sb.Append("<ebl:MobileIDInfo>");
-				sb.Append(MobileIDInfo.toXMLString());
+				sb.Append(MobileIDInfo.ToXMLString());
 				sb.Append("</ebl:MobileIDInfo>");
 			}
 			if(RememberMeIDInfo != null)
 			{
 				sb.Append("<ebl:RememberMeIDInfo>");
-				sb.Append(RememberMeIDInfo.toXMLString());
+				sb.Append(RememberMeIDInfo.ToXMLString());
 				sb.Append("</ebl:RememberMeIDInfo>");
 			}
 			if(IdentityTokenInfo != null)
 			{
 				sb.Append("<ebl:IdentityTokenInfo>");
-				sb.Append(IdentityTokenInfo.toXMLString());
+				sb.Append(IdentityTokenInfo.ToXMLString());
 				sb.Append("</ebl:IdentityTokenInfo>");
 			}
 			return sb.ToString();
@@ -6898,8 +6966,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *The Session token returned during buyer authentication. 
       */
-	public partial class MobileIDInfoType	
-	{
+	public partial class MobileIDInfoType	{
 
 		/**
           *
@@ -6925,7 +6992,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
 			if(SessionToken != null)
@@ -6950,8 +7017,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *If present, requests that the web flow attempt bypass of
       *login. 
       */
-	public partial class RememberMeIDInfoType	
-	{
+	public partial class RememberMeIDInfoType	{
 
 		/**
           *
@@ -6977,7 +7043,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
 			if(ExternalRememberMeID != null)
@@ -6996,8 +7062,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *Identity Access token from merchant 
       */
-	public partial class IdentityTokenInfoType	
-	{
+	public partial class IdentityTokenInfoType	{
 
 		/**
           *
@@ -7030,7 +7095,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
 			if(AccessToken != null)
@@ -7052,8 +7117,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *Optional Character length and limitations: One single-byte
       *numeric character. 
       */
-	public partial class FundingSourceDetailsType	
-	{
+	public partial class FundingSourceDetailsType	{
 
 		/**
           *
@@ -7096,7 +7160,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
 			if(AllowPushFunding != null)
@@ -7106,7 +7170,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(UserSelectedFundingSource != null)
 			{
-				sb.Append("<ebl:UserSelectedFundingSource>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(UserSelectedFundingSource)));
+				sb.Append("<ebl:UserSelectedFundingSource>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(UserSelectedFundingSource)));
 				sb.Append("</ebl:UserSelectedFundingSource>");
 			}
 			return sb.ToString();
@@ -7120,8 +7184,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class BillingAgreementDetailsType	
-	{
+	public partial class BillingAgreementDetailsType	{
 
 		/**
           *
@@ -7205,12 +7268,12 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
 			if(BillingType != null)
 			{
-				sb.Append("<ebl:BillingType>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(BillingType)));
+				sb.Append("<ebl:BillingType>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(BillingType)));
 				sb.Append("</ebl:BillingType>");
 			}
 			if(BillingAgreementDescription != null)
@@ -7220,7 +7283,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(PaymentType != null)
 			{
-				sb.Append("<ebl:PaymentType>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(PaymentType)));
+				sb.Append("<ebl:PaymentType>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(PaymentType)));
 				sb.Append("</ebl:PaymentType>");
 			}
 			if(BillingAgreementCustom != null)
@@ -7242,8 +7305,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *GetExpressCheckoutDetailsRequest. Character length and
       *limitations: 20 single-byte characters 
       */
-	public partial class GetExpressCheckoutDetailsResponseDetailsType	
-	{
+	public partial class GetExpressCheckoutDetailsResponseDetailsType	{
 
 		/**
           *
@@ -7637,6 +7699,23 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
+          *
+		  */
+		private RefreshTokenStatusDetailsType RefreshTokenStatusDetailsField;
+		public RefreshTokenStatusDetailsType RefreshTokenStatusDetails
+		{
+			get
+			{
+				return this.RefreshTokenStatusDetailsField;
+			}
+			set
+			{
+				this.RefreshTokenStatusDetailsField = value;
+			}
+		}
+		
+
+		/**
 	 	  * Default Constructor
 	 	  */
 	 	public GetExpressCheckoutDetailsResponseDetailsType(){
@@ -7778,6 +7857,11 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			{
 				this.ExternalRememberMeStatusDetails =  new ExternalRememberMeStatusDetailsType(ChildNode);
 			}
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'RefreshTokenStatusDetails']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
+			{
+				this.RefreshTokenStatusDetails =  new RefreshTokenStatusDetailsType(ChildNode);
+			}
 	
 		}
 	}
@@ -7788,8 +7872,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class ExecuteCheckoutOperationsResponseDetailsType	
-	{
+	public partial class ExecuteCheckoutOperationsResponseDetailsType	{
 
 		/**
           *
@@ -7857,8 +7940,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *If Checkout session was initialized successfully, the
       *corresponding token is returned in this element. 
       */
-	public partial class SetDataResponseType	
-	{
+	public partial class SetDataResponseType	{
 
 		/**
           *
@@ -7930,8 +8012,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *Status will denote whether Auto authorization was successful
       *or not. 
       */
-	public partial class AuthorizationResponseType	
-	{
+	public partial class AuthorizationResponseType	{
 
 		/**
           *
@@ -7981,7 +8062,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'Status']");
 			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.Status = (AckCodeType)EnumUtils.getValue(ChildNode.InnerText,typeof(AckCodeType));
+				this.Status = (AckCodeType)EnumUtils.GetValue(ChildNode.InnerText,typeof(AckCodeType));
 			}
 			ChildNodeList = xmlNode.SelectNodes("*[local-name() = 'AuthorizationError']");
 			if (ChildNodeList != null && ChildNodeList.Count > 0)
@@ -8012,8 +8093,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *API, DoExpressCheckoutPaymentRequest. Character length and
       *limit: Up to 13 single-byte alphabetic characters 
       */
-	public partial class DoExpressCheckoutPaymentRequestDetailsType	
-	{
+	public partial class DoExpressCheckoutPaymentRequestDetailsType	{
 
 		/**
           *
@@ -8362,12 +8442,12 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
 			if(PaymentAction != null)
 			{
-				sb.Append("<ebl:PaymentAction>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(PaymentAction)));
+				sb.Append("<ebl:PaymentAction>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(PaymentAction)));
 				sb.Append("</ebl:PaymentAction>");
 			}
 			if(Token != null)
@@ -8390,7 +8470,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 				for(int i = 0; i < PaymentDetails.Count; i++)
 				{
 					sb.Append("<ebl:PaymentDetails>");
-					sb.Append(PaymentDetails[i].toXMLString());
+					sb.Append(PaymentDetails[i].ToXMLString());
 					sb.Append("</ebl:PaymentDetails>");
 				}
 			}
@@ -8407,7 +8487,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			if(EnhancedData != null)
 			{
 				sb.Append("<ebl:EnhancedData>");
-				sb.Append(EnhancedData.toXMLString());
+				sb.Append(EnhancedData.ToXMLString());
 				sb.Append("</ebl:EnhancedData>");
 			}
 			if(SoftDescriptor != null)
@@ -8418,7 +8498,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			if(UserSelectedOptions != null)
 			{
 				sb.Append("<ebl:UserSelectedOptions>");
-				sb.Append(UserSelectedOptions.toXMLString());
+				sb.Append(UserSelectedOptions.ToXMLString());
 				sb.Append("</ebl:UserSelectedOptions>");
 			}
 			if(GiftMessage != null)
@@ -8439,7 +8519,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			if(GiftWrapAmount != null)
 			{
 				sb.Append("<ebl:GiftWrapAmount");
-				sb.Append(GiftWrapAmount.toXMLString());
+				sb.Append(GiftWrapAmount.ToXMLString());
 				sb.Append("</ebl:GiftWrapAmount>");
 			}
 			if(BuyerMarketingEmail != null)
@@ -8475,7 +8555,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 				for(int i = 0; i < CoupledBuckets.Count; i++)
 				{
 					sb.Append("<ebl:CoupledBuckets>");
-					sb.Append(CoupledBuckets[i].toXMLString());
+					sb.Append(CoupledBuckets[i].ToXMLString());
 					sb.Append("</ebl:CoupledBuckets>");
 				}
 			}
@@ -8493,8 +8573,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *GetExpressCheckoutDetailsRequest. Character length and
       *limitations:20 single-byte characters 
       */
-	public partial class DoExpressCheckoutPaymentResponseDetailsType	
-	{
+	public partial class DoExpressCheckoutPaymentResponseDetailsType	{
 
 		/**
           *
@@ -8703,8 +8782,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *request. Character length and limits: 19 single-byte
       *characters maximum 
       */
-	public partial class DoCaptureResponseDetailsType	
-	{
+	public partial class DoCaptureResponseDetailsType	{
 
 		/**
           *
@@ -8799,8 +8877,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *Payment. Character length and limit: Up to 13 single-byte
       *alphabetic characters 
       */
-	public partial class DoDirectPaymentRequestDetailsType	
-	{
+	public partial class DoDirectPaymentRequestDetailsType	{
 
 		/**
           *
@@ -8911,24 +8988,24 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
 			if(PaymentAction != null)
 			{
-				sb.Append("<ebl:PaymentAction>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(PaymentAction)));
+				sb.Append("<ebl:PaymentAction>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(PaymentAction)));
 				sb.Append("</ebl:PaymentAction>");
 			}
 			if(PaymentDetails != null)
 			{
 				sb.Append("<ebl:PaymentDetails>");
-				sb.Append(PaymentDetails.toXMLString());
+				sb.Append(PaymentDetails.ToXMLString());
 				sb.Append("</ebl:PaymentDetails>");
 			}
 			if(CreditCard != null)
 			{
 				sb.Append("<ebl:CreditCard>");
-				sb.Append(CreditCard.toXMLString());
+				sb.Append(CreditCard.ToXMLString());
 				sb.Append("</ebl:CreditCard>");
 			}
 			if(IPAddress != null)
@@ -8957,8 +9034,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *Type of the payment Required 
       */
-	public partial class CreateMobilePaymentRequestDetailsType	
-	{
+	public partial class CreateMobilePaymentRequestDetailsType	{
 
 		/**
           *
@@ -9222,28 +9298,28 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
 			if(PaymentType != null)
 			{
-				sb.Append("<ebl:PaymentType>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(PaymentType)));
+				sb.Append("<ebl:PaymentType>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(PaymentType)));
 				sb.Append("</ebl:PaymentType>");
 			}
 			if(PaymentAction != null)
 			{
-				sb.Append("<ebl:PaymentAction>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(PaymentAction)));
+				sb.Append("<ebl:PaymentAction>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(PaymentAction)));
 				sb.Append("</ebl:PaymentAction>");
 			}
 			if(SenderPhone != null)
 			{
 				sb.Append("<ebl:SenderPhone>");
-				sb.Append(SenderPhone.toXMLString());
+				sb.Append(SenderPhone.ToXMLString());
 				sb.Append("</ebl:SenderPhone>");
 			}
 			if(RecipientType != null)
 			{
-				sb.Append("<ebl:RecipientType>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(RecipientType)));
+				sb.Append("<ebl:RecipientType>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(RecipientType)));
 				sb.Append("</ebl:RecipientType>");
 			}
 			if(RecipientEmail != null)
@@ -9254,25 +9330,25 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			if(RecipientPhone != null)
 			{
 				sb.Append("<ebl:RecipientPhone>");
-				sb.Append(RecipientPhone.toXMLString());
+				sb.Append(RecipientPhone.ToXMLString());
 				sb.Append("</ebl:RecipientPhone>");
 			}
 			if(ItemAmount != null)
 			{
 				sb.Append("<ebl:ItemAmount");
-				sb.Append(ItemAmount.toXMLString());
+				sb.Append(ItemAmount.ToXMLString());
 				sb.Append("</ebl:ItemAmount>");
 			}
 			if(Tax != null)
 			{
 				sb.Append("<ebl:Tax");
-				sb.Append(Tax.toXMLString());
+				sb.Append(Tax.ToXMLString());
 				sb.Append("</ebl:Tax>");
 			}
 			if(Shipping != null)
 			{
 				sb.Append("<ebl:Shipping");
-				sb.Append(Shipping.toXMLString());
+				sb.Append(Shipping.ToXMLString());
 				sb.Append("</ebl:Shipping>");
 			}
 			if(ItemName != null)
@@ -9316,8 +9392,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *Phone number for status inquiry 
       */
-	public partial class GetMobileStatusRequestDetailsType	
-	{
+	public partial class GetMobileStatusRequestDetailsType	{
 
 		/**
           *
@@ -9343,13 +9418,13 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
 			if(Phone != null)
 			{
 				sb.Append("<ebl:Phone>");
-				sb.Append(Phone.toXMLString());
+				sb.Append(Phone.ToXMLString());
 				sb.Append("</ebl:Phone>");
 			}
 			return sb.ToString();
@@ -9365,8 +9440,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *choosing to login with PayPal. Required Character length and
       *limitations: no limit. 
       */
-	public partial class SetAuthFlowParamRequestDetailsType	
-	{
+	public partial class SetAuthFlowParamRequestDetailsType	{
 
 		/**
           *
@@ -9681,7 +9755,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
 			if(ReturnURL != null)
@@ -9741,23 +9815,23 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(cppHeaderImage != null)
 			{
-				sb.Append("<ebl:cppHeaderImage>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(cppHeaderImage));
-				sb.Append("</ebl:cppHeaderImage>");
+				sb.Append("<ebl:cpp-header-image>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(cppHeaderImage));
+				sb.Append("</ebl:cpp-header-image>");
 			}
 			if(cppHeaderBorderColor != null)
 			{
-				sb.Append("<ebl:cppHeaderBorderColor>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(cppHeaderBorderColor));
-				sb.Append("</ebl:cppHeaderBorderColor>");
+				sb.Append("<ebl:cpp-header-border-color>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(cppHeaderBorderColor));
+				sb.Append("</ebl:cpp-header-border-color>");
 			}
 			if(cppHeaderBackColor != null)
 			{
-				sb.Append("<ebl:cppHeaderBackColor>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(cppHeaderBackColor));
-				sb.Append("</ebl:cppHeaderBackColor>");
+				sb.Append("<ebl:cpp-header-back-color>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(cppHeaderBackColor));
+				sb.Append("</ebl:cpp-header-back-color>");
 			}
 			if(cppPayflowColor != null)
 			{
-				sb.Append("<ebl:cppPayflowColor>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(cppPayflowColor));
-				sb.Append("</ebl:cppPayflowColor>");
+				sb.Append("<ebl:cpp-payflow-color>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(cppPayflowColor));
+				sb.Append("</ebl:cpp-payflow-color>");
 			}
 			if(FirstName != null)
 			{
@@ -9772,7 +9846,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			if(Address != null)
 			{
 				sb.Append("<ebl:Address>");
-				sb.Append(Address.toXMLString());
+				sb.Append(Address.ToXMLString());
 				sb.Append("</ebl:Address>");
 			}
 			return sb.ToString();
@@ -9787,8 +9861,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *The first name of the User. Character length and
       *limitations: 127 single-byte alphanumeric characters 
       */
-	public partial class GetAuthDetailsResponseDetailsType	
-	{
+	public partial class GetAuthDetailsResponseDetailsType	{
 
 		/**
           *
@@ -9901,8 +9974,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *choosing to login with PayPal. Required Character length and
       *limitations: no limit. 
       */
-	public partial class SetAccessPermissionsRequestDetailsType	
-	{
+	public partial class SetAccessPermissionsRequestDetailsType	{
 
 		/**
           *
@@ -10183,7 +10255,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
 			if(ReturnURL != null)
@@ -10239,23 +10311,23 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(cppHeaderImage != null)
 			{
-				sb.Append("<ebl:cppHeaderImage>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(cppHeaderImage));
-				sb.Append("</ebl:cppHeaderImage>");
+				sb.Append("<ebl:cpp-header-image>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(cppHeaderImage));
+				sb.Append("</ebl:cpp-header-image>");
 			}
 			if(cppHeaderBorderColor != null)
 			{
-				sb.Append("<ebl:cppHeaderBorderColor>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(cppHeaderBorderColor));
-				sb.Append("</ebl:cppHeaderBorderColor>");
+				sb.Append("<ebl:cpp-header-border-color>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(cppHeaderBorderColor));
+				sb.Append("</ebl:cpp-header-border-color>");
 			}
 			if(cppHeaderBackColor != null)
 			{
-				sb.Append("<ebl:cppHeaderBackColor>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(cppHeaderBackColor));
-				sb.Append("</ebl:cppHeaderBackColor>");
+				sb.Append("<ebl:cpp-header-back-color>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(cppHeaderBackColor));
+				sb.Append("</ebl:cpp-header-back-color>");
 			}
 			if(cppPayflowColor != null)
 			{
-				sb.Append("<ebl:cppPayflowColor>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(cppPayflowColor));
-				sb.Append("</ebl:cppPayflowColor>");
+				sb.Append("<ebl:cpp-payflow-color>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(cppPayflowColor));
+				sb.Append("</ebl:cpp-payflow-color>");
 			}
 			if(FirstName != null)
 			{
@@ -10270,7 +10342,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			if(Address != null)
 			{
 				sb.Append("<ebl:Address>");
-				sb.Append(Address.toXMLString());
+				sb.Append(Address.ToXMLString());
 				sb.Append("</ebl:Address>");
 			}
 			return sb.ToString();
@@ -10285,8 +10357,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *The first name of the User. Character length and
       *limitations: 127 single-byte alphanumeric characters 
       */
-	public partial class GetAccessPermissionDetailsResponseDetailsType	
-	{
+	public partial class GetAccessPermissionDetailsResponseDetailsType	{
 
 		/**
           *
@@ -10449,8 +10520,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class BAUpdateResponseDetailsType	
-	{
+	public partial class BAUpdateResponseDetailsType	{
 
 		/**
           *
@@ -10595,7 +10665,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'BillingAgreementStatus']");
 			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.BillingAgreementStatus = (MerchantPullStatusCodeType)EnumUtils.getValue(ChildNode.InnerText,typeof(MerchantPullStatusCodeType));
+				this.BillingAgreementStatus = (MerchantPullStatusCodeType)EnumUtils.GetValue(ChildNode.InnerText,typeof(MerchantPullStatusCodeType));
 			}
 			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'BillingAgreementCustom']");
 			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
@@ -10628,8 +10698,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *MerchantPullPaymentResponseType Response data from the
       *merchant pull. 
       */
-	public partial class MerchantPullPaymentResponseType	
-	{
+	public partial class MerchantPullPaymentResponseType	{
 
 		/**
           *
@@ -10718,8 +10787,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *MerchantPullInfoType Information about the merchant pull. 
       */
-	public partial class MerchantPullInfoType	
-	{
+	public partial class MerchantPullInfoType	{
 
 		/**
           *
@@ -10854,7 +10922,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'MpStatus']");
 			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.MpStatus = (MerchantPullStatusCodeType)EnumUtils.getValue(ChildNode.InnerText,typeof(MerchantPullStatusCodeType));
+				this.MpStatus = (MerchantPullStatusCodeType)EnumUtils.GetValue(ChildNode.InnerText,typeof(MerchantPullStatusCodeType));
 			}
 			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'MpMax']");
 			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
@@ -10897,8 +10965,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *PaymentTransactionSearchResultType Results from a
       *PaymentTransaction search 
       */
-	public partial class PaymentTransactionSearchResultType	
-	{
+	public partial class PaymentTransactionSearchResultType	{
 
 		/**
           *
@@ -11142,8 +11209,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *MerchantPullPayment Parameters to make initiate a pull
       *payment 
       */
-	public partial class MerchantPullPaymentType	
-	{
+	public partial class MerchantPullPaymentType	{
 
 		/**
           *
@@ -11390,13 +11456,13 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
 			if(Amount != null)
 			{
 				sb.Append("<ebl:Amount");
-				sb.Append(Amount.toXMLString());
+				sb.Append(Amount.ToXMLString());
 				sb.Append("</ebl:Amount>");
 			}
 			if(MpID != null)
@@ -11406,7 +11472,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(PaymentType != null)
 			{
-				sb.Append("<ebl:PaymentType>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(PaymentType)));
+				sb.Append("<ebl:PaymentType>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(PaymentType)));
 				sb.Append("</ebl:PaymentType>");
 			}
 			if(Memo != null)
@@ -11422,19 +11488,19 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			if(Tax != null)
 			{
 				sb.Append("<ebl:Tax");
-				sb.Append(Tax.toXMLString());
+				sb.Append(Tax.ToXMLString());
 				sb.Append("</ebl:Tax>");
 			}
 			if(Shipping != null)
 			{
 				sb.Append("<ebl:Shipping");
-				sb.Append(Shipping.toXMLString());
+				sb.Append(Shipping.ToXMLString());
 				sb.Append("</ebl:Shipping>");
 			}
 			if(Handling != null)
 			{
 				sb.Append("<ebl:Handling");
-				sb.Append(Handling.toXMLString());
+				sb.Append(Handling.ToXMLString());
 				sb.Append("</ebl:Handling>");
 			}
 			if(ItemName != null)
@@ -11479,8 +11545,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *PaymentTransactionType Information about a PayPal payment
       *from the seller side 
       */
-	public partial class PaymentTransactionType	
-	{
+	public partial class PaymentTransactionType	{
 
 		/**
           *
@@ -11512,6 +11577,23 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			set
 			{
 				this.PayerInfoField = value;
+			}
+		}
+		
+
+		/**
+          *
+		  */
+		private string TPLReferenceIDField;
+		public string TPLReferenceID
+		{
+			get
+			{
+				return this.TPLReferenceIDField;
+			}
+			set
+			{
+				this.TPLReferenceIDField = value;
 			}
 		}
 		
@@ -11741,6 +11823,11 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			{
 				this.PayerInfo =  new PayerInfoType(ChildNode);
 			}
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'TPLReferenceID']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
+			{
+				this.TPLReferenceID = ChildNode.InnerText;
+			}
 			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'PaymentInfo']");
 			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
@@ -11815,8 +11902,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *ReceiverInfoType Receiver information. 
       */
-	public partial class ReceiverInfoType	
-	{
+	public partial class ReceiverInfoType	{
 
 		/**
           *
@@ -11905,8 +11991,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *PayerInfoType Payer information 
       */
-	public partial class PayerInfoType	
-	{
+	public partial class PayerInfoType	{
 
 		/**
           *
@@ -12085,7 +12170,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
 			if(Payer != null)
@@ -12100,18 +12185,18 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(PayerStatus != null)
 			{
-				sb.Append("<ebl:PayerStatus>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(PayerStatus)));
+				sb.Append("<ebl:PayerStatus>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(PayerStatus)));
 				sb.Append("</ebl:PayerStatus>");
 			}
 			if(PayerName != null)
 			{
 				sb.Append("<ebl:PayerName>");
-				sb.Append(PayerName.toXMLString());
+				sb.Append(PayerName.ToXMLString());
 				sb.Append("</ebl:PayerName>");
 			}
 			if(PayerCountry != null)
 			{
-				sb.Append("<ebl:PayerCountry>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(PayerCountry)));
+				sb.Append("<ebl:PayerCountry>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(PayerCountry)));
 				sb.Append("</ebl:PayerCountry>");
 			}
 			if(PayerBusiness != null)
@@ -12122,7 +12207,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			if(Address != null)
 			{
 				sb.Append("<ebl:Address>");
-				sb.Append(Address.toXMLString());
+				sb.Append(Address.ToXMLString());
 				sb.Append("</ebl:Address>");
 			}
 			if(ContactPhone != null)
@@ -12133,13 +12218,13 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			if(TaxIdDetails != null)
 			{
 				sb.Append("<ebl:TaxIdDetails>");
-				sb.Append(TaxIdDetails.toXMLString());
+				sb.Append(TaxIdDetails.ToXMLString());
 				sb.Append("</ebl:TaxIdDetails>");
 			}
 			if(EnhancedPayerInfo != null)
 			{
 				sb.Append("<ebl:EnhancedPayerInfo>");
-				sb.Append(EnhancedPayerInfo.toXMLString());
+				sb.Append(EnhancedPayerInfo.ToXMLString());
 				sb.Append("</ebl:EnhancedPayerInfo>");
 			}
 			return sb.ToString();
@@ -12162,7 +12247,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'PayerStatus']");
 			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.PayerStatus = (PayPalUserStatusCodeType)EnumUtils.getValue(ChildNode.InnerText,typeof(PayPalUserStatusCodeType));
+				this.PayerStatus = (PayPalUserStatusCodeType)EnumUtils.GetValue(ChildNode.InnerText,typeof(PayPalUserStatusCodeType));
 			}
 			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'PayerName']");
 			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
@@ -12172,7 +12257,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'PayerCountry']");
 			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.PayerCountry = (CountryCodeType)EnumUtils.getValue(ChildNode.InnerText,typeof(CountryCodeType));
+				this.PayerCountry = (CountryCodeType)EnumUtils.GetValue(ChildNode.InnerText,typeof(CountryCodeType));
 			}
 			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'PayerBusiness']");
 			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
@@ -12209,8 +12294,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *InstrumentDetailsType Promotional Instrument Information. 
       */
-	public partial class InstrumentDetailsType	
-	{
+	public partial class InstrumentDetailsType	{
 
 		/**
           *
@@ -12255,8 +12339,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *BMLOfferInfoType Specific information for BML. 
       */
-	public partial class BMLOfferInfoType	
-	{
+	public partial class BMLOfferInfoType	{
 
 		/**
           *
@@ -12282,7 +12365,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
 			if(OfferTrackingID != null)
@@ -12312,8 +12395,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *OfferDetailsType Specific information for an offer. 
       */
-	public partial class OfferDetailsType	
-	{
+	public partial class OfferDetailsType	{
 
 		/**
           *
@@ -12356,7 +12438,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
 			if(OfferCode != null)
@@ -12367,7 +12449,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			if(BMLOfferInfo != null)
 			{
 				sb.Append("<ebl:BMLOfferInfo>");
-				sb.Append(BMLOfferInfo.toXMLString());
+				sb.Append(BMLOfferInfo.ToXMLString());
 				sb.Append("</ebl:BMLOfferInfo>");
 			}
 			return sb.ToString();
@@ -12397,8 +12479,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *PaymentInfoType Payment information. 
       */
-	public partial class PaymentInfoType	
-	{
+	public partial class PaymentInfoType	{
 
 		/**
           *
@@ -12760,6 +12841,40 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		/**
           *
 		  */
+		private string ReceiptReferenceNumberField;
+		public string ReceiptReferenceNumber
+		{
+			get
+			{
+				return this.ReceiptReferenceNumberField;
+			}
+			set
+			{
+				this.ReceiptReferenceNumberField = value;
+			}
+		}
+		
+
+		/**
+          *
+		  */
+		private POSTransactionCodeType? POSTransactionTypeField;
+		public POSTransactionCodeType? POSTransactionType
+		{
+			get
+			{
+				return this.POSTransactionTypeField;
+			}
+			set
+			{
+				this.POSTransactionTypeField = value;
+			}
+		}
+		
+
+		/**
+          *
+		  */
 		private string ShipAmountField;
 		public string ShipAmount
 		{
@@ -13029,17 +13144,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'TransactionType']");
 			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.TransactionType = (PaymentTransactionCodeType)EnumUtils.getValue(ChildNode.InnerText,typeof(PaymentTransactionCodeType));
+				this.TransactionType = (PaymentTransactionCodeType)EnumUtils.GetValue(ChildNode.InnerText,typeof(PaymentTransactionCodeType));
 			}
 			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'PaymentType']");
 			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.PaymentType = (PaymentCodeType)EnumUtils.getValue(ChildNode.InnerText,typeof(PaymentCodeType));
+				this.PaymentType = (PaymentCodeType)EnumUtils.GetValue(ChildNode.InnerText,typeof(PaymentCodeType));
 			}
 			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'RefundSourceCodeType']");
 			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.RefundSourceCodeType = (RefundSourceCodeType)EnumUtils.getValue(ChildNode.InnerText,typeof(RefundSourceCodeType));
+				this.RefundSourceCodeType = (RefundSourceCodeType)EnumUtils.GetValue(ChildNode.InnerText,typeof(RefundSourceCodeType));
 			}
 			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'ExpectedeCheckClearDate']");
 			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
@@ -13079,17 +13194,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'PaymentStatus']");
 			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.PaymentStatus = (PaymentStatusCodeType)EnumUtils.getValue(ChildNode.InnerText,typeof(PaymentStatusCodeType));
+				this.PaymentStatus = (PaymentStatusCodeType)EnumUtils.GetValue(ChildNode.InnerText,typeof(PaymentStatusCodeType));
 			}
 			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'PendingReason']");
 			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.PendingReason = (PendingStatusCodeType)EnumUtils.getValue(ChildNode.InnerText,typeof(PendingStatusCodeType));
+				this.PendingReason = (PendingStatusCodeType)EnumUtils.GetValue(ChildNode.InnerText,typeof(PendingStatusCodeType));
 			}
 			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'ReasonCode']");
 			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.ReasonCode = (ReversalReasonCodeType)EnumUtils.getValue(ChildNode.InnerText,typeof(ReversalReasonCodeType));
+				this.ReasonCode = (ReversalReasonCodeType)EnumUtils.GetValue(ChildNode.InnerText,typeof(ReversalReasonCodeType));
 			}
 			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'HoldDecision']");
 			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
@@ -13110,6 +13225,16 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
 				this.ProtectionEligibilityType = ChildNode.InnerText;
+			}
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'ReceiptReferenceNumber']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
+			{
+				this.ReceiptReferenceNumber = ChildNode.InnerText;
+			}
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'POSTransactionType']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
+			{
+				this.POSTransactionType = (POSTransactionCodeType)EnumUtils.GetValue(ChildNode.InnerText,typeof(POSTransactionCodeType));
 			}
 			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'ShipAmount']");
 			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
@@ -13191,8 +13316,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *SubscriptionTermsType Terms of a PayPal subscription. 
       */
-	public partial class SubscriptionTermsType	
-	{
+	public partial class SubscriptionTermsType	{
 
 		/**
           *
@@ -13238,8 +13362,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *SubscriptionInfoType Information about a PayPal
       *Subscription. 
       */
-	public partial class SubscriptionInfoType	
-	{
+	public partial class SubscriptionInfoType	{
 
 		/**
           *
@@ -13442,8 +13565,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *AuctionInfoType Basic information about an auction. 
       */
-	public partial class AuctionInfoType	
-	{
+	public partial class AuctionInfoType	{
 
 		/**
           *
@@ -13510,8 +13632,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *OptionType PayPal item options for shopping cart. 
       */
-	public partial class OptionType	
-	{
+	public partial class OptionType	{
 
 		/**
 	 	  * Default Constructor
@@ -13535,8 +13656,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *EbayItemPaymentDetailsItemType - Type declaration to be used
       *by other schemas. Information about an Ebay Payment Item. 
       */
-	public partial class EbayItemPaymentDetailsItemType	
-	{
+	public partial class EbayItemPaymentDetailsItemType	{
 
 		/**
           *
@@ -13613,7 +13733,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
 			if(ItemNumber != null)
@@ -13673,8 +13793,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *PaymentDetailsItemType Information about a Payment Item. 
       */
-	public partial class PaymentDetailsItemType	
-	{
+	public partial class PaymentDetailsItemType	{
 
 		/**
           *
@@ -13955,7 +14074,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
 			if(Name != null)
@@ -13976,19 +14095,19 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			if(Tax != null)
 			{
 				sb.Append("<ebl:Tax");
-				sb.Append(Tax.toXMLString());
+				sb.Append(Tax.ToXMLString());
 				sb.Append("</ebl:Tax>");
 			}
 			if(Amount != null)
 			{
 				sb.Append("<ebl:Amount");
-				sb.Append(Amount.toXMLString());
+				sb.Append(Amount.ToXMLString());
 				sb.Append("</ebl:Amount>");
 			}
 			if(EbayItemPaymentDetailsItem != null)
 			{
 				sb.Append("<ebl:EbayItemPaymentDetailsItem>");
-				sb.Append(EbayItemPaymentDetailsItem.toXMLString());
+				sb.Append(EbayItemPaymentDetailsItem.ToXMLString());
 				sb.Append("</ebl:EbayItemPaymentDetailsItem>");
 			}
 			if(PromoCode != null)
@@ -13998,7 +14117,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(ProductCategory != null)
 			{
-				sb.Append("<ebl:ProductCategory>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(ProductCategory)));
+				sb.Append("<ebl:ProductCategory>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(ProductCategory)));
 				sb.Append("</ebl:ProductCategory>");
 			}
 			if(Description != null)
@@ -14009,25 +14128,25 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			if(ItemWeight != null)
 			{
 				sb.Append("<ebl:ItemWeight");
-				sb.Append(ItemWeight.toXMLString());
+				sb.Append(ItemWeight.ToXMLString());
 				sb.Append("</ebl:ItemWeight>");
 			}
 			if(ItemLength != null)
 			{
 				sb.Append("<ebl:ItemLength");
-				sb.Append(ItemLength.toXMLString());
+				sb.Append(ItemLength.ToXMLString());
 				sb.Append("</ebl:ItemLength>");
 			}
 			if(ItemWidth != null)
 			{
 				sb.Append("<ebl:ItemWidth");
-				sb.Append(ItemWidth.toXMLString());
+				sb.Append(ItemWidth.ToXMLString());
 				sb.Append("</ebl:ItemWidth>");
 			}
 			if(ItemHeight != null)
 			{
 				sb.Append("<ebl:ItemHeight");
-				sb.Append(ItemHeight.toXMLString());
+				sb.Append(ItemHeight.ToXMLString());
 				sb.Append("</ebl:ItemHeight>");
 			}
 			if(ItemURL != null)
@@ -14038,12 +14157,12 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			if(EnhancedItemData != null)
 			{
 				sb.Append("<ebl:EnhancedItemData>");
-				sb.Append(EnhancedItemData.toXMLString());
+				sb.Append(EnhancedItemData.ToXMLString());
 				sb.Append("</ebl:EnhancedItemData>");
 			}
 			if(ItemCategory != null)
 			{
-				sb.Append("<ebl:ItemCategory>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(ItemCategory)));
+				sb.Append("<ebl:ItemCategory>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(ItemCategory)));
 				sb.Append("</ebl:ItemCategory>");
 			}
 			return sb.ToString();
@@ -14091,7 +14210,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'ProductCategory']");
 			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.ProductCategory = (ProductCategoryType)EnumUtils.getValue(ChildNode.InnerText,typeof(ProductCategoryType));
+				this.ProductCategory = (ProductCategoryType)EnumUtils.GetValue(ChildNode.InnerText,typeof(ProductCategoryType));
 			}
 			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'Description']");
 			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
@@ -14131,7 +14250,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'ItemCategory']");
 			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.ItemCategory = (ItemCategoryType)EnumUtils.getValue(ChildNode.InnerText,typeof(ItemCategoryType));
+				this.ItemCategory = (ItemCategoryType)EnumUtils.GetValue(ChildNode.InnerText,typeof(ItemCategoryType));
 			}
 	
 		}
@@ -14143,8 +14262,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *PaymentItemType Information about a Payment Item. 
       */
-	public partial class PaymentItemType	
-	{
+	public partial class PaymentItemType	{
 
 		/**
           *
@@ -14261,6 +14379,23 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			set
 			{
 				this.HandlingAmountField = value;
+			}
+		}
+		
+
+		/**
+          *
+		  */
+		private InvoiceItemType InvoiceItemDetailsField;
+		public InvoiceItemType InvoiceItemDetails
+		{
+			get
+			{
+				return this.InvoiceItemDetailsField;
+			}
+			set
+			{
+				this.InvoiceItemDetailsField = value;
 			}
 		}
 		
@@ -14430,6 +14565,11 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			{
 				this.HandlingAmount = ChildNode.InnerText;
 			}
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'InvoiceItemDetails']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
+			{
+				this.InvoiceItemDetails =  new InvoiceItemType(ChildNode);
+			}
 			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'CouponID']");
 			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
@@ -14479,8 +14619,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *PaymentItemInfoType Information about a PayPal item. 
       */
-	public partial class PaymentItemInfoType	
-	{
+	public partial class PaymentItemInfoType	{
 
 		/**
           *
@@ -14662,8 +14801,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *OffersAndCouponsInfoType Information about a Offers and
       *Coupons. 
       */
-	public partial class OfferCouponInfoType	
-	{
+	public partial class OfferCouponInfoType	{
 
 		/**
           *
@@ -14775,8 +14913,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *PaymentDetailsType Information about a payment. Used by DCC
       *and Express Checkout. 
       */
-	public partial class PaymentDetailsType	
-	{
+	public partial class PaymentDetailsType	{
 
 		/**
           *
@@ -14961,6 +15098,23 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			set
 			{
 				this.ShipToAddressField = value;
+			}
+		}
+		
+
+		/**
+          *
+		  */
+		private string FulfillmentReferenceNumberField;
+		public string FulfillmentReferenceNumber
+		{
+			get
+			{
+				return this.FulfillmentReferenceNumberField;
+			}
+			set
+			{
+				this.FulfillmentReferenceNumberField = value;
 			}
 		}
 		
@@ -15329,37 +15483,37 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
 			if(OrderTotal != null)
 			{
 				sb.Append("<ebl:OrderTotal");
-				sb.Append(OrderTotal.toXMLString());
+				sb.Append(OrderTotal.ToXMLString());
 				sb.Append("</ebl:OrderTotal>");
 			}
 			if(ItemTotal != null)
 			{
 				sb.Append("<ebl:ItemTotal");
-				sb.Append(ItemTotal.toXMLString());
+				sb.Append(ItemTotal.ToXMLString());
 				sb.Append("</ebl:ItemTotal>");
 			}
 			if(ShippingTotal != null)
 			{
 				sb.Append("<ebl:ShippingTotal");
-				sb.Append(ShippingTotal.toXMLString());
+				sb.Append(ShippingTotal.ToXMLString());
 				sb.Append("</ebl:ShippingTotal>");
 			}
 			if(HandlingTotal != null)
 			{
 				sb.Append("<ebl:HandlingTotal");
-				sb.Append(HandlingTotal.toXMLString());
+				sb.Append(HandlingTotal.ToXMLString());
 				sb.Append("</ebl:HandlingTotal>");
 			}
 			if(TaxTotal != null)
 			{
 				sb.Append("<ebl:TaxTotal");
-				sb.Append(TaxTotal.toXMLString());
+				sb.Append(TaxTotal.ToXMLString());
 				sb.Append("</ebl:TaxTotal>");
 			}
 			if(OrderDescription != null)
@@ -15390,23 +15544,28 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			if(ShipToAddress != null)
 			{
 				sb.Append("<ebl:ShipToAddress>");
-				sb.Append(ShipToAddress.toXMLString());
+				sb.Append(ShipToAddress.ToXMLString());
 				sb.Append("</ebl:ShipToAddress>");
+			}
+			if(FulfillmentReferenceNumber != null)
+			{
+				sb.Append("<ebl:FulfillmentReferenceNumber>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(FulfillmentReferenceNumber));
+				sb.Append("</ebl:FulfillmentReferenceNumber>");
 			}
 			if(FulfillmentAddress != null)
 			{
 				sb.Append("<ebl:FulfillmentAddress>");
-				sb.Append(FulfillmentAddress.toXMLString());
+				sb.Append(FulfillmentAddress.ToXMLString());
 				sb.Append("</ebl:FulfillmentAddress>");
 			}
 			if(PaymentCategoryType != null)
 			{
-				sb.Append("<ebl:PaymentCategoryType>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(PaymentCategoryType)));
+				sb.Append("<ebl:PaymentCategoryType>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(PaymentCategoryType)));
 				sb.Append("</ebl:PaymentCategoryType>");
 			}
 			if(ShippingMethod != null)
 			{
-				sb.Append("<ebl:ShippingMethod>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(ShippingMethod)));
+				sb.Append("<ebl:ShippingMethod>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(ShippingMethod)));
 				sb.Append("</ebl:ShippingMethod>");
 			}
 			if(ProfileAddressChangeDate != null)
@@ -15419,20 +15578,20 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 				for(int i = 0; i < PaymentDetailsItem.Count; i++)
 				{
 					sb.Append("<ebl:PaymentDetailsItem>");
-					sb.Append(PaymentDetailsItem[i].toXMLString());
+					sb.Append(PaymentDetailsItem[i].ToXMLString());
 					sb.Append("</ebl:PaymentDetailsItem>");
 				}
 			}
 			if(InsuranceTotal != null)
 			{
 				sb.Append("<ebl:InsuranceTotal");
-				sb.Append(InsuranceTotal.toXMLString());
+				sb.Append(InsuranceTotal.ToXMLString());
 				sb.Append("</ebl:InsuranceTotal>");
 			}
 			if(ShippingDiscount != null)
 			{
 				sb.Append("<ebl:ShippingDiscount");
-				sb.Append(ShippingDiscount.toXMLString());
+				sb.Append(ShippingDiscount.ToXMLString());
 				sb.Append("</ebl:ShippingDiscount>");
 			}
 			if(InsuranceOptionOffered != null)
@@ -15442,19 +15601,19 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(AllowedPaymentMethod != null)
 			{
-				sb.Append("<ebl:AllowedPaymentMethod>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(AllowedPaymentMethod)));
+				sb.Append("<ebl:AllowedPaymentMethod>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(AllowedPaymentMethod)));
 				sb.Append("</ebl:AllowedPaymentMethod>");
 			}
 			if(EnhancedPaymentData != null)
 			{
 				sb.Append("<ebl:EnhancedPaymentData>");
-				sb.Append(EnhancedPaymentData.toXMLString());
+				sb.Append(EnhancedPaymentData.ToXMLString());
 				sb.Append("</ebl:EnhancedPaymentData>");
 			}
 			if(SellerDetails != null)
 			{
 				sb.Append("<ebl:SellerDetails>");
-				sb.Append(SellerDetails.toXMLString());
+				sb.Append(SellerDetails.ToXMLString());
 				sb.Append("</ebl:SellerDetails>");
 			}
 			if(NoteText != null)
@@ -15469,7 +15628,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(PaymentAction != null)
 			{
-				sb.Append("<ebl:PaymentAction>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(PaymentAction)));
+				sb.Append("<ebl:PaymentAction>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(PaymentAction)));
 				sb.Append("</ebl:PaymentAction>");
 			}
 			if(PaymentRequestID != null)
@@ -15495,17 +15654,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			if(OfferDetails != null)
 			{
 				sb.Append("<ebl:OfferDetails>");
-				sb.Append(OfferDetails.toXMLString());
+				sb.Append(OfferDetails.ToXMLString());
 				sb.Append("</ebl:OfferDetails>");
 			}
 			if(Recurring != null)
 			{
-				sb.Append("<ebl:Recurring>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(Recurring)));
+				sb.Append("<ebl:Recurring>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(Recurring)));
 				sb.Append("</ebl:Recurring>");
 			}
 			if(PaymentReason != null)
 			{
-				sb.Append("<ebl:PaymentReason>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(PaymentReason)));
+				sb.Append("<ebl:PaymentReason>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(PaymentReason)));
 				sb.Append("</ebl:PaymentReason>");
 			}
 			return sb.ToString();
@@ -15570,6 +15729,11 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			{
 				this.ShipToAddress =  new AddressType(ChildNode);
 			}
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'FulfillmentReferenceNumber']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
+			{
+				this.FulfillmentReferenceNumber = ChildNode.InnerText;
+			}
 			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'FulfillmentAddress']");
 			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
@@ -15578,12 +15742,12 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'PaymentCategoryType']");
 			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.PaymentCategoryType = (PaymentCategoryType)EnumUtils.getValue(ChildNode.InnerText,typeof(PaymentCategoryType));
+				this.PaymentCategoryType = (PaymentCategoryType)EnumUtils.GetValue(ChildNode.InnerText,typeof(PaymentCategoryType));
 			}
 			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'ShippingMethod']");
 			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.ShippingMethod = (ShippingServiceCodeType)EnumUtils.getValue(ChildNode.InnerText,typeof(ShippingServiceCodeType));
+				this.ShippingMethod = (ShippingServiceCodeType)EnumUtils.GetValue(ChildNode.InnerText,typeof(ShippingServiceCodeType));
 			}
 			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'ProfileAddressChangeDate']");
 			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
@@ -15617,7 +15781,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'AllowedPaymentMethod']");
 			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.AllowedPaymentMethod = (AllowedPaymentMethodType)EnumUtils.getValue(ChildNode.InnerText,typeof(AllowedPaymentMethodType));
+				this.AllowedPaymentMethod = (AllowedPaymentMethodType)EnumUtils.GetValue(ChildNode.InnerText,typeof(AllowedPaymentMethodType));
 			}
 			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'EnhancedPaymentData']");
 			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
@@ -15642,7 +15806,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'PaymentAction']");
 			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.PaymentAction = (PaymentActionCodeType)EnumUtils.getValue(ChildNode.InnerText,typeof(PaymentActionCodeType));
+				this.PaymentAction = (PaymentActionCodeType)EnumUtils.GetValue(ChildNode.InnerText,typeof(PaymentActionCodeType));
 			}
 			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'PaymentRequestID']");
 			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
@@ -15672,12 +15836,12 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'Recurring']");
 			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.Recurring = (RecurringFlagType)EnumUtils.getValue(ChildNode.InnerText,typeof(RecurringFlagType));
+				this.Recurring = (RecurringFlagType)EnumUtils.GetValue(ChildNode.InnerText,typeof(RecurringFlagType));
 			}
 			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'PaymentReason']");
 			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.PaymentReason = (PaymentReasonType)EnumUtils.getValue(ChildNode.InnerText,typeof(PaymentReasonType));
+				this.PaymentReason = (PaymentReasonType)EnumUtils.GetValue(ChildNode.InnerText,typeof(PaymentReasonType));
 			}
 	
 		}
@@ -15690,8 +15854,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *Information about the incentives that were applied from Ebay
       *RYP page and PayPal RYP page. 
       */
-	public partial class IncentiveDetailsType	
-	{
+	public partial class IncentiveDetailsType	{
 
 		/**
           *
@@ -15814,7 +15977,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'SiteAppliedOn']");
 			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.SiteAppliedOn = (IncentiveSiteAppliedOnType)EnumUtils.getValue(ChildNode.InnerText,typeof(IncentiveSiteAppliedOnType));
+				this.SiteAppliedOn = (IncentiveSiteAppliedOnType)EnumUtils.GetValue(ChildNode.InnerText,typeof(IncentiveSiteAppliedOnType));
 			}
 			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'TotalDiscountAmount']");
 			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
@@ -15824,7 +15987,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'Status']");
 			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.Status = (IncentiveAppliedStatusType)EnumUtils.getValue(ChildNode.InnerText,typeof(IncentiveAppliedStatusType));
+				this.Status = (IncentiveAppliedStatusType)EnumUtils.GetValue(ChildNode.InnerText,typeof(IncentiveAppliedStatusType));
 			}
 			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'ErrorCode']");
 			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
@@ -15850,8 +16013,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *Details of incentive application on individual bucket/item. 
       */
-	public partial class IncentiveAppliedDetailsType	
-	{
+	public partial class IncentiveAppliedDetailsType	{
 
 		/**
           *
@@ -15984,8 +16146,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *Details about the seller. 
       */
-	public partial class SellerDetailsType	
-	{
+	public partial class SellerDetailsType	{
 
 		/**
           *
@@ -16079,7 +16240,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
 			if(SellerId != null)
@@ -16150,8 +16311,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *Lists the Payment Methods (other than PayPal) that the use
       *can pay with e.g. Money Order. Optional. 
       */
-	public partial class OtherPaymentMethodDetailsType	
-	{
+	public partial class OtherPaymentMethodDetailsType	{
 
 		/**
           *
@@ -16296,7 +16456,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
 			if(OtherPaymentMethodId != null)
@@ -16351,8 +16511,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *Details about the buyer's account passed in by the merchant
       *or partner. Optional. 
       */
-	public partial class BuyerDetailsType	
-	{
+	public partial class BuyerDetailsType	{
 
 		/**
           *
@@ -16446,7 +16605,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
 			if(BuyerId != null)
@@ -16467,13 +16626,13 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			if(TaxIdDetails != null)
 			{
 				sb.Append("<ebl:TaxIdDetails>");
-				sb.Append(TaxIdDetails.toXMLString());
+				sb.Append(TaxIdDetails.ToXMLString());
 				sb.Append("</ebl:TaxIdDetails>");
 			}
 			if(IdentificationInfo != null)
 			{
 				sb.Append("<ebl:IdentificationInfo>");
-				sb.Append(IdentificationInfo.toXMLString());
+				sb.Append(IdentificationInfo.ToXMLString());
 				sb.Append("</ebl:IdentificationInfo>");
 			}
 			return sb.ToString();
@@ -16488,8 +16647,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *Details about the payer's tax info passed in by the merchant
       *or partner. Optional. 
       */
-	public partial class TaxIdDetailsType	
-	{
+	public partial class TaxIdDetailsType	{
 
 		/**
           *
@@ -16532,7 +16690,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
 			if(TaxIdType != null)
@@ -16572,8 +16730,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *The Common 3DS fields. Common for both GTD and DCC API's. 
       */
-	public partial class ThreeDSecureRequestType	
-	{
+	public partial class ThreeDSecureRequestType	{
 
 		/**
           *
@@ -16667,7 +16824,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
 			if(Eci3ds != null)
@@ -16737,8 +16894,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *3DS remaining fields. 
       */
-	public partial class ThreeDSecureResponseType	
-	{
+	public partial class ThreeDSecureResponseType	{
 
 		/**
           *
@@ -16805,8 +16961,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *3DSecureInfoType Information about 3D Secure parameters. 
       */
-	public partial class ThreeDSecureInfoType	
-	{
+	public partial class ThreeDSecureInfoType	{
 
 		/**
           *
@@ -16873,8 +17028,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *CreditCardDetailsType Information about a Credit Card. 
       */
-	public partial class CreditCardDetailsType	
-	{
+	public partial class CreditCardDetailsType	{
 
 		/**
           *
@@ -17053,12 +17207,12 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
 			if(CreditCardType != null)
 			{
-				sb.Append("<ebl:CreditCardType>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(CreditCardType)));
+				sb.Append("<ebl:CreditCardType>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(CreditCardType)));
 				sb.Append("</ebl:CreditCardType>");
 			}
 			if(CreditCardNumber != null)
@@ -17079,7 +17233,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			if(CardOwner != null)
 			{
 				sb.Append("<ebl:CardOwner>");
-				sb.Append(CardOwner.toXMLString());
+				sb.Append(CardOwner.ToXMLString());
 				sb.Append("</ebl:CardOwner>");
 			}
 			if(CVV2 != null)
@@ -17105,7 +17259,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			if(ThreeDSecureRequest != null)
 			{
 				sb.Append("<ebl:ThreeDSecureRequest>");
-				sb.Append(ThreeDSecureRequest.toXMLString());
+				sb.Append(ThreeDSecureRequest.ToXMLString());
 				sb.Append("</ebl:ThreeDSecureRequest>");
 			}
 			return sb.ToString();
@@ -17118,7 +17272,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'CreditCardType']");
 			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.CreditCardType = (CreditCardTypeType)EnumUtils.getValue(ChildNode.InnerText,typeof(CreditCardTypeType));
+				this.CreditCardType = (CreditCardTypeType)EnumUtils.GetValue(ChildNode.InnerText,typeof(CreditCardTypeType));
 			}
 			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'CreditCardNumber']");
 			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
@@ -17175,8 +17329,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *Fallback shipping options type. 
       */
-	public partial class ShippingOptionType	
-	{
+	public partial class ShippingOptionType	{
 
 		/**
           *
@@ -17236,7 +17389,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
 			if(ShippingOptionIsDefault != null)
@@ -17247,7 +17400,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			if(ShippingOptionAmount != null)
 			{
 				sb.Append("<ebl:ShippingOptionAmount");
-				sb.Append(ShippingOptionAmount.toXMLString());
+				sb.Append(ShippingOptionAmount.ToXMLString());
 				sb.Append("</ebl:ShippingOptionAmount>");
 			}
 			if(ShippingOptionName != null)
@@ -17266,8 +17419,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *Information on user selected options 
       */
-	public partial class UserSelectedOptionType	
-	{
+	public partial class UserSelectedOptionType	{
 
 		/**
           *
@@ -17361,7 +17513,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
 			if(ShippingCalculationMode != null)
@@ -17382,7 +17534,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			if(ShippingOptionAmount != null)
 			{
 				sb.Append("<ebl:ShippingOptionAmount");
-				sb.Append(ShippingOptionAmount.toXMLString());
+				sb.Append(ShippingOptionAmount.ToXMLString());
 				sb.Append("</ebl:ShippingOptionAmount>");
 			}
 			if(ShippingOptionName != null)
@@ -17432,8 +17584,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class CreditCardNumberTypeType	
-	{
+	public partial class CreditCardNumberTypeType	{
 
 		/**
           *
@@ -17476,12 +17627,12 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
 			if(CreditCardType != null)
 			{
-				sb.Append("<ebl:CreditCardType>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(CreditCardType)));
+				sb.Append("<ebl:CreditCardType>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(CreditCardType)));
 				sb.Append("</ebl:CreditCardType>");
 			}
 			if(CreditCardNumber != null)
@@ -17501,8 +17652,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *CreditCardDetailsType for DCC Reference Transaction
       *Information about a Credit Card. 
       */
-	public partial class ReferenceCreditCardDetailsType	
-	{
+	public partial class ReferenceCreditCardDetailsType	{
 
 		/**
           *
@@ -17664,13 +17814,13 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
 			if(CreditCardNumberType != null)
 			{
 				sb.Append("<ebl:CreditCardNumberType>");
-				sb.Append(CreditCardNumberType.toXMLString());
+				sb.Append(CreditCardNumberType.ToXMLString());
 				sb.Append("</ebl:CreditCardNumberType>");
 			}
 			if(ExpMonth != null)
@@ -17686,13 +17836,13 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			if(CardOwnerName != null)
 			{
 				sb.Append("<ebl:CardOwnerName>");
-				sb.Append(CardOwnerName.toXMLString());
+				sb.Append(CardOwnerName.ToXMLString());
 				sb.Append("</ebl:CardOwnerName>");
 			}
 			if(BillingAddress != null)
 			{
 				sb.Append("<ebl:BillingAddress>");
-				sb.Append(BillingAddress.toXMLString());
+				sb.Append(BillingAddress.ToXMLString());
 				sb.Append("</ebl:BillingAddress>");
 			}
 			if(CVV2 != null)
@@ -17726,8 +17876,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class SetCustomerBillingAgreementRequestDetailsType	
-	{
+	public partial class SetCustomerBillingAgreementRequestDetailsType	{
 
 		/**
           *
@@ -17932,13 +18081,13 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
 			if(BillingAgreementDetails != null)
 			{
 				sb.Append("<ebl:BillingAgreementDetails>");
-				sb.Append(BillingAgreementDetails.toXMLString());
+				sb.Append(BillingAgreementDetails.ToXMLString());
 				sb.Append("</ebl:BillingAgreementDetails>");
 			}
 			if(ReturnURL != null)
@@ -17963,23 +18112,23 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(cppHeaderImage != null)
 			{
-				sb.Append("<ebl:cppHeaderImage>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(cppHeaderImage));
-				sb.Append("</ebl:cppHeaderImage>");
+				sb.Append("<ebl:cpp-header-image>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(cppHeaderImage));
+				sb.Append("</ebl:cpp-header-image>");
 			}
 			if(cppHeaderBorderColor != null)
 			{
-				sb.Append("<ebl:cppHeaderBorderColor>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(cppHeaderBorderColor));
-				sb.Append("</ebl:cppHeaderBorderColor>");
+				sb.Append("<ebl:cpp-header-border-color>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(cppHeaderBorderColor));
+				sb.Append("</ebl:cpp-header-border-color>");
 			}
 			if(cppHeaderBackColor != null)
 			{
-				sb.Append("<ebl:cppHeaderBackColor>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(cppHeaderBackColor));
-				sb.Append("</ebl:cppHeaderBackColor>");
+				sb.Append("<ebl:cpp-header-back-color>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(cppHeaderBackColor));
+				sb.Append("</ebl:cpp-header-back-color>");
 			}
 			if(cppPayflowColor != null)
 			{
-				sb.Append("<ebl:cppPayflowColor>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(cppPayflowColor));
-				sb.Append("</ebl:cppPayflowColor>");
+				sb.Append("<ebl:cpp-payflow-color>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(cppPayflowColor));
+				sb.Append("</ebl:cpp-payflow-color>");
 			}
 			if(BuyerEmail != null)
 			{
@@ -18002,8 +18151,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class GetBillingAgreementCustomerDetailsResponseDetailsType	
-	{
+	public partial class GetBillingAgreementCustomerDetailsResponseDetailsType	{
 
 		/**
           *
@@ -18072,8 +18220,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *single-byte characters DeviceID length morethan 256 is
       *truncated  
       */
-	public partial class DeviceDetailsType	
-	{
+	public partial class DeviceDetailsType	{
 
 		/**
           *
@@ -18099,7 +18246,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
 			if(DeviceID != null)
@@ -18118,8 +18265,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class SenderDetailsType	
-	{
+	public partial class SenderDetailsType	{
 
 		/**
           *
@@ -18145,13 +18291,13 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
 			if(DeviceDetails != null)
 			{
 				sb.Append("<ebl:DeviceDetails>");
-				sb.Append(DeviceDetails.toXMLString());
+				sb.Append(DeviceDetails.ToXMLString());
 				sb.Append("</ebl:DeviceDetails>");
 			}
 			return sb.ToString();
@@ -18165,8 +18311,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class DoReferenceTransactionRequestDetailsType	
-	{
+	public partial class DoReferenceTransactionRequestDetailsType	{
 
 		/**
           *
@@ -18371,7 +18516,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
 			if(ReferenceID != null)
@@ -18381,24 +18526,24 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(PaymentAction != null)
 			{
-				sb.Append("<ebl:PaymentAction>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(PaymentAction)));
+				sb.Append("<ebl:PaymentAction>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(PaymentAction)));
 				sb.Append("</ebl:PaymentAction>");
 			}
 			if(PaymentType != null)
 			{
-				sb.Append("<ebl:PaymentType>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(PaymentType)));
+				sb.Append("<ebl:PaymentType>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(PaymentType)));
 				sb.Append("</ebl:PaymentType>");
 			}
 			if(PaymentDetails != null)
 			{
 				sb.Append("<ebl:PaymentDetails>");
-				sb.Append(PaymentDetails.toXMLString());
+				sb.Append(PaymentDetails.ToXMLString());
 				sb.Append("</ebl:PaymentDetails>");
 			}
 			if(CreditCard != null)
 			{
 				sb.Append("<ebl:CreditCard>");
-				sb.Append(CreditCard.toXMLString());
+				sb.Append(CreditCard.ToXMLString());
 				sb.Append("</ebl:CreditCard>");
 			}
 			if(IPAddress != null)
@@ -18424,7 +18569,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			if(SenderDetails != null)
 			{
 				sb.Append("<ebl:SenderDetails>");
-				sb.Append(SenderDetails.toXMLString());
+				sb.Append(SenderDetails.ToXMLString());
 				sb.Append("</ebl:SenderDetails>");
 			}
 			if(MsgSubID != null)
@@ -18443,8 +18588,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class DoReferenceTransactionResponseDetailsType	
-	{
+	public partial class DoReferenceTransactionResponseDetailsType	{
 
 		/**
           *
@@ -18643,8 +18787,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class DoNonReferencedCreditRequestDetailsType	
-	{
+	public partial class DoNonReferencedCreditRequestDetailsType	{
 
 		/**
           *
@@ -18772,37 +18915,37 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
 			if(Amount != null)
 			{
 				sb.Append("<ebl:Amount");
-				sb.Append(Amount.toXMLString());
+				sb.Append(Amount.ToXMLString());
 				sb.Append("</ebl:Amount>");
 			}
 			if(NetAmount != null)
 			{
 				sb.Append("<ebl:NetAmount");
-				sb.Append(NetAmount.toXMLString());
+				sb.Append(NetAmount.ToXMLString());
 				sb.Append("</ebl:NetAmount>");
 			}
 			if(TaxAmount != null)
 			{
 				sb.Append("<ebl:TaxAmount");
-				sb.Append(TaxAmount.toXMLString());
+				sb.Append(TaxAmount.ToXMLString());
 				sb.Append("</ebl:TaxAmount>");
 			}
 			if(ShippingAmount != null)
 			{
 				sb.Append("<ebl:ShippingAmount");
-				sb.Append(ShippingAmount.toXMLString());
+				sb.Append(ShippingAmount.ToXMLString());
 				sb.Append("</ebl:ShippingAmount>");
 			}
 			if(CreditCard != null)
 			{
 				sb.Append("<ebl:CreditCard>");
-				sb.Append(CreditCard.toXMLString());
+				sb.Append(CreditCard.ToXMLString());
 				sb.Append("</ebl:CreditCard>");
 			}
 			if(ReceiverEmail != null)
@@ -18826,8 +18969,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class DoNonReferencedCreditResponseDetailsType	
-	{
+	public partial class DoNonReferencedCreditResponseDetailsType	{
 
 		/**
           *
@@ -18896,8 +19038,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *Character length and limitations: 64 alphanumeric characters
       *
       */
-	public partial class EnterBoardingRequestDetailsType	
-	{
+	public partial class EnterBoardingRequestDetailsType	{
 
 		/**
           *
@@ -19042,7 +19183,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
 			if(ProgramCode != null)
@@ -19067,25 +19208,25 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(MarketingCategory != null)
 			{
-				sb.Append("<ebl:MarketingCategory>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(MarketingCategory)));
+				sb.Append("<ebl:MarketingCategory>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(MarketingCategory)));
 				sb.Append("</ebl:MarketingCategory>");
 			}
 			if(BusinessInfo != null)
 			{
 				sb.Append("<ebl:BusinessInfo>");
-				sb.Append(BusinessInfo.toXMLString());
+				sb.Append(BusinessInfo.ToXMLString());
 				sb.Append("</ebl:BusinessInfo>");
 			}
 			if(OwnerInfo != null)
 			{
 				sb.Append("<ebl:OwnerInfo>");
-				sb.Append(OwnerInfo.toXMLString());
+				sb.Append(OwnerInfo.ToXMLString());
 				sb.Append("</ebl:OwnerInfo>");
 			}
 			if(BankAccount != null)
 			{
 				sb.Append("<ebl:BankAccount>");
-				sb.Append(BankAccount.toXMLString());
+				sb.Append(BankAccount.ToXMLString());
 				sb.Append("</ebl:BankAccount>");
 			}
 			return sb.ToString();
@@ -19099,8 +19240,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *BusinessInfoType 
       */
-	public partial class BusinessInfoType	
-	{
+	public partial class BusinessInfoType	{
 
 		/**
           *
@@ -19347,12 +19487,12 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
 			if(Type != null)
 			{
-				sb.Append("<ebl:Type>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(Type)));
+				sb.Append("<ebl:Type>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(Type)));
 				sb.Append("</ebl:Type>");
 			}
 			if(Name != null)
@@ -19363,7 +19503,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			if(Address != null)
 			{
 				sb.Append("<ebl:Address>");
-				sb.Append(Address.toXMLString());
+				sb.Append(Address.ToXMLString());
 				sb.Append("</ebl:Address>");
 			}
 			if(WorkPhone != null)
@@ -19373,27 +19513,27 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(Category != null)
 			{
-				sb.Append("<ebl:Category>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(Category)));
+				sb.Append("<ebl:Category>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(Category)));
 				sb.Append("</ebl:Category>");
 			}
 			if(SubCategory != null)
 			{
-				sb.Append("<ebl:SubCategory>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(SubCategory)));
+				sb.Append("<ebl:SubCategory>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(SubCategory)));
 				sb.Append("</ebl:SubCategory>");
 			}
 			if(AveragePrice != null)
 			{
-				sb.Append("<ebl:AveragePrice>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(AveragePrice)));
+				sb.Append("<ebl:AveragePrice>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(AveragePrice)));
 				sb.Append("</ebl:AveragePrice>");
 			}
 			if(AverageMonthlyVolume != null)
 			{
-				sb.Append("<ebl:AverageMonthlyVolume>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(AverageMonthlyVolume)));
+				sb.Append("<ebl:AverageMonthlyVolume>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(AverageMonthlyVolume)));
 				sb.Append("</ebl:AverageMonthlyVolume>");
 			}
 			if(SalesVenue != null)
 			{
-				sb.Append("<ebl:SalesVenue>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(SalesVenue)));
+				sb.Append("<ebl:SalesVenue>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(SalesVenue)));
 				sb.Append("</ebl:SalesVenue>");
 			}
 			if(Website != null)
@@ -19403,7 +19543,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(RevenueFromOnlineSales != null)
 			{
-				sb.Append("<ebl:RevenueFromOnlineSales>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(RevenueFromOnlineSales)));
+				sb.Append("<ebl:RevenueFromOnlineSales>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(RevenueFromOnlineSales)));
 				sb.Append("</ebl:RevenueFromOnlineSales>");
 			}
 			if(BusinessEstablished != null)
@@ -19432,8 +19572,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *BusinessOwnerInfoType 
       */
-	public partial class BusinessOwnerInfoType	
-	{
+	public partial class BusinessOwnerInfoType	{
 
 		/**
           *
@@ -19510,13 +19649,13 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
 			if(Owner != null)
 			{
 				sb.Append("<ebl:Owner>");
-				sb.Append(Owner.toXMLString());
+				sb.Append(Owner.ToXMLString());
 				sb.Append("</ebl:Owner>");
 			}
 			if(HomePhone != null)
@@ -19545,8 +19684,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *BankAccountDetailsType 
       */
-	public partial class BankAccountDetailsType	
-	{
+	public partial class BankAccountDetailsType	{
 
 		/**
           *
@@ -19623,7 +19761,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
 			if(Name != null)
@@ -19633,7 +19771,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(Type != null)
 			{
-				sb.Append("<ebl:Type>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(Type)));
+				sb.Append("<ebl:Type>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(Type)));
 				sb.Append("</ebl:Type>");
 			}
 			if(RoutingNumber != null)
@@ -19659,8 +19797,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *CompletedCancelledPending Character length and limitations:
       *Eight alphabetic characters 
       */
-	public partial class GetBoardingDetailsResponseDetailsType	
-	{
+	public partial class GetBoardingDetailsResponseDetailsType	{
 
 		/**
           *
@@ -19931,7 +20068,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'Status']");
 			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.Status = (BoardingStatusType)EnumUtils.getValue(ChildNode.InnerText,typeof(BoardingStatusType));
+				this.Status = (BoardingStatusType)EnumUtils.GetValue(ChildNode.InnerText,typeof(BoardingStatusType));
 			}
 			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'StartDate']");
 			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
@@ -19966,7 +20103,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'UserWithdrawalLimit']");
 			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.UserWithdrawalLimit = (UserWithdrawalLimitTypeType)EnumUtils.getValue(ChildNode.InnerText,typeof(UserWithdrawalLimitTypeType));
+				this.UserWithdrawalLimit = (UserWithdrawalLimitTypeType)EnumUtils.GetValue(ChildNode.InnerText,typeof(UserWithdrawalLimitTypeType));
 			}
 			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'PartnerCustom']");
 			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
@@ -20013,8 +20150,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *APICredentialsType 
       */
-	public partial class APICredentialsType	
-	{
+	public partial class APICredentialsType	{
 
 		/**
           *
@@ -20135,7 +20271,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'Type']");
 			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.Type = (APIAuthenticationType)EnumUtils.getValue(ChildNode.InnerText,typeof(APIAuthenticationType));
+				this.Type = (APIAuthenticationType)EnumUtils.GetValue(ChildNode.InnerText,typeof(APIAuthenticationType));
 			}
 	
 		}
@@ -20148,8 +20284,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *The phone number of the buyer's mobile device, if available.
       *Optional 
       */
-	public partial class SetMobileCheckoutRequestDetailsType	
-	{
+	public partial class SetMobileCheckoutRequestDetailsType	{
 
 		/**
           *
@@ -20405,31 +20540,31 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
 			if(BuyerPhone != null)
 			{
 				sb.Append("<ebl:BuyerPhone>");
-				sb.Append(BuyerPhone.toXMLString());
+				sb.Append(BuyerPhone.ToXMLString());
 				sb.Append("</ebl:BuyerPhone>");
 			}
 			if(ItemAmount != null)
 			{
 				sb.Append("<ebl:ItemAmount");
-				sb.Append(ItemAmount.toXMLString());
+				sb.Append(ItemAmount.ToXMLString());
 				sb.Append("</ebl:ItemAmount>");
 			}
 			if(Tax != null)
 			{
 				sb.Append("<ebl:Tax");
-				sb.Append(Tax.toXMLString());
+				sb.Append(Tax.ToXMLString());
 				sb.Append("</ebl:Tax>");
 			}
 			if(Shipping != null)
 			{
 				sb.Append("<ebl:Shipping");
-				sb.Append(Shipping.toXMLString());
+				sb.Append(Shipping.ToXMLString());
 				sb.Append("</ebl:Shipping>");
 			}
 			if(ItemName != null)
@@ -20475,7 +20610,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			if(ShipToAddress != null)
 			{
 				sb.Append("<ebl:ShipToAddress>");
-				sb.Append(ShipToAddress.toXMLString());
+				sb.Append(ShipToAddress.ToXMLString());
 				sb.Append("</ebl:ShipToAddress>");
 			}
 			if(BuyerEmail != null)
@@ -20497,8 +20632,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *Optional Character length and limitations: 256 single-byte
       *alphanumeric characters 
       */
-	public partial class DoMobileCheckoutPaymentResponseDetailsType	
-	{
+	public partial class DoMobileCheckoutPaymentResponseDetailsType	{
 
 		/**
           *
@@ -20609,8 +20743,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *UATP Card Details Type 
       */
-	public partial class UATPDetailsType	
-	{
+	public partial class UATPDetailsType	{
 
 		/**
           *
@@ -20670,7 +20803,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
 			if(UATPNumber != null)
@@ -20720,8 +20853,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class RecurringPaymentsSummaryType	
-	{
+	public partial class RecurringPaymentsSummaryType	{
 
 		/**
           *
@@ -20898,8 +21030,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class ActivationDetailsType	
-	{
+	public partial class ActivationDetailsType	{
 
 		/**
           *
@@ -20949,18 +21080,18 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
 			if(InitialAmount != null)
 			{
 				sb.Append("<ebl:InitialAmount");
-				sb.Append(InitialAmount.toXMLString());
+				sb.Append(InitialAmount.ToXMLString());
 				sb.Append("</ebl:InitialAmount>");
 			}
 			if(FailedInitialAmountAction != null)
 			{
-				sb.Append("<ebl:FailedInitialAmountAction>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(FailedInitialAmountAction)));
+				sb.Append("<ebl:FailedInitialAmountAction>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(FailedInitialAmountAction)));
 				sb.Append("</ebl:FailedInitialAmountAction>");
 			}
 			return sb.ToString();
@@ -20974,8 +21105,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *Unit of meausre for billing cycle 
       */
-	public partial class BillingPeriodDetailsType	
-	{
+	public partial class BillingPeriodDetailsType	{
 
 		/**
           *
@@ -21095,12 +21225,12 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
 			if(BillingPeriod != null)
 			{
-				sb.Append("<ebl:BillingPeriod>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(BillingPeriod)));
+				sb.Append("<ebl:BillingPeriod>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(BillingPeriod)));
 				sb.Append("</ebl:BillingPeriod>");
 			}
 			if(BillingFrequency != null)
@@ -21116,19 +21246,19 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			if(Amount != null)
 			{
 				sb.Append("<ebl:Amount");
-				sb.Append(Amount.toXMLString());
+				sb.Append(Amount.ToXMLString());
 				sb.Append("</ebl:Amount>");
 			}
 			if(ShippingAmount != null)
 			{
 				sb.Append("<ebl:ShippingAmount");
-				sb.Append(ShippingAmount.toXMLString());
+				sb.Append(ShippingAmount.ToXMLString());
 				sb.Append("</ebl:ShippingAmount>");
 			}
 			if(TaxAmount != null)
 			{
 				sb.Append("<ebl:TaxAmount");
-				sb.Append(TaxAmount.toXMLString());
+				sb.Append(TaxAmount.ToXMLString());
 				sb.Append("</ebl:TaxAmount>");
 			}
 			return sb.ToString();
@@ -21141,7 +21271,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'BillingPeriod']");
 			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.BillingPeriod = (BillingPeriodType)EnumUtils.getValue(ChildNode.InnerText,typeof(BillingPeriodType));
+				this.BillingPeriod = (BillingPeriodType)EnumUtils.GetValue(ChildNode.InnerText,typeof(BillingPeriodType));
 			}
 			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'BillingFrequency']");
 			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
@@ -21178,8 +21308,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *Unit of meausre for billing cycle 
       */
-	public partial class BillingPeriodDetailsType_Update	
-	{
+	public partial class BillingPeriodDetailsType_Update	{
 
 		/**
           *
@@ -21290,12 +21419,12 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
 			if(BillingPeriod != null)
 			{
-				sb.Append("<ebl:BillingPeriod>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(BillingPeriod)));
+				sb.Append("<ebl:BillingPeriod>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(BillingPeriod)));
 				sb.Append("</ebl:BillingPeriod>");
 			}
 			if(BillingFrequency != null)
@@ -21311,19 +21440,19 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			if(Amount != null)
 			{
 				sb.Append("<ebl:Amount");
-				sb.Append(Amount.toXMLString());
+				sb.Append(Amount.ToXMLString());
 				sb.Append("</ebl:Amount>");
 			}
 			if(ShippingAmount != null)
 			{
 				sb.Append("<ebl:ShippingAmount");
-				sb.Append(ShippingAmount.toXMLString());
+				sb.Append(ShippingAmount.ToXMLString());
 				sb.Append("</ebl:ShippingAmount>");
 			}
 			if(TaxAmount != null)
 			{
 				sb.Append("<ebl:TaxAmount");
-				sb.Append(TaxAmount.toXMLString());
+				sb.Append(TaxAmount.ToXMLString());
 				sb.Append("</ebl:TaxAmount>");
 			}
 			return sb.ToString();
@@ -21337,8 +21466,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *Schedule details for the Recurring Payment 
       */
-	public partial class ScheduleDetailsType	
-	{
+	public partial class ScheduleDetailsType	{
 
 		/**
           *
@@ -21457,7 +21585,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
 			if(Description != null)
@@ -21468,13 +21596,13 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			if(TrialPeriod != null)
 			{
 				sb.Append("<ebl:TrialPeriod>");
-				sb.Append(TrialPeriod.toXMLString());
+				sb.Append(TrialPeriod.ToXMLString());
 				sb.Append("</ebl:TrialPeriod>");
 			}
 			if(PaymentPeriod != null)
 			{
 				sb.Append("<ebl:PaymentPeriod>");
-				sb.Append(PaymentPeriod.toXMLString());
+				sb.Append(PaymentPeriod.ToXMLString());
 				sb.Append("</ebl:PaymentPeriod>");
 			}
 			if(MaxFailedPayments != null)
@@ -21485,12 +21613,12 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			if(ActivationDetails != null)
 			{
 				sb.Append("<ebl:ActivationDetails>");
-				sb.Append(ActivationDetails.toXMLString());
+				sb.Append(ActivationDetails.ToXMLString());
 				sb.Append("</ebl:ActivationDetails>");
 			}
 			if(AutoBillOutstandingAmount != null)
 			{
-				sb.Append("<ebl:AutoBillOutstandingAmount>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(AutoBillOutstandingAmount)));
+				sb.Append("<ebl:AutoBillOutstandingAmount>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(AutoBillOutstandingAmount)));
 				sb.Append("</ebl:AutoBillOutstandingAmount>");
 			}
 			return sb.ToString();
@@ -21505,8 +21633,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *Subscriber name - if missing, will use name in buyer's
       *account 
       */
-	public partial class RecurringPaymentsProfileDetailsType	
-	{
+	public partial class RecurringPaymentsProfileDetailsType	{
 
 		/**
           *
@@ -21590,7 +21717,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
 			if(SubscriberName != null)
@@ -21601,7 +21728,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			if(SubscriberShippingAddress != null)
 			{
 				sb.Append("<ebl:SubscriberShippingAddress>");
-				sb.Append(SubscriberShippingAddress.toXMLString());
+				sb.Append(SubscriberShippingAddress.ToXMLString());
 				sb.Append("</ebl:SubscriberShippingAddress>");
 			}
 			if(BillingStartDate != null)
@@ -21651,8 +21778,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *Billing Agreement token (required if Express Checkout) 
       */
-	public partial class CreateRecurringPaymentsProfileRequestDetailsType	
-	{
+	public partial class CreateRecurringPaymentsProfileRequestDetailsType	{
 
 		/**
           *
@@ -21754,7 +21880,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
 			if(Token != null)
@@ -21765,19 +21891,19 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			if(CreditCard != null)
 			{
 				sb.Append("<ebl:CreditCard>");
-				sb.Append(CreditCard.toXMLString());
+				sb.Append(CreditCard.ToXMLString());
 				sb.Append("</ebl:CreditCard>");
 			}
 			if(RecurringPaymentsProfileDetails != null)
 			{
 				sb.Append("<ebl:RecurringPaymentsProfileDetails>");
-				sb.Append(RecurringPaymentsProfileDetails.toXMLString());
+				sb.Append(RecurringPaymentsProfileDetails.ToXMLString());
 				sb.Append("</ebl:RecurringPaymentsProfileDetails>");
 			}
 			if(ScheduleDetails != null)
 			{
 				sb.Append("<ebl:ScheduleDetails>");
-				sb.Append(ScheduleDetails.toXMLString());
+				sb.Append(ScheduleDetails.ToXMLString());
 				sb.Append("</ebl:ScheduleDetails>");
 			}
 			if(PaymentDetailsItem != null)
@@ -21785,7 +21911,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 				for(int i = 0; i < PaymentDetailsItem.Count; i++)
 				{
 					sb.Append("<ebl:PaymentDetailsItem>");
-					sb.Append(PaymentDetailsItem[i].toXMLString());
+					sb.Append(PaymentDetailsItem[i].ToXMLString());
 					sb.Append("</ebl:PaymentDetailsItem>");
 				}
 			}
@@ -21800,8 +21926,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *Recurring Billing Profile ID 
       */
-	public partial class CreateRecurringPaymentsProfileResponseDetailsType	
-	{
+	public partial class CreateRecurringPaymentsProfileResponseDetailsType	{
 
 		/**
           *
@@ -21907,7 +22032,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'ProfileStatus']");
 			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.ProfileStatus = (RecurringPaymentsProfileStatusType)EnumUtils.getValue(ChildNode.InnerText,typeof(RecurringPaymentsProfileStatusType));
+				this.ProfileStatus = (RecurringPaymentsProfileStatusType)EnumUtils.GetValue(ChildNode.InnerText,typeof(RecurringPaymentsProfileStatusType));
 			}
 			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'TransactionID']");
 			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
@@ -21934,8 +22059,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *Recurring Billing Profile ID 
       */
-	public partial class GetRecurringPaymentsProfileDetailsResponseDetailsType	
-	{
+	public partial class GetRecurringPaymentsProfileDetailsResponseDetailsType	{
 
 		/**
           *
@@ -22228,7 +22352,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'ProfileStatus']");
 			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.ProfileStatus = (RecurringPaymentsProfileStatusType)EnumUtils.getValue(ChildNode.InnerText,typeof(RecurringPaymentsProfileStatusType));
+				this.ProfileStatus = (RecurringPaymentsProfileStatusType)EnumUtils.GetValue(ChildNode.InnerText,typeof(RecurringPaymentsProfileStatusType));
 			}
 			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'Description']");
 			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
@@ -22238,7 +22362,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'AutoBillOutstandingAmount']");
 			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.AutoBillOutstandingAmount = (AutoBillType)EnumUtils.getValue(ChildNode.InnerText,typeof(AutoBillType));
+				this.AutoBillOutstandingAmount = (AutoBillType)EnumUtils.GetValue(ChildNode.InnerText,typeof(AutoBillType));
 			}
 			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'MaxFailedPayments']");
 			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
@@ -22310,8 +22434,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class ManageRecurringPaymentsProfileStatusRequestDetailsType	
-	{
+	public partial class ManageRecurringPaymentsProfileStatusRequestDetailsType	{
 
 		/**
           *
@@ -22379,7 +22502,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
 			if(ProfileID != null)
@@ -22389,7 +22512,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(Action != null)
 			{
-				sb.Append("<ebl:Action>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(Action)));
+				sb.Append("<ebl:Action>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(Action)));
 				sb.Append("</ebl:Action>");
 			}
 			if(Note != null)
@@ -22408,8 +22531,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class ManageRecurringPaymentsProfileStatusResponseDetailsType	
-	{
+	public partial class ManageRecurringPaymentsProfileStatusResponseDetailsType	{
 
 		/**
           *
@@ -22454,8 +22576,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class BillOutstandingAmountRequestDetailsType	
-	{
+	public partial class BillOutstandingAmountRequestDetailsType	{
 
 		/**
           *
@@ -22522,7 +22643,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
 			if(ProfileID != null)
@@ -22533,7 +22654,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			if(Amount != null)
 			{
 				sb.Append("<ebl:Amount");
-				sb.Append(Amount.toXMLString());
+				sb.Append(Amount.ToXMLString());
 				sb.Append("</ebl:Amount>");
 			}
 			if(Note != null)
@@ -22552,8 +22673,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class BillOutstandingAmountResponseDetailsType	
-	{
+	public partial class BillOutstandingAmountResponseDetailsType	{
 
 		/**
           *
@@ -22598,8 +22718,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class UpdateRecurringPaymentsProfileRequestDetailsType	
-	{
+	public partial class UpdateRecurringPaymentsProfileRequestDetailsType	{
 
 		/**
           *
@@ -22904,7 +23023,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
 			if(ProfileID != null)
@@ -22930,7 +23049,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			if(SubscriberShippingAddress != null)
 			{
 				sb.Append("<ebl:SubscriberShippingAddress>");
-				sb.Append(SubscriberShippingAddress.toXMLString());
+				sb.Append(SubscriberShippingAddress.ToXMLString());
 				sb.Append("</ebl:SubscriberShippingAddress>");
 			}
 			if(ProfileReference != null)
@@ -22946,30 +23065,30 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			if(Amount != null)
 			{
 				sb.Append("<ebl:Amount");
-				sb.Append(Amount.toXMLString());
+				sb.Append(Amount.ToXMLString());
 				sb.Append("</ebl:Amount>");
 			}
 			if(ShippingAmount != null)
 			{
 				sb.Append("<ebl:ShippingAmount");
-				sb.Append(ShippingAmount.toXMLString());
+				sb.Append(ShippingAmount.ToXMLString());
 				sb.Append("</ebl:ShippingAmount>");
 			}
 			if(TaxAmount != null)
 			{
 				sb.Append("<ebl:TaxAmount");
-				sb.Append(TaxAmount.toXMLString());
+				sb.Append(TaxAmount.ToXMLString());
 				sb.Append("</ebl:TaxAmount>");
 			}
 			if(OutstandingBalance != null)
 			{
 				sb.Append("<ebl:OutstandingBalance");
-				sb.Append(OutstandingBalance.toXMLString());
+				sb.Append(OutstandingBalance.ToXMLString());
 				sb.Append("</ebl:OutstandingBalance>");
 			}
 			if(AutoBillOutstandingAmount != null)
 			{
-				sb.Append("<ebl:AutoBillOutstandingAmount>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(AutoBillOutstandingAmount)));
+				sb.Append("<ebl:AutoBillOutstandingAmount>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(AutoBillOutstandingAmount)));
 				sb.Append("</ebl:AutoBillOutstandingAmount>");
 			}
 			if(MaxFailedPayments != null)
@@ -22980,7 +23099,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			if(CreditCard != null)
 			{
 				sb.Append("<ebl:CreditCard>");
-				sb.Append(CreditCard.toXMLString());
+				sb.Append(CreditCard.ToXMLString());
 				sb.Append("</ebl:CreditCard>");
 			}
 			if(BillingStartDate != null)
@@ -22991,13 +23110,13 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			if(TrialPeriod != null)
 			{
 				sb.Append("<ebl:TrialPeriod>");
-				sb.Append(TrialPeriod.toXMLString());
+				sb.Append(TrialPeriod.ToXMLString());
 				sb.Append("</ebl:TrialPeriod>");
 			}
 			if(PaymentPeriod != null)
 			{
 				sb.Append("<ebl:PaymentPeriod>");
-				sb.Append(PaymentPeriod.toXMLString());
+				sb.Append(PaymentPeriod.ToXMLString());
 				sb.Append("</ebl:PaymentPeriod>");
 			}
 			return sb.ToString();
@@ -23011,8 +23130,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class UpdateRecurringPaymentsProfileResponseDetailsType	
-	{
+	public partial class UpdateRecurringPaymentsProfileResponseDetailsType	{
 
 		/**
           *
@@ -23057,8 +23175,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *Details of Risk Filter. 
       */
-	public partial class RiskFilterDetailsType	
-	{
+	public partial class RiskFilterDetailsType	{
 
 		/**
           *
@@ -23147,8 +23264,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *Details of Risk Filter. 
       */
-	public partial class RiskFilterListType	
-	{
+	public partial class RiskFilterListType	{
 
 		/**
           *
@@ -23198,8 +23314,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *Thes are filters that could result in accept/deny/pending
       *action. 
       */
-	public partial class FMFDetailsType	
-	{
+	public partial class FMFDetailsType	{
 
 		/**
           *
@@ -23310,8 +23425,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *Enhanced Data Information. Example: AID for Airlines 
       */
-	public partial class EnhancedDataType	
-	{
+	public partial class EnhancedDataType	{
 
 		/**
           *
@@ -23337,13 +23451,13 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
 			if(AirlineItinerary != null)
 			{
 				sb.Append("<ebl:AirlineItinerary>");
-				sb.Append(AirlineItinerary.toXMLString());
+				sb.Append(AirlineItinerary.ToXMLString());
 				sb.Append("</ebl:AirlineItinerary>");
 			}
 			return sb.ToString();
@@ -23357,8 +23471,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *AID for Airlines 
       */
-	public partial class AirlineItineraryType	
-	{
+	public partial class AirlineItineraryType	{
 
 		/**
           *
@@ -23605,7 +23718,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
 			if(PassengerName != null)
@@ -23646,19 +23759,19 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			if(TotalFare != null)
 			{
 				sb.Append("<ebl:TotalFare");
-				sb.Append(TotalFare.toXMLString());
+				sb.Append(TotalFare.ToXMLString());
 				sb.Append("</ebl:TotalFare>");
 			}
 			if(TotalTaxes != null)
 			{
 				sb.Append("<ebl:TotalTaxes");
-				sb.Append(TotalTaxes.toXMLString());
+				sb.Append(TotalTaxes.ToXMLString());
 				sb.Append("</ebl:TotalTaxes>");
 			}
 			if(TotalFee != null)
 			{
 				sb.Append("<ebl:TotalFee");
-				sb.Append(TotalFee.toXMLString());
+				sb.Append(TotalFee.ToXMLString());
 				sb.Append("</ebl:TotalFee>");
 			}
 			if(RestrictedTicket != null)
@@ -23681,7 +23794,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 				for(int i = 0; i < FlightDetails.Count; i++)
 				{
 					sb.Append("<ebl:FlightDetails>");
-					sb.Append(FlightDetails[i].toXMLString());
+					sb.Append(FlightDetails[i].ToXMLString());
 					sb.Append("</ebl:FlightDetails>");
 				}
 			}
@@ -23696,8 +23809,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *Details of leg information 
       */
-	public partial class FlightDetailsType	
-	{
+	public partial class FlightDetailsType	{
 
 		/**
           *
@@ -23995,7 +24107,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
 			if(ConjuctionTicket != null)
@@ -24066,19 +24178,19 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			if(Fare != null)
 			{
 				sb.Append("<ebl:Fare");
-				sb.Append(Fare.toXMLString());
+				sb.Append(Fare.ToXMLString());
 				sb.Append("</ebl:Fare>");
 			}
 			if(Taxes != null)
 			{
 				sb.Append("<ebl:Taxes");
-				sb.Append(Taxes.toXMLString());
+				sb.Append(Taxes.ToXMLString());
 				sb.Append("</ebl:Taxes>");
 			}
 			if(Fee != null)
 			{
 				sb.Append("<ebl:Fee");
-				sb.Append(Fee.toXMLString());
+				sb.Append(Fee.ToXMLString());
 				sb.Append("</ebl:Fee>");
 			}
 			if(EndorsementOrRestrictions != null)
@@ -24097,8 +24209,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *Authorization details 
       */
-	public partial class AuthorizationInfoType	
-	{
+	public partial class AuthorizationInfoType	{
 
 		/**
           *
@@ -24182,12 +24293,12 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'PaymentStatus']");
 			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.PaymentStatus = (PaymentStatusCodeType)EnumUtils.getValue(ChildNode.InnerText,typeof(PaymentStatusCodeType));
+				this.PaymentStatus = (PaymentStatusCodeType)EnumUtils.GetValue(ChildNode.InnerText,typeof(PaymentStatusCodeType));
 			}
 			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'PendingReason']");
 			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.PendingReason = (PendingStatusCodeType)EnumUtils.getValue(ChildNode.InnerText,typeof(PendingStatusCodeType));
+				this.PendingReason = (PendingStatusCodeType)EnumUtils.GetValue(ChildNode.InnerText,typeof(PendingStatusCodeType));
 			}
 			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'ProtectionEligibility']");
 			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
@@ -24209,8 +24320,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *Option Number. Optional 
       */
-	public partial class OptionTrackingDetailsType	
-	{
+	public partial class OptionTrackingDetailsType	{
 
 		/**
           *
@@ -24321,7 +24431,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
 			if(OptionNumber != null)
@@ -24401,8 +24511,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *Item Number. Required 
       */
-	public partial class ItemTrackingDetailsType	
-	{
+	public partial class ItemTrackingDetailsType	{
 
 		/**
           *
@@ -24496,7 +24605,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
 			if(ItemNumber != null)
@@ -24566,8 +24675,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class ButtonSearchResultType	
-	{
+	public partial class ButtonSearchResultType	{
 
 		/**
           *
@@ -24680,8 +24788,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *length and limitations: 17 single-byte alphanumeric
       *characters 
       */
-	public partial class ReverseTransactionRequestDetailsType	
-	{
+	public partial class ReverseTransactionRequestDetailsType	{
 
 		/**
           *
@@ -24707,7 +24814,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
 			if(TransactionID != null)
@@ -24728,8 +24835,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *created. Character length and limitations:17 single-byte
       *characters 
       */
-	public partial class ReverseTransactionResponseDetailsType	
-	{
+	public partial class ReverseTransactionResponseDetailsType	{
 
 		/**
           *
@@ -24796,8 +24902,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *Details of incentive application on individual bucket. 
       */
-	public partial class IncentiveInfoType	
-	{
+	public partial class IncentiveInfoType	{
 
 		/**
           *
@@ -24840,7 +24945,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
 			if(IncentiveCode != null)
@@ -24853,7 +24958,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 				for(int i = 0; i < ApplyIndication.Count; i++)
 				{
 					sb.Append("<ebl:ApplyIndication>");
-					sb.Append(ApplyIndication[i].toXMLString());
+					sb.Append(ApplyIndication[i].ToXMLString());
 					sb.Append("</ebl:ApplyIndication>");
 				}
 			}
@@ -24869,8 +24974,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *Defines which bucket or item that the incentive should be
       *applied to. 
       */
-	public partial class IncentiveApplyIndicationType	
-	{
+	public partial class IncentiveApplyIndicationType	{
 
 		/**
           *
@@ -24913,7 +25017,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
 			if(PaymentRequestID != null)
@@ -24938,8 +25042,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *Contains payment request information for each bucket in the
       *cart.  
       */
-	public partial class PaymentRequestInfoType	
-	{
+	public partial class PaymentRequestInfoType	{
 
 		/**
           *
@@ -25029,8 +25132,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *E-mail address or secure merchant account ID of merchant to
       *associate with new external remember-me. 
       */
-	public partial class ExternalRememberMeOwnerDetailsType	
-	{
+	public partial class ExternalRememberMeOwnerDetailsType	{
 
 		/**
           *
@@ -25073,7 +25175,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
 			if(ExternalRememberMeOwnerIDType != null)
@@ -25100,8 +25202,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *buyer or to request login bypass using external remember me.
       *
       */
-	public partial class ExternalRememberMeOptInDetailsType	
-	{
+	public partial class ExternalRememberMeOptInDetailsType	{
 
 		/**
           *
@@ -25144,7 +25245,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
 			if(ExternalRememberMeOptIn != null)
@@ -25155,7 +25256,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			if(ExternalRememberMeOwnerDetails != null)
 			{
 				sb.Append("<ebl:ExternalRememberMeOwnerDetails>");
-				sb.Append(ExternalRememberMeOwnerDetails.toXMLString());
+				sb.Append(ExternalRememberMeOwnerDetails.ToXMLString());
 				sb.Append("</ebl:ExternalRememberMeOwnerDetails>");
 			}
 			return sb.ToString();
@@ -25169,8 +25270,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *An optional set of values related to flow-specific details. 
       */
-	public partial class FlowControlDetailsType	
-	{
+	public partial class FlowControlDetailsType	{
 
 		/**
           *
@@ -25213,7 +25313,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
 			if(ErrorURL != null)
@@ -25238,8 +25338,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *Response information resulting from opt-in operation or
       *current login bypass status. 
       */
-	public partial class ExternalRememberMeStatusDetailsType	
-	{
+	public partial class ExternalRememberMeStatusDetailsType	{
 
 		/**
           *
@@ -25304,11 +25403,100 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 	/**
+      *Response information resulting from opt-in operation or
+      *current login bypass status. 
+      */
+	public partial class RefreshTokenStatusDetailsType	{
+
+		/**
+          *
+		  */
+		private int? RefreshTokenStatusField;
+		public int? RefreshTokenStatus
+		{
+			get
+			{
+				return this.RefreshTokenStatusField;
+			}
+			set
+			{
+				this.RefreshTokenStatusField = value;
+			}
+		}
+		
+
+		/**
+          *
+		  */
+		private string RefreshTokenField;
+		public string RefreshToken
+		{
+			get
+			{
+				return this.RefreshTokenField;
+			}
+			set
+			{
+				this.RefreshTokenField = value;
+			}
+		}
+		
+
+		/**
+          *
+		  */
+		private string ImmutableIDField;
+		public string ImmutableID
+		{
+			get
+			{
+				return this.ImmutableIDField;
+			}
+			set
+			{
+				this.ImmutableIDField = value;
+			}
+		}
+		
+
+		/**
+	 	  * Default Constructor
+	 	  */
+	 	public RefreshTokenStatusDetailsType(){
+		}
+
+
+		public RefreshTokenStatusDetailsType(XmlNode xmlNode)
+		{
+			XmlNode ChildNode = null;
+			XmlNodeList ChildNodeList = null;
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'RefreshTokenStatus']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
+			{
+				this.RefreshTokenStatus = System.Convert.ToInt32(ChildNode.InnerText);
+			}
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'RefreshToken']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
+			{
+				this.RefreshToken = ChildNode.InnerText;
+			}
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'ImmutableID']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
+			{
+				this.ImmutableID = ChildNode.InnerText;
+			}
+	
+		}
+	}
+
+
+
+
+	/**
       *Contains elements that allows customization of display (user
       *interface) elements. 
       */
-	public partial class DisplayControlDetailsType	
-	{
+	public partial class DisplayControlDetailsType	{
 
 		/**
           *
@@ -25334,7 +25522,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
 			if(InContextPaymentButtonImage != null)
@@ -25354,8 +25542,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *Contains elements that allow tracking for an external
       *partner. 
       */
-	public partial class ExternalPartnerTrackingDetailsType	
-	{
+	public partial class ExternalPartnerTrackingDetailsType	{
 
 		/**
           *
@@ -25381,7 +25568,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
 			if(ExternalPartnerSegmentID != null)
@@ -25401,8 +25588,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *Store IDOptional Character length and limits: 50 single-byte
       *characters 
       */
-	public partial class MerchantStoreDetailsType	
-	{
+	public partial class MerchantStoreDetailsType	{
 
 		/**
           *
@@ -25452,7 +25638,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
 			if(StoreID != null)
@@ -25476,8 +25662,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class AdditionalFeeType	
-	{
+	public partial class AdditionalFeeType	{
 
 		/**
           *
@@ -25520,7 +25705,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
 			if(Type != null)
@@ -25531,12 +25716,28 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			if(Amount != null)
 			{
 				sb.Append("<ebl:Amount");
-				sb.Append(Amount.toXMLString());
+				sb.Append(Amount.ToXMLString());
 				sb.Append("</ebl:Amount>");
 			}
 			return sb.ToString();
 		}
 
+		public AdditionalFeeType(XmlNode xmlNode)
+		{
+			XmlNode ChildNode = null;
+			XmlNodeList ChildNodeList = null;
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'Type']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
+			{
+				this.Type = ChildNode.InnerText;
+			}
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'Amount']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
+			{
+				this.Amount =  new BasicAmountType(ChildNode);
+			}
+	
+		}
 	}
 
 
@@ -25545,8 +25746,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *Describes discount information 
       */
-	public partial class DiscountType	
-	{
+	public partial class DiscountType	{
 
 		/**
           *
@@ -25647,7 +25847,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
 			if(Name != null)
@@ -25663,12 +25863,12 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			if(Amount != null)
 			{
 				sb.Append("<ebl:Amount");
-				sb.Append(Amount.toXMLString());
+				sb.Append(Amount.ToXMLString());
 				sb.Append("</ebl:Amount>");
 			}
 			if(RedeemedOfferType != null)
 			{
-				sb.Append("<ebl:RedeemedOfferType>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(RedeemedOfferType)));
+				sb.Append("<ebl:RedeemedOfferType>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(RedeemedOfferType)));
 				sb.Append("</ebl:RedeemedOfferType>");
 			}
 			if(RedeemedOfferID != null)
@@ -25679,6 +25879,37 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			return sb.ToString();
 		}
 
+		public DiscountType(XmlNode xmlNode)
+		{
+			XmlNode ChildNode = null;
+			XmlNodeList ChildNodeList = null;
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'Name']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
+			{
+				this.Name = ChildNode.InnerText;
+			}
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'Description']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
+			{
+				this.Description = ChildNode.InnerText;
+			}
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'Amount']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
+			{
+				this.Amount =  new BasicAmountType(ChildNode);
+			}
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'RedeemedOfferType']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
+			{
+				this.RedeemedOfferType = (RedeemedOfferType)EnumUtils.GetValue(ChildNode.InnerText,typeof(RedeemedOfferType));
+			}
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'RedeemedOfferID']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
+			{
+				this.RedeemedOfferID = ChildNode.InnerText;
+			}
+	
+		}
 	}
 
 
@@ -25687,8 +25918,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *Describes an individual item for an invoice. 
       */
-	public partial class InvoiceItemType	
-	{
+	public partial class InvoiceItemType	{
 
 		/**
           *
@@ -26020,7 +26250,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
 			if(Name != null)
@@ -26051,13 +26281,13 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			if(Price != null)
 			{
 				sb.Append("<ebl:Price");
-				sb.Append(Price.toXMLString());
+				sb.Append(Price.ToXMLString());
 				sb.Append("</ebl:Price>");
 			}
 			if(ItemPrice != null)
 			{
 				sb.Append("<ebl:ItemPrice");
-				sb.Append(ItemPrice.toXMLString());
+				sb.Append(ItemPrice.ToXMLString());
 				sb.Append("</ebl:ItemPrice>");
 			}
 			if(ItemCount != null)
@@ -26067,7 +26297,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(ItemCountUnit != null)
 			{
-				sb.Append("<ebl:ItemCountUnit>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(ItemCountUnit)));
+				sb.Append("<ebl:ItemCountUnit>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(ItemCountUnit)));
 				sb.Append("</ebl:ItemCountUnit>");
 			}
 			if(Discount != null)
@@ -26075,7 +26305,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 				for(int i = 0; i < Discount.Count; i++)
 				{
 					sb.Append("<ebl:Discount>");
-					sb.Append(Discount[i].toXMLString());
+					sb.Append(Discount[i].ToXMLString());
 					sb.Append("</ebl:Discount>");
 				}
 			}
@@ -26094,7 +26324,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 				for(int i = 0; i < AdditionalFees.Count; i++)
 				{
 					sb.Append("<ebl:AdditionalFees>");
-					sb.Append(AdditionalFees[i].toXMLString());
+					sb.Append(AdditionalFees[i].ToXMLString());
 					sb.Append("</ebl:AdditionalFees>");
 				}
 			}
@@ -26131,6 +26361,115 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			return sb.ToString();
 		}
 
+		public InvoiceItemType(XmlNode xmlNode)
+		{
+			XmlNode ChildNode = null;
+			XmlNodeList ChildNodeList = null;
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'Name']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
+			{
+				this.Name = ChildNode.InnerText;
+			}
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'Description']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
+			{
+				this.Description = ChildNode.InnerText;
+			}
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'EAN']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
+			{
+				this.EAN = ChildNode.InnerText;
+			}
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'SKU']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
+			{
+				this.SKU = ChildNode.InnerText;
+			}
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'ReturnPolicyIdentifier']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
+			{
+				this.ReturnPolicyIdentifier = ChildNode.InnerText;
+			}
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'Price']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
+			{
+				this.Price =  new BasicAmountType(ChildNode);
+			}
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'ItemPrice']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
+			{
+				this.ItemPrice =  new BasicAmountType(ChildNode);
+			}
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'ItemCount']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
+			{
+				this.ItemCount = System.Convert.ToDecimal(ChildNode.InnerText);
+			}
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'ItemCountUnit']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
+			{
+				this.ItemCountUnit = (UnitOfMeasure)EnumUtils.GetValue(ChildNode.InnerText,typeof(UnitOfMeasure));
+			}
+			ChildNodeList = xmlNode.SelectNodes("*[local-name() = 'Discount']");
+			if (ChildNodeList != null && ChildNodeList.Count > 0)
+			{
+				for(int i = 0; i < ChildNodeList.Count; i++)
+				{
+					XmlNode subNode = ChildNodeList.Item(i);
+					this.Discount.Add(new DiscountType(subNode));
+				}
+			}
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'Taxable']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
+			{
+				this.Taxable = System.Convert.ToBoolean(ChildNode.InnerText);
+			}
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'TaxRate']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
+			{
+				this.TaxRate = System.Convert.ToDecimal(ChildNode.InnerText);
+			}
+			ChildNodeList = xmlNode.SelectNodes("*[local-name() = 'AdditionalFees']");
+			if (ChildNodeList != null && ChildNodeList.Count > 0)
+			{
+				for(int i = 0; i < ChildNodeList.Count; i++)
+				{
+					XmlNode subNode = ChildNodeList.Item(i);
+					this.AdditionalFees.Add(new AdditionalFeeType(subNode));
+				}
+			}
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'Reimbursable']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
+			{
+				this.Reimbursable = System.Convert.ToBoolean(ChildNode.InnerText);
+			}
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'MPN']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
+			{
+				this.MPN = ChildNode.InnerText;
+			}
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'ISBN']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
+			{
+				this.ISBN = ChildNode.InnerText;
+			}
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'PLU']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
+			{
+				this.PLU = ChildNode.InnerText;
+			}
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'ModelNumber']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
+			{
+				this.ModelNumber = ChildNode.InnerText;
+			}
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'StyleNumber']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
+			{
+				this.StyleNumber = ChildNode.InnerText;
+			}
+	
+		}
 	}
 
 
@@ -26139,8 +26478,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *Holds refunds payment status information 
       */
-	public partial class RefundInfoType	
-	{
+	public partial class RefundInfoType	{
 
 		/**
           *
@@ -26190,12 +26528,12 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'RefundStatus']");
 			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.RefundStatus = (PaymentStatusCodeType)EnumUtils.getValue(ChildNode.InnerText,typeof(PaymentStatusCodeType));
+				this.RefundStatus = (PaymentStatusCodeType)EnumUtils.GetValue(ChildNode.InnerText,typeof(PaymentStatusCodeType));
 			}
 			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'PendingReason']");
 			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.PendingReason = (PendingStatusCodeType)EnumUtils.getValue(ChildNode.InnerText,typeof(PendingStatusCodeType));
+				this.PendingReason = (PendingStatusCodeType)EnumUtils.GetValue(ChildNode.InnerText,typeof(PendingStatusCodeType));
 			}
 	
 		}
@@ -26207,8 +26545,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *Defines relationship between buckets 
       */
-	public partial class CoupledBucketsType	
-	{
+	public partial class CoupledBucketsType	{
 
 		/**
           *
@@ -26275,12 +26612,12 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
 			if(CoupleType != null)
 			{
-				sb.Append("<ebl:CoupleType>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(CoupleType)));
+				sb.Append("<ebl:CoupleType>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(CoupleType)));
 				sb.Append("</ebl:CoupleType>");
 			}
 			if(CoupledPaymentRequestID != null)
@@ -26307,8 +26644,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *Information about Coupled Payment transactions. 
       */
-	public partial class CoupledPaymentInfoType	
-	{
+	public partial class CoupledPaymentInfoType	{
 
 		/**
           *
@@ -26375,8 +26711,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class EnhancedCheckoutDataType	
-	{
+	public partial class EnhancedCheckoutDataType	{
 
 		/**
 	 	  * Default Constructor
@@ -26385,7 +26720,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
 			return sb.ToString();
@@ -26399,8 +26734,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class EnhancedPaymentDataType	
-	{
+	public partial class EnhancedPaymentDataType	{
 
 		/**
 	 	  * Default Constructor
@@ -26409,7 +26743,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
 			return sb.ToString();
@@ -26429,8 +26763,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class EnhancedItemDataType	
-	{
+	public partial class EnhancedItemDataType	{
 
 		/**
 	 	  * Default Constructor
@@ -26439,7 +26772,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
 			return sb.ToString();
@@ -26459,8 +26792,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class EnhancedPaymentInfoType	
-	{
+	public partial class EnhancedPaymentInfoType	{
 
 		/**
 	 	  * Default Constructor
@@ -26483,8 +26815,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class EnhancedInitiateRecoupRequestDetailsType	
-	{
+	public partial class EnhancedInitiateRecoupRequestDetailsType	{
 
 		/**
 	 	  * Default Constructor
@@ -26493,7 +26824,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
 			return sb.ToString();
@@ -26507,8 +26838,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class EnhancedCompleteRecoupRequestDetailsType	
-	{
+	public partial class EnhancedCompleteRecoupRequestDetailsType	{
 
 		/**
 	 	  * Default Constructor
@@ -26517,7 +26847,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
 			return sb.ToString();
@@ -26531,8 +26861,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class EnhancedCompleteRecoupResponseDetailsType	
-	{
+	public partial class EnhancedCompleteRecoupResponseDetailsType	{
 
 		/**
 	 	  * Default Constructor
@@ -26555,8 +26884,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class EnhancedCancelRecoupRequestDetailsType	
-	{
+	public partial class EnhancedCancelRecoupRequestDetailsType	{
 
 		/**
 	 	  * Default Constructor
@@ -26565,7 +26893,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
 			return sb.ToString();
@@ -26579,8 +26907,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class EnhancedPayerInfoType	
-	{
+	public partial class EnhancedPayerInfoType	{
 
 		/**
 	 	  * Default Constructor
@@ -26589,7 +26916,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
 			return sb.ToString();
@@ -26609,8 +26936,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *Installment Period. Optional 
       */
-	public partial class InstallmentDetailsType	
-	{
+	public partial class InstallmentDetailsType	{
 
 		/**
           *
@@ -26721,12 +27047,12 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
 			if(BillingPeriod != null)
 			{
-				sb.Append("<urn:BillingPeriod>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(BillingPeriod)));
+				sb.Append("<urn:BillingPeriod>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(BillingPeriod)));
 				sb.Append("</urn:BillingPeriod>");
 			}
 			if(BillingFrequency != null)
@@ -26764,7 +27090,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'BillingPeriod']");
 			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.BillingPeriod = (BillingPeriodType)EnumUtils.getValue(ChildNode.InnerText,typeof(BillingPeriodType));
+				this.BillingPeriod = (BillingPeriodType)EnumUtils.GetValue(ChildNode.InnerText,typeof(BillingPeriodType));
 			}
 			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'BillingFrequency']");
 			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
@@ -26802,8 +27128,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *Option Selection. Required Character length and limitations:
       *12 single-byte alphanumeric characters 
       */
-	public partial class OptionSelectionDetailsType	
-	{
+	public partial class OptionSelectionDetailsType	{
 
 		/**
           *
@@ -26887,7 +27212,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
 			if(OptionSelection != null)
@@ -26902,7 +27227,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(OptionType != null)
 			{
-				sb.Append("<urn:OptionType>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(OptionType)));
+				sb.Append("<urn:OptionType>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(OptionType)));
 				sb.Append("</urn:OptionType>");
 			}
 			if(PaymentPeriod != null)
@@ -26910,7 +27235,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 				for(int i = 0; i < PaymentPeriod.Count; i++)
 				{
 					sb.Append("<urn:PaymentPeriod>");
-					sb.Append(PaymentPeriod[i].toXMLString());
+					sb.Append(PaymentPeriod[i].ToXMLString());
 					sb.Append("</urn:PaymentPeriod>");
 				}
 			}
@@ -26934,7 +27259,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'OptionType']");
 			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.OptionType = (OptionTypeListType)EnumUtils.getValue(ChildNode.InnerText,typeof(OptionTypeListType));
+				this.OptionType = (OptionTypeListType)EnumUtils.GetValue(ChildNode.InnerText,typeof(OptionTypeListType));
 			}
 			ChildNodeList = xmlNode.SelectNodes("*[local-name() = 'PaymentPeriod']");
 			if (ChildNodeList != null && ChildNodeList.Count > 0)
@@ -26955,8 +27280,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *Option Name. Optional 
       */
-	public partial class OptionDetailsType	
-	{
+	public partial class OptionDetailsType	{
 
 		/**
           *
@@ -27006,7 +27330,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
 			if(OptionName != null)
@@ -27019,7 +27343,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 				for(int i = 0; i < OptionSelectionDetails.Count; i++)
 				{
 					sb.Append("<urn:OptionSelectionDetails>");
-					sb.Append(OptionSelectionDetails[i].toXMLString());
+					sb.Append(OptionSelectionDetails[i].ToXMLString());
 					sb.Append("</urn:OptionSelectionDetails>");
 				}
 			}
@@ -27054,8 +27378,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class BMCreateButtonReq	
-	{
+	public partial class BMCreateButtonReq	{
 
 		/**
           *
@@ -27081,14 +27404,14 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
 			sb.Append("<urn:BMCreateButtonReq>");
 			if(BMCreateButtonRequest != null)
 			{
 				sb.Append("<urn:BMCreateButtonRequest>");
-				sb.Append(BMCreateButtonRequest.toXMLString());
+				sb.Append(BMCreateButtonRequest.ToXMLString());
 				sb.Append("</urn:BMCreateButtonRequest>");
 			}
 			sb.Append("</urn:BMCreateButtonReq>");
@@ -27105,8 +27428,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *following: BUYNOW, CART, GIFTCERTIFICATE. SUBSCRIBE,
       *PAYMENTPLAN, AUTOBILLING, DONATE, VIEWCART or UNSUBSCRIBE  
       */
-	public partial class BMCreateButtonRequestType : AbstractRequestType	
-	{
+	public partial class BMCreateButtonRequestType : AbstractRequestType	{
 
 		/**
           *
@@ -27319,23 +27641,23 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
-			sb.Append(base.toXMLString());
+			sb.Append(base.ToXMLString());
 			if(ButtonType != null)
 			{
-				sb.Append("<urn:ButtonType>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(ButtonType)));
+				sb.Append("<urn:ButtonType>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(ButtonType)));
 				sb.Append("</urn:ButtonType>");
 			}
 			if(ButtonCode != null)
 			{
-				sb.Append("<urn:ButtonCode>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(ButtonCode)));
+				sb.Append("<urn:ButtonCode>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(ButtonCode)));
 				sb.Append("</urn:ButtonCode>");
 			}
 			if(ButtonSubType != null)
 			{
-				sb.Append("<urn:ButtonSubType>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(ButtonSubType)));
+				sb.Append("<urn:ButtonSubType>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(ButtonSubType)));
 				sb.Append("</urn:ButtonSubType>");
 			}
 			if(ButtonVar != null)
@@ -27351,7 +27673,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 				for(int i = 0; i < OptionDetails.Count; i++)
 				{
 					sb.Append("<urn:OptionDetails>");
-					sb.Append(OptionDetails[i].toXMLString());
+					sb.Append(OptionDetails[i].ToXMLString());
 					sb.Append("</urn:OptionDetails>");
 				}
 			}
@@ -27365,7 +27687,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(ButtonImage != null)
 			{
-				sb.Append("<urn:ButtonImage>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(ButtonImage)));
+				sb.Append("<urn:ButtonImage>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(ButtonImage)));
 				sb.Append("</urn:ButtonImage>");
 			}
 			if(ButtonImageURL != null)
@@ -27375,17 +27697,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(BuyNowText != null)
 			{
-				sb.Append("<urn:BuyNowText>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(BuyNowText)));
+				sb.Append("<urn:BuyNowText>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(BuyNowText)));
 				sb.Append("</urn:BuyNowText>");
 			}
 			if(SubscribeText != null)
 			{
-				sb.Append("<urn:SubscribeText>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(SubscribeText)));
+				sb.Append("<urn:SubscribeText>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(SubscribeText)));
 				sb.Append("</urn:SubscribeText>");
 			}
 			if(ButtonCountry != null)
 			{
-				sb.Append("<urn:ButtonCountry>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(ButtonCountry)));
+				sb.Append("<urn:ButtonCountry>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(ButtonCountry)));
 				sb.Append("</urn:ButtonCountry>");
 			}
 			if(ButtonLanguage != null)
@@ -27404,8 +27726,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class BMCreateButtonResponseType : AbstractResponseType	
-	{
+	public partial class BMCreateButtonResponseType : AbstractResponseType	{
 
 		/**
           *
@@ -27516,8 +27837,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class BMUpdateButtonReq	
-	{
+	public partial class BMUpdateButtonReq	{
 
 		/**
           *
@@ -27543,14 +27863,14 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
 			sb.Append("<urn:BMUpdateButtonReq>");
 			if(BMUpdateButtonRequest != null)
 			{
 				sb.Append("<urn:BMUpdateButtonRequest>");
-				sb.Append(BMUpdateButtonRequest.toXMLString());
+				sb.Append(BMUpdateButtonRequest.ToXMLString());
 				sb.Append("</urn:BMUpdateButtonRequest>");
 			}
 			sb.Append("</urn:BMUpdateButtonReq>");
@@ -27567,8 +27887,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *Character length and limitations: 10 single-byte numeric
       *characters  
       */
-	public partial class BMUpdateButtonRequestType : AbstractRequestType	
-	{
+	public partial class BMUpdateButtonRequestType : AbstractRequestType	{
 
 		/**
           *
@@ -27805,10 +28124,10 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
-			sb.Append(base.toXMLString());
+			sb.Append(base.ToXMLString());
 			if(HostedButtonID != null)
 			{
 				sb.Append("<urn:HostedButtonID>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(HostedButtonID));
@@ -27816,17 +28135,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(ButtonType != null)
 			{
-				sb.Append("<urn:ButtonType>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(ButtonType)));
+				sb.Append("<urn:ButtonType>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(ButtonType)));
 				sb.Append("</urn:ButtonType>");
 			}
 			if(ButtonCode != null)
 			{
-				sb.Append("<urn:ButtonCode>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(ButtonCode)));
+				sb.Append("<urn:ButtonCode>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(ButtonCode)));
 				sb.Append("</urn:ButtonCode>");
 			}
 			if(ButtonSubType != null)
 			{
-				sb.Append("<urn:ButtonSubType>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(ButtonSubType)));
+				sb.Append("<urn:ButtonSubType>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(ButtonSubType)));
 				sb.Append("</urn:ButtonSubType>");
 			}
 			if(ButtonVar != null)
@@ -27842,7 +28161,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 				for(int i = 0; i < OptionDetails.Count; i++)
 				{
 					sb.Append("<urn:OptionDetails>");
-					sb.Append(OptionDetails[i].toXMLString());
+					sb.Append(OptionDetails[i].ToXMLString());
 					sb.Append("</urn:OptionDetails>");
 				}
 			}
@@ -27856,7 +28175,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(ButtonImage != null)
 			{
-				sb.Append("<urn:ButtonImage>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(ButtonImage)));
+				sb.Append("<urn:ButtonImage>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(ButtonImage)));
 				sb.Append("</urn:ButtonImage>");
 			}
 			if(ButtonImageURL != null)
@@ -27866,17 +28185,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(BuyNowText != null)
 			{
-				sb.Append("<urn:BuyNowText>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(BuyNowText)));
+				sb.Append("<urn:BuyNowText>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(BuyNowText)));
 				sb.Append("</urn:BuyNowText>");
 			}
 			if(SubscribeText != null)
 			{
-				sb.Append("<urn:SubscribeText>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(SubscribeText)));
+				sb.Append("<urn:SubscribeText>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(SubscribeText)));
 				sb.Append("</urn:SubscribeText>");
 			}
 			if(ButtonCountry != null)
 			{
-				sb.Append("<urn:ButtonCountry>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(ButtonCountry)));
+				sb.Append("<urn:ButtonCountry>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(ButtonCountry)));
 				sb.Append("</urn:ButtonCountry>");
 			}
 			if(ButtonLanguage != null)
@@ -27895,8 +28214,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class BMUpdateButtonResponseType : AbstractResponseType	
-	{
+	public partial class BMUpdateButtonResponseType : AbstractResponseType	{
 
 		/**
           *
@@ -28007,8 +28325,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class BMManageButtonStatusReq	
-	{
+	public partial class BMManageButtonStatusReq	{
 
 		/**
           *
@@ -28034,14 +28351,14 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
 			sb.Append("<urn:BMManageButtonStatusReq>");
 			if(BMManageButtonStatusRequest != null)
 			{
 				sb.Append("<urn:BMManageButtonStatusRequest>");
-				sb.Append(BMManageButtonStatusRequest.toXMLString());
+				sb.Append(BMManageButtonStatusRequest.ToXMLString());
 				sb.Append("</urn:BMManageButtonStatusRequest>");
 			}
 			sb.Append("</urn:BMManageButtonStatusReq>");
@@ -28057,8 +28374,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *Button ID of Hosted button.  Required Character length and
       *limitations: 10 single-byte numeric characters  
       */
-	public partial class BMManageButtonStatusRequestType : AbstractRequestType	
-	{
+	public partial class BMManageButtonStatusRequestType : AbstractRequestType	{
 
 		/**
           *
@@ -28101,10 +28417,10 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
-			sb.Append(base.toXMLString());
+			sb.Append(base.ToXMLString());
 			if(HostedButtonID != null)
 			{
 				sb.Append("<urn:HostedButtonID>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(HostedButtonID));
@@ -28112,7 +28428,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(ButtonStatus != null)
 			{
-				sb.Append("<urn:ButtonStatus>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(ButtonStatus)));
+				sb.Append("<urn:ButtonStatus>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(ButtonStatus)));
 				sb.Append("</urn:ButtonStatus>");
 			}
 			return sb.ToString();
@@ -28126,8 +28442,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class BMManageButtonStatusResponseType : AbstractResponseType	
-	{
+	public partial class BMManageButtonStatusResponseType : AbstractResponseType	{
 
 		/**
 	 	  * Default Constructor
@@ -28150,8 +28465,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class BMGetButtonDetailsReq	
-	{
+	public partial class BMGetButtonDetailsReq	{
 
 		/**
           *
@@ -28177,14 +28491,14 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
 			sb.Append("<urn:BMGetButtonDetailsReq>");
 			if(BMGetButtonDetailsRequest != null)
 			{
 				sb.Append("<urn:BMGetButtonDetailsRequest>");
-				sb.Append(BMGetButtonDetailsRequest.toXMLString());
+				sb.Append(BMGetButtonDetailsRequest.ToXMLString());
 				sb.Append("</urn:BMGetButtonDetailsRequest>");
 			}
 			sb.Append("</urn:BMGetButtonDetailsReq>");
@@ -28200,8 +28514,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *Button ID of button to return.  Required Character length
       *and limitations: 10 single-byte numeric characters  
       */
-	public partial class BMGetButtonDetailsRequestType : AbstractRequestType	
-	{
+	public partial class BMGetButtonDetailsRequestType : AbstractRequestType	{
 
 		/**
           *
@@ -28234,10 +28547,10 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
-			sb.Append(base.toXMLString());
+			sb.Append(base.ToXMLString());
 			if(HostedButtonID != null)
 			{
 				sb.Append("<urn:HostedButtonID>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(HostedButtonID));
@@ -28256,8 +28569,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *GIFTCERTIFICATE. SUBSCRIBE, PAYMENTPLAN, AUTOBILLING,
       *DONATE, VIEWCART or UNSUBSCRIBE 
       */
-	public partial class BMGetButtonDetailsResponseType : AbstractResponseType	
-	{
+	public partial class BMGetButtonDetailsResponseType : AbstractResponseType	{
 
 		/**
           *
@@ -28565,17 +28877,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'ButtonType']");
 			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.ButtonType = (ButtonTypeType)EnumUtils.getValue(ChildNode.InnerText,typeof(ButtonTypeType));
+				this.ButtonType = (ButtonTypeType)EnumUtils.GetValue(ChildNode.InnerText,typeof(ButtonTypeType));
 			}
 			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'ButtonCode']");
 			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.ButtonCode = (ButtonCodeType)EnumUtils.getValue(ChildNode.InnerText,typeof(ButtonCodeType));
+				this.ButtonCode = (ButtonCodeType)EnumUtils.GetValue(ChildNode.InnerText,typeof(ButtonCodeType));
 			}
 			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'ButtonSubType']");
 			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.ButtonSubType = (ButtonSubTypeType)EnumUtils.getValue(ChildNode.InnerText,typeof(ButtonSubTypeType));
+				this.ButtonSubType = (ButtonSubTypeType)EnumUtils.GetValue(ChildNode.InnerText,typeof(ButtonSubTypeType));
 			}
 			ChildNodeList = xmlNode.SelectNodes("*[local-name() = 'ButtonVar']");
 			if (ChildNodeList != null && ChildNodeList.Count > 0)
@@ -28607,7 +28919,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'ButtonImage']");
 			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.ButtonImage = (ButtonImageType)EnumUtils.getValue(ChildNode.InnerText,typeof(ButtonImageType));
+				this.ButtonImage = (ButtonImageType)EnumUtils.GetValue(ChildNode.InnerText,typeof(ButtonImageType));
 			}
 			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'ButtonImageURL']");
 			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
@@ -28617,17 +28929,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'BuyNowText']");
 			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.BuyNowText = (BuyNowTextType)EnumUtils.getValue(ChildNode.InnerText,typeof(BuyNowTextType));
+				this.BuyNowText = (BuyNowTextType)EnumUtils.GetValue(ChildNode.InnerText,typeof(BuyNowTextType));
 			}
 			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'SubscribeText']");
 			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.SubscribeText = (SubscribeTextType)EnumUtils.getValue(ChildNode.InnerText,typeof(SubscribeTextType));
+				this.SubscribeText = (SubscribeTextType)EnumUtils.GetValue(ChildNode.InnerText,typeof(SubscribeTextType));
 			}
 			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'ButtonCountry']");
 			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.ButtonCountry = (CountryCodeType)EnumUtils.getValue(ChildNode.InnerText,typeof(CountryCodeType));
+				this.ButtonCountry = (CountryCodeType)EnumUtils.GetValue(ChildNode.InnerText,typeof(CountryCodeType));
 			}
 			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'ButtonLanguage']");
 			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
@@ -28644,8 +28956,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class BMSetInventoryReq	
-	{
+	public partial class BMSetInventoryReq	{
 
 		/**
           *
@@ -28671,14 +28982,14 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
 			sb.Append("<urn:BMSetInventoryReq>");
 			if(BMSetInventoryRequest != null)
 			{
 				sb.Append("<urn:BMSetInventoryRequest>");
-				sb.Append(BMSetInventoryRequest.toXMLString());
+				sb.Append(BMSetInventoryRequest.ToXMLString());
 				sb.Append("</urn:BMSetInventoryRequest>");
 			}
 			sb.Append("</urn:BMSetInventoryReq>");
@@ -28695,8 +29006,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *Character length and limitations: 10 single-byte numeric
       *characters  
       */
-	public partial class BMSetInventoryRequestType : AbstractRequestType	
-	{
+	public partial class BMSetInventoryRequestType : AbstractRequestType	{
 
 		/**
           *
@@ -28884,10 +29194,10 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
-			sb.Append(base.toXMLString());
+			sb.Append(base.ToXMLString());
 			if(HostedButtonID != null)
 			{
 				sb.Append("<urn:HostedButtonID>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(HostedButtonID));
@@ -28906,7 +29216,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			if(ItemTrackingDetails != null)
 			{
 				sb.Append("<ebl:ItemTrackingDetails>");
-				sb.Append(ItemTrackingDetails.toXMLString());
+				sb.Append(ItemTrackingDetails.ToXMLString());
 				sb.Append("</ebl:ItemTrackingDetails>");
 			}
 			if(OptionIndex != null)
@@ -28919,7 +29229,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 				for(int i = 0; i < OptionTrackingDetails.Count; i++)
 				{
 					sb.Append("<ebl:OptionTrackingDetails>");
-					sb.Append(OptionTrackingDetails[i].toXMLString());
+					sb.Append(OptionTrackingDetails[i].ToXMLString());
 					sb.Append("</ebl:OptionTrackingDetails>");
 				}
 			}
@@ -28957,8 +29267,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class BMSetInventoryResponseType : AbstractResponseType	
-	{
+	public partial class BMSetInventoryResponseType : AbstractResponseType	{
 
 		/**
 	 	  * Default Constructor
@@ -28981,8 +29290,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class BMGetInventoryReq	
-	{
+	public partial class BMGetInventoryReq	{
 
 		/**
           *
@@ -29008,14 +29316,14 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
 			sb.Append("<urn:BMGetInventoryReq>");
 			if(BMGetInventoryRequest != null)
 			{
 				sb.Append("<urn:BMGetInventoryRequest>");
-				sb.Append(BMGetInventoryRequest.toXMLString());
+				sb.Append(BMGetInventoryRequest.ToXMLString());
 				sb.Append("</urn:BMGetInventoryRequest>");
 			}
 			sb.Append("</urn:BMGetInventoryReq>");
@@ -29032,8 +29340,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *Required Character length and limitations: 10 single-byte
       *numeric characters  
       */
-	public partial class BMGetInventoryRequestType : AbstractRequestType	
-	{
+	public partial class BMGetInventoryRequestType : AbstractRequestType	{
 
 		/**
           *
@@ -29066,10 +29373,10 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
-			sb.Append(base.toXMLString());
+			sb.Append(base.ToXMLString());
 			if(HostedButtonID != null)
 			{
 				sb.Append("<urn:HostedButtonID>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(HostedButtonID));
@@ -29086,8 +29393,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class BMGetInventoryResponseType : AbstractResponseType	
-	{
+	public partial class BMGetInventoryResponseType : AbstractResponseType	{
 
 		/**
           *
@@ -29316,8 +29622,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class BMButtonSearchReq	
-	{
+	public partial class BMButtonSearchReq	{
 
 		/**
           *
@@ -29343,14 +29648,14 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
 			sb.Append("<urn:BMButtonSearchReq>");
 			if(BMButtonSearchRequest != null)
 			{
 				sb.Append("<urn:BMButtonSearchRequest>");
-				sb.Append(BMButtonSearchRequest.toXMLString());
+				sb.Append(BMButtonSearchRequest.ToXMLString());
 				sb.Append("</urn:BMButtonSearchRequest>");
 			}
 			sb.Append("</urn:BMButtonSearchReq>");
@@ -29366,8 +29671,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *The earliest transaction date at which to start the search.
       *No wildcards are allowed. Required 
       */
-	public partial class BMButtonSearchRequestType : AbstractRequestType	
-	{
+	public partial class BMButtonSearchRequestType : AbstractRequestType	{
 
 		/**
           *
@@ -29410,10 +29714,10 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
-			sb.Append(base.toXMLString());
+			sb.Append(base.ToXMLString());
 			if(StartDate != null)
 			{
 				sb.Append("<urn:StartDate>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(StartDate));
@@ -29435,8 +29739,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class BMButtonSearchResponseType : AbstractResponseType	
-	{
+	public partial class BMButtonSearchResponseType : AbstractResponseType	{
 
 		/**
           *
@@ -29485,8 +29788,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class RefundTransactionReq	
-	{
+	public partial class RefundTransactionReq	{
 
 		/**
           *
@@ -29512,14 +29814,14 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
 			sb.Append("<urn:RefundTransactionReq>");
 			if(RefundTransactionRequest != null)
 			{
 				sb.Append("<urn:RefundTransactionRequest>");
-				sb.Append(RefundTransactionRequest.toXMLString());
+				sb.Append(RefundTransactionRequest.ToXMLString());
 				sb.Append("</urn:RefundTransactionRequest>");
 			}
 			sb.Append("</urn:RefundTransactionReq>");
@@ -29533,11 +29835,10 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 	/**
       *Unique identifier of the transaction you are refunding.
-      *Required Character length and limitations: 17 single-byte
+      *Optional Character length and limitations: 17 single-byte
       *alphanumeric characters 
       */
-	public partial class RefundTransactionRequestType : AbstractRequestType	
-	{
+	public partial class RefundTransactionRequestType : AbstractRequestType	{
 
 		/**
           *
@@ -29552,6 +29853,23 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			set
 			{
 				this.TransactionIDField = value;
+			}
+		}
+		
+
+		/**
+          *
+		  */
+		private string PayerIDField;
+		public string PayerID
+		{
+			get
+			{
+				return this.PayerIDField;
+			}
+			set
+			{
+				this.PayerIDField = value;
 			}
 		}
 		
@@ -29733,14 +30051,19 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
-			sb.Append(base.toXMLString());
+			sb.Append(base.ToXMLString());
 			if(TransactionID != null)
 			{
 				sb.Append("<urn:TransactionID>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(TransactionID));
 				sb.Append("</urn:TransactionID>");
+			}
+			if(PayerID != null)
+			{
+				sb.Append("<urn:PayerID>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(PayerID));
+				sb.Append("</urn:PayerID>");
 			}
 			if(InvoiceID != null)
 			{
@@ -29749,13 +30072,13 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(RefundType != null)
 			{
-				sb.Append("<urn:RefundType>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(RefundType)));
+				sb.Append("<urn:RefundType>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(RefundType)));
 				sb.Append("</urn:RefundType>");
 			}
 			if(Amount != null)
 			{
 				sb.Append("<urn:Amount");
-				sb.Append(Amount.toXMLString());
+				sb.Append(Amount.ToXMLString());
 				sb.Append("</urn:Amount>");
 			}
 			if(Memo != null)
@@ -29770,7 +30093,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(RefundSource != null)
 			{
-				sb.Append("<urn:RefundSource>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(RefundSource)));
+				sb.Append("<urn:RefundSource>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(RefundSource)));
 				sb.Append("</urn:RefundSource>");
 			}
 			if(RefundAdvice != null)
@@ -29781,7 +30104,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			if(MerchantStoreDetails != null)
 			{
 				sb.Append("<ebl:MerchantStoreDetails>");
-				sb.Append(MerchantStoreDetails.toXMLString());
+				sb.Append(MerchantStoreDetails.ToXMLString());
 				sb.Append("</ebl:MerchantStoreDetails>");
 			}
 			if(RefundItemDetails != null)
@@ -29789,7 +30112,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 				for(int i = 0; i < RefundItemDetails.Count; i++)
 				{
 					sb.Append("<ebl:RefundItemDetails>");
-					sb.Append(RefundItemDetails[i].toXMLString());
+					sb.Append(RefundItemDetails[i].ToXMLString());
 					sb.Append("</ebl:RefundItemDetails>");
 				}
 			}
@@ -29810,8 +30133,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *Unique transaction ID of the refund. Character length and
       *limitations:17 single-byte characters 
       */
-	public partial class RefundTransactionResponseType : AbstractResponseType	
-	{
+	public partial class RefundTransactionResponseType : AbstractResponseType	{
 
 		/**
           *
@@ -30010,8 +30332,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class InitiateRecoupReq	
-	{
+	public partial class InitiateRecoupReq	{
 
 		/**
           *
@@ -30037,14 +30358,14 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
 			sb.Append("<urn:InitiateRecoupReq>");
 			if(InitiateRecoupRequest != null)
 			{
 				sb.Append("<urn:InitiateRecoupRequest>");
-				sb.Append(InitiateRecoupRequest.toXMLString());
+				sb.Append(InitiateRecoupRequest.ToXMLString());
 				sb.Append("</urn:InitiateRecoupRequest>");
 			}
 			sb.Append("</urn:InitiateRecoupReq>");
@@ -30059,8 +30380,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class InitiateRecoupRequestType : AbstractRequestType	
-	{
+	public partial class InitiateRecoupRequestType : AbstractRequestType	{
 
 		/**
           *
@@ -30093,14 +30413,14 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
-			sb.Append(base.toXMLString());
+			sb.Append(base.ToXMLString());
 			if(EnhancedInitiateRecoupRequestDetails != null)
 			{
 				sb.Append("<ed:EnhancedInitiateRecoupRequestDetails>");
-				sb.Append(EnhancedInitiateRecoupRequestDetails.toXMLString());
+				sb.Append(EnhancedInitiateRecoupRequestDetails.ToXMLString());
 				sb.Append("</ed:EnhancedInitiateRecoupRequestDetails>");
 			}
 			return sb.ToString();
@@ -30114,8 +30434,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class InitiateRecoupResponseType : AbstractResponseType	
-	{
+	public partial class InitiateRecoupResponseType : AbstractResponseType	{
 
 		/**
 	 	  * Default Constructor
@@ -30138,8 +30457,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class CompleteRecoupReq	
-	{
+	public partial class CompleteRecoupReq	{
 
 		/**
           *
@@ -30165,14 +30483,14 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
 			sb.Append("<urn:CompleteRecoupReq>");
 			if(CompleteRecoupRequest != null)
 			{
 				sb.Append("<urn:CompleteRecoupRequest>");
-				sb.Append(CompleteRecoupRequest.toXMLString());
+				sb.Append(CompleteRecoupRequest.ToXMLString());
 				sb.Append("</urn:CompleteRecoupRequest>");
 			}
 			sb.Append("</urn:CompleteRecoupReq>");
@@ -30187,8 +30505,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class CompleteRecoupRequestType : AbstractRequestType	
-	{
+	public partial class CompleteRecoupRequestType : AbstractRequestType	{
 
 		/**
           *
@@ -30221,14 +30538,14 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
-			sb.Append(base.toXMLString());
+			sb.Append(base.ToXMLString());
 			if(EnhancedCompleteRecoupRequestDetails != null)
 			{
 				sb.Append("<ed:EnhancedCompleteRecoupRequestDetails>");
-				sb.Append(EnhancedCompleteRecoupRequestDetails.toXMLString());
+				sb.Append(EnhancedCompleteRecoupRequestDetails.ToXMLString());
 				sb.Append("</ed:EnhancedCompleteRecoupRequestDetails>");
 			}
 			return sb.ToString();
@@ -30242,8 +30559,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class CompleteRecoupResponseType : AbstractResponseType	
-	{
+	public partial class CompleteRecoupResponseType : AbstractResponseType	{
 
 		/**
           *
@@ -30288,8 +30604,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class CancelRecoupReq	
-	{
+	public partial class CancelRecoupReq	{
 
 		/**
           *
@@ -30315,14 +30630,14 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
 			sb.Append("<urn:CancelRecoupReq>");
 			if(CancelRecoupRequest != null)
 			{
 				sb.Append("<urn:CancelRecoupRequest>");
-				sb.Append(CancelRecoupRequest.toXMLString());
+				sb.Append(CancelRecoupRequest.ToXMLString());
 				sb.Append("</urn:CancelRecoupRequest>");
 			}
 			sb.Append("</urn:CancelRecoupReq>");
@@ -30337,8 +30652,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class CancelRecoupRequestType : AbstractRequestType	
-	{
+	public partial class CancelRecoupRequestType : AbstractRequestType	{
 
 		/**
           *
@@ -30371,14 +30685,14 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
-			sb.Append(base.toXMLString());
+			sb.Append(base.ToXMLString());
 			if(EnhancedCancelRecoupRequestDetails != null)
 			{
 				sb.Append("<ed:EnhancedCancelRecoupRequestDetails>");
-				sb.Append(EnhancedCancelRecoupRequestDetails.toXMLString());
+				sb.Append(EnhancedCancelRecoupRequestDetails.ToXMLString());
 				sb.Append("</ed:EnhancedCancelRecoupRequestDetails>");
 			}
 			return sb.ToString();
@@ -30392,8 +30706,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class CancelRecoupResponseType : AbstractResponseType	
-	{
+	public partial class CancelRecoupResponseType : AbstractResponseType	{
 
 		/**
 	 	  * Default Constructor
@@ -30416,8 +30729,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class GetTransactionDetailsReq	
-	{
+	public partial class GetTransactionDetailsReq	{
 
 		/**
           *
@@ -30443,14 +30755,14 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
 			sb.Append("<urn:GetTransactionDetailsReq>");
 			if(GetTransactionDetailsRequest != null)
 			{
 				sb.Append("<urn:GetTransactionDetailsRequest>");
-				sb.Append(GetTransactionDetailsRequest.toXMLString());
+				sb.Append(GetTransactionDetailsRequest.ToXMLString());
 				sb.Append("</urn:GetTransactionDetailsRequest>");
 			}
 			sb.Append("</urn:GetTransactionDetailsReq>");
@@ -30469,8 +30781,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *bank transfer withdrawals, for example. Character length and
       *limitations: 17 single-byte alphanumeric characters
       */
-	public partial class GetTransactionDetailsRequestType : AbstractRequestType	
-	{
+	public partial class GetTransactionDetailsRequestType : AbstractRequestType	{
 
 		/**
           *
@@ -30496,10 +30807,10 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
-			sb.Append(base.toXMLString());
+			sb.Append(base.ToXMLString());
 			if(TransactionID != null)
 			{
 				sb.Append("<urn:TransactionID>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(TransactionID));
@@ -30516,8 +30827,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class GetTransactionDetailsResponseType : AbstractResponseType	
-	{
+	public partial class GetTransactionDetailsResponseType : AbstractResponseType	{
 
 		/**
           *
@@ -30584,8 +30894,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class BillUserReq	
-	{
+	public partial class BillUserReq	{
 
 		/**
           *
@@ -30611,14 +30920,14 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
 			sb.Append("<urn:BillUserReq>");
 			if(BillUserRequest != null)
 			{
 				sb.Append("<urn:BillUserRequest>");
-				sb.Append(BillUserRequest.toXMLString());
+				sb.Append(BillUserRequest.ToXMLString());
 				sb.Append("</urn:BillUserRequest>");
 			}
 			sb.Append("</urn:BillUserReq>");
@@ -30634,8 +30943,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *This flag indicates that the response should include
       *FMFDetails 
       */
-	public partial class BillUserRequestType : AbstractRequestType	
-	{
+	public partial class BillUserRequestType : AbstractRequestType	{
 
 		/**
           *
@@ -30678,14 +30986,14 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
-			sb.Append(base.toXMLString());
+			sb.Append(base.ToXMLString());
 			if(MerchantPullPaymentDetails != null)
 			{
 				sb.Append("<ebl:MerchantPullPaymentDetails>");
-				sb.Append(MerchantPullPaymentDetails.toXMLString());
+				sb.Append(MerchantPullPaymentDetails.ToXMLString());
 				sb.Append("</ebl:MerchantPullPaymentDetails>");
 			}
 			if(ReturnFMFDetails != null)
@@ -30704,8 +31012,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class BillUserResponseType : AbstractResponseType	
-	{
+	public partial class BillUserResponseType : AbstractResponseType	{
 
 		/**
           *
@@ -30772,8 +31079,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class TransactionSearchReq	
-	{
+	public partial class TransactionSearchReq	{
 
 		/**
           *
@@ -30799,14 +31105,14 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
 			sb.Append("<urn:TransactionSearchReq>");
 			if(TransactionSearchRequest != null)
 			{
 				sb.Append("<urn:TransactionSearchRequest>");
-				sb.Append(TransactionSearchRequest.toXMLString());
+				sb.Append(TransactionSearchRequest.ToXMLString());
 				sb.Append("</urn:TransactionSearchRequest>");
 			}
 			sb.Append("</urn:TransactionSearchReq>");
@@ -30822,8 +31128,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *The earliest transaction date at which to start the search.
       *No wildcards are allowed. Required
       */
-	public partial class TransactionSearchRequestType : AbstractRequestType	
-	{
+	public partial class TransactionSearchRequestType : AbstractRequestType	{
 
 		/**
           *
@@ -31094,10 +31399,10 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
-			sb.Append(base.toXMLString());
+			sb.Append(base.ToXMLString());
 			if(StartDate != null)
 			{
 				sb.Append("<urn:StartDate>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(StartDate));
@@ -31136,7 +31441,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			if(PayerName != null)
 			{
 				sb.Append("<urn:PayerName>");
-				sb.Append(PayerName.toXMLString());
+				sb.Append(PayerName.ToXMLString());
 				sb.Append("</urn:PayerName>");
 			}
 			if(AuctionItemNumber != null)
@@ -31156,23 +31461,23 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(TransactionClass != null)
 			{
-				sb.Append("<urn:TransactionClass>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(TransactionClass)));
+				sb.Append("<urn:TransactionClass>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(TransactionClass)));
 				sb.Append("</urn:TransactionClass>");
 			}
 			if(Amount != null)
 			{
 				sb.Append("<urn:Amount");
-				sb.Append(Amount.toXMLString());
+				sb.Append(Amount.ToXMLString());
 				sb.Append("</urn:Amount>");
 			}
 			if(CurrencyCode != null)
 			{
-				sb.Append("<urn:CurrencyCode>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(CurrencyCode)));
+				sb.Append("<urn:CurrencyCode>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(CurrencyCode)));
 				sb.Append("</urn:CurrencyCode>");
 			}
 			if(Status != null)
 			{
-				sb.Append("<urn:Status>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(Status)));
+				sb.Append("<urn:Status>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(Status)));
 				sb.Append("</urn:Status>");
 			}
 			return sb.ToString();
@@ -31186,8 +31491,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *Results of a Transaction Search.
       */
-	public partial class TransactionSearchResponseType : AbstractResponseType	
-	{
+	public partial class TransactionSearchResponseType : AbstractResponseType	{
 
 		/**
           *
@@ -31236,8 +31540,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class MassPayReq	
-	{
+	public partial class MassPayReq	{
 
 		/**
           *
@@ -31263,14 +31566,14 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
 			sb.Append("<urn:MassPayReq>");
 			if(MassPayRequest != null)
 			{
 				sb.Append("<urn:MassPayRequest>");
-				sb.Append(MassPayRequest.toXMLString());
+				sb.Append(MassPayRequest.ToXMLString());
 				sb.Append("</urn:MassPayRequest>");
 			}
 			sb.Append("</urn:MassPayReq>");
@@ -31288,8 +31591,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *it with your application. Optional Character length and
       *limitations: 255 single-byte alphanumeric characters 
       */
-	public partial class MassPayRequestType : AbstractRequestType	
-	{
+	public partial class MassPayRequestType : AbstractRequestType	{
 
 		/**
           *
@@ -31373,10 +31675,10 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
-			sb.Append(base.toXMLString());
+			sb.Append(base.ToXMLString());
 			if(EmailSubject != null)
 			{
 				sb.Append("<urn:EmailSubject>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EmailSubject));
@@ -31384,7 +31686,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(ReceiverType != null)
 			{
-				sb.Append("<urn:ReceiverType>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(ReceiverType)));
+				sb.Append("<urn:ReceiverType>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(ReceiverType)));
 				sb.Append("</urn:ReceiverType>");
 			}
 			if(ButtonSource != null)
@@ -31397,7 +31699,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 				for(int i = 0; i < MassPayItem.Count; i++)
 				{
 					sb.Append("<urn:MassPayItem>");
-					sb.Append(MassPayItem[i].toXMLString());
+					sb.Append(MassPayItem[i].ToXMLString());
 					sb.Append("</urn:MassPayItem>");
 				}
 			}
@@ -31412,8 +31714,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class MassPayResponseType : AbstractResponseType	
-	{
+	public partial class MassPayResponseType : AbstractResponseType	{
 
 		/**
 	 	  * Default Constructor
@@ -31436,8 +31737,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *MassPayRequestItemType 
       */
-	public partial class MassPayRequestItemType	
-	{
+	public partial class MassPayRequestItemType	{
 
 		/**
           *
@@ -31555,7 +31855,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
 			if(ReceiverEmail != null)
@@ -31576,7 +31876,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			if(Amount != null)
 			{
 				sb.Append("<urn:Amount");
-				sb.Append(Amount.toXMLString());
+				sb.Append(Amount.ToXMLString());
 				sb.Append("</urn:Amount>");
 			}
 			if(UniqueId != null)
@@ -31600,8 +31900,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class BillAgreementUpdateReq	
-	{
+	public partial class BillAgreementUpdateReq	{
 
 		/**
           *
@@ -31627,14 +31926,14 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
 			sb.Append("<urn:BillAgreementUpdateReq>");
 			if(BAUpdateRequest != null)
 			{
 				sb.Append("<urn:BAUpdateRequest>");
-				sb.Append(BAUpdateRequest.toXMLString());
+				sb.Append(BAUpdateRequest.ToXMLString());
 				sb.Append("</urn:BAUpdateRequest>");
 			}
 			sb.Append("</urn:BillAgreementUpdateReq>");
@@ -31649,8 +31948,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class BAUpdateRequestType : AbstractRequestType	
-	{
+	public partial class BAUpdateRequestType : AbstractRequestType	{
 
 		/**
           *
@@ -31734,10 +32032,10 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
-			sb.Append(base.toXMLString());
+			sb.Append(base.ToXMLString());
 			if(ReferenceID != null)
 			{
 				sb.Append("<urn:ReferenceID>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(ReferenceID));
@@ -31750,7 +32048,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(BillingAgreementStatus != null)
 			{
-				sb.Append("<urn:BillingAgreementStatus>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(BillingAgreementStatus)));
+				sb.Append("<urn:BillingAgreementStatus>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(BillingAgreementStatus)));
 				sb.Append("</urn:BillingAgreementStatus>");
 			}
 			if(BillingAgreementCustom != null)
@@ -31769,8 +32067,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class BAUpdateResponseType : AbstractResponseType	
-	{
+	public partial class BAUpdateResponseType : AbstractResponseType	{
 
 		/**
           *
@@ -31815,8 +32112,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class AddressVerifyReq	
-	{
+	public partial class AddressVerifyReq	{
 
 		/**
           *
@@ -31842,14 +32138,14 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
 			sb.Append("<urn:AddressVerifyReq>");
 			if(AddressVerifyRequest != null)
 			{
 				sb.Append("<urn:AddressVerifyRequest>");
-				sb.Append(AddressVerifyRequest.toXMLString());
+				sb.Append(AddressVerifyRequest.ToXMLString());
 				sb.Append("</urn:AddressVerifyRequest>");
 			}
 			sb.Append("</urn:AddressVerifyReq>");
@@ -31866,8 +32162,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *string length: 255 single-byte characters Input mask: ?@?.??
       *
       */
-	public partial class AddressVerifyRequestType : AbstractRequestType	
-	{
+	public partial class AddressVerifyRequestType : AbstractRequestType	{
 
 		/**
           *
@@ -31936,10 +32231,10 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
-			sb.Append(base.toXMLString());
+			sb.Append(base.ToXMLString());
 			if(Email != null)
 			{
 				sb.Append("<urn:Email>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(Email));
@@ -31971,8 +32266,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *entire postal address is confirmed. Unconfirmed: PayPal
       *responds that the postal address is unconfirmed 
       */
-	public partial class AddressVerifyResponseType : AbstractResponseType	
-	{
+	public partial class AddressVerifyResponseType : AbstractResponseType	{
 
 		/**
           *
@@ -32073,22 +32367,22 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'ConfirmationCode']");
 			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.ConfirmationCode = (AddressStatusCodeType)EnumUtils.getValue(ChildNode.InnerText,typeof(AddressStatusCodeType));
+				this.ConfirmationCode = (AddressStatusCodeType)EnumUtils.GetValue(ChildNode.InnerText,typeof(AddressStatusCodeType));
 			}
 			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'StreetMatch']");
 			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.StreetMatch = (MatchStatusCodeType)EnumUtils.getValue(ChildNode.InnerText,typeof(MatchStatusCodeType));
+				this.StreetMatch = (MatchStatusCodeType)EnumUtils.GetValue(ChildNode.InnerText,typeof(MatchStatusCodeType));
 			}
 			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'ZipMatch']");
 			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.ZipMatch = (MatchStatusCodeType)EnumUtils.getValue(ChildNode.InnerText,typeof(MatchStatusCodeType));
+				this.ZipMatch = (MatchStatusCodeType)EnumUtils.GetValue(ChildNode.InnerText,typeof(MatchStatusCodeType));
 			}
 			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'CountryCode']");
 			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.CountryCode = (CountryCodeType)EnumUtils.getValue(ChildNode.InnerText,typeof(CountryCodeType));
+				this.CountryCode = (CountryCodeType)EnumUtils.GetValue(ChildNode.InnerText,typeof(CountryCodeType));
 			}
 			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'PayPalToken']");
 			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
@@ -32105,8 +32399,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class EnterBoardingReq	
-	{
+	public partial class EnterBoardingReq	{
 
 		/**
           *
@@ -32132,14 +32425,14 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
 			sb.Append("<urn:EnterBoardingReq>");
 			if(EnterBoardingRequest != null)
 			{
 				sb.Append("<urn:EnterBoardingRequest>");
-				sb.Append(EnterBoardingRequest.toXMLString());
+				sb.Append(EnterBoardingRequest.ToXMLString());
 				sb.Append("</urn:EnterBoardingRequest>");
 			}
 			sb.Append("</urn:EnterBoardingReq>");
@@ -32154,8 +32447,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class EnterBoardingRequestType : AbstractRequestType	
-	{
+	public partial class EnterBoardingRequestType : AbstractRequestType	{
 
 		/**
           *
@@ -32188,14 +32480,14 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
-			sb.Append(base.toXMLString());
+			sb.Append(base.ToXMLString());
 			if(EnterBoardingRequestDetails != null)
 			{
 				sb.Append("<ebl:EnterBoardingRequestDetails>");
-				sb.Append(EnterBoardingRequestDetails.toXMLString());
+				sb.Append(EnterBoardingRequestDetails.ToXMLString());
 				sb.Append("</ebl:EnterBoardingRequestDetails>");
 			}
 			return sb.ToString();
@@ -32212,8 +32504,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *length and limitations: 64 alphanumeric characters. The
       *token has the following format:OB-61characterstring
       */
-	public partial class EnterBoardingResponseType : AbstractResponseType	
-	{
+	public partial class EnterBoardingResponseType : AbstractResponseType	{
 
 		/**
           *
@@ -32258,8 +32549,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class GetBoardingDetailsReq	
-	{
+	public partial class GetBoardingDetailsReq	{
 
 		/**
           *
@@ -32285,14 +32575,14 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
 			sb.Append("<urn:GetBoardingDetailsReq>");
 			if(GetBoardingDetailsRequest != null)
 			{
 				sb.Append("<urn:GetBoardingDetailsRequest>");
-				sb.Append(GetBoardingDetailsRequest.toXMLString());
+				sb.Append(GetBoardingDetailsRequest.ToXMLString());
 				sb.Append("</urn:GetBoardingDetailsRequest>");
 			}
 			sb.Append("</urn:GetBoardingDetailsReq>");
@@ -32310,8 +32600,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *and limitations: 64 alphanumeric characters. The token has
       *the following format:OB-61characterstring
       */
-	public partial class GetBoardingDetailsRequestType : AbstractRequestType	
-	{
+	public partial class GetBoardingDetailsRequestType : AbstractRequestType	{
 
 		/**
           *
@@ -32344,10 +32633,10 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
-			sb.Append(base.toXMLString());
+			sb.Append(base.ToXMLString());
 			if(Token != null)
 			{
 				sb.Append("<urn:Token>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(Token));
@@ -32364,8 +32653,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class GetBoardingDetailsResponseType : AbstractResponseType	
-	{
+	public partial class GetBoardingDetailsResponseType : AbstractResponseType	{
 
 		/**
           *
@@ -32410,8 +32698,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class SetAuthFlowParamReq	
-	{
+	public partial class SetAuthFlowParamReq	{
 
 		/**
           *
@@ -32437,14 +32724,14 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
 			sb.Append("<urn:SetAuthFlowParamReq>");
 			if(SetAuthFlowParamRequest != null)
 			{
 				sb.Append("<urn:SetAuthFlowParamRequest>");
-				sb.Append(SetAuthFlowParamRequest.toXMLString());
+				sb.Append(SetAuthFlowParamRequest.ToXMLString());
 				sb.Append("</urn:SetAuthFlowParamRequest>");
 			}
 			sb.Append("</urn:SetAuthFlowParamReq>");
@@ -32459,8 +32746,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class SetAuthFlowParamRequestType : AbstractRequestType	
-	{
+	public partial class SetAuthFlowParamRequestType : AbstractRequestType	{
 
 		/**
           *
@@ -32493,14 +32779,14 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
-			sb.Append(base.toXMLString());
+			sb.Append(base.ToXMLString());
 			if(SetAuthFlowParamRequestDetails != null)
 			{
 				sb.Append("<ebl:SetAuthFlowParamRequestDetails>");
-				sb.Append(SetAuthFlowParamRequestDetails.toXMLString());
+				sb.Append(SetAuthFlowParamRequestDetails.ToXMLString());
 				sb.Append("</ebl:SetAuthFlowParamRequestDetails>");
 			}
 			return sb.ToString();
@@ -32517,8 +32803,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *hours. Character length and limitations: 20 single-byte
       *characters
       */
-	public partial class SetAuthFlowParamResponseType : AbstractResponseType	
-	{
+	public partial class SetAuthFlowParamResponseType : AbstractResponseType	{
 
 		/**
           *
@@ -32563,8 +32848,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class GetAuthDetailsReq	
-	{
+	public partial class GetAuthDetailsReq	{
 
 		/**
           *
@@ -32590,14 +32874,14 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
 			sb.Append("<urn:GetAuthDetailsReq>");
 			if(GetAuthDetailsRequest != null)
 			{
 				sb.Append("<urn:GetAuthDetailsRequest>");
-				sb.Append(GetAuthDetailsRequest.toXMLString());
+				sb.Append(GetAuthDetailsRequest.ToXMLString());
 				sb.Append("</urn:GetAuthDetailsRequest>");
 			}
 			sb.Append("</urn:GetAuthDetailsReq>");
@@ -32614,8 +32898,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *SetAuthFlowParam Response. RequiredCharacter length and
       *limitations: 20 single-byte characters
       */
-	public partial class GetAuthDetailsRequestType : AbstractRequestType	
-	{
+	public partial class GetAuthDetailsRequestType : AbstractRequestType	{
 
 		/**
           *
@@ -32648,10 +32931,10 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
-			sb.Append(base.toXMLString());
+			sb.Append(base.ToXMLString());
 			if(Token != null)
 			{
 				sb.Append("<urn:Token>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(Token));
@@ -32668,8 +32951,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class GetAuthDetailsResponseType : AbstractResponseType	
-	{
+	public partial class GetAuthDetailsResponseType : AbstractResponseType	{
 
 		/**
           *
@@ -32714,8 +32996,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class SetAccessPermissionsReq	
-	{
+	public partial class SetAccessPermissionsReq	{
 
 		/**
           *
@@ -32741,14 +33022,14 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
 			sb.Append("<urn:SetAccessPermissionsReq>");
 			if(SetAccessPermissionsRequest != null)
 			{
 				sb.Append("<urn:SetAccessPermissionsRequest>");
-				sb.Append(SetAccessPermissionsRequest.toXMLString());
+				sb.Append(SetAccessPermissionsRequest.ToXMLString());
 				sb.Append("</urn:SetAccessPermissionsRequest>");
 			}
 			sb.Append("</urn:SetAccessPermissionsReq>");
@@ -32763,8 +33044,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class SetAccessPermissionsRequestType : AbstractRequestType	
-	{
+	public partial class SetAccessPermissionsRequestType : AbstractRequestType	{
 
 		/**
           *
@@ -32797,14 +33077,14 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
-			sb.Append(base.toXMLString());
+			sb.Append(base.ToXMLString());
 			if(SetAccessPermissionsRequestDetails != null)
 			{
 				sb.Append("<ebl:SetAccessPermissionsRequestDetails>");
-				sb.Append(SetAccessPermissionsRequestDetails.toXMLString());
+				sb.Append(SetAccessPermissionsRequestDetails.ToXMLString());
 				sb.Append("</ebl:SetAccessPermissionsRequestDetails>");
 			}
 			return sb.ToString();
@@ -32821,8 +33101,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *hours. Character length and limitations: 20 single-byte
       *characters
       */
-	public partial class SetAccessPermissionsResponseType : AbstractResponseType	
-	{
+	public partial class SetAccessPermissionsResponseType : AbstractResponseType	{
 
 		/**
           *
@@ -32867,8 +33146,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class UpdateAccessPermissionsReq	
-	{
+	public partial class UpdateAccessPermissionsReq	{
 
 		/**
           *
@@ -32894,14 +33172,14 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
 			sb.Append("<urn:UpdateAccessPermissionsReq>");
 			if(UpdateAccessPermissionsRequest != null)
 			{
 				sb.Append("<urn:UpdateAccessPermissionsRequest>");
-				sb.Append(UpdateAccessPermissionsRequest.toXMLString());
+				sb.Append(UpdateAccessPermissionsRequest.ToXMLString());
 				sb.Append("</urn:UpdateAccessPermissionsRequest>");
 			}
 			sb.Append("</urn:UpdateAccessPermissionsReq>");
@@ -32918,8 +33196,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *was returned by GetAuthDetails Response. Required Character
       *length and limitations: 20 single-byte characters 
       */
-	public partial class UpdateAccessPermissionsRequestType : AbstractRequestType	
-	{
+	public partial class UpdateAccessPermissionsRequestType : AbstractRequestType	{
 
 		/**
           *
@@ -32952,10 +33229,10 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
-			sb.Append(base.toXMLString());
+			sb.Append(base.ToXMLString());
 			if(PayerID != null)
 			{
 				sb.Append("<urn:PayerID>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(PayerID));
@@ -32973,8 +33250,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *The status of the update call, Success/Failure. Character
       *length and limitations: 20 single-byte characters 
       */
-	public partial class UpdateAccessPermissionsResponseType : AbstractResponseType	
-	{
+	public partial class UpdateAccessPermissionsResponseType : AbstractResponseType	{
 
 		/**
           *
@@ -33019,8 +33295,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class GetAccessPermissionDetailsReq	
-	{
+	public partial class GetAccessPermissionDetailsReq	{
 
 		/**
           *
@@ -33046,14 +33321,14 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
 			sb.Append("<urn:GetAccessPermissionDetailsReq>");
 			if(GetAccessPermissionDetailsRequest != null)
 			{
 				sb.Append("<urn:GetAccessPermissionDetailsRequest>");
-				sb.Append(GetAccessPermissionDetailsRequest.toXMLString());
+				sb.Append(GetAccessPermissionDetailsRequest.ToXMLString());
 				sb.Append("</urn:GetAccessPermissionDetailsRequest>");
 			}
 			sb.Append("</urn:GetAccessPermissionDetailsReq>");
@@ -33070,8 +33345,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *SetAuthFlowParam Response. Required Character length and
       *limitations: 20 single-byte characters 
       */
-	public partial class GetAccessPermissionDetailsRequestType : AbstractRequestType	
-	{
+	public partial class GetAccessPermissionDetailsRequestType : AbstractRequestType	{
 
 		/**
           *
@@ -33104,10 +33378,10 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
-			sb.Append(base.toXMLString());
+			sb.Append(base.ToXMLString());
 			if(Token != null)
 			{
 				sb.Append("<urn:Token>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(Token));
@@ -33124,8 +33398,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class GetAccessPermissionDetailsResponseType : AbstractResponseType	
-	{
+	public partial class GetAccessPermissionDetailsResponseType : AbstractResponseType	{
 
 		/**
           *
@@ -33170,8 +33443,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class GetIncentiveEvaluationReq	
-	{
+	public partial class GetIncentiveEvaluationReq	{
 
 		/**
           *
@@ -33197,14 +33469,14 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
 			sb.Append("<urn:GetIncentiveEvaluationReq>");
 			if(GetIncentiveEvaluationRequest != null)
 			{
 				sb.Append("<urn:GetIncentiveEvaluationRequest>");
-				sb.Append(GetIncentiveEvaluationRequest.toXMLString());
+				sb.Append(GetIncentiveEvaluationRequest.ToXMLString());
 				sb.Append("</urn:GetIncentiveEvaluationRequest>");
 			}
 			sb.Append("</urn:GetIncentiveEvaluationReq>");
@@ -33219,8 +33491,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class GetIncentiveEvaluationRequestType : AbstractRequestType	
-	{
+	public partial class GetIncentiveEvaluationRequestType : AbstractRequestType	{
 
 		/**
           *
@@ -33253,14 +33524,14 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
-			sb.Append(base.toXMLString());
+			sb.Append(base.ToXMLString());
 			if(GetIncentiveEvaluationRequestDetails != null)
 			{
 				sb.Append("<ebl:GetIncentiveEvaluationRequestDetails>");
-				sb.Append(GetIncentiveEvaluationRequestDetails.toXMLString());
+				sb.Append(GetIncentiveEvaluationRequestDetails.ToXMLString());
 				sb.Append("</ebl:GetIncentiveEvaluationRequestDetails>");
 			}
 			return sb.ToString();
@@ -33274,8 +33545,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class GetIncentiveEvaluationResponseType : AbstractResponseType	
-	{
+	public partial class GetIncentiveEvaluationResponseType : AbstractResponseType	{
 
 		/**
           *
@@ -33320,8 +33590,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class SetExpressCheckoutReq	
-	{
+	public partial class SetExpressCheckoutReq	{
 
 		/**
           *
@@ -33347,14 +33616,14 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
 			sb.Append("<urn:SetExpressCheckoutReq>");
 			if(SetExpressCheckoutRequest != null)
 			{
 				sb.Append("<urn:SetExpressCheckoutRequest>");
-				sb.Append(SetExpressCheckoutRequest.toXMLString());
+				sb.Append(SetExpressCheckoutRequest.ToXMLString());
 				sb.Append("</urn:SetExpressCheckoutRequest>");
 			}
 			sb.Append("</urn:SetExpressCheckoutReq>");
@@ -33369,8 +33638,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class SetExpressCheckoutRequestType : AbstractRequestType	
-	{
+	public partial class SetExpressCheckoutRequestType : AbstractRequestType	{
 
 		/**
           *
@@ -33403,14 +33671,14 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
-			sb.Append(base.toXMLString());
+			sb.Append(base.ToXMLString());
 			if(SetExpressCheckoutRequestDetails != null)
 			{
 				sb.Append("<ebl:SetExpressCheckoutRequestDetails>");
-				sb.Append(SetExpressCheckoutRequestDetails.toXMLString());
+				sb.Append(SetExpressCheckoutRequestDetails.ToXMLString());
 				sb.Append("</ebl:SetExpressCheckoutRequestDetails>");
 			}
 			return sb.ToString();
@@ -33429,8 +33697,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *response is identical to the value in the request. Character
       *length and limitations: 20 single-byte characters
       */
-	public partial class SetExpressCheckoutResponseType : AbstractResponseType	
-	{
+	public partial class SetExpressCheckoutResponseType : AbstractResponseType	{
 
 		/**
           *
@@ -33475,8 +33742,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class ExecuteCheckoutOperationsReq	
-	{
+	public partial class ExecuteCheckoutOperationsReq	{
 
 		/**
           *
@@ -33502,14 +33768,14 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
 			sb.Append("<urn:ExecuteCheckoutOperationsReq>");
 			if(ExecuteCheckoutOperationsRequest != null)
 			{
 				sb.Append("<urn:ExecuteCheckoutOperationsRequest>");
-				sb.Append(ExecuteCheckoutOperationsRequest.toXMLString());
+				sb.Append(ExecuteCheckoutOperationsRequest.ToXMLString());
 				sb.Append("</urn:ExecuteCheckoutOperationsRequest>");
 			}
 			sb.Append("</urn:ExecuteCheckoutOperationsReq>");
@@ -33524,8 +33790,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class ExecuteCheckoutOperationsRequestType : AbstractRequestType	
-	{
+	public partial class ExecuteCheckoutOperationsRequestType : AbstractRequestType	{
 
 		/**
           *
@@ -33558,14 +33823,14 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
-			sb.Append(base.toXMLString());
+			sb.Append(base.ToXMLString());
 			if(ExecuteCheckoutOperationsRequestDetails != null)
 			{
 				sb.Append("<ebl:ExecuteCheckoutOperationsRequestDetails>");
-				sb.Append(ExecuteCheckoutOperationsRequestDetails.toXMLString());
+				sb.Append(ExecuteCheckoutOperationsRequestDetails.ToXMLString());
 				sb.Append("</ebl:ExecuteCheckoutOperationsRequestDetails>");
 			}
 			return sb.ToString();
@@ -33579,8 +33844,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class ExecuteCheckoutOperationsResponseType : AbstractResponseType	
-	{
+	public partial class ExecuteCheckoutOperationsResponseType : AbstractResponseType	{
 
 		/**
           *
@@ -33625,8 +33889,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class GetExpressCheckoutDetailsReq	
-	{
+	public partial class GetExpressCheckoutDetailsReq	{
 
 		/**
           *
@@ -33652,14 +33915,14 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
 			sb.Append("<urn:GetExpressCheckoutDetailsReq>");
 			if(GetExpressCheckoutDetailsRequest != null)
 			{
 				sb.Append("<urn:GetExpressCheckoutDetailsRequest>");
-				sb.Append(GetExpressCheckoutDetailsRequest.toXMLString());
+				sb.Append(GetExpressCheckoutDetailsRequest.ToXMLString());
 				sb.Append("</urn:GetExpressCheckoutDetailsRequest>");
 			}
 			sb.Append("</urn:GetExpressCheckoutDetailsReq>");
@@ -33676,8 +33939,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *SetExpressCheckoutResponse. RequiredCharacter length and
       *limitations: 20 single-byte characters
       */
-	public partial class GetExpressCheckoutDetailsRequestType : AbstractRequestType	
-	{
+	public partial class GetExpressCheckoutDetailsRequestType : AbstractRequestType	{
 
 		/**
           *
@@ -33710,10 +33972,10 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
-			sb.Append(base.toXMLString());
+			sb.Append(base.ToXMLString());
 			if(Token != null)
 			{
 				sb.Append("<urn:Token>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(Token));
@@ -33730,8 +33992,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class GetExpressCheckoutDetailsResponseType : AbstractResponseType	
-	{
+	public partial class GetExpressCheckoutDetailsResponseType : AbstractResponseType	{
 
 		/**
           *
@@ -33776,8 +34037,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class DoExpressCheckoutPaymentReq	
-	{
+	public partial class DoExpressCheckoutPaymentReq	{
 
 		/**
           *
@@ -33803,14 +34063,14 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
 			sb.Append("<urn:DoExpressCheckoutPaymentReq>");
 			if(DoExpressCheckoutPaymentRequest != null)
 			{
 				sb.Append("<urn:DoExpressCheckoutPaymentRequest>");
-				sb.Append(DoExpressCheckoutPaymentRequest.toXMLString());
+				sb.Append(DoExpressCheckoutPaymentRequest.ToXMLString());
 				sb.Append("</urn:DoExpressCheckoutPaymentRequest>");
 			}
 			sb.Append("</urn:DoExpressCheckoutPaymentReq>");
@@ -33826,8 +34086,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *This flag indicates that the response should include
       *FMFDetails 
       */
-	public partial class DoExpressCheckoutPaymentRequestType : AbstractRequestType	
-	{
+	public partial class DoExpressCheckoutPaymentRequestType : AbstractRequestType	{
 
 		/**
           *
@@ -33877,14 +34136,14 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
-			sb.Append(base.toXMLString());
+			sb.Append(base.ToXMLString());
 			if(DoExpressCheckoutPaymentRequestDetails != null)
 			{
 				sb.Append("<ebl:DoExpressCheckoutPaymentRequestDetails>");
-				sb.Append(DoExpressCheckoutPaymentRequestDetails.toXMLString());
+				sb.Append(DoExpressCheckoutPaymentRequestDetails.ToXMLString());
 				sb.Append("</ebl:DoExpressCheckoutPaymentRequestDetails>");
 			}
 			if(ReturnFMFDetails != null)
@@ -33903,8 +34162,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class DoExpressCheckoutPaymentResponseType : AbstractResponseType	
-	{
+	public partial class DoExpressCheckoutPaymentResponseType : AbstractResponseType	{
 
 		/**
           *
@@ -33971,8 +34229,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class DoUATPExpressCheckoutPaymentReq	
-	{
+	public partial class DoUATPExpressCheckoutPaymentReq	{
 
 		/**
           *
@@ -33998,14 +34255,14 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
 			sb.Append("<urn:DoUATPExpressCheckoutPaymentReq>");
 			if(DoUATPExpressCheckoutPaymentRequest != null)
 			{
 				sb.Append("<urn:DoUATPExpressCheckoutPaymentRequest>");
-				sb.Append(DoUATPExpressCheckoutPaymentRequest.toXMLString());
+				sb.Append(DoUATPExpressCheckoutPaymentRequest.ToXMLString());
 				sb.Append("</urn:DoUATPExpressCheckoutPaymentRequest>");
 			}
 			sb.Append("</urn:DoUATPExpressCheckoutPaymentReq>");
@@ -34020,8 +34277,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class DoUATPExpressCheckoutPaymentRequestType : DoExpressCheckoutPaymentRequestType	
-	{
+	public partial class DoUATPExpressCheckoutPaymentRequestType : DoExpressCheckoutPaymentRequestType	{
 
 		/**
 	 	  * Default Constructor
@@ -34030,10 +34286,10 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
-			sb.Append(base.toXMLString());
+			sb.Append(base.ToXMLString());
 			return sb.ToString();
 		}
 
@@ -34045,8 +34301,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class DoUATPExpressCheckoutPaymentResponseType : DoExpressCheckoutPaymentResponseType	
-	{
+	public partial class DoUATPExpressCheckoutPaymentResponseType : DoExpressCheckoutPaymentResponseType	{
 
 		/**
           *
@@ -34091,8 +34346,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class ManagePendingTransactionStatusReq	
-	{
+	public partial class ManagePendingTransactionStatusReq	{
 
 		/**
           *
@@ -34118,14 +34372,14 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
 			sb.Append("<urn:ManagePendingTransactionStatusReq>");
 			if(ManagePendingTransactionStatusRequest != null)
 			{
 				sb.Append("<urn:ManagePendingTransactionStatusRequest>");
-				sb.Append(ManagePendingTransactionStatusRequest.toXMLString());
+				sb.Append(ManagePendingTransactionStatusRequest.ToXMLString());
 				sb.Append("</urn:ManagePendingTransactionStatusRequest>");
 			}
 			sb.Append("</urn:ManagePendingTransactionStatusReq>");
@@ -34140,8 +34394,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class ManagePendingTransactionStatusRequestType : AbstractRequestType	
-	{
+	public partial class ManagePendingTransactionStatusRequestType : AbstractRequestType	{
 
 		/**
           *
@@ -34192,10 +34445,10 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
-			sb.Append(base.toXMLString());
+			sb.Append(base.ToXMLString());
 			if(TransactionID != null)
 			{
 				sb.Append("<urn:TransactionID>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(TransactionID));
@@ -34203,7 +34456,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(Action != null)
 			{
-				sb.Append("<urn:Action>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(Action)));
+				sb.Append("<urn:Action>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(Action)));
 				sb.Append("</urn:Action>");
 			}
 			return sb.ToString();
@@ -34217,8 +34470,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class ManagePendingTransactionStatusResponseType : AbstractResponseType	
-	{
+	public partial class ManagePendingTransactionStatusResponseType : AbstractResponseType	{
 
 		/**
           *
@@ -34285,8 +34537,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class DoDirectPaymentReq	
-	{
+	public partial class DoDirectPaymentReq	{
 
 		/**
           *
@@ -34312,14 +34563,14 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
 			sb.Append("<urn:DoDirectPaymentReq>");
 			if(DoDirectPaymentRequest != null)
 			{
 				sb.Append("<urn:DoDirectPaymentRequest>");
-				sb.Append(DoDirectPaymentRequest.toXMLString());
+				sb.Append(DoDirectPaymentRequest.ToXMLString());
 				sb.Append("</urn:DoDirectPaymentRequest>");
 			}
 			sb.Append("</urn:DoDirectPaymentReq>");
@@ -34335,8 +34586,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *This flag indicates that the response should include
       *FMFDetails 
       */
-	public partial class DoDirectPaymentRequestType : AbstractRequestType	
-	{
+	public partial class DoDirectPaymentRequestType : AbstractRequestType	{
 
 		/**
           *
@@ -34386,14 +34636,14 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
-			sb.Append(base.toXMLString());
+			sb.Append(base.ToXMLString());
 			if(DoDirectPaymentRequestDetails != null)
 			{
 				sb.Append("<ebl:DoDirectPaymentRequestDetails>");
-				sb.Append(DoDirectPaymentRequestDetails.toXMLString());
+				sb.Append(DoDirectPaymentRequestDetails.ToXMLString());
 				sb.Append("</ebl:DoDirectPaymentRequestDetails>");
 			}
 			if(ReturnFMFDetails != null)
@@ -34413,8 +34663,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *The amount of the payment as specified by you on
       *DoDirectPaymentRequest.
       */
-	public partial class DoDirectPaymentResponseType : AbstractResponseType	
-	{
+	public partial class DoDirectPaymentResponseType : AbstractResponseType	{
 
 		/**
           *
@@ -34603,12 +34852,12 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'PendingReason']");
 			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.PendingReason = (PendingStatusCodeType)EnumUtils.getValue(ChildNode.InnerText,typeof(PendingStatusCodeType));
+				this.PendingReason = (PendingStatusCodeType)EnumUtils.GetValue(ChildNode.InnerText,typeof(PendingStatusCodeType));
 			}
 			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'PaymentStatus']");
 			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.PaymentStatus = (PaymentStatusCodeType)EnumUtils.getValue(ChildNode.InnerText,typeof(PaymentStatusCodeType));
+				this.PaymentStatus = (PaymentStatusCodeType)EnumUtils.GetValue(ChildNode.InnerText,typeof(PaymentStatusCodeType));
 			}
 			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'FMFDetails']");
 			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
@@ -34635,8 +34884,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class DoCancelReq	
-	{
+	public partial class DoCancelReq	{
 
 		/**
           *
@@ -34662,14 +34910,14 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
 			sb.Append("<urn:DoCancelReq>");
 			if(DoCancelRequest != null)
 			{
 				sb.Append("<urn:DoCancelRequest>");
-				sb.Append(DoCancelRequest.toXMLString());
+				sb.Append(DoCancelRequest.ToXMLString());
 				sb.Append("</urn:DoCancelRequest>");
 			}
 			sb.Append("</urn:DoCancelReq>");
@@ -34684,8 +34932,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *Msg Sub Id that was used for the orginal operation. 
       */
-	public partial class DoCancelRequestType : AbstractRequestType	
-	{
+	public partial class DoCancelRequestType : AbstractRequestType	{
 
 		/**
           *
@@ -34722,6 +34969,23 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
+          *
+		  */
+		private string MsgSubIDField;
+		public string MsgSubID
+		{
+			get
+			{
+				return this.MsgSubIDField;
+			}
+			set
+			{
+				this.MsgSubIDField = value;
+			}
+		}
+		
+
+		/**
 	 	  * Constructor with arguments
 	 	  */
 	 	public DoCancelRequestType(string CancelMsgSubID, APIType? APIType){
@@ -34736,10 +35000,10 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
-			sb.Append(base.toXMLString());
+			sb.Append(base.ToXMLString());
 			if(CancelMsgSubID != null)
 			{
 				sb.Append("<urn:CancelMsgSubID>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(CancelMsgSubID));
@@ -34747,8 +35011,13 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(APIType != null)
 			{
-				sb.Append("<urn:APIType>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(APIType)));
+				sb.Append("<urn:APIType>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(APIType)));
 				sb.Append("</urn:APIType>");
+			}
+			if(MsgSubID != null)
+			{
+				sb.Append("<urn:MsgSubID>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(MsgSubID));
+				sb.Append("</urn:MsgSubID>");
 			}
 			return sb.ToString();
 		}
@@ -34759,10 +35028,26 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 	/**
-      *
+      *Return msgsubid back to merchant 
       */
-	public partial class DoCancelResponseType : AbstractResponseType	
-	{
+	public partial class DoCancelResponseType : AbstractResponseType	{
+
+		/**
+          *
+		  */
+		private string MsgSubIDField;
+		public string MsgSubID
+		{
+			get
+			{
+				return this.MsgSubIDField;
+			}
+			set
+			{
+				this.MsgSubIDField = value;
+			}
+		}
+		
 
 		/**
 	 	  * Default Constructor
@@ -34775,6 +35060,11 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		{
 			XmlNode ChildNode = null;
 			XmlNodeList ChildNodeList = null;
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'MsgSubID']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
+			{
+				this.MsgSubID = ChildNode.InnerText;
+			}
 	
 		}
 	}
@@ -34785,8 +35075,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class DoCaptureReq	
-	{
+	public partial class DoCaptureReq	{
 
 		/**
           *
@@ -34812,14 +35101,14 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
 			sb.Append("<urn:DoCaptureReq>");
 			if(DoCaptureRequest != null)
 			{
 				sb.Append("<urn:DoCaptureRequest>");
-				sb.Append(DoCaptureRequest.toXMLString());
+				sb.Append(DoCaptureRequest.ToXMLString());
 				sb.Append("</urn:DoCaptureRequest>");
 			}
 			sb.Append("</urn:DoCaptureReq>");
@@ -34836,8 +35125,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *want to capture. Required Character length and limits: 19
       *single-byte characters maximum 
       */
-	public partial class DoCaptureRequestType : AbstractRequestType	
-	{
+	public partial class DoCaptureRequestType : AbstractRequestType	{
 
 		/**
           *
@@ -35008,10 +35296,10 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
-			sb.Append(base.toXMLString());
+			sb.Append(base.ToXMLString());
 			if(AuthorizationID != null)
 			{
 				sb.Append("<urn:AuthorizationID>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(AuthorizationID));
@@ -35020,12 +35308,12 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			if(Amount != null)
 			{
 				sb.Append("<urn:Amount");
-				sb.Append(Amount.toXMLString());
+				sb.Append(Amount.ToXMLString());
 				sb.Append("</urn:Amount>");
 			}
 			if(CompleteType != null)
 			{
-				sb.Append("<urn:CompleteType>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(CompleteType)));
+				sb.Append("<urn:CompleteType>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(CompleteType)));
 				sb.Append("</urn:CompleteType>");
 			}
 			if(Note != null)
@@ -35041,7 +35329,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			if(EnhancedData != null)
 			{
 				sb.Append("<ebl:EnhancedData>");
-				sb.Append(EnhancedData.toXMLString());
+				sb.Append(EnhancedData.ToXMLString());
 				sb.Append("</ebl:EnhancedData>");
 			}
 			if(Descriptor != null)
@@ -35052,7 +35340,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			if(MerchantStoreDetails != null)
 			{
 				sb.Append("<ebl:MerchantStoreDetails>");
-				sb.Append(MerchantStoreDetails.toXMLString());
+				sb.Append(MerchantStoreDetails.ToXMLString());
 				sb.Append("</ebl:MerchantStoreDetails>");
 			}
 			if(MsgSubID != null)
@@ -35071,8 +35359,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class DoCaptureResponseType : AbstractResponseType	
-	{
+	public partial class DoCaptureResponseType : AbstractResponseType	{
 
 		/**
           *
@@ -35117,8 +35404,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class DoReauthorizationReq	
-	{
+	public partial class DoReauthorizationReq	{
 
 		/**
           *
@@ -35144,14 +35430,14 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
 			sb.Append("<urn:DoReauthorizationReq>");
 			if(DoReauthorizationRequest != null)
 			{
 				sb.Append("<urn:DoReauthorizationRequest>");
-				sb.Append(DoReauthorizationRequest.toXMLString());
+				sb.Append(DoReauthorizationRequest.ToXMLString());
 				sb.Append("</urn:DoReauthorizationRequest>");
 			}
 			sb.Append("</urn:DoReauthorizationReq>");
@@ -35171,8 +35457,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *GetTransactionDetailsResponse. Required Character length and
       *limits: 19 single-byte characters maximum 
       */
-	public partial class DoReauthorizationRequestType : AbstractRequestType	
-	{
+	public partial class DoReauthorizationRequestType : AbstractRequestType	{
 
 		/**
           *
@@ -35209,6 +35494,23 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
+          *
+		  */
+		private string MsgSubIDField;
+		public string MsgSubID
+		{
+			get
+			{
+				return this.MsgSubIDField;
+			}
+			set
+			{
+				this.MsgSubIDField = value;
+			}
+		}
+		
+
+		/**
 	 	  * Constructor with arguments
 	 	  */
 	 	public DoReauthorizationRequestType(string AuthorizationID, BasicAmountType Amount){
@@ -35223,10 +35525,10 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
-			sb.Append(base.toXMLString());
+			sb.Append(base.ToXMLString());
 			if(AuthorizationID != null)
 			{
 				sb.Append("<urn:AuthorizationID>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(AuthorizationID));
@@ -35235,8 +35537,13 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			if(Amount != null)
 			{
 				sb.Append("<urn:Amount");
-				sb.Append(Amount.toXMLString());
+				sb.Append(Amount.ToXMLString());
 				sb.Append("</urn:Amount>");
+			}
+			if(MsgSubID != null)
+			{
+				sb.Append("<urn:MsgSubID>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(MsgSubID));
+				sb.Append("</urn:MsgSubID>");
 			}
 			return sb.ToString();
 		}
@@ -35250,8 +35557,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *A new authorization identification number. Character length
       *and limits: 19 single-byte characters 
       */
-	public partial class DoReauthorizationResponseType : AbstractResponseType	
-	{
+	public partial class DoReauthorizationResponseType : AbstractResponseType	{
 
 		/**
           *
@@ -35288,6 +35594,23 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
+          *
+		  */
+		private string MsgSubIDField;
+		public string MsgSubID
+		{
+			get
+			{
+				return this.MsgSubIDField;
+			}
+			set
+			{
+				this.MsgSubIDField = value;
+			}
+		}
+		
+
+		/**
 	 	  * Default Constructor
 	 	  */
 	 	public DoReauthorizationResponseType(){
@@ -35308,6 +35631,11 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			{
 				this.AuthorizationInfo =  new AuthorizationInfoType(ChildNode);
 			}
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'MsgSubID']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
+			{
+				this.MsgSubID = ChildNode.InnerText;
+			}
 	
 		}
 	}
@@ -35318,8 +35646,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class DoVoidReq	
-	{
+	public partial class DoVoidReq	{
 
 		/**
           *
@@ -35345,14 +35672,14 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
 			sb.Append("<urn:DoVoidReq>");
 			if(DoVoidRequest != null)
 			{
 				sb.Append("<urn:DoVoidRequest>");
-				sb.Append(DoVoidRequest.toXMLString());
+				sb.Append(DoVoidRequest.ToXMLString());
 				sb.Append("</urn:DoVoidRequest>");
 			}
 			sb.Append("</urn:DoVoidReq>");
@@ -35372,8 +35699,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *Required Character length and limits: 19 single-byte
       *characters 
       */
-	public partial class DoVoidRequestType : AbstractRequestType	
-	{
+	public partial class DoVoidRequestType : AbstractRequestType	{
 
 		/**
           *
@@ -35410,6 +35736,23 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
+          *
+		  */
+		private string MsgSubIDField;
+		public string MsgSubID
+		{
+			get
+			{
+				return this.MsgSubIDField;
+			}
+			set
+			{
+				this.MsgSubIDField = value;
+			}
+		}
+		
+
+		/**
 	 	  * Constructor with arguments
 	 	  */
 	 	public DoVoidRequestType(string AuthorizationID){
@@ -35423,10 +35766,10 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
-			sb.Append(base.toXMLString());
+			sb.Append(base.ToXMLString());
 			if(AuthorizationID != null)
 			{
 				sb.Append("<urn:AuthorizationID>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(AuthorizationID));
@@ -35436,6 +35779,11 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			{
 				sb.Append("<urn:Note>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(Note));
 				sb.Append("</urn:Note>");
+			}
+			if(MsgSubID != null)
+			{
+				sb.Append("<urn:MsgSubID>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(MsgSubID));
+				sb.Append("</urn:MsgSubID>");
 			}
 			return sb.ToString();
 		}
@@ -35450,8 +35798,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *request. Character length and limits: 19 single-byte
       *characters 
       */
-	public partial class DoVoidResponseType : AbstractResponseType	
-	{
+	public partial class DoVoidResponseType : AbstractResponseType	{
 
 		/**
           *
@@ -35466,6 +35813,23 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			set
 			{
 				this.AuthorizationIDField = value;
+			}
+		}
+		
+
+		/**
+          *
+		  */
+		private string MsgSubIDField;
+		public string MsgSubID
+		{
+			get
+			{
+				return this.MsgSubIDField;
+			}
+			set
+			{
+				this.MsgSubIDField = value;
 			}
 		}
 		
@@ -35486,6 +35850,11 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			{
 				this.AuthorizationID = ChildNode.InnerText;
 			}
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'MsgSubID']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
+			{
+				this.MsgSubID = ChildNode.InnerText;
+			}
 	
 		}
 	}
@@ -35496,8 +35865,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class DoAuthorizationReq	
-	{
+	public partial class DoAuthorizationReq	{
 
 		/**
           *
@@ -35523,14 +35891,14 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
 			sb.Append("<urn:DoAuthorizationReq>");
 			if(DoAuthorizationRequest != null)
 			{
 				sb.Append("<urn:DoAuthorizationRequest>");
-				sb.Append(DoAuthorizationRequest.toXMLString());
+				sb.Append(DoAuthorizationRequest.ToXMLString());
 				sb.Append("</urn:DoAuthorizationRequest>");
 			}
 			sb.Append("</urn:DoAuthorizationReq>");
@@ -35547,8 +35915,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *returned by a PayPal product. Required Character length and
       *limits: 19 single-byte characters maximum 
       */
-	public partial class DoAuthorizationRequestType : AbstractRequestType	
-	{
+	public partial class DoAuthorizationRequestType : AbstractRequestType	{
 
 		/**
           *
@@ -35633,10 +36000,10 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
-			sb.Append(base.toXMLString());
+			sb.Append(base.ToXMLString());
 			if(TransactionID != null)
 			{
 				sb.Append("<urn:TransactionID>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(TransactionID));
@@ -35644,13 +36011,13 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(TransactionEntity != null)
 			{
-				sb.Append("<urn:TransactionEntity>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(TransactionEntity)));
+				sb.Append("<urn:TransactionEntity>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(TransactionEntity)));
 				sb.Append("</urn:TransactionEntity>");
 			}
 			if(Amount != null)
 			{
 				sb.Append("<urn:Amount");
-				sb.Append(Amount.toXMLString());
+				sb.Append(Amount.ToXMLString());
 				sb.Append("</urn:Amount>");
 			}
 			if(MsgSubID != null)
@@ -35670,8 +36037,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *An authorization identification number. Character length and
       *limits: 19 single-byte characters 
       */
-	public partial class DoAuthorizationResponseType : AbstractResponseType	
-	{
+	public partial class DoAuthorizationResponseType : AbstractResponseType	{
 
 		/**
           *
@@ -35782,8 +36148,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class DoUATPAuthorizationReq	
-	{
+	public partial class DoUATPAuthorizationReq	{
 
 		/**
           *
@@ -35809,14 +36174,14 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
 			sb.Append("<urn:DoUATPAuthorizationReq>");
 			if(DoUATPAuthorizationRequest != null)
 			{
 				sb.Append("<urn:DoUATPAuthorizationRequest>");
-				sb.Append(DoUATPAuthorizationRequest.toXMLString());
+				sb.Append(DoUATPAuthorizationRequest.ToXMLString());
 				sb.Append("</urn:DoUATPAuthorizationRequest>");
 			}
 			sb.Append("</urn:DoUATPAuthorizationReq>");
@@ -35831,8 +36196,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *UATP card details Required 
       */
-	public partial class DoUATPAuthorizationRequestType : AbstractRequestType	
-	{
+	public partial class DoUATPAuthorizationRequestType : AbstractRequestType	{
 
 		/**
           *
@@ -35934,25 +36298,25 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
-			sb.Append(base.toXMLString());
+			sb.Append(base.ToXMLString());
 			if(UATPDetails != null)
 			{
 				sb.Append("<ebl:UATPDetails>");
-				sb.Append(UATPDetails.toXMLString());
+				sb.Append(UATPDetails.ToXMLString());
 				sb.Append("</ebl:UATPDetails>");
 			}
 			if(TransactionEntity != null)
 			{
-				sb.Append("<urn:TransactionEntity>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.getDescription(TransactionEntity)));
+				sb.Append("<urn:TransactionEntity>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(TransactionEntity)));
 				sb.Append("</urn:TransactionEntity>");
 			}
 			if(Amount != null)
 			{
 				sb.Append("<urn:Amount");
-				sb.Append(Amount.toXMLString());
+				sb.Append(Amount.ToXMLString());
 				sb.Append("</urn:Amount>");
 			}
 			if(InvoiceID != null)
@@ -35976,8 +36340,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *Auth Authorization Code. 
       */
-	public partial class DoUATPAuthorizationResponseType : DoAuthorizationResponseType	
-	{
+	public partial class DoUATPAuthorizationResponseType : DoAuthorizationResponseType	{
 
 		/**
           *
@@ -36088,8 +36451,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class CreateMobilePaymentReq	
-	{
+	public partial class CreateMobilePaymentReq	{
 
 		/**
           *
@@ -36115,14 +36477,14 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
 			sb.Append("<urn:CreateMobilePaymentReq>");
 			if(CreateMobilePaymentRequest != null)
 			{
 				sb.Append("<urn:CreateMobilePaymentRequest>");
-				sb.Append(CreateMobilePaymentRequest.toXMLString());
+				sb.Append(CreateMobilePaymentRequest.ToXMLString());
 				sb.Append("</urn:CreateMobilePaymentRequest>");
 			}
 			sb.Append("</urn:CreateMobilePaymentReq>");
@@ -36137,8 +36499,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class CreateMobilePaymentRequestType : AbstractRequestType	
-	{
+	public partial class CreateMobilePaymentRequestType : AbstractRequestType	{
 
 		/**
           *
@@ -36171,14 +36532,14 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
-			sb.Append(base.toXMLString());
+			sb.Append(base.ToXMLString());
 			if(CreateMobilePaymentRequestDetails != null)
 			{
 				sb.Append("<ebl:CreateMobilePaymentRequestDetails>");
-				sb.Append(CreateMobilePaymentRequestDetails.toXMLString());
+				sb.Append(CreateMobilePaymentRequestDetails.ToXMLString());
 				sb.Append("</ebl:CreateMobilePaymentRequestDetails>");
 			}
 			return sb.ToString();
@@ -36192,8 +36553,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class CreateMobilePaymentResponseType : AbstractResponseType	
-	{
+	public partial class CreateMobilePaymentResponseType : AbstractResponseType	{
 
 		/**
 	 	  * Default Constructor
@@ -36216,8 +36576,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class GetMobileStatusReq	
-	{
+	public partial class GetMobileStatusReq	{
 
 		/**
           *
@@ -36243,14 +36602,14 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
 			sb.Append("<urn:GetMobileStatusReq>");
 			if(GetMobileStatusRequest != null)
 			{
 				sb.Append("<urn:GetMobileStatusRequest>");
-				sb.Append(GetMobileStatusRequest.toXMLString());
+				sb.Append(GetMobileStatusRequest.ToXMLString());
 				sb.Append("</urn:GetMobileStatusRequest>");
 			}
 			sb.Append("</urn:GetMobileStatusReq>");
@@ -36265,8 +36624,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class GetMobileStatusRequestType : AbstractRequestType	
-	{
+	public partial class GetMobileStatusRequestType : AbstractRequestType	{
 
 		/**
           *
@@ -36299,14 +36657,14 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
-			sb.Append(base.toXMLString());
+			sb.Append(base.ToXMLString());
 			if(GetMobileStatusRequestDetails != null)
 			{
 				sb.Append("<ebl:GetMobileStatusRequestDetails>");
-				sb.Append(GetMobileStatusRequestDetails.toXMLString());
+				sb.Append(GetMobileStatusRequestDetails.ToXMLString());
 				sb.Append("</ebl:GetMobileStatusRequestDetails>");
 			}
 			return sb.ToString();
@@ -36321,8 +36679,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *Indicates whether the phone is activated for mobile payments
       *
       */
-	public partial class GetMobileStatusResponseType : AbstractResponseType	
-	{
+	public partial class GetMobileStatusResponseType : AbstractResponseType	{
 
 		/**
           *
@@ -36389,8 +36746,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class SetMobileCheckoutReq	
-	{
+	public partial class SetMobileCheckoutReq	{
 
 		/**
           *
@@ -36416,14 +36772,14 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
 			sb.Append("<urn:SetMobileCheckoutReq>");
 			if(SetMobileCheckoutRequest != null)
 			{
 				sb.Append("<urn:SetMobileCheckoutRequest>");
-				sb.Append(SetMobileCheckoutRequest.toXMLString());
+				sb.Append(SetMobileCheckoutRequest.ToXMLString());
 				sb.Append("</urn:SetMobileCheckoutRequest>");
 			}
 			sb.Append("</urn:SetMobileCheckoutReq>");
@@ -36438,8 +36794,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class SetMobileCheckoutRequestType : AbstractRequestType	
-	{
+	public partial class SetMobileCheckoutRequestType : AbstractRequestType	{
 
 		/**
           *
@@ -36472,14 +36827,14 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
-			sb.Append(base.toXMLString());
+			sb.Append(base.ToXMLString());
 			if(SetMobileCheckoutRequestDetails != null)
 			{
 				sb.Append("<ebl:SetMobileCheckoutRequestDetails>");
-				sb.Append(SetMobileCheckoutRequestDetails.toXMLString());
+				sb.Append(SetMobileCheckoutRequestDetails.ToXMLString());
 				sb.Append("</ebl:SetMobileCheckoutRequestDetails>");
 			}
 			return sb.ToString();
@@ -36496,8 +36851,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *expires after three hours. Character length and limitations:
       *20 single-byte characters
       */
-	public partial class SetMobileCheckoutResponseType : AbstractResponseType	
-	{
+	public partial class SetMobileCheckoutResponseType : AbstractResponseType	{
 
 		/**
           *
@@ -36542,8 +36896,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class DoMobileCheckoutPaymentReq	
-	{
+	public partial class DoMobileCheckoutPaymentReq	{
 
 		/**
           *
@@ -36569,14 +36922,14 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
 			sb.Append("<urn:DoMobileCheckoutPaymentReq>");
 			if(DoMobileCheckoutPaymentRequest != null)
 			{
 				sb.Append("<urn:DoMobileCheckoutPaymentRequest>");
-				sb.Append(DoMobileCheckoutPaymentRequest.toXMLString());
+				sb.Append(DoMobileCheckoutPaymentRequest.ToXMLString());
 				sb.Append("</urn:DoMobileCheckoutPaymentRequest>");
 			}
 			sb.Append("</urn:DoMobileCheckoutPaymentReq>");
@@ -36593,8 +36946,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *SetMobileCheckoutResponse. RequiredCharacter length and
       *limitations: 20 single-byte characters
       */
-	public partial class DoMobileCheckoutPaymentRequestType : AbstractRequestType	
-	{
+	public partial class DoMobileCheckoutPaymentRequestType : AbstractRequestType	{
 
 		/**
           *
@@ -36627,10 +36979,10 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
-			sb.Append(base.toXMLString());
+			sb.Append(base.ToXMLString());
 			if(Token != null)
 			{
 				sb.Append("<urn:Token>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(Token));
@@ -36647,8 +36999,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class DoMobileCheckoutPaymentResponseType : AbstractResponseType	
-	{
+	public partial class DoMobileCheckoutPaymentResponseType : AbstractResponseType	{
 
 		/**
           *
@@ -36693,8 +37044,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class GetBalanceReq	
-	{
+	public partial class GetBalanceReq	{
 
 		/**
           *
@@ -36720,14 +37070,14 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
 			sb.Append("<urn:GetBalanceReq>");
 			if(GetBalanceRequest != null)
 			{
 				sb.Append("<urn:GetBalanceRequest>");
-				sb.Append(GetBalanceRequest.toXMLString());
+				sb.Append(GetBalanceRequest.ToXMLString());
 				sb.Append("</urn:GetBalanceRequest>");
 			}
 			sb.Append("</urn:GetBalanceReq>");
@@ -36742,8 +37092,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class GetBalanceRequestType : AbstractRequestType	
-	{
+	public partial class GetBalanceRequestType : AbstractRequestType	{
 
 		/**
           *
@@ -36769,10 +37118,10 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
-			sb.Append(base.toXMLString());
+			sb.Append(base.ToXMLString());
 			if(ReturnAllCurrencies != null)
 			{
 				sb.Append("<urn:ReturnAllCurrencies>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(ReturnAllCurrencies));
@@ -36789,8 +37138,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class GetBalanceResponseType : AbstractResponseType	
-	{
+	public partial class GetBalanceResponseType : AbstractResponseType	{
 
 		/**
           *
@@ -36883,8 +37231,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class SetCustomerBillingAgreementReq	
-	{
+	public partial class SetCustomerBillingAgreementReq	{
 
 		/**
           *
@@ -36910,14 +37257,14 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
 			sb.Append("<urn:SetCustomerBillingAgreementReq>");
 			if(SetCustomerBillingAgreementRequest != null)
 			{
 				sb.Append("<urn:SetCustomerBillingAgreementRequest>");
-				sb.Append(SetCustomerBillingAgreementRequest.toXMLString());
+				sb.Append(SetCustomerBillingAgreementRequest.ToXMLString());
 				sb.Append("</urn:SetCustomerBillingAgreementRequest>");
 			}
 			sb.Append("</urn:SetCustomerBillingAgreementReq>");
@@ -36932,8 +37279,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class SetCustomerBillingAgreementRequestType : AbstractRequestType	
-	{
+	public partial class SetCustomerBillingAgreementRequestType : AbstractRequestType	{
 
 		/**
           *
@@ -36966,14 +37312,14 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
-			sb.Append(base.toXMLString());
+			sb.Append(base.ToXMLString());
 			if(SetCustomerBillingAgreementRequestDetails != null)
 			{
 				sb.Append("<ebl:SetCustomerBillingAgreementRequestDetails>");
-				sb.Append(SetCustomerBillingAgreementRequestDetails.toXMLString());
+				sb.Append(SetCustomerBillingAgreementRequestDetails.ToXMLString());
 				sb.Append("</ebl:SetCustomerBillingAgreementRequestDetails>");
 			}
 			return sb.ToString();
@@ -36987,8 +37333,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class SetCustomerBillingAgreementResponseType : AbstractResponseType	
-	{
+	public partial class SetCustomerBillingAgreementResponseType : AbstractResponseType	{
 
 		/**
           *
@@ -37033,8 +37378,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class GetBillingAgreementCustomerDetailsReq	
-	{
+	public partial class GetBillingAgreementCustomerDetailsReq	{
 
 		/**
           *
@@ -37060,14 +37404,14 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
 			sb.Append("<urn:GetBillingAgreementCustomerDetailsReq>");
 			if(GetBillingAgreementCustomerDetailsRequest != null)
 			{
 				sb.Append("<urn:GetBillingAgreementCustomerDetailsRequest>");
-				sb.Append(GetBillingAgreementCustomerDetailsRequest.toXMLString());
+				sb.Append(GetBillingAgreementCustomerDetailsRequest.ToXMLString());
 				sb.Append("</urn:GetBillingAgreementCustomerDetailsRequest>");
 			}
 			sb.Append("</urn:GetBillingAgreementCustomerDetailsReq>");
@@ -37082,8 +37426,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class GetBillingAgreementCustomerDetailsRequestType : AbstractRequestType	
-	{
+	public partial class GetBillingAgreementCustomerDetailsRequestType : AbstractRequestType	{
 
 		/**
           *
@@ -37116,10 +37459,10 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
-			sb.Append(base.toXMLString());
+			sb.Append(base.ToXMLString());
 			if(Token != null)
 			{
 				sb.Append("<urn:Token>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(Token));
@@ -37136,8 +37479,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class GetBillingAgreementCustomerDetailsResponseType : AbstractResponseType	
-	{
+	public partial class GetBillingAgreementCustomerDetailsResponseType : AbstractResponseType	{
 
 		/**
           *
@@ -37182,8 +37524,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class CreateBillingAgreementReq	
-	{
+	public partial class CreateBillingAgreementReq	{
 
 		/**
           *
@@ -37209,14 +37550,14 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
 			sb.Append("<urn:CreateBillingAgreementReq>");
 			if(CreateBillingAgreementRequest != null)
 			{
 				sb.Append("<urn:CreateBillingAgreementRequest>");
-				sb.Append(CreateBillingAgreementRequest.toXMLString());
+				sb.Append(CreateBillingAgreementRequest.ToXMLString());
 				sb.Append("</urn:CreateBillingAgreementRequest>");
 			}
 			sb.Append("</urn:CreateBillingAgreementReq>");
@@ -37231,8 +37572,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class CreateBillingAgreementRequestType : AbstractRequestType	
-	{
+	public partial class CreateBillingAgreementRequestType : AbstractRequestType	{
 
 		/**
           *
@@ -37265,10 +37605,10 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
-			sb.Append(base.toXMLString());
+			sb.Append(base.ToXMLString());
 			if(Token != null)
 			{
 				sb.Append("<urn:Token>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(Token));
@@ -37285,8 +37625,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class CreateBillingAgreementResponseType : AbstractResponseType	
-	{
+	public partial class CreateBillingAgreementResponseType : AbstractResponseType	{
 
 		/**
           *
@@ -37331,8 +37670,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class DoReferenceTransactionReq	
-	{
+	public partial class DoReferenceTransactionReq	{
 
 		/**
           *
@@ -37358,14 +37696,14 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
 			sb.Append("<urn:DoReferenceTransactionReq>");
 			if(DoReferenceTransactionRequest != null)
 			{
 				sb.Append("<urn:DoReferenceTransactionRequest>");
-				sb.Append(DoReferenceTransactionRequest.toXMLString());
+				sb.Append(DoReferenceTransactionRequest.ToXMLString());
 				sb.Append("</urn:DoReferenceTransactionRequest>");
 			}
 			sb.Append("</urn:DoReferenceTransactionReq>");
@@ -37381,8 +37719,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *This flag indicates that the response should include
       *FMFDetails 
       */
-	public partial class DoReferenceTransactionRequestType : AbstractRequestType	
-	{
+	public partial class DoReferenceTransactionRequestType : AbstractRequestType	{
 
 		/**
           *
@@ -37432,14 +37769,14 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
-			sb.Append(base.toXMLString());
+			sb.Append(base.ToXMLString());
 			if(DoReferenceTransactionRequestDetails != null)
 			{
 				sb.Append("<ebl:DoReferenceTransactionRequestDetails>");
-				sb.Append(DoReferenceTransactionRequestDetails.toXMLString());
+				sb.Append(DoReferenceTransactionRequestDetails.ToXMLString());
 				sb.Append("</ebl:DoReferenceTransactionRequestDetails>");
 			}
 			if(ReturnFMFDetails != null)
@@ -37458,8 +37795,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class DoReferenceTransactionResponseType : AbstractResponseType	
-	{
+	public partial class DoReferenceTransactionResponseType : AbstractResponseType	{
 
 		/**
           *
@@ -37526,8 +37862,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class DoNonReferencedCreditReq	
-	{
+	public partial class DoNonReferencedCreditReq	{
 
 		/**
           *
@@ -37553,14 +37888,14 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
 			sb.Append("<urn:DoNonReferencedCreditReq>");
 			if(DoNonReferencedCreditRequest != null)
 			{
 				sb.Append("<urn:DoNonReferencedCreditRequest>");
-				sb.Append(DoNonReferencedCreditRequest.toXMLString());
+				sb.Append(DoNonReferencedCreditRequest.ToXMLString());
 				sb.Append("</urn:DoNonReferencedCreditRequest>");
 			}
 			sb.Append("</urn:DoNonReferencedCreditReq>");
@@ -37575,8 +37910,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class DoNonReferencedCreditRequestType : AbstractRequestType	
-	{
+	public partial class DoNonReferencedCreditRequestType : AbstractRequestType	{
 
 		/**
           *
@@ -37609,14 +37943,14 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
-			sb.Append(base.toXMLString());
+			sb.Append(base.ToXMLString());
 			if(DoNonReferencedCreditRequestDetails != null)
 			{
 				sb.Append("<ebl:DoNonReferencedCreditRequestDetails>");
-				sb.Append(DoNonReferencedCreditRequestDetails.toXMLString());
+				sb.Append(DoNonReferencedCreditRequestDetails.ToXMLString());
 				sb.Append("</ebl:DoNonReferencedCreditRequestDetails>");
 			}
 			return sb.ToString();
@@ -37630,8 +37964,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class DoNonReferencedCreditResponseType : AbstractResponseType	
-	{
+	public partial class DoNonReferencedCreditResponseType : AbstractResponseType	{
 
 		/**
           *
@@ -37676,8 +38009,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class CreateRecurringPaymentsProfileReq	
-	{
+	public partial class CreateRecurringPaymentsProfileReq	{
 
 		/**
           *
@@ -37703,14 +38035,14 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
 			sb.Append("<urn:CreateRecurringPaymentsProfileReq>");
 			if(CreateRecurringPaymentsProfileRequest != null)
 			{
 				sb.Append("<urn:CreateRecurringPaymentsProfileRequest>");
-				sb.Append(CreateRecurringPaymentsProfileRequest.toXMLString());
+				sb.Append(CreateRecurringPaymentsProfileRequest.ToXMLString());
 				sb.Append("</urn:CreateRecurringPaymentsProfileRequest>");
 			}
 			sb.Append("</urn:CreateRecurringPaymentsProfileReq>");
@@ -37725,8 +38057,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class CreateRecurringPaymentsProfileRequestType : AbstractRequestType	
-	{
+	public partial class CreateRecurringPaymentsProfileRequestType : AbstractRequestType	{
 
 		/**
           *
@@ -37752,14 +38083,14 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
-			sb.Append(base.toXMLString());
+			sb.Append(base.ToXMLString());
 			if(CreateRecurringPaymentsProfileRequestDetails != null)
 			{
 				sb.Append("<ebl:CreateRecurringPaymentsProfileRequestDetails>");
-				sb.Append(CreateRecurringPaymentsProfileRequestDetails.toXMLString());
+				sb.Append(CreateRecurringPaymentsProfileRequestDetails.ToXMLString());
 				sb.Append("</ebl:CreateRecurringPaymentsProfileRequestDetails>");
 			}
 			return sb.ToString();
@@ -37773,8 +38104,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class CreateRecurringPaymentsProfileResponseType : AbstractResponseType	
-	{
+	public partial class CreateRecurringPaymentsProfileResponseType : AbstractResponseType	{
 
 		/**
           *
@@ -37819,8 +38149,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class GetRecurringPaymentsProfileDetailsReq	
-	{
+	public partial class GetRecurringPaymentsProfileDetailsReq	{
 
 		/**
           *
@@ -37846,14 +38175,14 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
 			sb.Append("<urn:GetRecurringPaymentsProfileDetailsReq>");
 			if(GetRecurringPaymentsProfileDetailsRequest != null)
 			{
 				sb.Append("<urn:GetRecurringPaymentsProfileDetailsRequest>");
-				sb.Append(GetRecurringPaymentsProfileDetailsRequest.toXMLString());
+				sb.Append(GetRecurringPaymentsProfileDetailsRequest.ToXMLString());
 				sb.Append("</urn:GetRecurringPaymentsProfileDetailsRequest>");
 			}
 			sb.Append("</urn:GetRecurringPaymentsProfileDetailsReq>");
@@ -37868,8 +38197,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class GetRecurringPaymentsProfileDetailsRequestType : AbstractRequestType	
-	{
+	public partial class GetRecurringPaymentsProfileDetailsRequestType : AbstractRequestType	{
 
 		/**
           *
@@ -37902,10 +38230,10 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
-			sb.Append(base.toXMLString());
+			sb.Append(base.ToXMLString());
 			if(ProfileID != null)
 			{
 				sb.Append("<urn:ProfileID>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(ProfileID));
@@ -37922,8 +38250,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class GetRecurringPaymentsProfileDetailsResponseType : AbstractResponseType	
-	{
+	public partial class GetRecurringPaymentsProfileDetailsResponseType : AbstractResponseType	{
 
 		/**
           *
@@ -37968,8 +38295,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class ManageRecurringPaymentsProfileStatusReq	
-	{
+	public partial class ManageRecurringPaymentsProfileStatusReq	{
 
 		/**
           *
@@ -37995,14 +38321,14 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
 			sb.Append("<urn:ManageRecurringPaymentsProfileStatusReq>");
 			if(ManageRecurringPaymentsProfileStatusRequest != null)
 			{
 				sb.Append("<urn:ManageRecurringPaymentsProfileStatusRequest>");
-				sb.Append(ManageRecurringPaymentsProfileStatusRequest.toXMLString());
+				sb.Append(ManageRecurringPaymentsProfileStatusRequest.ToXMLString());
 				sb.Append("</urn:ManageRecurringPaymentsProfileStatusRequest>");
 			}
 			sb.Append("</urn:ManageRecurringPaymentsProfileStatusReq>");
@@ -38017,8 +38343,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class ManageRecurringPaymentsProfileStatusRequestType : AbstractRequestType	
-	{
+	public partial class ManageRecurringPaymentsProfileStatusRequestType : AbstractRequestType	{
 
 		/**
           *
@@ -38044,14 +38369,14 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
-			sb.Append(base.toXMLString());
+			sb.Append(base.ToXMLString());
 			if(ManageRecurringPaymentsProfileStatusRequestDetails != null)
 			{
 				sb.Append("<ebl:ManageRecurringPaymentsProfileStatusRequestDetails>");
-				sb.Append(ManageRecurringPaymentsProfileStatusRequestDetails.toXMLString());
+				sb.Append(ManageRecurringPaymentsProfileStatusRequestDetails.ToXMLString());
 				sb.Append("</ebl:ManageRecurringPaymentsProfileStatusRequestDetails>");
 			}
 			return sb.ToString();
@@ -38065,8 +38390,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class ManageRecurringPaymentsProfileStatusResponseType : AbstractResponseType	
-	{
+	public partial class ManageRecurringPaymentsProfileStatusResponseType : AbstractResponseType	{
 
 		/**
           *
@@ -38111,8 +38435,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class BillOutstandingAmountReq	
-	{
+	public partial class BillOutstandingAmountReq	{
 
 		/**
           *
@@ -38138,14 +38461,14 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
 			sb.Append("<urn:BillOutstandingAmountReq>");
 			if(BillOutstandingAmountRequest != null)
 			{
 				sb.Append("<urn:BillOutstandingAmountRequest>");
-				sb.Append(BillOutstandingAmountRequest.toXMLString());
+				sb.Append(BillOutstandingAmountRequest.ToXMLString());
 				sb.Append("</urn:BillOutstandingAmountRequest>");
 			}
 			sb.Append("</urn:BillOutstandingAmountReq>");
@@ -38160,8 +38483,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class BillOutstandingAmountRequestType : AbstractRequestType	
-	{
+	public partial class BillOutstandingAmountRequestType : AbstractRequestType	{
 
 		/**
           *
@@ -38187,14 +38509,14 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
-			sb.Append(base.toXMLString());
+			sb.Append(base.ToXMLString());
 			if(BillOutstandingAmountRequestDetails != null)
 			{
 				sb.Append("<ebl:BillOutstandingAmountRequestDetails>");
-				sb.Append(BillOutstandingAmountRequestDetails.toXMLString());
+				sb.Append(BillOutstandingAmountRequestDetails.ToXMLString());
 				sb.Append("</ebl:BillOutstandingAmountRequestDetails>");
 			}
 			return sb.ToString();
@@ -38208,8 +38530,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class BillOutstandingAmountResponseType : AbstractResponseType	
-	{
+	public partial class BillOutstandingAmountResponseType : AbstractResponseType	{
 
 		/**
           *
@@ -38254,8 +38575,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class UpdateRecurringPaymentsProfileReq	
-	{
+	public partial class UpdateRecurringPaymentsProfileReq	{
 
 		/**
           *
@@ -38281,14 +38601,14 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
 			sb.Append("<urn:UpdateRecurringPaymentsProfileReq>");
 			if(UpdateRecurringPaymentsProfileRequest != null)
 			{
 				sb.Append("<urn:UpdateRecurringPaymentsProfileRequest>");
-				sb.Append(UpdateRecurringPaymentsProfileRequest.toXMLString());
+				sb.Append(UpdateRecurringPaymentsProfileRequest.ToXMLString());
 				sb.Append("</urn:UpdateRecurringPaymentsProfileRequest>");
 			}
 			sb.Append("</urn:UpdateRecurringPaymentsProfileReq>");
@@ -38303,8 +38623,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class UpdateRecurringPaymentsProfileRequestType : AbstractRequestType	
-	{
+	public partial class UpdateRecurringPaymentsProfileRequestType : AbstractRequestType	{
 
 		/**
           *
@@ -38330,14 +38649,14 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
-			sb.Append(base.toXMLString());
+			sb.Append(base.ToXMLString());
 			if(UpdateRecurringPaymentsProfileRequestDetails != null)
 			{
 				sb.Append("<ebl:UpdateRecurringPaymentsProfileRequestDetails>");
-				sb.Append(UpdateRecurringPaymentsProfileRequestDetails.toXMLString());
+				sb.Append(UpdateRecurringPaymentsProfileRequestDetails.ToXMLString());
 				sb.Append("</ebl:UpdateRecurringPaymentsProfileRequestDetails>");
 			}
 			return sb.ToString();
@@ -38351,8 +38670,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class UpdateRecurringPaymentsProfileResponseType : AbstractResponseType	
-	{
+	public partial class UpdateRecurringPaymentsProfileResponseType : AbstractResponseType	{
 
 		/**
           *
@@ -38397,8 +38715,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class GetPalDetailsReq	
-	{
+	public partial class GetPalDetailsReq	{
 
 		/**
           *
@@ -38424,14 +38741,14 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
 			sb.Append("<urn:GetPalDetailsReq>");
 			if(GetPalDetailsRequest != null)
 			{
 				sb.Append("<urn:GetPalDetailsRequest>");
-				sb.Append(GetPalDetailsRequest.toXMLString());
+				sb.Append(GetPalDetailsRequest.ToXMLString());
 				sb.Append("</urn:GetPalDetailsRequest>");
 			}
 			sb.Append("</urn:GetPalDetailsReq>");
@@ -38446,8 +38763,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class GetPalDetailsRequestType : AbstractRequestType	
-	{
+	public partial class GetPalDetailsRequestType : AbstractRequestType	{
 
 		/**
 	 	  * Default Constructor
@@ -38456,10 +38772,10 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
-			sb.Append(base.toXMLString());
+			sb.Append(base.ToXMLString());
 			return sb.ToString();
 		}
 
@@ -38471,8 +38787,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class GetPalDetailsResponseType : AbstractResponseType	
-	{
+	public partial class GetPalDetailsResponseType : AbstractResponseType	{
 
 		/**
           *
@@ -38539,8 +38854,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class ReverseTransactionReq	
-	{
+	public partial class ReverseTransactionReq	{
 
 		/**
           *
@@ -38566,14 +38880,14 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
 			sb.Append("<urn:ReverseTransactionReq>");
 			if(ReverseTransactionRequest != null)
 			{
 				sb.Append("<urn:ReverseTransactionRequest>");
-				sb.Append(ReverseTransactionRequest.toXMLString());
+				sb.Append(ReverseTransactionRequest.ToXMLString());
 				sb.Append("</urn:ReverseTransactionRequest>");
 			}
 			sb.Append("</urn:ReverseTransactionReq>");
@@ -38588,8 +38902,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class ReverseTransactionRequestType : AbstractRequestType	
-	{
+	public partial class ReverseTransactionRequestType : AbstractRequestType	{
 
 		/**
           *
@@ -38622,14 +38935,14 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
-			sb.Append(base.toXMLString());
+			sb.Append(base.ToXMLString());
 			if(ReverseTransactionRequestDetails != null)
 			{
 				sb.Append("<ebl:ReverseTransactionRequestDetails>");
-				sb.Append(ReverseTransactionRequestDetails.toXMLString());
+				sb.Append(ReverseTransactionRequestDetails.ToXMLString());
 				sb.Append("</ebl:ReverseTransactionRequestDetails>");
 			}
 			return sb.ToString();
@@ -38643,8 +38956,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class ReverseTransactionResponseType : AbstractResponseType	
-	{
+	public partial class ReverseTransactionResponseType : AbstractResponseType	{
 
 		/**
           *
@@ -38689,8 +39001,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class ExternalRememberMeOptOutReq	
-	{
+	public partial class ExternalRememberMeOptOutReq	{
 
 		/**
           *
@@ -38716,14 +39027,14 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
 			sb.Append("<urn:ExternalRememberMeOptOutReq>");
 			if(ExternalRememberMeOptOutRequest != null)
 			{
 				sb.Append("<urn:ExternalRememberMeOptOutRequest>");
-				sb.Append(ExternalRememberMeOptOutRequest.toXMLString());
+				sb.Append(ExternalRememberMeOptOutRequest.ToXMLString());
 				sb.Append("</urn:ExternalRememberMeOptOutRequest>");
 			}
 			sb.Append("</urn:ExternalRememberMeOptOutReq>");
@@ -38742,8 +39053,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *login with a merchant and has meaning only to the merchant.
       *Required 
       */
-	public partial class ExternalRememberMeOptOutRequestType : AbstractRequestType	
-	{
+	public partial class ExternalRememberMeOptOutRequestType : AbstractRequestType	{
 
 		/**
           *
@@ -38793,10 +39103,10 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 
 
-		public string toXMLString()
+		public string ToXMLString()
 		{
 			StringBuilder sb = new StringBuilder();
-			sb.Append(base.toXMLString());
+			sb.Append(base.ToXMLString());
 			if(ExternalRememberMeID != null)
 			{
 				sb.Append("<urn:ExternalRememberMeID>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(ExternalRememberMeID));
@@ -38805,7 +39115,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			if(ExternalRememberMeOwnerDetails != null)
 			{
 				sb.Append("<urn:ExternalRememberMeOwnerDetails>");
-				sb.Append(ExternalRememberMeOwnerDetails.toXMLString());
+				sb.Append(ExternalRememberMeOwnerDetails.ToXMLString());
 				sb.Append("</urn:ExternalRememberMeOwnerDetails>");
 			}
 			return sb.ToString();
@@ -38819,8 +39129,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/**
       *
       */
-	public partial class ExternalRememberMeOptOutResponseType : AbstractResponseType	
-	{
+	public partial class ExternalRememberMeOptOutResponseType : AbstractResponseType	{
 
 		/**
 	 	  * Default Constructor

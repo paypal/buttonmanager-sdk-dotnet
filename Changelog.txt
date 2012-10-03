@@ -1,4 +1,17 @@
 
+Version 1.2.95 - September 28, 2012
+ 
+ 	- SDK refreshed to Release 95
+	- SDK now supports third party permission by subject header. Configure subject header
+  	  in the configuration file, this is basically third party merchant email address who has 
+	  given permission to you to call api on their behalf.
+	- Bug fixed for 'convertToXML' method for not escaping xml element correctly.(https://github.com/paypal/SDKs/issues/17)
+	- Assembly files are updated with assembly versions.(https://github.com/paypal/SDKs/issues/18)
+	- Bug fixed for BasicAmountType serialization without currencyID attribute.(https://github.com/paypal/SDKs/issues/23)
+	- Updated SDK sample
+--------------------------------------------------------------------------------------------------
+
+
 Version 1.1.93 - August 13, 2012
  
 	- SDK refreshed to Release 93.

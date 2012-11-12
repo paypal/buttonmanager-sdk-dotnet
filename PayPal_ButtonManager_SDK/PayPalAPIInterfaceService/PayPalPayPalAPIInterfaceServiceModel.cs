@@ -6943,7 +6943,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(IsRequested != null)
 			{
-				sb.Append("<").Append(PreferredPrefix).Append(":IsRequested>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(this.IsRequested));
+				sb.Append("<").Append(PreferredPrefix).Append(":IsRequested>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(this.IsRequested.ToString().ToLower()));
 				sb.Append("</").Append(PreferredPrefix).Append(":IsRequested>");
 			}
 			if (name != null)
@@ -9386,7 +9386,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(SkipBACreation != null)
 			{
-				sb.Append("<").Append(PreferredPrefix).Append(":SkipBACreation>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(this.SkipBACreation));
+				sb.Append("<").Append(PreferredPrefix).Append(":SkipBACreation>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(this.SkipBACreation.ToString().ToLower()));
 				sb.Append("</").Append(PreferredPrefix).Append(":SkipBACreation>");
 			}
 			if(CoupledBuckets != null)
@@ -9905,7 +9905,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(ReturnFMFDetails != null)
 			{
-				sb.Append("<").Append(PreferredPrefix).Append(":ReturnFMFDetails>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(this.ReturnFMFDetails));
+				sb.Append("<").Append(PreferredPrefix).Append(":ReturnFMFDetails>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(this.ReturnFMFDetails.ToString().ToLower()));
 				sb.Append("</").Append(PreferredPrefix).Append(":ReturnFMFDetails>");
 			}
 			if (name != null)
@@ -14328,6 +14328,23 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
+          *
+		  */
+		private string binEligibilityField;
+		public string BinEligibility
+		{
+			get
+			{
+				return this.binEligibilityField;
+			}
+			set
+			{
+				this.binEligibilityField = value;
+			}
+		}
+		
+
+		/**
 	 	  * Default Constructor
 	 	  */
 	 	public PaymentInfoType()
@@ -14523,6 +14540,11 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
 				this.OfferDetails =  new OfferDetailsType(ChildNode);
+			}
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'BinEligibility']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
+			{
+				this.BinEligibility = ChildNode.InnerText;
 			}
 	
 		}
@@ -17911,7 +17933,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(OtherPaymentMethodHideLabel != null)
 			{
-				sb.Append("<").Append(PreferredPrefix).Append(":OtherPaymentMethodHideLabel>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(this.OtherPaymentMethodHideLabel));
+				sb.Append("<").Append(PreferredPrefix).Append(":OtherPaymentMethodHideLabel>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(this.OtherPaymentMethodHideLabel.ToString().ToLower()));
 				sb.Append("</").Append(PreferredPrefix).Append(":OtherPaymentMethodHideLabel>");
 			}
 			if (name != null)
@@ -29273,7 +29295,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(Taxable != null)
 			{
-				sb.Append("<").Append(PreferredPrefix).Append(":Taxable>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(this.Taxable));
+				sb.Append("<").Append(PreferredPrefix).Append(":Taxable>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(this.Taxable.ToString().ToLower()));
 				sb.Append("</").Append(PreferredPrefix).Append(":Taxable>");
 			}
 			if(TaxRate != null)
@@ -29290,7 +29312,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(Reimbursable != null)
 			{
-				sb.Append("<").Append(PreferredPrefix).Append(":Reimbursable>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(this.Reimbursable));
+				sb.Append("<").Append(PreferredPrefix).Append(":Reimbursable>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(this.Reimbursable.ToString().ToLower()));
 				sb.Append("</").Append(PreferredPrefix).Append(":Reimbursable>");
 			}
 			if(MPN != null)
@@ -33993,7 +34015,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(RefundAdvice != null)
 			{
-				sb.Append("<").Append(PreferredPrefix).Append(":RefundAdvice>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(this.RefundAdvice));
+				sb.Append("<").Append(PreferredPrefix).Append(":RefundAdvice>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(this.RefundAdvice.ToString().ToLower()));
 				sb.Append("</").Append(PreferredPrefix).Append(":RefundAdvice>");
 			}
 			if(MerchantStoreDetails != null)

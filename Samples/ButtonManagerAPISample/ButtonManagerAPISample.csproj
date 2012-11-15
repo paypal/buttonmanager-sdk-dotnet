@@ -53,6 +53,7 @@
     <Content Include="Global.asax" />
     <Content Include="lib\log4net.dll" />
     <Content Include="lib\PayPal_Core_SDK.dll" />
+    <Content Include="ShowError.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -112,6 +113,7 @@
     <Compile Include="APIResponse.aspx.designer.cs">
       <DependentUpon>APIResponse.aspx</DependentUpon>
     </Compile>
+    <Compile Include="App_Code\Message.cs" />
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -123,6 +125,13 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ShowError.aspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+      <DependentUpon>ShowError.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ShowError.aspx.designer.cs">
+      <DependentUpon>ShowError.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="cert_key.pem" />

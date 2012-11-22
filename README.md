@@ -1,4 +1,4 @@
-This repository contains .NET SDK and samples for Adaptive Accounts API.
+This repository contains .NET SDK and samples for Button Manager API.
 
 Prerequisites:
 --------------
@@ -42,12 +42,12 @@ Please refer to the sample web.config file in 'ButtonManagerAPISample' sample ap
 *	PayPal (Multiple) Accounts API credentials
 	•	apiUsername
 	•	apiPassword
-	•	apiSignature
 	•	applicationId
-	•	subject
+	•	apiSignature
+	•	apiCertificate
+	•	privateKeyPassword
 
 Tool:
 ------
-*	log4net.dll - included in 'lib' folder in 'PayPal_ButtonManager_SDK' project
+*	log4net.dll - included in 'lib' folder in 'PayPal_AdaptiveAccounts_SDK' project
 	log4net is a tool to help output log statements to a variety of output targets.
-	

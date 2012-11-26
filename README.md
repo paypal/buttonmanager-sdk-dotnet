@@ -8,11 +8,7 @@ SDK Integration:
 ----------------
 *	Create a new ASP.NET Web Application with appropriate web application and solution name
 
-*	Add 'PayPal_ButtonManager_SDK.csproj' as 'Existing Project' to your solution
-
-*	In case of a higher version of Visual Studio, use the Visual Studio Conversion Wizard to target .NET Framework 2.0
-
-*	Add reference to 'PayPal_ButtonManager_SDK' project
+*	Add reference to 'PayPal_ButtonManager_SDK.dll' from the 'lib' folder in 'PayPal_ButtonManager_SDK' project
 
 *	Add reference to 'PayPal_Core_SDK.dll' from the 'lib' folder in 'PayPal_ButtonManager_SDK' project
 

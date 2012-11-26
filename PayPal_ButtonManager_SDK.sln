@@ -2,16 +2,6 @@
 Microsoft Visual Studio Solution File, Format Version 9.00
 # Visual Studio 2005
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PayPal_ButtonManager_SDK", "PayPal_ButtonManager_SDK\PayPal_ButtonManager_SDK.csproj", "{BFD0B3F6-9F04-4F46-81DD-B5884A910FF5}"
-	ProjectSection(WebsiteProperties) = preProject
-		Debug.AspNetCompiler.Debug = "True"
-		Release.AspNetCompiler.Debug = "False"
-	EndProjectSection
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ButtonManagerAPISample", "Samples\ButtonManagerAPISample\ButtonManagerAPISample.csproj", "{1006827F-014C-43AC-9136-0F071AD42C73}"
-	ProjectSection(WebsiteProperties) = preProject
-		Debug.AspNetCompiler.Debug = "True"
-		Release.AspNetCompiler.Debug = "False"
-	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +13,6 @@ Global
 		{BFD0B3F6-9F04-4F46-81DD-B5884A910FF5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BFD0B3F6-9F04-4F46-81DD-B5884A910FF5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BFD0B3F6-9F04-4F46-81DD-B5884A910FF5}.Release|Any CPU.Build.0 = Release|Any CPU
-		{1006827F-014C-43AC-9136-0F071AD42C73}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1006827F-014C-43AC-9136-0F071AD42C73}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1006827F-014C-43AC-9136-0F071AD42C73}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1006827F-014C-43AC-9136-0F071AD42C73}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

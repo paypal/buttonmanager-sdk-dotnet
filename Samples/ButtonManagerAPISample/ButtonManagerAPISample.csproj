@@ -30,7 +30,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL" />
-    <Reference Include="PayPal_ButtonManager_SDK, Version=1.2.95.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="PayPal_ButtonManager_SDK, Version=2.2.96.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="PayPal_Core_SDK, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Data" />

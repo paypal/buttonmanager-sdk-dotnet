@@ -1,11 +1,4 @@
 
-Version 2.2.96 - November 27, 2012
- 
- 	- SDK refreshed to Release 96
-	
---------------------------------------------------------------------------------------------------
-
-
 Version 1.2.95 - September 28, 2012
  
  	- SDK refreshed to Release 95

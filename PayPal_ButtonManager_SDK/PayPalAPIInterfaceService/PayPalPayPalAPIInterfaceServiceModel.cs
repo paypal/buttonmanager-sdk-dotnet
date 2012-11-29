@@ -124,10 +124,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *(,).
       */
 	public partial class BasicAmountType	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:CoreComponentTypes";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "cc";
 		
@@ -251,10 +250,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class MeasureType	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:CoreComponentTypes";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "cc";
 		
@@ -2631,12 +2629,6 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *Value of the application-specific error parameter.  
       */
 	public partial class ErrorParameterType	{
-
-		// Namespace for the type
-		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
-		
-		// Prefix associated with the namespace
-		private const string PreferredPrefix = "ebl";
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
@@ -2688,12 +2680,6 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *uniquely defined for each application. 
       */
 	public partial class ErrorType	{
-
-		// Namespace for the type
-		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
-		
-		// Prefix associated with the namespace
-		private const string PreferredPrefix = "ebl";
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
@@ -2837,10 +2823,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *and detail level requirements. 
       */
 	public partial class AbstractRequestType	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ebl";
 		
@@ -2964,12 +2949,6 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *warnings. 
       */
 	public partial class AbstractResponseType	{
-
-		// Namespace for the type
-		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
-		
-		// Prefix associated with the namespace
-		private const string PreferredPrefix = "ebl";
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
@@ -3133,10 +3112,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *Country code associated with this phone number. 
       */
 	public partial class PhoneNumberType	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ebl";
 		
@@ -3255,10 +3233,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *and limitations: 32 single-byte alphanumeric characters 
       */
 	public partial class AddressType	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ebl";
 		
@@ -3748,10 +3725,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class PersonNameType	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ebl";
 		
@@ -3944,12 +3920,6 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class IncentiveAppliedToType	{
-
-		// Namespace for the type
-		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
-		
-		// Prefix associated with the namespace
-		private const string PreferredPrefix = "ebl";
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
@@ -4065,12 +4035,6 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class IncentiveDetailType	{
-
-		// Namespace for the type
-		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
-		
-		// Prefix associated with the namespace
-		private const string PreferredPrefix = "ebl";
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
@@ -4278,10 +4242,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class IncentiveItemType	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ebl";
 		
@@ -4442,10 +4405,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class IncentiveBucketType	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ebl";
 		
@@ -4692,10 +4654,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class IncentiveRequestDetailsType	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ebl";
 		
@@ -4813,10 +4774,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class GetIncentiveEvaluationRequestDetailsType	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ebl";
 		
@@ -5005,12 +4965,6 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class GetIncentiveEvaluationResponseDetailsType	{
-
-		// Namespace for the type
-		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
-		
-		// Prefix associated with the namespace
-		private const string PreferredPrefix = "ebl";
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
@@ -5094,10 +5048,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *(,). 
       */
 	public partial class SetExpressCheckoutRequestDetailsType	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ebl";
 		
@@ -6636,10 +6589,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *Character length and limitations: 20 single-byte characters 
       */
 	public partial class ExecuteCheckoutOperationsRequestDetailsType	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ebl";
 		
@@ -6763,10 +6715,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *Details about Billing Agreements requested to be created. 
       */
 	public partial class SetDataRequestType	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ebl";
 		
@@ -6884,10 +6835,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class AuthorizationRequestType	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ebl";
 		
@@ -6970,10 +6920,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *Profile 
       */
 	public partial class BillingApprovalDetailsType	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ebl";
 		
@@ -7143,10 +7092,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *set to yes here 
       */
 	public partial class InfoSharingDirectivesType	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ebl";
 		
@@ -7220,10 +7168,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *Description of the Order. 
       */
 	public partial class OrderDetailsType	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ebl";
 		
@@ -7318,10 +7265,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *Type of the Payment is it Instant or Echeck or Any. 
       */
 	public partial class PaymentDirectivesType	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ebl";
 		
@@ -7397,10 +7343,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *requested. 
       */
 	public partial class BuyerDetailType	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ebl";
 		
@@ -7473,10 +7418,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *Mobile specific buyer identification. 
       */
 	public partial class IdentificationInfoType	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ebl";
 		
@@ -7591,10 +7535,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *The Session token returned during buyer authentication. 
       */
 	public partial class MobileIDInfoType	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ebl";
 		
@@ -7674,10 +7617,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *login. 
       */
 	public partial class RememberMeIDInfoType	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ebl";
 		
@@ -7751,10 +7693,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *Identity Access token from merchant 
       */
 	public partial class IdentityTokenInfoType	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ebl";
 		
@@ -7839,10 +7780,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *numeric character. 
       */
 	public partial class FundingSourceDetailsType	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ebl";
 		
@@ -7938,10 +7878,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class BillingAgreementDetailsType	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ebl";
 		
@@ -8092,12 +8031,6 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *limitations: 20 single-byte characters 
       */
 	public partial class GetExpressCheckoutDetailsResponseDetailsType	{
-
-		// Namespace for the type
-		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
-		
-		// Prefix associated with the namespace
-		private const string PreferredPrefix = "ebl";
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
@@ -8669,12 +8602,6 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class ExecuteCheckoutOperationsResponseDetailsType	{
-
-		// Namespace for the type
-		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
-		
-		// Prefix associated with the namespace
-		private const string PreferredPrefix = "ebl";
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
@@ -8747,12 +8674,6 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *corresponding token is returned in this element. 
       */
 	public partial class SetDataResponseType	{
-
-		// Namespace for the type
-		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
-		
-		// Prefix associated with the namespace
-		private const string PreferredPrefix = "ebl";
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
@@ -8829,12 +8750,6 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *or not. 
       */
 	public partial class AuthorizationResponseType	{
-
-		// Namespace for the type
-		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
-		
-		// Prefix associated with the namespace
-		private const string PreferredPrefix = "ebl";
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
@@ -8920,10 +8835,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *limit: Up to 13 single-byte alphabetic characters 
       */
 	public partial class DoExpressCheckoutPaymentRequestDetailsType	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ebl";
 		
@@ -9422,12 +9336,6 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *limitations:20 single-byte characters 
       */
 	public partial class DoExpressCheckoutPaymentResponseDetailsType	{
-
-		// Namespace for the type
-		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
-		
-		// Prefix associated with the namespace
-		private const string PreferredPrefix = "ebl";
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
@@ -9641,12 +9549,6 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *characters maximum 
       */
 	public partial class DoCaptureResponseDetailsType	{
-
-		// Namespace for the type
-		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
-		
-		// Prefix associated with the namespace
-		private const string PreferredPrefix = "ebl";
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
@@ -9746,10 +9648,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *alphabetic characters 
       */
 	public partial class DoDirectPaymentRequestDetailsType	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ebl";
 		
@@ -9931,10 +9832,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *Type of the payment Required 
       */
 	public partial class CreateMobilePaymentRequestDetailsType	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ebl";
 		
@@ -10311,10 +10211,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *Phone number for status inquiry 
       */
 	public partial class GetMobileStatusRequestDetailsType	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ebl";
 		
@@ -10389,10 +10288,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *limitations: no limit. 
       */
 	public partial class SetAuthFlowParamRequestDetailsType	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ebl";
 		
@@ -10840,12 +10738,6 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *limitations: 127 single-byte alphanumeric characters 
       */
 	public partial class GetAuthDetailsResponseDetailsType	{
-
-		// Namespace for the type
-		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
-		
-		// Prefix associated with the namespace
-		private const string PreferredPrefix = "ebl";
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
@@ -10963,10 +10855,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *limitations: no limit. 
       */
 	public partial class SetAccessPermissionsRequestDetailsType	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ebl";
 		
@@ -11376,12 +11267,6 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *limitations: 127 single-byte alphanumeric characters 
       */
 	public partial class GetAccessPermissionDetailsResponseDetailsType	{
-
-		// Namespace for the type
-		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
-		
-		// Prefix associated with the namespace
-		private const string PreferredPrefix = "ebl";
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
@@ -11549,12 +11434,6 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class BAUpdateResponseDetailsType	{
-
-		// Namespace for the type
-		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
-		
-		// Prefix associated with the namespace
-		private const string PreferredPrefix = "ebl";
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
@@ -11737,12 +11616,6 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *merchant pull. 
       */
 	public partial class MerchantPullPaymentResponseType	{
-
-		// Namespace for the type
-		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
-		
-		// Prefix associated with the namespace
-		private const string PreferredPrefix = "ebl";
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
@@ -11836,12 +11709,6 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *MerchantPullInfoType Information about the merchant pull. 
       */
 	public partial class MerchantPullInfoType	{
-
-		// Namespace for the type
-		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
-		
-		// Prefix associated with the namespace
-		private const string PreferredPrefix = "ebl";
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
@@ -12024,12 +11891,6 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *PaymentTransaction search 
       */
 	public partial class PaymentTransactionSearchResultType	{
-
-		// Namespace for the type
-		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
-		
-		// Prefix associated with the namespace
-		private const string PreferredPrefix = "ebl";
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
@@ -12278,10 +12139,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *payment 
       */
 	public partial class MerchantPullPaymentType	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ebl";
 		
@@ -12638,12 +12498,6 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *from the seller side 
       */
 	public partial class PaymentTransactionType	{
-
-		// Namespace for the type
-		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
-		
-		// Prefix associated with the namespace
-		private const string PreferredPrefix = "ebl";
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
@@ -13005,12 +12859,6 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *ReceiverInfoType Receiver information. 
       */
 	public partial class ReceiverInfoType	{
-
-		// Namespace for the type
-		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
-		
-		// Prefix associated with the namespace
-		private const string PreferredPrefix = "ebl";
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
@@ -13104,10 +12952,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *PayerInfoType Payer information 
       */
 	public partial class PayerInfoType	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ebl";
 		
@@ -13431,12 +13278,6 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *InstrumentDetailsType Promotional Instrument Information. 
       */
 	public partial class InstrumentDetailsType	{
-
-		// Namespace for the type
-		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
-		
-		// Prefix associated with the namespace
-		private const string PreferredPrefix = "ebl";
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
@@ -13486,10 +13327,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *BMLOfferInfoType Specific information for BML. 
       */
 	public partial class BMLOfferInfoType	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ebl";
 		
@@ -13574,10 +13414,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *OfferDetailsType Specific information for an offer. 
       */
 	public partial class OfferDetailsType	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ebl";
 		
@@ -13688,12 +13527,6 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *PaymentInfoType Payment information. 
       */
 	public partial class PaymentInfoType	{
-
-		// Namespace for the type
-		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
-		
-		// Prefix associated with the namespace
-		private const string PreferredPrefix = "ebl";
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
@@ -14557,12 +14390,6 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *SubscriptionTermsType Terms of a PayPal subscription. 
       */
 	public partial class SubscriptionTermsType	{
-
-		// Namespace for the type
-		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
-		
-		// Prefix associated with the namespace
-		private const string PreferredPrefix = "ebl";
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
@@ -14613,12 +14440,6 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *Subscription. 
       */
 	public partial class SubscriptionInfoType	{
-
-		// Namespace for the type
-		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
-		
-		// Prefix associated with the namespace
-		private const string PreferredPrefix = "ebl";
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
@@ -14826,12 +14647,6 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *AuctionInfoType Basic information about an auction. 
       */
 	public partial class AuctionInfoType	{
-
-		// Namespace for the type
-		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
-		
-		// Prefix associated with the namespace
-		private const string PreferredPrefix = "ebl";
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
@@ -14903,12 +14718,6 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *OptionType PayPal item options for shopping cart. 
       */
 	public partial class OptionType	{
-
-		// Namespace for the type
-		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
-		
-		// Prefix associated with the namespace
-		private const string PreferredPrefix = "ebl";
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
@@ -14937,10 +14746,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *by other schemas. Information about an Ebay Payment Item. 
       */
 	public partial class EbayItemPaymentDetailsItemType	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ebl";
 		
@@ -15106,10 +14914,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *PaymentDetailsItemType Information about a Payment Item. 
       */
 	public partial class PaymentDetailsItemType	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ebl";
 		
@@ -15591,12 +15398,6 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *PaymentItemType Information about a Payment Item. 
       */
 	public partial class PaymentItemType	{
-
-		// Namespace for the type
-		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
-		
-		// Prefix associated with the namespace
-		private const string PreferredPrefix = "ebl";
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
@@ -15958,12 +15759,6 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *PaymentItemInfoType Information about a PayPal item. 
       */
 	public partial class PaymentItemInfoType	{
-
-		// Namespace for the type
-		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
-		
-		// Prefix associated with the namespace
-		private const string PreferredPrefix = "ebl";
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
@@ -16150,12 +15945,6 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *Coupons. 
       */
 	public partial class OfferCouponInfoType	{
-
-		// Namespace for the type
-		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
-		
-		// Prefix associated with the namespace
-		private const string PreferredPrefix = "ebl";
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
@@ -16272,10 +16061,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *and Express Checkout. 
       */
 	public partial class PaymentDetailsType	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ebl";
 		
@@ -17219,12 +17007,6 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *RYP page and PayPal RYP page. 
       */
 	public partial class IncentiveDetailsType	{
-
-		// Namespace for the type
-		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
-		
-		// Prefix associated with the namespace
-		private const string PreferredPrefix = "ebl";
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
@@ -17388,12 +17170,6 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *Details of incentive application on individual bucket/item. 
       */
 	public partial class IncentiveAppliedDetailsType	{
-
-		// Namespace for the type
-		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
-		
-		// Prefix associated with the namespace
-		private const string PreferredPrefix = "ebl";
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
@@ -17531,10 +17307,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *Details about the seller. 
       */
 	public partial class SellerDetailsType	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ebl";
 		
@@ -17728,10 +17503,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *can pay with e.g. Money Order. Optional. 
       */
 	public partial class OtherPaymentMethodDetailsType	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ebl";
 		
@@ -17960,10 +17734,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *or partner. Optional. 
       */
 	public partial class BuyerDetailsType	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ebl";
 		
@@ -18124,10 +17897,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *or partner. Optional. 
       */
 	public partial class TaxIdDetailsType	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ebl";
 		
@@ -18239,10 +18011,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *The Common 3DS fields. Common for both GTD and DCC API's. 
       */
 	public partial class ThreeDSecureRequestType	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ebl";
 		
@@ -18435,12 +18206,6 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *3DS remaining fields. 
       */
 	public partial class ThreeDSecureResponseType	{
-
-		// Namespace for the type
-		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
-		
-		// Prefix associated with the namespace
-		private const string PreferredPrefix = "ebl";
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
@@ -18512,12 +18277,6 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *3DSecureInfoType Information about 3D Secure parameters. 
       */
 	public partial class ThreeDSecureInfoType	{
-
-		// Namespace for the type
-		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
-		
-		// Prefix associated with the namespace
-		private const string PreferredPrefix = "ebl";
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
@@ -18589,10 +18348,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *CreditCardDetailsType Information about a Credit Card. 
       */
 	public partial class CreditCardDetailsType	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ebl";
 		
@@ -18918,10 +18676,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *Fallback shipping options type. 
       */
 	public partial class ShippingOptionType	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ebl";
 		
@@ -19038,10 +18795,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *Information on user selected options 
       */
 	public partial class UserSelectedOptionType	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ebl";
 		
@@ -19233,10 +18989,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class CreditCardNumberTypeType	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ebl";
 		
@@ -19333,10 +19088,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *Information about a Credit Card. 
       */
 	public partial class ReferenceCreditCardDetailsType	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ebl";
 		
@@ -19583,10 +19337,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class SetCustomerBillingAgreementRequestDetailsType	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ebl";
 		
@@ -19889,12 +19642,6 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class GetBillingAgreementCustomerDetailsResponseDetailsType	{
-
-		// Namespace for the type
-		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
-		
-		// Prefix associated with the namespace
-		private const string PreferredPrefix = "ebl";
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
@@ -19968,10 +19715,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *truncated  
       */
 	public partial class DeviceDetailsType	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ebl";
 		
@@ -20045,10 +19791,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class SenderDetailsType	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ebl";
 		
@@ -20121,10 +19866,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class DoReferenceTransactionRequestDetailsType	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ebl";
 		
@@ -20425,12 +20169,6 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class DoReferenceTransactionResponseDetailsType	{
-
-		// Namespace for the type
-		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
-		
-		// Prefix associated with the namespace
-		private const string PreferredPrefix = "ebl";
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
@@ -20634,10 +20372,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class DoNonReferencedCreditRequestDetailsType	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ebl";
 		
@@ -20838,12 +20575,6 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class DoNonReferencedCreditResponseDetailsType	{
-
-		// Namespace for the type
-		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
-		
-		// Prefix associated with the namespace
-		private const string PreferredPrefix = "ebl";
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
@@ -20917,10 +20648,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class EnterBoardingRequestDetailsType	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ebl";
 		
@@ -21145,10 +20875,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *BusinessInfoType 
       */
 	public partial class BusinessInfoType	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ebl";
 		
@@ -21507,10 +21236,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *BusinessOwnerInfoType 
       */
 	public partial class BusinessOwnerInfoType	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ebl";
 		
@@ -21649,10 +21377,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *BankAccountDetailsType 
       */
 	public partial class BankAccountDetailsType	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ebl";
 		
@@ -21794,12 +21521,6 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *Eight alphabetic characters 
       */
 	public partial class GetBoardingDetailsResponseDetailsType	{
-
-		// Namespace for the type
-		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
-		
-		// Prefix associated with the namespace
-		private const string PreferredPrefix = "ebl";
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
@@ -22157,12 +21878,6 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *APICredentialsType 
       */
 	public partial class APICredentialsType	{
-
-		// Namespace for the type
-		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
-		
-		// Prefix associated with the namespace
-		private const string PreferredPrefix = "ebl";
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
@@ -22301,10 +22016,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *Optional 
       */
 	public partial class SetMobileCheckoutRequestDetailsType	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ebl";
 		
@@ -22672,12 +22386,6 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *alphanumeric characters 
       */
 	public partial class DoMobileCheckoutPaymentResponseDetailsType	{
-
-		// Namespace for the type
-		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
-		
-		// Prefix associated with the namespace
-		private const string PreferredPrefix = "ebl";
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
@@ -22793,10 +22501,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *UATP Card Details Type 
       */
 	public partial class UATPDetailsType	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ebl";
 		
@@ -22935,12 +22642,6 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class RecurringPaymentsSummaryType	{
-
-		// Namespace for the type
-		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
-		
-		// Prefix associated with the namespace
-		private const string PreferredPrefix = "ebl";
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
@@ -23122,10 +22823,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class ActivationDetailsType	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ebl";
 		
@@ -23228,10 +22928,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *Unit of meausre for billing cycle 
       */
 	public partial class BillingPeriodDetailsType	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ebl";
 		
@@ -23458,10 +23157,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *Unit of meausre for billing cycle 
       */
 	public partial class BillingPeriodDetailsType_Update	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ebl";
 		
@@ -23642,10 +23340,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *Schedule details for the Recurring Payment 
       */
 	public partial class ScheduleDetailsType	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ebl";
 		
@@ -23836,10 +23533,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *account 
       */
 	public partial class RecurringPaymentsProfileDetailsType	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ebl";
 		
@@ -24012,10 +23708,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *Billing Agreement token (required if Express Checkout) 
       */
 	public partial class CreateRecurringPaymentsProfileRequestDetailsType	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ebl";
 		
@@ -24185,12 +23880,6 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *Recurring Billing Profile ID 
       */
 	public partial class CreateRecurringPaymentsProfileResponseDetailsType	{
-
-		// Namespace for the type
-		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
-		
-		// Prefix associated with the namespace
-		private const string PreferredPrefix = "ebl";
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
@@ -24328,12 +24017,6 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *Recurring Billing Profile ID 
       */
 	public partial class GetRecurringPaymentsProfileDetailsResponseDetailsType	{
-
-		// Namespace for the type
-		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
-		
-		// Prefix associated with the namespace
-		private const string PreferredPrefix = "ebl";
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
@@ -24713,10 +24396,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class ManageRecurringPaymentsProfileStatusRequestDetailsType	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ebl";
 		
@@ -24843,12 +24525,6 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class ManageRecurringPaymentsProfileStatusResponseDetailsType	{
-
-		// Namespace for the type
-		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
-		
-		// Prefix associated with the namespace
-		private const string PreferredPrefix = "ebl";
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
@@ -24898,10 +24574,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class BillOutstandingAmountRequestDetailsType	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ebl";
 		
@@ -25026,12 +24701,6 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class BillOutstandingAmountResponseDetailsType	{
-
-		// Namespace for the type
-		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
-		
-		// Prefix associated with the namespace
-		private const string PreferredPrefix = "ebl";
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
@@ -25081,10 +24750,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class UpdateRecurringPaymentsProfileRequestDetailsType	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ebl";
 		
@@ -25510,12 +25178,6 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class UpdateRecurringPaymentsProfileResponseDetailsType	{
-
-		// Namespace for the type
-		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
-		
-		// Prefix associated with the namespace
-		private const string PreferredPrefix = "ebl";
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
@@ -25565,12 +25227,6 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *Details of Risk Filter. 
       */
 	public partial class RiskFilterDetailsType	{
-
-		// Namespace for the type
-		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
-		
-		// Prefix associated with the namespace
-		private const string PreferredPrefix = "ebl";
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
@@ -25664,12 +25320,6 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *Details of Risk Filter. 
       */
 	public partial class RiskFilterListType	{
-
-		// Namespace for the type
-		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
-		
-		// Prefix associated with the namespace
-		private const string PreferredPrefix = "ebl";
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
@@ -25724,12 +25374,6 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *action. 
       */
 	public partial class FMFDetailsType	{
-
-		// Namespace for the type
-		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
-		
-		// Prefix associated with the namespace
-		private const string PreferredPrefix = "ebl";
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
@@ -25845,10 +25489,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *Enhanced Data Information. Example: AID for Airlines 
       */
 	public partial class EnhancedDataType	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ebl";
 		
@@ -25921,10 +25564,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *AID for Airlines 
       */
 	public partial class AirlineItineraryType	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ebl";
 		
@@ -26283,10 +25925,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *Details of leg information 
       */
 	public partial class FlightDetailsType	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ebl";
 		
@@ -26709,12 +26350,6 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *Authorization details 
       */
 	public partial class AuthorizationInfoType	{
-
-		// Namespace for the type
-		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
-		
-		// Prefix associated with the namespace
-		private const string PreferredPrefix = "ebl";
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
@@ -26830,10 +26465,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *Option Number. Optional 
       */
 	public partial class OptionTrackingDetailsType	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ebl";
 		
@@ -27053,10 +26687,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *Item Number. Required 
       */
 	public partial class ItemTrackingDetailsType	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ebl";
 		
@@ -27249,12 +26882,6 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class ButtonSearchResultType	{
-
-		// Namespace for the type
-		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
-		
-		// Prefix associated with the namespace
-		private const string PreferredPrefix = "ebl";
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
@@ -27372,10 +26999,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *characters 
       */
 	public partial class ReverseTransactionRequestDetailsType	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ebl";
 		
@@ -27451,12 +27077,6 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *characters 
       */
 	public partial class ReverseTransactionResponseDetailsType	{
-
-		// Namespace for the type
-		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
-		
-		// Prefix associated with the namespace
-		private const string PreferredPrefix = "ebl";
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
@@ -27528,10 +27148,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *Details of incentive application on individual bucket. 
       */
 	public partial class IncentiveInfoType	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ebl";
 		
@@ -27630,10 +27249,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *applied to. 
       */
 	public partial class IncentiveApplyIndicationType	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ebl";
 		
@@ -27730,12 +27348,6 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *cart.  
       */
 	public partial class PaymentRequestInfoType	{
-
-		// Namespace for the type
-		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
-		
-		// Prefix associated with the namespace
-		private const string PreferredPrefix = "ebl";
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
@@ -27830,10 +27442,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *associate with new external remember-me. 
       */
 	public partial class ExternalRememberMeOwnerDetailsType	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ebl";
 		
@@ -27932,10 +27543,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class ExternalRememberMeOptInDetailsType	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ebl";
 		
@@ -28030,10 +27640,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *An optional set of values related to flow-specific details. 
       */
 	public partial class FlowControlDetailsType	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ebl";
 		
@@ -28130,12 +27739,6 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *current login bypass status. 
       */
 	public partial class ExternalRememberMeStatusDetailsType	{
-
-		// Namespace for the type
-		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
-		
-		// Prefix associated with the namespace
-		private const string PreferredPrefix = "ebl";
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
@@ -28208,12 +27811,6 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *current login bypass status. 
       */
 	public partial class RefreshTokenStatusDetailsType	{
-
-		// Namespace for the type
-		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
-		
-		// Prefix associated with the namespace
-		private const string PreferredPrefix = "ebl";
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
@@ -28308,10 +27905,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *interface) elements. 
       */
 	public partial class DisplayControlDetailsType	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ebl";
 		
@@ -28386,10 +27982,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *partner. 
       */
 	public partial class ExternalPartnerTrackingDetailsType	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ebl";
 		
@@ -28464,10 +28059,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *characters 
       */
 	public partial class MerchantStoreDetailsType	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ebl";
 		
@@ -28571,10 +28165,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class AdditionalFeeType	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ebl";
 		
@@ -28685,10 +28278,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *Describes discount information 
       */
 	public partial class DiscountType	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ebl";
 		
@@ -28888,10 +28480,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *Describes an individual item for an invoice. 
       */
 	public partial class InvoiceItemType	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ebl";
 		
@@ -29472,12 +29063,6 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *Holds refunds payment status information 
       */
 	public partial class RefundInfoType	{
-
-		// Namespace for the type
-		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
-		
-		// Prefix associated with the namespace
-		private const string PreferredPrefix = "ebl";
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
@@ -29549,10 +29134,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *Defines relationship between buckets 
       */
 	public partial class CoupledBucketsType	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ebl";
 		
@@ -29681,12 +29265,6 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *Information about Coupled Payment transactions. 
       */
 	public partial class CoupledPaymentInfoType	{
-
-		// Namespace for the type
-		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
-		
-		// Prefix associated with the namespace
-		private const string PreferredPrefix = "ebl";
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
@@ -29758,10 +29336,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class EnhancedCheckoutDataType	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:EnhancedDataTypes";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ed";
 		
@@ -29813,10 +29390,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class EnhancedPaymentDataType	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:EnhancedDataTypes";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ed";
 		
@@ -29874,10 +29450,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class EnhancedItemDataType	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:EnhancedDataTypes";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ed";
 		
@@ -29935,12 +29510,6 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class EnhancedPaymentInfoType	{
-
-		// Namespace for the type
-		private const string NameSpace = "urn:ebay:apis:EnhancedDataTypes";
-		
-		// Prefix associated with the namespace
-		private const string PreferredPrefix = "ed";
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
@@ -29968,10 +29537,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class EnhancedInitiateRecoupRequestDetailsType	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:EnhancedDataTypes";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ed";
 		
@@ -30023,10 +29591,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class EnhancedCompleteRecoupRequestDetailsType	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:EnhancedDataTypes";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ed";
 		
@@ -30078,12 +29645,6 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class EnhancedCompleteRecoupResponseDetailsType	{
-
-		// Namespace for the type
-		private const string NameSpace = "urn:ebay:apis:EnhancedDataTypes";
-		
-		// Prefix associated with the namespace
-		private const string PreferredPrefix = "ed";
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
@@ -30111,10 +29672,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class EnhancedCancelRecoupRequestDetailsType	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:EnhancedDataTypes";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ed";
 		
@@ -30166,10 +29726,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class EnhancedPayerInfoType	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:EnhancedDataTypes";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ed";
 		
@@ -30227,10 +29786,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *Installment Period. Optional 
       */
 	public partial class InstallmentDetailsType	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ns";
 		
@@ -30451,10 +30009,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *12 single-byte alphanumeric characters 
       */
 	public partial class OptionSelectionDetailsType	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ns";
 		
@@ -30634,10 +30191,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *Option Name. Optional 
       */
 	public partial class OptionDetailsType	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ns";
 		
@@ -30763,10 +30319,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class BMCreateButtonReq	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ns";
 		
@@ -30841,10 +30396,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *PAYMENTPLAN, AUTOBILLING, DONATE, VIEWCART or UNSUBSCRIBE  
       */
 	public partial class BMCreateButtonRequestType : AbstractRequestType	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ns";
 		
@@ -31169,12 +30723,6 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class BMCreateButtonResponseType : AbstractResponseType	{
-
-		// Namespace for the type
-		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
-		// Prefix associated with the namespace
-		private const string PreferredPrefix = "ns";
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
@@ -31290,10 +30838,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class BMUpdateButtonReq	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ns";
 		
@@ -31368,10 +30915,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *characters  
       */
 	public partial class BMUpdateButtonRequestType : AbstractRequestType	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ns";
 		
@@ -31726,12 +31272,6 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class BMUpdateButtonResponseType : AbstractResponseType	{
-
-		// Namespace for the type
-		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
-		// Prefix associated with the namespace
-		private const string PreferredPrefix = "ns";
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
@@ -31847,10 +31387,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class BMManageButtonStatusReq	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ns";
 		
@@ -31924,10 +31463,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *limitations: 10 single-byte numeric characters  
       */
 	public partial class BMManageButtonStatusRequestType : AbstractRequestType	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ns";
 		
@@ -32024,12 +31562,6 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class BMManageButtonStatusResponseType : AbstractResponseType	{
-
-		// Namespace for the type
-		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
-		// Prefix associated with the namespace
-		private const string PreferredPrefix = "ns";
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
@@ -32057,10 +31589,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class BMGetButtonDetailsReq	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ns";
 		
@@ -32134,10 +31665,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *and limitations: 10 single-byte numeric characters  
       */
 	public partial class BMGetButtonDetailsRequestType : AbstractRequestType	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ns";
 		
@@ -32222,12 +31752,6 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *DONATE, VIEWCART or UNSUBSCRIBE 
       */
 	public partial class BMGetButtonDetailsResponseType : AbstractResponseType	{
-
-		// Namespace for the type
-		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
-		// Prefix associated with the namespace
-		private const string PreferredPrefix = "ns";
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
@@ -32619,10 +32143,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class BMSetInventoryReq	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ns";
 		
@@ -32697,10 +32220,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *characters  
       */
 	public partial class BMSetInventoryRequestType : AbstractRequestType	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ns";
 		
@@ -32987,12 +32509,6 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class BMSetInventoryResponseType : AbstractResponseType	{
-
-		// Namespace for the type
-		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
-		// Prefix associated with the namespace
-		private const string PreferredPrefix = "ns";
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
@@ -33020,10 +32536,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class BMGetInventoryReq	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ns";
 		
@@ -33098,10 +32613,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *numeric characters  
       */
 	public partial class BMGetInventoryRequestType : AbstractRequestType	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ns";
 		
@@ -33184,12 +32698,6 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class BMGetInventoryResponseType : AbstractResponseType	{
-
-		// Namespace for the type
-		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
-		// Prefix associated with the namespace
-		private const string PreferredPrefix = "ns";
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
@@ -33423,10 +32931,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class BMButtonSearchReq	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ns";
 		
@@ -33500,10 +33007,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *No wildcards are allowed. Required 
       */
 	public partial class BMButtonSearchRequestType : AbstractRequestType	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ns";
 		
@@ -33600,12 +33106,6 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class BMButtonSearchResponseType : AbstractResponseType	{
-
-		// Namespace for the type
-		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
-		// Prefix associated with the namespace
-		private const string PreferredPrefix = "ns";
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
@@ -33659,10 +33159,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class RefundTransactionReq	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ns";
 		
@@ -33737,10 +33236,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *alphanumeric characters 
       */
 	public partial class RefundTransactionRequestType : AbstractRequestType	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ns";
 		
@@ -34058,12 +33556,6 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *limitations:17 single-byte characters 
       */
 	public partial class RefundTransactionResponseType : AbstractResponseType	{
-
-		// Namespace for the type
-		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
-		// Prefix associated with the namespace
-		private const string PreferredPrefix = "ns";
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
@@ -34267,10 +33759,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class InitiateRecoupReq	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ns";
 		
@@ -34343,10 +33834,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class InitiateRecoupRequestType : AbstractRequestType	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ns";
 		
@@ -34428,12 +33918,6 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class InitiateRecoupResponseType : AbstractResponseType	{
-
-		// Namespace for the type
-		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
-		// Prefix associated with the namespace
-		private const string PreferredPrefix = "ns";
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
@@ -34461,10 +33945,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class CompleteRecoupReq	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ns";
 		
@@ -34537,10 +34020,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class CompleteRecoupRequestType : AbstractRequestType	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ns";
 		
@@ -34622,12 +34104,6 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class CompleteRecoupResponseType : AbstractResponseType	{
-
-		// Namespace for the type
-		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
-		// Prefix associated with the namespace
-		private const string PreferredPrefix = "ns";
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
@@ -34677,10 +34153,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class CancelRecoupReq	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ns";
 		
@@ -34753,10 +34228,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class CancelRecoupRequestType : AbstractRequestType	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ns";
 		
@@ -34838,12 +34312,6 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class CancelRecoupResponseType : AbstractResponseType	{
-
-		// Namespace for the type
-		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
-		// Prefix associated with the namespace
-		private const string PreferredPrefix = "ns";
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
@@ -34871,10 +34339,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class GetTransactionDetailsReq	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ns";
 		
@@ -34951,10 +34418,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *limitations: 17 single-byte alphanumeric characters
       */
 	public partial class GetTransactionDetailsRequestType : AbstractRequestType	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ns";
 		
@@ -35029,12 +34495,6 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class GetTransactionDetailsResponseType : AbstractResponseType	{
-
-		// Namespace for the type
-		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
-		// Prefix associated with the namespace
-		private const string PreferredPrefix = "ns";
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
@@ -35106,10 +34566,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class BillUserReq	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ns";
 		
@@ -35183,10 +34642,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *FMFDetails 
       */
 	public partial class BillUserRequestType : AbstractRequestType	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ns";
 		
@@ -35282,12 +34740,6 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class BillUserResponseType : AbstractResponseType	{
-
-		// Namespace for the type
-		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
-		// Prefix associated with the namespace
-		private const string PreferredPrefix = "ns";
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
@@ -35359,10 +34811,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class TransactionSearchReq	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ns";
 		
@@ -35436,10 +34887,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *No wildcards are allowed. Required
       */
 	public partial class TransactionSearchRequestType : AbstractRequestType	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ns";
 		
@@ -35828,12 +35278,6 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *Results of a Transaction Search.
       */
 	public partial class TransactionSearchResponseType : AbstractResponseType	{
-
-		// Namespace for the type
-		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
-		// Prefix associated with the namespace
-		private const string PreferredPrefix = "ns";
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
@@ -35887,10 +35331,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class MassPayReq	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ns";
 		
@@ -35966,10 +35409,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *limitations: 255 single-byte alphanumeric characters 
       */
 	public partial class MassPayRequestType : AbstractRequestType	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ns";
 		
@@ -36120,12 +35562,6 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class MassPayResponseType : AbstractResponseType	{
-
-		// Namespace for the type
-		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
-		// Prefix associated with the namespace
-		private const string PreferredPrefix = "ns";
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
@@ -36153,10 +35589,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *MassPayRequestItemType 
       */
 	public partial class MassPayRequestItemType	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ns";
 		
@@ -36347,10 +35782,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class BillAgreementUpdateReq	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ns";
 		
@@ -36423,10 +35857,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class BAUpdateRequestType : AbstractRequestType	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ns";
 		
@@ -36575,12 +36008,6 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class BAUpdateResponseType : AbstractResponseType	{
-
-		// Namespace for the type
-		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
-		// Prefix associated with the namespace
-		private const string PreferredPrefix = "ns";
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
@@ -36630,10 +36057,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class AddressVerifyReq	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ns";
 		
@@ -36708,10 +36134,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class AddressVerifyRequestType : AbstractRequestType	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ns";
 		
@@ -36845,12 +36270,6 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *responds that the postal address is unconfirmed 
       */
 	public partial class AddressVerifyResponseType : AbstractResponseType	{
-
-		// Namespace for the type
-		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
-		// Prefix associated with the namespace
-		private const string PreferredPrefix = "ns";
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
@@ -36988,10 +36407,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class EnterBoardingReq	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ns";
 		
@@ -37064,10 +36482,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class EnterBoardingRequestType : AbstractRequestType	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ns";
 		
@@ -37152,12 +36569,6 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *token has the following format:OB-61characterstring
       */
 	public partial class EnterBoardingResponseType : AbstractResponseType	{
-
-		// Namespace for the type
-		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
-		// Prefix associated with the namespace
-		private const string PreferredPrefix = "ns";
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
@@ -37207,10 +36618,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class GetBoardingDetailsReq	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ns";
 		
@@ -37286,10 +36696,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *the following format:OB-61characterstring
       */
 	public partial class GetBoardingDetailsRequestType : AbstractRequestType	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ns";
 		
@@ -37372,12 +36781,6 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class GetBoardingDetailsResponseType : AbstractResponseType	{
-
-		// Namespace for the type
-		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
-		// Prefix associated with the namespace
-		private const string PreferredPrefix = "ns";
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
@@ -37427,10 +36830,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class SetAuthFlowParamReq	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ns";
 		
@@ -37503,10 +36905,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class SetAuthFlowParamRequestType : AbstractRequestType	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ns";
 		
@@ -37591,12 +36992,6 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *characters
       */
 	public partial class SetAuthFlowParamResponseType : AbstractResponseType	{
-
-		// Namespace for the type
-		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
-		// Prefix associated with the namespace
-		private const string PreferredPrefix = "ns";
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
@@ -37646,10 +37041,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class GetAuthDetailsReq	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ns";
 		
@@ -37724,10 +37118,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *limitations: 20 single-byte characters
       */
 	public partial class GetAuthDetailsRequestType : AbstractRequestType	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ns";
 		
@@ -37810,12 +37203,6 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class GetAuthDetailsResponseType : AbstractResponseType	{
-
-		// Namespace for the type
-		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
-		// Prefix associated with the namespace
-		private const string PreferredPrefix = "ns";
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
@@ -37865,10 +37252,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class SetAccessPermissionsReq	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ns";
 		
@@ -37941,10 +37327,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class SetAccessPermissionsRequestType : AbstractRequestType	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ns";
 		
@@ -38029,12 +37414,6 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *characters
       */
 	public partial class SetAccessPermissionsResponseType : AbstractResponseType	{
-
-		// Namespace for the type
-		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
-		// Prefix associated with the namespace
-		private const string PreferredPrefix = "ns";
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
@@ -38084,10 +37463,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class UpdateAccessPermissionsReq	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ns";
 		
@@ -38162,10 +37540,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *length and limitations: 20 single-byte characters 
       */
 	public partial class UpdateAccessPermissionsRequestType : AbstractRequestType	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ns";
 		
@@ -38249,12 +37626,6 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *length and limitations: 20 single-byte characters 
       */
 	public partial class UpdateAccessPermissionsResponseType : AbstractResponseType	{
-
-		// Namespace for the type
-		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
-		// Prefix associated with the namespace
-		private const string PreferredPrefix = "ns";
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
@@ -38304,10 +37675,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class GetAccessPermissionDetailsReq	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ns";
 		
@@ -38382,10 +37752,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *limitations: 20 single-byte characters 
       */
 	public partial class GetAccessPermissionDetailsRequestType : AbstractRequestType	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ns";
 		
@@ -38468,12 +37837,6 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class GetAccessPermissionDetailsResponseType : AbstractResponseType	{
-
-		// Namespace for the type
-		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
-		// Prefix associated with the namespace
-		private const string PreferredPrefix = "ns";
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
@@ -38523,10 +37886,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class GetIncentiveEvaluationReq	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ns";
 		
@@ -38599,10 +37961,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class GetIncentiveEvaluationRequestType : AbstractRequestType	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ns";
 		
@@ -38684,12 +38045,6 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class GetIncentiveEvaluationResponseType : AbstractResponseType	{
-
-		// Namespace for the type
-		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
-		// Prefix associated with the namespace
-		private const string PreferredPrefix = "ns";
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
@@ -38739,10 +38094,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class SetExpressCheckoutReq	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ns";
 		
@@ -38815,10 +38169,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class SetExpressCheckoutRequestType : AbstractRequestType	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ns";
 		
@@ -38905,12 +38258,6 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *length and limitations: 20 single-byte characters
       */
 	public partial class SetExpressCheckoutResponseType : AbstractResponseType	{
-
-		// Namespace for the type
-		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
-		// Prefix associated with the namespace
-		private const string PreferredPrefix = "ns";
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
@@ -38960,10 +38307,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class ExecuteCheckoutOperationsReq	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ns";
 		
@@ -39036,10 +38382,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class ExecuteCheckoutOperationsRequestType : AbstractRequestType	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ns";
 		
@@ -39121,12 +38466,6 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class ExecuteCheckoutOperationsResponseType : AbstractResponseType	{
-
-		// Namespace for the type
-		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
-		// Prefix associated with the namespace
-		private const string PreferredPrefix = "ns";
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
@@ -39176,10 +38515,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class GetExpressCheckoutDetailsReq	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ns";
 		
@@ -39254,10 +38592,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *limitations: 20 single-byte characters
       */
 	public partial class GetExpressCheckoutDetailsRequestType : AbstractRequestType	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ns";
 		
@@ -39340,12 +38677,6 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class GetExpressCheckoutDetailsResponseType : AbstractResponseType	{
-
-		// Namespace for the type
-		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
-		// Prefix associated with the namespace
-		private const string PreferredPrefix = "ns";
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
@@ -39395,10 +38726,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class DoExpressCheckoutPaymentReq	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ns";
 		
@@ -39472,10 +38802,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *FMFDetails 
       */
 	public partial class DoExpressCheckoutPaymentRequestType : AbstractRequestType	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ns";
 		
@@ -39579,12 +38908,6 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class DoExpressCheckoutPaymentResponseType : AbstractResponseType	{
-
-		// Namespace for the type
-		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
-		// Prefix associated with the namespace
-		private const string PreferredPrefix = "ns";
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
@@ -39656,10 +38979,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class DoUATPExpressCheckoutPaymentReq	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ns";
 		
@@ -39732,10 +39054,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class DoUATPExpressCheckoutPaymentRequestType : DoExpressCheckoutPaymentRequestType	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ns";
 		
@@ -39788,12 +39109,6 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class DoUATPExpressCheckoutPaymentResponseType : DoExpressCheckoutPaymentResponseType	{
-
-		// Namespace for the type
-		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
-		// Prefix associated with the namespace
-		private const string PreferredPrefix = "ns";
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
@@ -39843,10 +39158,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class ManagePendingTransactionStatusReq	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ns";
 		
@@ -39919,10 +39233,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class ManagePendingTransactionStatusRequestType : AbstractRequestType	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ns";
 		
@@ -40028,12 +39341,6 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class ManagePendingTransactionStatusResponseType : AbstractResponseType	{
-
-		// Namespace for the type
-		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
-		// Prefix associated with the namespace
-		private const string PreferredPrefix = "ns";
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
@@ -40105,10 +39412,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class DoDirectPaymentReq	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ns";
 		
@@ -40182,10 +39488,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *FMFDetails 
       */
 	public partial class DoDirectPaymentRequestType : AbstractRequestType	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ns";
 		
@@ -40290,12 +39595,6 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *DoDirectPaymentRequest.
       */
 	public partial class DoDirectPaymentResponseType : AbstractResponseType	{
-
-		// Namespace for the type
-		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
-		// Prefix associated with the namespace
-		private const string PreferredPrefix = "ns";
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
@@ -40521,10 +39820,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class DoCancelReq	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ns";
 		
@@ -40597,10 +39895,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *Msg Sub Id that was used for the orginal operation. 
       */
 	public partial class DoCancelRequestType : AbstractRequestType	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ns";
 		
@@ -40728,12 +40025,6 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *Return msgsubid back to merchant 
       */
 	public partial class DoCancelResponseType : AbstractResponseType	{
-
-		// Namespace for the type
-		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
-		// Prefix associated with the namespace
-		private const string PreferredPrefix = "ns";
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
@@ -40783,10 +40074,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class DoCaptureReq	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ns";
 		
@@ -40861,10 +40151,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *single-byte characters maximum 
       */
 	public partial class DoCaptureRequestType : AbstractRequestType	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ns";
 		
@@ -41122,12 +40411,6 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class DoCaptureResponseType : AbstractResponseType	{
-
-		// Namespace for the type
-		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
-		// Prefix associated with the namespace
-		private const string PreferredPrefix = "ns";
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
@@ -41177,10 +40460,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class DoReauthorizationReq	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ns";
 		
@@ -41258,10 +40540,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *limits: 19 single-byte characters maximum 
       */
 	public partial class DoReauthorizationRequestType : AbstractRequestType	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ns";
 		
@@ -41389,12 +40670,6 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *and limits: 19 single-byte characters 
       */
 	public partial class DoReauthorizationResponseType : AbstractResponseType	{
-
-		// Namespace for the type
-		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
-		// Prefix associated with the namespace
-		private const string PreferredPrefix = "ns";
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
@@ -41488,10 +40763,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class DoVoidReq	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ns";
 		
@@ -41569,10 +40843,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *characters 
       */
 	public partial class DoVoidRequestType : AbstractRequestType	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ns";
 		
@@ -41701,12 +40974,6 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *characters 
       */
 	public partial class DoVoidResponseType : AbstractResponseType	{
-
-		// Namespace for the type
-		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
-		// Prefix associated with the namespace
-		private const string PreferredPrefix = "ns";
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
@@ -41778,10 +41045,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class DoAuthorizationReq	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ns";
 		
@@ -41856,10 +41122,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *limits: 19 single-byte characters maximum 
       */
 	public partial class DoAuthorizationRequestType : AbstractRequestType	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ns";
 		
@@ -42009,12 +41274,6 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *limits: 19 single-byte characters 
       */
 	public partial class DoAuthorizationResponseType : AbstractResponseType	{
-
-		// Namespace for the type
-		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
-		// Prefix associated with the namespace
-		private const string PreferredPrefix = "ns";
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
@@ -42130,10 +41389,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class DoUATPAuthorizationReq	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ns";
 		
@@ -42206,10 +41464,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *UATP card details Required 
       */
 	public partial class DoUATPAuthorizationRequestType : AbstractRequestType	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ns";
 		
@@ -42379,12 +41636,6 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *Auth Authorization Code. 
       */
 	public partial class DoUATPAuthorizationResponseType : DoAuthorizationResponseType	{
-
-		// Namespace for the type
-		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
-		// Prefix associated with the namespace
-		private const string PreferredPrefix = "ns";
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
@@ -42500,10 +41751,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class CreateMobilePaymentReq	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ns";
 		
@@ -42576,10 +41826,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class CreateMobilePaymentRequestType : AbstractRequestType	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ns";
 		
@@ -42661,12 +41910,6 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class CreateMobilePaymentResponseType : AbstractResponseType	{
-
-		// Namespace for the type
-		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
-		// Prefix associated with the namespace
-		private const string PreferredPrefix = "ns";
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
@@ -42694,10 +41937,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class GetMobileStatusReq	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ns";
 		
@@ -42770,10 +42012,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class GetMobileStatusRequestType : AbstractRequestType	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ns";
 		
@@ -42856,12 +42097,6 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class GetMobileStatusResponseType : AbstractResponseType	{
-
-		// Namespace for the type
-		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
-		// Prefix associated with the namespace
-		private const string PreferredPrefix = "ns";
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
@@ -42933,10 +42168,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class SetMobileCheckoutReq	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ns";
 		
@@ -43009,10 +42243,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class SetMobileCheckoutRequestType : AbstractRequestType	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ns";
 		
@@ -43097,12 +42330,6 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *20 single-byte characters
       */
 	public partial class SetMobileCheckoutResponseType : AbstractResponseType	{
-
-		// Namespace for the type
-		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
-		// Prefix associated with the namespace
-		private const string PreferredPrefix = "ns";
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
@@ -43152,10 +42379,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class DoMobileCheckoutPaymentReq	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ns";
 		
@@ -43230,10 +42456,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *limitations: 20 single-byte characters
       */
 	public partial class DoMobileCheckoutPaymentRequestType : AbstractRequestType	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ns";
 		
@@ -43316,12 +42541,6 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class DoMobileCheckoutPaymentResponseType : AbstractResponseType	{
-
-		// Namespace for the type
-		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
-		// Prefix associated with the namespace
-		private const string PreferredPrefix = "ns";
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
@@ -43371,10 +42590,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class GetBalanceReq	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ns";
 		
@@ -43447,10 +42665,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class GetBalanceRequestType : AbstractRequestType	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ns";
 		
@@ -43525,12 +42742,6 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class GetBalanceResponseType : AbstractResponseType	{
-
-		// Namespace for the type
-		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
-		// Prefix associated with the namespace
-		private const string PreferredPrefix = "ns";
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
@@ -43628,10 +42839,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class SetCustomerBillingAgreementReq	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ns";
 		
@@ -43704,10 +42914,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class SetCustomerBillingAgreementRequestType : AbstractRequestType	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ns";
 		
@@ -43789,12 +42998,6 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class SetCustomerBillingAgreementResponseType : AbstractResponseType	{
-
-		// Namespace for the type
-		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
-		// Prefix associated with the namespace
-		private const string PreferredPrefix = "ns";
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
@@ -43844,10 +43047,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class GetBillingAgreementCustomerDetailsReq	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ns";
 		
@@ -43920,10 +43122,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class GetBillingAgreementCustomerDetailsRequestType : AbstractRequestType	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ns";
 		
@@ -44006,12 +43207,6 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class GetBillingAgreementCustomerDetailsResponseType : AbstractResponseType	{
-
-		// Namespace for the type
-		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
-		// Prefix associated with the namespace
-		private const string PreferredPrefix = "ns";
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
@@ -44061,10 +43256,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class CreateBillingAgreementReq	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ns";
 		
@@ -44137,10 +43331,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class CreateBillingAgreementRequestType : AbstractRequestType	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ns";
 		
@@ -44223,12 +43416,6 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class CreateBillingAgreementResponseType : AbstractResponseType	{
-
-		// Namespace for the type
-		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
-		// Prefix associated with the namespace
-		private const string PreferredPrefix = "ns";
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
@@ -44278,10 +43465,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class DoReferenceTransactionReq	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ns";
 		
@@ -44355,10 +43541,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *FMFDetails 
       */
 	public partial class DoReferenceTransactionRequestType : AbstractRequestType	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ns";
 		
@@ -44462,12 +43647,6 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class DoReferenceTransactionResponseType : AbstractResponseType	{
-
-		// Namespace for the type
-		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
-		// Prefix associated with the namespace
-		private const string PreferredPrefix = "ns";
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
@@ -44539,10 +43718,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class DoNonReferencedCreditReq	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ns";
 		
@@ -44615,10 +43793,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class DoNonReferencedCreditRequestType : AbstractRequestType	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ns";
 		
@@ -44700,12 +43877,6 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class DoNonReferencedCreditResponseType : AbstractResponseType	{
-
-		// Namespace for the type
-		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
-		// Prefix associated with the namespace
-		private const string PreferredPrefix = "ns";
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
@@ -44755,10 +43926,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class CreateRecurringPaymentsProfileReq	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ns";
 		
@@ -44831,10 +44001,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class CreateRecurringPaymentsProfileRequestType : AbstractRequestType	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ns";
 		
@@ -44908,12 +44077,6 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class CreateRecurringPaymentsProfileResponseType : AbstractResponseType	{
-
-		// Namespace for the type
-		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
-		// Prefix associated with the namespace
-		private const string PreferredPrefix = "ns";
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
@@ -44963,10 +44126,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class GetRecurringPaymentsProfileDetailsReq	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ns";
 		
@@ -45039,10 +44201,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class GetRecurringPaymentsProfileDetailsRequestType : AbstractRequestType	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ns";
 		
@@ -45125,12 +44286,6 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class GetRecurringPaymentsProfileDetailsResponseType : AbstractResponseType	{
-
-		// Namespace for the type
-		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
-		// Prefix associated with the namespace
-		private const string PreferredPrefix = "ns";
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
@@ -45180,10 +44335,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class ManageRecurringPaymentsProfileStatusReq	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ns";
 		
@@ -45256,10 +44410,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class ManageRecurringPaymentsProfileStatusRequestType : AbstractRequestType	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ns";
 		
@@ -45333,12 +44486,6 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class ManageRecurringPaymentsProfileStatusResponseType : AbstractResponseType	{
-
-		// Namespace for the type
-		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
-		// Prefix associated with the namespace
-		private const string PreferredPrefix = "ns";
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
@@ -45388,10 +44535,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class BillOutstandingAmountReq	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ns";
 		
@@ -45464,10 +44610,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class BillOutstandingAmountRequestType : AbstractRequestType	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ns";
 		
@@ -45541,12 +44686,6 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class BillOutstandingAmountResponseType : AbstractResponseType	{
-
-		// Namespace for the type
-		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
-		// Prefix associated with the namespace
-		private const string PreferredPrefix = "ns";
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
@@ -45596,10 +44735,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class UpdateRecurringPaymentsProfileReq	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ns";
 		
@@ -45672,10 +44810,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class UpdateRecurringPaymentsProfileRequestType : AbstractRequestType	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ns";
 		
@@ -45749,12 +44886,6 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class UpdateRecurringPaymentsProfileResponseType : AbstractResponseType	{
-
-		// Namespace for the type
-		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
-		// Prefix associated with the namespace
-		private const string PreferredPrefix = "ns";
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
@@ -45804,10 +44935,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class GetPalDetailsReq	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ns";
 		
@@ -45880,10 +45010,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class GetPalDetailsRequestType : AbstractRequestType	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ns";
 		
@@ -45936,12 +45065,6 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class GetPalDetailsResponseType : AbstractResponseType	{
-
-		// Namespace for the type
-		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
-		// Prefix associated with the namespace
-		private const string PreferredPrefix = "ns";
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
@@ -46013,10 +45136,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class ReverseTransactionReq	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ns";
 		
@@ -46089,10 +45211,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class ReverseTransactionRequestType : AbstractRequestType	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ns";
 		
@@ -46174,12 +45295,6 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class ReverseTransactionResponseType : AbstractResponseType	{
-
-		// Namespace for the type
-		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
-		// Prefix associated with the namespace
-		private const string PreferredPrefix = "ns";
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
@@ -46229,10 +45344,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class ExternalRememberMeOptOutReq	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ns";
 		
@@ -46309,10 +45423,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *Required 
       */
 	public partial class ExternalRememberMeOptOutRequestType : AbstractRequestType	{
-
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
+
 		// Prefix associated with the namespace
 		private const string PreferredPrefix = "ns";
 		
@@ -46416,12 +45529,6 @@ namespace PayPal.PayPalAPIInterfaceService.Model
       *
       */
 	public partial class ExternalRememberMeOptOutResponseType : AbstractResponseType	{
-
-		// Namespace for the type
-		private const string NameSpace = "urn:ebay:api:PayPalAPI";
-		
-		// Prefix associated with the namespace
-		private const string PreferredPrefix = "ns";
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");

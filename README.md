@@ -1,4 +1,4 @@
-This repository contains .NET SDK and samples for Button Manager API.
+This repository contains .NET SDK and samples for PayPal Button Manager API.
 
 Prerequisites:
 --------------
@@ -8,6 +8,9 @@ SDK Integration:
 ----------------
 *	Create a new ASP.NET Web Application with appropriate web application and solution name
 
+*	Execute 'ButtonManager.bat' batch commands to ensure that the Button Manager stubs are up-to-date 
+	[Note: Also ensure that the path to 'devenv.com' in 'ButtonManager.bat' file is correct as per Visual Studio installation]
+	
 *	Add reference to 'PayPal_ButtonManager_SDK.dll'
 
 *	Add reference to 'PayPal_Core_SDK.dll'
@@ -45,5 +48,5 @@ Please refer to the sample web.config file in 'ButtonManagerAPISample' sample ap
 
 Tool:
 ------
-*	log4net.dll - included in 'lib' folder in 'PayPal_AdaptiveAccounts_SDK' project
+*	log4net.dll - included in 'lib' folder in 'PayPal_ButtonManager_SDK' project
 	log4net is a tool to help output log statements to a variety of output targets.

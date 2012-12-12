@@ -224,7 +224,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			StringBuilder sb = new StringBuilder();
 		if(currencyID != null)
 		{
-			sb.Append(" currencyID=\"").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(currencyID))).Append("\"");	
+			sb.Append(" currencyID=\"").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(this.currencyID))).Append("\"");	
 		}
 			
 			return sb.ToString();
@@ -350,7 +350,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			StringBuilder sb = new StringBuilder();
 		if(unit != null)
 		{
-			sb.Append(" unit =\"").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(unit)).Append("\"");
+			sb.Append(" unit =\"").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(this.unit)).Append("\"");
 		}
 			
 			return sb.ToString();
@@ -2909,7 +2909,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			{
 				for(int i = 0; i < DetailLevel.Count; i++)
 				{
-					sb.Append("<").Append(PreferredPrefix).Append(":DetailLevel>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(DetailLevel[i]))).Append("</").Append(PreferredPrefix).Append(":DetailLevel>");
+					sb.Append("<").Append(PreferredPrefix).Append(":DetailLevel>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(this.DetailLevel[i]))).Append("</").Append(PreferredPrefix).Append(":DetailLevel>");
 				}
 			}
 			if(ErrorLanguage != null)
@@ -3563,7 +3563,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(Country != null)
 			{
-				sb.Append("<").Append(PreferredPrefix).Append(":Country>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(Country)));
+				sb.Append("<").Append(PreferredPrefix).Append(":Country>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(this.Country)));
 				sb.Append("</").Append(PreferredPrefix).Append(":Country>");
 			}
 			if(CountryName != null)
@@ -3588,7 +3588,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(AddressOwner != null)
 			{
-				sb.Append("<").Append(PreferredPrefix).Append(":AddressOwner>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(AddressOwner)));
+				sb.Append("<").Append(PreferredPrefix).Append(":AddressOwner>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(this.AddressOwner)));
 				sb.Append("</").Append(PreferredPrefix).Append(":AddressOwner>");
 			}
 			if(ExternalAddressID != null)
@@ -3613,7 +3613,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(AddressStatus != null)
 			{
-				sb.Append("<").Append(PreferredPrefix).Append(":AddressStatus>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(AddressStatus)));
+				sb.Append("<").Append(PreferredPrefix).Append(":AddressStatus>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(this.AddressStatus)));
 				sb.Append("</").Append(PreferredPrefix).Append(":AddressStatus>");
 			}
 			if (name != null)
@@ -4743,12 +4743,12 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(RequestType != null)
 			{
-				sb.Append("<").Append(PreferredPrefix).Append(":RequestType>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(RequestType)));
+				sb.Append("<").Append(PreferredPrefix).Append(":RequestType>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(this.RequestType)));
 				sb.Append("</").Append(PreferredPrefix).Append(":RequestType>");
 			}
 			if(RequestDetailLevel != null)
 			{
-				sb.Append("<").Append(PreferredPrefix).Append(":RequestDetailLevel>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(RequestDetailLevel)));
+				sb.Append("<").Append(PreferredPrefix).Append(":RequestDetailLevel>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(this.RequestDetailLevel)));
 				sb.Append("</").Append(PreferredPrefix).Append(":RequestDetailLevel>");
 			}
 			if (name != null)
@@ -6346,17 +6346,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(PaymentAction != null)
 			{
-				sb.Append("<").Append(PreferredPrefix).Append(":PaymentAction>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(PaymentAction)));
+				sb.Append("<").Append(PreferredPrefix).Append(":PaymentAction>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(this.PaymentAction)));
 				sb.Append("</").Append(PreferredPrefix).Append(":PaymentAction>");
 			}
 			if(SolutionType != null)
 			{
-				sb.Append("<").Append(PreferredPrefix).Append(":SolutionType>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(SolutionType)));
+				sb.Append("<").Append(PreferredPrefix).Append(":SolutionType>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(this.SolutionType)));
 				sb.Append("</").Append(PreferredPrefix).Append(":SolutionType>");
 			}
 			if(LandingPage != null)
 			{
-				sb.Append("<").Append(PreferredPrefix).Append(":LandingPage>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(LandingPage)));
+				sb.Append("<").Append(PreferredPrefix).Append(":LandingPage>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(this.LandingPage)));
 				sb.Append("</").Append(PreferredPrefix).Append(":LandingPage>");
 			}
 			if(BuyerEmail != null)
@@ -6366,7 +6366,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(ChannelType != null)
 			{
-				sb.Append("<").Append(PreferredPrefix).Append(":ChannelType>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(ChannelType)));
+				sb.Append("<").Append(PreferredPrefix).Append(":ChannelType>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(this.ChannelType)));
 				sb.Append("</").Append(PreferredPrefix).Append(":ChannelType>");
 			}
 			if(BillingAgreementDetails != null)
@@ -6391,12 +6391,12 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(ProductCategory != null)
 			{
-				sb.Append("<").Append(PreferredPrefix).Append(":ProductCategory>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(ProductCategory)));
+				sb.Append("<").Append(PreferredPrefix).Append(":ProductCategory>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(this.ProductCategory)));
 				sb.Append("</").Append(PreferredPrefix).Append(":ProductCategory>");
 			}
 			if(ShippingMethod != null)
 			{
-				sb.Append("<").Append(PreferredPrefix).Append(":ShippingMethod>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(ShippingMethod)));
+				sb.Append("<").Append(PreferredPrefix).Append(":ShippingMethod>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(this.ShippingMethod)));
 				sb.Append("</").Append(PreferredPrefix).Append(":ShippingMethod>");
 			}
 			if(ProfileAddressChangeDate != null)
@@ -6516,7 +6516,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(TotalType != null)
 			{
-				sb.Append("<").Append(PreferredPrefix).Append(":TotalType>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(TotalType)));
+				sb.Append("<").Append(PreferredPrefix).Append(":TotalType>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(this.TotalType)));
 				sb.Append("</").Append(PreferredPrefix).Append(":TotalType>");
 			}
 			if(NoteToBuyer != null)
@@ -7046,12 +7046,12 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(ApprovalType != null)
 			{
-				sb.Append("<").Append(PreferredPrefix).Append(":ApprovalType>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(ApprovalType)));
+				sb.Append("<").Append(PreferredPrefix).Append(":ApprovalType>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(this.ApprovalType)));
 				sb.Append("</").Append(PreferredPrefix).Append(":ApprovalType>");
 			}
 			if(ApprovalSubType != null)
 			{
-				sb.Append("<").Append(PreferredPrefix).Append(":ApprovalSubType>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(ApprovalSubType)));
+				sb.Append("<").Append(PreferredPrefix).Append(":ApprovalSubType>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(this.ApprovalSubType)));
 				sb.Append("</").Append(PreferredPrefix).Append(":ApprovalSubType>");
 			}
 			if(OrderDetails != null)
@@ -7315,7 +7315,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(PaymentType != null)
 			{
-				sb.Append("<").Append(PreferredPrefix).Append(":PaymentType>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(PaymentType)));
+				sb.Append("<").Append(PreferredPrefix).Append(":PaymentType>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(this.PaymentType)));
 				sb.Append("</").Append(PreferredPrefix).Append(":PaymentType>");
 			}
 			if (name != null)
@@ -7852,7 +7852,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(UserSelectedFundingSource != null)
 			{
-				sb.Append("<").Append(PreferredPrefix).Append(":UserSelectedFundingSource>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(UserSelectedFundingSource)));
+				sb.Append("<").Append(PreferredPrefix).Append(":UserSelectedFundingSource>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(this.UserSelectedFundingSource)));
 				sb.Append("</").Append(PreferredPrefix).Append(":UserSelectedFundingSource>");
 			}
 			if (name != null)
@@ -7987,7 +7987,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(BillingType != null)
 			{
-				sb.Append("<").Append(PreferredPrefix).Append(":BillingType>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(BillingType)));
+				sb.Append("<").Append(PreferredPrefix).Append(":BillingType>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(this.BillingType)));
 				sb.Append("</").Append(PreferredPrefix).Append(":BillingType>");
 			}
 			if(BillingAgreementDescription != null)
@@ -7997,7 +7997,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(PaymentType != null)
 			{
-				sb.Append("<").Append(PreferredPrefix).Append(":PaymentType>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(PaymentType)));
+				sb.Append("<").Append(PreferredPrefix).Append(":PaymentType>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(this.PaymentType)));
 				sb.Append("</").Append(PreferredPrefix).Append(":PaymentType>");
 			}
 			if(BillingAgreementCustom != null)
@@ -9208,7 +9208,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(PaymentAction != null)
 			{
-				sb.Append("<").Append(PreferredPrefix).Append(":PaymentAction>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(PaymentAction)));
+				sb.Append("<").Append(PreferredPrefix).Append(":PaymentAction>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(this.PaymentAction)));
 				sb.Append("</").Append(PreferredPrefix).Append(":PaymentAction>");
 			}
 			if(Token != null)
@@ -9783,7 +9783,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(PaymentAction != null)
 			{
-				sb.Append("<").Append(PreferredPrefix).Append(":PaymentAction>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(PaymentAction)));
+				sb.Append("<").Append(PreferredPrefix).Append(":PaymentAction>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(this.PaymentAction)));
 				sb.Append("</").Append(PreferredPrefix).Append(":PaymentAction>");
 			}
 			if(PaymentDetails != null)
@@ -10120,12 +10120,12 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(PaymentType != null)
 			{
-				sb.Append("<").Append(PreferredPrefix).Append(":PaymentType>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(PaymentType)));
+				sb.Append("<").Append(PreferredPrefix).Append(":PaymentType>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(this.PaymentType)));
 				sb.Append("</").Append(PreferredPrefix).Append(":PaymentType>");
 			}
 			if(PaymentAction != null)
 			{
-				sb.Append("<").Append(PreferredPrefix).Append(":PaymentAction>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(PaymentAction)));
+				sb.Append("<").Append(PreferredPrefix).Append(":PaymentAction>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(this.PaymentAction)));
 				sb.Append("</").Append(PreferredPrefix).Append(":PaymentAction>");
 			}
 			if(SenderPhone != null)
@@ -10134,7 +10134,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(RecipientType != null)
 			{
-				sb.Append("<").Append(PreferredPrefix).Append(":RecipientType>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(RecipientType)));
+				sb.Append("<").Append(PreferredPrefix).Append(":RecipientType>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(this.RecipientType)));
 				sb.Append("</").Append(PreferredPrefix).Append(":RecipientType>");
 			}
 			if(RecipientEmail != null)
@@ -12419,7 +12419,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(PaymentType != null)
 			{
-				sb.Append("<").Append(PreferredPrefix).Append(":PaymentType>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(PaymentType)));
+				sb.Append("<").Append(PreferredPrefix).Append(":PaymentType>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(this.PaymentType)));
 				sb.Append("</").Append(PreferredPrefix).Append(":PaymentType>");
 			}
 			if(Memo != null)
@@ -13165,7 +13165,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(PayerStatus != null)
 			{
-				sb.Append("<").Append(PreferredPrefix).Append(":PayerStatus>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(PayerStatus)));
+				sb.Append("<").Append(PreferredPrefix).Append(":PayerStatus>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(this.PayerStatus)));
 				sb.Append("</").Append(PreferredPrefix).Append(":PayerStatus>");
 			}
 			if(PayerName != null)
@@ -13174,7 +13174,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(PayerCountry != null)
 			{
-				sb.Append("<").Append(PreferredPrefix).Append(":PayerCountry>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(PayerCountry)));
+				sb.Append("<").Append(PreferredPrefix).Append(":PayerCountry>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(this.PayerCountry)));
 				sb.Append("</").Append(PreferredPrefix).Append(":PayerCountry>");
 			}
 			if(PayerBusiness != null)
@@ -14161,23 +14161,6 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
-          *
-		  */
-		private string binEligibilityField;
-		public string BinEligibility
-		{
-			get
-			{
-				return this.binEligibilityField;
-			}
-			set
-			{
-				this.binEligibilityField = value;
-			}
-		}
-		
-
-		/**
 	 	  * Default Constructor
 	 	  */
 	 	public PaymentInfoType()
@@ -14373,11 +14356,6 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
 				this.OfferDetails =  new OfferDetailsType(ChildNode);
-			}
-			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'BinEligibility']");
-			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
-			{
-				this.BinEligibility = ChildNode.InnerText;
 			}
 	
 		}
@@ -15251,7 +15229,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(ProductCategory != null)
 			{
-				sb.Append("<").Append(PreferredPrefix).Append(":ProductCategory>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(ProductCategory)));
+				sb.Append("<").Append(PreferredPrefix).Append(":ProductCategory>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(this.ProductCategory)));
 				sb.Append("</").Append(PreferredPrefix).Append(":ProductCategory>");
 			}
 			if(Description != null)
@@ -15286,7 +15264,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(ItemCategory != null)
 			{
-				sb.Append("<").Append(PreferredPrefix).Append(":ItemCategory>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(ItemCategory)));
+				sb.Append("<").Append(PreferredPrefix).Append(":ItemCategory>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(this.ItemCategory)));
 				sb.Append("</").Append(PreferredPrefix).Append(":ItemCategory>");
 			}
 			if (name != null)
@@ -16713,12 +16691,12 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(PaymentCategoryType != null)
 			{
-				sb.Append("<").Append(PreferredPrefix).Append(":PaymentCategoryType>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(PaymentCategoryType)));
+				sb.Append("<").Append(PreferredPrefix).Append(":PaymentCategoryType>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(this.PaymentCategoryType)));
 				sb.Append("</").Append(PreferredPrefix).Append(":PaymentCategoryType>");
 			}
 			if(ShippingMethod != null)
 			{
-				sb.Append("<").Append(PreferredPrefix).Append(":ShippingMethod>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(ShippingMethod)));
+				sb.Append("<").Append(PreferredPrefix).Append(":ShippingMethod>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(this.ShippingMethod)));
 				sb.Append("</").Append(PreferredPrefix).Append(":ShippingMethod>");
 			}
 			if(ProfileAddressChangeDate != null)
@@ -16748,7 +16726,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(AllowedPaymentMethod != null)
 			{
-				sb.Append("<").Append(PreferredPrefix).Append(":AllowedPaymentMethod>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(AllowedPaymentMethod)));
+				sb.Append("<").Append(PreferredPrefix).Append(":AllowedPaymentMethod>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(this.AllowedPaymentMethod)));
 				sb.Append("</").Append(PreferredPrefix).Append(":AllowedPaymentMethod>");
 			}
 			if(EnhancedPaymentData != null)
@@ -16771,7 +16749,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(PaymentAction != null)
 			{
-				sb.Append("<").Append(PreferredPrefix).Append(":PaymentAction>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(PaymentAction)));
+				sb.Append("<").Append(PreferredPrefix).Append(":PaymentAction>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(this.PaymentAction)));
 				sb.Append("</").Append(PreferredPrefix).Append(":PaymentAction>");
 			}
 			if(PaymentRequestID != null)
@@ -16800,12 +16778,12 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(Recurring != null)
 			{
-				sb.Append("<").Append(PreferredPrefix).Append(":Recurring>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(Recurring)));
+				sb.Append("<").Append(PreferredPrefix).Append(":Recurring>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(this.Recurring)));
 				sb.Append("</").Append(PreferredPrefix).Append(":Recurring>");
 			}
 			if(PaymentReason != null)
 			{
-				sb.Append("<").Append(PreferredPrefix).Append(":PaymentReason>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(PaymentReason)));
+				sb.Append("<").Append(PreferredPrefix).Append(":PaymentReason>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(this.PaymentReason)));
 				sb.Append("</").Append(PreferredPrefix).Append(":PaymentReason>");
 			}
 			if (name != null)
@@ -18551,7 +18529,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(CreditCardType != null)
 			{
-				sb.Append("<").Append(PreferredPrefix).Append(":CreditCardType>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(CreditCardType)));
+				sb.Append("<").Append(PreferredPrefix).Append(":CreditCardType>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(this.CreditCardType)));
 				sb.Append("</").Append(PreferredPrefix).Append(":CreditCardType>");
 			}
 			if(CreditCardNumber != null)
@@ -19056,7 +19034,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(CreditCardType != null)
 			{
-				sb.Append("<").Append(PreferredPrefix).Append(":CreditCardType>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(CreditCardType)));
+				sb.Append("<").Append(PreferredPrefix).Append(":CreditCardType>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(this.CreditCardType)));
 				sb.Append("</").Append(PreferredPrefix).Append(":CreditCardType>");
 			}
 			if(CreditCardNumber != null)
@@ -20101,12 +20079,12 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(PaymentAction != null)
 			{
-				sb.Append("<").Append(PreferredPrefix).Append(":PaymentAction>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(PaymentAction)));
+				sb.Append("<").Append(PreferredPrefix).Append(":PaymentAction>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(this.PaymentAction)));
 				sb.Append("</").Append(PreferredPrefix).Append(":PaymentAction>");
 			}
 			if(PaymentType != null)
 			{
-				sb.Append("<").Append(PreferredPrefix).Append(":PaymentType>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(PaymentType)));
+				sb.Append("<").Append(PreferredPrefix).Append(":PaymentType>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(this.PaymentType)));
 				sb.Append("</").Append(PreferredPrefix).Append(":PaymentType>");
 			}
 			if(PaymentDetails != null)
@@ -20837,7 +20815,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(MarketingCategory != null)
 			{
-				sb.Append("<").Append(PreferredPrefix).Append(":MarketingCategory>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(MarketingCategory)));
+				sb.Append("<").Append(PreferredPrefix).Append(":MarketingCategory>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(this.MarketingCategory)));
 				sb.Append("</").Append(PreferredPrefix).Append(":MarketingCategory>");
 			}
 			if(BusinessInfo != null)
@@ -21146,7 +21124,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(Type != null)
 			{
-				sb.Append("<").Append(PreferredPrefix).Append(":Type>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(Type)));
+				sb.Append("<").Append(PreferredPrefix).Append(":Type>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(this.Type)));
 				sb.Append("</").Append(PreferredPrefix).Append(":Type>");
 			}
 			if(Name != null)
@@ -21165,27 +21143,27 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(Category != null)
 			{
-				sb.Append("<").Append(PreferredPrefix).Append(":Category>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(Category)));
+				sb.Append("<").Append(PreferredPrefix).Append(":Category>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(this.Category)));
 				sb.Append("</").Append(PreferredPrefix).Append(":Category>");
 			}
 			if(SubCategory != null)
 			{
-				sb.Append("<").Append(PreferredPrefix).Append(":SubCategory>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(SubCategory)));
+				sb.Append("<").Append(PreferredPrefix).Append(":SubCategory>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(this.SubCategory)));
 				sb.Append("</").Append(PreferredPrefix).Append(":SubCategory>");
 			}
 			if(AveragePrice != null)
 			{
-				sb.Append("<").Append(PreferredPrefix).Append(":AveragePrice>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(AveragePrice)));
+				sb.Append("<").Append(PreferredPrefix).Append(":AveragePrice>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(this.AveragePrice)));
 				sb.Append("</").Append(PreferredPrefix).Append(":AveragePrice>");
 			}
 			if(AverageMonthlyVolume != null)
 			{
-				sb.Append("<").Append(PreferredPrefix).Append(":AverageMonthlyVolume>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(AverageMonthlyVolume)));
+				sb.Append("<").Append(PreferredPrefix).Append(":AverageMonthlyVolume>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(this.AverageMonthlyVolume)));
 				sb.Append("</").Append(PreferredPrefix).Append(":AverageMonthlyVolume>");
 			}
 			if(SalesVenue != null)
 			{
-				sb.Append("<").Append(PreferredPrefix).Append(":SalesVenue>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(SalesVenue)));
+				sb.Append("<").Append(PreferredPrefix).Append(":SalesVenue>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(this.SalesVenue)));
 				sb.Append("</").Append(PreferredPrefix).Append(":SalesVenue>");
 			}
 			if(Website != null)
@@ -21195,7 +21173,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(RevenueFromOnlineSales != null)
 			{
-				sb.Append("<").Append(PreferredPrefix).Append(":RevenueFromOnlineSales>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(RevenueFromOnlineSales)));
+				sb.Append("<").Append(PreferredPrefix).Append(":RevenueFromOnlineSales>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(this.RevenueFromOnlineSales)));
 				sb.Append("</").Append(PreferredPrefix).Append(":RevenueFromOnlineSales>");
 			}
 			if(BusinessEstablished != null)
@@ -21483,7 +21461,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(Type != null)
 			{
-				sb.Append("<").Append(PreferredPrefix).Append(":Type>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(Type)));
+				sb.Append("<").Append(PreferredPrefix).Append(":Type>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(this.Type)));
 				sb.Append("</").Append(PreferredPrefix).Append(":Type>");
 			}
 			if(RoutingNumber != null)
@@ -22902,7 +22880,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(FailedInitialAmountAction != null)
 			{
-				sb.Append("<").Append(PreferredPrefix).Append(":FailedInitialAmountAction>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(FailedInitialAmountAction)));
+				sb.Append("<").Append(PreferredPrefix).Append(":FailedInitialAmountAction>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(this.FailedInitialAmountAction)));
 				sb.Append("</").Append(PreferredPrefix).Append(":FailedInitialAmountAction>");
 			}
 			if (name != null)
@@ -23073,7 +23051,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(BillingPeriod != null)
 			{
-				sb.Append("<").Append(PreferredPrefix).Append(":BillingPeriod>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(BillingPeriod)));
+				sb.Append("<").Append(PreferredPrefix).Append(":BillingPeriod>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(this.BillingPeriod)));
 				sb.Append("</").Append(PreferredPrefix).Append(":BillingPeriod>");
 			}
 			if(BillingFrequency != null)
@@ -23292,7 +23270,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(BillingPeriod != null)
 			{
-				sb.Append("<").Append(PreferredPrefix).Append(":BillingPeriod>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(BillingPeriod)));
+				sb.Append("<").Append(PreferredPrefix).Append(":BillingPeriod>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(this.BillingPeriod)));
 				sb.Append("</").Append(PreferredPrefix).Append(":BillingPeriod>");
 			}
 			if(BillingFrequency != null)
@@ -23506,7 +23484,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(AutoBillOutstandingAmount != null)
 			{
-				sb.Append("<").Append(PreferredPrefix).Append(":AutoBillOutstandingAmount>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(AutoBillOutstandingAmount)));
+				sb.Append("<").Append(PreferredPrefix).Append(":AutoBillOutstandingAmount>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(this.AutoBillOutstandingAmount)));
 				sb.Append("</").Append(PreferredPrefix).Append(":AutoBillOutstandingAmount>");
 			}
 			if (name != null)
@@ -24494,7 +24472,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(Action != null)
 			{
-				sb.Append("<").Append(PreferredPrefix).Append(":Action>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(Action)));
+				sb.Append("<").Append(PreferredPrefix).Append(":Action>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(this.Action)));
 				sb.Append("</").Append(PreferredPrefix).Append(":Action>");
 			}
 			if(Note != null)
@@ -25130,7 +25108,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(AutoBillOutstandingAmount != null)
 			{
-				sb.Append("<").Append(PreferredPrefix).Append(":AutoBillOutstandingAmount>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(AutoBillOutstandingAmount)));
+				sb.Append("<").Append(PreferredPrefix).Append(":AutoBillOutstandingAmount>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(this.AutoBillOutstandingAmount)));
 				sb.Append("</").Append(PreferredPrefix).Append(":AutoBillOutstandingAmount>");
 			}
 			if(MaxFailedPayments != null)
@@ -28418,7 +28396,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(RedeemedOfferType != null)
 			{
-				sb.Append("<").Append(PreferredPrefix).Append(":RedeemedOfferType>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(RedeemedOfferType)));
+				sb.Append("<").Append(PreferredPrefix).Append(":RedeemedOfferType>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(this.RedeemedOfferType)));
 				sb.Append("</").Append(PreferredPrefix).Append(":RedeemedOfferType>");
 			}
 			if(RedeemedOfferID != null)
@@ -28874,7 +28852,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(ItemCountUnit != null)
 			{
-				sb.Append("<").Append(PreferredPrefix).Append(":ItemCountUnit>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(ItemCountUnit)));
+				sb.Append("<").Append(PreferredPrefix).Append(":ItemCountUnit>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(this.ItemCountUnit)));
 				sb.Append("</").Append(PreferredPrefix).Append(":ItemCountUnit>");
 			}
 			if(Discount != null)
@@ -29226,7 +29204,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(CoupleType != null)
 			{
-				sb.Append("<").Append(PreferredPrefix).Append(":CoupleType>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(CoupleType)));
+				sb.Append("<").Append(PreferredPrefix).Append(":CoupleType>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(this.CoupleType)));
 				sb.Append("</").Append(PreferredPrefix).Append(":CoupleType>");
 			}
 			if(CoupledPaymentRequestID != null)
@@ -29921,7 +29899,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(BillingPeriod != null)
 			{
-				sb.Append("<").Append(PreferredPrefix).Append(":BillingPeriod>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(BillingPeriod)));
+				sb.Append("<").Append(PreferredPrefix).Append(":BillingPeriod>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(this.BillingPeriod)));
 				sb.Append("</").Append(PreferredPrefix).Append(":BillingPeriod>");
 			}
 			if(BillingFrequency != null)
@@ -30128,7 +30106,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(OptionType != null)
 			{
-				sb.Append("<").Append(PreferredPrefix).Append(":OptionType>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(OptionType)));
+				sb.Append("<").Append(PreferredPrefix).Append(":OptionType>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(this.OptionType)));
 				sb.Append("</").Append(PreferredPrefix).Append(":OptionType>");
 			}
 			if(PaymentPeriod != null)
@@ -30634,17 +30612,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			sb.Append(base.ToXMLString(prefix, null));
 			if(ButtonType != null)
 			{
-				sb.Append("<").Append(PreferredPrefix).Append(":ButtonType>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(ButtonType)));
+				sb.Append("<").Append(PreferredPrefix).Append(":ButtonType>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(this.ButtonType)));
 				sb.Append("</").Append(PreferredPrefix).Append(":ButtonType>");
 			}
 			if(ButtonCode != null)
 			{
-				sb.Append("<").Append(PreferredPrefix).Append(":ButtonCode>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(ButtonCode)));
+				sb.Append("<").Append(PreferredPrefix).Append(":ButtonCode>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(this.ButtonCode)));
 				sb.Append("</").Append(PreferredPrefix).Append(":ButtonCode>");
 			}
 			if(ButtonSubType != null)
 			{
-				sb.Append("<").Append(PreferredPrefix).Append(":ButtonSubType>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(ButtonSubType)));
+				sb.Append("<").Append(PreferredPrefix).Append(":ButtonSubType>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(this.ButtonSubType)));
 				sb.Append("</").Append(PreferredPrefix).Append(":ButtonSubType>");
 			}
 			if(ButtonVar != null)
@@ -30672,7 +30650,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(ButtonImage != null)
 			{
-				sb.Append("<").Append(PreferredPrefix).Append(":ButtonImage>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(ButtonImage)));
+				sb.Append("<").Append(PreferredPrefix).Append(":ButtonImage>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(this.ButtonImage)));
 				sb.Append("</").Append(PreferredPrefix).Append(":ButtonImage>");
 			}
 			if(ButtonImageURL != null)
@@ -30682,17 +30660,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(BuyNowText != null)
 			{
-				sb.Append("<").Append(PreferredPrefix).Append(":BuyNowText>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(BuyNowText)));
+				sb.Append("<").Append(PreferredPrefix).Append(":BuyNowText>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(this.BuyNowText)));
 				sb.Append("</").Append(PreferredPrefix).Append(":BuyNowText>");
 			}
 			if(SubscribeText != null)
 			{
-				sb.Append("<").Append(PreferredPrefix).Append(":SubscribeText>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(SubscribeText)));
+				sb.Append("<").Append(PreferredPrefix).Append(":SubscribeText>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(this.SubscribeText)));
 				sb.Append("</").Append(PreferredPrefix).Append(":SubscribeText>");
 			}
 			if(ButtonCountry != null)
 			{
-				sb.Append("<").Append(PreferredPrefix).Append(":ButtonCountry>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(ButtonCountry)));
+				sb.Append("<").Append(PreferredPrefix).Append(":ButtonCountry>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(this.ButtonCountry)));
 				sb.Append("</").Append(PreferredPrefix).Append(":ButtonCountry>");
 			}
 			if(ButtonLanguage != null)
@@ -31183,17 +31161,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(ButtonType != null)
 			{
-				sb.Append("<").Append(PreferredPrefix).Append(":ButtonType>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(ButtonType)));
+				sb.Append("<").Append(PreferredPrefix).Append(":ButtonType>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(this.ButtonType)));
 				sb.Append("</").Append(PreferredPrefix).Append(":ButtonType>");
 			}
 			if(ButtonCode != null)
 			{
-				sb.Append("<").Append(PreferredPrefix).Append(":ButtonCode>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(ButtonCode)));
+				sb.Append("<").Append(PreferredPrefix).Append(":ButtonCode>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(this.ButtonCode)));
 				sb.Append("</").Append(PreferredPrefix).Append(":ButtonCode>");
 			}
 			if(ButtonSubType != null)
 			{
-				sb.Append("<").Append(PreferredPrefix).Append(":ButtonSubType>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(ButtonSubType)));
+				sb.Append("<").Append(PreferredPrefix).Append(":ButtonSubType>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(this.ButtonSubType)));
 				sb.Append("</").Append(PreferredPrefix).Append(":ButtonSubType>");
 			}
 			if(ButtonVar != null)
@@ -31221,7 +31199,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(ButtonImage != null)
 			{
-				sb.Append("<").Append(PreferredPrefix).Append(":ButtonImage>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(ButtonImage)));
+				sb.Append("<").Append(PreferredPrefix).Append(":ButtonImage>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(this.ButtonImage)));
 				sb.Append("</").Append(PreferredPrefix).Append(":ButtonImage>");
 			}
 			if(ButtonImageURL != null)
@@ -31231,17 +31209,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(BuyNowText != null)
 			{
-				sb.Append("<").Append(PreferredPrefix).Append(":BuyNowText>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(BuyNowText)));
+				sb.Append("<").Append(PreferredPrefix).Append(":BuyNowText>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(this.BuyNowText)));
 				sb.Append("</").Append(PreferredPrefix).Append(":BuyNowText>");
 			}
 			if(SubscribeText != null)
 			{
-				sb.Append("<").Append(PreferredPrefix).Append(":SubscribeText>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(SubscribeText)));
+				sb.Append("<").Append(PreferredPrefix).Append(":SubscribeText>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(this.SubscribeText)));
 				sb.Append("</").Append(PreferredPrefix).Append(":SubscribeText>");
 			}
 			if(ButtonCountry != null)
 			{
-				sb.Append("<").Append(PreferredPrefix).Append(":ButtonCountry>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(ButtonCountry)));
+				sb.Append("<").Append(PreferredPrefix).Append(":ButtonCountry>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(this.ButtonCountry)));
 				sb.Append("</").Append(PreferredPrefix).Append(":ButtonCountry>");
 			}
 			if(ButtonLanguage != null)
@@ -31536,7 +31514,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(ButtonStatus != null)
 			{
-				sb.Append("<").Append(PreferredPrefix).Append(":ButtonStatus>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(ButtonStatus)));
+				sb.Append("<").Append(PreferredPrefix).Append(":ButtonStatus>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(this.ButtonStatus)));
 				sb.Append("</").Append(PreferredPrefix).Append(":ButtonStatus>");
 			}
 			if (name != null)
@@ -33489,7 +33467,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(RefundType != null)
 			{
-				sb.Append("<").Append(PreferredPrefix).Append(":RefundType>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(RefundType)));
+				sb.Append("<").Append(PreferredPrefix).Append(":RefundType>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(this.RefundType)));
 				sb.Append("</").Append(PreferredPrefix).Append(":RefundType>");
 			}
 			if(Amount != null)
@@ -33508,7 +33486,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(RefundSource != null)
 			{
-				sb.Append("<").Append(PreferredPrefix).Append(":RefundSource>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(RefundSource)));
+				sb.Append("<").Append(PreferredPrefix).Append(":RefundSource>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(this.RefundSource)));
 				sb.Append("</").Append(PreferredPrefix).Append(":RefundSource>");
 			}
 			if(RefundAdvice != null)
@@ -35238,7 +35216,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(TransactionClass != null)
 			{
-				sb.Append("<").Append(PreferredPrefix).Append(":TransactionClass>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(TransactionClass)));
+				sb.Append("<").Append(PreferredPrefix).Append(":TransactionClass>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(this.TransactionClass)));
 				sb.Append("</").Append(PreferredPrefix).Append(":TransactionClass>");
 			}
 			if(Amount != null)
@@ -35247,12 +35225,12 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(CurrencyCode != null)
 			{
-				sb.Append("<").Append(PreferredPrefix).Append(":CurrencyCode>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(CurrencyCode)));
+				sb.Append("<").Append(PreferredPrefix).Append(":CurrencyCode>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(this.CurrencyCode)));
 				sb.Append("</").Append(PreferredPrefix).Append(":CurrencyCode>");
 			}
 			if(Status != null)
 			{
-				sb.Append("<").Append(PreferredPrefix).Append(":Status>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(Status)));
+				sb.Append("<").Append(PreferredPrefix).Append(":Status>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(this.Status)));
 				sb.Append("</").Append(PreferredPrefix).Append(":Status>");
 			}
 			if (name != null)
@@ -35524,7 +35502,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(ReceiverType != null)
 			{
-				sb.Append("<").Append(PreferredPrefix).Append(":ReceiverType>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(ReceiverType)));
+				sb.Append("<").Append(PreferredPrefix).Append(":ReceiverType>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(this.ReceiverType)));
 				sb.Append("</").Append(PreferredPrefix).Append(":ReceiverType>");
 			}
 			if(ButtonSource != null)
@@ -35977,7 +35955,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(BillingAgreementStatus != null)
 			{
-				sb.Append("<").Append(PreferredPrefix).Append(":BillingAgreementStatus>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(BillingAgreementStatus)));
+				sb.Append("<").Append(PreferredPrefix).Append(":BillingAgreementStatus>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(this.BillingAgreementStatus)));
 				sb.Append("</").Append(PreferredPrefix).Append(":BillingAgreementStatus>");
 			}
 			if(BillingAgreementCustom != null)
@@ -39315,7 +39293,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(Action != null)
 			{
-				sb.Append("<").Append(PreferredPrefix).Append(":Action>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(Action)));
+				sb.Append("<").Append(PreferredPrefix).Append(":Action>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(this.Action)));
 				sb.Append("</").Append(PreferredPrefix).Append(":Action>");
 			}
 			if (name != null)
@@ -39994,7 +39972,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(APIType != null)
 			{
-				sb.Append("<").Append(PreferredPrefix).Append(":APIType>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(APIType)));
+				sb.Append("<").Append(PreferredPrefix).Append(":APIType>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(this.APIType)));
 				sb.Append("</").Append(PreferredPrefix).Append(":APIType>");
 			}
 			if(MsgSubID != null)
@@ -40357,7 +40335,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(CompleteType != null)
 			{
-				sb.Append("<").Append(PreferredPrefix).Append(":CompleteType>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(CompleteType)));
+				sb.Append("<").Append(PreferredPrefix).Append(":CompleteType>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(this.CompleteType)));
 				sb.Append("</").Append(PreferredPrefix).Append(":CompleteType>");
 			}
 			if(Note != null)
@@ -41238,7 +41216,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(TransactionEntity != null)
 			{
-				sb.Append("<").Append(PreferredPrefix).Append(":TransactionEntity>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(TransactionEntity)));
+				sb.Append("<").Append(PreferredPrefix).Append(":TransactionEntity>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(this.TransactionEntity)));
 				sb.Append("</").Append(PreferredPrefix).Append(":TransactionEntity>");
 			}
 			if(Amount != null)
@@ -41596,7 +41574,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(TransactionEntity != null)
 			{
-				sb.Append("<").Append(PreferredPrefix).Append(":TransactionEntity>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(TransactionEntity)));
+				sb.Append("<").Append(PreferredPrefix).Append(":TransactionEntity>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(this.TransactionEntity)));
 				sb.Append("</").Append(PreferredPrefix).Append(":TransactionEntity>");
 			}
 			if(Amount != null)

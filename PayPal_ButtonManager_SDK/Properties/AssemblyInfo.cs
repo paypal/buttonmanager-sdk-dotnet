@@ -1,12 +1,11 @@
 ﻿using System.Reflection;
-using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("PayPal Merchant SDK for .NET")]
-[assembly: AssemblyCompany("eBay Inc.,")]
+[assembly: AssemblyTitle("PayPal Button Manager SDK for .NET")]
+[assembly: AssemblyCompany("eBay Inc.")]
 [assembly: AssemblyProduct("PayPal_ButtonManager_SDK")]
 [assembly: AssemblyCopyright("Copyright © eBay Inc., 2009-2012")]
 

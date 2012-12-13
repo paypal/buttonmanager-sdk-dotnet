@@ -68,6 +68,14 @@
                 </div>
                 <div class="params">
                     <div class="param_name">
+                        IPN Notification URL</div>
+                    <div class="param_value">
+                        <input id="notifyURL" type="text" name="notifyURL" value="" runat="Server" size="50"
+                            maxlength="260" />
+                    </div>
+                </div>
+                <div class="params">
+                    <div class="param_name">
                         Item Name</div>
                     <div class="param_value">
                         <input type="text" id="itemName" name="itemName" value="Widget" runat="Server" size="50"

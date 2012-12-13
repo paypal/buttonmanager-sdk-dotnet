@@ -43,6 +43,8 @@ namespace PayPalAPISample.APICalls
             buttonVars.Add("return=" + returnURL.Value);
             buttonVars.Add("business=" + businessMail.Value);
             buttonVars.Add("amount=" + amount.Value);
+            buttonVars.Add("notify_url=" +  notifyURL.Value.Trim());
+
             request.ButtonVar = buttonVars;
 
             /* Construct rest of the request values according to the buttontype 
@@ -65,6 +67,7 @@ namespace PayPalAPISample.APICalls
                 detailsType.OptionType = (OptionTypeListType)
                     Enum.Parse(typeof(OptionTypeListType), optionType.SelectedValue);
                 detailsType.PaymentPeriod = insList;
+
 
                 List<OptionSelectionDetailsType> optSelectList = new List<OptionSelectionDetailsType>();
                 optSelectList.Add(detailsType);

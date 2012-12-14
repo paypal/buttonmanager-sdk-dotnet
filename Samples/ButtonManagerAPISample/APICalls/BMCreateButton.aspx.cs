@@ -42,7 +42,7 @@ namespace PayPalAPISample.APICalls
             buttonVars.Add("item_name=" + itemName.Value);
             buttonVars.Add("return=" + returnURL.Value);
             buttonVars.Add("business=" + businessMail.Value);
-            buttonVars.Add("amount=" + notifyURL.Value.Trim());
+            buttonVars.Add("notify_url=" + notifyURL.Value.Trim());
             request.ButtonVar = buttonVars;
 
             /* Construct rest of the request values according to the buttontype 

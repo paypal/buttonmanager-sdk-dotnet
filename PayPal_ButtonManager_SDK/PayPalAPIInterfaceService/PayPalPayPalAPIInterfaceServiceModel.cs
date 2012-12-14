@@ -14161,6 +14161,23 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
+          *
+		  */
+		private string binEligibilityField;
+		public string BinEligibility
+		{
+			get
+			{
+				return this.binEligibilityField;
+			}
+			set
+			{
+				this.binEligibilityField = value;
+			}
+		}
+		
+
+		/**
 	 	  * Default Constructor
 	 	  */
 	 	public PaymentInfoType()
@@ -14356,6 +14373,11 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
 				this.OfferDetails =  new OfferDetailsType(ChildNode);
+			}
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'BinEligibility']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
+			{
+				this.BinEligibility = ChildNode.InnerText;
 			}
 	
 		}

@@ -1,4 +1,4 @@
-This repository contains the PayPal Button Manager SDK C#.NET Class Library Application and the ButtonManagerAPISample Sample ASP.NET C# Web Application.
+The repository contains the PayPal Button Manager SDK C#.NET Class Library Application and the ButtonManagerAPISample Sample ASP.NET C# Web Application.
 
 
 SDK Integration
@@ -24,7 +24,7 @@ SDK Integration
 	
 Help
 ----
-*	ButtonManager.bat - Automation script that builds the PayPal Button Manager SDK C#.NET Class Library Application in release mode and copies the built dlls to the lib folder in the ButtonManagerAPISample Sample ASP.NET C# Web Application
+*	ButtonManager.bat - Automation script that builds the PayPal Button Manager SDK C#.NET Class Library Application in release mode and copies the built dlls to the lib folder in the ButtonManagerSampleApp Sample ASP.NET C# Web Application
 
 *	Changelog.txt - Release Notes
 

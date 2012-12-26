@@ -7,8 +7,8 @@
     <ProjectGuid>{BFD0B3F6-9F04-4F46-81DD-B5884A910FF5}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>PayPal_ButtonManager_SDK</RootNamespace>
-    <AssemblyName>PayPal_ButtonManager_SDK</AssemblyName>
+    <RootNamespace>PayPal</RootNamespace>
+    <AssemblyName>PayPalButtonManagerSDK</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -28,10 +28,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="PayPal_Core_SDK, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>lib\PayPal_Core_SDK.dll</HintPath>
-    </Reference>
+    <Reference Include="PayPalCoreSDK, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Data" />
@@ -47,7 +44,9 @@
     <None Include="README.md" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="lib\" />
+    <Content Include="lib\PayPalCoreSDK.dll" />
+  </ItemGroup>
+  <ItemGroup>
     <Folder Include="Packages\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

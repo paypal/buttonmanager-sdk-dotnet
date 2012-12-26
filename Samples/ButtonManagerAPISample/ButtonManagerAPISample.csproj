@@ -30,8 +30,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL" />
-    <Reference Include="PayPal_ButtonManager_SDK, Version=2.1.96.0, Culture=neutral, processorArchitecture=MSIL" />
-    <Reference Include="PayPal_Core_SDK, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="PayPalButtonManagerSDK, Version=2.1.96.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="PayPalCoreSDK, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -54,8 +54,8 @@
     <Content Include="Global.asax" />
     <Content Include="IPNListener.aspx" />
     <Content Include="lib\log4net.dll" />
-    <Content Include="lib\PayPal_ButtonManager_SDK.dll" />
-    <Content Include="lib\PayPal_Core_SDK.dll" />
+    <Content Include="lib\PayPalButtonManagerSDK.dll" />
+    <Content Include="lib\PayPalCoreSDK.dll" />
     <Content Include="ShowError.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>

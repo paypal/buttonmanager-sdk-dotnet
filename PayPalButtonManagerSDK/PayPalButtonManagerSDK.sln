@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 9.00
 # Visual Studio 2005
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PayPal_ButtonManager_SDK", "PayPal_ButtonManager_SDK.csproj", "{BFD0B3F6-9F04-4F46-81DD-B5884A910FF5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PayPalButtonManagerSDK", "PayPalButtonManagerSDK.csproj", "{BFD0B3F6-9F04-4F46-81DD-B5884A910FF5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

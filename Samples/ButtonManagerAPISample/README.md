@@ -10,18 +10,13 @@ Prerequisites
 
 The PayPal Button Manager API Samples
 -------------------------------------
-*	BMButtonSearch API Operation (NVP): Use the BMButtonSearch API operation to obtain a list of your hosted Website Payments Standard buttons.
-*	BMButtonSearch API Operation (SOAP): Use the BMButtonSearch API operation to obtain a list of your hosted Website Payments Standard buttons.
-*	BMCreateButton API Operation (SOAP): Use the BMCreateButton API operation to create a Website Payments Standard button.
-*	BMGetButtonDetails API Operation (NVP): Use the BMGetButtonDetails API operation to obtain information about a hosted Website Payments Standard button.
-*	BMGetButtonDetails API Operation (SOAP): Use the BMGetButtonDetails API operation to obtain information about a hosted Website Payments Standard button.
-*	BMGetInventory API Operation (NVP): Use the BMGetInventory API operation to determine the inventory levels and other inventory-related information for a button and menu items associated with the button.
-*	BMGetInventory API Operation (SOAP): Use the BMGetInventory API operation to determine the inventory levels and other inventory-related information for a button and menu items associated with the button.
-*	BMManageButtonStatus API Operation (NVP): Use the BMManageButtonStatus API operation to change the status of a hosted button. Currently, you can only delete a button.
-*	BMSetInventory API Operation (NVP): Use the BMSetInventory API operation to set the inventory level and inventory management features for the specified button.
-*	BMSetInventory API Operation (SOAP): Use the BMSetInventory API operation to set the inventory level and inventory management features for the specified button.
-*	BMUpdateButton API Operation (NVP): Use the BMUpdateButton API operation to modify a Website Payments Standard button that is hosted on PayPal.
-*	BMUpdateButton API Operation (SOAP): Use the BMUpdateButton API operation to modify a Website Payments Standard button that is hosted on PayPal.
+*	BMButtonSearch API Operation (NVP/SOAP): Use the BMButtonSearch API operation to obtain a list of your hosted Website Payments Standard buttons.
+*	BMCreateButton API Operation (NVP/SOAP): Use the BMCreateButton API operation to create a Website Payments Standard button.
+*	BMGetButtonDetails API Operation (NVP/SOAP): Use the BMGetButtonDetails API operation to obtain information about a hosted Website Payments Standard button.
+*	BMGetInventory API Operation (NVP/SOAP): Use the BMGetInventory API operation to determine the inventory levels and other inventory-related information for a button and menu items associated with the button.
+*	BMManageButtonStatus API Operation (NVP/SOAP): Use the BMManageButtonStatus API operation to change the status of a hosted button. Currently, you can only delete a button.
+*	BMSetInventory API Operation (NVP/SOAP): Use the BMSetInventory API operation to set the inventory level and inventory management features for the specified button.
+*	BMUpdateButton API Operation (NVP/SOAP): Use the BMUpdateButton API operation to modify a Website Payments Standard button that is hosted on PayPal.
 
 
 NuGet – Installing NuGet in Visual Studio 2010 and 2012
@@ -50,24 +45,25 @@ And click OK
 Go to Menu --> Tools --> Library Package Manage --> Package Manager Console
 Select NuGet official package source from the Package source dropdown box in the Package Manager Console
 Go to Solution Explorer and note the existing references
-Enter at PM> Install-Package PayPal_ButtonManager_SDK
+Enter at PM> Install-Package PayPalButtonManagerSDK
+
 On enter key-press, the output window should display:
 
-Attempting to resolve dependency 'PayPal_Core_SDK'.
+Attempting to resolve dependency 'PayPalCoreSDK'.
 Attempting to resolve dependency 'log4net (= 1.2.10)'.
 Successfully installed 'log4net 1.2.10'.
-You are downloading PayPal_Core_SDK from PayPal, the license agreement to which is available at https://github.com/paypal/sdk-core-dotnet/blob/master/LICENSE.txt. Check the package for additional dependencies, which may come with their own license agreement(s). Your use of the package and dependencies constitutes your acceptance of their license agreements. If you do not accept the license agreement(s), then delete the relevant components from your device.
-Successfully installed 'PayPal_Core_SDK 1.0.0'.
-You are downloading PayPal_ButtonManager_SDK from PayPal Developer Tools Team, the license agreement to which is available at https://github.com/paypal/buttonmanager-sdk-dotnet/blob/master/LICENSE.txt. Check the package for additional dependencies, which may come with their own license agreement(s). Your use of the package and dependencies constitutes your acceptance of their license agreements. If you do not accept the license agreement(s), then delete the relevant components from your device.
-Successfully installed 'PayPal_ButtonManager_SDK 2.1.96'.
+You are downloading PayPalCoreSDK from PayPal, the license agreement to which is available at https://github.com/paypal/sdk-core-dotnet/blob/master/LICENSE.txt. Check the package for additional dependencies, which may come with their own license agreement(s). Your use of the package and dependencies constitutes your acceptance of their license agreements. If you do not accept the license agreement(s), then delete the relevant components from your device.
+Successfully installed 'PayPalCoreSDK 1.0.0'.
+You are downloading PayPalButtonManagerSDK from PayPal Developer Tools Team, the license agreement to which is available at https://github.com/paypal/buttonmanager-sdk-dotnet/blob/master/LICENSE.txt. Check the package for additional dependencies, which may come with their own license agreement(s). Your use of the package and dependencies constitutes your acceptance of their license agreements. If you do not accept the license agreement(s), then delete the relevant components from your device.
+Successfully installed 'PayPalButtonManagerSDK 2.1.96'.
 Successfully added 'log4net 1.2.10' to ButtonManagerAPISample.
-Successfully added 'PayPal_Core_SDK 1.0.0' to ButtonManagerAPISample.
-Successfully added 'PayPal_ButtonManager_SDK 2.1.96' to ButtonManagerAPISample.
+Successfully added 'PayPalCoreSDK 1.0.0' to ButtonManagerAPISample.
+Successfully added 'PayPalButtonManagerSDK 2.1.96' to ButtonManagerAPISample.
 
 After successful installation, note that the new references get added automatically
 
 Also, go to Menu --> Tools --> Library Package Manager, select Manage NuGet Packages for Solution…
-On Manage NuGet Packages, search for 'PayPal_Core_SDK' to get the details
+On Manage NuGet Packages, search for 'PayPalCoreSDK' to get the details
 	
 
 NuGet - Integrating NuGet with Visual Studio 2005 and 2008
@@ -142,21 +138,21 @@ Click the NuGet Toolbar Install Package
 Clicking on the NuGet Toolbar Install Package will pop up for NuGet Install Arguments and Command Line
 Example NuGet Install:
 Enter Arguments: 
-install PayPal_Core_SDK -excludeversion -outputDirectory .\Packages
+install PayPalCoreSDK -excludeversion -outputDirectory .\Packages
 
 On clicking OK, the output window should display:
 
-Attempting to resolve dependency 'PayPal_Core_SDK'.
+Attempting to resolve dependency 'PayPalCoreSDK'.
 Attempting to resolve dependency 'log4net (ò 1.2.10)'.
 Successfully installed 'log4net 1.2.10'.
-Successfully installed 'PayPal_Core_SDK 1.0.0'.
-Successfully installed 'PayPal_ButtonManager_SDK 2.1.96'
+Successfully installed 'PayPalCoreSDK 1.0.0'.
+Successfully installed 'PayPalButtonManagerSDK 2.1.96'
 
 Menu View --> Output (Ctrl+Alt+O)
 
-The 'PayPal_Core_SDK' Package including the dependencies will be downloaded to the 'Packages' folder root directory of the Solution (.sln) file.
+The 'PayPalCoreSDK' Package including the dependencies will be downloaded to the 'Packages' folder root directory of the Solution (.sln) file.
 
-Select 'Packages' folder and click 'Refresh' in the Solution Explorer
+Select 'Packages' folder by clicking it and then click 'Show All Files' in the Solution Explorer
 Note: If 'Packages' folder was not included in the Solution Explorer, click 'Show All Files' before clicking 'Refresh'
 Add the references to the dependent files downloaded to 'Packages' folder:
 

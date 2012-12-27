@@ -5,7 +5,7 @@ SDK Integration
 ---------------
 *	Integrate the PayPal Button Manager SDK with an ASP.NET Web Application
 
-*	Use NuGet to install the 'PayPal_ButtonManager_SDK' package 
+*	Use NuGet to install the 'PayPalButtonManagerSDK' package 
 
 *	The NuGet package installs the dependencies to the solution and automatically updates the project
 

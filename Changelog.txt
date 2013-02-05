@@ -1,3 +1,10 @@
+Version 2.2.98 - February 04, 2013
+ 
+ 	- Updated stubs for 98 release.
+	- Added Nuget support.
+	
+You can see source code of this release in github under https://github.com/paypal/buttonmanager-sdk-dotnet/tree/v2.2.98.
+--------------------------------------------------------------------------------------------------
 Version 2.1.96 - December 14, 2012
  
  	- Added support for Instant Payment Notification (Refer IPN-README.md for more details)

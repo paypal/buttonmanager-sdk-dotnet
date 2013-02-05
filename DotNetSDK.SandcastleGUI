@@ -1,10 +1,10 @@
 Copyright=Copyright © eBay Inc., 2009-2012.
-ProductName=PayPal_ButtonManager_SDK
-AssemblyDir=C:\Users\lvairamani\Desktop\svn\SDKAutomation\scripts\buttonmanager-sdk-dotnet\PayPal_ButtonManager_SDK/bin/Release
-OutputDir=C:\Users\lvairamani\Desktop\svn\SDKAutomation\scripts\buttonmanager-sdk-dotnet\docs
+ProductName=PayPalButtonManagerSDK
+AssemblyDir=C:\repos\svn\SDKAutomation\scripts\buttonmanager-sdk-dotnet\PayPalButtonManagerSDK/bin/Release
+OutputDir=C:\repos\svn\SDKAutomation\scripts\buttonmanager-sdk-dotnet\docs
 DocDir=
-Namespaces=PayPal.ButtonManager
-Logo=C:\Users\lvairamani\Desktop\svn\SDKAutomation\scripts/Dotnet/PayPal_logo_150x65.gif
+Namespaces=PayPal.PayPalAPIInterfaceService
+Logo=C:\repos\svn\SDKAutomation\scripts/Dotnet/PayPal_logo_150x65.gif
 MSDNLinks=true
 OutputType=chm
 CodeHighlighting=false

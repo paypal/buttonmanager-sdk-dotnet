@@ -1290,6 +1290,20 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 	/**
+      * Normalization Status of the Address
+      * 
+      */
+    [Serializable]
+	public enum AddressNormalizationStatusCodeType {
+		[Description("None")]NONE,	
+		[Description("Normalized")]NORMALIZED,	
+		[Description("Unnormalized")]UNNORMALIZED	
+	}
+
+
+
+
+	/**
       * PaymentDetailsCodeType 
       * This is the PayPal payment details type (used by DCC and
       *Express Checkout)
@@ -1466,7 +1480,8 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		[Description("multi-currency")]MULTICURRENCY,	
 		[Description("authorization")]AUTHORIZATION,	
 		[Description("order")]ORDER,	
-		[Description("payment-review")]PAYMENTREVIEW	
+		[Description("payment-review")]PAYMENTREVIEW,	
+		[Description("regulatory-review")]REGULATORYREVIEW	
 	}
 
 
@@ -2651,6 +2666,23 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
+          *
+		  */
+		private string paramIDField;
+		public string ParamID
+		{
+			get
+			{
+				return this.paramIDField;
+			}
+			set
+			{
+				this.paramIDField = value;
+			}
+		}
+		
+
+		/**
 	 	  * Default Constructor
 	 	  */
 	 	public ErrorParameterType()
@@ -2666,6 +2698,11 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
 				this.Value = ChildNode.InnerText;
+			}
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'ParamID']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
+			{
+				this.ParamID = ChildNode.InnerText;
 			}
 	
 		}
@@ -3515,6 +3552,23 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
+          *
+		  */
+		private AddressNormalizationStatusCodeType? addressNormalizationStatusField;
+		public AddressNormalizationStatusCodeType? AddressNormalizationStatus
+		{
+			get
+			{
+				return this.addressNormalizationStatusField;
+			}
+			set
+			{
+				this.addressNormalizationStatusField = value;
+			}
+		}
+		
+
+		/**
 	 	  * Default Constructor
 	 	  */
 	 	public AddressType()
@@ -3616,6 +3670,11 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 				sb.Append("<").Append(PreferredPrefix).Append(":AddressStatus>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(this.AddressStatus)));
 				sb.Append("</").Append(PreferredPrefix).Append(":AddressStatus>");
 			}
+			if(AddressNormalizationStatus != null)
+			{
+				sb.Append("<").Append(PreferredPrefix).Append(":AddressNormalizationStatus>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(this.AddressNormalizationStatus)));
+				sb.Append("</").Append(PreferredPrefix).Append(":AddressNormalizationStatus>");
+			}
 			if (name != null)
 			{
 				if (prefix != null)
@@ -3713,6 +3772,11 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
 				this.AddressStatus = (AddressStatusCodeType)EnumUtils.GetValue(ChildNode.InnerText,typeof(AddressStatusCodeType));
+			}
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'AddressNormalizationStatus']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
+			{
+				this.AddressNormalizationStatus = (AddressNormalizationStatusCodeType)EnumUtils.GetValue(ChildNode.InnerText,typeof(AddressNormalizationStatusCodeType));
 			}
 	
 		}
@@ -14412,6 +14476,23 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
+          *
+		  */
+		private string periodField;
+		public string period
+		{
+			get
+			{
+				return this.periodField;
+			}
+			set
+			{
+				this.periodField = value;
+			}
+		}
+		
+
+		/**
 	 	  * Default Constructor
 	 	  */
 	 	public SubscriptionTermsType()
@@ -14427,6 +14508,11 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
 				this.Amount =  new BasicAmountType(ChildNode);
+			}
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'period']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
+			{
+				this.period = ChildNode.InnerText;
 			}
 	
 		}
@@ -14581,6 +14667,40 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
+          *
+		  */
+		private string reattemptField;
+		public string reattempt
+		{
+			get
+			{
+				return this.reattemptField;
+			}
+			set
+			{
+				this.reattemptField = value;
+			}
+		}
+		
+
+		/**
+          *
+		  */
+		private string recurringField;
+		public string recurring
+		{
+			get
+			{
+				return this.recurringField;
+			}
+			set
+			{
+				this.recurringField = value;
+			}
+		}
+		
+
+		/**
 	 	  * Default Constructor
 	 	  */
 	 	public SubscriptionInfoType()
@@ -14636,6 +14756,16 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 					this.Terms.Add(new SubscriptionTermsType(subNode));
 				}
 			}
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'reattempt']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
+			{
+				this.reattempt = ChildNode.InnerText;
+			}
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'recurring']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
+			{
+				this.recurring = ChildNode.InnerText;
+			}
 	
 		}
 	}
@@ -14686,6 +14816,23 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/**
+          *
+		  */
+		private string multiItemField;
+		public string multiItem
+		{
+			get
+			{
+				return this.multiItemField;
+			}
+			set
+			{
+				this.multiItemField = value;
+			}
+		}
+		
+
+		/**
 	 	  * Default Constructor
 	 	  */
 	 	public AuctionInfoType()
@@ -14707,6 +14854,11 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			{
 				this.ClosingDate = ChildNode.InnerText;
 			}
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'multiItem']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
+			{
+				this.multiItem = ChildNode.InnerText;
+			}
 	
 		}
 	}
@@ -14723,6 +14875,40 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
 		/**
+          *
+		  */
+		private string nameField;
+		public string name
+		{
+			get
+			{
+				return this.nameField;
+			}
+			set
+			{
+				this.nameField = value;
+			}
+		}
+		
+
+		/**
+          *
+		  */
+		private string valueField;
+		public string value
+		{
+			get
+			{
+				return this.valueField;
+			}
+			set
+			{
+				this.valueField = value;
+			}
+		}
+		
+
+		/**
 	 	  * Default Constructor
 	 	  */
 	 	public OptionType()
@@ -14734,6 +14920,16 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		{
 			XmlNode ChildNode = null;
 			XmlNodeList ChildNodeList = null;
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'name']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
+			{
+				this.name = ChildNode.InnerText;
+			}
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'value']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
+			{
+				this.value = ChildNode.InnerText;
+			}
 	
 		}
 	}

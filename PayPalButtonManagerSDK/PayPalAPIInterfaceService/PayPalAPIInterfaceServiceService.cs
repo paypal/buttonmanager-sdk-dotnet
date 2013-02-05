@@ -13,7 +13,7 @@ namespace PayPal.PayPalAPIInterfaceService
 	{
 
 		// Service Version
-		private const string ServiceVersion = "94.0";
+		private const string ServiceVersion = "98.0";
 
 		// Service Name
 		private const string ServiceName = "PayPalAPIInterfaceService";
@@ -22,7 +22,7 @@ namespace PayPal.PayPalAPIInterfaceService
 		private const string SDKName = "buttonmanager-dotnet-sdk";
 	
 		//SDK Version
-		private const string SDKVersion = "2.1.96";
+		private const string SDKVersion = "2.2.98";
 
 		public PayPalAPIInterfaceServiceService() {}
 	

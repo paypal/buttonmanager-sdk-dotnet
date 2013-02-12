@@ -1,3 +1,9 @@
+Version 2.3.98 - February 12, 2013
+ 
+ 	- Updated IPN Listener in samples for IPN core class fix.
+	
+You can see source code of this release in github under https://github.com/paypal/buttonmanager-sdk-dotnet/tree/v2.3.98.
+--------------------------------------------------------------------------------------------------
 Version 2.2.98 - February 04, 2013
  
  	- Updated stubs for 98 release.

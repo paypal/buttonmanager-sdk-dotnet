@@ -7,7 +7,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("PayPal Button Manager SDK for .NET")]
 [assembly: AssemblyCompany("eBay Inc.")]
 [assembly: AssemblyProduct("PayPalButtonManagerSDK")]
-[assembly: AssemblyCopyright("Copyright © eBay Inc., 2009-2012")]
+[assembly: AssemblyCopyright("Copyright © eBay Inc., 2009-2013")]
 
 // Setting ComVisible to false makes the types in this assembly not visible 
 // to COM components.  If you need to access a type in this assembly from 

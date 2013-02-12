@@ -32,10 +32,7 @@ namespace ButtonManagerAPISample
 
                 if (parameters.Length > 0)
                 {
-                    string ipnMsg = Encoding.GetEncoding("windows-1252").GetString(parameters);
-
-                    NameValueCollection nvc = HttpUtility.ParseQueryString(ipnMsg);
-                    IPNMessage ipn = new IPNMessage(nvc);
+                    IPNMessage ipn = new IPNMessage(parameters);
                     bool isIpnValidated = ipn.Validate();
                     string transactionType = ipn.TransactionType;
                     NameValueCollection map = ipn.IpnMap;

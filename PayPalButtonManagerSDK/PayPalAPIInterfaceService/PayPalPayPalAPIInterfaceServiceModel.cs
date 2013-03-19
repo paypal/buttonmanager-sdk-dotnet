@@ -1,7 +1,7 @@
-/**
-  * Stub objects for PayPalAPIInterfaceService 
-  * AUTO_GENERATED_CODE 
-  */
+/*
+ * Stub objects for PayPalAPIInterfaceService 
+ * AUTO_GENERATED_CODE 
+ */
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -16,8 +16,14 @@ using PayPal.Util;
 namespace PayPal.PayPalAPIInterfaceService.Model
 {
 
+	/// <summary>
+	/// Utility class for Enums with descriptions
+	/// </summary>
 	public static class EnumUtils
 	{
+		/// <summary>
+		/// Get description for a give enum value
+		/// </summary>	
 		public static string GetDescription(Enum value)
 		{
 			string description = "";
@@ -29,6 +35,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			return description;
 		}
 		
+		/// <summary>
+		/// Convert a string to an enum object
+		/// </summary>	
 		public static object GetValue(string value,Type enumType)
 		{
 			string[] names = Enum.GetNames(enumType);
@@ -115,14 +124,14 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	}
 
 
-	/**
-      *On requests, you must set the currencyID attribute to one of
-      *the three-character currency codes for any of the supported
-      *PayPal currencies. Limitations: Must not exceed $10,000 USD
-      *in any currency. No currency symbol. Decimal separator must
-      *be a period (.), and the thousands separator must be a comma
-      *(,).
-      */
+	/// <summary>
+	/// On requests, you must set the currencyID attribute to one of
+	/// the three-character currency codes for any of the supported
+	/// PayPal currencies. Limitations: Must not exceed $10,000 USD
+	/// in any currency. No currency symbol. Decimal separator must
+	/// be a period (.), and the thousands separator must be a comma
+	/// (,).
+    /// </summary>
 	public partial class BasicAmountType	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:CoreComponentTypes";
@@ -133,9 +142,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private CurrencyCodeType? currencyIDField;
 		public CurrencyCodeType? currencyID
 		{
@@ -150,9 +159,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string valueField;
 		public string value
 		{
@@ -167,18 +176,18 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Constructor with arguments
-	 	  */
+		/// <summary>
+		/// Constructor with arguments
+	 	/// </summary>
 	 	public BasicAmountType(CurrencyCodeType? currencyID, string value)
 	 	{
 			this.currencyID = currencyID;
 			this.value = value;
 		}
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public BasicAmountType()
 	 	{
 		}
@@ -246,9 +255,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class MeasureType	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:CoreComponentTypes";
@@ -259,9 +268,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string unitField;
 		public string unit
 		{
@@ -276,9 +285,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private decimal? valueField;
 		public decimal? value
 		{
@@ -293,18 +302,18 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Constructor with arguments
-	 	  */
+		/// <summary>
+		/// Constructor with arguments
+	 	/// </summary>
 	 	public MeasureType(string unit, decimal? value)
 	 	{
 			this.unit = unit;
 			this.value = value;
 		}
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public MeasureType()
 	 	{
 		}
@@ -372,18 +381,18 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      * AckCodeType
-      *    This code identifies the acknowledgement code types that
-      *
-      *    could be used to communicate the status of processing a 
-      *    (request) message to an application. This code would be
-      *used 
-      *    as part of a response message that contains an
-      *application 
-      *    level acknowledgement element.
-      * 
-      */
+	/// <summary>
+	/// AckCodeType
+	///     This code identifies the acknowledgement code types that
+	/// 
+	///     could be used to communicate the status of processing a 
+	///     (request) message to an application. This code would be
+	/// used 
+	///     as part of a response message that contains an
+	/// application 
+	///     level acknowledgement element.
+	///  
+	/// </summary>
     [Serializable]
 	public enum AckCodeType {
 		[Description("Success")]SUCCESS,	
@@ -398,13 +407,13 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      * AddressOwnerCodeType
-      *    This code identifies the AddressOwner code types which
-      *indicates
-      *    who owns the user'a address.
-      * 
-      */
+	/// <summary>
+	/// AddressOwnerCodeType
+	///     This code identifies the AddressOwner code types which
+	/// indicates
+	///     who owns the user'a address.
+	///  
+	/// </summary>
     [Serializable]
 	public enum AddressOwnerCodeType {
 		[Description("PayPal")]PAYPAL,	
@@ -415,15 +424,15 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      * CountryCodeType
-      *   This code list module defines the enumerated types
-      *    of standard 2-letter ISO 3166 country codes. This
-      *codelist
-      *    contains some additional country code not defined in
-      *    the ISO 3166 country code set. 
-      * 
-      */
+	/// <summary>
+	/// CountryCodeType
+	///    This code list module defines the enumerated types
+	///     of standard 2-letter ISO 3166 country codes. This
+	/// codelist
+	///     contains some additional country code not defined in
+	///     the ISO 3166 country code set. 
+	///  
+	/// </summary>
     [Serializable]
 	public enum CountryCodeType {
 		[Description("AF")]AF,	
@@ -682,96 +691,96 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      * ISO 4217 standard 3-letter currency code. 
-      *
-      * 
-      *The following currencies are supported by PayPal.
-      *
-      * Code
-      * CurrencyMaximum Transaction Amount
-      * 
-      * AUD
-      * Australian Dollar 
-      * 12,500 AUD
-      * 
-      * 
-      * CAD
-      * Canadian Dollar12,500 CAD
-      * 
-      * 
-      * EUR
-      * Euro
-      *  8,000 EUR
-      * 
-      * 
-      * GBP
-      * Pound Sterling
-      *   5,500 GBP
-      * 
-      * 
-      * JPY
-      * Japanese Yen
-      * 1,000,000 JPY
-      * 
-      * 
-      * USD
-      *  U.S. Dollar
-      * 10,000 USD
-      * 
-      * 
-      * CHF
-      *  Czech Koruna
-      * 70,000 CHF
-      * 
-      * 
-      * SEK
-      *  Swedish Krona
-      * 3,50,000 SEK
-      * 
-      * 
-      * NOK
-      *  Norwegian Krone
-      * 4,00,000 NOK
-      * 
-      * 
-      * DKK
-      *  Danish Krone
-      * 3,00,000 DKK
-      * 
-      * 
-      * PLN
-      *  Poland Zloty
-      * 1,60,000 PLN
-      * 
-      * 
-      * HUF
-      *  Hungary Forint
-      * 110,00,000 HUF
-      * 
-      * 
-      * SGD
-      *  Singapore Dollar
-      * 80,000 SGD
-      * 
-      * 
-      * HKD
-      *  HongKong Dollar
-      * 3,80,000 HKD
-      * 
-      * 
-      * NZD
-      *  New Zealand Dollar
-      * 77,000 NZD
-      * 
-      * 
-      * CZK
-      *  Czech Koruna
-      * 1,20,000 CZK
-      * 
-      * 
-      * 
-      */
+	/// <summary>
+	/// ISO 4217 standard 3-letter currency code. 
+	/// 
+	///  
+	/// The following currencies are supported by PayPal.
+	/// 
+	///  Code
+	///  CurrencyMaximum Transaction Amount
+	///  
+	///  AUD
+	///  Australian Dollar 
+	///  12,500 AUD
+	///  
+	///  
+	///  CAD
+	///  Canadian Dollar12,500 CAD
+	///  
+	///  
+	///  EUR
+	///  Euro
+	///   8,000 EUR
+	///  
+	///  
+	///  GBP
+	///  Pound Sterling
+	///    5,500 GBP
+	///  
+	///  
+	///  JPY
+	///  Japanese Yen
+	///  1,000,000 JPY
+	///  
+	///  
+	///  USD
+	///   U.S. Dollar
+	///  10,000 USD
+	///  
+	///  
+	///  CHF
+	///   Czech Koruna
+	///  70,000 CHF
+	///  
+	///  
+	///  SEK
+	///   Swedish Krona
+	///  3,50,000 SEK
+	///  
+	///  
+	///  NOK
+	///   Norwegian Krone
+	///  4,00,000 NOK
+	///  
+	///  
+	///  DKK
+	///   Danish Krone
+	///  3,00,000 DKK
+	///  
+	///  
+	///  PLN
+	///   Poland Zloty
+	///  1,60,000 PLN
+	///  
+	///  
+	///  HUF
+	///   Hungary Forint
+	///  110,00,000 HUF
+	///  
+	///  
+	///  SGD
+	///   Singapore Dollar
+	///  80,000 SGD
+	///  
+	///  
+	///  HKD
+	///   HongKong Dollar
+	///  3,80,000 HKD
+	///  
+	///  
+	///  NZD
+	///   New Zealand Dollar
+	///  77,000 NZD
+	///  
+	///  
+	///  CZK
+	///   Czech Koruna
+	///  1,20,000 CZK
+	///  
+	///  
+	///  
+	/// </summary>
     [Serializable]
 	public enum CurrencyCodeType {
 		[Description("AFA")]AFA,	
@@ -954,10 +963,10 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      * DetailLevelCodeType   
-      * 
-      */
+	/// <summary>
+	/// DetailLevelCodeType   
+	///  
+	/// </summary>
     [Serializable]
 	public enum DetailLevelCodeType {
 		[Description("ReturnAll")]RETURNALL,	
@@ -968,10 +977,10 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      * This defines if the incentive is applied on Ebay or PayPal.
-      *            
-      */
+	/// <summary>
+	/// This defines if the incentive is applied on Ebay or PayPal.
+	///             
+	/// </summary>
     [Serializable]
 	public enum IncentiveSiteAppliedOnType {
 		[Description("INCENTIVE-SITE-APPLIED-ON-UNKNOWN")]INCENTIVESITEAPPLIEDONUNKNOWN,	
@@ -982,11 +991,11 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      * This defines if the incentive is applied successfully or
-      *not.
-      *            
-      */
+	/// <summary>
+	/// This defines if the incentive is applied successfully or
+	/// not.
+	///             
+	/// </summary>
     [Serializable]
 	public enum IncentiveAppliedStatusType {
 		[Description("INCENTIVE-APPLIED-STATUS-SUCCESS")]INCENTIVEAPPLIEDSTATUSSUCCESS,	
@@ -996,13 +1005,13 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      * PaymentReasonType
-      * This is the Payment Reason type (used by DoRT and SetEC for
-      *Refund of PI transaction, eBay return shipment, external
-      *dispute)
-      * 
-      */
+	/// <summary>
+	/// PaymentReasonType
+	///  This is the Payment Reason type (used by DoRT and SetEC for
+	/// Refund of PI transaction, eBay return shipment, external
+	/// dispute)
+	///  
+	/// </summary>
     [Serializable]
 	public enum PaymentReasonType {
 		[Description("None")]NONE,	
@@ -1013,15 +1022,15 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      * SeverityCodeType
-      *    This code identifies the Severity code types in terms of
-      *whether
-      *    there is an API-level error or warning that needs to be
-      *communicated
-      *    to the client.
-      * 
-      */
+	/// <summary>
+	/// SeverityCodeType
+	///     This code identifies the Severity code types in terms of
+	/// whether
+	///     there is an API-level error or warning that needs to be
+	/// communicated
+	///     to the client.
+	///  
+	/// </summary>
     [Serializable]
 	public enum SeverityCodeType {
 		[Description("Warning")]WARNING,	
@@ -1033,13 +1042,13 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      * ShippingServiceCodeType
-      *      These are the possible codes to describe insurance
-      *option as part of shipping
-      *      service.
-      * 
-      */
+	/// <summary>
+	/// ShippingServiceCodeType
+	///       These are the possible codes to describe insurance
+	/// option as part of shipping
+	///       service.
+	///  
+	/// </summary>
     [Serializable]
 	public enum ShippingServiceCodeType {
 		[Description("UPSGround")]UPSGROUND,	
@@ -1063,11 +1072,11 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      * Type declaration to be used by other schemas.
-      * This is the credit card type
-      * 
-      */
+	/// <summary>
+	/// Type declaration to be used by other schemas.
+	///  This is the credit card type
+	///  
+	/// </summary>
     [Serializable]
 	public enum CreditCardTypeType {
 		[Description("Visa")]VISA,	
@@ -1082,13 +1091,13 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      * RefundType - Type declaration to be used by other 
-      * schema. This code identifies the types of refund
-      *transactions 
-      * supported.
-      * 
-      */
+	/// <summary>
+	/// RefundType - Type declaration to be used by other 
+	///  schema. This code identifies the types of refund
+	/// transactions 
+	///  supported.
+	///  
+	/// </summary>
     [Serializable]
 	public enum RefundType {
 		[Description("Other")]OTHER,	
@@ -1100,10 +1109,10 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      * Based on NRF-ARTS Specification for Units of Measure
-      * 
-      */
+	/// <summary>
+	/// Based on NRF-ARTS Specification for Units of Measure
+	///  
+	/// </summary>
     [Serializable]
 	public enum UnitOfMeasure {
 		[Description("EA")]EA,	
@@ -1135,9 +1144,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+	/// </summary>
     [Serializable]
 	public enum RedeemedOfferType {
 		[Description("MERCHANT_COUPON")]MERCHANTCOUPON,	
@@ -1149,9 +1158,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *Supported API Types for DoCancel operation
-      */
+	/// <summary>
+	/// Supported API Types for DoCancel operation
+	/// </summary>
     [Serializable]
 	public enum APIType {
 		[Description("CHECKOUT_AUTHORIZATION")]CHECKOUTAUTHORIZATION,	
@@ -1161,14 +1170,14 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      * IncentiveRequestType 
-      * This identifies the type of request for the API call. The
-      *type of request may be used to determine whether the request
-      *is for evaluating incentives in pre-checkout or in-checkout
-      *phase.
-      * 
-      */
+	/// <summary>
+	/// IncentiveRequestType 
+	///  This identifies the type of request for the API call. The
+	/// type of request may be used to determine whether the request
+	/// is for evaluating incentives in pre-checkout or in-checkout
+	/// phase.
+	///  
+	/// </summary>
     [Serializable]
 	public enum IncentiveRequestCodeType {
 		[Description("InCheckout")]INCHECKOUT,	
@@ -1178,13 +1187,13 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      * IncentiveRequestDetailLevelType 
-      * This identifies the granularity of information requested by
-      *the client application. This information will be used to
-      *define the contents and details of the response.
-      * 
-      */
+	/// <summary>
+	/// IncentiveRequestDetailLevelType 
+	///  This identifies the granularity of information requested by
+	/// the client application. This information will be used to
+	/// define the contents and details of the response.
+	///  
+	/// </summary>
     [Serializable]
 	public enum IncentiveRequestDetailLevelCodeType {
 		[Description("Aggregated")]AGGREGATED,	
@@ -1194,12 +1203,12 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      * IncentiveType 
-      * This identifies the type of INCENTIVE for the redemption
-      *code.
-      * 
-      */
+	/// <summary>
+	/// IncentiveType 
+	///  This identifies the type of INCENTIVE for the redemption
+	/// code.
+	///  
+	/// </summary>
     [Serializable]
 	public enum IncentiveTypeCodeType {
 		[Description("Coupon")]COUPON,	
@@ -1213,12 +1222,12 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      * PaymentTransactionCodeType 
-      * This is the type of a PayPal of which matches the output
-      *from IPN
-      * 
-      */
+	/// <summary>
+	/// PaymentTransactionCodeType 
+	///  This is the type of a PayPal of which matches the output
+	/// from IPN
+	///  
+	/// </summary>
     [Serializable]
 	public enum PaymentTransactionCodeType {
 		[Description("none")]NONE,	
@@ -1244,12 +1253,12 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      * PaymentStatusCodeType 
-      * This is the status of a PayPal Payment which matches the
-      *output from IPN
-      * 
-      */
+	/// <summary>
+	/// PaymentStatusCodeType 
+	///  This is the status of a PayPal Payment which matches the
+	/// output from IPN
+	///  
+	/// </summary>
     [Serializable]
 	public enum PaymentStatusCodeType {
 		[Description("None")]NONE,	
@@ -1274,11 +1283,11 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      * AddressStatusCodeType 
-      * This is the PayPal address status
-      * 
-      */
+	/// <summary>
+	/// AddressStatusCodeType 
+	///  This is the PayPal address status
+	///  
+	/// </summary>
     [Serializable]
 	public enum AddressStatusCodeType {
 		[Description("None")]NONE,	
@@ -1289,10 +1298,10 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      * Normalization Status of the Address
-      * 
-      */
+	/// <summary>
+	/// Normalization Status of the Address
+	///  
+	/// </summary>
     [Serializable]
 	public enum AddressNormalizationStatusCodeType {
 		[Description("None")]NONE,	
@@ -1303,12 +1312,12 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      * PaymentDetailsCodeType 
-      * This is the PayPal payment details type (used by DCC and
-      *Express Checkout)
-      * 
-      */
+	/// <summary>
+	/// PaymentDetailsCodeType 
+	///  This is the PayPal payment details type (used by DCC and
+	/// Express Checkout)
+	///  
+	/// </summary>
     [Serializable]
 	public enum PaymentActionCodeType {
 		[Description("None")]NONE,	
@@ -1320,11 +1329,11 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      * This is various actions that a merchant can take on a FMF
-      *Pending Transaction.
-      * 
-      */
+	/// <summary>
+	/// This is various actions that a merchant can take on a FMF
+	/// Pending Transaction.
+	///  
+	/// </summary>
     [Serializable]
 	public enum FMFPendingTransactionActionType {
 		[Description("Accept")]ACCEPT,	
@@ -1334,11 +1343,11 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      * ChannelType - Type declaration to be used by other schemas.
-      * This is the PayPal Channel type (used by Express Checkout)
-      * 
-      */
+	/// <summary>
+	/// ChannelType - Type declaration to be used by other schemas.
+	///  This is the PayPal Channel type (used by Express Checkout)
+	///  
+	/// </summary>
     [Serializable]
 	public enum ChannelType {
 		[Description("Merchant")]MERCHANT,	
@@ -1348,11 +1357,11 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      * TotalType - Type declaration for the label to be displayed
-      * in MiniCart for UX.
-      * 
-      */
+	/// <summary>
+	/// TotalType - Type declaration for the label to be displayed
+	///  in MiniCart for UX.
+	///  
+	/// </summary>
     [Serializable]
 	public enum TotalType {
 		[Description("Total")]TOTAL,	
@@ -1362,12 +1371,12 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      * SolutionTypeType 
-      * This is the PayPal payment Solution details type (used by
-      *Express Checkout)
-      * 
-      */
+	/// <summary>
+	/// SolutionTypeType 
+	///  This is the PayPal payment Solution details type (used by
+	/// Express Checkout)
+	///  
+	/// </summary>
     [Serializable]
 	public enum SolutionTypeType {
 		[Description("Mark")]MARK,	
@@ -1377,22 +1386,22 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      * AllowedPaymentMethodType
-      * This is the payment Solution merchant needs to specify for
-      *Autopay (used by Express Checkout)
-      * Optional
-      * Default indicates that its merchant supports all funding
-      *source
-      * InstantPaymentOnly indicates that its merchant only
-      *supports instant payment
-      * AnyFundingSource allow all funding methods to be chosen by
-      *the buyer irrespective of merchant's profile setting
-      * InstantFundingSource allow only instant funding methods,
-      *block echeck, meft, elevecheck. This will override any
-      *merchant profile setting
-      * 
-      */
+	/// <summary>
+	/// AllowedPaymentMethodType
+	///  This is the payment Solution merchant needs to specify for
+	/// Autopay (used by Express Checkout)
+	///  Optional
+	///  Default indicates that its merchant supports all funding
+	/// source
+	///  InstantPaymentOnly indicates that its merchant only
+	/// supports instant payment
+	///  AnyFundingSource allow all funding methods to be chosen by
+	/// the buyer irrespective of merchant's profile setting
+	///  InstantFundingSource allow only instant funding methods,
+	/// block echeck, meft, elevecheck. This will override any
+	/// merchant profile setting
+	///  
+	/// </summary>
     [Serializable]
 	public enum AllowedPaymentMethodType {
 		[Description("Default")]DEFAULT,	
@@ -1404,12 +1413,12 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      * LandingPageType 
-      * This is the PayPal payment Landing Page details type (used
-      *by Express Checkout)
-      * 
-      */
+	/// <summary>
+	/// LandingPageType 
+	///  This is the PayPal payment Landing Page details type (used
+	/// by Express Checkout)
+	///  
+	/// </summary>
     [Serializable]
 	public enum LandingPageType {
 		[Description("None")]NONE,	
@@ -1420,9 +1429,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      * 
-      */
+	/// <summary>
+	/// 
+	/// </summary>
     [Serializable]
 	public enum BillingCodeType {
 		[Description("None")]NONE,	
@@ -1435,9 +1444,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      * 
-      */
+	/// <summary>
+	/// 
+	/// </summary>
     [Serializable]
 	public enum ApprovalTypeType {
 		[Description("BillingAgreement")]BILLINGAGREEMENT,	
@@ -1447,9 +1456,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      * 
-      */
+	/// <summary>
+	/// 
+	/// </summary>
     [Serializable]
 	public enum ApprovalSubTypeType {
 		[Description("None")]NONE,	
@@ -1461,12 +1470,12 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      * PendingStatusCodeType 
-      * The pending status for a PayPal Payment transaction which
-      *matches the output from IPN
-      * 
-      */
+	/// <summary>
+	/// PendingStatusCodeType 
+	///  The pending status for a PayPal Payment transaction which
+	/// matches the output from IPN
+	///  
+	/// </summary>
     [Serializable]
 	public enum PendingStatusCodeType {
 		[Description("none")]NONE,	
@@ -1487,11 +1496,11 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      * ReceiverInfoCodeType 
-      * Payee identifier type for MassPay API
-      * 
-      */
+	/// <summary>
+	/// ReceiverInfoCodeType 
+	///  Payee identifier type for MassPay API
+	///  
+	/// </summary>
     [Serializable]
 	public enum ReceiverInfoCodeType {
 		[Description("EmailAddress")]EMAILADDRESS,	
@@ -1502,12 +1511,12 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      * ReversalReasonCodeType 
-      * Reason for a reversal on a PayPal transaction which matches
-      *the output from IPN
-      * 
-      */
+	/// <summary>
+	/// ReversalReasonCodeType 
+	///  Reason for a reversal on a PayPal transaction which matches
+	/// the output from IPN
+	///  
+	/// </summary>
     [Serializable]
 	public enum ReversalReasonCodeType {
 		[Description("none")]NONE,	
@@ -1521,12 +1530,12 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      * POSTransactionCodeType
-      * POS Transaction Code Type. F for Forced Post Transaction
-      *and S for Single Call Checkout
-      * 
-      */
+	/// <summary>
+	/// POSTransactionCodeType
+	///  POS Transaction Code Type. F for Forced Post Transaction
+	/// and S for Single Call Checkout
+	///  
+	/// </summary>
     [Serializable]
 	public enum POSTransactionCodeType {
 		[Description("F")]F,	
@@ -1536,12 +1545,12 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      * PaymentCodeType 
-      * This is the type of PayPal payment which matches the output
-      *from IPN.
-      * 
-      */
+	/// <summary>
+	/// PaymentCodeType 
+	///  This is the type of PayPal payment which matches the output
+	/// from IPN.
+	///  
+	/// </summary>
     [Serializable]
 	public enum PaymentCodeType {
 		[Description("none")]NONE,	
@@ -1552,20 +1561,20 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      * RefundSourceCodeType
-      * This is the type of PayPal funding source that can be used
-      *for auto refund.
-      * any - Means Merchant doesn't have any preference. PayPal
-      *can use any available funding source (Balance or eCheck)
-      * default - Means merchant's preferred funding source as
-      *configured in his profile. (Balance or eCheck)
-      * instant - Only Balance
-      * echeck - Merchant prefers echeck. If PayPal balance can
-      *cover the refund amount, we will use PayPal balance.
-      *(balance or eCheck)
-      * 
-      */
+	/// <summary>
+	/// RefundSourceCodeType
+	///  This is the type of PayPal funding source that can be used
+	/// for auto refund.
+	///  any - Means Merchant doesn't have any preference. PayPal
+	/// can use any available funding source (Balance or eCheck)
+	///  default - Means merchant's preferred funding source as
+	/// configured in his profile. (Balance or eCheck)
+	///  instant - Only Balance
+	///  echeck - Merchant prefers echeck. If PayPal balance can
+	/// cover the refund amount, we will use PayPal balance.
+	/// (balance or eCheck)
+	///  
+	/// </summary>
     [Serializable]
 	public enum RefundSourceCodeType {
 		[Description("any")]ANY,	
@@ -1577,11 +1586,11 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      * PayPalUserStatusCodeType 
-      * PayPal status of a user Address
-      * 
-      */
+	/// <summary>
+	/// PayPalUserStatusCodeType 
+	///  PayPal status of a user Address
+	///  
+	/// </summary>
     [Serializable]
 	public enum PayPalUserStatusCodeType {
 		[Description("verified")]VERIFIED,	
@@ -1591,11 +1600,11 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      * MerchantPullPaymentCodeType 
-      * Type of Payment to be initiated by the merchant
-      * 
-      */
+	/// <summary>
+	/// MerchantPullPaymentCodeType 
+	///  Type of Payment to be initiated by the merchant
+	///  
+	/// </summary>
     [Serializable]
 	public enum MerchantPullPaymentCodeType {
 		[Description("Any")]ANY,	
@@ -1606,11 +1615,11 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      * MerchantPullStatusCodeType 
-      * Status of the merchant pull
-      * 
-      */
+	/// <summary>
+	/// MerchantPullStatusCodeType 
+	///  Status of the merchant pull
+	///  
+	/// </summary>
     [Serializable]
 	public enum MerchantPullStatusCodeType {
 		[Description("Active")]ACTIVE,	
@@ -1620,11 +1629,11 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      * PaymentTransactionStatusCodeType 
-      * The status of the PayPal payment.
-      * 
-      */
+	/// <summary>
+	/// PaymentTransactionStatusCodeType 
+	///  The status of the PayPal payment.
+	///  
+	/// </summary>
     [Serializable]
 	public enum PaymentTransactionStatusCodeType {
 		[Description("Pending")]PENDING,	
@@ -1637,11 +1646,11 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      * PaymentTransactionClassCodeType 
-      * The Type of PayPal payment.
-      * 
-      */
+	/// <summary>
+	/// PaymentTransactionClassCodeType 
+	///  The Type of PayPal payment.
+	///  
+	/// </summary>
     [Serializable]
 	public enum PaymentTransactionClassCodeType {
 		[Description("All")]ALL,	
@@ -1671,11 +1680,11 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      * MatchStatusCodeType 
-      * This is the PayPal (street/zip) match code
-      * 
-      */
+	/// <summary>
+	/// MatchStatusCodeType 
+	///  This is the PayPal (street/zip) match code
+	///  
+	/// </summary>
     [Serializable]
 	public enum MatchStatusCodeType {
 		[Description("None")]NONE,	
@@ -1686,11 +1695,11 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      * CompleteCodeType 
-      * This is the PayPal DoCapture CompleteType code
-      * 
-      */
+	/// <summary>
+	/// CompleteCodeType 
+	///  This is the PayPal DoCapture CompleteType code
+	///  
+	/// </summary>
     [Serializable]
 	public enum CompleteCodeType {
 		[Description("NotComplete")]NOTCOMPLETE,	
@@ -1700,12 +1709,12 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      * TransactionEntityType 
-      * This is the PayPal DoAuthorization TransactionEntityType
-      *code
-      * 
-      */
+	/// <summary>
+	/// TransactionEntityType 
+	///  This is the PayPal DoAuthorization TransactionEntityType
+	/// code
+	///  
+	/// </summary>
     [Serializable]
 	public enum TransactionEntityType {
 		[Description("None")]NONE,	
@@ -1718,12 +1727,12 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      * MobileRecipientCodeType 
-      * These are the accepted types of recipients for
-      *mobile-originated transactions
-      * 
-      */
+	/// <summary>
+	/// MobileRecipientCodeType 
+	///  These are the accepted types of recipients for
+	/// mobile-originated transactions
+	///  
+	/// </summary>
     [Serializable]
 	public enum MobileRecipientCodeType {
 		[Description("PhoneNumber")]PHONENUMBER,	
@@ -1733,11 +1742,11 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      * MobilePaymentCodeType 
-      * These are the accepted types of mobile payments
-      * 
-      */
+	/// <summary>
+	/// MobilePaymentCodeType 
+	///  These are the accepted types of mobile payments
+	///  
+	/// </summary>
     [Serializable]
 	public enum MobilePaymentCodeType {
 		[Description("P2P")]PP,	
@@ -1749,10 +1758,10 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      * MarketingCategoryType 
-      * 
-      */
+	/// <summary>
+	/// MarketingCategoryType 
+	///  
+	/// </summary>
     [Serializable]
 	public enum MarketingCategoryType {
 		[Description("Marketing-Category-Default")]MARKETINGCATEGORYDEFAULT,	
@@ -1781,10 +1790,10 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      * BusinessTypeType
-      * 
-      */
+	/// <summary>
+	/// BusinessTypeType
+	///  
+	/// </summary>
     [Serializable]
 	public enum BusinessTypeType {
 		[Description("Unknown")]UNKNOWN,	
@@ -1799,10 +1808,10 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      * BusinessCategoryType 
-      * 
-      */
+	/// <summary>
+	/// BusinessCategoryType 
+	///  
+	/// </summary>
     [Serializable]
 	public enum BusinessCategoryType {
 		[Description("Category-Unspecified")]CATEGORYUNSPECIFIED,	
@@ -1841,10 +1850,10 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      * BusinessSubCategoryType 
-      * 
-      */
+	/// <summary>
+	/// BusinessSubCategoryType 
+	///  
+	/// </summary>
     [Serializable]
 	public enum BusinessSubCategoryType {
 		[Description("SubCategory-Unspecified")]SUBCATEGORYUNSPECIFIED,	
@@ -2119,62 +2128,62 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      * AverageTransactionPriceType
-      * 
-      * 
-      * 
-      * 
-      * Enumeration
-      * Meaning
-      * 
-      * 
-      * 
-      * 
-      * AverageTransactionPrice-Not-Applicable 
-      *
-      * AverageTransactionPrice-Range1
-      * Less than $25 USD
-      * 
-      * 
-      * AverageTransactionPrice-Range2
-      * $25 USD to $50 USD
-      * 
-      * 
-      * AverageTransactionPrice-Range3
-      * $50 USD to $100 USD
-      * 
-      * 
-      * AverageTransactionPrice-Range4
-      * $100 USD to $250 USD
-      * 
-      * 
-      * AverageTransactionPrice-Range5
-      * $250 USD to $500 USD
-      * 
-      * 
-      * AverageTransactionPrice-Range6
-      * $500 USD to $1,000 USD
-      * 
-      * 
-      * AverageTransactionPrice-Range7
-      * $1,000 USD to $2,000 USD
-      * 
-      * 
-      * AverageTransactionPrice-Range8
-      * $2,000 USD to $5,000 USD
-      * 
-      * 
-      * AverageTransactionPrice-Range9
-      * $5,000 USD to $10,000 USD
-      * 
-      * 
-      * AverageTransactionPrice-Range10
-      * More than $10,000 USD
-      * 
-      * 
-      * 
-      */
+	/// <summary>
+	/// AverageTransactionPriceType
+	///  
+	///  
+	///  
+	///  
+	///  Enumeration
+	///  Meaning
+	///  
+	///  
+	///  
+	///  
+	///  AverageTransactionPrice-Not-Applicable 
+	/// 
+	///  AverageTransactionPrice-Range1
+	///  Less than $25 USD
+	///  
+	///  
+	///  AverageTransactionPrice-Range2
+	///  $25 USD to $50 USD
+	///  
+	///  
+	///  AverageTransactionPrice-Range3
+	///  $50 USD to $100 USD
+	///  
+	///  
+	///  AverageTransactionPrice-Range4
+	///  $100 USD to $250 USD
+	///  
+	///  
+	///  AverageTransactionPrice-Range5
+	///  $250 USD to $500 USD
+	///  
+	///  
+	///  AverageTransactionPrice-Range6
+	///  $500 USD to $1,000 USD
+	///  
+	///  
+	///  AverageTransactionPrice-Range7
+	///  $1,000 USD to $2,000 USD
+	///  
+	///  
+	///  AverageTransactionPrice-Range8
+	///  $2,000 USD to $5,000 USD
+	///  
+	///  
+	///  AverageTransactionPrice-Range9
+	///  $5,000 USD to $10,000 USD
+	///  
+	///  
+	///  AverageTransactionPrice-Range10
+	///  More than $10,000 USD
+	///  
+	///  
+	///  
+	/// </summary>
     [Serializable]
 	public enum AverageTransactionPriceType {
 		[Description("AverageTransactionPrice-Not-Applicable")]AVERAGETRANSACTIONPRICENOTAPPLICABLE,	
@@ -2193,44 +2202,44 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      * AverageMonthlyVolumeType 
-      * 
-      * 
-      * Enumeration
-      * Meaning
-      * 
-      * 
-      * AverageMonthlyVolume-Not-Applicable
-      * 
-      * 
-      * 
-      * AverageMonthlyVolume-Range1
-      * Less than $1,000 USD
-      * 
-      * 
-      * AverageMonthlyVolume-Range2
-      * $1,000 USD to $5,000 USD
-      * 
-      * 
-      * AverageMonthlyVolume-Range3
-      * $5,000 USD to $25,000 USD
-      * 
-      * 
-      * AverageMonthlyVolume-Range4
-      * $25,000 USD to $100,000 USD
-      * 
-      * 
-      * AverageMonthlyVolume-Range5
-      * $100,000 USD to $1,000,000 USD
-      * 
-      * 
-      * AverageMonthlyVolume-Range6
-      * More than $1,000,000 USD
-      * 
-      * 
-      * 
-      */
+	/// <summary>
+	/// AverageMonthlyVolumeType 
+	///  
+	///  
+	///  Enumeration
+	///  Meaning
+	///  
+	///  
+	///  AverageMonthlyVolume-Not-Applicable
+	///  
+	///  
+	///  
+	///  AverageMonthlyVolume-Range1
+	///  Less than $1,000 USD
+	///  
+	///  
+	///  AverageMonthlyVolume-Range2
+	///  $1,000 USD to $5,000 USD
+	///  
+	///  
+	///  AverageMonthlyVolume-Range3
+	///  $5,000 USD to $25,000 USD
+	///  
+	///  
+	///  AverageMonthlyVolume-Range4
+	///  $25,000 USD to $100,000 USD
+	///  
+	///  
+	///  AverageMonthlyVolume-Range5
+	///  $100,000 USD to $1,000,000 USD
+	///  
+	///  
+	///  AverageMonthlyVolume-Range6
+	///  More than $1,000,000 USD
+	///  
+	///  
+	///  
+	/// </summary>
     [Serializable]
 	public enum AverageMonthlyVolumeType {
 		[Description("AverageMonthlyVolume-Not-Applicable")]AVERAGEMONTHLYVOLUMENOTAPPLICABLE,	
@@ -2245,10 +2254,10 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      * SalesVenueType 
-      * 
-      */
+	/// <summary>
+	/// SalesVenueType 
+	///  
+	/// </summary>
     [Serializable]
 	public enum SalesVenueType {
 		[Description("Venue-Unspecified")]VENUEUNSPECIFIED,	
@@ -2261,38 +2270,38 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      * PercentageRevenueFromOnlineSalesType
-      * 
-      * 
-      * 
-      * 
-      * Enumeration
-      * Meaning
-      * 
-      * 
-      * 
-      * 
-      * PercentageRevenueFromOnlineSales-Not-Applicable 
-      *
-      * PercentageRevenueFromOnlineSales-Range1
-      * Less than 25%
-      * 
-      * 
-      * PercentageRevenueFromOnlineSales-Range2
-      * 25% to 50%
-      * 
-      * 
-      * PercentageRevenueFromOnlineSales-Range3
-      * 50% to 75%
-      * 
-      * 
-      * PercentageRevenueFromOnlineSales-Range4
-      * 75% to 100%
-      * 
-      * 
-      * 
-      */
+	/// <summary>
+	/// PercentageRevenueFromOnlineSalesType
+	///  
+	///  
+	///  
+	///  
+	///  Enumeration
+	///  Meaning
+	///  
+	///  
+	///  
+	///  
+	///  PercentageRevenueFromOnlineSales-Not-Applicable 
+	/// 
+	///  PercentageRevenueFromOnlineSales-Range1
+	///  Less than 25%
+	///  
+	///  
+	///  PercentageRevenueFromOnlineSales-Range2
+	///  25% to 50%
+	///  
+	///  
+	///  PercentageRevenueFromOnlineSales-Range3
+	///  50% to 75%
+	///  
+	///  
+	///  PercentageRevenueFromOnlineSales-Range4
+	///  75% to 100%
+	///  
+	///  
+	///  
+	/// </summary>
     [Serializable]
 	public enum PercentageRevenueFromOnlineSalesType {
 		[Description("PercentageRevenueFromOnlineSales-Not-Applicable")]PERCENTAGEREVENUEFROMONLINESALESNOTAPPLICABLE,	
@@ -2305,10 +2314,10 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      * BankAccountTypeType 
-      * 
-      */
+	/// <summary>
+	/// BankAccountTypeType 
+	///  
+	/// </summary>
     [Serializable]
 	public enum BankAccountTypeType {
 		[Description("Checking")]CHECKING,	
@@ -2318,10 +2327,10 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      * Boarding Status 
-      * 
-      */
+	/// <summary>
+	/// Boarding Status 
+	///  
+	/// </summary>
     [Serializable]
 	public enum BoardingStatusType {
 		[Description("Unknown")]UNKNOWN,	
@@ -2333,10 +2342,10 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      * User Withdrawal Limit Type Type 
-      * 
-      */
+	/// <summary>
+	/// User Withdrawal Limit Type Type 
+	///  
+	/// </summary>
     [Serializable]
 	public enum UserWithdrawalLimitTypeType {
 		[Description("Unknown")]UNKNOWN,	
@@ -2347,10 +2356,10 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      * API Authentication Type 
-      * 
-      */
+	/// <summary>
+	/// API Authentication Type 
+	///  
+	/// </summary>
     [Serializable]
 	public enum APIAuthenticationType {
 		[Description("Auth-None")]AUTHNONE,	
@@ -2361,9 +2370,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      * 
-      */
+	/// <summary>
+	/// 
+	/// </summary>
     [Serializable]
 	public enum RecurringPaymentsProfileStatusType {
 		[Description("ActiveProfile")]ACTIVEPROFILE,	
@@ -2376,9 +2385,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      * 
-      */
+	/// <summary>
+	/// 
+	/// </summary>
     [Serializable]
 	public enum FailedPaymentActionType {
 		[Description("CancelOnFailure")]CANCELONFAILURE,	
@@ -2388,9 +2397,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      * 
-      */
+	/// <summary>
+	/// 
+	/// </summary>
     [Serializable]
 	public enum AutoBillType {
 		[Description("NoAutoBill")]NOAUTOBILL,	
@@ -2400,9 +2409,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      * 
-      */
+	/// <summary>
+	/// 
+	/// </summary>
     [Serializable]
 	public enum StatusChangeActionType {
 		[Description("Cancel")]CANCEL,	
@@ -2413,9 +2422,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      * 
-      */
+	/// <summary>
+	/// 
+	/// </summary>
     [Serializable]
 	public enum BillingPeriodType {
 		[Description("NoBillingPeriodType")]NOBILLINGPERIODTYPE,	
@@ -2429,9 +2438,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      * 
-      */
+	/// <summary>
+	/// 
+	/// </summary>
     [Serializable]
 	public enum ProductCategoryType {
 		[Description("Other")]OTHER,	
@@ -2462,10 +2471,10 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      * Types of button coding
-      * 
-      */
+	/// <summary>
+	/// Types of button coding
+	///  
+	/// </summary>
     [Serializable]
 	public enum ButtonCodeType {
 		[Description("HOSTED")]HOSTED,	
@@ -2477,10 +2486,10 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      * Types of buttons
-      * 
-      */
+	/// <summary>
+	/// Types of buttons
+	///  
+	/// </summary>
     [Serializable]
 	public enum ButtonTypeType {
 		[Description("BUYNOW")]BUYNOW,	
@@ -2498,10 +2507,10 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      * Types of button sub types
-      * 
-      */
+	/// <summary>
+	/// Types of button sub types
+	///  
+	/// </summary>
     [Serializable]
 	public enum ButtonSubTypeType {
 		[Description("PRODUCTS")]PRODUCTS,	
@@ -2511,10 +2520,10 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      * Types of button images
-      * 
-      */
+	/// <summary>
+	/// Types of button images
+	///  
+	/// </summary>
     [Serializable]
 	public enum ButtonImageType {
 		[Description("REG")]REG,	
@@ -2525,10 +2534,10 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      * values for buynow button text
-      * 
-      */
+	/// <summary>
+	/// values for buynow button text
+	///  
+	/// </summary>
     [Serializable]
 	public enum BuyNowTextType {
 		[Description("BUYNOW")]BUYNOW,	
@@ -2538,10 +2547,10 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      * values for subscribe button text
-      * 
-      */
+	/// <summary>
+	/// values for subscribe button text
+	///  
+	/// </summary>
     [Serializable]
 	public enum SubscribeTextType {
 		[Description("BUYNOW")]BUYNOW,	
@@ -2551,10 +2560,10 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      * values for subscribe button text
-      * 
-      */
+	/// <summary>
+	/// values for subscribe button text
+	///  
+	/// </summary>
     [Serializable]
 	public enum ButtonStatusType {
 		[Description("DELETE")]DELETE	
@@ -2563,9 +2572,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      * 
-      */
+	/// <summary>
+	/// 
+	/// </summary>
     [Serializable]
 	public enum OptionTypeListType {
 		[Description("NoOptionType")]NOOPTIONTYPE,	
@@ -2577,11 +2586,11 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      * UserSelectedFundingSourceType
-      * User Selected Funding Source (used by Express Checkout)
-      * 
-      */
+	/// <summary>
+	/// UserSelectedFundingSourceType
+	///  User Selected Funding Source (used by Express Checkout)
+	///  
+	/// </summary>
     [Serializable]
 	public enum UserSelectedFundingSourceType {
 		[Description("ELV")]ELV,	
@@ -2593,9 +2602,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      * 
-      */
+	/// <summary>
+	/// 
+	/// </summary>
     [Serializable]
 	public enum ItemCategoryType {
 		[Description("Physical")]PHYSICAL,	
@@ -2605,9 +2614,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      * 
-      */
+	/// <summary>
+	/// 
+	/// </summary>
     [Serializable]
 	public enum RecurringFlagType {
 		[Description("Y")]Y1,	
@@ -2617,9 +2626,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      * Defines couple relationship type between buckets 
-      */
+	/// <summary>
+	/// Defines couple relationship type between buckets 
+	/// </summary>
     [Serializable]
 	public enum CoupleType {
 		[Description("LifeTime")]LIFETIME	
@@ -2628,10 +2637,10 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      * Category of payment like international shipping
-      * 
-      */
+	/// <summary>
+	/// Category of payment like international shipping
+	///  
+	/// </summary>
     [Serializable]
 	public enum PaymentCategoryType {
 		[Description("InternationalShipping")]INTERNATIONALSHIPPING	
@@ -2640,17 +2649,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *Value of the application-specific error parameter.  
-      */
+	/// <summary>
+	/// Value of the application-specific error parameter.  
+    /// </summary>
 	public partial class ErrorParameterType	{
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string valueField;
 		public string Value
 		{
@@ -2665,9 +2674,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string paramIDField;
 		public string ParamID
 		{
@@ -2682,9 +2691,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public ErrorParameterType()
 	 	{
 		}
@@ -2711,19 +2720,19 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *Error code can be used by a receiving application to
-      *debugging a response message. These codes will need to be
-      *uniquely defined for each application. 
-      */
+	/// <summary>
+	/// Error code can be used by a receiving application to
+	/// debugging a response message. These codes will need to be
+	/// uniquely defined for each application. 
+    /// </summary>
 	public partial class ErrorType	{
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string shortMessageField;
 		public string ShortMessage
 		{
@@ -2738,9 +2747,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string longMessageField;
 		public string LongMessage
 		{
@@ -2755,9 +2764,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string errorCodeField;
 		public string ErrorCode
 		{
@@ -2772,9 +2781,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private SeverityCodeType? severityCodeField;
 		public SeverityCodeType? SeverityCode
 		{
@@ -2789,9 +2798,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private List<ErrorParameterType> errorParametersField = new List<ErrorParameterType>();
 		public List<ErrorParameterType> ErrorParameters
 		{
@@ -2806,9 +2815,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public ErrorType()
 	 	{
 		}
@@ -2854,11 +2863,11 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *Base type definition of request payload that can carry any
-      *type of payload content with optional versioning information
-      *and detail level requirements. 
-      */
+	/// <summary>
+	/// Base type definition of request payload that can carry any
+	/// type of payload content with optional versioning information
+	/// and detail level requirements. 
+    /// </summary>
 	public partial class AbstractRequestType	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
@@ -2869,9 +2878,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private List<DetailLevelCodeType?> detailLevelField = new List<DetailLevelCodeType?>();
 		public List<DetailLevelCodeType?> DetailLevel
 		{
@@ -2886,9 +2895,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string errorLanguageField;
 		public string ErrorLanguage
 		{
@@ -2903,9 +2912,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string versionField;
 		public string Version
 		{
@@ -2920,9 +2929,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public AbstractRequestType()
 	 	{
 		}
@@ -2978,21 +2987,21 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *Base type definition of a response payload that can carry
-      *any type of payload content with following optional
-      *elements: - timestamp of response message, - application
-      *level acknowledgement, and - application-level errors and
-      *warnings. 
-      */
+	/// <summary>
+	/// Base type definition of a response payload that can carry
+	/// any type of payload content with following optional
+	/// elements: - timestamp of response message, - application
+	/// level acknowledgement, and - application-level errors and
+	/// warnings. 
+    /// </summary>
 	public partial class AbstractResponseType	{
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string timestampField;
 		public string Timestamp
 		{
@@ -3007,9 +3016,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private AckCodeType? ackField;
 		public AckCodeType? Ack
 		{
@@ -3024,9 +3033,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string correlationIDField;
 		public string CorrelationID
 		{
@@ -3041,9 +3050,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private List<ErrorType> errorsField = new List<ErrorType>();
 		public List<ErrorType> Errors
 		{
@@ -3058,9 +3067,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string versionField;
 		public string Version
 		{
@@ -3075,9 +3084,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string buildField;
 		public string Build
 		{
@@ -3092,9 +3101,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public AbstractResponseType()
 	 	{
 		}
@@ -3145,9 +3154,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *Country code associated with this phone number. 
-      */
+	/// <summary>
+	/// Country code associated with this phone number. 
+    /// </summary>
 	public partial class PhoneNumberType	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
@@ -3158,9 +3167,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string countryCodeField;
 		public string CountryCode
 		{
@@ -3175,9 +3184,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string phoneNumberField;
 		public string PhoneNumber
 		{
@@ -3192,9 +3201,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string extensionField;
 		public string Extension
 		{
@@ -3209,9 +3218,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public PhoneNumberType()
 	 	{
 		}
@@ -3265,10 +3274,10 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *Person's name associated with this address. Character length
-      *and limitations: 32 single-byte alphanumeric characters 
-      */
+	/// <summary>
+	/// Person's name associated with this address. Character length
+	/// and limitations: 32 single-byte alphanumeric characters 
+    /// </summary>
 	public partial class AddressType	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
@@ -3279,9 +3288,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string nameField;
 		public string Name
 		{
@@ -3296,9 +3305,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string street1Field;
 		public string Street1
 		{
@@ -3313,9 +3322,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string street2Field;
 		public string Street2
 		{
@@ -3330,9 +3339,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string cityNameField;
 		public string CityName
 		{
@@ -3347,9 +3356,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string stateOrProvinceField;
 		public string StateOrProvince
 		{
@@ -3364,9 +3373,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private CountryCodeType? countryField;
 		public CountryCodeType? Country
 		{
@@ -3381,9 +3390,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string countryNameField;
 		public string CountryName
 		{
@@ -3398,9 +3407,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string phoneField;
 		public string Phone
 		{
@@ -3415,9 +3424,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string postalCodeField;
 		public string PostalCode
 		{
@@ -3432,9 +3441,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string addressIDField;
 		public string AddressID
 		{
@@ -3449,9 +3458,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private AddressOwnerCodeType? addressOwnerField;
 		public AddressOwnerCodeType? AddressOwner
 		{
@@ -3466,9 +3475,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string externalAddressIDField;
 		public string ExternalAddressID
 		{
@@ -3483,9 +3492,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string internationalNameField;
 		public string InternationalName
 		{
@@ -3500,9 +3509,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string internationalStateAndCityField;
 		public string InternationalStateAndCity
 		{
@@ -3517,9 +3526,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string internationalStreetField;
 		public string InternationalStreet
 		{
@@ -3534,9 +3543,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private AddressStatusCodeType? addressStatusField;
 		public AddressStatusCodeType? AddressStatus
 		{
@@ -3551,9 +3560,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private AddressNormalizationStatusCodeType? addressNormalizationStatusField;
 		public AddressNormalizationStatusCodeType? AddressNormalizationStatus
 		{
@@ -3568,9 +3577,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public AddressType()
 	 	{
 		}
@@ -3785,9 +3794,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class PersonNameType	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
@@ -3798,9 +3807,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string salutationField;
 		public string Salutation
 		{
@@ -3815,9 +3824,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string firstNameField;
 		public string FirstName
 		{
@@ -3832,9 +3841,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string middleNameField;
 		public string MiddleName
 		{
@@ -3849,9 +3858,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string lastNameField;
 		public string LastName
 		{
@@ -3866,9 +3875,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string suffixField;
 		public string Suffix
 		{
@@ -3883,9 +3892,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public PersonNameType()
 	 	{
 		}
@@ -3980,17 +3989,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class IncentiveAppliedToType	{
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string bucketIdField;
 		public string BucketId
 		{
@@ -4005,9 +4014,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string itemIdField;
 		public string ItemId
 		{
@@ -4022,9 +4031,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private BasicAmountType incentiveAmountField;
 		public BasicAmountType IncentiveAmount
 		{
@@ -4039,9 +4048,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string subTypeField;
 		public string SubType
 		{
@@ -4056,9 +4065,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public IncentiveAppliedToType()
 	 	{
 		}
@@ -4095,17 +4104,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class IncentiveDetailType	{
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string redemptionCodeField;
 		public string RedemptionCode
 		{
@@ -4120,9 +4129,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string displayCodeField;
 		public string DisplayCode
 		{
@@ -4137,9 +4146,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string programIdField;
 		public string ProgramId
 		{
@@ -4154,9 +4163,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private IncentiveTypeCodeType? incentiveTypeField;
 		public IncentiveTypeCodeType? IncentiveType
 		{
@@ -4171,9 +4180,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string incentiveDescriptionField;
 		public string IncentiveDescription
 		{
@@ -4188,9 +4197,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private List<IncentiveAppliedToType> appliedToField = new List<IncentiveAppliedToType>();
 		public List<IncentiveAppliedToType> AppliedTo
 		{
@@ -4205,9 +4214,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string statusField;
 		public string Status
 		{
@@ -4222,9 +4231,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string errorCodeField;
 		public string ErrorCode
 		{
@@ -4239,9 +4248,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public IncentiveDetailType()
 	 	{
 		}
@@ -4302,9 +4311,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class IncentiveItemType	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
@@ -4315,9 +4324,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string itemIdField;
 		public string ItemId
 		{
@@ -4332,9 +4341,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string purchaseTimeField;
 		public string PurchaseTime
 		{
@@ -4349,9 +4358,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string itemCategoryListField;
 		public string ItemCategoryList
 		{
@@ -4366,9 +4375,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private BasicAmountType itemPriceField;
 		public BasicAmountType ItemPrice
 		{
@@ -4383,9 +4392,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private int? itemQuantityField;
 		public int? ItemQuantity
 		{
@@ -4400,9 +4409,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public IncentiveItemType()
 	 	{
 		}
@@ -4465,9 +4474,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class IncentiveBucketType	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
@@ -4478,9 +4487,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private List<IncentiveItemType> itemsField = new List<IncentiveItemType>();
 		public List<IncentiveItemType> Items
 		{
@@ -4495,9 +4504,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string bucketIdField;
 		public string BucketId
 		{
@@ -4512,9 +4521,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string sellerIdField;
 		public string SellerId
 		{
@@ -4529,9 +4538,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string externalSellerIdField;
 		public string ExternalSellerId
 		{
@@ -4546,9 +4555,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private BasicAmountType bucketSubtotalAmtField;
 		public BasicAmountType BucketSubtotalAmt
 		{
@@ -4563,9 +4572,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private BasicAmountType bucketShippingAmtField;
 		public BasicAmountType BucketShippingAmt
 		{
@@ -4580,9 +4589,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private BasicAmountType bucketInsuranceAmtField;
 		public BasicAmountType BucketInsuranceAmt
 		{
@@ -4597,9 +4606,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private BasicAmountType bucketSalesTaxAmtField;
 		public BasicAmountType BucketSalesTaxAmt
 		{
@@ -4614,9 +4623,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private BasicAmountType bucketTotalAmtField;
 		public BasicAmountType BucketTotalAmt
 		{
@@ -4631,9 +4640,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public IncentiveBucketType()
 	 	{
 		}
@@ -4714,9 +4723,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class IncentiveRequestDetailsType	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
@@ -4727,9 +4736,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string requestIdField;
 		public string RequestId
 		{
@@ -4744,9 +4753,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private IncentiveRequestCodeType? requestTypeField;
 		public IncentiveRequestCodeType? RequestType
 		{
@@ -4761,9 +4770,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private IncentiveRequestDetailLevelCodeType? requestDetailLevelField;
 		public IncentiveRequestDetailLevelCodeType? RequestDetailLevel
 		{
@@ -4778,9 +4787,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public IncentiveRequestDetailsType()
 	 	{
 		}
@@ -4834,9 +4843,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class GetIncentiveEvaluationRequestDetailsType	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
@@ -4847,9 +4856,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string externalBuyerIdField;
 		public string ExternalBuyerId
 		{
@@ -4864,9 +4873,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private List<string> incentiveCodesField = new List<string>();
 		public List<string> IncentiveCodes
 		{
@@ -4881,9 +4890,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private List<IncentiveApplyIndicationType> applyIndicationField = new List<IncentiveApplyIndicationType>();
 		public List<IncentiveApplyIndicationType> ApplyIndication
 		{
@@ -4898,9 +4907,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private List<IncentiveBucketType> bucketsField = new List<IncentiveBucketType>();
 		public List<IncentiveBucketType> Buckets
 		{
@@ -4915,9 +4924,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private BasicAmountType cartTotalAmtField;
 		public BasicAmountType CartTotalAmt
 		{
@@ -4932,9 +4941,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private IncentiveRequestDetailsType requestDetailsField;
 		public IncentiveRequestDetailsType RequestDetails
 		{
@@ -4949,9 +4958,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public GetIncentiveEvaluationRequestDetailsType()
 	 	{
 		}
@@ -5025,17 +5034,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class GetIncentiveEvaluationResponseDetailsType	{
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private List<IncentiveDetailType> incentiveDetailsField = new List<IncentiveDetailType>();
 		public List<IncentiveDetailType> IncentiveDetails
 		{
@@ -5050,9 +5059,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string requestIdField;
 		public string RequestId
 		{
@@ -5067,9 +5076,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public GetIncentiveEvaluationResponseDetailsType()
 	 	{
 		}
@@ -5100,17 +5109,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *The total cost of the order to the customer. If shipping
-      *cost and tax charges are known, include them in OrderTotal;
-      *if not, OrderTotal should be the current sub-total of the
-      *order. You must set the currencyID attribute to one of the
-      *three-character currency codes for any of the supported
-      *PayPal currencies. Limitations: Must not exceed $10,000 USD
-      *in any currency. No currency symbol. Decimal separator must
-      *be a period (.), and the thousands separator must be a comma
-      *(,). 
-      */
+	/// <summary>
+	/// The total cost of the order to the customer. If shipping
+	/// cost and tax charges are known, include them in OrderTotal;
+	/// if not, OrderTotal should be the current sub-total of the
+	/// order. You must set the currencyID attribute to one of the
+	/// three-character currency codes for any of the supported
+	/// PayPal currencies. Limitations: Must not exceed $10,000 USD
+	/// in any currency. No currency symbol. Decimal separator must
+	/// be a period (.), and the thousands separator must be a comma
+	/// (,). 
+    /// </summary>
 	public partial class SetExpressCheckoutRequestDetailsType	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
@@ -5121,9 +5130,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private BasicAmountType orderTotalField;
 		public BasicAmountType OrderTotal
 		{
@@ -5138,9 +5147,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string returnURLField;
 		public string ReturnURL
 		{
@@ -5155,9 +5164,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string cancelURLField;
 		public string CancelURL
 		{
@@ -5172,9 +5181,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string trackingImageURLField;
 		public string TrackingImageURL
 		{
@@ -5189,9 +5198,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string giropaySuccessURLField;
 		public string giropaySuccessURL
 		{
@@ -5206,9 +5215,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string giropayCancelURLField;
 		public string giropayCancelURL
 		{
@@ -5223,9 +5232,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string banktxnPendingURLField;
 		public string BanktxnPendingURL
 		{
@@ -5240,9 +5249,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string tokenField;
 		public string Token
 		{
@@ -5257,9 +5266,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private BasicAmountType maxAmountField;
 		public BasicAmountType MaxAmount
 		{
@@ -5274,9 +5283,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string orderDescriptionField;
 		public string OrderDescription
 		{
@@ -5291,9 +5300,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string customField;
 		public string Custom
 		{
@@ -5308,9 +5317,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string invoiceIDField;
 		public string InvoiceID
 		{
@@ -5325,9 +5334,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string reqConfirmShippingField;
 		public string ReqConfirmShipping
 		{
@@ -5342,9 +5351,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string reqBillingAddressField;
 		public string ReqBillingAddress
 		{
@@ -5359,9 +5368,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private AddressType billingAddressField;
 		public AddressType BillingAddress
 		{
@@ -5376,9 +5385,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string noShippingField;
 		public string NoShipping
 		{
@@ -5393,9 +5402,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string addressOverrideField;
 		public string AddressOverride
 		{
@@ -5410,9 +5419,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string localeCodeField;
 		public string LocaleCode
 		{
@@ -5427,9 +5436,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string pageStyleField;
 		public string PageStyle
 		{
@@ -5444,9 +5453,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string cppHeaderImageField;
 		public string cppHeaderImage
 		{
@@ -5461,9 +5470,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string cppHeaderBorderColorField;
 		public string cppHeaderBorderColor
 		{
@@ -5478,9 +5487,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string cppHeaderBackColorField;
 		public string cppHeaderBackColor
 		{
@@ -5495,9 +5504,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string cppPayflowColorField;
 		public string cppPayflowColor
 		{
@@ -5512,9 +5521,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string cppCartBorderColorField;
 		public string cppCartBorderColor
 		{
@@ -5529,9 +5538,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string cppLogoImageField;
 		public string cppLogoImage
 		{
@@ -5546,9 +5555,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private AddressType addressField;
 		public AddressType Address
 		{
@@ -5563,9 +5572,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private PaymentActionCodeType? paymentActionField;
 		public PaymentActionCodeType? PaymentAction
 		{
@@ -5580,9 +5589,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private SolutionTypeType? solutionTypeField;
 		public SolutionTypeType? SolutionType
 		{
@@ -5597,9 +5606,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private LandingPageType? landingPageField;
 		public LandingPageType? LandingPage
 		{
@@ -5614,9 +5623,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string buyerEmailField;
 		public string BuyerEmail
 		{
@@ -5631,9 +5640,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private ChannelType? channelTypeField;
 		public ChannelType? ChannelType
 		{
@@ -5648,9 +5657,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private List<BillingAgreementDetailsType> billingAgreementDetailsField = new List<BillingAgreementDetailsType>();
 		public List<BillingAgreementDetailsType> BillingAgreementDetails
 		{
@@ -5665,9 +5674,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private List<string> promoCodesField = new List<string>();
 		public List<string> PromoCodes
 		{
@@ -5682,9 +5691,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string payPalCheckOutBtnTypeField;
 		public string PayPalCheckOutBtnType
 		{
@@ -5699,9 +5708,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private ProductCategoryType? productCategoryField;
 		public ProductCategoryType? ProductCategory
 		{
@@ -5716,9 +5725,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private ShippingServiceCodeType? shippingMethodField;
 		public ShippingServiceCodeType? ShippingMethod
 		{
@@ -5733,9 +5742,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string profileAddressChangeDateField;
 		public string ProfileAddressChangeDate
 		{
@@ -5750,9 +5759,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string allowNoteField;
 		public string AllowNote
 		{
@@ -5767,9 +5776,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private FundingSourceDetailsType fundingSourceDetailsField;
 		public FundingSourceDetailsType FundingSourceDetails
 		{
@@ -5784,9 +5793,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string brandNameField;
 		public string BrandName
 		{
@@ -5801,9 +5810,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string callbackURLField;
 		public string CallbackURL
 		{
@@ -5818,9 +5827,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private EnhancedCheckoutDataType enhancedCheckoutDataField;
 		public EnhancedCheckoutDataType EnhancedCheckoutData
 		{
@@ -5835,9 +5844,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private List<OtherPaymentMethodDetailsType> otherPaymentMethodsField = new List<OtherPaymentMethodDetailsType>();
 		public List<OtherPaymentMethodDetailsType> OtherPaymentMethods
 		{
@@ -5852,9 +5861,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private BuyerDetailsType buyerDetailsField;
 		public BuyerDetailsType BuyerDetails
 		{
@@ -5869,9 +5878,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private List<PaymentDetailsType> paymentDetailsField = new List<PaymentDetailsType>();
 		public List<PaymentDetailsType> PaymentDetails
 		{
@@ -5886,9 +5895,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private List<ShippingOptionType> flatRateShippingOptionsField = new List<ShippingOptionType>();
 		public List<ShippingOptionType> FlatRateShippingOptions
 		{
@@ -5903,9 +5912,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string callbackTimeoutField;
 		public string CallbackTimeout
 		{
@@ -5920,9 +5929,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string callbackVersionField;
 		public string CallbackVersion
 		{
@@ -5937,9 +5946,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string customerServiceNumberField;
 		public string CustomerServiceNumber
 		{
@@ -5954,9 +5963,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string giftMessageEnableField;
 		public string GiftMessageEnable
 		{
@@ -5971,9 +5980,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string giftReceiptEnableField;
 		public string GiftReceiptEnable
 		{
@@ -5988,9 +5997,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string giftWrapEnableField;
 		public string GiftWrapEnable
 		{
@@ -6005,9 +6014,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string giftWrapNameField;
 		public string GiftWrapName
 		{
@@ -6022,9 +6031,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private BasicAmountType giftWrapAmountField;
 		public BasicAmountType GiftWrapAmount
 		{
@@ -6039,9 +6048,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string buyerEmailOptInEnableField;
 		public string BuyerEmailOptInEnable
 		{
@@ -6056,9 +6065,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string surveyEnableField;
 		public string SurveyEnable
 		{
@@ -6073,9 +6082,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string surveyQuestionField;
 		public string SurveyQuestion
 		{
@@ -6090,9 +6099,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private List<string> surveyChoiceField = new List<string>();
 		public List<string> SurveyChoice
 		{
@@ -6107,9 +6116,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private TotalType? totalTypeField;
 		public TotalType? TotalType
 		{
@@ -6124,9 +6133,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string noteToBuyerField;
 		public string NoteToBuyer
 		{
@@ -6141,9 +6150,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private List<IncentiveInfoType> incentivesField = new List<IncentiveInfoType>();
 		public List<IncentiveInfoType> Incentives
 		{
@@ -6158,9 +6167,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string reqInstrumentDetailsField;
 		public string ReqInstrumentDetails
 		{
@@ -6175,9 +6184,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private ExternalRememberMeOptInDetailsType externalRememberMeOptInDetailsField;
 		public ExternalRememberMeOptInDetailsType ExternalRememberMeOptInDetails
 		{
@@ -6192,9 +6201,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private FlowControlDetailsType flowControlDetailsField;
 		public FlowControlDetailsType FlowControlDetails
 		{
@@ -6209,9 +6218,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private DisplayControlDetailsType displayControlDetailsField;
 		public DisplayControlDetailsType DisplayControlDetails
 		{
@@ -6226,9 +6235,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private ExternalPartnerTrackingDetailsType externalPartnerTrackingDetailsField;
 		public ExternalPartnerTrackingDetailsType ExternalPartnerTrackingDetails
 		{
@@ -6243,9 +6252,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private List<CoupledBucketsType> coupledBucketsField = new List<CoupledBucketsType>();
 		public List<CoupledBucketsType> CoupledBuckets
 		{
@@ -6260,9 +6269,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public SetExpressCheckoutRequestDetailsType()
 	 	{
 		}
@@ -6642,16 +6651,16 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *On your first invocation of
-      *ExecuteCheckoutOperationsRequest, the value of this token is
-      *returned by ExecuteCheckoutOperationsResponse. Optional
-      *Include this element and its value only if you want to
-      *modify an existing checkout session with another invocation
-      *of ExecuteCheckoutOperationsRequest; for example, if you
-      *want the customer to edit his shipping address on PayPal.
-      *Character length and limitations: 20 single-byte characters 
-      */
+	/// <summary>
+	/// On your first invocation of
+	/// ExecuteCheckoutOperationsRequest, the value of this token is
+	/// returned by ExecuteCheckoutOperationsResponse. Optional
+	/// Include this element and its value only if you want to
+	/// modify an existing checkout session with another invocation
+	/// of ExecuteCheckoutOperationsRequest; for example, if you
+	/// want the customer to edit his shipping address on PayPal.
+	/// Character length and limitations: 20 single-byte characters 
+    /// </summary>
 	public partial class ExecuteCheckoutOperationsRequestDetailsType	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
@@ -6662,9 +6671,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string tokenField;
 		public string Token
 		{
@@ -6679,9 +6688,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private SetDataRequestType setDataRequestField;
 		public SetDataRequestType SetDataRequest
 		{
@@ -6696,9 +6705,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private AuthorizationRequestType authorizationRequestField;
 		public AuthorizationRequestType AuthorizationRequest
 		{
@@ -6713,17 +6722,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Constructor with arguments
-	 	  */
+		/// <summary>
+		/// Constructor with arguments
+	 	/// </summary>
 	 	public ExecuteCheckoutOperationsRequestDetailsType(SetDataRequestType setDataRequest)
 	 	{
 			this.SetDataRequest = setDataRequest;
 		}
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public ExecuteCheckoutOperationsRequestDetailsType()
 	 	{
 		}
@@ -6775,9 +6784,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *Details about Billing Agreements requested to be created. 
-      */
+	/// <summary>
+	/// Details about Billing Agreements requested to be created. 
+    /// </summary>
 	public partial class SetDataRequestType	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
@@ -6788,9 +6797,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private List<BillingApprovalDetailsType> billingApprovalDetailsField = new List<BillingApprovalDetailsType>();
 		public List<BillingApprovalDetailsType> BillingApprovalDetails
 		{
@@ -6805,9 +6814,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private BuyerDetailType buyerDetailField;
 		public BuyerDetailType BuyerDetail
 		{
@@ -6822,9 +6831,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private InfoSharingDirectivesType infoSharingDirectivesField;
 		public InfoSharingDirectivesType InfoSharingDirectives
 		{
@@ -6839,9 +6848,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public SetDataRequestType()
 	 	{
 		}
@@ -6895,9 +6904,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class AuthorizationRequestType	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
@@ -6908,9 +6917,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private bool? isRequestedField;
 		public bool? IsRequested
 		{
@@ -6925,17 +6934,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Constructor with arguments
-	 	  */
+		/// <summary>
+		/// Constructor with arguments
+	 	/// </summary>
 	 	public AuthorizationRequestType(bool? isRequested)
 	 	{
 			this.IsRequested = isRequested;
 		}
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public AuthorizationRequestType()
 	 	{
 		}
@@ -6979,10 +6988,10 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *The Type of Approval requested - Billing Agreement or
-      *Profile 
-      */
+	/// <summary>
+	/// The Type of Approval requested - Billing Agreement or
+	/// Profile 
+    /// </summary>
 	public partial class BillingApprovalDetailsType	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
@@ -6993,9 +7002,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private ApprovalTypeType? approvalTypeField;
 		public ApprovalTypeType? ApprovalType
 		{
@@ -7010,9 +7019,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private ApprovalSubTypeType? approvalSubTypeField;
 		public ApprovalSubTypeType? ApprovalSubType
 		{
@@ -7027,9 +7036,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private OrderDetailsType orderDetailsField;
 		public OrderDetailsType OrderDetails
 		{
@@ -7044,9 +7053,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private PaymentDirectivesType paymentDirectivesField;
 		public PaymentDirectivesType PaymentDirectives
 		{
@@ -7061,9 +7070,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string customField;
 		public string Custom
 		{
@@ -7078,17 +7087,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Constructor with arguments
-	 	  */
+		/// <summary>
+		/// Constructor with arguments
+	 	/// </summary>
 	 	public BillingApprovalDetailsType(ApprovalTypeType? approvalType)
 	 	{
 			this.ApprovalType = approvalType;
 		}
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public BillingApprovalDetailsType()
 	 	{
 		}
@@ -7150,11 +7159,11 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *If Billing Address should be returned in
-      *GetExpressCheckoutDetails response, this parameter should be
-      *set to yes here 
-      */
+	/// <summary>
+	/// If Billing Address should be returned in
+	/// GetExpressCheckoutDetails response, this parameter should be
+	/// set to yes here 
+    /// </summary>
 	public partial class InfoSharingDirectivesType	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
@@ -7165,9 +7174,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string reqBillingAddressField;
 		public string ReqBillingAddress
 		{
@@ -7182,9 +7191,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public InfoSharingDirectivesType()
 	 	{
 		}
@@ -7228,9 +7237,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *Description of the Order. 
-      */
+	/// <summary>
+	/// Description of the Order. 
+    /// </summary>
 	public partial class OrderDetailsType	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
@@ -7241,9 +7250,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string descriptionField;
 		public string Description
 		{
@@ -7258,9 +7267,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private BasicAmountType maxAmountField;
 		public BasicAmountType MaxAmount
 		{
@@ -7275,9 +7284,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public OrderDetailsType()
 	 	{
 		}
@@ -7325,9 +7334,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *Type of the Payment is it Instant or Echeck or Any. 
-      */
+	/// <summary>
+	/// Type of the Payment is it Instant or Echeck or Any. 
+    /// </summary>
 	public partial class PaymentDirectivesType	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
@@ -7338,9 +7347,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private MerchantPullPaymentCodeType? paymentTypeField;
 		public MerchantPullPaymentCodeType? PaymentType
 		{
@@ -7355,9 +7364,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public PaymentDirectivesType()
 	 	{
 		}
@@ -7401,11 +7410,11 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *Information that is used to indentify the Buyer. This is
-      *used for auto authorization. Mandatory if Authorization is
-      *requested. 
-      */
+	/// <summary>
+	/// Information that is used to indentify the Buyer. This is
+	/// used for auto authorization. Mandatory if Authorization is
+	/// requested. 
+    /// </summary>
 	public partial class BuyerDetailType	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
@@ -7416,9 +7425,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private IdentificationInfoType identificationInfoField;
 		public IdentificationInfoType IdentificationInfo
 		{
@@ -7433,9 +7442,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public BuyerDetailType()
 	 	{
 		}
@@ -7478,9 +7487,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *Mobile specific buyer identification. 
-      */
+	/// <summary>
+	/// Mobile specific buyer identification. 
+    /// </summary>
 	public partial class IdentificationInfoType	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
@@ -7491,9 +7500,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private MobileIDInfoType mobileIDInfoField;
 		public MobileIDInfoType MobileIDInfo
 		{
@@ -7508,9 +7517,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private RememberMeIDInfoType rememberMeIDInfoField;
 		public RememberMeIDInfoType RememberMeIDInfo
 		{
@@ -7525,9 +7534,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private IdentityTokenInfoType identityTokenInfoField;
 		public IdentityTokenInfoType IdentityTokenInfo
 		{
@@ -7542,9 +7551,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public IdentificationInfoType()
 	 	{
 		}
@@ -7595,9 +7604,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *The Session token returned during buyer authentication. 
-      */
+	/// <summary>
+	/// The Session token returned during buyer authentication. 
+    /// </summary>
 	public partial class MobileIDInfoType	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
@@ -7608,9 +7617,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string sessionTokenField;
 		public string SessionToken
 		{
@@ -7625,9 +7634,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public MobileIDInfoType()
 	 	{
 		}
@@ -7671,15 +7680,15 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *External remember-me ID returned by
-      *GetExpressCheckoutDetails on successful opt-in. The
-      *ExternalRememberMeID is a 17-character alphanumeric
-      *(encrypted) string that identifies the buyer's remembered
-      *login with a merchant and has meaning only to the merchant.
-      *If present, requests that the web flow attempt bypass of
-      *login. 
-      */
+	/// <summary>
+	/// External remember-me ID returned by
+	/// GetExpressCheckoutDetails on successful opt-in. The
+	/// ExternalRememberMeID is a 17-character alphanumeric
+	/// (encrypted) string that identifies the buyer's remembered
+	/// login with a merchant and has meaning only to the merchant.
+	/// If present, requests that the web flow attempt bypass of
+	/// login. 
+    /// </summary>
 	public partial class RememberMeIDInfoType	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
@@ -7690,9 +7699,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string externalRememberMeIDField;
 		public string ExternalRememberMeID
 		{
@@ -7707,9 +7716,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public RememberMeIDInfoType()
 	 	{
 		}
@@ -7753,9 +7762,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *Identity Access token from merchant 
-      */
+	/// <summary>
+	/// Identity Access token from merchant 
+    /// </summary>
 	public partial class IdentityTokenInfoType	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
@@ -7766,9 +7775,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string accessTokenField;
 		public string AccessToken
 		{
@@ -7783,17 +7792,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Constructor with arguments
-	 	  */
+		/// <summary>
+		/// Constructor with arguments
+	 	/// </summary>
 	 	public IdentityTokenInfoType(string accessToken)
 	 	{
 			this.AccessToken = accessToken;
 		}
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public IdentityTokenInfoType()
 	 	{
 		}
@@ -7837,12 +7846,12 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *Allowable values: 0,1 The value 1 indicates that the
-      *customer can accept push funding, and 0 means they cannot.
-      *Optional Character length and limitations: One single-byte
-      *numeric character. 
-      */
+	/// <summary>
+	/// Allowable values: 0,1 The value 1 indicates that the
+	/// customer can accept push funding, and 0 means they cannot.
+	/// Optional Character length and limitations: One single-byte
+	/// numeric character. 
+    /// </summary>
 	public partial class FundingSourceDetailsType	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
@@ -7853,9 +7862,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string allowPushFundingField;
 		public string AllowPushFunding
 		{
@@ -7870,9 +7879,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private UserSelectedFundingSourceType? userSelectedFundingSourceField;
 		public UserSelectedFundingSourceType? UserSelectedFundingSource
 		{
@@ -7887,9 +7896,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public FundingSourceDetailsType()
 	 	{
 		}
@@ -7938,9 +7947,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class BillingAgreementDetailsType	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
@@ -7951,9 +7960,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private BillingCodeType? billingTypeField;
 		public BillingCodeType? BillingType
 		{
@@ -7968,9 +7977,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string billingAgreementDescriptionField;
 		public string BillingAgreementDescription
 		{
@@ -7985,9 +7994,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private MerchantPullPaymentCodeType? paymentTypeField;
 		public MerchantPullPaymentCodeType? PaymentType
 		{
@@ -8002,9 +8011,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string billingAgreementCustomField;
 		public string BillingAgreementCustom
 		{
@@ -8019,17 +8028,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Constructor with arguments
-	 	  */
+		/// <summary>
+		/// Constructor with arguments
+	 	/// </summary>
 	 	public BillingAgreementDetailsType(BillingCodeType? billingType)
 	 	{
 			this.BillingType = billingType;
 		}
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public BillingAgreementDetailsType()
 	 	{
 		}
@@ -8088,20 +8097,20 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *The timestamped token value that was returned by
-      *SetExpressCheckoutResponse and passed on
-      *GetExpressCheckoutDetailsRequest. Character length and
-      *limitations: 20 single-byte characters 
-      */
+	/// <summary>
+	/// The timestamped token value that was returned by
+	/// SetExpressCheckoutResponse and passed on
+	/// GetExpressCheckoutDetailsRequest. Character length and
+	/// limitations: 20 single-byte characters 
+    /// </summary>
 	public partial class GetExpressCheckoutDetailsResponseDetailsType	{
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string tokenField;
 		public string Token
 		{
@@ -8116,9 +8125,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private PayerInfoType payerInfoField;
 		public PayerInfoType PayerInfo
 		{
@@ -8133,9 +8142,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string customField;
 		public string Custom
 		{
@@ -8150,9 +8159,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string invoiceIDField;
 		public string InvoiceID
 		{
@@ -8167,9 +8176,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string contactPhoneField;
 		public string ContactPhone
 		{
@@ -8184,9 +8193,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private bool? billingAgreementAcceptedStatusField;
 		public bool? BillingAgreementAcceptedStatus
 		{
@@ -8201,9 +8210,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string redirectRequiredField;
 		public string RedirectRequired
 		{
@@ -8218,9 +8227,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private AddressType billingAddressField;
 		public AddressType BillingAddress
 		{
@@ -8235,9 +8244,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string noteField;
 		public string Note
 		{
@@ -8252,9 +8261,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string checkoutStatusField;
 		public string CheckoutStatus
 		{
@@ -8269,9 +8278,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private BasicAmountType payPalAdjustmentField;
 		public BasicAmountType PayPalAdjustment
 		{
@@ -8286,9 +8295,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private List<PaymentDetailsType> paymentDetailsField = new List<PaymentDetailsType>();
 		public List<PaymentDetailsType> PaymentDetails
 		{
@@ -8303,9 +8312,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private UserSelectedOptionType userSelectedOptionsField;
 		public UserSelectedOptionType UserSelectedOptions
 		{
@@ -8320,9 +8329,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private List<IncentiveDetailsType> incentiveDetailsField = new List<IncentiveDetailsType>();
 		public List<IncentiveDetailsType> IncentiveDetails
 		{
@@ -8337,9 +8346,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string giftMessageField;
 		public string GiftMessage
 		{
@@ -8354,9 +8363,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string giftReceiptEnableField;
 		public string GiftReceiptEnable
 		{
@@ -8371,9 +8380,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string giftWrapNameField;
 		public string GiftWrapName
 		{
@@ -8388,9 +8397,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private BasicAmountType giftWrapAmountField;
 		public BasicAmountType GiftWrapAmount
 		{
@@ -8405,9 +8414,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string buyerMarketingEmailField;
 		public string BuyerMarketingEmail
 		{
@@ -8422,9 +8431,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string surveyQuestionField;
 		public string SurveyQuestion
 		{
@@ -8439,9 +8448,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private List<string> surveyChoiceSelectedField = new List<string>();
 		public List<string> SurveyChoiceSelected
 		{
@@ -8456,9 +8465,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private List<PaymentRequestInfoType> paymentRequestInfoField = new List<PaymentRequestInfoType>();
 		public List<PaymentRequestInfoType> PaymentRequestInfo
 		{
@@ -8473,9 +8482,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private ExternalRememberMeStatusDetailsType externalRememberMeStatusDetailsField;
 		public ExternalRememberMeStatusDetailsType ExternalRememberMeStatusDetails
 		{
@@ -8490,9 +8499,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private RefreshTokenStatusDetailsType refreshTokenStatusDetailsField;
 		public RefreshTokenStatusDetailsType RefreshTokenStatusDetails
 		{
@@ -8507,9 +8516,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public GetExpressCheckoutDetailsResponseDetailsType()
 	 	{
 		}
@@ -8662,17 +8671,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class ExecuteCheckoutOperationsResponseDetailsType	{
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private SetDataResponseType setDataResponseField;
 		public SetDataResponseType SetDataResponse
 		{
@@ -8687,9 +8696,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private AuthorizationResponseType authorizationResponseField;
 		public AuthorizationResponseType AuthorizationResponse
 		{
@@ -8704,9 +8713,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public ExecuteCheckoutOperationsResponseDetailsType()
 	 	{
 		}
@@ -8733,18 +8742,18 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *If Checkout session was initialized successfully, the
-      *corresponding token is returned in this element. 
-      */
+	/// <summary>
+	/// If Checkout session was initialized successfully, the
+	/// corresponding token is returned in this element. 
+    /// </summary>
 	public partial class SetDataResponseType	{
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string tokenField;
 		public string Token
 		{
@@ -8759,9 +8768,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private List<ErrorType> setDataErrorField = new List<ErrorType>();
 		public List<ErrorType> SetDataError
 		{
@@ -8776,9 +8785,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public SetDataResponseType()
 	 	{
 		}
@@ -8809,18 +8818,18 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *Status will denote whether Auto authorization was successful
-      *or not. 
-      */
+	/// <summary>
+	/// Status will denote whether Auto authorization was successful
+	/// or not. 
+    /// </summary>
 	public partial class AuthorizationResponseType	{
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private AckCodeType? statusField;
 		public AckCodeType? Status
 		{
@@ -8835,9 +8844,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private List<ErrorType> authorizationErrorField = new List<ErrorType>();
 		public List<ErrorType> AuthorizationError
 		{
@@ -8852,9 +8861,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public AuthorizationResponseType()
 	 	{
 		}
@@ -8885,19 +8894,19 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *How you want to obtain payment. Required Authorization
-      *indicates that this payment is a basic authorization subject
-      *to settlement with PayPal Authorization and Capture. Order
-      *indicates that this payment is is an order authorization
-      *subject to settlement with PayPal Authorization and Capture.
-      *Sale indicates that this is a final sale for which you are
-      *requesting payment. IMPORTANT: You cannot set PaymentAction
-      *to Sale on SetExpressCheckoutRequest and then change
-      *PaymentAction to Authorization on the final Express Checkout
-      *API, DoExpressCheckoutPaymentRequest. Character length and
-      *limit: Up to 13 single-byte alphabetic characters 
-      */
+	/// <summary>
+	/// How you want to obtain payment. Required Authorization
+	/// indicates that this payment is a basic authorization subject
+	/// to settlement with PayPal Authorization and Capture. Order
+	/// indicates that this payment is is an order authorization
+	/// subject to settlement with PayPal Authorization and Capture.
+	/// Sale indicates that this is a final sale for which you are
+	/// requesting payment. IMPORTANT: You cannot set PaymentAction
+	/// to Sale on SetExpressCheckoutRequest and then change
+	/// PaymentAction to Authorization on the final Express Checkout
+	/// API, DoExpressCheckoutPaymentRequest. Character length and
+	/// limit: Up to 13 single-byte alphabetic characters 
+    /// </summary>
 	public partial class DoExpressCheckoutPaymentRequestDetailsType	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
@@ -8908,9 +8917,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private PaymentActionCodeType? paymentActionField;
 		public PaymentActionCodeType? PaymentAction
 		{
@@ -8925,9 +8934,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string tokenField;
 		public string Token
 		{
@@ -8942,9 +8951,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string payerIDField;
 		public string PayerID
 		{
@@ -8959,9 +8968,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string orderURLField;
 		public string OrderURL
 		{
@@ -8976,9 +8985,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private List<PaymentDetailsType> paymentDetailsField = new List<PaymentDetailsType>();
 		public List<PaymentDetailsType> PaymentDetails
 		{
@@ -8993,9 +9002,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string promoOverrideFlagField;
 		public string PromoOverrideFlag
 		{
@@ -9010,9 +9019,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string promoCodeField;
 		public string PromoCode
 		{
@@ -9027,9 +9036,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private EnhancedDataType enhancedDataField;
 		public EnhancedDataType EnhancedData
 		{
@@ -9044,9 +9053,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string softDescriptorField;
 		public string SoftDescriptor
 		{
@@ -9061,9 +9070,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private UserSelectedOptionType userSelectedOptionsField;
 		public UserSelectedOptionType UserSelectedOptions
 		{
@@ -9078,9 +9087,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string giftMessageField;
 		public string GiftMessage
 		{
@@ -9095,9 +9104,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string giftReceiptEnableField;
 		public string GiftReceiptEnable
 		{
@@ -9112,9 +9121,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string giftWrapNameField;
 		public string GiftWrapName
 		{
@@ -9129,9 +9138,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private BasicAmountType giftWrapAmountField;
 		public BasicAmountType GiftWrapAmount
 		{
@@ -9146,9 +9155,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string buyerMarketingEmailField;
 		public string BuyerMarketingEmail
 		{
@@ -9163,9 +9172,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string surveyQuestionField;
 		public string SurveyQuestion
 		{
@@ -9180,9 +9189,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private List<string> surveyChoiceSelectedField = new List<string>();
 		public List<string> SurveyChoiceSelected
 		{
@@ -9197,9 +9206,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string buttonSourceField;
 		public string ButtonSource
 		{
@@ -9214,9 +9223,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private bool? skipBACreationField;
 		public bool? SkipBACreation
 		{
@@ -9231,9 +9240,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private List<CoupledBucketsType> coupledBucketsField = new List<CoupledBucketsType>();
 		public List<CoupledBucketsType> CoupledBuckets
 		{
@@ -9248,9 +9257,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public DoExpressCheckoutPaymentRequestDetailsType()
 	 	{
 		}
@@ -9393,20 +9402,20 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *The timestamped token value that was returned by
-      *SetExpressCheckoutResponse and passed on
-      *GetExpressCheckoutDetailsRequest. Character length and
-      *limitations:20 single-byte characters 
-      */
+	/// <summary>
+	/// The timestamped token value that was returned by
+	/// SetExpressCheckoutResponse and passed on
+	/// GetExpressCheckoutDetailsRequest. Character length and
+	/// limitations:20 single-byte characters 
+    /// </summary>
 	public partial class DoExpressCheckoutPaymentResponseDetailsType	{
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string tokenField;
 		public string Token
 		{
@@ -9421,9 +9430,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private List<PaymentInfoType> paymentInfoField = new List<PaymentInfoType>();
 		public List<PaymentInfoType> PaymentInfo
 		{
@@ -9438,9 +9447,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string billingAgreementIDField;
 		public string BillingAgreementID
 		{
@@ -9455,9 +9464,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string redirectRequiredField;
 		public string RedirectRequired
 		{
@@ -9472,9 +9481,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string noteField;
 		public string Note
 		{
@@ -9489,9 +9498,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string successPageRedirectRequestedField;
 		public string SuccessPageRedirectRequested
 		{
@@ -9506,9 +9515,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private UserSelectedOptionType userSelectedOptionsField;
 		public UserSelectedOptionType UserSelectedOptions
 		{
@@ -9523,9 +9532,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private List<CoupledPaymentInfoType> coupledPaymentInfoField = new List<CoupledPaymentInfoType>();
 		public List<CoupledPaymentInfoType> CoupledPaymentInfo
 		{
@@ -9540,9 +9549,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public DoExpressCheckoutPaymentResponseDetailsType()
 	 	{
 		}
@@ -9607,19 +9616,19 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *The authorization identification number you specified in the
-      *request. Character length and limits: 19 single-byte
-      *characters maximum 
-      */
+	/// <summary>
+	/// The authorization identification number you specified in the
+	/// request. Character length and limits: 19 single-byte
+	/// characters maximum 
+    /// </summary>
 	public partial class DoCaptureResponseDetailsType	{
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string authorizationIDField;
 		public string AuthorizationID
 		{
@@ -9634,9 +9643,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private PaymentInfoType paymentInfoField;
 		public PaymentInfoType PaymentInfo
 		{
@@ -9651,9 +9660,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string msgSubIDField;
 		public string MsgSubID
 		{
@@ -9668,9 +9677,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public DoCaptureResponseDetailsType()
 	 	{
 		}
@@ -9702,15 +9711,15 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *How you want to obtain payment. Required Authorization
-      *indicates that this payment is a basic authorization subject
-      *to settlement with PayPal Authorization and Capture. Sale
-      *indicates that this is a final sale for which you are
-      *requesting payment. NOTE: Order is not allowed for Direct
-      *Payment. Character length and limit: Up to 13 single-byte
-      *alphabetic characters 
-      */
+	/// <summary>
+	/// How you want to obtain payment. Required Authorization
+	/// indicates that this payment is a basic authorization subject
+	/// to settlement with PayPal Authorization and Capture. Sale
+	/// indicates that this is a final sale for which you are
+	/// requesting payment. NOTE: Order is not allowed for Direct
+	/// Payment. Character length and limit: Up to 13 single-byte
+	/// alphabetic characters 
+    /// </summary>
 	public partial class DoDirectPaymentRequestDetailsType	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
@@ -9721,9 +9730,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private PaymentActionCodeType? paymentActionField;
 		public PaymentActionCodeType? PaymentAction
 		{
@@ -9738,9 +9747,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private PaymentDetailsType paymentDetailsField;
 		public PaymentDetailsType PaymentDetails
 		{
@@ -9755,9 +9764,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private CreditCardDetailsType creditCardField;
 		public CreditCardDetailsType CreditCard
 		{
@@ -9772,9 +9781,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string iPAddressField;
 		public string IPAddress
 		{
@@ -9789,9 +9798,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string merchantSessionIdField;
 		public string MerchantSessionId
 		{
@@ -9806,9 +9815,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private bool? returnFMFDetailsField;
 		public bool? ReturnFMFDetails
 		{
@@ -9823,9 +9832,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public DoDirectPaymentRequestDetailsType()
 	 	{
 		}
@@ -9892,9 +9901,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *Type of the payment Required 
-      */
+	/// <summary>
+	/// Type of the payment Required 
+    /// </summary>
 	public partial class CreateMobilePaymentRequestDetailsType	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
@@ -9905,9 +9914,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private MobilePaymentCodeType? paymentTypeField;
 		public MobilePaymentCodeType? PaymentType
 		{
@@ -9922,9 +9931,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private PaymentActionCodeType? paymentActionField;
 		public PaymentActionCodeType? PaymentAction
 		{
@@ -9939,9 +9948,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private PhoneNumberType senderPhoneField;
 		public PhoneNumberType SenderPhone
 		{
@@ -9956,9 +9965,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private MobileRecipientCodeType? recipientTypeField;
 		public MobileRecipientCodeType? RecipientType
 		{
@@ -9973,9 +9982,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string recipientEmailField;
 		public string RecipientEmail
 		{
@@ -9990,9 +9999,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private PhoneNumberType recipientPhoneField;
 		public PhoneNumberType RecipientPhone
 		{
@@ -10007,9 +10016,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private BasicAmountType itemAmountField;
 		public BasicAmountType ItemAmount
 		{
@@ -10024,9 +10033,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private BasicAmountType taxField;
 		public BasicAmountType Tax
 		{
@@ -10041,9 +10050,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private BasicAmountType shippingField;
 		public BasicAmountType Shipping
 		{
@@ -10058,9 +10067,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string itemNameField;
 		public string ItemName
 		{
@@ -10075,9 +10084,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string itemNumberField;
 		public string ItemNumber
 		{
@@ -10092,9 +10101,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string noteField;
 		public string Note
 		{
@@ -10109,9 +10118,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string customIDField;
 		public string CustomID
 		{
@@ -10126,9 +10135,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private int? sharePhoneNumberField;
 		public int? SharePhoneNumber
 		{
@@ -10143,9 +10152,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private int? shareHomeAddressField;
 		public int? ShareHomeAddress
 		{
@@ -10160,9 +10169,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public CreateMobilePaymentRequestDetailsType()
 	 	{
 		}
@@ -10271,9 +10280,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *Phone number for status inquiry 
-      */
+	/// <summary>
+	/// Phone number for status inquiry 
+    /// </summary>
 	public partial class GetMobileStatusRequestDetailsType	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
@@ -10284,9 +10293,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private PhoneNumberType phoneField;
 		public PhoneNumberType Phone
 		{
@@ -10301,9 +10310,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public GetMobileStatusRequestDetailsType()
 	 	{
 		}
@@ -10346,11 +10355,11 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *URL to which the customer's browser is returned after
-      *choosing to login with PayPal. Required Character length and
-      *limitations: no limit. 
-      */
+	/// <summary>
+	/// URL to which the customer's browser is returned after
+	/// choosing to login with PayPal. Required Character length and
+	/// limitations: no limit. 
+    /// </summary>
 	public partial class SetAuthFlowParamRequestDetailsType	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
@@ -10361,9 +10370,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string returnURLField;
 		public string ReturnURL
 		{
@@ -10378,9 +10387,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string cancelURLField;
 		public string CancelURL
 		{
@@ -10395,9 +10404,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string logoutURLField;
 		public string LogoutURL
 		{
@@ -10412,9 +10421,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string initFlowTypeField;
 		public string InitFlowType
 		{
@@ -10429,9 +10438,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string skipLoginPageField;
 		public string SkipLoginPage
 		{
@@ -10446,9 +10455,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string serviceName1Field;
 		public string ServiceName1
 		{
@@ -10463,9 +10472,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string serviceDefReq1Field;
 		public string ServiceDefReq1
 		{
@@ -10480,9 +10489,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string serviceName2Field;
 		public string ServiceName2
 		{
@@ -10497,9 +10506,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string serviceDefReq2Field;
 		public string ServiceDefReq2
 		{
@@ -10514,9 +10523,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string localeCodeField;
 		public string LocaleCode
 		{
@@ -10531,9 +10540,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string pageStyleField;
 		public string PageStyle
 		{
@@ -10548,9 +10557,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string cppHeaderImageField;
 		public string cppHeaderImage
 		{
@@ -10565,9 +10574,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string cppHeaderBorderColorField;
 		public string cppHeaderBorderColor
 		{
@@ -10582,9 +10591,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string cppHeaderBackColorField;
 		public string cppHeaderBackColor
 		{
@@ -10599,9 +10608,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string cppPayflowColorField;
 		public string cppPayflowColor
 		{
@@ -10616,9 +10625,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string firstNameField;
 		public string FirstName
 		{
@@ -10633,9 +10642,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string lastNameField;
 		public string LastName
 		{
@@ -10650,9 +10659,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private AddressType addressField;
 		public AddressType Address
 		{
@@ -10667,9 +10676,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public SetAuthFlowParamRequestDetailsType()
 	 	{
 		}
@@ -10797,18 +10806,18 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *The first name of the User. Character length and
-      *limitations: 127 single-byte alphanumeric characters 
-      */
+	/// <summary>
+	/// The first name of the User. Character length and
+	/// limitations: 127 single-byte alphanumeric characters 
+    /// </summary>
 	public partial class GetAuthDetailsResponseDetailsType	{
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string firstNameField;
 		public string FirstName
 		{
@@ -10823,9 +10832,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string lastNameField;
 		public string LastName
 		{
@@ -10840,9 +10849,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string emailField;
 		public string Email
 		{
@@ -10857,9 +10866,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string payerIDField;
 		public string PayerID
 		{
@@ -10874,9 +10883,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public GetAuthDetailsResponseDetailsType()
 	 	{
 		}
@@ -10913,11 +10922,11 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *URL to which the customer's browser is returned after
-      *choosing to login with PayPal. Required Character length and
-      *limitations: no limit. 
-      */
+	/// <summary>
+	/// URL to which the customer's browser is returned after
+	/// choosing to login with PayPal. Required Character length and
+	/// limitations: no limit. 
+    /// </summary>
 	public partial class SetAccessPermissionsRequestDetailsType	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
@@ -10928,9 +10937,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string returnURLField;
 		public string ReturnURL
 		{
@@ -10945,9 +10954,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string cancelURLField;
 		public string CancelURL
 		{
@@ -10962,9 +10971,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string logoutURLField;
 		public string LogoutURL
 		{
@@ -10979,9 +10988,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string initFlowTypeField;
 		public string InitFlowType
 		{
@@ -10996,9 +11005,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string skipLoginPageField;
 		public string SkipLoginPage
 		{
@@ -11013,9 +11022,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private List<string> requiredAccessPermissionsField = new List<string>();
 		public List<string> RequiredAccessPermissions
 		{
@@ -11030,9 +11039,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private List<string> optionalAccessPermissionsField = new List<string>();
 		public List<string> OptionalAccessPermissions
 		{
@@ -11047,9 +11056,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string localeCodeField;
 		public string LocaleCode
 		{
@@ -11064,9 +11073,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string pageStyleField;
 		public string PageStyle
 		{
@@ -11081,9 +11090,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string cppHeaderImageField;
 		public string cppHeaderImage
 		{
@@ -11098,9 +11107,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string cppHeaderBorderColorField;
 		public string cppHeaderBorderColor
 		{
@@ -11115,9 +11124,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string cppHeaderBackColorField;
 		public string cppHeaderBackColor
 		{
@@ -11132,9 +11141,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string cppPayflowColorField;
 		public string cppPayflowColor
 		{
@@ -11149,9 +11158,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string firstNameField;
 		public string FirstName
 		{
@@ -11166,9 +11175,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string lastNameField;
 		public string LastName
 		{
@@ -11183,9 +11192,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private AddressType addressField;
 		public AddressType Address
 		{
@@ -11200,9 +11209,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public SetAccessPermissionsRequestDetailsType()
 	 	{
 		}
@@ -11326,18 +11335,18 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *The first name of the User. Character length and
-      *limitations: 127 single-byte alphanumeric characters 
-      */
+	/// <summary>
+	/// The first name of the User. Character length and
+	/// limitations: 127 single-byte alphanumeric characters 
+    /// </summary>
 	public partial class GetAccessPermissionDetailsResponseDetailsType	{
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string firstNameField;
 		public string FirstName
 		{
@@ -11352,9 +11361,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string lastNameField;
 		public string LastName
 		{
@@ -11369,9 +11378,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string emailField;
 		public string Email
 		{
@@ -11386,9 +11395,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private List<string> accessPermissionNameField = new List<string>();
 		public List<string> AccessPermissionName
 		{
@@ -11403,9 +11412,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private List<string> accessPermissionStatusField = new List<string>();
 		public List<string> AccessPermissionStatus
 		{
@@ -11420,9 +11429,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string payerIDField;
 		public string PayerID
 		{
@@ -11437,9 +11446,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public GetAccessPermissionDetailsResponseDetailsType()
 	 	{
 		}
@@ -11494,17 +11503,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class BAUpdateResponseDetailsType	{
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string billingAgreementIDField;
 		public string BillingAgreementID
 		{
@@ -11519,9 +11528,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string billingAgreementDescriptionField;
 		public string BillingAgreementDescription
 		{
@@ -11536,9 +11545,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private MerchantPullStatusCodeType? billingAgreementStatusField;
 		public MerchantPullStatusCodeType? BillingAgreementStatus
 		{
@@ -11553,9 +11562,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string billingAgreementCustomField;
 		public string BillingAgreementCustom
 		{
@@ -11570,9 +11579,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private PayerInfoType payerInfoField;
 		public PayerInfoType PayerInfo
 		{
@@ -11587,9 +11596,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private BasicAmountType billingAgreementMaxField;
 		public BasicAmountType BillingAgreementMax
 		{
@@ -11604,9 +11613,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private AddressType billingAddressField;
 		public AddressType BillingAddress
 		{
@@ -11621,9 +11630,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public BAUpdateResponseDetailsType()
 	 	{
 		}
@@ -11675,18 +11684,18 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *MerchantPullPaymentResponseType Response data from the
-      *merchant pull. 
-      */
+	/// <summary>
+	/// MerchantPullPaymentResponseType Response data from the
+	/// merchant pull. 
+    /// </summary>
 	public partial class MerchantPullPaymentResponseType	{
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private PayerInfoType payerInfoField;
 		public PayerInfoType PayerInfo
 		{
@@ -11701,9 +11710,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private PaymentInfoType paymentInfoField;
 		public PaymentInfoType PaymentInfo
 		{
@@ -11718,9 +11727,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private MerchantPullInfoType merchantPullInfoField;
 		public MerchantPullInfoType MerchantPullInfo
 		{
@@ -11735,9 +11744,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public MerchantPullPaymentResponseType()
 	 	{
 		}
@@ -11769,17 +11778,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *MerchantPullInfoType Information about the merchant pull. 
-      */
+	/// <summary>
+	/// MerchantPullInfoType Information about the merchant pull. 
+    /// </summary>
 	public partial class MerchantPullInfoType	{
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private MerchantPullStatusCodeType? mpStatusField;
 		public MerchantPullStatusCodeType? MpStatus
 		{
@@ -11794,9 +11803,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private BasicAmountType mpMaxField;
 		public BasicAmountType MpMax
 		{
@@ -11811,9 +11820,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string mpCustomField;
 		public string MpCustom
 		{
@@ -11828,9 +11837,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string descField;
 		public string Desc
 		{
@@ -11845,9 +11854,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string invoiceField;
 		public string Invoice
 		{
@@ -11862,9 +11871,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string customField;
 		public string Custom
 		{
@@ -11879,9 +11888,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string paymentSourceIDField;
 		public string PaymentSourceID
 		{
@@ -11896,9 +11905,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public MerchantPullInfoType()
 	 	{
 		}
@@ -11950,18 +11959,18 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *PaymentTransactionSearchResultType Results from a
-      *PaymentTransaction search 
-      */
+	/// <summary>
+	/// PaymentTransactionSearchResultType Results from a
+	/// PaymentTransaction search 
+    /// </summary>
 	public partial class PaymentTransactionSearchResultType	{
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string timestampField;
 		public string Timestamp
 		{
@@ -11976,9 +11985,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string timezoneField;
 		public string Timezone
 		{
@@ -11993,9 +12002,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string typeField;
 		public string Type
 		{
@@ -12010,9 +12019,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string payerField;
 		public string Payer
 		{
@@ -12027,9 +12036,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string payerDisplayNameField;
 		public string PayerDisplayName
 		{
@@ -12044,9 +12053,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string transactionIDField;
 		public string TransactionID
 		{
@@ -12061,9 +12070,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string statusField;
 		public string Status
 		{
@@ -12078,9 +12087,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private BasicAmountType grossAmountField;
 		public BasicAmountType GrossAmount
 		{
@@ -12095,9 +12104,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private BasicAmountType feeAmountField;
 		public BasicAmountType FeeAmount
 		{
@@ -12112,9 +12121,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private BasicAmountType netAmountField;
 		public BasicAmountType NetAmount
 		{
@@ -12129,9 +12138,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public PaymentTransactionSearchResultType()
 	 	{
 		}
@@ -12198,10 +12207,10 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *MerchantPullPayment Parameters to make initiate a pull
-      *payment 
-      */
+	/// <summary>
+	/// MerchantPullPayment Parameters to make initiate a pull
+	/// payment 
+    /// </summary>
 	public partial class MerchantPullPaymentType	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
@@ -12212,9 +12221,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private BasicAmountType amountField;
 		public BasicAmountType Amount
 		{
@@ -12229,9 +12238,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string mpIDField;
 		public string MpID
 		{
@@ -12246,9 +12255,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private MerchantPullPaymentCodeType? paymentTypeField;
 		public MerchantPullPaymentCodeType? PaymentType
 		{
@@ -12263,9 +12272,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string memoField;
 		public string Memo
 		{
@@ -12280,9 +12289,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string emailSubjectField;
 		public string EmailSubject
 		{
@@ -12297,9 +12306,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private BasicAmountType taxField;
 		public BasicAmountType Tax
 		{
@@ -12314,9 +12323,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private BasicAmountType shippingField;
 		public BasicAmountType Shipping
 		{
@@ -12331,9 +12340,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private BasicAmountType handlingField;
 		public BasicAmountType Handling
 		{
@@ -12348,9 +12357,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string itemNameField;
 		public string ItemName
 		{
@@ -12365,9 +12374,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string itemNumberField;
 		public string ItemNumber
 		{
@@ -12382,9 +12391,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string invoiceField;
 		public string Invoice
 		{
@@ -12399,9 +12408,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string customField;
 		public string Custom
 		{
@@ -12416,9 +12425,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string buttonSourceField;
 		public string ButtonSource
 		{
@@ -12433,9 +12442,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string softDescriptorField;
 		public string SoftDescriptor
 		{
@@ -12450,9 +12459,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public MerchantPullPaymentType()
 	 	{
 		}
@@ -12557,18 +12566,18 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *PaymentTransactionType Information about a PayPal payment
-      *from the seller side 
-      */
+	/// <summary>
+	/// PaymentTransactionType Information about a PayPal payment
+	/// from the seller side 
+    /// </summary>
 	public partial class PaymentTransactionType	{
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private ReceiverInfoType receiverInfoField;
 		public ReceiverInfoType ReceiverInfo
 		{
@@ -12583,9 +12592,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private PayerInfoType payerInfoField;
 		public PayerInfoType PayerInfo
 		{
@@ -12600,9 +12609,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string tPLReferenceIDField;
 		public string TPLReferenceID
 		{
@@ -12617,9 +12626,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private PaymentInfoType paymentInfoField;
 		public PaymentInfoType PaymentInfo
 		{
@@ -12634,9 +12643,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private PaymentItemInfoType paymentItemInfoField;
 		public PaymentItemInfoType PaymentItemInfo
 		{
@@ -12651,9 +12660,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private OfferCouponInfoType offerCouponInfoField;
 		public OfferCouponInfoType OfferCouponInfo
 		{
@@ -12668,9 +12677,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private AddressType secondaryAddressField;
 		public AddressType SecondaryAddress
 		{
@@ -12685,9 +12694,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private UserSelectedOptionType userSelectedOptionsField;
 		public UserSelectedOptionType UserSelectedOptions
 		{
@@ -12702,9 +12711,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string giftMessageField;
 		public string GiftMessage
 		{
@@ -12719,9 +12728,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string giftReceiptField;
 		public string GiftReceipt
 		{
@@ -12736,9 +12745,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string giftWrapNameField;
 		public string GiftWrapName
 		{
@@ -12753,9 +12762,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private BasicAmountType giftWrapAmountField;
 		public BasicAmountType GiftWrapAmount
 		{
@@ -12770,9 +12779,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string buyerEmailOptInField;
 		public string BuyerEmailOptIn
 		{
@@ -12787,9 +12796,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string surveyQuestionField;
 		public string SurveyQuestion
 		{
@@ -12804,9 +12813,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private List<string> surveyChoiceSelectedField = new List<string>();
 		public List<string> SurveyChoiceSelected
 		{
@@ -12821,9 +12830,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public PaymentTransactionType()
 	 	{
 		}
@@ -12919,17 +12928,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *ReceiverInfoType Receiver information. 
-      */
+	/// <summary>
+	/// ReceiverInfoType Receiver information. 
+    /// </summary>
 	public partial class ReceiverInfoType	{
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string businessField;
 		public string Business
 		{
@@ -12944,9 +12953,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string receiverField;
 		public string Receiver
 		{
@@ -12961,9 +12970,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string receiverIDField;
 		public string ReceiverID
 		{
@@ -12978,9 +12987,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public ReceiverInfoType()
 	 	{
 		}
@@ -13012,9 +13021,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *PayerInfoType Payer information 
-      */
+	/// <summary>
+	/// PayerInfoType Payer information 
+    /// </summary>
 	public partial class PayerInfoType	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
@@ -13025,9 +13034,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string payerField;
 		public string Payer
 		{
@@ -13042,9 +13051,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string payerIDField;
 		public string PayerID
 		{
@@ -13059,9 +13068,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private PayPalUserStatusCodeType? payerStatusField;
 		public PayPalUserStatusCodeType? PayerStatus
 		{
@@ -13076,9 +13085,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private PersonNameType payerNameField;
 		public PersonNameType PayerName
 		{
@@ -13093,9 +13102,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private CountryCodeType? payerCountryField;
 		public CountryCodeType? PayerCountry
 		{
@@ -13110,9 +13119,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string payerBusinessField;
 		public string PayerBusiness
 		{
@@ -13127,9 +13136,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private AddressType addressField;
 		public AddressType Address
 		{
@@ -13144,9 +13153,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string contactPhoneField;
 		public string ContactPhone
 		{
@@ -13161,9 +13170,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private TaxIdDetailsType taxIdDetailsField;
 		public TaxIdDetailsType TaxIdDetails
 		{
@@ -13178,9 +13187,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private EnhancedPayerInfoType enhancedPayerInfoField;
 		public EnhancedPayerInfoType EnhancedPayerInfo
 		{
@@ -13195,9 +13204,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public PayerInfoType()
 	 	{
 		}
@@ -13338,17 +13347,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *InstrumentDetailsType Promotional Instrument Information. 
-      */
+	/// <summary>
+	/// InstrumentDetailsType Promotional Instrument Information. 
+    /// </summary>
 	public partial class InstrumentDetailsType	{
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string instrumentCategoryField;
 		public string InstrumentCategory
 		{
@@ -13363,9 +13372,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public InstrumentDetailsType()
 	 	{
 		}
@@ -13387,9 +13396,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *BMLOfferInfoType Specific information for BML. 
-      */
+	/// <summary>
+	/// BMLOfferInfoType Specific information for BML. 
+    /// </summary>
 	public partial class BMLOfferInfoType	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
@@ -13400,9 +13409,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string offerTrackingIDField;
 		public string OfferTrackingID
 		{
@@ -13417,9 +13426,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public BMLOfferInfoType()
 	 	{
 		}
@@ -13474,9 +13483,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *OfferDetailsType Specific information for an offer. 
-      */
+	/// <summary>
+	/// OfferDetailsType Specific information for an offer. 
+    /// </summary>
 	public partial class OfferDetailsType	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
@@ -13487,9 +13496,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string offerCodeField;
 		public string OfferCode
 		{
@@ -13504,9 +13513,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private BMLOfferInfoType bMLOfferInfoField;
 		public BMLOfferInfoType BMLOfferInfo
 		{
@@ -13521,9 +13530,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public OfferDetailsType()
 	 	{
 		}
@@ -13587,17 +13596,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *PaymentInfoType Payment information. 
-      */
+	/// <summary>
+	/// PaymentInfoType Payment information. 
+    /// </summary>
 	public partial class PaymentInfoType	{
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string transactionIDField;
 		public string TransactionID
 		{
@@ -13612,9 +13621,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string ebayTransactionIDField;
 		public string EbayTransactionID
 		{
@@ -13629,9 +13638,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string parentTransactionIDField;
 		public string ParentTransactionID
 		{
@@ -13646,9 +13655,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string receiptIDField;
 		public string ReceiptID
 		{
@@ -13663,9 +13672,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private PaymentTransactionCodeType? transactionTypeField;
 		public PaymentTransactionCodeType? TransactionType
 		{
@@ -13680,9 +13689,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private PaymentCodeType? paymentTypeField;
 		public PaymentCodeType? PaymentType
 		{
@@ -13697,9 +13706,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private RefundSourceCodeType? refundSourceCodeTypeField;
 		public RefundSourceCodeType? RefundSourceCodeType
 		{
@@ -13714,9 +13723,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string expectedeCheckClearDateField;
 		public string ExpectedeCheckClearDate
 		{
@@ -13731,9 +13740,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string paymentDateField;
 		public string PaymentDate
 		{
@@ -13748,9 +13757,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private BasicAmountType grossAmountField;
 		public BasicAmountType GrossAmount
 		{
@@ -13765,9 +13774,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private BasicAmountType feeAmountField;
 		public BasicAmountType FeeAmount
 		{
@@ -13782,9 +13791,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private BasicAmountType settleAmountField;
 		public BasicAmountType SettleAmount
 		{
@@ -13799,9 +13808,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private BasicAmountType taxAmountField;
 		public BasicAmountType TaxAmount
 		{
@@ -13816,9 +13825,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string exchangeRateField;
 		public string ExchangeRate
 		{
@@ -13833,9 +13842,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private PaymentStatusCodeType? paymentStatusField;
 		public PaymentStatusCodeType? PaymentStatus
 		{
@@ -13850,9 +13859,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private PendingStatusCodeType? pendingReasonField;
 		public PendingStatusCodeType? PendingReason
 		{
@@ -13867,9 +13876,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private ReversalReasonCodeType? reasonCodeField;
 		public ReversalReasonCodeType? ReasonCode
 		{
@@ -13884,9 +13893,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string holdDecisionField;
 		public string HoldDecision
 		{
@@ -13901,9 +13910,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string shippingMethodField;
 		public string ShippingMethod
 		{
@@ -13918,9 +13927,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string protectionEligibilityField;
 		public string ProtectionEligibility
 		{
@@ -13935,9 +13944,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string protectionEligibilityTypeField;
 		public string ProtectionEligibilityType
 		{
@@ -13952,9 +13961,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string receiptReferenceNumberField;
 		public string ReceiptReferenceNumber
 		{
@@ -13969,9 +13978,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private POSTransactionCodeType? pOSTransactionTypeField;
 		public POSTransactionCodeType? POSTransactionType
 		{
@@ -13986,9 +13995,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string shipAmountField;
 		public string ShipAmount
 		{
@@ -14003,9 +14012,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string shipHandleAmountField;
 		public string ShipHandleAmount
 		{
@@ -14020,9 +14029,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string shipDiscountField;
 		public string ShipDiscount
 		{
@@ -14037,9 +14046,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string insuranceAmountField;
 		public string InsuranceAmount
 		{
@@ -14054,9 +14063,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string subjectField;
 		public string Subject
 		{
@@ -14071,9 +14080,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string storeIDField;
 		public string StoreID
 		{
@@ -14088,9 +14097,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string terminalIDField;
 		public string TerminalID
 		{
@@ -14105,9 +14114,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private SellerDetailsType sellerDetailsField;
 		public SellerDetailsType SellerDetails
 		{
@@ -14122,9 +14131,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string paymentRequestIDField;
 		public string PaymentRequestID
 		{
@@ -14139,9 +14148,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private FMFDetailsType fMFDetailsField;
 		public FMFDetailsType FMFDetails
 		{
@@ -14156,9 +14165,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private EnhancedPaymentInfoType enhancedPaymentInfoField;
 		public EnhancedPaymentInfoType EnhancedPaymentInfo
 		{
@@ -14173,9 +14182,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private ErrorType paymentErrorField;
 		public ErrorType PaymentError
 		{
@@ -14190,9 +14199,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private InstrumentDetailsType instrumentDetailsField;
 		public InstrumentDetailsType InstrumentDetails
 		{
@@ -14207,9 +14216,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private OfferDetailsType offerDetailsField;
 		public OfferDetailsType OfferDetails
 		{
@@ -14224,9 +14233,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string binEligibilityField;
 		public string BinEligibility
 		{
@@ -14241,9 +14250,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public PaymentInfoType()
 	 	{
 		}
@@ -14450,17 +14459,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *SubscriptionTermsType Terms of a PayPal subscription. 
-      */
+	/// <summary>
+	/// SubscriptionTermsType Terms of a PayPal subscription. 
+    /// </summary>
 	public partial class SubscriptionTermsType	{
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private BasicAmountType amountField;
 		public BasicAmountType Amount
 		{
@@ -14475,9 +14484,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string periodField;
 		public string period
 		{
@@ -14492,9 +14501,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public SubscriptionTermsType()
 	 	{
 		}
@@ -14521,18 +14530,18 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *SubscriptionInfoType Information about a PayPal
-      *Subscription. 
-      */
+	/// <summary>
+	/// SubscriptionInfoType Information about a PayPal
+	/// Subscription. 
+    /// </summary>
 	public partial class SubscriptionInfoType	{
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string subscriptionIDField;
 		public string SubscriptionID
 		{
@@ -14547,9 +14556,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string subscriptionDateField;
 		public string SubscriptionDate
 		{
@@ -14564,9 +14573,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string effectiveDateField;
 		public string EffectiveDate
 		{
@@ -14581,9 +14590,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string retryTimeField;
 		public string RetryTime
 		{
@@ -14598,9 +14607,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string usernameField;
 		public string Username
 		{
@@ -14615,9 +14624,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string passwordField;
 		public string Password
 		{
@@ -14632,9 +14641,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string recurrencesField;
 		public string Recurrences
 		{
@@ -14649,9 +14658,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private List<SubscriptionTermsType> termsField = new List<SubscriptionTermsType>();
 		public List<SubscriptionTermsType> Terms
 		{
@@ -14666,9 +14675,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string reattemptField;
 		public string reattempt
 		{
@@ -14683,9 +14692,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string recurringField;
 		public string recurring
 		{
@@ -14700,9 +14709,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public SubscriptionInfoType()
 	 	{
 		}
@@ -14773,17 +14782,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *AuctionInfoType Basic information about an auction. 
-      */
+	/// <summary>
+	/// AuctionInfoType Basic information about an auction. 
+    /// </summary>
 	public partial class AuctionInfoType	{
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string buyerIDField;
 		public string BuyerID
 		{
@@ -14798,9 +14807,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string closingDateField;
 		public string ClosingDate
 		{
@@ -14815,9 +14824,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string multiItemField;
 		public string multiItem
 		{
@@ -14832,9 +14841,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public AuctionInfoType()
 	 	{
 		}
@@ -14866,17 +14875,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *OptionType PayPal item options for shopping cart. 
-      */
+	/// <summary>
+	/// OptionType PayPal item options for shopping cart. 
+    /// </summary>
 	public partial class OptionType	{
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string nameField;
 		public string name
 		{
@@ -14891,9 +14900,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string valueField;
 		public string value
 		{
@@ -14908,9 +14917,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public OptionType()
 	 	{
 		}
@@ -14937,10 +14946,10 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *EbayItemPaymentDetailsItemType - Type declaration to be used
-      *by other schemas. Information about an Ebay Payment Item. 
-      */
+	/// <summary>
+	/// EbayItemPaymentDetailsItemType - Type declaration to be used
+	/// by other schemas. Information about an Ebay Payment Item. 
+    /// </summary>
 	public partial class EbayItemPaymentDetailsItemType	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
@@ -14951,9 +14960,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string itemNumberField;
 		public string ItemNumber
 		{
@@ -14968,9 +14977,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string auctionTransactionIdField;
 		public string AuctionTransactionId
 		{
@@ -14985,9 +14994,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string orderIdField;
 		public string OrderId
 		{
@@ -15002,9 +15011,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string cartIDField;
 		public string CartID
 		{
@@ -15019,9 +15028,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public EbayItemPaymentDetailsItemType()
 	 	{
 		}
@@ -15106,9 +15115,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *PaymentDetailsItemType Information about a Payment Item. 
-      */
+	/// <summary>
+	/// PaymentDetailsItemType Information about a Payment Item. 
+    /// </summary>
 	public partial class PaymentDetailsItemType	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
@@ -15119,9 +15128,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string nameField;
 		public string Name
 		{
@@ -15136,9 +15145,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string numberField;
 		public string Number
 		{
@@ -15153,9 +15162,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private int? quantityField;
 		public int? Quantity
 		{
@@ -15170,9 +15179,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private BasicAmountType taxField;
 		public BasicAmountType Tax
 		{
@@ -15187,9 +15196,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private BasicAmountType amountField;
 		public BasicAmountType Amount
 		{
@@ -15204,9 +15213,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private EbayItemPaymentDetailsItemType ebayItemPaymentDetailsItemField;
 		public EbayItemPaymentDetailsItemType EbayItemPaymentDetailsItem
 		{
@@ -15221,9 +15230,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string promoCodeField;
 		public string PromoCode
 		{
@@ -15238,9 +15247,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private ProductCategoryType? productCategoryField;
 		public ProductCategoryType? ProductCategory
 		{
@@ -15255,9 +15264,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string descriptionField;
 		public string Description
 		{
@@ -15272,9 +15281,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private MeasureType itemWeightField;
 		public MeasureType ItemWeight
 		{
@@ -15289,9 +15298,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private MeasureType itemLengthField;
 		public MeasureType ItemLength
 		{
@@ -15306,9 +15315,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private MeasureType itemWidthField;
 		public MeasureType ItemWidth
 		{
@@ -15323,9 +15332,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private MeasureType itemHeightField;
 		public MeasureType ItemHeight
 		{
@@ -15340,9 +15349,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string itemURLField;
 		public string ItemURL
 		{
@@ -15357,9 +15366,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private EnhancedItemDataType enhancedItemDataField;
 		public EnhancedItemDataType EnhancedItemData
 		{
@@ -15374,9 +15383,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private ItemCategoryType? itemCategoryField;
 		public ItemCategoryType? ItemCategory
 		{
@@ -15391,9 +15400,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public PaymentDetailsItemType()
 	 	{
 		}
@@ -15590,17 +15599,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *PaymentItemType Information about a Payment Item. 
-      */
+	/// <summary>
+	/// PaymentItemType Information about a Payment Item. 
+    /// </summary>
 	public partial class PaymentItemType	{
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string ebayItemTxnIdField;
 		public string EbayItemTxnId
 		{
@@ -15615,9 +15624,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string nameField;
 		public string Name
 		{
@@ -15632,9 +15641,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string numberField;
 		public string Number
 		{
@@ -15649,9 +15658,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string quantityField;
 		public string Quantity
 		{
@@ -15666,9 +15675,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string salesTaxField;
 		public string SalesTax
 		{
@@ -15683,9 +15692,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string shippingAmountField;
 		public string ShippingAmount
 		{
@@ -15700,9 +15709,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string handlingAmountField;
 		public string HandlingAmount
 		{
@@ -15717,9 +15726,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private InvoiceItemType invoiceItemDetailsField;
 		public InvoiceItemType InvoiceItemDetails
 		{
@@ -15734,9 +15743,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string couponIDField;
 		public string CouponID
 		{
@@ -15751,9 +15760,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string couponAmountField;
 		public string CouponAmount
 		{
@@ -15768,9 +15777,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string couponAmountCurrencyField;
 		public string CouponAmountCurrency
 		{
@@ -15785,9 +15794,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string loyaltyCardDiscountAmountField;
 		public string LoyaltyCardDiscountAmount
 		{
@@ -15802,9 +15811,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string loyaltyCardDiscountCurrencyField;
 		public string LoyaltyCardDiscountCurrency
 		{
@@ -15819,9 +15828,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private BasicAmountType amountField;
 		public BasicAmountType Amount
 		{
@@ -15836,9 +15845,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private List<OptionType> optionsField = new List<OptionType>();
 		public List<OptionType> Options
 		{
@@ -15853,9 +15862,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public PaymentItemType()
 	 	{
 		}
@@ -15951,17 +15960,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *PaymentItemInfoType Information about a PayPal item. 
-      */
+	/// <summary>
+	/// PaymentItemInfoType Information about a PayPal item. 
+    /// </summary>
 	public partial class PaymentItemInfoType	{
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string invoiceIDField;
 		public string InvoiceID
 		{
@@ -15976,9 +15985,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string customField;
 		public string Custom
 		{
@@ -15993,9 +16002,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string memoField;
 		public string Memo
 		{
@@ -16010,9 +16019,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string salesTaxField;
 		public string SalesTax
 		{
@@ -16027,9 +16036,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private List<PaymentItemType> paymentItemField = new List<PaymentItemType>();
 		public List<PaymentItemType> PaymentItem
 		{
@@ -16044,9 +16053,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private SubscriptionInfoType subscriptionField;
 		public SubscriptionInfoType Subscription
 		{
@@ -16061,9 +16070,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private AuctionInfoType auctionField;
 		public AuctionInfoType Auction
 		{
@@ -16078,9 +16087,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public PaymentItemInfoType()
 	 	{
 		}
@@ -16136,18 +16145,18 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *OffersAndCouponsInfoType Information about a Offers and
-      *Coupons. 
-      */
+	/// <summary>
+	/// OffersAndCouponsInfoType Information about a Offers and
+	/// Coupons. 
+    /// </summary>
 	public partial class OfferCouponInfoType	{
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string typeField;
 		public string Type
 		{
@@ -16162,9 +16171,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string iDField;
 		public string ID
 		{
@@ -16179,9 +16188,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string amountField;
 		public string Amount
 		{
@@ -16196,9 +16205,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string amountCurrencyField;
 		public string AmountCurrency
 		{
@@ -16213,9 +16222,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public OfferCouponInfoType()
 	 	{
 		}
@@ -16252,10 +16261,10 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *PaymentDetailsType Information about a payment. Used by DCC
-      *and Express Checkout. 
-      */
+	/// <summary>
+	/// PaymentDetailsType Information about a payment. Used by DCC
+	/// and Express Checkout. 
+    /// </summary>
 	public partial class PaymentDetailsType	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
@@ -16266,9 +16275,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private BasicAmountType orderTotalField;
 		public BasicAmountType OrderTotal
 		{
@@ -16283,9 +16292,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private BasicAmountType itemTotalField;
 		public BasicAmountType ItemTotal
 		{
@@ -16300,9 +16309,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private BasicAmountType shippingTotalField;
 		public BasicAmountType ShippingTotal
 		{
@@ -16317,9 +16326,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private BasicAmountType handlingTotalField;
 		public BasicAmountType HandlingTotal
 		{
@@ -16334,9 +16343,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private BasicAmountType taxTotalField;
 		public BasicAmountType TaxTotal
 		{
@@ -16351,9 +16360,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string orderDescriptionField;
 		public string OrderDescription
 		{
@@ -16368,9 +16377,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string customField;
 		public string Custom
 		{
@@ -16385,9 +16394,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string invoiceIDField;
 		public string InvoiceID
 		{
@@ -16402,9 +16411,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string buttonSourceField;
 		public string ButtonSource
 		{
@@ -16419,9 +16428,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string notifyURLField;
 		public string NotifyURL
 		{
@@ -16436,9 +16445,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private AddressType shipToAddressField;
 		public AddressType ShipToAddress
 		{
@@ -16453,9 +16462,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string fulfillmentReferenceNumberField;
 		public string FulfillmentReferenceNumber
 		{
@@ -16470,9 +16479,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private AddressType fulfillmentAddressField;
 		public AddressType FulfillmentAddress
 		{
@@ -16487,9 +16496,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private PaymentCategoryType? paymentCategoryTypeField;
 		public PaymentCategoryType? PaymentCategoryType
 		{
@@ -16504,9 +16513,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private ShippingServiceCodeType? shippingMethodField;
 		public ShippingServiceCodeType? ShippingMethod
 		{
@@ -16521,9 +16530,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string profileAddressChangeDateField;
 		public string ProfileAddressChangeDate
 		{
@@ -16538,9 +16547,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private List<PaymentDetailsItemType> paymentDetailsItemField = new List<PaymentDetailsItemType>();
 		public List<PaymentDetailsItemType> PaymentDetailsItem
 		{
@@ -16555,9 +16564,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private BasicAmountType insuranceTotalField;
 		public BasicAmountType InsuranceTotal
 		{
@@ -16572,9 +16581,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private BasicAmountType shippingDiscountField;
 		public BasicAmountType ShippingDiscount
 		{
@@ -16589,9 +16598,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string insuranceOptionOfferedField;
 		public string InsuranceOptionOffered
 		{
@@ -16606,9 +16615,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private AllowedPaymentMethodType? allowedPaymentMethodField;
 		public AllowedPaymentMethodType? AllowedPaymentMethod
 		{
@@ -16623,9 +16632,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private EnhancedPaymentDataType enhancedPaymentDataField;
 		public EnhancedPaymentDataType EnhancedPaymentData
 		{
@@ -16640,9 +16649,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private SellerDetailsType sellerDetailsField;
 		public SellerDetailsType SellerDetails
 		{
@@ -16657,9 +16666,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string noteTextField;
 		public string NoteText
 		{
@@ -16674,9 +16683,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string transactionIdField;
 		public string TransactionId
 		{
@@ -16691,9 +16700,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private PaymentActionCodeType? paymentActionField;
 		public PaymentActionCodeType? PaymentAction
 		{
@@ -16708,9 +16717,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string paymentRequestIDField;
 		public string PaymentRequestID
 		{
@@ -16725,9 +16734,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string orderURLField;
 		public string OrderURL
 		{
@@ -16742,9 +16751,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string softDescriptorField;
 		public string SoftDescriptor
 		{
@@ -16759,9 +16768,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private int? branchLevelField;
 		public int? BranchLevel
 		{
@@ -16776,9 +16785,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private OfferDetailsType offerDetailsField;
 		public OfferDetailsType OfferDetails
 		{
@@ -16793,9 +16802,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private RecurringFlagType? recurringField;
 		public RecurringFlagType? Recurring
 		{
@@ -16810,9 +16819,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private PaymentReasonType? paymentReasonField;
 		public PaymentReasonType? PaymentReason
 		{
@@ -16827,9 +16836,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public PaymentDetailsType()
 	 	{
 		}
@@ -17198,18 +17207,18 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *Information about the incentives that were applied from Ebay
-      *RYP page and PayPal RYP page. 
-      */
+	/// <summary>
+	/// Information about the incentives that were applied from Ebay
+	/// RYP page and PayPal RYP page. 
+    /// </summary>
 	public partial class IncentiveDetailsType	{
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string uniqueIdentifierField;
 		public string UniqueIdentifier
 		{
@@ -17224,9 +17233,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private IncentiveSiteAppliedOnType? siteAppliedOnField;
 		public IncentiveSiteAppliedOnType? SiteAppliedOn
 		{
@@ -17241,9 +17250,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private BasicAmountType totalDiscountAmountField;
 		public BasicAmountType TotalDiscountAmount
 		{
@@ -17258,9 +17267,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private IncentiveAppliedStatusType? statusField;
 		public IncentiveAppliedStatusType? Status
 		{
@@ -17275,9 +17284,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private int? errorCodeField;
 		public int? ErrorCode
 		{
@@ -17292,9 +17301,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private List<IncentiveAppliedDetailsType> incentiveAppliedDetailsField = new List<IncentiveAppliedDetailsType>();
 		public List<IncentiveAppliedDetailsType> IncentiveAppliedDetails
 		{
@@ -17309,9 +17318,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public IncentiveDetailsType()
 	 	{
 		}
@@ -17362,17 +17371,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *Details of incentive application on individual bucket/item. 
-      */
+	/// <summary>
+	/// Details of incentive application on individual bucket/item. 
+    /// </summary>
 	public partial class IncentiveAppliedDetailsType	{
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string paymentRequestIDField;
 		public string PaymentRequestID
 		{
@@ -17387,9 +17396,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string itemIdField;
 		public string ItemId
 		{
@@ -17404,9 +17413,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string externalTxnIdField;
 		public string ExternalTxnId
 		{
@@ -17421,9 +17430,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private BasicAmountType discountAmountField;
 		public BasicAmountType DiscountAmount
 		{
@@ -17438,9 +17447,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string subTypeField;
 		public string SubType
 		{
@@ -17455,9 +17464,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public IncentiveAppliedDetailsType()
 	 	{
 		}
@@ -17499,9 +17508,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *Details about the seller. 
-      */
+	/// <summary>
+	/// Details about the seller. 
+    /// </summary>
 	public partial class SellerDetailsType	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
@@ -17512,9 +17521,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string sellerIdField;
 		public string SellerId
 		{
@@ -17529,9 +17538,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string sellerUserNameField;
 		public string SellerUserName
 		{
@@ -17546,9 +17555,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string sellerRegistrationDateField;
 		public string SellerRegistrationDate
 		{
@@ -17563,9 +17572,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string payPalAccountIDField;
 		public string PayPalAccountID
 		{
@@ -17580,9 +17589,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string secureMerchantAccountIDField;
 		public string SecureMerchantAccountID
 		{
@@ -17597,9 +17606,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public SellerDetailsType()
 	 	{
 		}
@@ -17694,10 +17703,10 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *Lists the Payment Methods (other than PayPal) that the use
-      *can pay with e.g. Money Order. Optional. 
-      */
+	/// <summary>
+	/// Lists the Payment Methods (other than PayPal) that the use
+	/// can pay with e.g. Money Order. Optional. 
+    /// </summary>
 	public partial class OtherPaymentMethodDetailsType	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
@@ -17708,9 +17717,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string otherPaymentMethodIdField;
 		public string OtherPaymentMethodId
 		{
@@ -17725,9 +17734,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string otherPaymentMethodTypeField;
 		public string OtherPaymentMethodType
 		{
@@ -17742,9 +17751,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string otherPaymentMethodLabelField;
 		public string OtherPaymentMethodLabel
 		{
@@ -17759,9 +17768,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string otherPaymentMethodLabelDescriptionField;
 		public string OtherPaymentMethodLabelDescription
 		{
@@ -17776,9 +17785,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string otherPaymentMethodLongDescriptionTitleField;
 		public string OtherPaymentMethodLongDescriptionTitle
 		{
@@ -17793,9 +17802,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string otherPaymentMethodLongDescriptionField;
 		public string OtherPaymentMethodLongDescription
 		{
@@ -17810,9 +17819,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string otherPaymentMethodIconField;
 		public string OtherPaymentMethodIcon
 		{
@@ -17827,9 +17836,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private bool? otherPaymentMethodHideLabelField;
 		public bool? OtherPaymentMethodHideLabel
 		{
@@ -17844,9 +17853,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public OtherPaymentMethodDetailsType()
 	 	{
 		}
@@ -17925,10 +17934,10 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *Details about the buyer's account passed in by the merchant
-      *or partner. Optional. 
-      */
+	/// <summary>
+	/// Details about the buyer's account passed in by the merchant
+	/// or partner. Optional. 
+    /// </summary>
 	public partial class BuyerDetailsType	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
@@ -17939,9 +17948,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string buyerIdField;
 		public string BuyerId
 		{
@@ -17956,9 +17965,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string buyerUserNameField;
 		public string BuyerUserName
 		{
@@ -17973,9 +17982,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string buyerRegistrationDateField;
 		public string BuyerRegistrationDate
 		{
@@ -17990,9 +17999,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private TaxIdDetailsType taxIdDetailsField;
 		public TaxIdDetailsType TaxIdDetails
 		{
@@ -18007,9 +18016,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private IdentificationInfoType identificationInfoField;
 		public IdentificationInfoType IdentificationInfo
 		{
@@ -18024,9 +18033,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public BuyerDetailsType()
 	 	{
 		}
@@ -18088,10 +18097,10 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *Details about the payer's tax info passed in by the merchant
-      *or partner. Optional. 
-      */
+	/// <summary>
+	/// Details about the payer's tax info passed in by the merchant
+	/// or partner. Optional. 
+    /// </summary>
 	public partial class TaxIdDetailsType	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
@@ -18102,9 +18111,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string taxIdTypeField;
 		public string TaxIdType
 		{
@@ -18119,9 +18128,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string taxIdField;
 		public string TaxId
 		{
@@ -18136,9 +18145,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public TaxIdDetailsType()
 	 	{
 		}
@@ -18203,9 +18212,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *The Common 3DS fields. Common for both GTD and DCC API's. 
-      */
+	/// <summary>
+	/// The Common 3DS fields. Common for both GTD and DCC API's. 
+    /// </summary>
 	public partial class ThreeDSecureRequestType	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
@@ -18216,9 +18225,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string eci3dsField;
 		public string Eci3ds
 		{
@@ -18233,9 +18242,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string cavvField;
 		public string Cavv
 		{
@@ -18250,9 +18259,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string xidField;
 		public string Xid
 		{
@@ -18267,9 +18276,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string mpiVendor3dsField;
 		public string MpiVendor3ds
 		{
@@ -18284,9 +18293,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string authStatus3dsField;
 		public string AuthStatus3ds
 		{
@@ -18301,9 +18310,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public ThreeDSecureRequestType()
 	 	{
 		}
@@ -18398,17 +18407,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *3DS remaining fields. 
-      */
+	/// <summary>
+	/// 3DS remaining fields. 
+    /// </summary>
 	public partial class ThreeDSecureResponseType	{
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string vpasField;
 		public string Vpas
 		{
@@ -18423,9 +18432,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string eciSubmitted3DSField;
 		public string EciSubmitted3DS
 		{
@@ -18440,9 +18449,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public ThreeDSecureResponseType()
 	 	{
 		}
@@ -18469,17 +18478,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *3DSecureInfoType Information about 3D Secure parameters. 
-      */
+	/// <summary>
+	/// 3DSecureInfoType Information about 3D Secure parameters. 
+    /// </summary>
 	public partial class ThreeDSecureInfoType	{
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private ThreeDSecureRequestType threeDSecureRequestField;
 		public ThreeDSecureRequestType ThreeDSecureRequest
 		{
@@ -18494,9 +18503,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private ThreeDSecureResponseType threeDSecureResponseField;
 		public ThreeDSecureResponseType ThreeDSecureResponse
 		{
@@ -18511,9 +18520,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public ThreeDSecureInfoType()
 	 	{
 		}
@@ -18540,9 +18549,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *CreditCardDetailsType Information about a Credit Card. 
-      */
+	/// <summary>
+	/// CreditCardDetailsType Information about a Credit Card. 
+    /// </summary>
 	public partial class CreditCardDetailsType	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
@@ -18553,9 +18562,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private CreditCardTypeType? creditCardTypeField;
 		public CreditCardTypeType? CreditCardType
 		{
@@ -18570,9 +18579,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string creditCardNumberField;
 		public string CreditCardNumber
 		{
@@ -18587,9 +18596,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private int? expMonthField;
 		public int? ExpMonth
 		{
@@ -18604,9 +18613,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private int? expYearField;
 		public int? ExpYear
 		{
@@ -18621,9 +18630,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private PayerInfoType cardOwnerField;
 		public PayerInfoType CardOwner
 		{
@@ -18638,9 +18647,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string cVV2Field;
 		public string CVV2
 		{
@@ -18655,9 +18664,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private int? startMonthField;
 		public int? StartMonth
 		{
@@ -18672,9 +18681,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private int? startYearField;
 		public int? StartYear
 		{
@@ -18689,9 +18698,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string issueNumberField;
 		public string IssueNumber
 		{
@@ -18706,9 +18715,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private ThreeDSecureRequestType threeDSecureRequestField;
 		public ThreeDSecureRequestType ThreeDSecureRequest
 		{
@@ -18723,9 +18732,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public CreditCardDetailsType()
 	 	{
 		}
@@ -18868,9 +18877,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *Fallback shipping options type. 
-      */
+	/// <summary>
+	/// Fallback shipping options type. 
+    /// </summary>
 	public partial class ShippingOptionType	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
@@ -18881,9 +18890,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string shippingOptionIsDefaultField;
 		public string ShippingOptionIsDefault
 		{
@@ -18898,9 +18907,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private BasicAmountType shippingOptionAmountField;
 		public BasicAmountType ShippingOptionAmount
 		{
@@ -18915,9 +18924,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string shippingOptionNameField;
 		public string ShippingOptionName
 		{
@@ -18932,9 +18941,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public ShippingOptionType()
 	 	{
 		}
@@ -18987,9 +18996,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *Information on user selected options 
-      */
+	/// <summary>
+	/// Information on user selected options 
+    /// </summary>
 	public partial class UserSelectedOptionType	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
@@ -19000,9 +19009,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string shippingCalculationModeField;
 		public string ShippingCalculationMode
 		{
@@ -19017,9 +19026,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string insuranceOptionSelectedField;
 		public string InsuranceOptionSelected
 		{
@@ -19034,9 +19043,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string shippingOptionIsDefaultField;
 		public string ShippingOptionIsDefault
 		{
@@ -19051,9 +19060,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private BasicAmountType shippingOptionAmountField;
 		public BasicAmountType ShippingOptionAmount
 		{
@@ -19068,9 +19077,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string shippingOptionNameField;
 		public string ShippingOptionName
 		{
@@ -19085,9 +19094,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public UserSelectedOptionType()
 	 	{
 		}
@@ -19181,9 +19190,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class CreditCardNumberTypeType	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
@@ -19194,9 +19203,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private CreditCardTypeType? creditCardTypeField;
 		public CreditCardTypeType? CreditCardType
 		{
@@ -19211,9 +19220,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string creditCardNumberField;
 		public string CreditCardNumber
 		{
@@ -19228,9 +19237,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public CreditCardNumberTypeType()
 	 	{
 		}
@@ -19279,10 +19288,10 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *CreditCardDetailsType for DCC Reference Transaction
-      *Information about a Credit Card. 
-      */
+	/// <summary>
+	/// CreditCardDetailsType for DCC Reference Transaction
+	/// Information about a Credit Card. 
+    /// </summary>
 	public partial class ReferenceCreditCardDetailsType	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
@@ -19293,9 +19302,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private CreditCardNumberTypeType creditCardNumberTypeField;
 		public CreditCardNumberTypeType CreditCardNumberType
 		{
@@ -19310,9 +19319,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private int? expMonthField;
 		public int? ExpMonth
 		{
@@ -19327,9 +19336,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private int? expYearField;
 		public int? ExpYear
 		{
@@ -19344,9 +19353,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private PersonNameType cardOwnerNameField;
 		public PersonNameType CardOwnerName
 		{
@@ -19361,9 +19370,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private AddressType billingAddressField;
 		public AddressType BillingAddress
 		{
@@ -19378,9 +19387,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string cVV2Field;
 		public string CVV2
 		{
@@ -19395,9 +19404,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private int? startMonthField;
 		public int? StartMonth
 		{
@@ -19412,9 +19421,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private int? startYearField;
 		public int? StartYear
 		{
@@ -19429,9 +19438,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string issueNumberField;
 		public string IssueNumber
 		{
@@ -19446,9 +19455,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public ReferenceCreditCardDetailsType()
 	 	{
 		}
@@ -19529,9 +19538,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class SetCustomerBillingAgreementRequestDetailsType	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
@@ -19542,9 +19551,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private BillingAgreementDetailsType billingAgreementDetailsField;
 		public BillingAgreementDetailsType BillingAgreementDetails
 		{
@@ -19559,9 +19568,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string returnURLField;
 		public string ReturnURL
 		{
@@ -19576,9 +19585,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string cancelURLField;
 		public string CancelURL
 		{
@@ -19593,9 +19602,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string localeCodeField;
 		public string LocaleCode
 		{
@@ -19610,9 +19619,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string pageStyleField;
 		public string PageStyle
 		{
@@ -19627,9 +19636,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string cppHeaderImageField;
 		public string cppHeaderImage
 		{
@@ -19644,9 +19653,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string cppHeaderBorderColorField;
 		public string cppHeaderBorderColor
 		{
@@ -19661,9 +19670,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string cppHeaderBackColorField;
 		public string cppHeaderBackColor
 		{
@@ -19678,9 +19687,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string cppPayflowColorField;
 		public string cppPayflowColor
 		{
@@ -19695,9 +19704,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string buyerEmailField;
 		public string BuyerEmail
 		{
@@ -19712,9 +19721,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string reqBillingAddressField;
 		public string ReqBillingAddress
 		{
@@ -19729,9 +19738,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Constructor with arguments
-	 	  */
+		/// <summary>
+		/// Constructor with arguments
+	 	/// </summary>
 	 	public SetCustomerBillingAgreementRequestDetailsType(BillingAgreementDetailsType billingAgreementDetails, string returnURL, string cancelURL)
 	 	{
 			this.BillingAgreementDetails = billingAgreementDetails;
@@ -19739,9 +19748,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			this.CancelURL = cancelURL;
 		}
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public SetCustomerBillingAgreementRequestDetailsType()
 	 	{
 		}
@@ -19834,17 +19843,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class GetBillingAgreementCustomerDetailsResponseDetailsType	{
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private PayerInfoType payerInfoField;
 		public PayerInfoType PayerInfo
 		{
@@ -19859,9 +19868,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private AddressType billingAddressField;
 		public AddressType BillingAddress
 		{
@@ -19876,9 +19885,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public GetBillingAgreementCustomerDetailsResponseDetailsType()
 	 	{
 		}
@@ -19905,11 +19914,11 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *Device ID Optional  Character length and limits: 256
-      *single-byte characters DeviceID length morethan 256 is
-      *truncated  
-      */
+	/// <summary>
+	/// Device ID Optional  Character length and limits: 256
+	/// single-byte characters DeviceID length morethan 256 is
+	/// truncated  
+    /// </summary>
 	public partial class DeviceDetailsType	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
@@ -19920,9 +19929,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string deviceIDField;
 		public string DeviceID
 		{
@@ -19937,9 +19946,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public DeviceDetailsType()
 	 	{
 		}
@@ -19983,9 +19992,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class SenderDetailsType	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
@@ -19996,9 +20005,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private DeviceDetailsType deviceDetailsField;
 		public DeviceDetailsType DeviceDetails
 		{
@@ -20013,9 +20022,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public SenderDetailsType()
 	 	{
 		}
@@ -20058,9 +20067,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class DoReferenceTransactionRequestDetailsType	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
@@ -20071,9 +20080,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string referenceIDField;
 		public string ReferenceID
 		{
@@ -20088,9 +20097,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private PaymentActionCodeType? paymentActionField;
 		public PaymentActionCodeType? PaymentAction
 		{
@@ -20105,9 +20114,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private MerchantPullPaymentCodeType? paymentTypeField;
 		public MerchantPullPaymentCodeType? PaymentType
 		{
@@ -20122,9 +20131,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private PaymentDetailsType paymentDetailsField;
 		public PaymentDetailsType PaymentDetails
 		{
@@ -20139,9 +20148,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private ReferenceCreditCardDetailsType creditCardField;
 		public ReferenceCreditCardDetailsType CreditCard
 		{
@@ -20156,9 +20165,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string iPAddressField;
 		public string IPAddress
 		{
@@ -20173,9 +20182,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string merchantSessionIdField;
 		public string MerchantSessionId
 		{
@@ -20190,9 +20199,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string reqConfirmShippingField;
 		public string ReqConfirmShipping
 		{
@@ -20207,9 +20216,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string softDescriptorField;
 		public string SoftDescriptor
 		{
@@ -20224,9 +20233,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private SenderDetailsType senderDetailsField;
 		public SenderDetailsType SenderDetails
 		{
@@ -20241,9 +20250,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string msgSubIDField;
 		public string MsgSubID
 		{
@@ -20258,9 +20267,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Constructor with arguments
-	 	  */
+		/// <summary>
+		/// Constructor with arguments
+	 	/// </summary>
 	 	public DoReferenceTransactionRequestDetailsType(string referenceID, PaymentActionCodeType? paymentAction, PaymentDetailsType paymentDetails)
 	 	{
 			this.ReferenceID = referenceID;
@@ -20268,9 +20277,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			this.PaymentDetails = paymentDetails;
 		}
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public DoReferenceTransactionRequestDetailsType()
 	 	{
 		}
@@ -20361,17 +20370,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class DoReferenceTransactionResponseDetailsType	{
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string billingAgreementIDField;
 		public string BillingAgreementID
 		{
@@ -20386,9 +20395,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private PaymentInfoType paymentInfoField;
 		public PaymentInfoType PaymentInfo
 		{
@@ -20403,9 +20412,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private BasicAmountType amountField;
 		public BasicAmountType Amount
 		{
@@ -20420,9 +20429,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string aVSCodeField;
 		public string AVSCode
 		{
@@ -20437,9 +20446,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string cVV2CodeField;
 		public string CVV2Code
 		{
@@ -20454,9 +20463,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string transactionIDField;
 		public string TransactionID
 		{
@@ -20471,9 +20480,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string paymentAdviceCodeField;
 		public string PaymentAdviceCode
 		{
@@ -20488,9 +20497,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string msgSubIDField;
 		public string MsgSubID
 		{
@@ -20505,9 +20514,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public DoReferenceTransactionResponseDetailsType()
 	 	{
 		}
@@ -20564,9 +20573,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class DoNonReferencedCreditRequestDetailsType	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
@@ -20577,9 +20586,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private BasicAmountType amountField;
 		public BasicAmountType Amount
 		{
@@ -20594,9 +20603,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private BasicAmountType netAmountField;
 		public BasicAmountType NetAmount
 		{
@@ -20611,9 +20620,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private BasicAmountType taxAmountField;
 		public BasicAmountType TaxAmount
 		{
@@ -20628,9 +20637,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private BasicAmountType shippingAmountField;
 		public BasicAmountType ShippingAmount
 		{
@@ -20645,9 +20654,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private CreditCardDetailsType creditCardField;
 		public CreditCardDetailsType CreditCard
 		{
@@ -20662,9 +20671,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string receiverEmailField;
 		public string ReceiverEmail
 		{
@@ -20679,9 +20688,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string commentField;
 		public string Comment
 		{
@@ -20696,9 +20705,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public DoNonReferencedCreditRequestDetailsType()
 	 	{
 		}
@@ -20767,17 +20776,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class DoNonReferencedCreditResponseDetailsType	{
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private BasicAmountType amountField;
 		public BasicAmountType Amount
 		{
@@ -20792,9 +20801,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string transactionIDField;
 		public string TransactionID
 		{
@@ -20809,9 +20818,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public DoNonReferencedCreditResponseDetailsType()
 	 	{
 		}
@@ -20838,11 +20847,11 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *Onboarding program code given to you by PayPal. Required
-      *Character length and limitations: 64 alphanumeric characters
-      *
-      */
+	/// <summary>
+	/// Onboarding program code given to you by PayPal. Required
+	/// Character length and limitations: 64 alphanumeric characters
+	/// 
+    /// </summary>
 	public partial class EnterBoardingRequestDetailsType	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
@@ -20853,9 +20862,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string programCodeField;
 		public string ProgramCode
 		{
@@ -20870,9 +20879,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string productListField;
 		public string ProductList
 		{
@@ -20887,9 +20896,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string partnerCustomField;
 		public string PartnerCustom
 		{
@@ -20904,9 +20913,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string imageUrlField;
 		public string ImageUrl
 		{
@@ -20921,9 +20930,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private MarketingCategoryType? marketingCategoryField;
 		public MarketingCategoryType? MarketingCategory
 		{
@@ -20938,9 +20947,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private BusinessInfoType businessInfoField;
 		public BusinessInfoType BusinessInfo
 		{
@@ -20955,9 +20964,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private BusinessOwnerInfoType ownerInfoField;
 		public BusinessOwnerInfoType OwnerInfo
 		{
@@ -20972,9 +20981,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private BankAccountDetailsType bankAccountField;
 		public BankAccountDetailsType BankAccount
 		{
@@ -20989,9 +20998,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public EnterBoardingRequestDetailsType()
 	 	{
 		}
@@ -21067,9 +21076,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *BusinessInfoType 
-      */
+	/// <summary>
+	/// BusinessInfoType 
+    /// </summary>
 	public partial class BusinessInfoType	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
@@ -21080,9 +21089,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private BusinessTypeType? typeField;
 		public BusinessTypeType? Type
 		{
@@ -21097,9 +21106,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string nameField;
 		public string Name
 		{
@@ -21114,9 +21123,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private AddressType addressField;
 		public AddressType Address
 		{
@@ -21131,9 +21140,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string workPhoneField;
 		public string WorkPhone
 		{
@@ -21148,9 +21157,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private BusinessCategoryType? categoryField;
 		public BusinessCategoryType? Category
 		{
@@ -21165,9 +21174,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private BusinessSubCategoryType? subCategoryField;
 		public BusinessSubCategoryType? SubCategory
 		{
@@ -21182,9 +21191,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private AverageTransactionPriceType? averagePriceField;
 		public AverageTransactionPriceType? AveragePrice
 		{
@@ -21199,9 +21208,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private AverageMonthlyVolumeType? averageMonthlyVolumeField;
 		public AverageMonthlyVolumeType? AverageMonthlyVolume
 		{
@@ -21216,9 +21225,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private SalesVenueType? salesVenueField;
 		public SalesVenueType? SalesVenue
 		{
@@ -21233,9 +21242,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string websiteField;
 		public string Website
 		{
@@ -21250,9 +21259,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private PercentageRevenueFromOnlineSalesType? revenueFromOnlineSalesField;
 		public PercentageRevenueFromOnlineSalesType? RevenueFromOnlineSales
 		{
@@ -21267,9 +21276,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string businessEstablishedField;
 		public string BusinessEstablished
 		{
@@ -21284,9 +21293,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string customerServiceEmailField;
 		public string CustomerServiceEmail
 		{
@@ -21301,9 +21310,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string customerServicePhoneField;
 		public string CustomerServicePhone
 		{
@@ -21318,9 +21327,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public BusinessInfoType()
 	 	{
 		}
@@ -21428,9 +21437,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *BusinessOwnerInfoType 
-      */
+	/// <summary>
+	/// BusinessOwnerInfoType 
+    /// </summary>
 	public partial class BusinessOwnerInfoType	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
@@ -21441,9 +21450,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private PayerInfoType ownerField;
 		public PayerInfoType Owner
 		{
@@ -21458,9 +21467,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string homePhoneField;
 		public string HomePhone
 		{
@@ -21475,9 +21484,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string mobilePhoneField;
 		public string MobilePhone
 		{
@@ -21492,9 +21501,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string sSNField;
 		public string SSN
 		{
@@ -21509,9 +21518,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public BusinessOwnerInfoType()
 	 	{
 		}
@@ -21569,9 +21578,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *BankAccountDetailsType 
-      */
+	/// <summary>
+	/// BankAccountDetailsType 
+    /// </summary>
 	public partial class BankAccountDetailsType	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
@@ -21582,9 +21591,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string nameField;
 		public string Name
 		{
@@ -21599,9 +21608,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private BankAccountTypeType? typeField;
 		public BankAccountTypeType? Type
 		{
@@ -21616,9 +21625,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string routingNumberField;
 		public string RoutingNumber
 		{
@@ -21633,9 +21642,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string accountNumberField;
 		public string AccountNumber
 		{
@@ -21650,9 +21659,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public BankAccountDetailsType()
 	 	{
 		}
@@ -21711,19 +21720,19 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *Status of merchant's onboarding process:
-      *CompletedCancelledPending Character length and limitations:
-      *Eight alphabetic characters 
-      */
+	/// <summary>
+	/// Status of merchant's onboarding process:
+	/// CompletedCancelledPending Character length and limitations:
+	/// Eight alphabetic characters 
+    /// </summary>
 	public partial class GetBoardingDetailsResponseDetailsType	{
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private BoardingStatusType? statusField;
 		public BoardingStatusType? Status
 		{
@@ -21738,9 +21747,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string startDateField;
 		public string StartDate
 		{
@@ -21755,9 +21764,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string lastUpdatedField;
 		public string LastUpdated
 		{
@@ -21772,9 +21781,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string reasonField;
 		public string Reason
 		{
@@ -21789,9 +21798,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string programNameField;
 		public string ProgramName
 		{
@@ -21806,9 +21815,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string programCodeField;
 		public string ProgramCode
 		{
@@ -21823,9 +21832,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string campaignIDField;
 		public string CampaignID
 		{
@@ -21840,9 +21849,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private UserWithdrawalLimitTypeType? userWithdrawalLimitField;
 		public UserWithdrawalLimitTypeType? UserWithdrawalLimit
 		{
@@ -21857,9 +21866,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string partnerCustomField;
 		public string PartnerCustom
 		{
@@ -21874,9 +21883,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private PayerInfoType accountOwnerField;
 		public PayerInfoType AccountOwner
 		{
@@ -21891,9 +21900,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private APICredentialsType credentialsField;
 		public APICredentialsType Credentials
 		{
@@ -21908,9 +21917,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string configureAPIsField;
 		public string ConfigureAPIs
 		{
@@ -21925,9 +21934,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string emailVerificationStatusField;
 		public string EmailVerificationStatus
 		{
@@ -21942,9 +21951,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string vettingStatusField;
 		public string VettingStatus
 		{
@@ -21959,9 +21968,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string bankAccountVerificationStatusField;
 		public string BankAccountVerificationStatus
 		{
@@ -21976,9 +21985,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public GetBoardingDetailsResponseDetailsType()
 	 	{
 		}
@@ -22070,17 +22079,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *APICredentialsType 
-      */
+	/// <summary>
+	/// APICredentialsType 
+    /// </summary>
 	public partial class APICredentialsType	{
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string usernameField;
 		public string Username
 		{
@@ -22095,9 +22104,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string passwordField;
 		public string Password
 		{
@@ -22112,9 +22121,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string signatureField;
 		public string Signature
 		{
@@ -22129,9 +22138,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string certificateField;
 		public string Certificate
 		{
@@ -22146,9 +22155,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private APIAuthenticationType? typeField;
 		public APIAuthenticationType? Type
 		{
@@ -22163,9 +22172,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public APICredentialsType()
 	 	{
 		}
@@ -22207,10 +22216,10 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *The phone number of the buyer's mobile device, if available.
-      *Optional 
-      */
+	/// <summary>
+	/// The phone number of the buyer's mobile device, if available.
+	/// Optional 
+    /// </summary>
 	public partial class SetMobileCheckoutRequestDetailsType	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
@@ -22221,9 +22230,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private PhoneNumberType buyerPhoneField;
 		public PhoneNumberType BuyerPhone
 		{
@@ -22238,9 +22247,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private BasicAmountType itemAmountField;
 		public BasicAmountType ItemAmount
 		{
@@ -22255,9 +22264,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private BasicAmountType taxField;
 		public BasicAmountType Tax
 		{
@@ -22272,9 +22281,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private BasicAmountType shippingField;
 		public BasicAmountType Shipping
 		{
@@ -22289,9 +22298,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string itemNameField;
 		public string ItemName
 		{
@@ -22306,9 +22315,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string itemNumberField;
 		public string ItemNumber
 		{
@@ -22323,9 +22332,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string customField;
 		public string Custom
 		{
@@ -22340,9 +22349,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string invoiceIDField;
 		public string InvoiceID
 		{
@@ -22357,9 +22366,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string returnURLField;
 		public string ReturnURL
 		{
@@ -22374,9 +22383,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string cancelURLField;
 		public string CancelURL
 		{
@@ -22391,9 +22400,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private int? addressDisplayOptionsField;
 		public int? AddressDisplayOptions
 		{
@@ -22408,9 +22417,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private int? sharePhoneField;
 		public int? SharePhone
 		{
@@ -22425,9 +22434,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private AddressType shipToAddressField;
 		public AddressType ShipToAddress
 		{
@@ -22442,9 +22451,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string buyerEmailField;
 		public string BuyerEmail
 		{
@@ -22459,9 +22468,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Constructor with arguments
-	 	  */
+		/// <summary>
+		/// Constructor with arguments
+	 	/// </summary>
 	 	public SetMobileCheckoutRequestDetailsType(BasicAmountType itemAmount, string itemName, string returnURL)
 	 	{
 			this.ItemAmount = itemAmount;
@@ -22469,9 +22478,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			this.ReturnURL = returnURL;
 		}
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public SetMobileCheckoutRequestDetailsType()
 	 	{
 		}
@@ -22575,20 +22584,20 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *A free-form field for your own use, such as a tracking
-      *number or other value you want returned to you in IPN.
-      *Optional Character length and limitations: 256 single-byte
-      *alphanumeric characters 
-      */
+	/// <summary>
+	/// A free-form field for your own use, such as a tracking
+	/// number or other value you want returned to you in IPN.
+	/// Optional Character length and limitations: 256 single-byte
+	/// alphanumeric characters 
+    /// </summary>
 	public partial class DoMobileCheckoutPaymentResponseDetailsType	{
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string customField;
 		public string Custom
 		{
@@ -22603,9 +22612,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string invoiceIDField;
 		public string InvoiceID
 		{
@@ -22620,9 +22629,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private PayerInfoType payerInfoField;
 		public PayerInfoType PayerInfo
 		{
@@ -22637,9 +22646,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private PaymentInfoType paymentInfoField;
 		public PaymentInfoType PaymentInfo
 		{
@@ -22654,9 +22663,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public DoMobileCheckoutPaymentResponseDetailsType()
 	 	{
 		}
@@ -22693,9 +22702,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *UATP Card Details Type 
-      */
+	/// <summary>
+	/// UATP Card Details Type 
+    /// </summary>
 	public partial class UATPDetailsType	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
@@ -22706,9 +22715,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string uATPNumberField;
 		public string UATPNumber
 		{
@@ -22723,9 +22732,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private int? expMonthField;
 		public int? ExpMonth
 		{
@@ -22740,9 +22749,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private int? expYearField;
 		public int? ExpYear
 		{
@@ -22757,9 +22766,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public UATPDetailsType()
 	 	{
 		}
@@ -22834,17 +22843,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class RecurringPaymentsSummaryType	{
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string nextBillingDateField;
 		public string NextBillingDate
 		{
@@ -22859,9 +22868,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private int? numberCyclesCompletedField;
 		public int? NumberCyclesCompleted
 		{
@@ -22876,9 +22885,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private int? numberCyclesRemainingField;
 		public int? NumberCyclesRemaining
 		{
@@ -22893,9 +22902,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private BasicAmountType outstandingBalanceField;
 		public BasicAmountType OutstandingBalance
 		{
@@ -22910,9 +22919,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private int? failedPaymentCountField;
 		public int? FailedPaymentCount
 		{
@@ -22927,9 +22936,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string lastPaymentDateField;
 		public string LastPaymentDate
 		{
@@ -22944,9 +22953,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private BasicAmountType lastPaymentAmountField;
 		public BasicAmountType LastPaymentAmount
 		{
@@ -22961,9 +22970,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public RecurringPaymentsSummaryType()
 	 	{
 		}
@@ -23015,9 +23024,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class ActivationDetailsType	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
@@ -23028,9 +23037,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private BasicAmountType initialAmountField;
 		public BasicAmountType InitialAmount
 		{
@@ -23045,9 +23054,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private FailedPaymentActionType? failedInitialAmountActionField;
 		public FailedPaymentActionType? FailedInitialAmountAction
 		{
@@ -23062,17 +23071,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Constructor with arguments
-	 	  */
+		/// <summary>
+		/// Constructor with arguments
+	 	/// </summary>
 	 	public ActivationDetailsType(BasicAmountType initialAmount)
 	 	{
 			this.InitialAmount = initialAmount;
 		}
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public ActivationDetailsType()
 	 	{
 		}
@@ -23120,9 +23129,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *Unit of meausre for billing cycle 
-      */
+	/// <summary>
+	/// Unit of meausre for billing cycle 
+    /// </summary>
 	public partial class BillingPeriodDetailsType	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
@@ -23133,9 +23142,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private BillingPeriodType? billingPeriodField;
 		public BillingPeriodType? BillingPeriod
 		{
@@ -23150,9 +23159,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private int? billingFrequencyField;
 		public int? BillingFrequency
 		{
@@ -23167,9 +23176,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private int? totalBillingCyclesField;
 		public int? TotalBillingCycles
 		{
@@ -23184,9 +23193,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private BasicAmountType amountField;
 		public BasicAmountType Amount
 		{
@@ -23201,9 +23210,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private BasicAmountType shippingAmountField;
 		public BasicAmountType ShippingAmount
 		{
@@ -23218,9 +23227,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private BasicAmountType taxAmountField;
 		public BasicAmountType TaxAmount
 		{
@@ -23235,9 +23244,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Constructor with arguments
-	 	  */
+		/// <summary>
+		/// Constructor with arguments
+	 	/// </summary>
 	 	public BillingPeriodDetailsType(BillingPeriodType? billingPeriod, int? billingFrequency, BasicAmountType amount)
 	 	{
 			this.BillingPeriod = billingPeriod;
@@ -23245,9 +23254,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			this.Amount = amount;
 		}
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public BillingPeriodDetailsType()
 	 	{
 		}
@@ -23349,9 +23358,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *Unit of meausre for billing cycle 
-      */
+	/// <summary>
+	/// Unit of meausre for billing cycle 
+    /// </summary>
 	public partial class BillingPeriodDetailsType_Update	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
@@ -23362,9 +23371,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private BillingPeriodType? billingPeriodField;
 		public BillingPeriodType? BillingPeriod
 		{
@@ -23379,9 +23388,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private int? billingFrequencyField;
 		public int? BillingFrequency
 		{
@@ -23396,9 +23405,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private int? totalBillingCyclesField;
 		public int? TotalBillingCycles
 		{
@@ -23413,9 +23422,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private BasicAmountType amountField;
 		public BasicAmountType Amount
 		{
@@ -23430,9 +23439,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private BasicAmountType shippingAmountField;
 		public BasicAmountType ShippingAmount
 		{
@@ -23447,9 +23456,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private BasicAmountType taxAmountField;
 		public BasicAmountType TaxAmount
 		{
@@ -23464,9 +23473,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public BillingPeriodDetailsType_Update()
 	 	{
 		}
@@ -23532,9 +23541,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *Schedule details for the Recurring Payment 
-      */
+	/// <summary>
+	/// Schedule details for the Recurring Payment 
+    /// </summary>
 	public partial class ScheduleDetailsType	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
@@ -23545,9 +23554,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string descriptionField;
 		public string Description
 		{
@@ -23562,9 +23571,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private BillingPeriodDetailsType trialPeriodField;
 		public BillingPeriodDetailsType TrialPeriod
 		{
@@ -23579,9 +23588,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private BillingPeriodDetailsType paymentPeriodField;
 		public BillingPeriodDetailsType PaymentPeriod
 		{
@@ -23596,9 +23605,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private int? maxFailedPaymentsField;
 		public int? MaxFailedPayments
 		{
@@ -23613,9 +23622,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private ActivationDetailsType activationDetailsField;
 		public ActivationDetailsType ActivationDetails
 		{
@@ -23630,9 +23639,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private AutoBillType? autoBillOutstandingAmountField;
 		public AutoBillType? AutoBillOutstandingAmount
 		{
@@ -23647,18 +23656,18 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Constructor with arguments
-	 	  */
+		/// <summary>
+		/// Constructor with arguments
+	 	/// </summary>
 	 	public ScheduleDetailsType(string description, BillingPeriodDetailsType paymentPeriod)
 	 	{
 			this.Description = description;
 			this.PaymentPeriod = paymentPeriod;
 		}
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public ScheduleDetailsType()
 	 	{
 		}
@@ -23724,10 +23733,10 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *Subscriber name - if missing, will use name in buyer's
-      *account 
-      */
+	/// <summary>
+	/// Subscriber name - if missing, will use name in buyer's
+	/// account 
+    /// </summary>
 	public partial class RecurringPaymentsProfileDetailsType	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
@@ -23738,9 +23747,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string subscriberNameField;
 		public string SubscriberName
 		{
@@ -23755,9 +23764,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private AddressType subscriberShippingAddressField;
 		public AddressType SubscriberShippingAddress
 		{
@@ -23772,9 +23781,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string billingStartDateField;
 		public string BillingStartDate
 		{
@@ -23789,9 +23798,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string profileReferenceField;
 		public string ProfileReference
 		{
@@ -23806,17 +23815,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Constructor with arguments
-	 	  */
+		/// <summary>
+		/// Constructor with arguments
+	 	/// </summary>
 	 	public RecurringPaymentsProfileDetailsType(string billingStartDate)
 	 	{
 			this.BillingStartDate = billingStartDate;
 		}
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public RecurringPaymentsProfileDetailsType()
 	 	{
 		}
@@ -23900,9 +23909,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *Billing Agreement token (required if Express Checkout) 
-      */
+	/// <summary>
+	/// Billing Agreement token (required if Express Checkout) 
+    /// </summary>
 	public partial class CreateRecurringPaymentsProfileRequestDetailsType	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
@@ -23913,9 +23922,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string tokenField;
 		public string Token
 		{
@@ -23930,9 +23939,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private CreditCardDetailsType creditCardField;
 		public CreditCardDetailsType CreditCard
 		{
@@ -23947,9 +23956,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private RecurringPaymentsProfileDetailsType recurringPaymentsProfileDetailsField;
 		public RecurringPaymentsProfileDetailsType RecurringPaymentsProfileDetails
 		{
@@ -23964,9 +23973,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private ScheduleDetailsType scheduleDetailsField;
 		public ScheduleDetailsType ScheduleDetails
 		{
@@ -23981,9 +23990,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private List<PaymentDetailsItemType> paymentDetailsItemField = new List<PaymentDetailsItemType>();
 		public List<PaymentDetailsItemType> PaymentDetailsItem
 		{
@@ -23998,18 +24007,18 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Constructor with arguments
-	 	  */
+		/// <summary>
+		/// Constructor with arguments
+	 	/// </summary>
 	 	public CreateRecurringPaymentsProfileRequestDetailsType(RecurringPaymentsProfileDetailsType recurringPaymentsProfileDetails, ScheduleDetailsType scheduleDetails)
 	 	{
 			this.RecurringPaymentsProfileDetails = recurringPaymentsProfileDetails;
 			this.ScheduleDetails = scheduleDetails;
 		}
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public CreateRecurringPaymentsProfileRequestDetailsType()
 	 	{
 		}
@@ -24072,17 +24081,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *Recurring Billing Profile ID 
-      */
+	/// <summary>
+	/// Recurring Billing Profile ID 
+    /// </summary>
 	public partial class CreateRecurringPaymentsProfileResponseDetailsType	{
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string profileIDField;
 		public string ProfileID
 		{
@@ -24097,9 +24106,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private RecurringPaymentsProfileStatusType? profileStatusField;
 		public RecurringPaymentsProfileStatusType? ProfileStatus
 		{
@@ -24114,9 +24123,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string transactionIDField;
 		public string TransactionID
 		{
@@ -24131,9 +24140,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string dCCProcessorResponseField;
 		public string DCCProcessorResponse
 		{
@@ -24148,9 +24157,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string dCCReturnCodeField;
 		public string DCCReturnCode
 		{
@@ -24165,9 +24174,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public CreateRecurringPaymentsProfileResponseDetailsType()
 	 	{
 		}
@@ -24209,17 +24218,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *Recurring Billing Profile ID 
-      */
+	/// <summary>
+	/// Recurring Billing Profile ID 
+    /// </summary>
 	public partial class GetRecurringPaymentsProfileDetailsResponseDetailsType	{
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string profileIDField;
 		public string ProfileID
 		{
@@ -24234,9 +24243,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private RecurringPaymentsProfileStatusType? profileStatusField;
 		public RecurringPaymentsProfileStatusType? ProfileStatus
 		{
@@ -24251,9 +24260,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string descriptionField;
 		public string Description
 		{
@@ -24268,9 +24277,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private AutoBillType? autoBillOutstandingAmountField;
 		public AutoBillType? AutoBillOutstandingAmount
 		{
@@ -24285,9 +24294,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private int? maxFailedPaymentsField;
 		public int? MaxFailedPayments
 		{
@@ -24302,9 +24311,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private RecurringPaymentsProfileDetailsType recurringPaymentsProfileDetailsField;
 		public RecurringPaymentsProfileDetailsType RecurringPaymentsProfileDetails
 		{
@@ -24319,9 +24328,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private BillingPeriodDetailsType currentRecurringPaymentsPeriodField;
 		public BillingPeriodDetailsType CurrentRecurringPaymentsPeriod
 		{
@@ -24336,9 +24345,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private RecurringPaymentsSummaryType recurringPaymentsSummaryField;
 		public RecurringPaymentsSummaryType RecurringPaymentsSummary
 		{
@@ -24353,9 +24362,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private CreditCardDetailsType creditCardField;
 		public CreditCardDetailsType CreditCard
 		{
@@ -24370,9 +24379,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private BillingPeriodDetailsType trialRecurringPaymentsPeriodField;
 		public BillingPeriodDetailsType TrialRecurringPaymentsPeriod
 		{
@@ -24387,9 +24396,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private BillingPeriodDetailsType regularRecurringPaymentsPeriodField;
 		public BillingPeriodDetailsType RegularRecurringPaymentsPeriod
 		{
@@ -24404,9 +24413,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private BasicAmountType trialAmountPaidField;
 		public BasicAmountType TrialAmountPaid
 		{
@@ -24421,9 +24430,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private BasicAmountType regularAmountPaidField;
 		public BasicAmountType RegularAmountPaid
 		{
@@ -24438,9 +24447,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private BasicAmountType aggregateAmountField;
 		public BasicAmountType AggregateAmount
 		{
@@ -24455,9 +24464,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private BasicAmountType aggregateOptionalAmountField;
 		public BasicAmountType AggregateOptionalAmount
 		{
@@ -24472,9 +24481,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string finalPaymentDueDateField;
 		public string FinalPaymentDueDate
 		{
@@ -24489,9 +24498,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public GetRecurringPaymentsProfileDetailsResponseDetailsType()
 	 	{
 		}
@@ -24588,9 +24597,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class ManageRecurringPaymentsProfileStatusRequestDetailsType	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
@@ -24601,9 +24610,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string profileIDField;
 		public string ProfileID
 		{
@@ -24618,9 +24627,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private StatusChangeActionType? actionField;
 		public StatusChangeActionType? Action
 		{
@@ -24635,9 +24644,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string noteField;
 		public string Note
 		{
@@ -24652,18 +24661,18 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Constructor with arguments
-	 	  */
+		/// <summary>
+		/// Constructor with arguments
+	 	/// </summary>
 	 	public ManageRecurringPaymentsProfileStatusRequestDetailsType(string profileID, StatusChangeActionType? action)
 	 	{
 			this.ProfileID = profileID;
 			this.Action = action;
 		}
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public ManageRecurringPaymentsProfileStatusRequestDetailsType()
 	 	{
 		}
@@ -24717,17 +24726,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class ManageRecurringPaymentsProfileStatusResponseDetailsType	{
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string profileIDField;
 		public string ProfileID
 		{
@@ -24742,9 +24751,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public ManageRecurringPaymentsProfileStatusResponseDetailsType()
 	 	{
 		}
@@ -24766,9 +24775,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class BillOutstandingAmountRequestDetailsType	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
@@ -24779,9 +24788,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string profileIDField;
 		public string ProfileID
 		{
@@ -24796,9 +24805,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private BasicAmountType amountField;
 		public BasicAmountType Amount
 		{
@@ -24813,9 +24822,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string noteField;
 		public string Note
 		{
@@ -24830,17 +24839,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Constructor with arguments
-	 	  */
+		/// <summary>
+		/// Constructor with arguments
+	 	/// </summary>
 	 	public BillOutstandingAmountRequestDetailsType(string profileID)
 	 	{
 			this.ProfileID = profileID;
 		}
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public BillOutstandingAmountRequestDetailsType()
 	 	{
 		}
@@ -24893,17 +24902,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class BillOutstandingAmountResponseDetailsType	{
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string profileIDField;
 		public string ProfileID
 		{
@@ -24918,9 +24927,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public BillOutstandingAmountResponseDetailsType()
 	 	{
 		}
@@ -24942,9 +24951,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class UpdateRecurringPaymentsProfileRequestDetailsType	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
@@ -24955,9 +24964,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string profileIDField;
 		public string ProfileID
 		{
@@ -24972,9 +24981,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string noteField;
 		public string Note
 		{
@@ -24989,9 +24998,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string descriptionField;
 		public string Description
 		{
@@ -25006,9 +25015,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string subscriberNameField;
 		public string SubscriberName
 		{
@@ -25023,9 +25032,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private AddressType subscriberShippingAddressField;
 		public AddressType SubscriberShippingAddress
 		{
@@ -25040,9 +25049,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string profileReferenceField;
 		public string ProfileReference
 		{
@@ -25057,9 +25066,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private int? additionalBillingCyclesField;
 		public int? AdditionalBillingCycles
 		{
@@ -25074,9 +25083,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private BasicAmountType amountField;
 		public BasicAmountType Amount
 		{
@@ -25091,9 +25100,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private BasicAmountType shippingAmountField;
 		public BasicAmountType ShippingAmount
 		{
@@ -25108,9 +25117,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private BasicAmountType taxAmountField;
 		public BasicAmountType TaxAmount
 		{
@@ -25125,9 +25134,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private BasicAmountType outstandingBalanceField;
 		public BasicAmountType OutstandingBalance
 		{
@@ -25142,9 +25151,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private AutoBillType? autoBillOutstandingAmountField;
 		public AutoBillType? AutoBillOutstandingAmount
 		{
@@ -25159,9 +25168,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private int? maxFailedPaymentsField;
 		public int? MaxFailedPayments
 		{
@@ -25176,9 +25185,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private CreditCardDetailsType creditCardField;
 		public CreditCardDetailsType CreditCard
 		{
@@ -25193,9 +25202,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string billingStartDateField;
 		public string BillingStartDate
 		{
@@ -25210,9 +25219,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private BillingPeriodDetailsType_Update trialPeriodField;
 		public BillingPeriodDetailsType_Update TrialPeriod
 		{
@@ -25227,9 +25236,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private BillingPeriodDetailsType_Update paymentPeriodField;
 		public BillingPeriodDetailsType_Update PaymentPeriod
 		{
@@ -25244,17 +25253,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Constructor with arguments
-	 	  */
+		/// <summary>
+		/// Constructor with arguments
+	 	/// </summary>
 	 	public UpdateRecurringPaymentsProfileRequestDetailsType(string profileID)
 	 	{
 			this.ProfileID = profileID;
 		}
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public UpdateRecurringPaymentsProfileRequestDetailsType()
 	 	{
 		}
@@ -25370,17 +25379,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class UpdateRecurringPaymentsProfileResponseDetailsType	{
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string profileIDField;
 		public string ProfileID
 		{
@@ -25395,9 +25404,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public UpdateRecurringPaymentsProfileResponseDetailsType()
 	 	{
 		}
@@ -25419,17 +25428,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *Details of Risk Filter. 
-      */
+	/// <summary>
+	/// Details of Risk Filter. 
+    /// </summary>
 	public partial class RiskFilterDetailsType	{
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private int? idField;
 		public int? Id
 		{
@@ -25444,9 +25453,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string nameField;
 		public string Name
 		{
@@ -25461,9 +25470,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string descriptionField;
 		public string Description
 		{
@@ -25478,9 +25487,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public RiskFilterDetailsType()
 	 	{
 		}
@@ -25512,17 +25521,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *Details of Risk Filter. 
-      */
+	/// <summary>
+	/// Details of Risk Filter. 
+    /// </summary>
 	public partial class RiskFilterListType	{
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private List<RiskFilterDetailsType> filtersField = new List<RiskFilterDetailsType>();
 		public List<RiskFilterDetailsType> Filters
 		{
@@ -25537,9 +25546,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public RiskFilterListType()
 	 	{
 		}
@@ -25565,18 +25574,18 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *Thes are filters that could result in accept/deny/pending
-      *action. 
-      */
+	/// <summary>
+	/// Thes are filters that could result in accept/deny/pending
+	/// action. 
+    /// </summary>
 	public partial class FMFDetailsType	{
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private RiskFilterListType acceptFiltersField;
 		public RiskFilterListType AcceptFilters
 		{
@@ -25591,9 +25600,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private RiskFilterListType pendingFiltersField;
 		public RiskFilterListType PendingFilters
 		{
@@ -25608,9 +25617,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private RiskFilterListType denyFiltersField;
 		public RiskFilterListType DenyFilters
 		{
@@ -25625,9 +25634,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private RiskFilterListType reportFiltersField;
 		public RiskFilterListType ReportFilters
 		{
@@ -25642,9 +25651,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public FMFDetailsType()
 	 	{
 		}
@@ -25681,9 +25690,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *Enhanced Data Information. Example: AID for Airlines 
-      */
+	/// <summary>
+	/// Enhanced Data Information. Example: AID for Airlines 
+    /// </summary>
 	public partial class EnhancedDataType	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
@@ -25694,9 +25703,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private AirlineItineraryType airlineItineraryField;
 		public AirlineItineraryType AirlineItinerary
 		{
@@ -25711,9 +25720,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public EnhancedDataType()
 	 	{
 		}
@@ -25756,9 +25765,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *AID for Airlines 
-      */
+	/// <summary>
+	/// AID for Airlines 
+    /// </summary>
 	public partial class AirlineItineraryType	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
@@ -25769,9 +25778,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string passengerNameField;
 		public string PassengerName
 		{
@@ -25786,9 +25795,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string issueDateField;
 		public string IssueDate
 		{
@@ -25803,9 +25812,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string travelAgencyNameField;
 		public string TravelAgencyName
 		{
@@ -25820,9 +25829,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string travelAgencyCodeField;
 		public string TravelAgencyCode
 		{
@@ -25837,9 +25846,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string ticketNumberField;
 		public string TicketNumber
 		{
@@ -25854,9 +25863,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string issuingCarrierCodeField;
 		public string IssuingCarrierCode
 		{
@@ -25871,9 +25880,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string customerCodeField;
 		public string CustomerCode
 		{
@@ -25888,9 +25897,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private BasicAmountType totalFareField;
 		public BasicAmountType TotalFare
 		{
@@ -25905,9 +25914,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private BasicAmountType totalTaxesField;
 		public BasicAmountType TotalTaxes
 		{
@@ -25922,9 +25931,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private BasicAmountType totalFeeField;
 		public BasicAmountType TotalFee
 		{
@@ -25939,9 +25948,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string restrictedTicketField;
 		public string RestrictedTicket
 		{
@@ -25956,9 +25965,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string clearingSequenceField;
 		public string ClearingSequence
 		{
@@ -25973,9 +25982,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string clearingCountField;
 		public string ClearingCount
 		{
@@ -25990,9 +25999,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private List<FlightDetailsType> flightDetailsField = new List<FlightDetailsType>();
 		public List<FlightDetailsType> FlightDetails
 		{
@@ -26007,9 +26016,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public AirlineItineraryType()
 	 	{
 		}
@@ -26117,9 +26126,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *Details of leg information 
-      */
+	/// <summary>
+	/// Details of leg information 
+    /// </summary>
 	public partial class FlightDetailsType	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
@@ -26130,9 +26139,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string conjuctionTicketField;
 		public string ConjuctionTicket
 		{
@@ -26147,9 +26156,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string exchangeTicketField;
 		public string ExchangeTicket
 		{
@@ -26164,9 +26173,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string couponNumberField;
 		public string CouponNumber
 		{
@@ -26181,9 +26190,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string serviceClassField;
 		public string ServiceClass
 		{
@@ -26198,9 +26207,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string travelDateField;
 		public string TravelDate
 		{
@@ -26215,9 +26224,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string carrierCodeField;
 		public string CarrierCode
 		{
@@ -26232,9 +26241,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string stopOverPermittedField;
 		public string StopOverPermitted
 		{
@@ -26249,9 +26258,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string departureAirportField;
 		public string DepartureAirport
 		{
@@ -26266,9 +26275,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string arrivalAirportField;
 		public string ArrivalAirport
 		{
@@ -26283,9 +26292,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string flightNumberField;
 		public string FlightNumber
 		{
@@ -26300,9 +26309,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string departureTimeField;
 		public string DepartureTime
 		{
@@ -26317,9 +26326,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string arrivalTimeField;
 		public string ArrivalTime
 		{
@@ -26334,9 +26343,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string fareBasisCodeField;
 		public string FareBasisCode
 		{
@@ -26351,9 +26360,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private BasicAmountType fareField;
 		public BasicAmountType Fare
 		{
@@ -26368,9 +26377,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private BasicAmountType taxesField;
 		public BasicAmountType Taxes
 		{
@@ -26385,9 +26394,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private BasicAmountType feeField;
 		public BasicAmountType Fee
 		{
@@ -26402,9 +26411,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string endorsementOrRestrictionsField;
 		public string EndorsementOrRestrictions
 		{
@@ -26419,9 +26428,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public FlightDetailsType()
 	 	{
 		}
@@ -26542,17 +26551,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *Authorization details 
-      */
+	/// <summary>
+	/// Authorization details 
+    /// </summary>
 	public partial class AuthorizationInfoType	{
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private PaymentStatusCodeType? paymentStatusField;
 		public PaymentStatusCodeType? PaymentStatus
 		{
@@ -26567,9 +26576,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private PendingStatusCodeType? pendingReasonField;
 		public PendingStatusCodeType? PendingReason
 		{
@@ -26584,9 +26593,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string protectionEligibilityField;
 		public string ProtectionEligibility
 		{
@@ -26601,9 +26610,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string protectionEligibilityTypeField;
 		public string ProtectionEligibilityType
 		{
@@ -26618,9 +26627,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public AuthorizationInfoType()
 	 	{
 		}
@@ -26657,9 +26666,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *Option Number. Optional 
-      */
+	/// <summary>
+	/// Option Number. Optional 
+    /// </summary>
 	public partial class OptionTrackingDetailsType	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
@@ -26670,9 +26679,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string optionNumberField;
 		public string OptionNumber
 		{
@@ -26687,9 +26696,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string optionQtyField;
 		public string OptionQty
 		{
@@ -26704,9 +26713,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string optionSelectField;
 		public string OptionSelect
 		{
@@ -26721,9 +26730,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string optionQtyDeltaField;
 		public string OptionQtyDelta
 		{
@@ -26738,9 +26747,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string optionAlertField;
 		public string OptionAlert
 		{
@@ -26755,9 +26764,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string optionCostField;
 		public string OptionCost
 		{
@@ -26772,9 +26781,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public OptionTrackingDetailsType()
 	 	{
 		}
@@ -26879,9 +26888,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *Item Number. Required 
-      */
+	/// <summary>
+	/// Item Number. Required 
+    /// </summary>
 	public partial class ItemTrackingDetailsType	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
@@ -26892,9 +26901,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string itemNumberField;
 		public string ItemNumber
 		{
@@ -26909,9 +26918,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string itemQtyField;
 		public string ItemQty
 		{
@@ -26926,9 +26935,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string itemQtyDeltaField;
 		public string ItemQtyDelta
 		{
@@ -26943,9 +26952,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string itemAlertField;
 		public string ItemAlert
 		{
@@ -26960,9 +26969,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string itemCostField;
 		public string ItemCost
 		{
@@ -26977,9 +26986,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public ItemTrackingDetailsType()
 	 	{
 		}
@@ -27074,17 +27083,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class ButtonSearchResultType	{
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string hostedButtonIDField;
 		public string HostedButtonID
 		{
@@ -27099,9 +27108,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string buttonTypeField;
 		public string ButtonType
 		{
@@ -27116,9 +27125,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string itemNameField;
 		public string ItemName
 		{
@@ -27133,9 +27142,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string modifyDateField;
 		public string ModifyDate
 		{
@@ -27150,9 +27159,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public ButtonSearchResultType()
 	 	{
 		}
@@ -27189,11 +27198,11 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *Identifier of the transaction to reverse. Required Character
-      *length and limitations: 17 single-byte alphanumeric
-      *characters 
-      */
+	/// <summary>
+	/// Identifier of the transaction to reverse. Required Character
+	/// length and limitations: 17 single-byte alphanumeric
+	/// characters 
+    /// </summary>
 	public partial class ReverseTransactionRequestDetailsType	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
@@ -27204,9 +27213,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string transactionIDField;
 		public string TransactionID
 		{
@@ -27221,9 +27230,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public ReverseTransactionRequestDetailsType()
 	 	{
 		}
@@ -27267,19 +27276,19 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *Unique transaction identifier of the reversal transaction
-      *created. Character length and limitations:17 single-byte
-      *characters 
-      */
+	/// <summary>
+	/// Unique transaction identifier of the reversal transaction
+	/// created. Character length and limitations:17 single-byte
+	/// characters 
+    /// </summary>
 	public partial class ReverseTransactionResponseDetailsType	{
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string reverseTransactionIDField;
 		public string ReverseTransactionID
 		{
@@ -27294,9 +27303,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string statusField;
 		public string Status
 		{
@@ -27311,9 +27320,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public ReverseTransactionResponseDetailsType()
 	 	{
 		}
@@ -27340,9 +27349,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *Details of incentive application on individual bucket. 
-      */
+	/// <summary>
+	/// Details of incentive application on individual bucket. 
+    /// </summary>
 	public partial class IncentiveInfoType	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
@@ -27353,9 +27362,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string incentiveCodeField;
 		public string IncentiveCode
 		{
@@ -27370,9 +27379,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private List<IncentiveApplyIndicationType> applyIndicationField = new List<IncentiveApplyIndicationType>();
 		public List<IncentiveApplyIndicationType> ApplyIndication
 		{
@@ -27387,9 +27396,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public IncentiveInfoType()
 	 	{
 		}
@@ -27440,10 +27449,10 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *Defines which bucket or item that the incentive should be
-      *applied to. 
-      */
+	/// <summary>
+	/// Defines which bucket or item that the incentive should be
+	/// applied to. 
+    /// </summary>
 	public partial class IncentiveApplyIndicationType	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
@@ -27454,9 +27463,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string paymentRequestIDField;
 		public string PaymentRequestID
 		{
@@ -27471,9 +27480,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string itemIdField;
 		public string ItemId
 		{
@@ -27488,9 +27497,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public IncentiveApplyIndicationType()
 	 	{
 		}
@@ -27539,18 +27548,18 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *Contains payment request information for each bucket in the
-      *cart.  
-      */
+	/// <summary>
+	/// Contains payment request information for each bucket in the
+	/// cart.  
+    /// </summary>
 	public partial class PaymentRequestInfoType	{
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string transactionIdField;
 		public string TransactionId
 		{
@@ -27565,9 +27574,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string paymentRequestIDField;
 		public string PaymentRequestID
 		{
@@ -27582,9 +27591,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private ErrorType paymentErrorField;
 		public ErrorType PaymentError
 		{
@@ -27599,9 +27608,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public PaymentRequestInfoType()
 	 	{
 		}
@@ -27633,10 +27642,10 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *E-mail address or secure merchant account ID of merchant to
-      *associate with new external remember-me. 
-      */
+	/// <summary>
+	/// E-mail address or secure merchant account ID of merchant to
+	/// associate with new external remember-me. 
+    /// </summary>
 	public partial class ExternalRememberMeOwnerDetailsType	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
@@ -27647,9 +27656,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string externalRememberMeOwnerIDTypeField;
 		public string ExternalRememberMeOwnerIDType
 		{
@@ -27664,9 +27673,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string externalRememberMeOwnerIDField;
 		public string ExternalRememberMeOwnerID
 		{
@@ -27681,9 +27690,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public ExternalRememberMeOwnerDetailsType()
 	 	{
 		}
@@ -27732,12 +27741,12 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *This element contains information that allows the merchant
-      *to request to opt into external remember me on behalf of the
-      *buyer or to request login bypass using external remember me.
-      *
-      */
+	/// <summary>
+	/// This element contains information that allows the merchant
+	/// to request to opt into external remember me on behalf of the
+	/// buyer or to request login bypass using external remember me.
+	/// 
+    /// </summary>
 	public partial class ExternalRememberMeOptInDetailsType	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
@@ -27748,9 +27757,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string externalRememberMeOptInField;
 		public string ExternalRememberMeOptIn
 		{
@@ -27765,9 +27774,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private ExternalRememberMeOwnerDetailsType externalRememberMeOwnerDetailsField;
 		public ExternalRememberMeOwnerDetailsType ExternalRememberMeOwnerDetails
 		{
@@ -27782,9 +27791,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public ExternalRememberMeOptInDetailsType()
 	 	{
 		}
@@ -27832,9 +27841,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *An optional set of values related to flow-specific details. 
-      */
+	/// <summary>
+	/// An optional set of values related to flow-specific details. 
+    /// </summary>
 	public partial class FlowControlDetailsType	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
@@ -27845,9 +27854,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string errorURLField;
 		public string ErrorURL
 		{
@@ -27862,9 +27871,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string inContextReturnURLField;
 		public string InContextReturnURL
 		{
@@ -27879,9 +27888,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public FlowControlDetailsType()
 	 	{
 		}
@@ -27930,18 +27939,18 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *Response information resulting from opt-in operation or
-      *current login bypass status. 
-      */
+	/// <summary>
+	/// Response information resulting from opt-in operation or
+	/// current login bypass status. 
+    /// </summary>
 	public partial class ExternalRememberMeStatusDetailsType	{
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private int? externalRememberMeStatusField;
 		public int? ExternalRememberMeStatus
 		{
@@ -27956,9 +27965,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string externalRememberMeIDField;
 		public string ExternalRememberMeID
 		{
@@ -27973,9 +27982,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public ExternalRememberMeStatusDetailsType()
 	 	{
 		}
@@ -28002,18 +28011,18 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *Response information resulting from opt-in operation or
-      *current login bypass status. 
-      */
+	/// <summary>
+	/// Response information resulting from opt-in operation or
+	/// current login bypass status. 
+    /// </summary>
 	public partial class RefreshTokenStatusDetailsType	{
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private int? refreshTokenStatusField;
 		public int? RefreshTokenStatus
 		{
@@ -28028,9 +28037,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string refreshTokenField;
 		public string RefreshToken
 		{
@@ -28045,9 +28054,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string immutableIDField;
 		public string ImmutableID
 		{
@@ -28062,9 +28071,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public RefreshTokenStatusDetailsType()
 	 	{
 		}
@@ -28096,10 +28105,10 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *Contains elements that allows customization of display (user
-      *interface) elements. 
-      */
+	/// <summary>
+	/// Contains elements that allows customization of display (user
+	/// interface) elements. 
+    /// </summary>
 	public partial class DisplayControlDetailsType	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
@@ -28110,9 +28119,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string inContextPaymentButtonImageField;
 		public string InContextPaymentButtonImage
 		{
@@ -28127,9 +28136,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public DisplayControlDetailsType()
 	 	{
 		}
@@ -28173,10 +28182,10 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *Contains elements that allow tracking for an external
-      *partner. 
-      */
+	/// <summary>
+	/// Contains elements that allow tracking for an external
+	/// partner. 
+    /// </summary>
 	public partial class ExternalPartnerTrackingDetailsType	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
@@ -28187,9 +28196,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string externalPartnerSegmentIDField;
 		public string ExternalPartnerSegmentID
 		{
@@ -28204,9 +28213,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public ExternalPartnerTrackingDetailsType()
 	 	{
 		}
@@ -28250,10 +28259,10 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *Store IDOptional Character length and limits: 50 single-byte
-      *characters 
-      */
+	/// <summary>
+	/// Store IDOptional Character length and limits: 50 single-byte
+	/// characters 
+    /// </summary>
 	public partial class MerchantStoreDetailsType	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
@@ -28264,9 +28273,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string storeIDField;
 		public string StoreID
 		{
@@ -28281,9 +28290,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string terminalIDField;
 		public string TerminalID
 		{
@@ -28298,17 +28307,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Constructor with arguments
-	 	  */
+		/// <summary>
+		/// Constructor with arguments
+	 	/// </summary>
 	 	public MerchantStoreDetailsType(string storeID)
 	 	{
 			this.StoreID = storeID;
 		}
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public MerchantStoreDetailsType()
 	 	{
 		}
@@ -28357,9 +28366,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class AdditionalFeeType	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
@@ -28370,9 +28379,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string typeField;
 		public string Type
 		{
@@ -28387,9 +28396,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private BasicAmountType amountField;
 		public BasicAmountType Amount
 		{
@@ -28404,9 +28413,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public AdditionalFeeType()
 	 	{
 		}
@@ -28470,9 +28479,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *Describes discount information 
-      */
+	/// <summary>
+	/// Describes discount information 
+    /// </summary>
 	public partial class DiscountType	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
@@ -28483,9 +28492,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string nameField;
 		public string Name
 		{
@@ -28500,9 +28509,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string descriptionField;
 		public string Description
 		{
@@ -28517,9 +28526,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private BasicAmountType amountField;
 		public BasicAmountType Amount
 		{
@@ -28534,9 +28543,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private RedeemedOfferType? redeemedOfferTypeField;
 		public RedeemedOfferType? RedeemedOfferType
 		{
@@ -28551,9 +28560,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string redeemedOfferIDField;
 		public string RedeemedOfferID
 		{
@@ -28568,17 +28577,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Constructor with arguments
-	 	  */
+		/// <summary>
+		/// Constructor with arguments
+	 	/// </summary>
 	 	public DiscountType(BasicAmountType amount)
 	 	{
 			this.Amount = amount;
 		}
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public DiscountType()
 	 	{
 		}
@@ -28672,9 +28681,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *Describes an individual item for an invoice. 
-      */
+	/// <summary>
+	/// Describes an individual item for an invoice. 
+    /// </summary>
 	public partial class InvoiceItemType	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
@@ -28685,9 +28694,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string nameField;
 		public string Name
 		{
@@ -28702,9 +28711,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string descriptionField;
 		public string Description
 		{
@@ -28719,9 +28728,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string eANField;
 		public string EAN
 		{
@@ -28736,9 +28745,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string sKUField;
 		public string SKU
 		{
@@ -28753,9 +28762,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string returnPolicyIdentifierField;
 		public string ReturnPolicyIdentifier
 		{
@@ -28770,9 +28779,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private BasicAmountType priceField;
 		public BasicAmountType Price
 		{
@@ -28787,9 +28796,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private BasicAmountType itemPriceField;
 		public BasicAmountType ItemPrice
 		{
@@ -28804,9 +28813,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private decimal? itemCountField;
 		public decimal? ItemCount
 		{
@@ -28821,9 +28830,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private UnitOfMeasure? itemCountUnitField;
 		public UnitOfMeasure? ItemCountUnit
 		{
@@ -28838,9 +28847,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private List<DiscountType> discountField = new List<DiscountType>();
 		public List<DiscountType> Discount
 		{
@@ -28855,9 +28864,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private bool? taxableField;
 		public bool? Taxable
 		{
@@ -28872,9 +28881,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private decimal? taxRateField;
 		public decimal? TaxRate
 		{
@@ -28889,9 +28898,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private List<AdditionalFeeType> additionalFeesField = new List<AdditionalFeeType>();
 		public List<AdditionalFeeType> AdditionalFees
 		{
@@ -28906,9 +28915,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private bool? reimbursableField;
 		public bool? Reimbursable
 		{
@@ -28923,9 +28932,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string mPNField;
 		public string MPN
 		{
@@ -28940,9 +28949,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string iSBNField;
 		public string ISBN
 		{
@@ -28957,9 +28966,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string pLUField;
 		public string PLU
 		{
@@ -28974,9 +28983,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string modelNumberField;
 		public string ModelNumber
 		{
@@ -28991,9 +29000,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string styleNumberField;
 		public string StyleNumber
 		{
@@ -29008,9 +29017,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public InvoiceItemType()
 	 	{
 		}
@@ -29255,17 +29264,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *Holds refunds payment status information 
-      */
+	/// <summary>
+	/// Holds refunds payment status information 
+    /// </summary>
 	public partial class RefundInfoType	{
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private PaymentStatusCodeType? refundStatusField;
 		public PaymentStatusCodeType? RefundStatus
 		{
@@ -29280,9 +29289,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private PendingStatusCodeType? pendingReasonField;
 		public PendingStatusCodeType? PendingReason
 		{
@@ -29297,9 +29306,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public RefundInfoType()
 	 	{
 		}
@@ -29326,9 +29335,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *Defines relationship between buckets 
-      */
+	/// <summary>
+	/// Defines relationship between buckets 
+    /// </summary>
 	public partial class CoupledBucketsType	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
@@ -29339,9 +29348,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private CoupleType? coupleTypeField;
 		public CoupleType? CoupleType
 		{
@@ -29356,9 +29365,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string coupledPaymentRequestIDField;
 		public string CoupledPaymentRequestID
 		{
@@ -29373,9 +29382,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private List<string> paymentRequestIDField = new List<string>();
 		public List<string> PaymentRequestID
 		{
@@ -29390,17 +29399,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Constructor with arguments
-	 	  */
+		/// <summary>
+		/// Constructor with arguments
+	 	/// </summary>
 	 	public CoupledBucketsType(List<string> paymentRequestID)
 	 	{
 			this.PaymentRequestID = paymentRequestID;
 		}
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public CoupledBucketsType()
 	 	{
 		}
@@ -29457,17 +29466,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *Information about Coupled Payment transactions. 
-      */
+	/// <summary>
+	/// Information about Coupled Payment transactions. 
+    /// </summary>
 	public partial class CoupledPaymentInfoType	{
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string coupledPaymentRequestIDField;
 		public string CoupledPaymentRequestID
 		{
@@ -29482,9 +29491,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string coupledPaymentIDField;
 		public string CoupledPaymentID
 		{
@@ -29499,9 +29508,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public CoupledPaymentInfoType()
 	 	{
 		}
@@ -29528,9 +29537,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class EnhancedCheckoutDataType	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:EnhancedDataTypes";
@@ -29541,9 +29550,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public EnhancedCheckoutDataType()
 	 	{
 		}
@@ -29582,9 +29591,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class EnhancedPaymentDataType	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:EnhancedDataTypes";
@@ -29595,9 +29604,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public EnhancedPaymentDataType()
 	 	{
 		}
@@ -29642,9 +29651,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class EnhancedItemDataType	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:EnhancedDataTypes";
@@ -29655,9 +29664,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public EnhancedItemDataType()
 	 	{
 		}
@@ -29702,17 +29711,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class EnhancedPaymentInfoType	{
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public EnhancedPaymentInfoType()
 	 	{
 		}
@@ -29729,9 +29738,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class EnhancedInitiateRecoupRequestDetailsType	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:EnhancedDataTypes";
@@ -29742,9 +29751,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public EnhancedInitiateRecoupRequestDetailsType()
 	 	{
 		}
@@ -29783,9 +29792,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class EnhancedCompleteRecoupRequestDetailsType	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:EnhancedDataTypes";
@@ -29796,9 +29805,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public EnhancedCompleteRecoupRequestDetailsType()
 	 	{
 		}
@@ -29837,17 +29846,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class EnhancedCompleteRecoupResponseDetailsType	{
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public EnhancedCompleteRecoupResponseDetailsType()
 	 	{
 		}
@@ -29864,9 +29873,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class EnhancedCancelRecoupRequestDetailsType	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:EnhancedDataTypes";
@@ -29877,9 +29886,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public EnhancedCancelRecoupRequestDetailsType()
 	 	{
 		}
@@ -29918,9 +29927,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class EnhancedPayerInfoType	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:apis:EnhancedDataTypes";
@@ -29931,9 +29940,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public EnhancedPayerInfoType()
 	 	{
 		}
@@ -29978,9 +29987,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *Installment Period. Optional 
-      */
+	/// <summary>
+	/// Installment Period. Optional 
+    /// </summary>
 	public partial class InstallmentDetailsType	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
@@ -29991,9 +30000,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private BillingPeriodType? billingPeriodField;
 		public BillingPeriodType? BillingPeriod
 		{
@@ -30008,9 +30017,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private int? billingFrequencyField;
 		public int? BillingFrequency
 		{
@@ -30025,9 +30034,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private int? totalBillingCyclesField;
 		public int? TotalBillingCycles
 		{
@@ -30042,9 +30051,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string amountField;
 		public string Amount
 		{
@@ -30059,9 +30068,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string shippingAmountField;
 		public string ShippingAmount
 		{
@@ -30076,9 +30085,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string taxAmountField;
 		public string TaxAmount
 		{
@@ -30093,9 +30102,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public InstallmentDetailsType()
 	 	{
 		}
@@ -30200,10 +30209,10 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *Option Selection. Required Character length and limitations:
-      *12 single-byte alphanumeric characters 
-      */
+	/// <summary>
+	/// Option Selection. Required Character length and limitations:
+	/// 12 single-byte alphanumeric characters 
+    /// </summary>
 	public partial class OptionSelectionDetailsType	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
@@ -30214,9 +30223,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string optionSelectionField;
 		public string OptionSelection
 		{
@@ -30231,9 +30240,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string priceField;
 		public string Price
 		{
@@ -30248,9 +30257,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private OptionTypeListType? optionTypeField;
 		public OptionTypeListType? OptionType
 		{
@@ -30265,9 +30274,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private List<InstallmentDetailsType> paymentPeriodField = new List<InstallmentDetailsType>();
 		public List<InstallmentDetailsType> PaymentPeriod
 		{
@@ -30282,17 +30291,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Constructor with arguments
-	 	  */
+		/// <summary>
+		/// Constructor with arguments
+	 	/// </summary>
 	 	public OptionSelectionDetailsType(string optionSelection)
 	 	{
 			this.OptionSelection = optionSelection;
 		}
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public OptionSelectionDetailsType()
 	 	{
 		}
@@ -30383,9 +30392,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *Option Name. Optional 
-      */
+	/// <summary>
+	/// Option Name. Optional 
+    /// </summary>
 	public partial class OptionDetailsType	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
@@ -30396,9 +30405,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string optionNameField;
 		public string OptionName
 		{
@@ -30413,9 +30422,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private List<OptionSelectionDetailsType> optionSelectionDetailsField = new List<OptionSelectionDetailsType>();
 		public List<OptionSelectionDetailsType> OptionSelectionDetails
 		{
@@ -30430,17 +30439,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Constructor with arguments
-	 	  */
+		/// <summary>
+		/// Constructor with arguments
+	 	/// </summary>
 	 	public OptionDetailsType(string optionName)
 	 	{
 			this.OptionName = optionName;
 		}
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public OptionDetailsType()
 	 	{
 		}
@@ -30511,9 +30520,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class BMCreateButtonReq	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
@@ -30524,9 +30533,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private BMCreateButtonRequestType bMCreateButtonRequestField;
 		public BMCreateButtonRequestType BMCreateButtonRequest
 		{
@@ -30541,9 +30550,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public BMCreateButtonReq()
 	 	{
 		}
@@ -30586,11 +30595,11 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *Type of Button to create.  Required Must be one of the
-      *following: BUYNOW, CART, GIFTCERTIFICATE. SUBSCRIBE,
-      *PAYMENTPLAN, AUTOBILLING, DONATE, VIEWCART or UNSUBSCRIBE  
-      */
+	/// <summary>
+	/// Type of Button to create.  Required Must be one of the
+	/// following: BUYNOW, CART, GIFTCERTIFICATE. SUBSCRIBE,
+	/// PAYMENTPLAN, AUTOBILLING, DONATE, VIEWCART or UNSUBSCRIBE  
+    /// </summary>
 	public partial class BMCreateButtonRequestType : AbstractRequestType	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
@@ -30601,9 +30610,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private ButtonTypeType? buttonTypeField;
 		public ButtonTypeType? ButtonType
 		{
@@ -30618,9 +30627,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private ButtonCodeType? buttonCodeField;
 		public ButtonCodeType? ButtonCode
 		{
@@ -30635,9 +30644,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private ButtonSubTypeType? buttonSubTypeField;
 		public ButtonSubTypeType? ButtonSubType
 		{
@@ -30652,9 +30661,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private List<string> buttonVarField = new List<string>();
 		public List<string> ButtonVar
 		{
@@ -30669,9 +30678,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private List<OptionDetailsType> optionDetailsField = new List<OptionDetailsType>();
 		public List<OptionDetailsType> OptionDetails
 		{
@@ -30686,9 +30695,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private List<string> textBoxField = new List<string>();
 		public List<string> TextBox
 		{
@@ -30703,9 +30712,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private ButtonImageType? buttonImageField;
 		public ButtonImageType? ButtonImage
 		{
@@ -30720,9 +30729,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string buttonImageURLField;
 		public string ButtonImageURL
 		{
@@ -30737,9 +30746,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private BuyNowTextType? buyNowTextField;
 		public BuyNowTextType? BuyNowText
 		{
@@ -30754,9 +30763,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private SubscribeTextType? subscribeTextField;
 		public SubscribeTextType? SubscribeText
 		{
@@ -30771,9 +30780,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private CountryCodeType? buttonCountryField;
 		public CountryCodeType? ButtonCountry
 		{
@@ -30788,9 +30797,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string buttonLanguageField;
 		public string ButtonLanguage
 		{
@@ -30805,9 +30814,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public BMCreateButtonRequestType()
 	 	{
 		}
@@ -30915,17 +30924,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class BMCreateButtonResponseType : AbstractResponseType	{
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string websiteField;
 		public string Website
 		{
@@ -30940,9 +30949,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string emailField;
 		public string Email
 		{
@@ -30957,9 +30966,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string mobileField;
 		public string Mobile
 		{
@@ -30974,9 +30983,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string hostedButtonIDField;
 		public string HostedButtonID
 		{
@@ -30991,9 +31000,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public BMCreateButtonResponseType()
 	 	{
 		}
@@ -31030,9 +31039,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class BMUpdateButtonReq	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
@@ -31043,9 +31052,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private BMUpdateButtonRequestType bMUpdateButtonRequestField;
 		public BMUpdateButtonRequestType BMUpdateButtonRequest
 		{
@@ -31060,9 +31069,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public BMUpdateButtonReq()
 	 	{
 		}
@@ -31105,11 +31114,11 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *Hosted Button id of the button to update.  Required
-      *Character length and limitations: 10 single-byte numeric
-      *characters  
-      */
+	/// <summary>
+	/// Hosted Button id of the button to update.  Required
+	/// Character length and limitations: 10 single-byte numeric
+	/// characters  
+    /// </summary>
 	public partial class BMUpdateButtonRequestType : AbstractRequestType	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
@@ -31120,9 +31129,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string hostedButtonIDField;
 		public string HostedButtonID
 		{
@@ -31137,9 +31146,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private ButtonTypeType? buttonTypeField;
 		public ButtonTypeType? ButtonType
 		{
@@ -31154,9 +31163,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private ButtonCodeType? buttonCodeField;
 		public ButtonCodeType? ButtonCode
 		{
@@ -31171,9 +31180,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private ButtonSubTypeType? buttonSubTypeField;
 		public ButtonSubTypeType? ButtonSubType
 		{
@@ -31188,9 +31197,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private List<string> buttonVarField = new List<string>();
 		public List<string> ButtonVar
 		{
@@ -31205,9 +31214,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private List<OptionDetailsType> optionDetailsField = new List<OptionDetailsType>();
 		public List<OptionDetailsType> OptionDetails
 		{
@@ -31222,9 +31231,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private List<string> textBoxField = new List<string>();
 		public List<string> TextBox
 		{
@@ -31239,9 +31248,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private ButtonImageType? buttonImageField;
 		public ButtonImageType? ButtonImage
 		{
@@ -31256,9 +31265,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string buttonImageURLField;
 		public string ButtonImageURL
 		{
@@ -31273,9 +31282,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private BuyNowTextType? buyNowTextField;
 		public BuyNowTextType? BuyNowText
 		{
@@ -31290,9 +31299,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private SubscribeTextType? subscribeTextField;
 		public SubscribeTextType? SubscribeText
 		{
@@ -31307,9 +31316,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private CountryCodeType? buttonCountryField;
 		public CountryCodeType? ButtonCountry
 		{
@@ -31324,9 +31333,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string buttonLanguageField;
 		public string ButtonLanguage
 		{
@@ -31341,17 +31350,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Constructor with arguments
-	 	  */
+		/// <summary>
+		/// Constructor with arguments
+	 	/// </summary>
 	 	public BMUpdateButtonRequestType(string hostedButtonID)
 	 	{
 			this.HostedButtonID = hostedButtonID;
 		}
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public BMUpdateButtonRequestType()
 	 	{
 		}
@@ -31464,17 +31473,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class BMUpdateButtonResponseType : AbstractResponseType	{
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string websiteField;
 		public string Website
 		{
@@ -31489,9 +31498,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string emailField;
 		public string Email
 		{
@@ -31506,9 +31515,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string mobileField;
 		public string Mobile
 		{
@@ -31523,9 +31532,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string hostedButtonIDField;
 		public string HostedButtonID
 		{
@@ -31540,9 +31549,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public BMUpdateButtonResponseType()
 	 	{
 		}
@@ -31579,9 +31588,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class BMManageButtonStatusReq	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
@@ -31592,9 +31601,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private BMManageButtonStatusRequestType bMManageButtonStatusRequestField;
 		public BMManageButtonStatusRequestType BMManageButtonStatusRequest
 		{
@@ -31609,9 +31618,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public BMManageButtonStatusReq()
 	 	{
 		}
@@ -31654,10 +31663,10 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *Button ID of Hosted button.  Required Character length and
-      *limitations: 10 single-byte numeric characters  
-      */
+	/// <summary>
+	/// Button ID of Hosted button.  Required Character length and
+	/// limitations: 10 single-byte numeric characters  
+    /// </summary>
 	public partial class BMManageButtonStatusRequestType : AbstractRequestType	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
@@ -31668,9 +31677,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string hostedButtonIDField;
 		public string HostedButtonID
 		{
@@ -31685,9 +31694,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private ButtonStatusType? buttonStatusField;
 		public ButtonStatusType? ButtonStatus
 		{
@@ -31702,9 +31711,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public BMManageButtonStatusRequestType()
 	 	{
 		}
@@ -31754,17 +31763,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class BMManageButtonStatusResponseType : AbstractResponseType	{
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public BMManageButtonStatusResponseType()
 	 	{
 		}
@@ -31781,9 +31790,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class BMGetButtonDetailsReq	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
@@ -31794,9 +31803,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private BMGetButtonDetailsRequestType bMGetButtonDetailsRequestField;
 		public BMGetButtonDetailsRequestType BMGetButtonDetailsRequest
 		{
@@ -31811,9 +31820,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public BMGetButtonDetailsReq()
 	 	{
 		}
@@ -31856,10 +31865,10 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *Button ID of button to return.  Required Character length
-      *and limitations: 10 single-byte numeric characters  
-      */
+	/// <summary>
+	/// Button ID of button to return.  Required Character length
+	/// and limitations: 10 single-byte numeric characters  
+    /// </summary>
 	public partial class BMGetButtonDetailsRequestType : AbstractRequestType	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
@@ -31870,9 +31879,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string hostedButtonIDField;
 		public string HostedButtonID
 		{
@@ -31887,17 +31896,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Constructor with arguments
-	 	  */
+		/// <summary>
+		/// Constructor with arguments
+	 	/// </summary>
 	 	public BMGetButtonDetailsRequestType(string hostedButtonID)
 	 	{
 			this.HostedButtonID = hostedButtonID;
 		}
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public BMGetButtonDetailsRequestType()
 	 	{
 		}
@@ -31942,19 +31951,19 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *Type of button. One of the following: BUYNOW, CART,
-      *GIFTCERTIFICATE. SUBSCRIBE, PAYMENTPLAN, AUTOBILLING,
-      *DONATE, VIEWCART or UNSUBSCRIBE 
-      */
+	/// <summary>
+	/// Type of button. One of the following: BUYNOW, CART,
+	/// GIFTCERTIFICATE. SUBSCRIBE, PAYMENTPLAN, AUTOBILLING,
+	/// DONATE, VIEWCART or UNSUBSCRIBE 
+    /// </summary>
 	public partial class BMGetButtonDetailsResponseType : AbstractResponseType	{
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string websiteField;
 		public string Website
 		{
@@ -31969,9 +31978,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string emailField;
 		public string Email
 		{
@@ -31986,9 +31995,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string mobileField;
 		public string Mobile
 		{
@@ -32003,9 +32012,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string hostedButtonIDField;
 		public string HostedButtonID
 		{
@@ -32020,9 +32029,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private ButtonTypeType? buttonTypeField;
 		public ButtonTypeType? ButtonType
 		{
@@ -32037,9 +32046,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private ButtonCodeType? buttonCodeField;
 		public ButtonCodeType? ButtonCode
 		{
@@ -32054,9 +32063,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private ButtonSubTypeType? buttonSubTypeField;
 		public ButtonSubTypeType? ButtonSubType
 		{
@@ -32071,9 +32080,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private List<string> buttonVarField = new List<string>();
 		public List<string> ButtonVar
 		{
@@ -32088,9 +32097,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private List<OptionDetailsType> optionDetailsField = new List<OptionDetailsType>();
 		public List<OptionDetailsType> OptionDetails
 		{
@@ -32105,9 +32114,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private List<string> textBoxField = new List<string>();
 		public List<string> TextBox
 		{
@@ -32122,9 +32131,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private ButtonImageType? buttonImageField;
 		public ButtonImageType? ButtonImage
 		{
@@ -32139,9 +32148,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string buttonImageURLField;
 		public string ButtonImageURL
 		{
@@ -32156,9 +32165,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private BuyNowTextType? buyNowTextField;
 		public BuyNowTextType? BuyNowText
 		{
@@ -32173,9 +32182,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private SubscribeTextType? subscribeTextField;
 		public SubscribeTextType? SubscribeText
 		{
@@ -32190,9 +32199,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private CountryCodeType? buttonCountryField;
 		public CountryCodeType? ButtonCountry
 		{
@@ -32207,9 +32216,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string buttonLanguageField;
 		public string ButtonLanguage
 		{
@@ -32224,9 +32233,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public BMGetButtonDetailsResponseType()
 	 	{
 		}
@@ -32335,9 +32344,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class BMSetInventoryReq	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
@@ -32348,9 +32357,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private BMSetInventoryRequestType bMSetInventoryRequestField;
 		public BMSetInventoryRequestType BMSetInventoryRequest
 		{
@@ -32365,9 +32374,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public BMSetInventoryReq()
 	 	{
 		}
@@ -32410,11 +32419,11 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *Hosted Button ID of button you wish to change.  Required
-      *Character length and limitations: 10 single-byte numeric
-      *characters  
-      */
+	/// <summary>
+	/// Hosted Button ID of button you wish to change.  Required
+	/// Character length and limitations: 10 single-byte numeric
+	/// characters  
+    /// </summary>
 	public partial class BMSetInventoryRequestType : AbstractRequestType	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
@@ -32425,9 +32434,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string hostedButtonIDField;
 		public string HostedButtonID
 		{
@@ -32442,9 +32451,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string trackInvField;
 		public string TrackInv
 		{
@@ -32459,9 +32468,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string trackPnlField;
 		public string TrackPnl
 		{
@@ -32476,9 +32485,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private ItemTrackingDetailsType itemTrackingDetailsField;
 		public ItemTrackingDetailsType ItemTrackingDetails
 		{
@@ -32493,9 +32502,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string optionIndexField;
 		public string OptionIndex
 		{
@@ -32510,9 +32519,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private List<OptionTrackingDetailsType> optionTrackingDetailsField = new List<OptionTrackingDetailsType>();
 		public List<OptionTrackingDetailsType> OptionTrackingDetails
 		{
@@ -32527,9 +32536,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string soldoutURLField;
 		public string SoldoutURL
 		{
@@ -32544,9 +32553,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string reuseDigitalDownloadKeysField;
 		public string ReuseDigitalDownloadKeys
 		{
@@ -32561,9 +32570,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string appendDigitalDownloadKeysField;
 		public string AppendDigitalDownloadKeys
 		{
@@ -32578,9 +32587,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private List<string> digitalDownloadKeysField = new List<string>();
 		public List<string> DigitalDownloadKeys
 		{
@@ -32595,9 +32604,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Constructor with arguments
-	 	  */
+		/// <summary>
+		/// Constructor with arguments
+	 	/// </summary>
 	 	public BMSetInventoryRequestType(string hostedButtonID, string trackInv, string trackPnl)
 	 	{
 			this.HostedButtonID = hostedButtonID;
@@ -32605,9 +32614,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			this.TrackPnl = trackPnl;
 		}
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public BMSetInventoryRequestType()
 	 	{
 		}
@@ -32701,17 +32710,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class BMSetInventoryResponseType : AbstractResponseType	{
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public BMSetInventoryResponseType()
 	 	{
 		}
@@ -32728,9 +32737,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class BMGetInventoryReq	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
@@ -32741,9 +32750,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private BMGetInventoryRequestType bMGetInventoryRequestField;
 		public BMGetInventoryRequestType BMGetInventoryRequest
 		{
@@ -32758,9 +32767,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public BMGetInventoryReq()
 	 	{
 		}
@@ -32803,11 +32812,11 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *Hosted Button ID of the button to return inventory for. 
-      *Required Character length and limitations: 10 single-byte
-      *numeric characters  
-      */
+	/// <summary>
+	/// Hosted Button ID of the button to return inventory for. 
+	/// Required Character length and limitations: 10 single-byte
+	/// numeric characters  
+    /// </summary>
 	public partial class BMGetInventoryRequestType : AbstractRequestType	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
@@ -32818,9 +32827,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string hostedButtonIDField;
 		public string HostedButtonID
 		{
@@ -32835,17 +32844,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Constructor with arguments
-	 	  */
+		/// <summary>
+		/// Constructor with arguments
+	 	/// </summary>
 	 	public BMGetInventoryRequestType(string hostedButtonID)
 	 	{
 			this.HostedButtonID = hostedButtonID;
 		}
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public BMGetInventoryRequestType()
 	 	{
 		}
@@ -32890,17 +32899,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class BMGetInventoryResponseType : AbstractResponseType	{
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string hostedButtonIDField;
 		public string HostedButtonID
 		{
@@ -32915,9 +32924,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string trackInvField;
 		public string TrackInv
 		{
@@ -32932,9 +32941,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string trackPnlField;
 		public string TrackPnl
 		{
@@ -32949,9 +32958,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private ItemTrackingDetailsType itemTrackingDetailsField;
 		public ItemTrackingDetailsType ItemTrackingDetails
 		{
@@ -32966,9 +32975,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string optionIndexField;
 		public string OptionIndex
 		{
@@ -32983,9 +32992,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string optionNameField;
 		public string OptionName
 		{
@@ -33000,9 +33009,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private List<OptionTrackingDetailsType> optionTrackingDetailsField = new List<OptionTrackingDetailsType>();
 		public List<OptionTrackingDetailsType> OptionTrackingDetails
 		{
@@ -33017,9 +33026,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string soldoutURLField;
 		public string SoldoutURL
 		{
@@ -33034,9 +33043,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private List<string> digitalDownloadKeysField = new List<string>();
 		public List<string> DigitalDownloadKeys
 		{
@@ -33051,9 +33060,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public BMGetInventoryResponseType()
 	 	{
 		}
@@ -33123,9 +33132,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class BMButtonSearchReq	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
@@ -33136,9 +33145,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private BMButtonSearchRequestType bMButtonSearchRequestField;
 		public BMButtonSearchRequestType BMButtonSearchRequest
 		{
@@ -33153,9 +33162,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public BMButtonSearchReq()
 	 	{
 		}
@@ -33198,10 +33207,10 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *The earliest transaction date at which to start the search.
-      *No wildcards are allowed. Required 
-      */
+	/// <summary>
+	/// The earliest transaction date at which to start the search.
+	/// No wildcards are allowed. Required 
+    /// </summary>
 	public partial class BMButtonSearchRequestType : AbstractRequestType	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
@@ -33212,9 +33221,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string startDateField;
 		public string StartDate
 		{
@@ -33229,9 +33238,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string endDateField;
 		public string EndDate
 		{
@@ -33246,9 +33255,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public BMButtonSearchRequestType()
 	 	{
 		}
@@ -33298,17 +33307,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class BMButtonSearchResponseType : AbstractResponseType	{
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private List<ButtonSearchResultType> buttonSearchResultField = new List<ButtonSearchResultType>();
 		public List<ButtonSearchResultType> ButtonSearchResult
 		{
@@ -33323,9 +33332,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public BMButtonSearchResponseType()
 	 	{
 		}
@@ -33351,9 +33360,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class RefundTransactionReq	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
@@ -33364,9 +33373,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private RefundTransactionRequestType refundTransactionRequestField;
 		public RefundTransactionRequestType RefundTransactionRequest
 		{
@@ -33381,9 +33390,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public RefundTransactionReq()
 	 	{
 		}
@@ -33426,11 +33435,11 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *Unique identifier of the transaction you are refunding.
-      *Optional Character length and limitations: 17 single-byte
-      *alphanumeric characters 
-      */
+	/// <summary>
+	/// Unique identifier of the transaction you are refunding.
+	/// Optional Character length and limitations: 17 single-byte
+	/// alphanumeric characters 
+    /// </summary>
 	public partial class RefundTransactionRequestType : AbstractRequestType	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
@@ -33441,9 +33450,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string transactionIDField;
 		public string TransactionID
 		{
@@ -33458,9 +33467,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string payerIDField;
 		public string PayerID
 		{
@@ -33475,9 +33484,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string invoiceIDField;
 		public string InvoiceID
 		{
@@ -33492,9 +33501,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private RefundType? refundTypeField;
 		public RefundType? RefundType
 		{
@@ -33509,9 +33518,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private BasicAmountType amountField;
 		public BasicAmountType Amount
 		{
@@ -33526,9 +33535,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string memoField;
 		public string Memo
 		{
@@ -33543,9 +33552,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string retryUntilField;
 		public string RetryUntil
 		{
@@ -33560,9 +33569,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private RefundSourceCodeType? refundSourceField;
 		public RefundSourceCodeType? RefundSource
 		{
@@ -33577,9 +33586,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private bool? refundAdviceField;
 		public bool? RefundAdvice
 		{
@@ -33594,9 +33603,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private MerchantStoreDetailsType merchantStoreDetailsField;
 		public MerchantStoreDetailsType MerchantStoreDetails
 		{
@@ -33611,9 +33620,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private List<InvoiceItemType> refundItemDetailsField = new List<InvoiceItemType>();
 		public List<InvoiceItemType> RefundItemDetails
 		{
@@ -33628,9 +33637,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string msgSubIDField;
 		public string MsgSubID
 		{
@@ -33645,9 +33654,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public RefundTransactionRequestType()
 	 	{
 		}
@@ -33747,18 +33756,18 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *Unique transaction ID of the refund. Character length and
-      *limitations:17 single-byte characters 
-      */
+	/// <summary>
+	/// Unique transaction ID of the refund. Character length and
+	/// limitations:17 single-byte characters 
+    /// </summary>
 	public partial class RefundTransactionResponseType : AbstractResponseType	{
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string refundTransactionIDField;
 		public string RefundTransactionID
 		{
@@ -33773,9 +33782,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private BasicAmountType netRefundAmountField;
 		public BasicAmountType NetRefundAmount
 		{
@@ -33790,9 +33799,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private BasicAmountType feeRefundAmountField;
 		public BasicAmountType FeeRefundAmount
 		{
@@ -33807,9 +33816,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private BasicAmountType grossRefundAmountField;
 		public BasicAmountType GrossRefundAmount
 		{
@@ -33824,9 +33833,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private BasicAmountType totalRefundedAmountField;
 		public BasicAmountType TotalRefundedAmount
 		{
@@ -33841,9 +33850,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private RefundInfoType refundInfoField;
 		public RefundInfoType RefundInfo
 		{
@@ -33858,9 +33867,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string receiptDataField;
 		public string ReceiptData
 		{
@@ -33875,9 +33884,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string msgSubIDField;
 		public string MsgSubID
 		{
@@ -33892,9 +33901,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public RefundTransactionResponseType()
 	 	{
 		}
@@ -33951,9 +33960,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class InitiateRecoupReq	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
@@ -33964,9 +33973,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private InitiateRecoupRequestType initiateRecoupRequestField;
 		public InitiateRecoupRequestType InitiateRecoupRequest
 		{
@@ -33981,9 +33990,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public InitiateRecoupReq()
 	 	{
 		}
@@ -34026,9 +34035,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class InitiateRecoupRequestType : AbstractRequestType	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
@@ -34039,9 +34048,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private EnhancedInitiateRecoupRequestDetailsType enhancedInitiateRecoupRequestDetailsField;
 		public EnhancedInitiateRecoupRequestDetailsType EnhancedInitiateRecoupRequestDetails
 		{
@@ -34056,17 +34065,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Constructor with arguments
-	 	  */
+		/// <summary>
+		/// Constructor with arguments
+	 	/// </summary>
 	 	public InitiateRecoupRequestType(EnhancedInitiateRecoupRequestDetailsType enhancedInitiateRecoupRequestDetails)
 	 	{
 			this.EnhancedInitiateRecoupRequestDetails = enhancedInitiateRecoupRequestDetails;
 		}
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public InitiateRecoupRequestType()
 	 	{
 		}
@@ -34110,17 +34119,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class InitiateRecoupResponseType : AbstractResponseType	{
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public InitiateRecoupResponseType()
 	 	{
 		}
@@ -34137,9 +34146,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class CompleteRecoupReq	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
@@ -34150,9 +34159,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private CompleteRecoupRequestType completeRecoupRequestField;
 		public CompleteRecoupRequestType CompleteRecoupRequest
 		{
@@ -34167,9 +34176,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public CompleteRecoupReq()
 	 	{
 		}
@@ -34212,9 +34221,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class CompleteRecoupRequestType : AbstractRequestType	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
@@ -34225,9 +34234,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private EnhancedCompleteRecoupRequestDetailsType enhancedCompleteRecoupRequestDetailsField;
 		public EnhancedCompleteRecoupRequestDetailsType EnhancedCompleteRecoupRequestDetails
 		{
@@ -34242,17 +34251,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Constructor with arguments
-	 	  */
+		/// <summary>
+		/// Constructor with arguments
+	 	/// </summary>
 	 	public CompleteRecoupRequestType(EnhancedCompleteRecoupRequestDetailsType enhancedCompleteRecoupRequestDetails)
 	 	{
 			this.EnhancedCompleteRecoupRequestDetails = enhancedCompleteRecoupRequestDetails;
 		}
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public CompleteRecoupRequestType()
 	 	{
 		}
@@ -34296,17 +34305,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class CompleteRecoupResponseType : AbstractResponseType	{
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private EnhancedCompleteRecoupResponseDetailsType enhancedCompleteRecoupResponseDetailsField;
 		public EnhancedCompleteRecoupResponseDetailsType EnhancedCompleteRecoupResponseDetails
 		{
@@ -34321,9 +34330,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public CompleteRecoupResponseType()
 	 	{
 		}
@@ -34345,9 +34354,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class CancelRecoupReq	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
@@ -34358,9 +34367,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private CancelRecoupRequestType cancelRecoupRequestField;
 		public CancelRecoupRequestType CancelRecoupRequest
 		{
@@ -34375,9 +34384,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public CancelRecoupReq()
 	 	{
 		}
@@ -34420,9 +34429,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class CancelRecoupRequestType : AbstractRequestType	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
@@ -34433,9 +34442,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private EnhancedCancelRecoupRequestDetailsType enhancedCancelRecoupRequestDetailsField;
 		public EnhancedCancelRecoupRequestDetailsType EnhancedCancelRecoupRequestDetails
 		{
@@ -34450,17 +34459,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Constructor with arguments
-	 	  */
+		/// <summary>
+		/// Constructor with arguments
+	 	/// </summary>
 	 	public CancelRecoupRequestType(EnhancedCancelRecoupRequestDetailsType enhancedCancelRecoupRequestDetails)
 	 	{
 			this.EnhancedCancelRecoupRequestDetails = enhancedCancelRecoupRequestDetails;
 		}
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public CancelRecoupRequestType()
 	 	{
 		}
@@ -34504,17 +34513,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class CancelRecoupResponseType : AbstractResponseType	{
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public CancelRecoupResponseType()
 	 	{
 		}
@@ -34531,9 +34540,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class GetTransactionDetailsReq	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
@@ -34544,9 +34553,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private GetTransactionDetailsRequestType getTransactionDetailsRequestField;
 		public GetTransactionDetailsRequestType GetTransactionDetailsRequest
 		{
@@ -34561,9 +34570,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public GetTransactionDetailsReq()
 	 	{
 		}
@@ -34606,13 +34615,13 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *Unique identifier of a transaction. RequiredThe details for
-      *some kinds of transactions cannot be retrieved with
-      *GetTransactionDetailsRequest. You cannot obtain details of
-      *bank transfer withdrawals, for example. Character length and
-      *limitations: 17 single-byte alphanumeric characters
-      */
+	/// <summary>
+	/// Unique identifier of a transaction. RequiredThe details for
+	/// some kinds of transactions cannot be retrieved with
+	/// GetTransactionDetailsRequest. You cannot obtain details of
+	/// bank transfer withdrawals, for example. Character length and
+	/// limitations: 17 single-byte alphanumeric characters
+    /// </summary>
 	public partial class GetTransactionDetailsRequestType : AbstractRequestType	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
@@ -34623,9 +34632,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string transactionIDField;
 		public string TransactionID
 		{
@@ -34640,9 +34649,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public GetTransactionDetailsRequestType()
 	 	{
 		}
@@ -34687,17 +34696,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class GetTransactionDetailsResponseType : AbstractResponseType	{
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private PaymentTransactionType paymentTransactionDetailsField;
 		public PaymentTransactionType PaymentTransactionDetails
 		{
@@ -34712,9 +34721,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private ThreeDSecureInfoType threeDSecureDetailsField;
 		public ThreeDSecureInfoType ThreeDSecureDetails
 		{
@@ -34729,9 +34738,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public GetTransactionDetailsResponseType()
 	 	{
 		}
@@ -34758,9 +34767,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class BillUserReq	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
@@ -34771,9 +34780,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private BillUserRequestType billUserRequestField;
 		public BillUserRequestType BillUserRequest
 		{
@@ -34788,9 +34797,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public BillUserReq()
 	 	{
 		}
@@ -34833,10 +34842,10 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *This flag indicates that the response should include
-      *FMFDetails 
-      */
+	/// <summary>
+	/// This flag indicates that the response should include
+	/// FMFDetails 
+    /// </summary>
 	public partial class BillUserRequestType : AbstractRequestType	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
@@ -34847,9 +34856,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private MerchantPullPaymentType merchantPullPaymentDetailsField;
 		public MerchantPullPaymentType MerchantPullPaymentDetails
 		{
@@ -34864,9 +34873,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private int? returnFMFDetailsField;
 		public int? ReturnFMFDetails
 		{
@@ -34881,9 +34890,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public BillUserRequestType()
 	 	{
 		}
@@ -34932,17 +34941,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class BillUserResponseType : AbstractResponseType	{
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private MerchantPullPaymentResponseType billUserResponseDetailsField;
 		public MerchantPullPaymentResponseType BillUserResponseDetails
 		{
@@ -34957,9 +34966,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private FMFDetailsType fMFDetailsField;
 		public FMFDetailsType FMFDetails
 		{
@@ -34974,9 +34983,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public BillUserResponseType()
 	 	{
 		}
@@ -35003,9 +35012,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class TransactionSearchReq	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
@@ -35016,9 +35025,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private TransactionSearchRequestType transactionSearchRequestField;
 		public TransactionSearchRequestType TransactionSearchRequest
 		{
@@ -35033,9 +35042,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public TransactionSearchReq()
 	 	{
 		}
@@ -35078,10 +35087,10 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *The earliest transaction date at which to start the search.
-      *No wildcards are allowed. Required
-      */
+	/// <summary>
+	/// The earliest transaction date at which to start the search.
+	/// No wildcards are allowed. Required
+    /// </summary>
 	public partial class TransactionSearchRequestType : AbstractRequestType	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
@@ -35092,9 +35101,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string startDateField;
 		public string StartDate
 		{
@@ -35109,9 +35118,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string endDateField;
 		public string EndDate
 		{
@@ -35126,9 +35135,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string payerField;
 		public string Payer
 		{
@@ -35143,9 +35152,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string receiverField;
 		public string Receiver
 		{
@@ -35160,9 +35169,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string receiptIDField;
 		public string ReceiptID
 		{
@@ -35177,9 +35186,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string transactionIDField;
 		public string TransactionID
 		{
@@ -35194,9 +35203,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string profileIDField;
 		public string ProfileID
 		{
@@ -35211,9 +35220,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private PersonNameType payerNameField;
 		public PersonNameType PayerName
 		{
@@ -35228,9 +35237,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string auctionItemNumberField;
 		public string AuctionItemNumber
 		{
@@ -35245,9 +35254,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string invoiceIDField;
 		public string InvoiceID
 		{
@@ -35262,9 +35271,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string cardNumberField;
 		public string CardNumber
 		{
@@ -35279,9 +35288,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private PaymentTransactionClassCodeType? transactionClassField;
 		public PaymentTransactionClassCodeType? TransactionClass
 		{
@@ -35296,9 +35305,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private BasicAmountType amountField;
 		public BasicAmountType Amount
 		{
@@ -35313,9 +35322,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private CurrencyCodeType? currencyCodeField;
 		public CurrencyCodeType? CurrencyCode
 		{
@@ -35330,9 +35339,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private PaymentTransactionStatusCodeType? statusField;
 		public PaymentTransactionStatusCodeType? Status
 		{
@@ -35347,17 +35356,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Constructor with arguments
-	 	  */
+		/// <summary>
+		/// Constructor with arguments
+	 	/// </summary>
 	 	public TransactionSearchRequestType(string startDate)
 	 	{
 			this.StartDate = startDate;
 		}
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public TransactionSearchRequestType()
 	 	{
 		}
@@ -35470,17 +35479,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *Results of a Transaction Search.
-      */
+	/// <summary>
+	/// Results of a Transaction Search.
+    /// </summary>
 	public partial class TransactionSearchResponseType : AbstractResponseType	{
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private List<PaymentTransactionSearchResultType> paymentTransactionsField = new List<PaymentTransactionSearchResultType>();
 		public List<PaymentTransactionSearchResultType> PaymentTransactions
 		{
@@ -35495,9 +35504,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public TransactionSearchResponseType()
 	 	{
 		}
@@ -35523,9 +35532,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class MassPayReq	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
@@ -35536,9 +35545,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private MassPayRequestType massPayRequestField;
 		public MassPayRequestType MassPayRequest
 		{
@@ -35553,9 +35562,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public MassPayReq()
 	 	{
 		}
@@ -35598,12 +35607,12 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *Subject line of the email sent to all recipients. This
-      *subject is not contained in the input file; you must create
-      *it with your application. Optional Character length and
-      *limitations: 255 single-byte alphanumeric characters 
-      */
+	/// <summary>
+	/// Subject line of the email sent to all recipients. This
+	/// subject is not contained in the input file; you must create
+	/// it with your application. Optional Character length and
+	/// limitations: 255 single-byte alphanumeric characters 
+    /// </summary>
 	public partial class MassPayRequestType : AbstractRequestType	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
@@ -35614,9 +35623,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string emailSubjectField;
 		public string EmailSubject
 		{
@@ -35631,9 +35640,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private ReceiverInfoCodeType? receiverTypeField;
 		public ReceiverInfoCodeType? ReceiverType
 		{
@@ -35648,9 +35657,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string buttonSourceField;
 		public string ButtonSource
 		{
@@ -35665,9 +35674,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private List<MassPayRequestItemType> massPayItemField = new List<MassPayRequestItemType>();
 		public List<MassPayRequestItemType> MassPayItem
 		{
@@ -35682,17 +35691,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Constructor with arguments
-	 	  */
+		/// <summary>
+		/// Constructor with arguments
+	 	/// </summary>
 	 	public MassPayRequestType(List<MassPayRequestItemType> massPayItem)
 	 	{
 			this.MassPayItem = massPayItem;
 		}
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public MassPayRequestType()
 	 	{
 		}
@@ -35754,17 +35763,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class MassPayResponseType : AbstractResponseType	{
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public MassPayResponseType()
 	 	{
 		}
@@ -35781,9 +35790,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *MassPayRequestItemType 
-      */
+	/// <summary>
+	/// MassPayRequestItemType 
+    /// </summary>
 	public partial class MassPayRequestItemType	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
@@ -35794,9 +35803,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string receiverEmailField;
 		public string ReceiverEmail
 		{
@@ -35811,9 +35820,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string receiverPhoneField;
 		public string ReceiverPhone
 		{
@@ -35828,9 +35837,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string receiverIDField;
 		public string ReceiverID
 		{
@@ -35845,9 +35854,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private BasicAmountType amountField;
 		public BasicAmountType Amount
 		{
@@ -35862,9 +35871,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string uniqueIdField;
 		public string UniqueId
 		{
@@ -35879,9 +35888,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string noteField;
 		public string Note
 		{
@@ -35896,17 +35905,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Constructor with arguments
-	 	  */
+		/// <summary>
+		/// Constructor with arguments
+	 	/// </summary>
 	 	public MassPayRequestItemType(BasicAmountType amount)
 	 	{
 			this.Amount = amount;
 		}
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public MassPayRequestItemType()
 	 	{
 		}
@@ -35974,9 +35983,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class BillAgreementUpdateReq	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
@@ -35987,9 +35996,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private BAUpdateRequestType bAUpdateRequestField;
 		public BAUpdateRequestType BAUpdateRequest
 		{
@@ -36004,9 +36013,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public BillAgreementUpdateReq()
 	 	{
 		}
@@ -36049,9 +36058,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class BAUpdateRequestType : AbstractRequestType	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
@@ -36062,9 +36071,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string referenceIDField;
 		public string ReferenceID
 		{
@@ -36079,9 +36088,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string billingAgreementDescriptionField;
 		public string BillingAgreementDescription
 		{
@@ -36096,9 +36105,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private MerchantPullStatusCodeType? billingAgreementStatusField;
 		public MerchantPullStatusCodeType? BillingAgreementStatus
 		{
@@ -36113,9 +36122,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string billingAgreementCustomField;
 		public string BillingAgreementCustom
 		{
@@ -36130,17 +36139,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Constructor with arguments
-	 	  */
+		/// <summary>
+		/// Constructor with arguments
+	 	/// </summary>
 	 	public BAUpdateRequestType(string referenceID)
 	 	{
 			this.ReferenceID = referenceID;
 		}
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public BAUpdateRequestType()
 	 	{
 		}
@@ -36200,17 +36209,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class BAUpdateResponseType : AbstractResponseType	{
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private BAUpdateResponseDetailsType bAUpdateResponseDetailsField;
 		public BAUpdateResponseDetailsType BAUpdateResponseDetails
 		{
@@ -36225,9 +36234,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public BAUpdateResponseType()
 	 	{
 		}
@@ -36249,9 +36258,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class AddressVerifyReq	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
@@ -36262,9 +36271,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private AddressVerifyRequestType addressVerifyRequestField;
 		public AddressVerifyRequestType AddressVerifyRequest
 		{
@@ -36279,9 +36288,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public AddressVerifyReq()
 	 	{
 		}
@@ -36324,11 +36333,11 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *Email address of buyer to be verified. Required Maximum
-      *string length: 255 single-byte characters Input mask: ?@?.??
-      *
-      */
+	/// <summary>
+	/// Email address of buyer to be verified. Required Maximum
+	/// string length: 255 single-byte characters Input mask: ?@?.??
+	/// 
+    /// </summary>
 	public partial class AddressVerifyRequestType : AbstractRequestType	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
@@ -36339,9 +36348,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string emailField;
 		public string Email
 		{
@@ -36356,9 +36365,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string streetField;
 		public string Street
 		{
@@ -36373,9 +36382,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string zipField;
 		public string Zip
 		{
@@ -36390,9 +36399,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Constructor with arguments
-	 	  */
+		/// <summary>
+		/// Constructor with arguments
+	 	/// </summary>
 	 	public AddressVerifyRequestType(string email, string street, string zip)
 	 	{
 			this.Email = email;
@@ -36400,9 +36409,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			this.Zip = zip;
 		}
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public AddressVerifyRequestType()
 	 	{
 		}
@@ -36457,22 +36466,22 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *Confirmation of a match, with one of the following tokens:
-      *None: The input value of the Email object does not match any
-      *email address on file at PayPal. Confirmed: If the value of
-      *the StreetMatch object is Matched, PayPal responds that the
-      *entire postal address is confirmed. Unconfirmed: PayPal
-      *responds that the postal address is unconfirmed 
-      */
+	/// <summary>
+	/// Confirmation of a match, with one of the following tokens:
+	/// None: The input value of the Email object does not match any
+	/// email address on file at PayPal. Confirmed: If the value of
+	/// the StreetMatch object is Matched, PayPal responds that the
+	/// entire postal address is confirmed. Unconfirmed: PayPal
+	/// responds that the postal address is unconfirmed 
+    /// </summary>
 	public partial class AddressVerifyResponseType : AbstractResponseType	{
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private AddressStatusCodeType? confirmationCodeField;
 		public AddressStatusCodeType? ConfirmationCode
 		{
@@ -36487,9 +36496,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private MatchStatusCodeType? streetMatchField;
 		public MatchStatusCodeType? StreetMatch
 		{
@@ -36504,9 +36513,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private MatchStatusCodeType? zipMatchField;
 		public MatchStatusCodeType? ZipMatch
 		{
@@ -36521,9 +36530,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private CountryCodeType? countryCodeField;
 		public CountryCodeType? CountryCode
 		{
@@ -36538,9 +36547,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string payPalTokenField;
 		public string PayPalToken
 		{
@@ -36555,9 +36564,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public AddressVerifyResponseType()
 	 	{
 		}
@@ -36599,9 +36608,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class EnterBoardingReq	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
@@ -36612,9 +36621,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private EnterBoardingRequestType enterBoardingRequestField;
 		public EnterBoardingRequestType EnterBoardingRequest
 		{
@@ -36629,9 +36638,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public EnterBoardingReq()
 	 	{
 		}
@@ -36674,9 +36683,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class EnterBoardingRequestType : AbstractRequestType	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
@@ -36687,9 +36696,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private EnterBoardingRequestDetailsType enterBoardingRequestDetailsField;
 		public EnterBoardingRequestDetailsType EnterBoardingRequestDetails
 		{
@@ -36704,17 +36713,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Constructor with arguments
-	 	  */
+		/// <summary>
+		/// Constructor with arguments
+	 	/// </summary>
 	 	public EnterBoardingRequestType(EnterBoardingRequestDetailsType enterBoardingRequestDetails)
 	 	{
 			this.EnterBoardingRequestDetails = enterBoardingRequestDetails;
 		}
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public EnterBoardingRequestType()
 	 	{
 		}
@@ -36758,20 +36767,20 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *A unique token that identifies this boarding session. Use
-      *this token with the GetBoarding Details API call.Character
-      *length and limitations: 64 alphanumeric characters. The
-      *token has the following format:OB-61characterstring
-      */
+	/// <summary>
+	/// A unique token that identifies this boarding session. Use
+	/// this token with the GetBoarding Details API call.Character
+	/// length and limitations: 64 alphanumeric characters. The
+	/// token has the following format:OB-61characterstring
+    /// </summary>
 	public partial class EnterBoardingResponseType : AbstractResponseType	{
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string tokenField;
 		public string Token
 		{
@@ -36786,9 +36795,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public EnterBoardingResponseType()
 	 	{
 		}
@@ -36810,9 +36819,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class GetBoardingDetailsReq	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
@@ -36823,9 +36832,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private GetBoardingDetailsRequestType getBoardingDetailsRequestField;
 		public GetBoardingDetailsRequestType GetBoardingDetailsRequest
 		{
@@ -36840,9 +36849,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public GetBoardingDetailsReq()
 	 	{
 		}
@@ -36885,12 +36894,12 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *A unique token returned by the EnterBoarding API call that
-      *identifies this boarding session. RequiredCharacter length
-      *and limitations: 64 alphanumeric characters. The token has
-      *the following format:OB-61characterstring
-      */
+	/// <summary>
+	/// A unique token returned by the EnterBoarding API call that
+	/// identifies this boarding session. RequiredCharacter length
+	/// and limitations: 64 alphanumeric characters. The token has
+	/// the following format:OB-61characterstring
+    /// </summary>
 	public partial class GetBoardingDetailsRequestType : AbstractRequestType	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
@@ -36901,9 +36910,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string tokenField;
 		public string Token
 		{
@@ -36918,17 +36927,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Constructor with arguments
-	 	  */
+		/// <summary>
+		/// Constructor with arguments
+	 	/// </summary>
 	 	public GetBoardingDetailsRequestType(string token)
 	 	{
 			this.Token = token;
 		}
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public GetBoardingDetailsRequestType()
 	 	{
 		}
@@ -36973,17 +36982,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class GetBoardingDetailsResponseType : AbstractResponseType	{
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private GetBoardingDetailsResponseDetailsType getBoardingDetailsResponseDetailsField;
 		public GetBoardingDetailsResponseDetailsType GetBoardingDetailsResponseDetails
 		{
@@ -36998,9 +37007,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public GetBoardingDetailsResponseType()
 	 	{
 		}
@@ -37022,9 +37031,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class SetAuthFlowParamReq	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
@@ -37035,9 +37044,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private SetAuthFlowParamRequestType setAuthFlowParamRequestField;
 		public SetAuthFlowParamRequestType SetAuthFlowParamRequest
 		{
@@ -37052,9 +37061,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public SetAuthFlowParamReq()
 	 	{
 		}
@@ -37097,9 +37106,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class SetAuthFlowParamRequestType : AbstractRequestType	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
@@ -37110,9 +37119,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private SetAuthFlowParamRequestDetailsType setAuthFlowParamRequestDetailsField;
 		public SetAuthFlowParamRequestDetailsType SetAuthFlowParamRequestDetails
 		{
@@ -37127,17 +37136,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Constructor with arguments
-	 	  */
+		/// <summary>
+		/// Constructor with arguments
+	 	/// </summary>
 	 	public SetAuthFlowParamRequestType(SetAuthFlowParamRequestDetailsType setAuthFlowParamRequestDetails)
 	 	{
 			this.SetAuthFlowParamRequestDetails = setAuthFlowParamRequestDetails;
 		}
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public SetAuthFlowParamRequestType()
 	 	{
 		}
@@ -37181,20 +37190,20 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *A timestamped token by which you identify to PayPal that you
-      *are processing this user. The token expires after three
-      *hours. Character length and limitations: 20 single-byte
-      *characters
-      */
+	/// <summary>
+	/// A timestamped token by which you identify to PayPal that you
+	/// are processing this user. The token expires after three
+	/// hours. Character length and limitations: 20 single-byte
+	/// characters
+    /// </summary>
 	public partial class SetAuthFlowParamResponseType : AbstractResponseType	{
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string tokenField;
 		public string Token
 		{
@@ -37209,9 +37218,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public SetAuthFlowParamResponseType()
 	 	{
 		}
@@ -37233,9 +37242,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class GetAuthDetailsReq	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
@@ -37246,9 +37255,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private GetAuthDetailsRequestType getAuthDetailsRequestField;
 		public GetAuthDetailsRequestType GetAuthDetailsRequest
 		{
@@ -37263,9 +37272,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public GetAuthDetailsReq()
 	 	{
 		}
@@ -37308,11 +37317,11 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *A timestamped token, the value of which was returned by
-      *SetAuthFlowParam Response. RequiredCharacter length and
-      *limitations: 20 single-byte characters
-      */
+	/// <summary>
+	/// A timestamped token, the value of which was returned by
+	/// SetAuthFlowParam Response. RequiredCharacter length and
+	/// limitations: 20 single-byte characters
+    /// </summary>
 	public partial class GetAuthDetailsRequestType : AbstractRequestType	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
@@ -37323,9 +37332,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string tokenField;
 		public string Token
 		{
@@ -37340,17 +37349,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Constructor with arguments
-	 	  */
+		/// <summary>
+		/// Constructor with arguments
+	 	/// </summary>
 	 	public GetAuthDetailsRequestType(string token)
 	 	{
 			this.Token = token;
 		}
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public GetAuthDetailsRequestType()
 	 	{
 		}
@@ -37395,17 +37404,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class GetAuthDetailsResponseType : AbstractResponseType	{
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private GetAuthDetailsResponseDetailsType getAuthDetailsResponseDetailsField;
 		public GetAuthDetailsResponseDetailsType GetAuthDetailsResponseDetails
 		{
@@ -37420,9 +37429,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public GetAuthDetailsResponseType()
 	 	{
 		}
@@ -37444,9 +37453,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class SetAccessPermissionsReq	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
@@ -37457,9 +37466,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private SetAccessPermissionsRequestType setAccessPermissionsRequestField;
 		public SetAccessPermissionsRequestType SetAccessPermissionsRequest
 		{
@@ -37474,9 +37483,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public SetAccessPermissionsReq()
 	 	{
 		}
@@ -37519,9 +37528,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class SetAccessPermissionsRequestType : AbstractRequestType	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
@@ -37532,9 +37541,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private SetAccessPermissionsRequestDetailsType setAccessPermissionsRequestDetailsField;
 		public SetAccessPermissionsRequestDetailsType SetAccessPermissionsRequestDetails
 		{
@@ -37549,17 +37558,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Constructor with arguments
-	 	  */
+		/// <summary>
+		/// Constructor with arguments
+	 	/// </summary>
 	 	public SetAccessPermissionsRequestType(SetAccessPermissionsRequestDetailsType setAccessPermissionsRequestDetails)
 	 	{
 			this.SetAccessPermissionsRequestDetails = setAccessPermissionsRequestDetails;
 		}
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public SetAccessPermissionsRequestType()
 	 	{
 		}
@@ -37603,20 +37612,20 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *A timestamped token by which you identify to PayPal that you
-      *are processing this user. The token expires after three
-      *hours. Character length and limitations: 20 single-byte
-      *characters
-      */
+	/// <summary>
+	/// A timestamped token by which you identify to PayPal that you
+	/// are processing this user. The token expires after three
+	/// hours. Character length and limitations: 20 single-byte
+	/// characters
+    /// </summary>
 	public partial class SetAccessPermissionsResponseType : AbstractResponseType	{
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string tokenField;
 		public string Token
 		{
@@ -37631,9 +37640,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public SetAccessPermissionsResponseType()
 	 	{
 		}
@@ -37655,9 +37664,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class UpdateAccessPermissionsReq	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
@@ -37668,9 +37677,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private UpdateAccessPermissionsRequestType updateAccessPermissionsRequestField;
 		public UpdateAccessPermissionsRequestType UpdateAccessPermissionsRequest
 		{
@@ -37685,9 +37694,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public UpdateAccessPermissionsReq()
 	 	{
 		}
@@ -37730,11 +37739,11 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *Unique PayPal customer account number, the value of which
-      *was returned by GetAuthDetails Response. Required Character
-      *length and limitations: 20 single-byte characters 
-      */
+	/// <summary>
+	/// Unique PayPal customer account number, the value of which
+	/// was returned by GetAuthDetails Response. Required Character
+	/// length and limitations: 20 single-byte characters 
+    /// </summary>
 	public partial class UpdateAccessPermissionsRequestType : AbstractRequestType	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
@@ -37745,9 +37754,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string payerIDField;
 		public string PayerID
 		{
@@ -37762,17 +37771,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Constructor with arguments
-	 	  */
+		/// <summary>
+		/// Constructor with arguments
+	 	/// </summary>
 	 	public UpdateAccessPermissionsRequestType(string payerID)
 	 	{
 			this.PayerID = payerID;
 		}
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public UpdateAccessPermissionsRequestType()
 	 	{
 		}
@@ -37817,18 +37826,18 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *The status of the update call, Success/Failure. Character
-      *length and limitations: 20 single-byte characters 
-      */
+	/// <summary>
+	/// The status of the update call, Success/Failure. Character
+	/// length and limitations: 20 single-byte characters 
+    /// </summary>
 	public partial class UpdateAccessPermissionsResponseType : AbstractResponseType	{
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string statusField;
 		public string Status
 		{
@@ -37843,9 +37852,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public UpdateAccessPermissionsResponseType()
 	 	{
 		}
@@ -37867,9 +37876,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class GetAccessPermissionDetailsReq	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
@@ -37880,9 +37889,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private GetAccessPermissionDetailsRequestType getAccessPermissionDetailsRequestField;
 		public GetAccessPermissionDetailsRequestType GetAccessPermissionDetailsRequest
 		{
@@ -37897,9 +37906,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public GetAccessPermissionDetailsReq()
 	 	{
 		}
@@ -37942,11 +37951,11 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *A timestamped token, the value of which was returned by
-      *SetAuthFlowParam Response. Required Character length and
-      *limitations: 20 single-byte characters 
-      */
+	/// <summary>
+	/// A timestamped token, the value of which was returned by
+	/// SetAuthFlowParam Response. Required Character length and
+	/// limitations: 20 single-byte characters 
+    /// </summary>
 	public partial class GetAccessPermissionDetailsRequestType : AbstractRequestType	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
@@ -37957,9 +37966,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string tokenField;
 		public string Token
 		{
@@ -37974,17 +37983,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Constructor with arguments
-	 	  */
+		/// <summary>
+		/// Constructor with arguments
+	 	/// </summary>
 	 	public GetAccessPermissionDetailsRequestType(string token)
 	 	{
 			this.Token = token;
 		}
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public GetAccessPermissionDetailsRequestType()
 	 	{
 		}
@@ -38029,17 +38038,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class GetAccessPermissionDetailsResponseType : AbstractResponseType	{
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private GetAccessPermissionDetailsResponseDetailsType getAccessPermissionDetailsResponseDetailsField;
 		public GetAccessPermissionDetailsResponseDetailsType GetAccessPermissionDetailsResponseDetails
 		{
@@ -38054,9 +38063,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public GetAccessPermissionDetailsResponseType()
 	 	{
 		}
@@ -38078,9 +38087,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class GetIncentiveEvaluationReq	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
@@ -38091,9 +38100,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private GetIncentiveEvaluationRequestType getIncentiveEvaluationRequestField;
 		public GetIncentiveEvaluationRequestType GetIncentiveEvaluationRequest
 		{
@@ -38108,9 +38117,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public GetIncentiveEvaluationReq()
 	 	{
 		}
@@ -38153,9 +38162,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class GetIncentiveEvaluationRequestType : AbstractRequestType	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
@@ -38166,9 +38175,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private GetIncentiveEvaluationRequestDetailsType getIncentiveEvaluationRequestDetailsField;
 		public GetIncentiveEvaluationRequestDetailsType GetIncentiveEvaluationRequestDetails
 		{
@@ -38183,17 +38192,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Constructor with arguments
-	 	  */
+		/// <summary>
+		/// Constructor with arguments
+	 	/// </summary>
 	 	public GetIncentiveEvaluationRequestType(GetIncentiveEvaluationRequestDetailsType getIncentiveEvaluationRequestDetails)
 	 	{
 			this.GetIncentiveEvaluationRequestDetails = getIncentiveEvaluationRequestDetails;
 		}
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public GetIncentiveEvaluationRequestType()
 	 	{
 		}
@@ -38237,17 +38246,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class GetIncentiveEvaluationResponseType : AbstractResponseType	{
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private GetIncentiveEvaluationResponseDetailsType getIncentiveEvaluationResponseDetailsField;
 		public GetIncentiveEvaluationResponseDetailsType GetIncentiveEvaluationResponseDetails
 		{
@@ -38262,9 +38271,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public GetIncentiveEvaluationResponseType()
 	 	{
 		}
@@ -38286,9 +38295,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class SetExpressCheckoutReq	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
@@ -38299,9 +38308,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private SetExpressCheckoutRequestType setExpressCheckoutRequestField;
 		public SetExpressCheckoutRequestType SetExpressCheckoutRequest
 		{
@@ -38316,9 +38325,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public SetExpressCheckoutReq()
 	 	{
 		}
@@ -38361,9 +38370,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class SetExpressCheckoutRequestType : AbstractRequestType	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
@@ -38374,9 +38383,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private SetExpressCheckoutRequestDetailsType setExpressCheckoutRequestDetailsField;
 		public SetExpressCheckoutRequestDetailsType SetExpressCheckoutRequestDetails
 		{
@@ -38391,17 +38400,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Constructor with arguments
-	 	  */
+		/// <summary>
+		/// Constructor with arguments
+	 	/// </summary>
 	 	public SetExpressCheckoutRequestType(SetExpressCheckoutRequestDetailsType setExpressCheckoutRequestDetails)
 	 	{
 			this.SetExpressCheckoutRequestDetails = setExpressCheckoutRequestDetails;
 		}
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public SetExpressCheckoutRequestType()
 	 	{
 		}
@@ -38445,22 +38454,22 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *A timestamped token by which you identify to PayPal that you
-      *are processing this payment with Express Checkout. The token
-      *expires after three hours. If you set Token in the
-      *SetExpressCheckoutRequest, the value of Token in the
-      *response is identical to the value in the request. Character
-      *length and limitations: 20 single-byte characters
-      */
+	/// <summary>
+	/// A timestamped token by which you identify to PayPal that you
+	/// are processing this payment with Express Checkout. The token
+	/// expires after three hours. If you set Token in the
+	/// SetExpressCheckoutRequest, the value of Token in the
+	/// response is identical to the value in the request. Character
+	/// length and limitations: 20 single-byte characters
+    /// </summary>
 	public partial class SetExpressCheckoutResponseType : AbstractResponseType	{
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string tokenField;
 		public string Token
 		{
@@ -38475,9 +38484,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public SetExpressCheckoutResponseType()
 	 	{
 		}
@@ -38499,9 +38508,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class ExecuteCheckoutOperationsReq	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
@@ -38512,9 +38521,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private ExecuteCheckoutOperationsRequestType executeCheckoutOperationsRequestField;
 		public ExecuteCheckoutOperationsRequestType ExecuteCheckoutOperationsRequest
 		{
@@ -38529,9 +38538,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public ExecuteCheckoutOperationsReq()
 	 	{
 		}
@@ -38574,9 +38583,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class ExecuteCheckoutOperationsRequestType : AbstractRequestType	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
@@ -38587,9 +38596,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private ExecuteCheckoutOperationsRequestDetailsType executeCheckoutOperationsRequestDetailsField;
 		public ExecuteCheckoutOperationsRequestDetailsType ExecuteCheckoutOperationsRequestDetails
 		{
@@ -38604,17 +38613,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Constructor with arguments
-	 	  */
+		/// <summary>
+		/// Constructor with arguments
+	 	/// </summary>
 	 	public ExecuteCheckoutOperationsRequestType(ExecuteCheckoutOperationsRequestDetailsType executeCheckoutOperationsRequestDetails)
 	 	{
 			this.ExecuteCheckoutOperationsRequestDetails = executeCheckoutOperationsRequestDetails;
 		}
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public ExecuteCheckoutOperationsRequestType()
 	 	{
 		}
@@ -38658,17 +38667,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class ExecuteCheckoutOperationsResponseType : AbstractResponseType	{
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private ExecuteCheckoutOperationsResponseDetailsType executeCheckoutOperationsResponseDetailsField;
 		public ExecuteCheckoutOperationsResponseDetailsType ExecuteCheckoutOperationsResponseDetails
 		{
@@ -38683,9 +38692,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public ExecuteCheckoutOperationsResponseType()
 	 	{
 		}
@@ -38707,9 +38716,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class GetExpressCheckoutDetailsReq	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
@@ -38720,9 +38729,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private GetExpressCheckoutDetailsRequestType getExpressCheckoutDetailsRequestField;
 		public GetExpressCheckoutDetailsRequestType GetExpressCheckoutDetailsRequest
 		{
@@ -38737,9 +38746,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public GetExpressCheckoutDetailsReq()
 	 	{
 		}
@@ -38782,11 +38791,11 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *A timestamped token, the value of which was returned by
-      *SetExpressCheckoutResponse. RequiredCharacter length and
-      *limitations: 20 single-byte characters
-      */
+	/// <summary>
+	/// A timestamped token, the value of which was returned by
+	/// SetExpressCheckoutResponse. RequiredCharacter length and
+	/// limitations: 20 single-byte characters
+    /// </summary>
 	public partial class GetExpressCheckoutDetailsRequestType : AbstractRequestType	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
@@ -38797,9 +38806,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string tokenField;
 		public string Token
 		{
@@ -38814,17 +38823,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Constructor with arguments
-	 	  */
+		/// <summary>
+		/// Constructor with arguments
+	 	/// </summary>
 	 	public GetExpressCheckoutDetailsRequestType(string token)
 	 	{
 			this.Token = token;
 		}
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public GetExpressCheckoutDetailsRequestType()
 	 	{
 		}
@@ -38869,17 +38878,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class GetExpressCheckoutDetailsResponseType : AbstractResponseType	{
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private GetExpressCheckoutDetailsResponseDetailsType getExpressCheckoutDetailsResponseDetailsField;
 		public GetExpressCheckoutDetailsResponseDetailsType GetExpressCheckoutDetailsResponseDetails
 		{
@@ -38894,9 +38903,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public GetExpressCheckoutDetailsResponseType()
 	 	{
 		}
@@ -38918,9 +38927,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class DoExpressCheckoutPaymentReq	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
@@ -38931,9 +38940,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private DoExpressCheckoutPaymentRequestType doExpressCheckoutPaymentRequestField;
 		public DoExpressCheckoutPaymentRequestType DoExpressCheckoutPaymentRequest
 		{
@@ -38948,9 +38957,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public DoExpressCheckoutPaymentReq()
 	 	{
 		}
@@ -38993,10 +39002,10 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *This flag indicates that the response should include
-      *FMFDetails 
-      */
+	/// <summary>
+	/// This flag indicates that the response should include
+	/// FMFDetails 
+    /// </summary>
 	public partial class DoExpressCheckoutPaymentRequestType : AbstractRequestType	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
@@ -39007,9 +39016,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private DoExpressCheckoutPaymentRequestDetailsType doExpressCheckoutPaymentRequestDetailsField;
 		public DoExpressCheckoutPaymentRequestDetailsType DoExpressCheckoutPaymentRequestDetails
 		{
@@ -39024,9 +39033,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private int? returnFMFDetailsField;
 		public int? ReturnFMFDetails
 		{
@@ -39041,17 +39050,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Constructor with arguments
-	 	  */
+		/// <summary>
+		/// Constructor with arguments
+	 	/// </summary>
 	 	public DoExpressCheckoutPaymentRequestType(DoExpressCheckoutPaymentRequestDetailsType doExpressCheckoutPaymentRequestDetails)
 	 	{
 			this.DoExpressCheckoutPaymentRequestDetails = doExpressCheckoutPaymentRequestDetails;
 		}
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public DoExpressCheckoutPaymentRequestType()
 	 	{
 		}
@@ -39100,17 +39109,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class DoExpressCheckoutPaymentResponseType : AbstractResponseType	{
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private DoExpressCheckoutPaymentResponseDetailsType doExpressCheckoutPaymentResponseDetailsField;
 		public DoExpressCheckoutPaymentResponseDetailsType DoExpressCheckoutPaymentResponseDetails
 		{
@@ -39125,9 +39134,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private FMFDetailsType fMFDetailsField;
 		public FMFDetailsType FMFDetails
 		{
@@ -39142,9 +39151,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public DoExpressCheckoutPaymentResponseType()
 	 	{
 		}
@@ -39171,9 +39180,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class DoUATPExpressCheckoutPaymentReq	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
@@ -39184,9 +39193,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private DoUATPExpressCheckoutPaymentRequestType doUATPExpressCheckoutPaymentRequestField;
 		public DoUATPExpressCheckoutPaymentRequestType DoUATPExpressCheckoutPaymentRequest
 		{
@@ -39201,9 +39210,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public DoUATPExpressCheckoutPaymentReq()
 	 	{
 		}
@@ -39246,9 +39255,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class DoUATPExpressCheckoutPaymentRequestType : DoExpressCheckoutPaymentRequestType	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
@@ -39259,9 +39268,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public DoUATPExpressCheckoutPaymentRequestType()
 	 	{
 		}
@@ -39301,17 +39310,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class DoUATPExpressCheckoutPaymentResponseType : DoExpressCheckoutPaymentResponseType	{
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private UATPDetailsType uATPDetailsField;
 		public UATPDetailsType UATPDetails
 		{
@@ -39326,9 +39335,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public DoUATPExpressCheckoutPaymentResponseType()
 	 	{
 		}
@@ -39350,9 +39359,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class ManagePendingTransactionStatusReq	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
@@ -39363,9 +39372,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private ManagePendingTransactionStatusRequestType managePendingTransactionStatusRequestField;
 		public ManagePendingTransactionStatusRequestType ManagePendingTransactionStatusRequest
 		{
@@ -39380,9 +39389,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public ManagePendingTransactionStatusReq()
 	 	{
 		}
@@ -39425,9 +39434,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class ManagePendingTransactionStatusRequestType : AbstractRequestType	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
@@ -39438,9 +39447,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string transactionIDField;
 		public string TransactionID
 		{
@@ -39455,9 +39464,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private FMFPendingTransactionActionType? actionField;
 		public FMFPendingTransactionActionType? Action
 		{
@@ -39472,18 +39481,18 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Constructor with arguments
-	 	  */
+		/// <summary>
+		/// Constructor with arguments
+	 	/// </summary>
 	 	public ManagePendingTransactionStatusRequestType(string transactionID, FMFPendingTransactionActionType? action)
 	 	{
 			this.TransactionID = transactionID;
 			this.Action = action;
 		}
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public ManagePendingTransactionStatusRequestType()
 	 	{
 		}
@@ -39533,17 +39542,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class ManagePendingTransactionStatusResponseType : AbstractResponseType	{
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string transactionIDField;
 		public string TransactionID
 		{
@@ -39558,9 +39567,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string statusField;
 		public string Status
 		{
@@ -39575,9 +39584,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public ManagePendingTransactionStatusResponseType()
 	 	{
 		}
@@ -39604,9 +39613,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class DoDirectPaymentReq	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
@@ -39617,9 +39626,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private DoDirectPaymentRequestType doDirectPaymentRequestField;
 		public DoDirectPaymentRequestType DoDirectPaymentRequest
 		{
@@ -39634,9 +39643,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public DoDirectPaymentReq()
 	 	{
 		}
@@ -39679,10 +39688,10 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *This flag indicates that the response should include
-      *FMFDetails 
-      */
+	/// <summary>
+	/// This flag indicates that the response should include
+	/// FMFDetails 
+    /// </summary>
 	public partial class DoDirectPaymentRequestType : AbstractRequestType	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
@@ -39693,9 +39702,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private DoDirectPaymentRequestDetailsType doDirectPaymentRequestDetailsField;
 		public DoDirectPaymentRequestDetailsType DoDirectPaymentRequestDetails
 		{
@@ -39710,9 +39719,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private int? returnFMFDetailsField;
 		public int? ReturnFMFDetails
 		{
@@ -39727,17 +39736,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Constructor with arguments
-	 	  */
+		/// <summary>
+		/// Constructor with arguments
+	 	/// </summary>
 	 	public DoDirectPaymentRequestType(DoDirectPaymentRequestDetailsType doDirectPaymentRequestDetails)
 	 	{
 			this.DoDirectPaymentRequestDetails = doDirectPaymentRequestDetails;
 		}
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public DoDirectPaymentRequestType()
 	 	{
 		}
@@ -39786,18 +39795,18 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *The amount of the payment as specified by you on
-      *DoDirectPaymentRequest.
-      */
+	/// <summary>
+	/// The amount of the payment as specified by you on
+	/// DoDirectPaymentRequest.
+    /// </summary>
 	public partial class DoDirectPaymentResponseType : AbstractResponseType	{
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private BasicAmountType amountField;
 		public BasicAmountType Amount
 		{
@@ -39812,9 +39821,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string aVSCodeField;
 		public string AVSCode
 		{
@@ -39829,9 +39838,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string cVV2CodeField;
 		public string CVV2Code
 		{
@@ -39846,9 +39855,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string transactionIDField;
 		public string TransactionID
 		{
@@ -39863,9 +39872,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private PendingStatusCodeType? pendingReasonField;
 		public PendingStatusCodeType? PendingReason
 		{
@@ -39880,9 +39889,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private PaymentStatusCodeType? paymentStatusField;
 		public PaymentStatusCodeType? PaymentStatus
 		{
@@ -39897,9 +39906,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private FMFDetailsType fMFDetailsField;
 		public FMFDetailsType FMFDetails
 		{
@@ -39914,9 +39923,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private ThreeDSecureResponseType threeDSecureResponseField;
 		public ThreeDSecureResponseType ThreeDSecureResponse
 		{
@@ -39931,9 +39940,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string paymentAdviceCodeField;
 		public string PaymentAdviceCode
 		{
@@ -39948,9 +39957,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public DoDirectPaymentResponseType()
 	 	{
 		}
@@ -40012,9 +40021,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class DoCancelReq	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
@@ -40025,9 +40034,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private DoCancelRequestType doCancelRequestField;
 		public DoCancelRequestType DoCancelRequest
 		{
@@ -40042,9 +40051,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public DoCancelReq()
 	 	{
 		}
@@ -40087,9 +40096,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *Msg Sub Id that was used for the orginal operation. 
-      */
+	/// <summary>
+	/// Msg Sub Id that was used for the orginal operation. 
+    /// </summary>
 	public partial class DoCancelRequestType : AbstractRequestType	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
@@ -40100,9 +40109,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string cancelMsgSubIDField;
 		public string CancelMsgSubID
 		{
@@ -40117,9 +40126,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private APIType? aPITypeField;
 		public APIType? APIType
 		{
@@ -40134,9 +40143,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string msgSubIDField;
 		public string MsgSubID
 		{
@@ -40151,18 +40160,18 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Constructor with arguments
-	 	  */
+		/// <summary>
+		/// Constructor with arguments
+	 	/// </summary>
 	 	public DoCancelRequestType(string cancelMsgSubID, APIType? aPIType)
 	 	{
 			this.CancelMsgSubID = cancelMsgSubID;
 			this.APIType = aPIType;
 		}
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public DoCancelRequestType()
 	 	{
 		}
@@ -40217,17 +40226,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *Return msgsubid back to merchant 
-      */
+	/// <summary>
+	/// Return msgsubid back to merchant 
+    /// </summary>
 	public partial class DoCancelResponseType : AbstractResponseType	{
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string msgSubIDField;
 		public string MsgSubID
 		{
@@ -40242,9 +40251,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public DoCancelResponseType()
 	 	{
 		}
@@ -40266,9 +40275,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class DoCaptureReq	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
@@ -40279,9 +40288,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private DoCaptureRequestType doCaptureRequestField;
 		public DoCaptureRequestType DoCaptureRequest
 		{
@@ -40296,9 +40305,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public DoCaptureReq()
 	 	{
 		}
@@ -40341,11 +40350,11 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *The authorization identification number of the payment you
-      *want to capture. Required Character length and limits: 19
-      *single-byte characters maximum 
-      */
+	/// <summary>
+	/// The authorization identification number of the payment you
+	/// want to capture. Required Character length and limits: 19
+	/// single-byte characters maximum 
+    /// </summary>
 	public partial class DoCaptureRequestType : AbstractRequestType	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
@@ -40356,9 +40365,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string authorizationIDField;
 		public string AuthorizationID
 		{
@@ -40373,9 +40382,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private BasicAmountType amountField;
 		public BasicAmountType Amount
 		{
@@ -40390,9 +40399,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private CompleteCodeType? completeTypeField;
 		public CompleteCodeType? CompleteType
 		{
@@ -40407,9 +40416,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string noteField;
 		public string Note
 		{
@@ -40424,9 +40433,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string invoiceIDField;
 		public string InvoiceID
 		{
@@ -40441,9 +40450,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private EnhancedDataType enhancedDataField;
 		public EnhancedDataType EnhancedData
 		{
@@ -40458,9 +40467,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string descriptorField;
 		public string Descriptor
 		{
@@ -40475,9 +40484,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private MerchantStoreDetailsType merchantStoreDetailsField;
 		public MerchantStoreDetailsType MerchantStoreDetails
 		{
@@ -40492,9 +40501,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string msgSubIDField;
 		public string MsgSubID
 		{
@@ -40509,9 +40518,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Constructor with arguments
-	 	  */
+		/// <summary>
+		/// Constructor with arguments
+	 	/// </summary>
 	 	public DoCaptureRequestType(string authorizationID, BasicAmountType amount, CompleteCodeType? completeType)
 	 	{
 			this.AuthorizationID = authorizationID;
@@ -40519,9 +40528,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			this.CompleteType = completeType;
 		}
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public DoCaptureRequestType()
 	 	{
 		}
@@ -40603,17 +40612,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class DoCaptureResponseType : AbstractResponseType	{
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private DoCaptureResponseDetailsType doCaptureResponseDetailsField;
 		public DoCaptureResponseDetailsType DoCaptureResponseDetails
 		{
@@ -40628,9 +40637,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public DoCaptureResponseType()
 	 	{
 		}
@@ -40652,9 +40661,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class DoReauthorizationReq	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
@@ -40665,9 +40674,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private DoReauthorizationRequestType doReauthorizationRequestField;
 		public DoReauthorizationRequestType DoReauthorizationRequest
 		{
@@ -40682,9 +40691,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public DoReauthorizationReq()
 	 	{
 		}
@@ -40727,14 +40736,14 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *The value of a previously authorized transaction
-      *identification number returned by a PayPal product. You can
-      *obtain a buyer's transaction number from the TransactionID
-      *element of the PayerInfo structure returned by
-      *GetTransactionDetailsResponse. Required Character length and
-      *limits: 19 single-byte characters maximum 
-      */
+	/// <summary>
+	/// The value of a previously authorized transaction
+	/// identification number returned by a PayPal product. You can
+	/// obtain a buyer's transaction number from the TransactionID
+	/// element of the PayerInfo structure returned by
+	/// GetTransactionDetailsResponse. Required Character length and
+	/// limits: 19 single-byte characters maximum 
+    /// </summary>
 	public partial class DoReauthorizationRequestType : AbstractRequestType	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
@@ -40745,9 +40754,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string authorizationIDField;
 		public string AuthorizationID
 		{
@@ -40762,9 +40771,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private BasicAmountType amountField;
 		public BasicAmountType Amount
 		{
@@ -40779,9 +40788,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string msgSubIDField;
 		public string MsgSubID
 		{
@@ -40796,18 +40805,18 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Constructor with arguments
-	 	  */
+		/// <summary>
+		/// Constructor with arguments
+	 	/// </summary>
 	 	public DoReauthorizationRequestType(string authorizationID, BasicAmountType amount)
 	 	{
 			this.AuthorizationID = authorizationID;
 			this.Amount = amount;
 		}
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public DoReauthorizationRequestType()
 	 	{
 		}
@@ -40861,18 +40870,18 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *A new authorization identification number. Character length
-      *and limits: 19 single-byte characters 
-      */
+	/// <summary>
+	/// A new authorization identification number. Character length
+	/// and limits: 19 single-byte characters 
+    /// </summary>
 	public partial class DoReauthorizationResponseType : AbstractResponseType	{
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string authorizationIDField;
 		public string AuthorizationID
 		{
@@ -40887,9 +40896,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private AuthorizationInfoType authorizationInfoField;
 		public AuthorizationInfoType AuthorizationInfo
 		{
@@ -40904,9 +40913,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string msgSubIDField;
 		public string MsgSubID
 		{
@@ -40921,9 +40930,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public DoReauthorizationResponseType()
 	 	{
 		}
@@ -40955,9 +40964,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class DoVoidReq	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
@@ -40968,9 +40977,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private DoVoidRequestType doVoidRequestField;
 		public DoVoidRequestType DoVoidRequest
 		{
@@ -40985,9 +40994,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public DoVoidReq()
 	 	{
 		}
@@ -41030,14 +41039,14 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *The value of the original authorization identification
-      *number returned by a PayPal product. If you are voiding a
-      *transaction that has been reauthorized, use the ID from the
-      *original authorization, and not the reauthorization.
-      *Required Character length and limits: 19 single-byte
-      *characters 
-      */
+	/// <summary>
+	/// The value of the original authorization identification
+	/// number returned by a PayPal product. If you are voiding a
+	/// transaction that has been reauthorized, use the ID from the
+	/// original authorization, and not the reauthorization.
+	/// Required Character length and limits: 19 single-byte
+	/// characters 
+    /// </summary>
 	public partial class DoVoidRequestType : AbstractRequestType	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
@@ -41048,9 +41057,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string authorizationIDField;
 		public string AuthorizationID
 		{
@@ -41065,9 +41074,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string noteField;
 		public string Note
 		{
@@ -41082,9 +41091,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string msgSubIDField;
 		public string MsgSubID
 		{
@@ -41099,17 +41108,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Constructor with arguments
-	 	  */
+		/// <summary>
+		/// Constructor with arguments
+	 	/// </summary>
 	 	public DoVoidRequestType(string authorizationID)
 	 	{
 			this.AuthorizationID = authorizationID;
 		}
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public DoVoidRequestType()
 	 	{
 		}
@@ -41164,19 +41173,19 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *The authorization identification number you specified in the
-      *request. Character length and limits: 19 single-byte
-      *characters 
-      */
+	/// <summary>
+	/// The authorization identification number you specified in the
+	/// request. Character length and limits: 19 single-byte
+	/// characters 
+    /// </summary>
 	public partial class DoVoidResponseType : AbstractResponseType	{
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string authorizationIDField;
 		public string AuthorizationID
 		{
@@ -41191,9 +41200,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string msgSubIDField;
 		public string MsgSubID
 		{
@@ -41208,9 +41217,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public DoVoidResponseType()
 	 	{
 		}
@@ -41237,9 +41246,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class DoAuthorizationReq	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
@@ -41250,9 +41259,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private DoAuthorizationRequestType doAuthorizationRequestField;
 		public DoAuthorizationRequestType DoAuthorizationRequest
 		{
@@ -41267,9 +41276,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public DoAuthorizationReq()
 	 	{
 		}
@@ -41312,11 +41321,11 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *The value of the order’s transaction identification number
-      *returned by a PayPal product. Required Character length and
-      *limits: 19 single-byte characters maximum 
-      */
+	/// <summary>
+	/// The value of the order’s transaction identification number
+	/// returned by a PayPal product. Required Character length and
+	/// limits: 19 single-byte characters maximum 
+    /// </summary>
 	public partial class DoAuthorizationRequestType : AbstractRequestType	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
@@ -41327,9 +41336,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string transactionIDField;
 		public string TransactionID
 		{
@@ -41344,9 +41353,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private TransactionEntityType? transactionEntityField;
 		public TransactionEntityType? TransactionEntity
 		{
@@ -41361,9 +41370,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private BasicAmountType amountField;
 		public BasicAmountType Amount
 		{
@@ -41378,9 +41387,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string msgSubIDField;
 		public string MsgSubID
 		{
@@ -41395,18 +41404,18 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Constructor with arguments
-	 	  */
+		/// <summary>
+		/// Constructor with arguments
+	 	/// </summary>
 	 	public DoAuthorizationRequestType(string transactionID, BasicAmountType amount)
 	 	{
 			this.TransactionID = transactionID;
 			this.Amount = amount;
 		}
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public DoAuthorizationRequestType()
 	 	{
 		}
@@ -41465,18 +41474,18 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *An authorization identification number. Character length and
-      *limits: 19 single-byte characters 
-      */
+	/// <summary>
+	/// An authorization identification number. Character length and
+	/// limits: 19 single-byte characters 
+    /// </summary>
 	public partial class DoAuthorizationResponseType : AbstractResponseType	{
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string transactionIDField;
 		public string TransactionID
 		{
@@ -41491,9 +41500,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private BasicAmountType amountField;
 		public BasicAmountType Amount
 		{
@@ -41508,9 +41517,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private AuthorizationInfoType authorizationInfoField;
 		public AuthorizationInfoType AuthorizationInfo
 		{
@@ -41525,9 +41534,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string msgSubIDField;
 		public string MsgSubID
 		{
@@ -41542,9 +41551,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public DoAuthorizationResponseType()
 	 	{
 		}
@@ -41581,9 +41590,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class DoUATPAuthorizationReq	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
@@ -41594,9 +41603,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private DoUATPAuthorizationRequestType doUATPAuthorizationRequestField;
 		public DoUATPAuthorizationRequestType DoUATPAuthorizationRequest
 		{
@@ -41611,9 +41620,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public DoUATPAuthorizationReq()
 	 	{
 		}
@@ -41656,9 +41665,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *UATP card details Required 
-      */
+	/// <summary>
+	/// UATP card details Required 
+    /// </summary>
 	public partial class DoUATPAuthorizationRequestType : AbstractRequestType	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
@@ -41669,9 +41678,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private UATPDetailsType uATPDetailsField;
 		public UATPDetailsType UATPDetails
 		{
@@ -41686,9 +41695,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private TransactionEntityType? transactionEntityField;
 		public TransactionEntityType? TransactionEntity
 		{
@@ -41703,9 +41712,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private BasicAmountType amountField;
 		public BasicAmountType Amount
 		{
@@ -41720,9 +41729,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string invoiceIDField;
 		public string InvoiceID
 		{
@@ -41737,9 +41746,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string msgSubIDField;
 		public string MsgSubID
 		{
@@ -41754,18 +41763,18 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Constructor with arguments
-	 	  */
+		/// <summary>
+		/// Constructor with arguments
+	 	/// </summary>
 	 	public DoUATPAuthorizationRequestType(UATPDetailsType uATPDetails, BasicAmountType amount)
 	 	{
 			this.UATPDetails = uATPDetails;
 			this.Amount = amount;
 		}
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public DoUATPAuthorizationRequestType()
 	 	{
 		}
@@ -41828,17 +41837,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *Auth Authorization Code. 
-      */
+	/// <summary>
+	/// Auth Authorization Code. 
+    /// </summary>
 	public partial class DoUATPAuthorizationResponseType : DoAuthorizationResponseType	{
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private UATPDetailsType uATPDetailsField;
 		public UATPDetailsType UATPDetails
 		{
@@ -41853,9 +41862,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string authorizationCodeField;
 		public string AuthorizationCode
 		{
@@ -41870,9 +41879,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string invoiceIDField;
 		public string InvoiceID
 		{
@@ -41887,9 +41896,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string msgSubIDField;
 		public string MsgSubID
 		{
@@ -41904,9 +41913,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public DoUATPAuthorizationResponseType()
 	 	{
 		}
@@ -41943,9 +41952,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class CreateMobilePaymentReq	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
@@ -41956,9 +41965,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private CreateMobilePaymentRequestType createMobilePaymentRequestField;
 		public CreateMobilePaymentRequestType CreateMobilePaymentRequest
 		{
@@ -41973,9 +41982,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public CreateMobilePaymentReq()
 	 	{
 		}
@@ -42018,9 +42027,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class CreateMobilePaymentRequestType : AbstractRequestType	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
@@ -42031,9 +42040,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private CreateMobilePaymentRequestDetailsType createMobilePaymentRequestDetailsField;
 		public CreateMobilePaymentRequestDetailsType CreateMobilePaymentRequestDetails
 		{
@@ -42048,17 +42057,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Constructor with arguments
-	 	  */
+		/// <summary>
+		/// Constructor with arguments
+	 	/// </summary>
 	 	public CreateMobilePaymentRequestType(CreateMobilePaymentRequestDetailsType createMobilePaymentRequestDetails)
 	 	{
 			this.CreateMobilePaymentRequestDetails = createMobilePaymentRequestDetails;
 		}
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public CreateMobilePaymentRequestType()
 	 	{
 		}
@@ -42102,17 +42111,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class CreateMobilePaymentResponseType : AbstractResponseType	{
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public CreateMobilePaymentResponseType()
 	 	{
 		}
@@ -42129,9 +42138,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class GetMobileStatusReq	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
@@ -42142,9 +42151,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private GetMobileStatusRequestType getMobileStatusRequestField;
 		public GetMobileStatusRequestType GetMobileStatusRequest
 		{
@@ -42159,9 +42168,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public GetMobileStatusReq()
 	 	{
 		}
@@ -42204,9 +42213,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class GetMobileStatusRequestType : AbstractRequestType	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
@@ -42217,9 +42226,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private GetMobileStatusRequestDetailsType getMobileStatusRequestDetailsField;
 		public GetMobileStatusRequestDetailsType GetMobileStatusRequestDetails
 		{
@@ -42234,17 +42243,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Constructor with arguments
-	 	  */
+		/// <summary>
+		/// Constructor with arguments
+	 	/// </summary>
 	 	public GetMobileStatusRequestType(GetMobileStatusRequestDetailsType getMobileStatusRequestDetails)
 	 	{
 			this.GetMobileStatusRequestDetails = getMobileStatusRequestDetails;
 		}
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public GetMobileStatusRequestType()
 	 	{
 		}
@@ -42288,18 +42297,18 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *Indicates whether the phone is activated for mobile payments
-      *
-      */
+	/// <summary>
+	/// Indicates whether the phone is activated for mobile payments
+	/// 
+    /// </summary>
 	public partial class GetMobileStatusResponseType : AbstractResponseType	{
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private int? isActivatedField;
 		public int? IsActivated
 		{
@@ -42314,9 +42323,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private int? paymentPendingField;
 		public int? PaymentPending
 		{
@@ -42331,9 +42340,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public GetMobileStatusResponseType()
 	 	{
 		}
@@ -42360,9 +42369,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class SetMobileCheckoutReq	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
@@ -42373,9 +42382,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private SetMobileCheckoutRequestType setMobileCheckoutRequestField;
 		public SetMobileCheckoutRequestType SetMobileCheckoutRequest
 		{
@@ -42390,9 +42399,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public SetMobileCheckoutReq()
 	 	{
 		}
@@ -42435,9 +42444,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class SetMobileCheckoutRequestType : AbstractRequestType	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
@@ -42448,9 +42457,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private SetMobileCheckoutRequestDetailsType setMobileCheckoutRequestDetailsField;
 		public SetMobileCheckoutRequestDetailsType SetMobileCheckoutRequestDetails
 		{
@@ -42465,17 +42474,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Constructor with arguments
-	 	  */
+		/// <summary>
+		/// Constructor with arguments
+	 	/// </summary>
 	 	public SetMobileCheckoutRequestType(SetMobileCheckoutRequestDetailsType setMobileCheckoutRequestDetails)
 	 	{
 			this.SetMobileCheckoutRequestDetails = setMobileCheckoutRequestDetails;
 		}
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public SetMobileCheckoutRequestType()
 	 	{
 		}
@@ -42519,20 +42528,20 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *A timestamped token by which you identify to PayPal that you
-      *are processing this payment with Mobile Checkout. The token
-      *expires after three hours. Character length and limitations:
-      *20 single-byte characters
-      */
+	/// <summary>
+	/// A timestamped token by which you identify to PayPal that you
+	/// are processing this payment with Mobile Checkout. The token
+	/// expires after three hours. Character length and limitations:
+	/// 20 single-byte characters
+    /// </summary>
 	public partial class SetMobileCheckoutResponseType : AbstractResponseType	{
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string tokenField;
 		public string Token
 		{
@@ -42547,9 +42556,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public SetMobileCheckoutResponseType()
 	 	{
 		}
@@ -42571,9 +42580,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class DoMobileCheckoutPaymentReq	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
@@ -42584,9 +42593,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private DoMobileCheckoutPaymentRequestType doMobileCheckoutPaymentRequestField;
 		public DoMobileCheckoutPaymentRequestType DoMobileCheckoutPaymentRequest
 		{
@@ -42601,9 +42610,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public DoMobileCheckoutPaymentReq()
 	 	{
 		}
@@ -42646,11 +42655,11 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *A timestamped token, the value of which was returned by
-      *SetMobileCheckoutResponse. RequiredCharacter length and
-      *limitations: 20 single-byte characters
-      */
+	/// <summary>
+	/// A timestamped token, the value of which was returned by
+	/// SetMobileCheckoutResponse. RequiredCharacter length and
+	/// limitations: 20 single-byte characters
+    /// </summary>
 	public partial class DoMobileCheckoutPaymentRequestType : AbstractRequestType	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
@@ -42661,9 +42670,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string tokenField;
 		public string Token
 		{
@@ -42678,17 +42687,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Constructor with arguments
-	 	  */
+		/// <summary>
+		/// Constructor with arguments
+	 	/// </summary>
 	 	public DoMobileCheckoutPaymentRequestType(string token)
 	 	{
 			this.Token = token;
 		}
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public DoMobileCheckoutPaymentRequestType()
 	 	{
 		}
@@ -42733,17 +42742,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class DoMobileCheckoutPaymentResponseType : AbstractResponseType	{
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private DoMobileCheckoutPaymentResponseDetailsType doMobileCheckoutPaymentResponseDetailsField;
 		public DoMobileCheckoutPaymentResponseDetailsType DoMobileCheckoutPaymentResponseDetails
 		{
@@ -42758,9 +42767,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public DoMobileCheckoutPaymentResponseType()
 	 	{
 		}
@@ -42782,9 +42791,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class GetBalanceReq	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
@@ -42795,9 +42804,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private GetBalanceRequestType getBalanceRequestField;
 		public GetBalanceRequestType GetBalanceRequest
 		{
@@ -42812,9 +42821,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public GetBalanceReq()
 	 	{
 		}
@@ -42857,9 +42866,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class GetBalanceRequestType : AbstractRequestType	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
@@ -42870,9 +42879,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string returnAllCurrenciesField;
 		public string ReturnAllCurrencies
 		{
@@ -42887,9 +42896,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public GetBalanceRequestType()
 	 	{
 		}
@@ -42934,17 +42943,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class GetBalanceResponseType : AbstractResponseType	{
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private BasicAmountType balanceField;
 		public BasicAmountType Balance
 		{
@@ -42959,9 +42968,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string balanceTimeStampField;
 		public string BalanceTimeStamp
 		{
@@ -42976,9 +42985,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private List<BasicAmountType> balanceHoldingsField = new List<BasicAmountType>();
 		public List<BasicAmountType> BalanceHoldings
 		{
@@ -42993,9 +43002,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public GetBalanceResponseType()
 	 	{
 		}
@@ -43031,9 +43040,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class SetCustomerBillingAgreementReq	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
@@ -43044,9 +43053,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private SetCustomerBillingAgreementRequestType setCustomerBillingAgreementRequestField;
 		public SetCustomerBillingAgreementRequestType SetCustomerBillingAgreementRequest
 		{
@@ -43061,9 +43070,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public SetCustomerBillingAgreementReq()
 	 	{
 		}
@@ -43106,9 +43115,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class SetCustomerBillingAgreementRequestType : AbstractRequestType	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
@@ -43119,9 +43128,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private SetCustomerBillingAgreementRequestDetailsType setCustomerBillingAgreementRequestDetailsField;
 		public SetCustomerBillingAgreementRequestDetailsType SetCustomerBillingAgreementRequestDetails
 		{
@@ -43136,17 +43145,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Constructor with arguments
-	 	  */
+		/// <summary>
+		/// Constructor with arguments
+	 	/// </summary>
 	 	public SetCustomerBillingAgreementRequestType(SetCustomerBillingAgreementRequestDetailsType setCustomerBillingAgreementRequestDetails)
 	 	{
 			this.SetCustomerBillingAgreementRequestDetails = setCustomerBillingAgreementRequestDetails;
 		}
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public SetCustomerBillingAgreementRequestType()
 	 	{
 		}
@@ -43190,17 +43199,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class SetCustomerBillingAgreementResponseType : AbstractResponseType	{
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string tokenField;
 		public string Token
 		{
@@ -43215,9 +43224,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public SetCustomerBillingAgreementResponseType()
 	 	{
 		}
@@ -43239,9 +43248,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class GetBillingAgreementCustomerDetailsReq	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
@@ -43252,9 +43261,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private GetBillingAgreementCustomerDetailsRequestType getBillingAgreementCustomerDetailsRequestField;
 		public GetBillingAgreementCustomerDetailsRequestType GetBillingAgreementCustomerDetailsRequest
 		{
@@ -43269,9 +43278,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public GetBillingAgreementCustomerDetailsReq()
 	 	{
 		}
@@ -43314,9 +43323,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class GetBillingAgreementCustomerDetailsRequestType : AbstractRequestType	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
@@ -43327,9 +43336,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string tokenField;
 		public string Token
 		{
@@ -43344,17 +43353,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Constructor with arguments
-	 	  */
+		/// <summary>
+		/// Constructor with arguments
+	 	/// </summary>
 	 	public GetBillingAgreementCustomerDetailsRequestType(string token)
 	 	{
 			this.Token = token;
 		}
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public GetBillingAgreementCustomerDetailsRequestType()
 	 	{
 		}
@@ -43399,17 +43408,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class GetBillingAgreementCustomerDetailsResponseType : AbstractResponseType	{
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private GetBillingAgreementCustomerDetailsResponseDetailsType getBillingAgreementCustomerDetailsResponseDetailsField;
 		public GetBillingAgreementCustomerDetailsResponseDetailsType GetBillingAgreementCustomerDetailsResponseDetails
 		{
@@ -43424,9 +43433,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public GetBillingAgreementCustomerDetailsResponseType()
 	 	{
 		}
@@ -43448,9 +43457,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class CreateBillingAgreementReq	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
@@ -43461,9 +43470,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private CreateBillingAgreementRequestType createBillingAgreementRequestField;
 		public CreateBillingAgreementRequestType CreateBillingAgreementRequest
 		{
@@ -43478,9 +43487,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public CreateBillingAgreementReq()
 	 	{
 		}
@@ -43523,9 +43532,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class CreateBillingAgreementRequestType : AbstractRequestType	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
@@ -43536,9 +43545,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string tokenField;
 		public string Token
 		{
@@ -43553,17 +43562,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Constructor with arguments
-	 	  */
+		/// <summary>
+		/// Constructor with arguments
+	 	/// </summary>
 	 	public CreateBillingAgreementRequestType(string token)
 	 	{
 			this.Token = token;
 		}
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public CreateBillingAgreementRequestType()
 	 	{
 		}
@@ -43608,17 +43617,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class CreateBillingAgreementResponseType : AbstractResponseType	{
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string billingAgreementIDField;
 		public string BillingAgreementID
 		{
@@ -43633,9 +43642,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public CreateBillingAgreementResponseType()
 	 	{
 		}
@@ -43657,9 +43666,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class DoReferenceTransactionReq	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
@@ -43670,9 +43679,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private DoReferenceTransactionRequestType doReferenceTransactionRequestField;
 		public DoReferenceTransactionRequestType DoReferenceTransactionRequest
 		{
@@ -43687,9 +43696,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public DoReferenceTransactionReq()
 	 	{
 		}
@@ -43732,10 +43741,10 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *This flag indicates that the response should include
-      *FMFDetails 
-      */
+	/// <summary>
+	/// This flag indicates that the response should include
+	/// FMFDetails 
+    /// </summary>
 	public partial class DoReferenceTransactionRequestType : AbstractRequestType	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
@@ -43746,9 +43755,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private DoReferenceTransactionRequestDetailsType doReferenceTransactionRequestDetailsField;
 		public DoReferenceTransactionRequestDetailsType DoReferenceTransactionRequestDetails
 		{
@@ -43763,9 +43772,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private int? returnFMFDetailsField;
 		public int? ReturnFMFDetails
 		{
@@ -43780,17 +43789,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Constructor with arguments
-	 	  */
+		/// <summary>
+		/// Constructor with arguments
+	 	/// </summary>
 	 	public DoReferenceTransactionRequestType(DoReferenceTransactionRequestDetailsType doReferenceTransactionRequestDetails)
 	 	{
 			this.DoReferenceTransactionRequestDetails = doReferenceTransactionRequestDetails;
 		}
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public DoReferenceTransactionRequestType()
 	 	{
 		}
@@ -43839,17 +43848,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class DoReferenceTransactionResponseType : AbstractResponseType	{
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private DoReferenceTransactionResponseDetailsType doReferenceTransactionResponseDetailsField;
 		public DoReferenceTransactionResponseDetailsType DoReferenceTransactionResponseDetails
 		{
@@ -43864,9 +43873,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private FMFDetailsType fMFDetailsField;
 		public FMFDetailsType FMFDetails
 		{
@@ -43881,9 +43890,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public DoReferenceTransactionResponseType()
 	 	{
 		}
@@ -43910,9 +43919,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class DoNonReferencedCreditReq	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
@@ -43923,9 +43932,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private DoNonReferencedCreditRequestType doNonReferencedCreditRequestField;
 		public DoNonReferencedCreditRequestType DoNonReferencedCreditRequest
 		{
@@ -43940,9 +43949,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public DoNonReferencedCreditReq()
 	 	{
 		}
@@ -43985,9 +43994,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class DoNonReferencedCreditRequestType : AbstractRequestType	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
@@ -43998,9 +44007,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private DoNonReferencedCreditRequestDetailsType doNonReferencedCreditRequestDetailsField;
 		public DoNonReferencedCreditRequestDetailsType DoNonReferencedCreditRequestDetails
 		{
@@ -44015,17 +44024,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Constructor with arguments
-	 	  */
+		/// <summary>
+		/// Constructor with arguments
+	 	/// </summary>
 	 	public DoNonReferencedCreditRequestType(DoNonReferencedCreditRequestDetailsType doNonReferencedCreditRequestDetails)
 	 	{
 			this.DoNonReferencedCreditRequestDetails = doNonReferencedCreditRequestDetails;
 		}
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public DoNonReferencedCreditRequestType()
 	 	{
 		}
@@ -44069,17 +44078,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class DoNonReferencedCreditResponseType : AbstractResponseType	{
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private DoNonReferencedCreditResponseDetailsType doNonReferencedCreditResponseDetailsField;
 		public DoNonReferencedCreditResponseDetailsType DoNonReferencedCreditResponseDetails
 		{
@@ -44094,9 +44103,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public DoNonReferencedCreditResponseType()
 	 	{
 		}
@@ -44118,9 +44127,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class CreateRecurringPaymentsProfileReq	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
@@ -44131,9 +44140,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private CreateRecurringPaymentsProfileRequestType createRecurringPaymentsProfileRequestField;
 		public CreateRecurringPaymentsProfileRequestType CreateRecurringPaymentsProfileRequest
 		{
@@ -44148,9 +44157,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public CreateRecurringPaymentsProfileReq()
 	 	{
 		}
@@ -44193,9 +44202,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class CreateRecurringPaymentsProfileRequestType : AbstractRequestType	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
@@ -44206,9 +44215,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private CreateRecurringPaymentsProfileRequestDetailsType createRecurringPaymentsProfileRequestDetailsField;
 		public CreateRecurringPaymentsProfileRequestDetailsType CreateRecurringPaymentsProfileRequestDetails
 		{
@@ -44223,9 +44232,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public CreateRecurringPaymentsProfileRequestType()
 	 	{
 		}
@@ -44269,17 +44278,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class CreateRecurringPaymentsProfileResponseType : AbstractResponseType	{
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private CreateRecurringPaymentsProfileResponseDetailsType createRecurringPaymentsProfileResponseDetailsField;
 		public CreateRecurringPaymentsProfileResponseDetailsType CreateRecurringPaymentsProfileResponseDetails
 		{
@@ -44294,9 +44303,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public CreateRecurringPaymentsProfileResponseType()
 	 	{
 		}
@@ -44318,9 +44327,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class GetRecurringPaymentsProfileDetailsReq	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
@@ -44331,9 +44340,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private GetRecurringPaymentsProfileDetailsRequestType getRecurringPaymentsProfileDetailsRequestField;
 		public GetRecurringPaymentsProfileDetailsRequestType GetRecurringPaymentsProfileDetailsRequest
 		{
@@ -44348,9 +44357,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public GetRecurringPaymentsProfileDetailsReq()
 	 	{
 		}
@@ -44393,9 +44402,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class GetRecurringPaymentsProfileDetailsRequestType : AbstractRequestType	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
@@ -44406,9 +44415,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string profileIDField;
 		public string ProfileID
 		{
@@ -44423,17 +44432,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Constructor with arguments
-	 	  */
+		/// <summary>
+		/// Constructor with arguments
+	 	/// </summary>
 	 	public GetRecurringPaymentsProfileDetailsRequestType(string profileID)
 	 	{
 			this.ProfileID = profileID;
 		}
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public GetRecurringPaymentsProfileDetailsRequestType()
 	 	{
 		}
@@ -44478,17 +44487,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class GetRecurringPaymentsProfileDetailsResponseType : AbstractResponseType	{
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private GetRecurringPaymentsProfileDetailsResponseDetailsType getRecurringPaymentsProfileDetailsResponseDetailsField;
 		public GetRecurringPaymentsProfileDetailsResponseDetailsType GetRecurringPaymentsProfileDetailsResponseDetails
 		{
@@ -44503,9 +44512,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public GetRecurringPaymentsProfileDetailsResponseType()
 	 	{
 		}
@@ -44527,9 +44536,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class ManageRecurringPaymentsProfileStatusReq	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
@@ -44540,9 +44549,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private ManageRecurringPaymentsProfileStatusRequestType manageRecurringPaymentsProfileStatusRequestField;
 		public ManageRecurringPaymentsProfileStatusRequestType ManageRecurringPaymentsProfileStatusRequest
 		{
@@ -44557,9 +44566,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public ManageRecurringPaymentsProfileStatusReq()
 	 	{
 		}
@@ -44602,9 +44611,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class ManageRecurringPaymentsProfileStatusRequestType : AbstractRequestType	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
@@ -44615,9 +44624,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private ManageRecurringPaymentsProfileStatusRequestDetailsType manageRecurringPaymentsProfileStatusRequestDetailsField;
 		public ManageRecurringPaymentsProfileStatusRequestDetailsType ManageRecurringPaymentsProfileStatusRequestDetails
 		{
@@ -44632,9 +44641,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public ManageRecurringPaymentsProfileStatusRequestType()
 	 	{
 		}
@@ -44678,17 +44687,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class ManageRecurringPaymentsProfileStatusResponseType : AbstractResponseType	{
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private ManageRecurringPaymentsProfileStatusResponseDetailsType manageRecurringPaymentsProfileStatusResponseDetailsField;
 		public ManageRecurringPaymentsProfileStatusResponseDetailsType ManageRecurringPaymentsProfileStatusResponseDetails
 		{
@@ -44703,9 +44712,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public ManageRecurringPaymentsProfileStatusResponseType()
 	 	{
 		}
@@ -44727,9 +44736,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class BillOutstandingAmountReq	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
@@ -44740,9 +44749,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private BillOutstandingAmountRequestType billOutstandingAmountRequestField;
 		public BillOutstandingAmountRequestType BillOutstandingAmountRequest
 		{
@@ -44757,9 +44766,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public BillOutstandingAmountReq()
 	 	{
 		}
@@ -44802,9 +44811,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class BillOutstandingAmountRequestType : AbstractRequestType	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
@@ -44815,9 +44824,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private BillOutstandingAmountRequestDetailsType billOutstandingAmountRequestDetailsField;
 		public BillOutstandingAmountRequestDetailsType BillOutstandingAmountRequestDetails
 		{
@@ -44832,9 +44841,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public BillOutstandingAmountRequestType()
 	 	{
 		}
@@ -44878,17 +44887,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class BillOutstandingAmountResponseType : AbstractResponseType	{
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private BillOutstandingAmountResponseDetailsType billOutstandingAmountResponseDetailsField;
 		public BillOutstandingAmountResponseDetailsType BillOutstandingAmountResponseDetails
 		{
@@ -44903,9 +44912,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public BillOutstandingAmountResponseType()
 	 	{
 		}
@@ -44927,9 +44936,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class UpdateRecurringPaymentsProfileReq	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
@@ -44940,9 +44949,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private UpdateRecurringPaymentsProfileRequestType updateRecurringPaymentsProfileRequestField;
 		public UpdateRecurringPaymentsProfileRequestType UpdateRecurringPaymentsProfileRequest
 		{
@@ -44957,9 +44966,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public UpdateRecurringPaymentsProfileReq()
 	 	{
 		}
@@ -45002,9 +45011,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class UpdateRecurringPaymentsProfileRequestType : AbstractRequestType	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
@@ -45015,9 +45024,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private UpdateRecurringPaymentsProfileRequestDetailsType updateRecurringPaymentsProfileRequestDetailsField;
 		public UpdateRecurringPaymentsProfileRequestDetailsType UpdateRecurringPaymentsProfileRequestDetails
 		{
@@ -45032,9 +45041,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public UpdateRecurringPaymentsProfileRequestType()
 	 	{
 		}
@@ -45078,17 +45087,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class UpdateRecurringPaymentsProfileResponseType : AbstractResponseType	{
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private UpdateRecurringPaymentsProfileResponseDetailsType updateRecurringPaymentsProfileResponseDetailsField;
 		public UpdateRecurringPaymentsProfileResponseDetailsType UpdateRecurringPaymentsProfileResponseDetails
 		{
@@ -45103,9 +45112,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public UpdateRecurringPaymentsProfileResponseType()
 	 	{
 		}
@@ -45127,9 +45136,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class GetPalDetailsReq	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
@@ -45140,9 +45149,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private GetPalDetailsRequestType getPalDetailsRequestField;
 		public GetPalDetailsRequestType GetPalDetailsRequest
 		{
@@ -45157,9 +45166,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public GetPalDetailsReq()
 	 	{
 		}
@@ -45202,9 +45211,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class GetPalDetailsRequestType : AbstractRequestType	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
@@ -45215,9 +45224,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public GetPalDetailsRequestType()
 	 	{
 		}
@@ -45257,17 +45266,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class GetPalDetailsResponseType : AbstractResponseType	{
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string palField;
 		public string Pal
 		{
@@ -45282,9 +45291,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string localeField;
 		public string Locale
 		{
@@ -45299,9 +45308,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public GetPalDetailsResponseType()
 	 	{
 		}
@@ -45328,9 +45337,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class ReverseTransactionReq	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
@@ -45341,9 +45350,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private ReverseTransactionRequestType reverseTransactionRequestField;
 		public ReverseTransactionRequestType ReverseTransactionRequest
 		{
@@ -45358,9 +45367,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public ReverseTransactionReq()
 	 	{
 		}
@@ -45403,9 +45412,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class ReverseTransactionRequestType : AbstractRequestType	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
@@ -45416,9 +45425,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private ReverseTransactionRequestDetailsType reverseTransactionRequestDetailsField;
 		public ReverseTransactionRequestDetailsType ReverseTransactionRequestDetails
 		{
@@ -45433,17 +45442,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Constructor with arguments
-	 	  */
+		/// <summary>
+		/// Constructor with arguments
+	 	/// </summary>
 	 	public ReverseTransactionRequestType(ReverseTransactionRequestDetailsType reverseTransactionRequestDetails)
 	 	{
 			this.ReverseTransactionRequestDetails = reverseTransactionRequestDetails;
 		}
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public ReverseTransactionRequestType()
 	 	{
 		}
@@ -45487,17 +45496,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class ReverseTransactionResponseType : AbstractResponseType	{
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private ReverseTransactionResponseDetailsType reverseTransactionResponseDetailsField;
 		public ReverseTransactionResponseDetailsType ReverseTransactionResponseDetails
 		{
@@ -45512,9 +45521,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public ReverseTransactionResponseType()
 	 	{
 		}
@@ -45536,9 +45545,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class ExternalRememberMeOptOutReq	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
@@ -45549,9 +45558,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private ExternalRememberMeOptOutRequestType externalRememberMeOptOutRequestField;
 		public ExternalRememberMeOptOutRequestType ExternalRememberMeOptOutRequest
 		{
@@ -45566,9 +45575,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public ExternalRememberMeOptOutReq()
 	 	{
 		}
@@ -45611,13 +45620,13 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *The merchant passes in the ExternalRememberMeID to identify
-      *the user to opt out. This is a 17-character alphanumeric
-      *(encrypted) string that identifies the buyer's remembered
-      *login with a merchant and has meaning only to the merchant.
-      *Required 
-      */
+	/// <summary>
+	/// The merchant passes in the ExternalRememberMeID to identify
+	/// the user to opt out. This is a 17-character alphanumeric
+	/// (encrypted) string that identifies the buyer's remembered
+	/// login with a merchant and has meaning only to the merchant.
+	/// Required 
+    /// </summary>
 	public partial class ExternalRememberMeOptOutRequestType : AbstractRequestType	{
 		// Namespace for the type
 		private const string NameSpace = "urn:ebay:api:PayPalAPI";
@@ -45628,9 +45637,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private string externalRememberMeIDField;
 		public string ExternalRememberMeID
 		{
@@ -45645,9 +45654,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-          *
-		  */
+		/// <summary>
+		/// 
+		/// </summary>
 		private ExternalRememberMeOwnerDetailsType externalRememberMeOwnerDetailsField;
 		public ExternalRememberMeOwnerDetailsType ExternalRememberMeOwnerDetails
 		{
@@ -45662,17 +45671,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		}
 		
 
-		/**
-	 	  * Constructor with arguments
-	 	  */
+		/// <summary>
+		/// Constructor with arguments
+	 	/// </summary>
 	 	public ExternalRememberMeOptOutRequestType(string externalRememberMeID)
 	 	{
 			this.ExternalRememberMeID = externalRememberMeID;
 		}
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public ExternalRememberMeOptOutRequestType()
 	 	{
 		}
@@ -45721,17 +45730,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 
-	/**
-      *
-      */
+	/// <summary>
+	/// 
+    /// </summary>
 	public partial class ExternalRememberMeOptOutResponseType : AbstractResponseType	{
 		
 		// Default US culture info
 		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-		/**
-	 	  * Default Constructor
-	 	  */
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
 	 	public ExternalRememberMeOptOutResponseType()
 	 	{
 		}

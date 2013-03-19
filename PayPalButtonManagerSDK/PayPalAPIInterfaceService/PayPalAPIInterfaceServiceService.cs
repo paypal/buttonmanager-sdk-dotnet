@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Xml;
 using PayPal;
 using PayPal.Authentication;
@@ -12,378 +13,423 @@ namespace PayPal.PayPalAPIInterfaceService
 	public partial class PayPalAPIInterfaceServiceService : BasePayPalService 
 	{
 
-		// Service Version
+		/// <summary>
+		/// Service Version
+		/// </summary>
 		private const string ServiceVersion = "98.0";
 
-		// Service Name
+		/// <summary>
+		/// Service Name
+		/// </summary>
 		private const string ServiceName = "PayPalAPIInterfaceService";
 		
-		//SDK Name
+		/// <summary>
+		/// SDK Name
+		/// </summary>
 		private const string SDKName = "buttonmanager-dotnet-sdk";
 	
-		//SDK Version
+		/// <summary>
+		/// SDK Version
+		/// </summary>
 		private const string SDKVersion = "2.2.98";
 
-		public PayPalAPIInterfaceServiceService() {}
+		/// <summary>
+		/// Default constructor for loading configuration from *.Config file
+		/// </summary>
+		public PayPalAPIInterfaceServiceService() : base() {}
+		
+		/// <summary>
+		/// constructor for passing in a dynamic configuration object
+		/// </summary>
+		public PayPalAPIInterfaceServiceService(Dictionary<string, string> config) : base(config) {}
+		
 	
 		private void setStandardParams(AbstractRequestType request) {
 			if (request.Version == null)
 			{
 				request.Version = ServiceVersion;
 			}
-			if (request.ErrorLanguage != null && ConfigManager.Instance.GetProperty("languageCode") != null)
+			if (request.ErrorLanguage != null && this.config.ContainsKey("languageCode"))
 			{
-				request.ErrorLanguage = ConfigManager.Instance.GetProperty("languageCode");
+				request.ErrorLanguage = this.config["languageCode"];
 			}
 		}
 
-		/**	
-          *AUTO_GENERATED
-	 	  */
+		/// <summary>
+		/// 
+	 	/// </summary>
+		///<param name="bMCreateButtonReq"></param>
+		///<param name="apiUserName">API Username that you want to authenticate this call against. This username and the corresponding 3-token/certificate credentials must be available in Web.Config/App.Config</param>
 	 	public BMCreateButtonResponseType BMCreateButton(BMCreateButtonReq bMCreateButtonReq, string apiUserName)
-	 	{
-	 		IAPICallPreHandler apiCallPreHandler = null;
-	 		string portName = "PayPalAPI";
+	 	{	 		
 			setStandardParams(bMCreateButtonReq.BMCreateButtonRequest);
-			DefaultSOAPAPICallHandler defaultHandler = new DefaultSOAPAPICallHandler(bMCreateButtonReq.ToXMLString(null, "BMCreateButtonReq"), null, null);
-			apiCallPreHandler = new MerchantAPICallPreHandler(defaultHandler, apiUserName, getAccessToken(), getAccessTokenSecret());
+			DefaultSOAPAPICallHandler defaultHandler = new DefaultSOAPAPICallHandler(this.config, bMCreateButtonReq.ToXMLString(null, "BMCreateButtonReq"), null, null);
+			IAPICallPreHandler apiCallPreHandler = new MerchantAPICallPreHandler(this.config, defaultHandler, apiUserName, getAccessToken(), getAccessTokenSecret());
 			((MerchantAPICallPreHandler) apiCallPreHandler).SDKName = SDKName;
 			((MerchantAPICallPreHandler) apiCallPreHandler).SDKVersion = SDKVersion;
-			((MerchantAPICallPreHandler) apiCallPreHandler).PortName = portName;
-			string response = Call(apiCallPreHandler);
+			((MerchantAPICallPreHandler) apiCallPreHandler).PortName = "PayPalAPI";
+			
 			XmlDocument xmlDocument = new XmlDocument();
-			xmlDocument.LoadXml(response);
-			XmlNode xmlNode = xmlDocument.SelectSingleNode("*[local-name()='Envelope']/*[local-name()='Body']/*[local-name()='BMCreateButtonResponse']");
-			return new BMCreateButtonResponseType(xmlNode);
+			xmlDocument.LoadXml(Call(apiCallPreHandler));			
+			return new BMCreateButtonResponseType(
+				xmlDocument.SelectSingleNode("*[local-name()='Envelope']/*[local-name()='Body']/*[local-name()='BMCreateButtonResponse']")
+			);
 			
 	 	}
 	 
-	 	/** 
-          *AUTO_GENERATED
-	 	  */
+	 	/// <summary> 
+		/// 
+	 	/// </summary>
+		///<param name="bMCreateButtonReq"></param>
+	 	
 	 	public BMCreateButtonResponseType BMCreateButton(BMCreateButtonReq bMCreateButtonReq)
 	 	{
 	 		return BMCreateButton(bMCreateButtonReq,(string) null);
 	 	}
 	 	
-	 	/**	
-          *AUTO_GENERATED
-	 	  */
+	 	/// <summary>
+		/// 
+	 	/// </summary>
+		///<param name="bMCreateButtonReq"></param>
+		///<param name="credential">An explicit ICredential object that you want to authenticate this call against</param> 
 	 	public BMCreateButtonResponseType BMCreateButton(BMCreateButtonReq bMCreateButtonReq, ICredential credential)
-	 	{
-	 		IAPICallPreHandler apiCallPreHandler = null;
-	 		string portName = "PayPalAPI";
+	 	{	 			 		
 			setStandardParams(bMCreateButtonReq.BMCreateButtonRequest);
-			DefaultSOAPAPICallHandler defaultHandler = new DefaultSOAPAPICallHandler(bMCreateButtonReq.ToXMLString(null, "BMCreateButtonReq"), null, null);
-			apiCallPreHandler = new MerchantAPICallPreHandler(defaultHandler, credential);
+			DefaultSOAPAPICallHandler defaultHandler = new DefaultSOAPAPICallHandler(this.config, bMCreateButtonReq.ToXMLString(null, "BMCreateButtonReq"), null, null);
+			IAPICallPreHandler apiCallPreHandler = new MerchantAPICallPreHandler(this.config, defaultHandler, credential);
 			((MerchantAPICallPreHandler) apiCallPreHandler).SDKName = SDKName;
 			((MerchantAPICallPreHandler) apiCallPreHandler).SDKVersion = SDKVersion;
-			((MerchantAPICallPreHandler) apiCallPreHandler).PortName = portName;
-			string response = Call(apiCallPreHandler);
+			((MerchantAPICallPreHandler) apiCallPreHandler).PortName = "PayPalAPI";
+			
 			XmlDocument xmlDocument = new XmlDocument();
-			xmlDocument.LoadXml(response);
-			XmlNode xmlNode = xmlDocument.SelectSingleNode("*[local-name()='Envelope']/*[local-name()='Body']/*[local-name()='BMCreateButtonResponse']");
-			return new BMCreateButtonResponseType(xmlNode);
+			xmlDocument.LoadXml(Call(apiCallPreHandler));			
+			return new BMCreateButtonResponseType(
+				xmlDocument.SelectSingleNode("*[local-name()='Envelope']/*[local-name()='Body']/*[local-name()='BMCreateButtonResponse']")
+			);
 			
 	 	}
 
-		/**	
-          *AUTO_GENERATED
-	 	  */
+		/// <summary>
+		/// 
+	 	/// </summary>
+		///<param name="bMUpdateButtonReq"></param>
+		///<param name="apiUserName">API Username that you want to authenticate this call against. This username and the corresponding 3-token/certificate credentials must be available in Web.Config/App.Config</param>
 	 	public BMUpdateButtonResponseType BMUpdateButton(BMUpdateButtonReq bMUpdateButtonReq, string apiUserName)
-	 	{
-	 		IAPICallPreHandler apiCallPreHandler = null;
-	 		string portName = "PayPalAPI";
+	 	{	 		
 			setStandardParams(bMUpdateButtonReq.BMUpdateButtonRequest);
-			DefaultSOAPAPICallHandler defaultHandler = new DefaultSOAPAPICallHandler(bMUpdateButtonReq.ToXMLString(null, "BMUpdateButtonReq"), null, null);
-			apiCallPreHandler = new MerchantAPICallPreHandler(defaultHandler, apiUserName, getAccessToken(), getAccessTokenSecret());
+			DefaultSOAPAPICallHandler defaultHandler = new DefaultSOAPAPICallHandler(this.config, bMUpdateButtonReq.ToXMLString(null, "BMUpdateButtonReq"), null, null);
+			IAPICallPreHandler apiCallPreHandler = new MerchantAPICallPreHandler(this.config, defaultHandler, apiUserName, getAccessToken(), getAccessTokenSecret());
 			((MerchantAPICallPreHandler) apiCallPreHandler).SDKName = SDKName;
 			((MerchantAPICallPreHandler) apiCallPreHandler).SDKVersion = SDKVersion;
-			((MerchantAPICallPreHandler) apiCallPreHandler).PortName = portName;
-			string response = Call(apiCallPreHandler);
+			((MerchantAPICallPreHandler) apiCallPreHandler).PortName = "PayPalAPI";
+			
 			XmlDocument xmlDocument = new XmlDocument();
-			xmlDocument.LoadXml(response);
-			XmlNode xmlNode = xmlDocument.SelectSingleNode("*[local-name()='Envelope']/*[local-name()='Body']/*[local-name()='BMUpdateButtonResponse']");
-			return new BMUpdateButtonResponseType(xmlNode);
+			xmlDocument.LoadXml(Call(apiCallPreHandler));			
+			return new BMUpdateButtonResponseType(
+				xmlDocument.SelectSingleNode("*[local-name()='Envelope']/*[local-name()='Body']/*[local-name()='BMUpdateButtonResponse']")
+			);
 			
 	 	}
 	 
-	 	/** 
-          *AUTO_GENERATED
-	 	  */
+	 	/// <summary> 
+		/// 
+	 	/// </summary>
+		///<param name="bMUpdateButtonReq"></param>
+	 	
 	 	public BMUpdateButtonResponseType BMUpdateButton(BMUpdateButtonReq bMUpdateButtonReq)
 	 	{
 	 		return BMUpdateButton(bMUpdateButtonReq,(string) null);
 	 	}
 	 	
-	 	/**	
-          *AUTO_GENERATED
-	 	  */
+	 	/// <summary>
+		/// 
+	 	/// </summary>
+		///<param name="bMUpdateButtonReq"></param>
+		///<param name="credential">An explicit ICredential object that you want to authenticate this call against</param> 
 	 	public BMUpdateButtonResponseType BMUpdateButton(BMUpdateButtonReq bMUpdateButtonReq, ICredential credential)
-	 	{
-	 		IAPICallPreHandler apiCallPreHandler = null;
-	 		string portName = "PayPalAPI";
+	 	{	 			 		
 			setStandardParams(bMUpdateButtonReq.BMUpdateButtonRequest);
-			DefaultSOAPAPICallHandler defaultHandler = new DefaultSOAPAPICallHandler(bMUpdateButtonReq.ToXMLString(null, "BMUpdateButtonReq"), null, null);
-			apiCallPreHandler = new MerchantAPICallPreHandler(defaultHandler, credential);
+			DefaultSOAPAPICallHandler defaultHandler = new DefaultSOAPAPICallHandler(this.config, bMUpdateButtonReq.ToXMLString(null, "BMUpdateButtonReq"), null, null);
+			IAPICallPreHandler apiCallPreHandler = new MerchantAPICallPreHandler(this.config, defaultHandler, credential);
 			((MerchantAPICallPreHandler) apiCallPreHandler).SDKName = SDKName;
 			((MerchantAPICallPreHandler) apiCallPreHandler).SDKVersion = SDKVersion;
-			((MerchantAPICallPreHandler) apiCallPreHandler).PortName = portName;
-			string response = Call(apiCallPreHandler);
+			((MerchantAPICallPreHandler) apiCallPreHandler).PortName = "PayPalAPI";
+			
 			XmlDocument xmlDocument = new XmlDocument();
-			xmlDocument.LoadXml(response);
-			XmlNode xmlNode = xmlDocument.SelectSingleNode("*[local-name()='Envelope']/*[local-name()='Body']/*[local-name()='BMUpdateButtonResponse']");
-			return new BMUpdateButtonResponseType(xmlNode);
+			xmlDocument.LoadXml(Call(apiCallPreHandler));			
+			return new BMUpdateButtonResponseType(
+				xmlDocument.SelectSingleNode("*[local-name()='Envelope']/*[local-name()='Body']/*[local-name()='BMUpdateButtonResponse']")
+			);
 			
 	 	}
 
-		/**	
-          *AUTO_GENERATED
-	 	  */
+		/// <summary>
+		/// 
+	 	/// </summary>
+		///<param name="bMManageButtonStatusReq"></param>
+		///<param name="apiUserName">API Username that you want to authenticate this call against. This username and the corresponding 3-token/certificate credentials must be available in Web.Config/App.Config</param>
 	 	public BMManageButtonStatusResponseType BMManageButtonStatus(BMManageButtonStatusReq bMManageButtonStatusReq, string apiUserName)
-	 	{
-	 		IAPICallPreHandler apiCallPreHandler = null;
-	 		string portName = "PayPalAPI";
+	 	{	 		
 			setStandardParams(bMManageButtonStatusReq.BMManageButtonStatusRequest);
-			DefaultSOAPAPICallHandler defaultHandler = new DefaultSOAPAPICallHandler(bMManageButtonStatusReq.ToXMLString(null, "BMManageButtonStatusReq"), null, null);
-			apiCallPreHandler = new MerchantAPICallPreHandler(defaultHandler, apiUserName, getAccessToken(), getAccessTokenSecret());
+			DefaultSOAPAPICallHandler defaultHandler = new DefaultSOAPAPICallHandler(this.config, bMManageButtonStatusReq.ToXMLString(null, "BMManageButtonStatusReq"), null, null);
+			IAPICallPreHandler apiCallPreHandler = new MerchantAPICallPreHandler(this.config, defaultHandler, apiUserName, getAccessToken(), getAccessTokenSecret());
 			((MerchantAPICallPreHandler) apiCallPreHandler).SDKName = SDKName;
 			((MerchantAPICallPreHandler) apiCallPreHandler).SDKVersion = SDKVersion;
-			((MerchantAPICallPreHandler) apiCallPreHandler).PortName = portName;
-			string response = Call(apiCallPreHandler);
+			((MerchantAPICallPreHandler) apiCallPreHandler).PortName = "PayPalAPI";
+			
 			XmlDocument xmlDocument = new XmlDocument();
-			xmlDocument.LoadXml(response);
-			XmlNode xmlNode = xmlDocument.SelectSingleNode("*[local-name()='Envelope']/*[local-name()='Body']/*[local-name()='BMManageButtonStatusResponse']");
-			return new BMManageButtonStatusResponseType(xmlNode);
+			xmlDocument.LoadXml(Call(apiCallPreHandler));			
+			return new BMManageButtonStatusResponseType(
+				xmlDocument.SelectSingleNode("*[local-name()='Envelope']/*[local-name()='Body']/*[local-name()='BMManageButtonStatusResponse']")
+			);
 			
 	 	}
 	 
-	 	/** 
-          *AUTO_GENERATED
-	 	  */
+	 	/// <summary> 
+		/// 
+	 	/// </summary>
+		///<param name="bMManageButtonStatusReq"></param>
+	 	
 	 	public BMManageButtonStatusResponseType BMManageButtonStatus(BMManageButtonStatusReq bMManageButtonStatusReq)
 	 	{
 	 		return BMManageButtonStatus(bMManageButtonStatusReq,(string) null);
 	 	}
 	 	
-	 	/**	
-          *AUTO_GENERATED
-	 	  */
+	 	/// <summary>
+		/// 
+	 	/// </summary>
+		///<param name="bMManageButtonStatusReq"></param>
+		///<param name="credential">An explicit ICredential object that you want to authenticate this call against</param> 
 	 	public BMManageButtonStatusResponseType BMManageButtonStatus(BMManageButtonStatusReq bMManageButtonStatusReq, ICredential credential)
-	 	{
-	 		IAPICallPreHandler apiCallPreHandler = null;
-	 		string portName = "PayPalAPI";
+	 	{	 			 		
 			setStandardParams(bMManageButtonStatusReq.BMManageButtonStatusRequest);
-			DefaultSOAPAPICallHandler defaultHandler = new DefaultSOAPAPICallHandler(bMManageButtonStatusReq.ToXMLString(null, "BMManageButtonStatusReq"), null, null);
-			apiCallPreHandler = new MerchantAPICallPreHandler(defaultHandler, credential);
+			DefaultSOAPAPICallHandler defaultHandler = new DefaultSOAPAPICallHandler(this.config, bMManageButtonStatusReq.ToXMLString(null, "BMManageButtonStatusReq"), null, null);
+			IAPICallPreHandler apiCallPreHandler = new MerchantAPICallPreHandler(this.config, defaultHandler, credential);
 			((MerchantAPICallPreHandler) apiCallPreHandler).SDKName = SDKName;
 			((MerchantAPICallPreHandler) apiCallPreHandler).SDKVersion = SDKVersion;
-			((MerchantAPICallPreHandler) apiCallPreHandler).PortName = portName;
-			string response = Call(apiCallPreHandler);
+			((MerchantAPICallPreHandler) apiCallPreHandler).PortName = "PayPalAPI";
+			
 			XmlDocument xmlDocument = new XmlDocument();
-			xmlDocument.LoadXml(response);
-			XmlNode xmlNode = xmlDocument.SelectSingleNode("*[local-name()='Envelope']/*[local-name()='Body']/*[local-name()='BMManageButtonStatusResponse']");
-			return new BMManageButtonStatusResponseType(xmlNode);
+			xmlDocument.LoadXml(Call(apiCallPreHandler));			
+			return new BMManageButtonStatusResponseType(
+				xmlDocument.SelectSingleNode("*[local-name()='Envelope']/*[local-name()='Body']/*[local-name()='BMManageButtonStatusResponse']")
+			);
 			
 	 	}
 
-		/**	
-          *AUTO_GENERATED
-	 	  */
+		/// <summary>
+		/// 
+	 	/// </summary>
+		///<param name="bMGetButtonDetailsReq"></param>
+		///<param name="apiUserName">API Username that you want to authenticate this call against. This username and the corresponding 3-token/certificate credentials must be available in Web.Config/App.Config</param>
 	 	public BMGetButtonDetailsResponseType BMGetButtonDetails(BMGetButtonDetailsReq bMGetButtonDetailsReq, string apiUserName)
-	 	{
-	 		IAPICallPreHandler apiCallPreHandler = null;
-	 		string portName = "PayPalAPI";
+	 	{	 		
 			setStandardParams(bMGetButtonDetailsReq.BMGetButtonDetailsRequest);
-			DefaultSOAPAPICallHandler defaultHandler = new DefaultSOAPAPICallHandler(bMGetButtonDetailsReq.ToXMLString(null, "BMGetButtonDetailsReq"), null, null);
-			apiCallPreHandler = new MerchantAPICallPreHandler(defaultHandler, apiUserName, getAccessToken(), getAccessTokenSecret());
+			DefaultSOAPAPICallHandler defaultHandler = new DefaultSOAPAPICallHandler(this.config, bMGetButtonDetailsReq.ToXMLString(null, "BMGetButtonDetailsReq"), null, null);
+			IAPICallPreHandler apiCallPreHandler = new MerchantAPICallPreHandler(this.config, defaultHandler, apiUserName, getAccessToken(), getAccessTokenSecret());
 			((MerchantAPICallPreHandler) apiCallPreHandler).SDKName = SDKName;
 			((MerchantAPICallPreHandler) apiCallPreHandler).SDKVersion = SDKVersion;
-			((MerchantAPICallPreHandler) apiCallPreHandler).PortName = portName;
-			string response = Call(apiCallPreHandler);
+			((MerchantAPICallPreHandler) apiCallPreHandler).PortName = "PayPalAPI";
+			
 			XmlDocument xmlDocument = new XmlDocument();
-			xmlDocument.LoadXml(response);
-			XmlNode xmlNode = xmlDocument.SelectSingleNode("*[local-name()='Envelope']/*[local-name()='Body']/*[local-name()='BMGetButtonDetailsResponse']");
-			return new BMGetButtonDetailsResponseType(xmlNode);
+			xmlDocument.LoadXml(Call(apiCallPreHandler));			
+			return new BMGetButtonDetailsResponseType(
+				xmlDocument.SelectSingleNode("*[local-name()='Envelope']/*[local-name()='Body']/*[local-name()='BMGetButtonDetailsResponse']")
+			);
 			
 	 	}
 	 
-	 	/** 
-          *AUTO_GENERATED
-	 	  */
+	 	/// <summary> 
+		/// 
+	 	/// </summary>
+		///<param name="bMGetButtonDetailsReq"></param>
+	 	
 	 	public BMGetButtonDetailsResponseType BMGetButtonDetails(BMGetButtonDetailsReq bMGetButtonDetailsReq)
 	 	{
 	 		return BMGetButtonDetails(bMGetButtonDetailsReq,(string) null);
 	 	}
 	 	
-	 	/**	
-          *AUTO_GENERATED
-	 	  */
+	 	/// <summary>
+		/// 
+	 	/// </summary>
+		///<param name="bMGetButtonDetailsReq"></param>
+		///<param name="credential">An explicit ICredential object that you want to authenticate this call against</param> 
 	 	public BMGetButtonDetailsResponseType BMGetButtonDetails(BMGetButtonDetailsReq bMGetButtonDetailsReq, ICredential credential)
-	 	{
-	 		IAPICallPreHandler apiCallPreHandler = null;
-	 		string portName = "PayPalAPI";
+	 	{	 			 		
 			setStandardParams(bMGetButtonDetailsReq.BMGetButtonDetailsRequest);
-			DefaultSOAPAPICallHandler defaultHandler = new DefaultSOAPAPICallHandler(bMGetButtonDetailsReq.ToXMLString(null, "BMGetButtonDetailsReq"), null, null);
-			apiCallPreHandler = new MerchantAPICallPreHandler(defaultHandler, credential);
+			DefaultSOAPAPICallHandler defaultHandler = new DefaultSOAPAPICallHandler(this.config, bMGetButtonDetailsReq.ToXMLString(null, "BMGetButtonDetailsReq"), null, null);
+			IAPICallPreHandler apiCallPreHandler = new MerchantAPICallPreHandler(this.config, defaultHandler, credential);
 			((MerchantAPICallPreHandler) apiCallPreHandler).SDKName = SDKName;
 			((MerchantAPICallPreHandler) apiCallPreHandler).SDKVersion = SDKVersion;
-			((MerchantAPICallPreHandler) apiCallPreHandler).PortName = portName;
-			string response = Call(apiCallPreHandler);
+			((MerchantAPICallPreHandler) apiCallPreHandler).PortName = "PayPalAPI";
+			
 			XmlDocument xmlDocument = new XmlDocument();
-			xmlDocument.LoadXml(response);
-			XmlNode xmlNode = xmlDocument.SelectSingleNode("*[local-name()='Envelope']/*[local-name()='Body']/*[local-name()='BMGetButtonDetailsResponse']");
-			return new BMGetButtonDetailsResponseType(xmlNode);
+			xmlDocument.LoadXml(Call(apiCallPreHandler));			
+			return new BMGetButtonDetailsResponseType(
+				xmlDocument.SelectSingleNode("*[local-name()='Envelope']/*[local-name()='Body']/*[local-name()='BMGetButtonDetailsResponse']")
+			);
 			
 	 	}
 
-		/**	
-          *AUTO_GENERATED
-	 	  */
+		/// <summary>
+		/// 
+	 	/// </summary>
+		///<param name="bMSetInventoryReq"></param>
+		///<param name="apiUserName">API Username that you want to authenticate this call against. This username and the corresponding 3-token/certificate credentials must be available in Web.Config/App.Config</param>
 	 	public BMSetInventoryResponseType BMSetInventory(BMSetInventoryReq bMSetInventoryReq, string apiUserName)
-	 	{
-	 		IAPICallPreHandler apiCallPreHandler = null;
-	 		string portName = "PayPalAPI";
+	 	{	 		
 			setStandardParams(bMSetInventoryReq.BMSetInventoryRequest);
-			DefaultSOAPAPICallHandler defaultHandler = new DefaultSOAPAPICallHandler(bMSetInventoryReq.ToXMLString(null, "BMSetInventoryReq"), null, null);
-			apiCallPreHandler = new MerchantAPICallPreHandler(defaultHandler, apiUserName, getAccessToken(), getAccessTokenSecret());
+			DefaultSOAPAPICallHandler defaultHandler = new DefaultSOAPAPICallHandler(this.config, bMSetInventoryReq.ToXMLString(null, "BMSetInventoryReq"), null, null);
+			IAPICallPreHandler apiCallPreHandler = new MerchantAPICallPreHandler(this.config, defaultHandler, apiUserName, getAccessToken(), getAccessTokenSecret());
 			((MerchantAPICallPreHandler) apiCallPreHandler).SDKName = SDKName;
 			((MerchantAPICallPreHandler) apiCallPreHandler).SDKVersion = SDKVersion;
-			((MerchantAPICallPreHandler) apiCallPreHandler).PortName = portName;
-			string response = Call(apiCallPreHandler);
+			((MerchantAPICallPreHandler) apiCallPreHandler).PortName = "PayPalAPI";
+			
 			XmlDocument xmlDocument = new XmlDocument();
-			xmlDocument.LoadXml(response);
-			XmlNode xmlNode = xmlDocument.SelectSingleNode("*[local-name()='Envelope']/*[local-name()='Body']/*[local-name()='BMSetInventoryResponse']");
-			return new BMSetInventoryResponseType(xmlNode);
+			xmlDocument.LoadXml(Call(apiCallPreHandler));			
+			return new BMSetInventoryResponseType(
+				xmlDocument.SelectSingleNode("*[local-name()='Envelope']/*[local-name()='Body']/*[local-name()='BMSetInventoryResponse']")
+			);
 			
 	 	}
 	 
-	 	/** 
-          *AUTO_GENERATED
-	 	  */
+	 	/// <summary> 
+		/// 
+	 	/// </summary>
+		///<param name="bMSetInventoryReq"></param>
+	 	
 	 	public BMSetInventoryResponseType BMSetInventory(BMSetInventoryReq bMSetInventoryReq)
 	 	{
 	 		return BMSetInventory(bMSetInventoryReq,(string) null);
 	 	}
 	 	
-	 	/**	
-          *AUTO_GENERATED
-	 	  */
+	 	/// <summary>
+		/// 
+	 	/// </summary>
+		///<param name="bMSetInventoryReq"></param>
+		///<param name="credential">An explicit ICredential object that you want to authenticate this call against</param> 
 	 	public BMSetInventoryResponseType BMSetInventory(BMSetInventoryReq bMSetInventoryReq, ICredential credential)
-	 	{
-	 		IAPICallPreHandler apiCallPreHandler = null;
-	 		string portName = "PayPalAPI";
+	 	{	 			 		
 			setStandardParams(bMSetInventoryReq.BMSetInventoryRequest);
-			DefaultSOAPAPICallHandler defaultHandler = new DefaultSOAPAPICallHandler(bMSetInventoryReq.ToXMLString(null, "BMSetInventoryReq"), null, null);
-			apiCallPreHandler = new MerchantAPICallPreHandler(defaultHandler, credential);
+			DefaultSOAPAPICallHandler defaultHandler = new DefaultSOAPAPICallHandler(this.config, bMSetInventoryReq.ToXMLString(null, "BMSetInventoryReq"), null, null);
+			IAPICallPreHandler apiCallPreHandler = new MerchantAPICallPreHandler(this.config, defaultHandler, credential);
 			((MerchantAPICallPreHandler) apiCallPreHandler).SDKName = SDKName;
 			((MerchantAPICallPreHandler) apiCallPreHandler).SDKVersion = SDKVersion;
-			((MerchantAPICallPreHandler) apiCallPreHandler).PortName = portName;
-			string response = Call(apiCallPreHandler);
+			((MerchantAPICallPreHandler) apiCallPreHandler).PortName = "PayPalAPI";
+			
 			XmlDocument xmlDocument = new XmlDocument();
-			xmlDocument.LoadXml(response);
-			XmlNode xmlNode = xmlDocument.SelectSingleNode("*[local-name()='Envelope']/*[local-name()='Body']/*[local-name()='BMSetInventoryResponse']");
-			return new BMSetInventoryResponseType(xmlNode);
+			xmlDocument.LoadXml(Call(apiCallPreHandler));			
+			return new BMSetInventoryResponseType(
+				xmlDocument.SelectSingleNode("*[local-name()='Envelope']/*[local-name()='Body']/*[local-name()='BMSetInventoryResponse']")
+			);
 			
 	 	}
 
-		/**	
-          *AUTO_GENERATED
-	 	  */
+		/// <summary>
+		/// 
+	 	/// </summary>
+		///<param name="bMGetInventoryReq"></param>
+		///<param name="apiUserName">API Username that you want to authenticate this call against. This username and the corresponding 3-token/certificate credentials must be available in Web.Config/App.Config</param>
 	 	public BMGetInventoryResponseType BMGetInventory(BMGetInventoryReq bMGetInventoryReq, string apiUserName)
-	 	{
-	 		IAPICallPreHandler apiCallPreHandler = null;
-	 		string portName = "PayPalAPI";
+	 	{	 		
 			setStandardParams(bMGetInventoryReq.BMGetInventoryRequest);
-			DefaultSOAPAPICallHandler defaultHandler = new DefaultSOAPAPICallHandler(bMGetInventoryReq.ToXMLString(null, "BMGetInventoryReq"), null, null);
-			apiCallPreHandler = new MerchantAPICallPreHandler(defaultHandler, apiUserName, getAccessToken(), getAccessTokenSecret());
+			DefaultSOAPAPICallHandler defaultHandler = new DefaultSOAPAPICallHandler(this.config, bMGetInventoryReq.ToXMLString(null, "BMGetInventoryReq"), null, null);
+			IAPICallPreHandler apiCallPreHandler = new MerchantAPICallPreHandler(this.config, defaultHandler, apiUserName, getAccessToken(), getAccessTokenSecret());
 			((MerchantAPICallPreHandler) apiCallPreHandler).SDKName = SDKName;
 			((MerchantAPICallPreHandler) apiCallPreHandler).SDKVersion = SDKVersion;
-			((MerchantAPICallPreHandler) apiCallPreHandler).PortName = portName;
-			string response = Call(apiCallPreHandler);
+			((MerchantAPICallPreHandler) apiCallPreHandler).PortName = "PayPalAPI";
+			
 			XmlDocument xmlDocument = new XmlDocument();
-			xmlDocument.LoadXml(response);
-			XmlNode xmlNode = xmlDocument.SelectSingleNode("*[local-name()='Envelope']/*[local-name()='Body']/*[local-name()='BMGetInventoryResponse']");
-			return new BMGetInventoryResponseType(xmlNode);
+			xmlDocument.LoadXml(Call(apiCallPreHandler));			
+			return new BMGetInventoryResponseType(
+				xmlDocument.SelectSingleNode("*[local-name()='Envelope']/*[local-name()='Body']/*[local-name()='BMGetInventoryResponse']")
+			);
 			
 	 	}
 	 
-	 	/** 
-          *AUTO_GENERATED
-	 	  */
+	 	/// <summary> 
+		/// 
+	 	/// </summary>
+		///<param name="bMGetInventoryReq"></param>
+	 	
 	 	public BMGetInventoryResponseType BMGetInventory(BMGetInventoryReq bMGetInventoryReq)
 	 	{
 	 		return BMGetInventory(bMGetInventoryReq,(string) null);
 	 	}
 	 	
-	 	/**	
-          *AUTO_GENERATED
-	 	  */
+	 	/// <summary>
+		/// 
+	 	/// </summary>
+		///<param name="bMGetInventoryReq"></param>
+		///<param name="credential">An explicit ICredential object that you want to authenticate this call against</param> 
 	 	public BMGetInventoryResponseType BMGetInventory(BMGetInventoryReq bMGetInventoryReq, ICredential credential)
-	 	{
-	 		IAPICallPreHandler apiCallPreHandler = null;
-	 		string portName = "PayPalAPI";
+	 	{	 			 		
 			setStandardParams(bMGetInventoryReq.BMGetInventoryRequest);
-			DefaultSOAPAPICallHandler defaultHandler = new DefaultSOAPAPICallHandler(bMGetInventoryReq.ToXMLString(null, "BMGetInventoryReq"), null, null);
-			apiCallPreHandler = new MerchantAPICallPreHandler(defaultHandler, credential);
+			DefaultSOAPAPICallHandler defaultHandler = new DefaultSOAPAPICallHandler(this.config, bMGetInventoryReq.ToXMLString(null, "BMGetInventoryReq"), null, null);
+			IAPICallPreHandler apiCallPreHandler = new MerchantAPICallPreHandler(this.config, defaultHandler, credential);
 			((MerchantAPICallPreHandler) apiCallPreHandler).SDKName = SDKName;
 			((MerchantAPICallPreHandler) apiCallPreHandler).SDKVersion = SDKVersion;
-			((MerchantAPICallPreHandler) apiCallPreHandler).PortName = portName;
-			string response = Call(apiCallPreHandler);
+			((MerchantAPICallPreHandler) apiCallPreHandler).PortName = "PayPalAPI";
+			
 			XmlDocument xmlDocument = new XmlDocument();
-			xmlDocument.LoadXml(response);
-			XmlNode xmlNode = xmlDocument.SelectSingleNode("*[local-name()='Envelope']/*[local-name()='Body']/*[local-name()='BMGetInventoryResponse']");
-			return new BMGetInventoryResponseType(xmlNode);
+			xmlDocument.LoadXml(Call(apiCallPreHandler));			
+			return new BMGetInventoryResponseType(
+				xmlDocument.SelectSingleNode("*[local-name()='Envelope']/*[local-name()='Body']/*[local-name()='BMGetInventoryResponse']")
+			);
 			
 	 	}
 
-		/**	
-          *AUTO_GENERATED
-	 	  */
+		/// <summary>
+		/// 
+	 	/// </summary>
+		///<param name="bMButtonSearchReq"></param>
+		///<param name="apiUserName">API Username that you want to authenticate this call against. This username and the corresponding 3-token/certificate credentials must be available in Web.Config/App.Config</param>
 	 	public BMButtonSearchResponseType BMButtonSearch(BMButtonSearchReq bMButtonSearchReq, string apiUserName)
-	 	{
-	 		IAPICallPreHandler apiCallPreHandler = null;
-	 		string portName = "PayPalAPI";
+	 	{	 		
 			setStandardParams(bMButtonSearchReq.BMButtonSearchRequest);
-			DefaultSOAPAPICallHandler defaultHandler = new DefaultSOAPAPICallHandler(bMButtonSearchReq.ToXMLString(null, "BMButtonSearchReq"), null, null);
-			apiCallPreHandler = new MerchantAPICallPreHandler(defaultHandler, apiUserName, getAccessToken(), getAccessTokenSecret());
+			DefaultSOAPAPICallHandler defaultHandler = new DefaultSOAPAPICallHandler(this.config, bMButtonSearchReq.ToXMLString(null, "BMButtonSearchReq"), null, null);
+			IAPICallPreHandler apiCallPreHandler = new MerchantAPICallPreHandler(this.config, defaultHandler, apiUserName, getAccessToken(), getAccessTokenSecret());
 			((MerchantAPICallPreHandler) apiCallPreHandler).SDKName = SDKName;
 			((MerchantAPICallPreHandler) apiCallPreHandler).SDKVersion = SDKVersion;
-			((MerchantAPICallPreHandler) apiCallPreHandler).PortName = portName;
-			string response = Call(apiCallPreHandler);
+			((MerchantAPICallPreHandler) apiCallPreHandler).PortName = "PayPalAPI";
+			
 			XmlDocument xmlDocument = new XmlDocument();
-			xmlDocument.LoadXml(response);
-			XmlNode xmlNode = xmlDocument.SelectSingleNode("*[local-name()='Envelope']/*[local-name()='Body']/*[local-name()='BMButtonSearchResponse']");
-			return new BMButtonSearchResponseType(xmlNode);
+			xmlDocument.LoadXml(Call(apiCallPreHandler));			
+			return new BMButtonSearchResponseType(
+				xmlDocument.SelectSingleNode("*[local-name()='Envelope']/*[local-name()='Body']/*[local-name()='BMButtonSearchResponse']")
+			);
 			
 	 	}
 	 
-	 	/** 
-          *AUTO_GENERATED
-	 	  */
+	 	/// <summary> 
+		/// 
+	 	/// </summary>
+		///<param name="bMButtonSearchReq"></param>
+	 	
 	 	public BMButtonSearchResponseType BMButtonSearch(BMButtonSearchReq bMButtonSearchReq)
 	 	{
 	 		return BMButtonSearch(bMButtonSearchReq,(string) null);
 	 	}
 	 	
-	 	/**	
-          *AUTO_GENERATED
-	 	  */
+	 	/// <summary>
+		/// 
+	 	/// </summary>
+		///<param name="bMButtonSearchReq"></param>
+		///<param name="credential">An explicit ICredential object that you want to authenticate this call against</param> 
 	 	public BMButtonSearchResponseType BMButtonSearch(BMButtonSearchReq bMButtonSearchReq, ICredential credential)
-	 	{
-	 		IAPICallPreHandler apiCallPreHandler = null;
-	 		string portName = "PayPalAPI";
+	 	{	 			 		
 			setStandardParams(bMButtonSearchReq.BMButtonSearchRequest);
-			DefaultSOAPAPICallHandler defaultHandler = new DefaultSOAPAPICallHandler(bMButtonSearchReq.ToXMLString(null, "BMButtonSearchReq"), null, null);
-			apiCallPreHandler = new MerchantAPICallPreHandler(defaultHandler, credential);
+			DefaultSOAPAPICallHandler defaultHandler = new DefaultSOAPAPICallHandler(this.config, bMButtonSearchReq.ToXMLString(null, "BMButtonSearchReq"), null, null);
+			IAPICallPreHandler apiCallPreHandler = new MerchantAPICallPreHandler(this.config, defaultHandler, credential);
 			((MerchantAPICallPreHandler) apiCallPreHandler).SDKName = SDKName;
 			((MerchantAPICallPreHandler) apiCallPreHandler).SDKVersion = SDKVersion;
-			((MerchantAPICallPreHandler) apiCallPreHandler).PortName = portName;
-			string response = Call(apiCallPreHandler);
+			((MerchantAPICallPreHandler) apiCallPreHandler).PortName = "PayPalAPI";
+			
 			XmlDocument xmlDocument = new XmlDocument();
-			xmlDocument.LoadXml(response);
-			XmlNode xmlNode = xmlDocument.SelectSingleNode("*[local-name()='Envelope']/*[local-name()='Body']/*[local-name()='BMButtonSearchResponse']");
-			return new BMButtonSearchResponseType(xmlNode);
+			xmlDocument.LoadXml(Call(apiCallPreHandler));			
+			return new BMButtonSearchResponseType(
+				xmlDocument.SelectSingleNode("*[local-name()='Envelope']/*[local-name()='Body']/*[local-name()='BMButtonSearchResponse']")
+			);
 			
 	 	}
 	}

@@ -1,0 +1,22 @@
+
+# build files
+obj
+bin
+
+
+# IDE files
+*.user
+*.suo
+*.pdb
+*.bak
+*.FileListAbsolute.txt
+
+# Windows image file caches
+Thumbs.db
+ehthumbs.db
+
+# Folder config file
+Desktop.ini
+
+# Mac crap
+.DS_Store

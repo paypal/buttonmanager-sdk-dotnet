@@ -31,7 +31,7 @@ namespace PayPal.PayPalAPIInterfaceService
 		/// <summary>
 		/// SDK Version
 		/// </summary>
-		private const string SDKVersion = "2.2.98";
+		private const string SDKVersion = "2.4.100";
 
 		/// <summary>
 		/// Default constructor for loading configuration from *.Config file
@@ -51,7 +51,7 @@ namespace PayPal.PayPalAPIInterfaceService
 			}
 			if (request.ErrorLanguage != null && this.config.ContainsKey("languageCode"))
 			{
-				request.ErrorLanguage = this.config["languageCode"];
+				request.ErrorLanguage = config["languageCode"];
 			}
 		}
 

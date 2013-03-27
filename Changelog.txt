@@ -1,3 +1,11 @@
+Version 2.4.100 - March 25, 2013
+ 
+ 	- Updated stubs for 100 release
+	- Added dynamic configuration support by passing configuration parameters using hash map.
+	- Added intellisense support.
+	
+You can see source code of this release in github under https://github.com/paypal/buttonmanager-sdk-dotnet/tree/v2.4.100.
+--------------------------------------------------------------------------------------------------
 Version 2.3.98 - February 12, 2013
  
  	- Updated IPN Listener in samples for IPN core class fix.

@@ -42,7 +42,13 @@ namespace PayPalAPISample.APICalls
         {
             // Create request object
             BMButtonSearchRequestType request = new BMButtonSearchRequestType();
+
+            // (Required) Starting date for the search. The value must be in UTC/GMT format; 
+            // for example, 2009-08-24T05:38:48Z. No wildcards are allowed. 
             request.StartDate = startDate.Text;
+
+            // (Optional) Ending date for the search. The value must be in UTC/GMT format; 
+            // for example, 2010-05-01T05:38:48Z. No wildcards are allowed. 
             request.EndDate = endDate.Text;
 
             // Invoke the API
@@ -64,6 +70,10 @@ namespace PayPalAPISample.APICalls
             CurrContext.Items.Add("Response_responsePayload", service.getLastResponse());
 
             Dictionary<string, string> responseParams = new Dictionary<string, string>();
+            // Correlation ID; it is used only by Developer Technical Support.
+            // Note:
+            // You must log and store this data for every response you receive. 
+            // PayPal Technical Support uses the information to assist with reported issues.
             responseParams.Add("Correlation Id", response.CorrelationID);
             responseParams.Add("API Result", response.Ack.ToString());
 
@@ -79,10 +89,14 @@ namespace PayPalAPISample.APICalls
                 for (int i = 0; i < response.ButtonSearchResult.Count; i++)
                 {
                     String label = "Button " + (i + 1);
+                    // The hosted button ID
                     responseParams.Add(label + " type", response.ButtonSearchResult[i].ButtonType.ToString());
+
+                    // The item name
                     responseParams.Add(label + " item Name", response.ButtonSearchResult[i].ItemName);
                     if (response.ButtonSearchResult[i].HostedButtonID != null)
                     {
+                        // The hosted button ID
                         responseParams.Add(label + " Hosted button Id", response.ButtonSearchResult[i].HostedButtonID);
                     }
                 }

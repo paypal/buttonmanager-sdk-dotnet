@@ -25,6 +25,8 @@ namespace PayPalAPISample.APICalls
         {
             // Create request object
             BMGetInventoryRequestType request = new BMGetInventoryRequestType();
+
+            //(Required) The ID of the hosted button whose inventory information you want to obtain.
             request.HostedButtonID = hostedID.Value;
 
             // Invoke the API
@@ -46,6 +48,11 @@ namespace PayPalAPISample.APICalls
             CurrContext.Items.Add("Response_responsePayload", service.getLastResponse());
 
             Dictionary<string, string> responseParams = new Dictionary<string, string>();
+
+            // Correlation ID; it is used only by Developer Technical Support.
+            // Note:
+            // You must log and store this data for every response you receive. 
+            // PayPal Technical Support uses the information to assist with reported issues.
             responseParams.Add("Correlation Id", response.CorrelationID);
             responseParams.Add("API Result", response.Ack.ToString());
 
@@ -57,11 +64,32 @@ namespace PayPalAPISample.APICalls
             else
             {
                 CurrContext.Items.Add("Response_error", null);
+
+                // Whether to track inventory levels associated with the button. 
+                // It is one of the following values:
+                // 0 - do not track inventory
+                // 1 - track inventory
                 responseParams.Add("Is inventory tracked", response.TrackInv);
+
+                // Whether to track the gross profit associated with inventory changes. 
+                // It is one of the following values:
+                //    0 - do not track the gross profit
+                //    1 - track the gross profit
+                // Note:
+                // The gross profit is calculated as the price of the item less its cost, 
+                // multiplied by the change in the inventory level since the last call to BMSetInventory.
                 responseParams.Add("Is Profit & Loss tracked", response.TrackPnl);
+
+                // The ID for an item associated with this button 
                 responseParams.Add("Item Number", response.ItemTrackingDetails.ItemNumber);
+
+                // The current inventory level of the item associated with this button 
                 responseParams.Add("Item Quantity", response.ItemTrackingDetails.ItemQty);
+
+                // The cost of the item associated with this button 
                 responseParams.Add("Item Cost", response.ItemTrackingDetails.ItemCost);
+
+                // The quantity of the item associated with this button below which PayPal sends you an email notification 
                 responseParams.Add("Item Alert threshold quantity", response.ItemTrackingDetails.ItemAlert);
                 responseParams.Add("Soldout URL", response.SoldoutURL);
             }

@@ -27,9 +27,30 @@ namespace PayPalAPISample.APICalls
         {
             // Create request object
             BMCreateButtonRequestType request = new BMCreateButtonRequestType();
+
+            //  (Required) The kind of button you want to create. It is one of the following values:
+            //    BUYNOW - Buy Now button
+            //    CART - Add to Cart button
+            //    GIFTCERTIFICATE - Gift Certificate button
+            //    SUBSCRIBE - Subscribe button
+            //    DONATE - Donate button
+            //    UNSUBSCRIBE - Unsubscribe button
+            //    VIEWCART - View Cart button
+            //    PAYMENTPLAN - Installment Plan button; since version 63.0
+            //    AUTOBILLING - Automatic Billing button; since version 63.0
+            //    PAYMENT - Pay Now button; since version 65.1
+            // Note: Do not specify BUYNOW if BUTTONCODE=TOKEN; specify PAYMENT instead. 
+            // Do not specify PAYMENT if BUTTONCODE=HOSTED. 
             ButtonTypeType selectedButtonType = (ButtonTypeType)
                 Enum.Parse(typeof(ButtonTypeType), buttonType.SelectedValue);
             request.ButtonType = selectedButtonType;
+
+            // (Optional) The kind of button code to create. It is one of the following values:
+            // HOSTED - A secure button stored on PayPal; default for all buttons except View Cart, Unsubscribe, and Pay Now
+            // ENCRYPTED - An encrypted button, not stored on PayPal; default for View Cart button
+            // CLEARTEXT - An unencrypted button, not stored on PayPal; default for Unsubscribe button
+            // TOKEN - A secure button, not stored on PayPal, used only to initiate the Hosted Solution checkout flow; 
+            // default for Pay Now button. Since version 65.1
             request.ButtonCode = (ButtonCodeType)
                 Enum.Parse(typeof(ButtonCodeType), buttonCode.SelectedValue);
 
@@ -53,17 +74,42 @@ namespace PayPalAPISample.APICalls
             if (selectedButtonType.Equals(ButtonTypeType.PAYMENTPLAN))
             {      
                 InstallmentDetailsType insType = new InstallmentDetailsType();
+
+                // (Optional) The total number of billing cycles, 
+                // regardless of the duration of a cycle; 1 is the default
                 insType.TotalBillingCycles = Int32.Parse(billingCycles.Value);
+
+                // (Optional) The base amount to bill for the cycle.
                 insType.Amount = installmentAmt.Value;
+
+                // (Optional) The installment cycle frequency in units, e.g. 
+                // if the billing frequency is 2 and the billing period is Month, 
+                // the billing cycle is every 2 months. The default billing frequency is 1.
                 insType.BillingFrequency = Int32.Parse(billingFreq.Value);
+
+                 //(Optional) The installment cycle unit, which is one of the following values:
+                 //   NoBillingPeriodType - None (default)
+                 //   Day
+                 //   Week
+                 //   SemiMonth
+                 //   Month
+                 //   Year
                 insType.BillingPeriod = (BillingPeriodType)
                         Enum.Parse(typeof(BillingPeriodType), billingPeriod.SelectedValue);
                 List<InstallmentDetailsType> insList = new List<InstallmentDetailsType>();
                 insList.Add(insType);
 
                 OptionSelectionDetailsType detailsType = new OptionSelectionDetailsType("CreateButton");
+
+                // (Optional) The installment option type for an OPTIONnNAME, 
+                // which is one of the following values:
+                // FULL - Payment in full
+                // VARIABLE - Variable installments
+                // EMI - Equal installments
                 detailsType.OptionType = (OptionTypeListType)
                     Enum.Parse(typeof(OptionTypeListType), optionType.SelectedValue);
+
+                // (Optional) Information about an installment option
                 detailsType.PaymentPeriod = insList;
 
                 List<OptionSelectionDetailsType> optSelectList = new List<OptionSelectionDetailsType>();
@@ -80,18 +126,24 @@ namespace PayPalAPISample.APICalls
             }
             else if (selectedButtonType.Equals(ButtonTypeType.AUTOBILLING))
             {
+                // (Optional) HTML standard button variables
                 buttonVars.Add("min_amount=" + minAmt.Value);
             }
             else if (selectedButtonType.Equals(ButtonTypeType.GIFTCERTIFICATE))
             {
+                // (Optional) HTML standard button variables
                 buttonVars.Add("shopping_url=" + shoppingUrl.Value);
             } 
             else if (selectedButtonType.Equals(ButtonTypeType.PAYMENT))
             {
+
+                // (Optional) HTML standard button variables
                 buttonVars.Add("subtotal=" + subTotal.Value);
             }
             else if (selectedButtonType.Equals(ButtonTypeType.SUBSCRIBE))
             {
+
+                // (Optional) HTML standard button variables
                 buttonVars.Add("a3=" + subAmt.Value);
                 buttonVars.Add("p3=" + subPeriod.Value);
                 buttonVars.Add("t3=" + subInterval.SelectedValue);
@@ -117,6 +169,10 @@ namespace PayPalAPISample.APICalls
             CurrContext.Items.Add("Response_responsePayload", service.getLastResponse());
 
             Dictionary<string, string> responseParams = new Dictionary<string, string>();
+            // Correlation ID; it is used only by Developer Technical Support.
+            // Note:
+            // You must log and store this data for every response you receive. 
+            // PayPal Technical Support uses the information to assist with reported issues.
             responseParams.Add("Correlation Id", response.CorrelationID);
             responseParams.Add("API Result", response.Ack.ToString());
 
@@ -130,6 +186,7 @@ namespace PayPalAPISample.APICalls
                 CurrContext.Items.Add("Response_error", null);
                 if (response.HostedButtonID != null)
                 {
+                    // ID of a PayPal-hosted button or a Hosted Solution token
                     responseParams.Add("Hosted button ID", response.HostedButtonID);
                 }
                 if (response.Website != null)

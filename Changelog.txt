@@ -1,3 +1,10 @@
+Version 2.4.101 - April 30, 2013
+ 
+ 	- Updated core dll.
+	- Bug fix for json serialization issue (https://github.com/paypal/merchant-sdk-dotnet/issues/4)
+	
+You can see source code of this release in github under https://github.com/paypal/buttonmanager-sdk-dotnet/tree/v2.4.101.
+--------------------------------------------------------------------------------------------------
 Version 2.4.100 - March 25, 2013
  
  	- Updated stubs for 100 release

@@ -685,7 +685,9 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		[Description("GG")]GG,	
 		[Description("IM")]IM,	
 		[Description("JE")]JE,	
-		[Description("TL")]TL	
+		[Description("TL")]TL,	
+		[Description("RS")]RS,	
+		[Description("ME")]ME	
 	}
 
 

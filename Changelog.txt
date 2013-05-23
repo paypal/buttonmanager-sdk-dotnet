@@ -1,3 +1,9 @@
+Version 2.4.102 - May 23, 2013
+ 
+ 	- Updated stubs for 102 release.
+	
+You can see source code of this release in github under https://github.com/paypal/buttonmanager-sdk-dotnet/tree/v2.4.102.
+--------------------------------------------------------------------------------------------------
 Version 2.4.101 - April 30, 2013
  
  	- Updated core dll.

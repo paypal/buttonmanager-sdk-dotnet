@@ -25,7 +25,12 @@ namespace PayPalAPISample.APICalls
         {
             // Create request object
             BMManageButtonStatusRequestType request = new BMManageButtonStatusRequestType();
+
+            // (Required) The ID of the hosted button whose status you want to change.
             request.HostedButtonID = hostedID.Value;
+
+            //(Required) The new status of the button. It is one of the following values:
+            //DELETE - the button is deleted from PayPal
             request.ButtonStatus = (ButtonStatusType)
                 Enum.Parse(typeof(ButtonStatusType), buttonStatus.SelectedValue);
 
@@ -48,6 +53,11 @@ namespace PayPalAPISample.APICalls
             CurrContext.Items.Add("Response_responsePayload", service.getLastResponse());
 
             Dictionary<string, string> responseParams = new Dictionary<string, string>();
+
+            // Correlation ID; it is used only by Developer Technical Support.
+            // Note:
+            // You must log and store this data for every response you receive. 
+            // PayPal Technical Support uses the information to assist with reported issues.
             responseParams.Add("Correlation Id", response.CorrelationID);
             responseParams.Add("API Result", response.Ack.ToString());
 

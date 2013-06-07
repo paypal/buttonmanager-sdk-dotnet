@@ -25,6 +25,8 @@ namespace PayPalAPISample.APICalls
         {
             // Create request object
             BMGetButtonDetailsRequestType request = new BMGetButtonDetailsRequestType();
+
+            // (Required) The ID of the hosted button whose details you want to obtain.
             request.HostedButtonID = hostedID.Value;
 
             // Invoke the API
@@ -46,6 +48,10 @@ namespace PayPalAPISample.APICalls
             CurrContext.Items.Add("Response_responsePayload", service.getLastResponse());
 
             Dictionary<string, string> responseParams = new Dictionary<string, string>();
+            // Correlation ID; it is used only by Developer Technical Support.
+            // Note:
+            // You must log and store this data for every response you receive. 
+            // PayPal Technical Support uses the information to assist with reported issues.
             responseParams.Add("Correlation Id", response.CorrelationID);
             responseParams.Add("API Result", response.Ack.ToString());
 
@@ -57,10 +63,27 @@ namespace PayPalAPISample.APICalls
             else
             {
                 CurrContext.Items.Add("Response_error", null);
+
+                // The kind of button. It is one of the following values:
+                //BUYNOW - Buy Now button
+                //CART - Add to Cart button
+                //GIFTCERTIFICATE - Gift Certificate button
+                //SUBSCRIBE - Subscribe button
+                //DONATE - Donate button
+                //UNSUBSCRIBE - Unsubscribe button
+                //VIEWCART - View Cart button
+                //PAYMENTPLAN - Installment Plan button; since version 63.0
+                //AUTOBILLING - Automatic Billing button; since version 63.0
                 responseParams.Add("Button type", response.ButtonType.ToString());
+
+                // The kind of button code. It is one of the following values:
+                //HOSTED - A secure button stored on PayPal
+                //ENCRYPTED - An encrypted button, not stored on PayPal
+                //CLEARTEXT - An unencrypted button, not stored on PayPal
                 responseParams.Add("Button code", response.ButtonCode.ToString());
                 for( int i=0; i<response.ButtonVar.Count; i++) 
                 {
+                    // HTML standard button variables
                     responseParams.Add("Button var " + (i+1), response.ButtonVar[i]);
                 }
             }

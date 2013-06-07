@@ -42328,6 +42328,23 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		/// <summary>
 		/// 
 		/// </summary>
+		private int? isPasswordSetField;
+		public int? IsPasswordSet
+		{
+			get
+			{
+				return this.isPasswordSetField;
+			}
+			set
+			{
+				this.isPasswordSetField = value;
+			}
+		}
+		
+
+		/// <summary>
+		/// 
+		/// </summary>
 		private int? paymentPendingField;
 		public int? PaymentPending
 		{
@@ -42358,6 +42375,11 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
 				this.IsActivated = System.Convert.ToInt32(ChildNode.InnerText);
+			}
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'IsPasswordSet']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
+			{
+				this.IsPasswordSet = System.Convert.ToInt32(ChildNode.InnerText);
 			}
 			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'PaymentPending']");
 			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))

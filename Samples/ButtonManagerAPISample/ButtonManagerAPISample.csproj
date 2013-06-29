@@ -117,6 +117,7 @@
       <DependentUpon>APIResponse.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Code\Message.cs" />
+    <Compile Include="Configuration.cs" />
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

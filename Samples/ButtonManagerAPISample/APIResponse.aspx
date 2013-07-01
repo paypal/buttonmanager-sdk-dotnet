@@ -47,7 +47,7 @@
         <div class="note">
             Consult response object and reference doc for complete list of response values.</div>
         <table>
-            <%  foreach (KeyValuePair<String, String> entry in responseValues)
+            <%  foreach (KeyValuePair<string, string> entry in responseValues)
                 { %>
             <tr>
                 <td class="label">

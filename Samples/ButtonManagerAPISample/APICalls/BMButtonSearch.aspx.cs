@@ -1,16 +1,11 @@
 using System;
-using System.Data;
-using System.Configuration;
-using System.Collections;
 using System.Collections.Generic;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Web.UI.WebControls.WebParts;
-using System.Web.UI.HtmlControls;
-
 using PayPal.PayPalAPIInterfaceService;
 using PayPal.PayPalAPIInterfaceService.Model;
+using ButtonManagerAPISample;
 
 namespace PayPalAPISample.APICalls
 {
@@ -25,6 +20,7 @@ namespace PayPalAPISample.APICalls
                 endDate.Text = DateTime.Now.ToString("yyyy-MM-ddTHH:mm:ss");
             }
         }
+
         protected void calDate_SelectionChanged(object sender, EventArgs e)
         {
             Calendar calendar = (Calendar)sender;
@@ -54,7 +50,15 @@ namespace PayPalAPISample.APICalls
             // Invoke the API
             BMButtonSearchReq wrapper = new BMButtonSearchReq();
             wrapper.BMButtonSearchRequest = request;
-            PayPalAPIInterfaceServiceService service = new PayPalAPIInterfaceServiceService();
+
+            // Configuration map containing signature credentials and other required configuration.
+            // For a full list of configuration parameters refer at 
+            // (https://github.com/paypal/buttonmanager-sdk-dotnet/wiki/SDK-Configuration-Parameters)
+            Dictionary<string, string> configurationMap = Configuration.GetSignatureConfig();
+
+            // Creating service wrapper object to make an API call by loading configuration map. 
+            PayPalAPIInterfaceServiceService service = new PayPalAPIInterfaceServiceService(configurationMap);
+
             BMButtonSearchResponseType response = service.BMButtonSearch(wrapper);
 
             // Check for API return status
@@ -88,7 +92,7 @@ namespace PayPalAPISample.APICalls
                 responseParams.Add("Matching results #", response.ButtonSearchResult.Count.ToString());
                 for (int i = 0; i < response.ButtonSearchResult.Count; i++)
                 {
-                    String label = "Button " + (i + 1);
+                    string label = "Button " + (i + 1);
                     // The hosted button ID
                     responseParams.Add(label + " type", response.ButtonSearchResult[i].ButtonType.ToString());
 
@@ -106,7 +110,6 @@ namespace PayPalAPISample.APICalls
             }
             CurrContext.Items.Add("Response_keyResponseObject", responseParams);
             Server.Transfer("../APIResponse.aspx");
-
         }            
     }
 }

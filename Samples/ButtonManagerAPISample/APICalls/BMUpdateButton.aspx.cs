@@ -1,16 +1,10 @@
 using System;
-using System.Data;
-using System.Configuration;
-using System.Collections;
 using System.Collections.Generic;
 using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using System.Web.UI.WebControls.WebParts;
-using System.Web.UI.HtmlControls;
 
 using PayPal.PayPalAPIInterfaceService;
 using PayPal.PayPalAPIInterfaceService.Model;
+using ButtonManagerAPISample;
 
 namespace PayPalAPISample.APICalls
 {
@@ -60,7 +54,7 @@ namespace PayPalAPISample.APICalls
              * PayPal when a user clicks on the created button. Refer the
              * "HTML Variables for Website Payments Standard" guide for more.
              */
-            List<String> buttonVars = new List<String>();
+            List<string> buttonVars = new List<string>();
             buttonVars.Add("item_name=" + itemName.Value);
             buttonVars.Add("return=" + returnURL.Value);
             buttonVars.Add("business=" + businessMail.Value);
@@ -169,7 +163,15 @@ namespace PayPalAPISample.APICalls
             // Invoke the API
             BMUpdateButtonReq wrapper = new BMUpdateButtonReq();
             wrapper.BMUpdateButtonRequest = request;
-            PayPalAPIInterfaceServiceService service = new PayPalAPIInterfaceServiceService();
+
+            // Configuration map containing signature credentials and other required configuration.
+            // For a full list of configuration parameters refer at 
+            // (https://github.com/paypal/buttonmanager-sdk-dotnet/wiki/SDK-Configuration-Parameters)
+            Dictionary<string, string> configurationMap = Configuration.GetSignatureConfig();
+
+            // Creating service wrapper object to make an API call by loading configuration map. 
+            PayPalAPIInterfaceServiceService service = new PayPalAPIInterfaceServiceService(configurationMap);
+
             BMUpdateButtonResponseType response = service.BMUpdateButton(wrapper);
 
             // Check for API return status
@@ -212,7 +214,7 @@ namespace PayPalAPISample.APICalls
                     responseParams.Add("Generated button", response.Website);
                     responseParams.Add("Website HTML code", HttpUtility.HtmlEncode(response.Website));
                 }
-                if (response.Email != "")
+                if (response.Email != string.Empty)
                 {
                     // Code for email links and links in other documents that support external links
                     responseParams.Add("Code for email links", response.Email);

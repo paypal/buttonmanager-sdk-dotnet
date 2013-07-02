@@ -26,11 +26,11 @@ namespace ButtonManagerAPISample
                     // For a full list of configuration parameters refer at 
                     // (https://github.com/paypal/adaptivepayments-sdk-dotnet/wiki/SDK-Configuration-Parameters)
                     Dictionary<string, string> configurationMap = Configuration.GetSignatureConfig();
-                    IPNMessage ipnListener = new IPNMessage(configurationMap, parameters);
+                    IPNMessage ipn = new IPNMessage(configurationMap, parameters);
 
-                    bool isIpnValidated = ipnListener.Validate();
-                    string transactionType = ipnListener.TransactionType;
-                    NameValueCollection map = ipnListener.IpnMap;
+                    bool isIpnValidated = ipn.Validate();
+                    string transactionType = ipn.TransactionType;
+                    NameValueCollection map = ipn.IpnMap;
 
                     logger.Info("----------Type-------------------" + this.GetType().Name + "\n"
                                + "*********IPN Name Value Pair****" + map + "\n"

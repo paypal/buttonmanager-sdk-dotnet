@@ -72,7 +72,7 @@ namespace PayPalAPISample.APICalls
 
                 // (Optional) The total number of billing cycles, 
                 // regardless of the duration of a cycle; 1 is the default
-                insType.TotalBillingCycles = Int32.Parse(billingCycles.Value);
+                insType.TotalBillingCycles = Convert.ToInt32(billingCycles.Value);
 
                 // (Optional) The base amount to bill for the cycle.
                 insType.Amount = installmentAmt.Value;
@@ -80,7 +80,7 @@ namespace PayPalAPISample.APICalls
                 // (Optional) The installment cycle frequency in units, e.g. 
                 // if the billing frequency is 2 and the billing period is Month, 
                 // the billing cycle is every 2 months. The default billing frequency is 1.
-                insType.BillingFrequency = Int32.Parse(billingFreq.Value);
+                insType.BillingFrequency = Convert.ToInt32(billingFreq.Value);
 
                  //(Optional) The installment cycle unit, which is one of the following values:
                  //   NoBillingPeriodType - None (default)

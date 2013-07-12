@@ -1,7 +1,7 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ButtonManagerAPISample.VS.2012", "ButtonManagerAPISample.VS.2012.csproj", "{1006827F-014C-43AC-9136-0F071AD42C73}"
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ButtonManagerAPISample.VS.2008", "ButtonManagerAPISample\ButtonManagerAPISample.VS.2008.csproj", "{1006827F-014C-43AC-9136-0F071AD42C73}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -168,9 +168,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="cert_key.pem" />
-    <None Include="IPN-README.md" />
     <None Include="paypal_cert.p12" />
-    <None Include="README.md" />
     <Content Include="Web.config" />
   </ItemGroup>
   <PropertyGroup>

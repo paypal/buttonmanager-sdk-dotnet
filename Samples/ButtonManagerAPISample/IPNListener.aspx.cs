@@ -24,7 +24,7 @@ namespace ButtonManagerAPISample
                 {
                     // Configuration map containing signature credentials and other required configuration.
                     // For a full list of configuration parameters refer at 
-                    // (https://github.com/paypal/adaptivepayments-sdk-dotnet/wiki/SDK-Configuration-Parameters)
+                    // (https://github.com/paypal/buttonmanager-sdk-dotnet/wiki/SDK-Configuration-Parameters)
                     Dictionary<string, string> configurationMap = Configuration.GetConfig();
                     IPNMessage ipn = new IPNMessage(configurationMap, parameters);
 

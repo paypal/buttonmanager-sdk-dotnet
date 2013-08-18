@@ -54,7 +54,7 @@ namespace PayPalAPISample.APICalls
             // Configuration map containing signature credentials and other required configuration.
             // For a full list of configuration parameters refer at 
             // (https://github.com/paypal/buttonmanager-sdk-dotnet/wiki/SDK-Configuration-Parameters)
-            Dictionary<string, string> configurationMap = Configuration.GetSignatureConfig();
+            Dictionary<string, string> configurationMap = Configuration.GetAcctAndConfig();
 
             // Creating service wrapper object to make an API call by loading configuration map. 
             PayPalAPIInterfaceServiceService service = new PayPalAPIInterfaceServiceService(configurationMap);

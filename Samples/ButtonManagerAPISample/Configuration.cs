@@ -10,10 +10,7 @@ namespace ButtonManagerAPISample
         {
             Dictionary<string, string> configMap = new Dictionary<string, string>();
 
-            foreach (KeyValuePair<string, string> pair in GetConfig())
-            {
-                configMap.Add(pair.Key, pair.Value);
-            }
+            configMap = GetConfig();
 
             // Signature Credential
             configMap.Add("account1.apiUsername", "jb-us-seller_api1.paypal.com");

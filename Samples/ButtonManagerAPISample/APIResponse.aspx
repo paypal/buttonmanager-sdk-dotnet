@@ -9,6 +9,7 @@
     <link rel="stylesheet" type="text/css" href="APICalls/sdk.css" />
 </head>
 <body>
+	<img src="https://devtools-paypal.com/image/bdg_payments_by_pp_2line.png" alt="PAYMENTS BY PayPal" />
     <div id="wrapper">
         <h3>
             <%=apiName %>
@@ -47,7 +48,7 @@
         <div class="note">
             Consult response object and reference doc for complete list of response values.</div>
         <table>
-            <%  foreach (KeyValuePair<String, String> entry in responseValues)
+            <%  foreach (KeyValuePair<string, string> entry in responseValues)
                 { %>
             <tr>
                 <td class="label">

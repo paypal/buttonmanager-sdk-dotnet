@@ -7,6 +7,7 @@
     <link rel="stylesheet" type="text/css" href="APICalls/sdk.css" />
 </head>
 <body>
+	<img src="https://devtools-paypal.com/image/bdg_payments_by_pp_2line.png" alt="PAYMENTS BY PayPal" />
     <form id="form1" runat="server">
         <div>
             <h2>

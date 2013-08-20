@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 namespace ButtonManagerAPISample
 {
-    // For a full list of configuration parameters refer at [https://github.com/paypal/buttonmanager-sdk-dotnet/wiki/SDK-Configuration-Parameters]
+    // For a full list of configuration parameters refer in wiki page [https://github.com/paypal/sdk-core-dotnet/wiki/SDK-Configuration-Parameters]
     public static class Configuration
     {
         // Creates a configuration map containing credentials and other required configuration parameters

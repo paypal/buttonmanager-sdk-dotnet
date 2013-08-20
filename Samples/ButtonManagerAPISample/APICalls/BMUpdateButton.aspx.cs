@@ -165,8 +165,8 @@ namespace PayPalAPISample.APICalls
             wrapper.BMUpdateButtonRequest = request;
 
             // Configuration map containing signature credentials and other required configuration.
-            // For a full list of configuration parameters refer at 
-            // (https://github.com/paypal/buttonmanager-sdk-dotnet/wiki/SDK-Configuration-Parameters)
+            // For a full list of configuration parameters refer in wiki page 
+            // (https://github.com/paypal/sdk-core-dotnet/wiki/SDK-Configuration-Parameters)
             Dictionary<string, string> configurationMap = Configuration.GetAcctAndConfig();
 
             // Creating service wrapper object to make an API call by loading configuration map. 

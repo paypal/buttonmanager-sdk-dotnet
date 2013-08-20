@@ -1,16 +1,10 @@
 using System;
-using System.Data;
-using System.Configuration;
-using System.Collections;
 using System.Collections.Generic;
 using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using System.Web.UI.WebControls.WebParts;
-using System.Web.UI.HtmlControls;
 
 using PayPal.PayPalAPIInterfaceService;
 using PayPal.PayPalAPIInterfaceService.Model;
+using ButtonManagerAPISample;
 
 namespace PayPalAPISample.APICalls
 {
@@ -41,7 +35,7 @@ namespace PayPalAPISample.APICalls
             //Note: The gross profit is calculated as the price of the item less its cost, 
             // multiplied by the change in the inventory level since the last call to BMSetInventory
             request.TrackPnl = trackPnl.Value;
-            if (soldoutURL.Value != "")
+            if (soldoutURL.Value != string.Empty)
             {
             //(Optional) The URL to which the buyer's browser is redirected when the inventory drops to 0.
             // Note: Specifying a URL in this field also prevents a sale when the inventory drops to 0; 
@@ -51,23 +45,23 @@ namespace PayPalAPISample.APICalls
             }
 
             request.ItemTrackingDetails = new ItemTrackingDetailsType();
-            if(itemNumber.Value != "")
+            if(itemNumber.Value != string.Empty)
             {
                 // (Optional) The ID for an item associated with this button
                 request.ItemTrackingDetails.ItemNumber = itemNumber.Value;
             }
-            if (trackInv.Value == "1" && itemQty.Value != "")
+            if (trackInv.Value == "1" && itemQty.Value != string.Empty)
             {
                 // The quantity you want to specify for the item associated with this button. 
                 // Specify either the absolute quantity in this field or the change in quantity in the quantity delta field
                 request.ItemTrackingDetails.ItemQty = itemQty.Value;
             }
-            if(trackPnl.Value == "1" && itemCost.Value != "")
+            if(trackPnl.Value == "1" && itemCost.Value != string.Empty)
             {
                 // (Optional) The cost of the item associated with this button
                 request.ItemTrackingDetails.ItemCost = itemCost.Value;
             }
-            if(itemAlert.Value != "")
+            if(itemAlert.Value != string.Empty)
             {
                 // (Optional) The quantity of the item associated with this button below which 
                 // PayPal sends you an email notification
@@ -77,7 +71,16 @@ namespace PayPalAPISample.APICalls
             // Invoke the API
             BMSetInventoryReq wrapper = new BMSetInventoryReq();
             wrapper.BMSetInventoryRequest = request;
-            PayPalAPIInterfaceServiceService service = new PayPalAPIInterfaceServiceService();
+
+            // Configuration map containing signature credentials and other required configuration.
+            // For a full list of configuration parameters refer in wiki page 
+            // (https://github.com/paypal/sdk-core-dotnet/wiki/SDK-Configuration-Parameters)
+            Dictionary<string, string> configurationMap = Configuration.GetAcctAndConfig();
+
+            // Creating service wrapper object to make an API call by loading configuration map. 
+            PayPalAPIInterfaceServiceService service = new PayPalAPIInterfaceServiceService(configurationMap);
+
+
             BMSetInventoryResponseType response = service.BMSetInventory(wrapper);
 
             // Check for API return status

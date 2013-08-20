@@ -47,18 +47,7 @@ Select NuGet official package source from the Package source dropdown box in the
 Go to Solution Explorer and note the existing references
 Enter at PM> Install-Package PayPalButtonManagerSDK
 
-On enter key-press, the output window should display:
-
-Attempting to resolve dependency 'PayPalCoreSDK'.
-Attempting to resolve dependency 'log4net (= 1.2.10)'.
-Successfully installed 'log4net 1.2.10'.
-You are downloading PayPalCoreSDK from PayPal, the license agreement to which is available at https://github.com/paypal/sdk-core-dotnet/blob/master/LICENSE.txt. Check the package for additional dependencies, which may come with their own license agreement(s). Your use of the package and dependencies constitutes your acceptance of their license agreements. If you do not accept the license agreement(s), then delete the relevant components from your device.
-Successfully installed 'PayPalCoreSDK 1.0.0'.
-You are downloading PayPalButtonManagerSDK from PayPal Developer Tools Team, the license agreement to which is available at https://github.com/paypal/buttonmanager-sdk-dotnet/blob/master/LICENSE.txt. Check the package for additional dependencies, which may come with their own license agreement(s). Your use of the package and dependencies constitutes your acceptance of their license agreements. If you do not accept the license agreement(s), then delete the relevant components from your device.
-Successfully installed 'PayPalButtonManagerSDK 2.1.96'.
-Successfully added 'log4net 1.2.10' to ButtonManagerAPISample.
-Successfully added 'PayPalCoreSDK 1.0.0' to ButtonManagerAPISample.
-Successfully added 'PayPalButtonManagerSDK 2.1.96' to ButtonManagerAPISample.
+On enter key-press, the output window should display: "Successfully installed"
 
 After successful installation, note that the new references get added automatically
 
@@ -111,7 +100,7 @@ External Tools having 5* default tools in the Menu contents, Click Add
 Enter the following:
 Title: NuGet Install
 Command (Having in Environment Variables Path): NuGet.exe
-Arguments: install your.package.name -excludeversion -outputDirectory .\Packages
+Arguments: Install your.package.name -OutputDirectory .\packages
 Initial directory: $(SolutionDir)
 Use Output window: Check
 Prompt for arguments: Check
@@ -138,15 +127,9 @@ Click the NuGet Toolbar Install Package
 Clicking on the NuGet Toolbar Install Package will pop up for NuGet Install Arguments and Command Line
 Example NuGet Install:
 Enter Arguments: 
-install PayPalCoreSDK -excludeversion -outputDirectory .\Packages
+Install PayPalCoreSDK -OutputDirectory .\packages
 
-On clicking OK, the output window should display:
-
-Attempting to resolve dependency 'PayPalCoreSDK'.
-Attempting to resolve dependency 'log4net (ò 1.2.10)'.
-Successfully installed 'log4net 1.2.10'.
-Successfully installed 'PayPalCoreSDK 1.0.0'.
-Successfully installed 'PayPalButtonManagerSDK 2.1.96'
+On clicking OK, the output window should display: "Successfully installed"
 
 Menu View --> Output (Ctrl+Alt+O)
 

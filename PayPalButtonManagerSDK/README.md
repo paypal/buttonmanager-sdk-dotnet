@@ -65,6 +65,8 @@ The PayPal Button Manager API helps you to dynamically create, manage, and edit 
     PayPalAPIInterfaceServiceService service = new  PayPalAPIInterfaceServiceService(config);
     ```
 
+	You can refer full list of configuration parameters in [wiki](https://github.com/paypal/sdk-core-dotnet/wiki/SDK-Configuration-Parameters) page.
+	
 ## Links
 
    * [Installing NuGet in Visual Studio 2005 & 2008] (https://github.com/paypal/sdk-core-dotnet/wiki/Using-Nuget-in-Visual-Studio-2005-&-2008)

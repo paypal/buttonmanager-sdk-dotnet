@@ -1225,6 +1225,26 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 	/// <summary>
+	/// It defines the enumerated types of the user channels defined
+	/// in  biz/User/value_object/Channel.oml
+	///  
+	/// </summary>
+    [Serializable]
+	public enum UserChannelCodeType {
+		[Description("WEB")]WEB,	
+		[Description("MOBILE")]MOBILE,	
+		[Description("POS")]POS,	
+		[Description("KIOSK")]KIOSK,	
+		[Description("IHSTB")]IHSTB,	
+		[Description("IVR")]IVR,	
+		[Description("ADMIN")]ADMIN,	
+		[Description("CSOPS")]CSOPS	
+	}
+
+
+
+
+	/// <summary>
 	/// PaymentTransactionCodeType 
 	///  This is the type of a PayPal of which matches the output
 	/// from IPN
@@ -1308,7 +1328,8 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	public enum AddressNormalizationStatusCodeType {
 		[Description("None")]NONE,	
 		[Description("Normalized")]NORMALIZED,	
-		[Description("Unnormalized")]UNNORMALIZED	
+		[Description("Unnormalized")]UNNORMALIZED,	
+		[Description("UserPreferred")]USERPREFERRED	
 	}
 
 
@@ -6851,6 +6872,91 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/// <summary>
+		/// 
+		/// </summary>
+		private bool? retrieveShippingAddressField;
+		public bool? RetrieveShippingAddress
+		{
+			get
+			{
+				return this.retrieveShippingAddressField;
+			}
+			set
+			{
+				this.retrieveShippingAddressField = value;
+			}
+		}
+		
+
+		/// <summary>
+		/// 
+		/// </summary>
+		private UserChannelCodeType? userChannelField;
+		public UserChannelCodeType? UserChannel
+		{
+			get
+			{
+				return this.userChannelField;
+			}
+			set
+			{
+				this.userChannelField = value;
+			}
+		}
+		
+
+		/// <summary>
+		/// 
+		/// </summary>
+		private bool? reqConfirmShippingField;
+		public bool? ReqConfirmShipping
+		{
+			get
+			{
+				return this.reqConfirmShippingField;
+			}
+			set
+			{
+				this.reqConfirmShippingField = value;
+			}
+		}
+		
+
+		/// <summary>
+		/// 
+		/// </summary>
+		private List<PaymentDetailsType> paymentDetailsField = new List<PaymentDetailsType>();
+		public List<PaymentDetailsType> PaymentDetails
+		{
+			get
+			{
+				return this.paymentDetailsField;
+			}
+			set
+			{
+				this.paymentDetailsField = value;
+			}
+		}
+		
+
+		/// <summary>
+		/// 
+		/// </summary>
+		private ExternalPartnerTrackingDetailsType externalPartnerTrackingDetailsField;
+		public ExternalPartnerTrackingDetailsType ExternalPartnerTrackingDetails
+		{
+			get
+			{
+				return this.externalPartnerTrackingDetailsField;
+			}
+			set
+			{
+				this.externalPartnerTrackingDetailsField = value;
+			}
+		}
+		
+
+		/// <summary>
 		/// Default Constructor
 	 	/// </summary>
 	 	public SetDataRequestType()
@@ -6886,6 +6992,32 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			if(InfoSharingDirectives != null)
 			{
 				sb.Append(InfoSharingDirectives.ToXMLString(PreferredPrefix,"InfoSharingDirectives"));
+			}
+			if(RetrieveShippingAddress != null)
+			{
+				sb.Append("<").Append(PreferredPrefix).Append(":RetrieveShippingAddress>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(this.RetrieveShippingAddress.ToString().ToLower()));
+				sb.Append("</").Append(PreferredPrefix).Append(":RetrieveShippingAddress>");
+			}
+			if(UserChannel != null)
+			{
+				sb.Append("<").Append(PreferredPrefix).Append(":UserChannel>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(EnumUtils.GetDescription(this.UserChannel)));
+				sb.Append("</").Append(PreferredPrefix).Append(":UserChannel>");
+			}
+			if(ReqConfirmShipping != null)
+			{
+				sb.Append("<").Append(PreferredPrefix).Append(":ReqConfirmShipping>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(this.ReqConfirmShipping.ToString().ToLower()));
+				sb.Append("</").Append(PreferredPrefix).Append(":ReqConfirmShipping>");
+			}
+			if(PaymentDetails != null)
+			{
+				for(int i = 0; i < PaymentDetails.Count; i++)
+				{
+					sb.Append(PaymentDetails[i].ToXMLString(PreferredPrefix,"PaymentDetails"));
+				}
+			}
+			if(ExternalPartnerTrackingDetails != null)
+			{
+				sb.Append(ExternalPartnerTrackingDetails.ToXMLString(PreferredPrefix,"ExternalPartnerTrackingDetails"));
 			}
 			if (name != null)
 			{
@@ -8773,6 +8905,23 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		/// <summary>
 		/// 
 		/// </summary>
+		private List<AddressType> shippingAddressesField = new List<AddressType>();
+		public List<AddressType> ShippingAddresses
+		{
+			get
+			{
+				return this.shippingAddressesField;
+			}
+			set
+			{
+				this.shippingAddressesField = value;
+			}
+		}
+		
+
+		/// <summary>
+		/// 
+		/// </summary>
 		private List<ErrorType> setDataErrorField = new List<ErrorType>();
 		public List<ErrorType> SetDataError
 		{
@@ -8803,6 +8952,15 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
 				this.Token = ChildNode.InnerText;
+			}
+			ChildNodeList = xmlNode.SelectNodes("*[local-name() = 'ShippingAddresses']");
+			if (ChildNodeList != null && ChildNodeList.Count > 0)
+			{
+				for(int i = 0; i < ChildNodeList.Count; i++)
+				{
+					XmlNode subNode = ChildNodeList.Item(i);
+					this.ShippingAddresses.Add(new AddressType(subNode));
+				}
 			}
 			ChildNodeList = xmlNode.SelectNodes("*[local-name() = 'SetDataError']");
 			if (ChildNodeList != null && ChildNodeList.Count > 0)
@@ -9211,7 +9369,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		/// <summary>
 		/// 
 		/// </summary>
-		private string buttonSourceField;
+		private string buttonSourceField = "PayPal_SDK";
 		public string ButtonSource
 		{
 			get
@@ -12430,7 +12588,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		/// <summary>
 		/// 
 		/// </summary>
-		private string buttonSourceField;
+		private string buttonSourceField = "PayPal_SDK";
 		public string ButtonSource
 		{
 			get
@@ -16416,7 +16574,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		/// <summary>
 		/// 
 		/// </summary>
-		private string buttonSourceField;
+		private string buttonSourceField = "PayPal_SDK";
 		public string ButtonSource
 		{
 			get
@@ -16460,6 +16618,23 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			set
 			{
 				this.shipToAddressField = value;
+			}
+		}
+		
+
+		/// <summary>
+		/// 
+		/// </summary>
+		private string multiShippingField;
+		public string MultiShipping
+		{
+			get
+			{
+				return this.multiShippingField;
+			}
+			set
+			{
+				this.multiShippingField = value;
 			}
 		}
 		
@@ -16909,6 +17084,11 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			{
 				sb.Append(ShipToAddress.ToXMLString(PreferredPrefix,"ShipToAddress"));
 			}
+			if(MultiShipping != null)
+			{
+				sb.Append("<").Append(PreferredPrefix).Append(":MultiShipping>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(this.MultiShipping));
+				sb.Append("</").Append(PreferredPrefix).Append(":MultiShipping>");
+			}
 			if(FulfillmentReferenceNumber != null)
 			{
 				sb.Append("<").Append(PreferredPrefix).Append(":FulfillmentReferenceNumber>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(this.FulfillmentReferenceNumber));
@@ -17087,6 +17267,11 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
 				this.ShipToAddress =  new AddressType(ChildNode);
+			}
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'MultiShipping']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
+			{
+				this.MultiShipping = ChildNode.InnerText;
 			}
 			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'FulfillmentReferenceNumber']");
 			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
@@ -29540,6 +29725,192 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 
 
 	/// <summary>
+	/// This holds single key-value pair. 
+    /// </summary>
+	public partial class TupleType	{
+		// Namespace for the type
+		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
+
+		// Prefix associated with the namespace
+		private const string PreferredPrefix = "ebl";
+		
+		// Default US culture info
+		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
+
+		/// <summary>
+		/// 
+		/// </summary>
+		private string keyField;
+		public string Key
+		{
+			get
+			{
+				return this.keyField;
+			}
+			set
+			{
+				this.keyField = value;
+			}
+		}
+		
+
+		/// <summary>
+		/// 
+		/// </summary>
+		private string valueField;
+		public string Value
+		{
+			get
+			{
+				return this.valueField;
+			}
+			set
+			{
+				this.valueField = value;
+			}
+		}
+		
+
+		/// <summary>
+		/// Constructor with arguments
+	 	/// </summary>
+	 	public TupleType(string key, string value)
+	 	{
+			this.Key = key;
+			this.Value = value;
+		}
+
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
+	 	public TupleType()
+	 	{
+		}
+
+
+		public string ToXMLString(string prefix, string name)
+		{
+			StringBuilder sb = new StringBuilder();
+			if(name != null)
+			{
+				if(prefix != null)
+				{
+					sb.Append("<").Append(prefix).Append(":").Append(name).Append(">");
+				}
+				else
+				{
+					sb.Append("<").Append(PreferredPrefix).Append(":").Append(name).Append(">");
+				}
+			}
+			if(Key != null)
+			{
+				sb.Append("<").Append(PreferredPrefix).Append(":Key>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(this.Key));
+				sb.Append("</").Append(PreferredPrefix).Append(":Key>");
+			}
+			if(Value != null)
+			{
+				sb.Append("<").Append(PreferredPrefix).Append(":Value>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(this.Value));
+				sb.Append("</").Append(PreferredPrefix).Append(":Value>");
+			}
+			if (name != null)
+			{
+				if (prefix != null)
+				{
+					sb.Append("</").Append(prefix).Append(":").Append(name).Append(">");
+				}
+				else
+				{
+					sb.Append("</").Append(PreferredPrefix).Append(":").Append(name).Append(">");
+				}
+			}
+			return sb.ToString();
+		}
+
+	}
+
+
+
+
+	/// <summary>
+	/// This holds all key-value pairs which merchants wants to pass
+	/// it to the open wallet(PLCC) processor. 
+    /// </summary>
+	public partial class MerchantDataType	{
+		// Namespace for the type
+		private const string NameSpace = "urn:ebay:apis:eBLBaseComponents";
+
+		// Prefix associated with the namespace
+		private const string PreferredPrefix = "ebl";
+		
+		// Default US culture info
+		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
+
+		/// <summary>
+		/// 
+		/// </summary>
+		private List<TupleType> merchantDataTupleField = new List<TupleType>();
+		public List<TupleType> MerchantDataTuple
+		{
+			get
+			{
+				return this.merchantDataTupleField;
+			}
+			set
+			{
+				this.merchantDataTupleField = value;
+			}
+		}
+		
+
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
+	 	public MerchantDataType()
+	 	{
+		}
+
+
+		public string ToXMLString(string prefix, string name)
+		{
+			StringBuilder sb = new StringBuilder();
+			if(name != null)
+			{
+				if(prefix != null)
+				{
+					sb.Append("<").Append(prefix).Append(":").Append(name).Append(">");
+				}
+				else
+				{
+					sb.Append("<").Append(PreferredPrefix).Append(":").Append(name).Append(">");
+				}
+			}
+			if(MerchantDataTuple != null)
+			{
+				for(int i = 0; i < MerchantDataTuple.Count; i++)
+				{
+					sb.Append(MerchantDataTuple[i].ToXMLString(PreferredPrefix,"MerchantDataTuple"));
+				}
+			}
+			if (name != null)
+			{
+				if (prefix != null)
+				{
+					sb.Append("</").Append(prefix).Append(":").Append(name).Append(">");
+				}
+				else
+				{
+					sb.Append("</").Append(PreferredPrefix).Append(":").Append(name).Append(">");
+				}
+			}
+			return sb.ToString();
+		}
+
+	}
+
+
+
+
+	/// <summary>
 	/// 
     /// </summary>
 	public partial class EnhancedCheckoutDataType	{
@@ -30856,11 +31227,19 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(ButtonVar != null)
 			{
+			bool flag = false;
 				for(int i = 0; i < ButtonVar.Count; i++)
 				{
 					sb.Append("<").Append(PreferredPrefix).Append(":ButtonVar>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(this.ButtonVar[i]));
 					sb.Append("</").Append(PreferredPrefix).Append(":ButtonVar>");
+				if(this.ButtonVar[i].Contains("bn=")){
+					flag = true;
 				}
+				}
+			if(!flag){
+					sb.Append("<").Append(PreferredPrefix).Append(":ButtonVar>").Append("bn=PayPal_SDK");
+					sb.Append("</").Append(PreferredPrefix).Append(":ButtonVar>");
+			}
 			}
 			if(OptionDetails != null)
 			{
@@ -31405,11 +31784,19 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(ButtonVar != null)
 			{
+			bool flag = false;
 				for(int i = 0; i < ButtonVar.Count; i++)
 				{
 					sb.Append("<").Append(PreferredPrefix).Append(":ButtonVar>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(this.ButtonVar[i]));
 					sb.Append("</").Append(PreferredPrefix).Append(":ButtonVar>");
+				if(this.ButtonVar[i].Contains("bn=")){
+					flag = true;
 				}
+				}
+			if(!flag){
+					sb.Append("<").Append(PreferredPrefix).Append(":ButtonVar>").Append("bn=PayPal_SDK");
+					sb.Append("</").Append(PreferredPrefix).Append(":ButtonVar>");
+			}
 			}
 			if(OptionDetails != null)
 			{
@@ -35662,7 +36049,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		/// <summary>
 		/// 
 		/// </summary>
-		private string buttonSourceField;
+		private string buttonSourceField = "PayPal_SDK";
 		public string ButtonSource
 		{
 			get
@@ -40521,6 +40908,23 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/// <summary>
+		/// 
+		/// </summary>
+		private MerchantDataType merchantDataField;
+		public MerchantDataType MerchantData
+		{
+			get
+			{
+				return this.merchantDataField;
+			}
+			set
+			{
+				this.merchantDataField = value;
+			}
+		}
+		
+
+		/// <summary>
 		/// Constructor with arguments
 	 	/// </summary>
 	 	public DoCaptureRequestType(string authorizationID, BasicAmountType amount, CompleteCodeType? completeType)
@@ -40594,6 +40998,10 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			{
 				sb.Append("<").Append(PreferredPrefix).Append(":MsgSubID>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(this.MsgSubID));
 				sb.Append("</").Append(PreferredPrefix).Append(":MsgSubID>");
+			}
+			if(MerchantData != null)
+			{
+				sb.Append(MerchantData.ToXMLString(null,"MerchantData"));
 			}
 			if (name != null)
 			{
@@ -41392,6 +41800,176 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		/// <summary>
 		/// 
 		/// </summary>
+		private AddressType shipToAddressField;
+		public AddressType ShipToAddress
+		{
+			get
+			{
+				return this.shipToAddressField;
+			}
+			set
+			{
+				this.shipToAddressField = value;
+			}
+		}
+		
+
+		/// <summary>
+		/// 
+		/// </summary>
+		private List<PaymentDetailsItemType> paymentDetailsItemField = new List<PaymentDetailsItemType>();
+		public List<PaymentDetailsItemType> PaymentDetailsItem
+		{
+			get
+			{
+				return this.paymentDetailsItemField;
+			}
+			set
+			{
+				this.paymentDetailsItemField = value;
+			}
+		}
+		
+
+		/// <summary>
+		/// 
+		/// </summary>
+		private BasicAmountType itemTotalField;
+		public BasicAmountType ItemTotal
+		{
+			get
+			{
+				return this.itemTotalField;
+			}
+			set
+			{
+				this.itemTotalField = value;
+			}
+		}
+		
+
+		/// <summary>
+		/// 
+		/// </summary>
+		private BasicAmountType shippingTotalField;
+		public BasicAmountType ShippingTotal
+		{
+			get
+			{
+				return this.shippingTotalField;
+			}
+			set
+			{
+				this.shippingTotalField = value;
+			}
+		}
+		
+
+		/// <summary>
+		/// 
+		/// </summary>
+		private BasicAmountType handlingTotalField;
+		public BasicAmountType HandlingTotal
+		{
+			get
+			{
+				return this.handlingTotalField;
+			}
+			set
+			{
+				this.handlingTotalField = value;
+			}
+		}
+		
+
+		/// <summary>
+		/// 
+		/// </summary>
+		private BasicAmountType taxTotalField;
+		public BasicAmountType TaxTotal
+		{
+			get
+			{
+				return this.taxTotalField;
+			}
+			set
+			{
+				this.taxTotalField = value;
+			}
+		}
+		
+
+		/// <summary>
+		/// 
+		/// </summary>
+		private BasicAmountType insuranceTotalField;
+		public BasicAmountType InsuranceTotal
+		{
+			get
+			{
+				return this.insuranceTotalField;
+			}
+			set
+			{
+				this.insuranceTotalField = value;
+			}
+		}
+		
+
+		/// <summary>
+		/// 
+		/// </summary>
+		private BasicAmountType shippingDiscountField;
+		public BasicAmountType ShippingDiscount
+		{
+			get
+			{
+				return this.shippingDiscountField;
+			}
+			set
+			{
+				this.shippingDiscountField = value;
+			}
+		}
+		
+
+		/// <summary>
+		/// 
+		/// </summary>
+		private string orderDescriptionField;
+		public string OrderDescription
+		{
+			get
+			{
+				return this.orderDescriptionField;
+			}
+			set
+			{
+				this.orderDescriptionField = value;
+			}
+		}
+		
+
+		/// <summary>
+		/// 
+		/// </summary>
+		private string customField;
+		public string Custom
+		{
+			get
+			{
+				return this.customField;
+			}
+			set
+			{
+				this.customField = value;
+			}
+		}
+		
+
+		/// <summary>
+		/// 
+		/// </summary>
 		private string msgSubIDField;
 		public string MsgSubID
 		{
@@ -41402,6 +41980,23 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			set
 			{
 				this.msgSubIDField = value;
+			}
+		}
+		
+
+		/// <summary>
+		/// 
+		/// </summary>
+		private string iPAddressField;
+		public string IPAddress
+		{
+			get
+			{
+				return this.iPAddressField;
+			}
+			set
+			{
+				this.iPAddressField = value;
 			}
 		}
 		
@@ -41452,10 +42047,60 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			{
 				sb.Append(Amount.ToXMLString(PreferredPrefix,"Amount"));
 			}
+			if(ShipToAddress != null)
+			{
+				sb.Append(ShipToAddress.ToXMLString(null,"ShipToAddress"));
+			}
+			if(PaymentDetailsItem != null)
+			{
+				for(int i = 0; i < PaymentDetailsItem.Count; i++)
+				{
+					sb.Append(PaymentDetailsItem[i].ToXMLString(null,"PaymentDetailsItem"));
+				}
+			}
+			if(ItemTotal != null)
+			{
+				sb.Append(ItemTotal.ToXMLString(PreferredPrefix,"ItemTotal"));
+			}
+			if(ShippingTotal != null)
+			{
+				sb.Append(ShippingTotal.ToXMLString(PreferredPrefix,"ShippingTotal"));
+			}
+			if(HandlingTotal != null)
+			{
+				sb.Append(HandlingTotal.ToXMLString(PreferredPrefix,"HandlingTotal"));
+			}
+			if(TaxTotal != null)
+			{
+				sb.Append(TaxTotal.ToXMLString(PreferredPrefix,"TaxTotal"));
+			}
+			if(InsuranceTotal != null)
+			{
+				sb.Append(InsuranceTotal.ToXMLString(PreferredPrefix,"InsuranceTotal"));
+			}
+			if(ShippingDiscount != null)
+			{
+				sb.Append(ShippingDiscount.ToXMLString(PreferredPrefix,"ShippingDiscount"));
+			}
+			if(OrderDescription != null)
+			{
+				sb.Append("<").Append(PreferredPrefix).Append(":OrderDescription>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(this.OrderDescription));
+				sb.Append("</").Append(PreferredPrefix).Append(":OrderDescription>");
+			}
+			if(Custom != null)
+			{
+				sb.Append("<").Append(PreferredPrefix).Append(":Custom>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(this.Custom));
+				sb.Append("</").Append(PreferredPrefix).Append(":Custom>");
+			}
 			if(MsgSubID != null)
 			{
 				sb.Append("<").Append(PreferredPrefix).Append(":MsgSubID>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(this.MsgSubID));
 				sb.Append("</").Append(PreferredPrefix).Append(":MsgSubID>");
+			}
+			if(IPAddress != null)
+			{
+				sb.Append("<").Append(PreferredPrefix).Append(":IPAddress>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(this.IPAddress));
+				sb.Append("</").Append(PreferredPrefix).Append(":IPAddress>");
 			}
 			if (name != null)
 			{
@@ -41584,6 +42229,283 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
 				this.MsgSubID = ChildNode.InnerText;
+			}
+	
+		}
+	}
+
+
+
+
+	/// <summary>
+	/// 
+    /// </summary>
+	public partial class UpdateAuthorizationReq	{
+		// Namespace for the type
+		private const string NameSpace = "urn:ebay:api:PayPalAPI";
+
+		// Prefix associated with the namespace
+		private const string PreferredPrefix = "ns";
+		
+		// Default US culture info
+		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
+
+		/// <summary>
+		/// 
+		/// </summary>
+		private UpdateAuthorizationRequestType updateAuthorizationRequestField;
+		public UpdateAuthorizationRequestType UpdateAuthorizationRequest
+		{
+			get
+			{
+				return this.updateAuthorizationRequestField;
+			}
+			set
+			{
+				this.updateAuthorizationRequestField = value;
+			}
+		}
+		
+
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
+	 	public UpdateAuthorizationReq()
+	 	{
+		}
+
+
+		public string ToXMLString(string prefix, string name)
+		{
+			StringBuilder sb = new StringBuilder();
+			if(name != null)
+			{
+				if(prefix != null)
+				{
+					sb.Append("<").Append(prefix).Append(":").Append(name).Append(">");
+				}
+				else
+				{
+					sb.Append("<").Append(PreferredPrefix).Append(":").Append(name).Append(">");
+				}
+			}
+			if(UpdateAuthorizationRequest != null)
+			{
+				sb.Append(UpdateAuthorizationRequest.ToXMLString(null,"UpdateAuthorizationRequest"));
+			}
+			if (name != null)
+			{
+				if (prefix != null)
+				{
+					sb.Append("</").Append(prefix).Append(":").Append(name).Append(">");
+				}
+				else
+				{
+					sb.Append("</").Append(PreferredPrefix).Append(":").Append(name).Append(">");
+				}
+			}
+			return sb.ToString();
+		}
+
+	}
+
+
+
+
+	/// <summary>
+	/// The value of the authorizationâtransaction identification
+	/// number returned by a PayPal product. Required Character
+	/// length and limits: 19 single-byte characters maximum 
+    /// </summary>
+	public partial class UpdateAuthorizationRequestType : AbstractRequestType	{
+		// Namespace for the type
+		private const string NameSpace = "urn:ebay:api:PayPalAPI";
+
+		// Prefix associated with the namespace
+		private const string PreferredPrefix = "ns";
+		
+		// Default US culture info
+		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
+
+		/// <summary>
+		/// 
+		/// </summary>
+		private string transactionIDField;
+		public string TransactionID
+		{
+			get
+			{
+				return this.transactionIDField;
+			}
+			set
+			{
+				this.transactionIDField = value;
+			}
+		}
+		
+
+		/// <summary>
+		/// 
+		/// </summary>
+		private AddressType shipToAddressField;
+		public AddressType ShipToAddress
+		{
+			get
+			{
+				return this.shipToAddressField;
+			}
+			set
+			{
+				this.shipToAddressField = value;
+			}
+		}
+		
+
+		/// <summary>
+		/// 
+		/// </summary>
+		private string iPAddressField;
+		public string IPAddress
+		{
+			get
+			{
+				return this.iPAddressField;
+			}
+			set
+			{
+				this.iPAddressField = value;
+			}
+		}
+		
+
+		/// <summary>
+		/// Constructor with arguments
+	 	/// </summary>
+	 	public UpdateAuthorizationRequestType(string transactionID)
+	 	{
+			this.TransactionID = transactionID;
+		}
+
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
+	 	public UpdateAuthorizationRequestType()
+	 	{
+		}
+
+
+		public new string ToXMLString(string prefix, string name)
+		{
+			StringBuilder sb = new StringBuilder();
+			if(name != null)
+			{
+				if(prefix != null)
+				{
+					sb.Append("<").Append(prefix).Append(":").Append(name).Append(">");
+				}
+				else
+				{
+					sb.Append("<").Append(PreferredPrefix).Append(":").Append(name).Append(">");
+				}
+			}
+			sb.Append(base.ToXMLString(prefix, null));
+			if(TransactionID != null)
+			{
+				sb.Append("<").Append(PreferredPrefix).Append(":TransactionID>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(this.TransactionID));
+				sb.Append("</").Append(PreferredPrefix).Append(":TransactionID>");
+			}
+			if(ShipToAddress != null)
+			{
+				sb.Append(ShipToAddress.ToXMLString(null,"ShipToAddress"));
+			}
+			if(IPAddress != null)
+			{
+				sb.Append("<").Append(PreferredPrefix).Append(":IPAddress>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(this.IPAddress));
+				sb.Append("</").Append(PreferredPrefix).Append(":IPAddress>");
+			}
+			if (name != null)
+			{
+				if (prefix != null)
+				{
+					sb.Append("</").Append(prefix).Append(":").Append(name).Append(">");
+				}
+				else
+				{
+					sb.Append("</").Append(PreferredPrefix).Append(":").Append(name).Append(">");
+				}
+			}
+			return sb.ToString();
+		}
+
+	}
+
+
+
+
+	/// <summary>
+	/// An authorization identification number. Character length and
+	/// limits: 19 single-byte characters 
+    /// </summary>
+	public partial class UpdateAuthorizationResponseType : AbstractResponseType	{
+		
+		// Default US culture info
+		private static CultureInfo DefaultCulture = new CultureInfo("en-US");
+
+		/// <summary>
+		/// 
+		/// </summary>
+		private string transactionIDField;
+		public string TransactionID
+		{
+			get
+			{
+				return this.transactionIDField;
+			}
+			set
+			{
+				this.transactionIDField = value;
+			}
+		}
+		
+
+		/// <summary>
+		/// 
+		/// </summary>
+		private AuthorizationInfoType authorizationInfoField;
+		public AuthorizationInfoType AuthorizationInfo
+		{
+			get
+			{
+				return this.authorizationInfoField;
+			}
+			set
+			{
+				this.authorizationInfoField = value;
+			}
+		}
+		
+
+		/// <summary>
+		/// Default Constructor
+	 	/// </summary>
+	 	public UpdateAuthorizationResponseType()
+	 	{
+		}
+
+
+		public UpdateAuthorizationResponseType(XmlNode xmlNode) : base(xmlNode)
+		{
+			XmlNode ChildNode = null;
+			XmlNodeList ChildNodeList = null;
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'TransactionID']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
+			{
+				this.TransactionID = ChildNode.InnerText;
+			}
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'AuthorizationInfo']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
+			{
+				this.AuthorizationInfo =  new AuthorizationInfoType(ChildNode);
 			}
 	
 		}

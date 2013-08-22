@@ -12,7 +12,17 @@
 
 ## Configuration
 
-* Configure the 'mode' parameter in your Web.Config file or pass in a dictionary containing the 'mode' parameter. See the SDK README file for more on configuration.
+* Configure the 'mode' parameter by passing in a dictionary containing the 'mode' parameter as shown below (Skip this if you are configuring 'mode' in Web.config file). See the SDK README file for more on configuration.
+
+		Dictionary<string, string> configMap = new Dictionary<string, string>();
+
+		// Endpoints are varied depending on whether sandbox OR live is chosen for mode
+		configMap.Add("mode", "sandbox");
+
+		// These values are defaulted in SDK. If you want to override default values, uncomment it and add your value.
+		// configMap.Add("connectionTimeout", "5000");
+		// configMap.Add("requestRetries", "2");
+		
 * A utility class 'IPNMessage.cs' is provided in sdk-core-dotnet for IPN message validation.
 
 
@@ -21,7 +31,7 @@
 * IPN Listener - buttonmanager-sdk-dotnet\Samples\ButtonManagerAPISample\IPNListener.aspx
 * Deploy IPN Listener sample in IIS and expose your server port using any third party 
   LocalTunneling software, so that the PayPal IPN call back can be received
-* Make a PayPal API call (Example: Pay request), setting the IPNNotificationUrl field of the API request class
+* Make a PayPal API call (Example: BMCreateButton request), setting the IPNNotificationUrl field of the API request class
   to the URL of deployed IPNListener sample (Example: http://DNS-Name/IPNListener.aspx)
 * The IPN call back from PayPal would be logged in the log file of the IPN sample
 

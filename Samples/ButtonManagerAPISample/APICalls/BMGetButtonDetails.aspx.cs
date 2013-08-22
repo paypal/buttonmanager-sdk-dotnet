@@ -1,16 +1,10 @@
 using System;
-using System.Data;
-using System.Configuration;
-using System.Collections;
 using System.Collections.Generic;
 using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using System.Web.UI.WebControls.WebParts;
-using System.Web.UI.HtmlControls;
 
 using PayPal.PayPalAPIInterfaceService;
 using PayPal.PayPalAPIInterfaceService.Model;
+using ButtonManagerAPISample;
 
 namespace PayPalAPISample.APICalls
 {
@@ -32,7 +26,16 @@ namespace PayPalAPISample.APICalls
             // Invoke the API
             BMGetButtonDetailsReq wrapper = new BMGetButtonDetailsReq();
             wrapper.BMGetButtonDetailsRequest = request;
-            PayPalAPIInterfaceServiceService service = new PayPalAPIInterfaceServiceService();
+
+
+            // Configuration map containing signature credentials and other required configuration.
+            // For a full list of configuration parameters refer in wiki page 
+            // (https://github.com/paypal/sdk-core-dotnet/wiki/SDK-Configuration-Parameters)
+            Dictionary<string, string> configurationMap = Configuration.GetAcctAndConfig();
+
+            // Creating service wrapper object to make an API call by loading configuration map. 
+            PayPalAPIInterfaceServiceService service = new PayPalAPIInterfaceServiceService(configurationMap);
+
             BMGetButtonDetailsResponseType response = service.BMGetButtonDetails(wrapper);
 
             // Check for API return status

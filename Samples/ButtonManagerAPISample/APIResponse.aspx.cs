@@ -1,13 +1,6 @@
 using System;
-using System.Data;
-using System.Configuration;
-using System.Collections;
 using System.Collections.Generic;
 using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using System.Web.UI.WebControls.WebParts;
-using System.Web.UI.HtmlControls;
 
 using PayPal.PayPalAPIInterfaceService.Model;
 
@@ -15,8 +8,8 @@ namespace PayPalAPISample
 {
     public partial class APIResponse : System.Web.UI.Page
     {
-        private String m_apiName;
-        protected String apiName
+        private string m_apiName;
+        protected string apiName
         {
             get
             {
@@ -28,8 +21,8 @@ namespace PayPalAPISample
             }
         }
 
-        protected String m_redirectURL;
-        protected String redirectURL
+        protected string m_redirectURL;
+        protected string redirectURL
         {
             get
             {
@@ -104,19 +97,19 @@ namespace PayPalAPISample
                 }
                 if (CurrContext.Items["Response_apiName"] != null)
                 {
-                    apiName = (String)CurrContext.Items["Response_apiName"];
+                    apiName = (string)CurrContext.Items["Response_apiName"];
                 }
                 if (CurrContext.Items["Response_redirectURL"] != null)
                 {
-                    redirectURL = (String)CurrContext.Items["Response_redirectURL"];
+                    redirectURL = (string)CurrContext.Items["Response_redirectURL"];
                 }
                 if (CurrContext.Items["Response_requestPayload"] != null)
                 {
-                    requestMessage = (String)CurrContext.Items["Response_requestPayload"];
+                    requestMessage = (string)CurrContext.Items["Response_requestPayload"];
                 }
                 if (CurrContext.Items["Response_responsePayload"] != null)
                 {
-                    responseMessage = (String)CurrContext.Items["Response_responsePayload"];
+                    responseMessage = (string)CurrContext.Items["Response_responsePayload"];
                 }
                 if (CurrContext.Items["Response_error"] != null)
                 {

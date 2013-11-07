@@ -373,7 +373,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			{
 				this.unit = ChildNode.InnerText;
 			}
-			this.value = System.Convert.ToDecimal(xmlNode.InnerText);
+			this.value = System.Convert.ToDecimal(xmlNode.InnerText, DefaultCulture);
 	
 		}
 	}
@@ -2666,7 +2666,8 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 	/// </summary>
     [Serializable]
 	public enum PaymentCategoryType {
-		[Description("InternationalShipping")]INTERNATIONALSHIPPING	
+		[Description("InternationalShipping")]INTERNATIONALSHIPPING,	
+		[Description("LocalDelivery")]LOCALDELIVERY	
 	}
 
 
@@ -4475,7 +4476,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(ItemQuantity != null)
 			{
-				sb.Append("<").Append(PreferredPrefix).Append(":ItemQuantity>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(this.ItemQuantity));
+				sb.Append("<").Append(PreferredPrefix).Append(":ItemQuantity>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(Convert.ToString(this.ItemQuantity, DefaultCulture)));
 				sb.Append("</").Append(PreferredPrefix).Append(":ItemQuantity>");
 			}
 			if (name != null)
@@ -6995,7 +6996,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(RetrieveShippingAddress != null)
 			{
-				sb.Append("<").Append(PreferredPrefix).Append(":RetrieveShippingAddress>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(this.RetrieveShippingAddress.ToString().ToLower()));
+				sb.Append("<").Append(PreferredPrefix).Append(":RetrieveShippingAddress>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(Convert.ToString(this.RetrieveShippingAddress, DefaultCulture)));
 				sb.Append("</").Append(PreferredPrefix).Append(":RetrieveShippingAddress>");
 			}
 			if(UserChannel != null)
@@ -7005,7 +7006,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(ReqConfirmShipping != null)
 			{
-				sb.Append("<").Append(PreferredPrefix).Append(":ReqConfirmShipping>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(this.ReqConfirmShipping.ToString().ToLower()));
+				sb.Append("<").Append(PreferredPrefix).Append(":ReqConfirmShipping>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(Convert.ToString(this.ReqConfirmShipping, DefaultCulture)));
 				sb.Append("</").Append(PreferredPrefix).Append(":ReqConfirmShipping>");
 			}
 			if(PaymentDetails != null)
@@ -7100,7 +7101,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(IsRequested != null)
 			{
-				sb.Append("<").Append(PreferredPrefix).Append(":IsRequested>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(this.IsRequested.ToString().ToLower()));
+				sb.Append("<").Append(PreferredPrefix).Append(":IsRequested>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(Convert.ToString(this.IsRequested, DefaultCulture)));
 				sb.Append("</").Append(PreferredPrefix).Append(":IsRequested>");
 			}
 			if (name != null)
@@ -8690,7 +8691,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'BillingAgreementAcceptedStatus']");
 			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.BillingAgreementAcceptedStatus = System.Convert.ToBoolean(ChildNode.InnerText);
+				this.BillingAgreementAcceptedStatus = System.Convert.ToBoolean(ChildNode.InnerText, DefaultCulture);
 			}
 			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'RedirectRequired']");
 			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
@@ -9533,7 +9534,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(SkipBACreation != null)
 			{
-				sb.Append("<").Append(PreferredPrefix).Append(":SkipBACreation>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(this.SkipBACreation.ToString().ToLower()));
+				sb.Append("<").Append(PreferredPrefix).Append(":SkipBACreation>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(Convert.ToString(this.SkipBACreation, DefaultCulture)));
 				sb.Append("</").Append(PreferredPrefix).Append(":SkipBACreation>");
 			}
 			if(CoupledBuckets != null)
@@ -9838,6 +9839,23 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/// <summary>
+		/// 
+		/// </summary>
+		private string partnerFundingSourceIDField;
+		public string PartnerFundingSourceID
+		{
+			get
+			{
+				return this.partnerFundingSourceIDField;
+			}
+			set
+			{
+				this.partnerFundingSourceIDField = value;
+			}
+		}
+		
+
+		/// <summary>
 		/// Default Constructor
 	 	/// </summary>
 	 	public DoCaptureResponseDetailsType()
@@ -9863,6 +9881,11 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
 				this.MsgSubID = ChildNode.InnerText;
+			}
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'PartnerFundingSourceID']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
+			{
+				this.PartnerFundingSourceID = ChildNode.InnerText;
 			}
 	
 		}
@@ -10039,7 +10062,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(ReturnFMFDetails != null)
 			{
-				sb.Append("<").Append(PreferredPrefix).Append(":ReturnFMFDetails>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(this.ReturnFMFDetails.ToString().ToLower()));
+				sb.Append("<").Append(PreferredPrefix).Append(":ReturnFMFDetails>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(Convert.ToString(this.ReturnFMFDetails, DefaultCulture)));
 				sb.Append("</").Append(PreferredPrefix).Append(":ReturnFMFDetails>");
 			}
 			if (name != null)
@@ -10413,12 +10436,12 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(SharePhoneNumber != null)
 			{
-				sb.Append("<").Append(PreferredPrefix).Append(":SharePhoneNumber>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(this.SharePhoneNumber));
+				sb.Append("<").Append(PreferredPrefix).Append(":SharePhoneNumber>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(Convert.ToString(this.SharePhoneNumber, DefaultCulture)));
 				sb.Append("</").Append(PreferredPrefix).Append(":SharePhoneNumber>");
 			}
 			if(ShareHomeAddress != null)
 			{
-				sb.Append("<").Append(PreferredPrefix).Append(":ShareHomeAddress>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(this.ShareHomeAddress));
+				sb.Append("<").Append(PreferredPrefix).Append(":ShareHomeAddress>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(Convert.ToString(this.ShareHomeAddress, DefaultCulture)));
 				sb.Append("</").Append(PreferredPrefix).Append(":ShareHomeAddress>");
 			}
 			if (name != null)
@@ -13533,6 +13556,23 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 		
 
 		/// <summary>
+		/// 
+		/// </summary>
+		private string instrumentIDField;
+		public string InstrumentID
+		{
+			get
+			{
+				return this.instrumentIDField;
+			}
+			set
+			{
+				this.instrumentIDField = value;
+			}
+		}
+		
+
+		/// <summary>
 		/// Default Constructor
 	 	/// </summary>
 	 	public InstrumentDetailsType()
@@ -13548,6 +13588,11 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
 				this.InstrumentCategory = ChildNode.InnerText;
+			}
+			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'InstrumentID']");
+			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
+			{
+				this.InstrumentID = ChildNode.InnerText;
 			}
 	
 		}
@@ -15594,7 +15639,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(Quantity != null)
 			{
-				sb.Append("<").Append(PreferredPrefix).Append(":Quantity>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(this.Quantity));
+				sb.Append("<").Append(PreferredPrefix).Append(":Quantity>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(Convert.ToString(this.Quantity, DefaultCulture)));
 				sb.Append("</").Append(PreferredPrefix).Append(":Quantity>");
 			}
 			if(Tax != null)
@@ -15685,7 +15730,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'Quantity']");
 			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.Quantity = System.Convert.ToInt32(ChildNode.InnerText);
+				this.Quantity = System.Convert.ToInt32(ChildNode.InnerText, DefaultCulture);
 			}
 			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'Tax']");
 			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
@@ -17178,7 +17223,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(BranchLevel != null)
 			{
-				sb.Append("<").Append(PreferredPrefix).Append(":BranchLevel>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(this.BranchLevel));
+				sb.Append("<").Append(PreferredPrefix).Append(":BranchLevel>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(Convert.ToString(this.BranchLevel, DefaultCulture)));
 				sb.Append("</").Append(PreferredPrefix).Append(":BranchLevel>");
 			}
 			if(OfferDetails != null)
@@ -17370,7 +17415,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'BranchLevel']");
 			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.BranchLevel = System.Convert.ToInt32(ChildNode.InnerText);
+				this.BranchLevel = System.Convert.ToInt32(ChildNode.InnerText, DefaultCulture);
 			}
 			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'OfferDetails']");
 			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
@@ -17540,7 +17585,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'ErrorCode']");
 			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.ErrorCode = System.Convert.ToInt32(ChildNode.InnerText);
+				this.ErrorCode = System.Convert.ToInt32(ChildNode.InnerText, DefaultCulture);
 			}
 			ChildNodeList = xmlNode.SelectNodes("*[local-name() = 'IncentiveAppliedDetails']");
 			if (ChildNodeList != null && ChildNodeList.Count > 0)
@@ -18099,7 +18144,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(OtherPaymentMethodHideLabel != null)
 			{
-				sb.Append("<").Append(PreferredPrefix).Append(":OtherPaymentMethodHideLabel>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(this.OtherPaymentMethodHideLabel.ToString().ToLower()));
+				sb.Append("<").Append(PreferredPrefix).Append(":OtherPaymentMethodHideLabel>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(Convert.ToString(this.OtherPaymentMethodHideLabel, DefaultCulture)));
 				sb.Append("</").Append(PreferredPrefix).Append(":OtherPaymentMethodHideLabel>");
 			}
 			if (name != null)
@@ -18953,12 +18998,12 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(ExpMonth != null)
 			{
-				sb.Append("<").Append(PreferredPrefix).Append(":ExpMonth>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(this.ExpMonth));
+				sb.Append("<").Append(PreferredPrefix).Append(":ExpMonth>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(Convert.ToString(this.ExpMonth, DefaultCulture)));
 				sb.Append("</").Append(PreferredPrefix).Append(":ExpMonth>");
 			}
 			if(ExpYear != null)
 			{
-				sb.Append("<").Append(PreferredPrefix).Append(":ExpYear>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(this.ExpYear));
+				sb.Append("<").Append(PreferredPrefix).Append(":ExpYear>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(Convert.ToString(this.ExpYear, DefaultCulture)));
 				sb.Append("</").Append(PreferredPrefix).Append(":ExpYear>");
 			}
 			if(CardOwner != null)
@@ -18972,12 +19017,12 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(StartMonth != null)
 			{
-				sb.Append("<").Append(PreferredPrefix).Append(":StartMonth>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(this.StartMonth));
+				sb.Append("<").Append(PreferredPrefix).Append(":StartMonth>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(Convert.ToString(this.StartMonth, DefaultCulture)));
 				sb.Append("</").Append(PreferredPrefix).Append(":StartMonth>");
 			}
 			if(StartYear != null)
 			{
-				sb.Append("<").Append(PreferredPrefix).Append(":StartYear>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(this.StartYear));
+				sb.Append("<").Append(PreferredPrefix).Append(":StartYear>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(Convert.ToString(this.StartYear, DefaultCulture)));
 				sb.Append("</").Append(PreferredPrefix).Append(":StartYear>");
 			}
 			if(IssueNumber != null)
@@ -19020,12 +19065,12 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'ExpMonth']");
 			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.ExpMonth = System.Convert.ToInt32(ChildNode.InnerText);
+				this.ExpMonth = System.Convert.ToInt32(ChildNode.InnerText, DefaultCulture);
 			}
 			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'ExpYear']");
 			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.ExpYear = System.Convert.ToInt32(ChildNode.InnerText);
+				this.ExpYear = System.Convert.ToInt32(ChildNode.InnerText, DefaultCulture);
 			}
 			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'CardOwner']");
 			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
@@ -19040,12 +19085,12 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'StartMonth']");
 			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.StartMonth = System.Convert.ToInt32(ChildNode.InnerText);
+				this.StartMonth = System.Convert.ToInt32(ChildNode.InnerText, DefaultCulture);
 			}
 			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'StartYear']");
 			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.StartYear = System.Convert.ToInt32(ChildNode.InnerText);
+				this.StartYear = System.Convert.ToInt32(ChildNode.InnerText, DefaultCulture);
 			}
 			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'IssueNumber']");
 			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
@@ -19670,12 +19715,12 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(ExpMonth != null)
 			{
-				sb.Append("<").Append(PreferredPrefix).Append(":ExpMonth>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(this.ExpMonth));
+				sb.Append("<").Append(PreferredPrefix).Append(":ExpMonth>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(Convert.ToString(this.ExpMonth, DefaultCulture)));
 				sb.Append("</").Append(PreferredPrefix).Append(":ExpMonth>");
 			}
 			if(ExpYear != null)
 			{
-				sb.Append("<").Append(PreferredPrefix).Append(":ExpYear>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(this.ExpYear));
+				sb.Append("<").Append(PreferredPrefix).Append(":ExpYear>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(Convert.ToString(this.ExpYear, DefaultCulture)));
 				sb.Append("</").Append(PreferredPrefix).Append(":ExpYear>");
 			}
 			if(CardOwnerName != null)
@@ -19693,12 +19738,12 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(StartMonth != null)
 			{
-				sb.Append("<").Append(PreferredPrefix).Append(":StartMonth>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(this.StartMonth));
+				sb.Append("<").Append(PreferredPrefix).Append(":StartMonth>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(Convert.ToString(this.StartMonth, DefaultCulture)));
 				sb.Append("</").Append(PreferredPrefix).Append(":StartMonth>");
 			}
 			if(StartYear != null)
 			{
-				sb.Append("<").Append(PreferredPrefix).Append(":StartYear>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(this.StartYear));
+				sb.Append("<").Append(PreferredPrefix).Append(":StartYear>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(Convert.ToString(this.StartYear, DefaultCulture)));
 				sb.Append("</").Append(PreferredPrefix).Append(":StartYear>");
 			}
 			if(IssueNumber != null)
@@ -22735,12 +22780,12 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(AddressDisplayOptions != null)
 			{
-				sb.Append("<").Append(PreferredPrefix).Append(":AddressDisplayOptions>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(this.AddressDisplayOptions));
+				sb.Append("<").Append(PreferredPrefix).Append(":AddressDisplayOptions>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(Convert.ToString(this.AddressDisplayOptions, DefaultCulture)));
 				sb.Append("</").Append(PreferredPrefix).Append(":AddressDisplayOptions>");
 			}
 			if(SharePhone != null)
 			{
-				sb.Append("<").Append(PreferredPrefix).Append(":SharePhone>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(this.SharePhone));
+				sb.Append("<").Append(PreferredPrefix).Append(":SharePhone>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(Convert.ToString(this.SharePhone, DefaultCulture)));
 				sb.Append("</").Append(PreferredPrefix).Append(":SharePhone>");
 			}
 			if(ShipToAddress != null)
@@ -22982,12 +23027,12 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(ExpMonth != null)
 			{
-				sb.Append("<").Append(PreferredPrefix).Append(":ExpMonth>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(this.ExpMonth));
+				sb.Append("<").Append(PreferredPrefix).Append(":ExpMonth>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(Convert.ToString(this.ExpMonth, DefaultCulture)));
 				sb.Append("</").Append(PreferredPrefix).Append(":ExpMonth>");
 			}
 			if(ExpYear != null)
 			{
-				sb.Append("<").Append(PreferredPrefix).Append(":ExpYear>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(this.ExpYear));
+				sb.Append("<").Append(PreferredPrefix).Append(":ExpYear>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(Convert.ToString(this.ExpYear, DefaultCulture)));
 				sb.Append("</").Append(PreferredPrefix).Append(":ExpYear>");
 			}
 			if (name != null)
@@ -23016,12 +23061,12 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'ExpMonth']");
 			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.ExpMonth = System.Convert.ToInt32(ChildNode.InnerText);
+				this.ExpMonth = System.Convert.ToInt32(ChildNode.InnerText, DefaultCulture);
 			}
 			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'ExpYear']");
 			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.ExpYear = System.Convert.ToInt32(ChildNode.InnerText);
+				this.ExpYear = System.Convert.ToInt32(ChildNode.InnerText, DefaultCulture);
 			}
 	
 		}
@@ -23177,12 +23222,12 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'NumberCyclesCompleted']");
 			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.NumberCyclesCompleted = System.Convert.ToInt32(ChildNode.InnerText);
+				this.NumberCyclesCompleted = System.Convert.ToInt32(ChildNode.InnerText, DefaultCulture);
 			}
 			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'NumberCyclesRemaining']");
 			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.NumberCyclesRemaining = System.Convert.ToInt32(ChildNode.InnerText);
+				this.NumberCyclesRemaining = System.Convert.ToInt32(ChildNode.InnerText, DefaultCulture);
 			}
 			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'OutstandingBalance']");
 			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
@@ -23192,7 +23237,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'FailedPaymentCount']");
 			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.FailedPaymentCount = System.Convert.ToInt32(ChildNode.InnerText);
+				this.FailedPaymentCount = System.Convert.ToInt32(ChildNode.InnerText, DefaultCulture);
 			}
 			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'LastPaymentDate']");
 			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
@@ -23470,12 +23515,12 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(BillingFrequency != null)
 			{
-				sb.Append("<").Append(PreferredPrefix).Append(":BillingFrequency>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(this.BillingFrequency));
+				sb.Append("<").Append(PreferredPrefix).Append(":BillingFrequency>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(Convert.ToString(this.BillingFrequency, DefaultCulture)));
 				sb.Append("</").Append(PreferredPrefix).Append(":BillingFrequency>");
 			}
 			if(TotalBillingCycles != null)
 			{
-				sb.Append("<").Append(PreferredPrefix).Append(":TotalBillingCycles>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(this.TotalBillingCycles));
+				sb.Append("<").Append(PreferredPrefix).Append(":TotalBillingCycles>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(Convert.ToString(this.TotalBillingCycles, DefaultCulture)));
 				sb.Append("</").Append(PreferredPrefix).Append(":TotalBillingCycles>");
 			}
 			if(Amount != null)
@@ -23516,12 +23561,12 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'BillingFrequency']");
 			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.BillingFrequency = System.Convert.ToInt32(ChildNode.InnerText);
+				this.BillingFrequency = System.Convert.ToInt32(ChildNode.InnerText, DefaultCulture);
 			}
 			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'TotalBillingCycles']");
 			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.TotalBillingCycles = System.Convert.ToInt32(ChildNode.InnerText);
+				this.TotalBillingCycles = System.Convert.ToInt32(ChildNode.InnerText, DefaultCulture);
 			}
 			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'Amount']");
 			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
@@ -23689,12 +23734,12 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(BillingFrequency != null)
 			{
-				sb.Append("<").Append(PreferredPrefix).Append(":BillingFrequency>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(this.BillingFrequency));
+				sb.Append("<").Append(PreferredPrefix).Append(":BillingFrequency>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(Convert.ToString(this.BillingFrequency, DefaultCulture)));
 				sb.Append("</").Append(PreferredPrefix).Append(":BillingFrequency>");
 			}
 			if(TotalBillingCycles != null)
 			{
-				sb.Append("<").Append(PreferredPrefix).Append(":TotalBillingCycles>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(this.TotalBillingCycles));
+				sb.Append("<").Append(PreferredPrefix).Append(":TotalBillingCycles>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(Convert.ToString(this.TotalBillingCycles, DefaultCulture)));
 				sb.Append("</").Append(PreferredPrefix).Append(":TotalBillingCycles>");
 			}
 			if(Amount != null)
@@ -23889,7 +23934,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(MaxFailedPayments != null)
 			{
-				sb.Append("<").Append(PreferredPrefix).Append(":MaxFailedPayments>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(this.MaxFailedPayments));
+				sb.Append("<").Append(PreferredPrefix).Append(":MaxFailedPayments>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(Convert.ToString(this.MaxFailedPayments, DefaultCulture)));
 				sb.Append("</").Append(PreferredPrefix).Append(":MaxFailedPayments>");
 			}
 			if(ActivationDetails != null)
@@ -24720,7 +24765,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'MaxFailedPayments']");
 			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.MaxFailedPayments = System.Convert.ToInt32(ChildNode.InnerText);
+				this.MaxFailedPayments = System.Convert.ToInt32(ChildNode.InnerText, DefaultCulture);
 			}
 			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'RecurringPaymentsProfileDetails']");
 			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
@@ -25501,7 +25546,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(AdditionalBillingCycles != null)
 			{
-				sb.Append("<").Append(PreferredPrefix).Append(":AdditionalBillingCycles>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(this.AdditionalBillingCycles));
+				sb.Append("<").Append(PreferredPrefix).Append(":AdditionalBillingCycles>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(Convert.ToString(this.AdditionalBillingCycles, DefaultCulture)));
 				sb.Append("</").Append(PreferredPrefix).Append(":AdditionalBillingCycles>");
 			}
 			if(Amount != null)
@@ -25527,7 +25572,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(MaxFailedPayments != null)
 			{
-				sb.Append("<").Append(PreferredPrefix).Append(":MaxFailedPayments>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(this.MaxFailedPayments));
+				sb.Append("<").Append(PreferredPrefix).Append(":MaxFailedPayments>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(Convert.ToString(this.MaxFailedPayments, DefaultCulture)));
 				sb.Append("</").Append(PreferredPrefix).Append(":MaxFailedPayments>");
 			}
 			if(CreditCard != null)
@@ -25689,7 +25734,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'Id']");
 			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.Id = System.Convert.ToInt32(ChildNode.InnerText);
+				this.Id = System.Convert.ToInt32(ChildNode.InnerText, DefaultCulture);
 			}
 			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'Name']");
 			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
@@ -28184,7 +28229,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'ExternalRememberMeStatus']");
 			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.ExternalRememberMeStatus = System.Convert.ToInt32(ChildNode.InnerText);
+				this.ExternalRememberMeStatus = System.Convert.ToInt32(ChildNode.InnerText, DefaultCulture);
 			}
 			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'ExternalRememberMeID']");
 			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
@@ -28273,7 +28318,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'RefreshTokenStatus']");
 			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.RefreshTokenStatus = System.Convert.ToInt32(ChildNode.InnerText);
+				this.RefreshTokenStatus = System.Convert.ToInt32(ChildNode.InnerText, DefaultCulture);
 			}
 			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'RefreshToken']");
 			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
@@ -29278,7 +29323,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(Taxable != null)
 			{
-				sb.Append("<").Append(PreferredPrefix).Append(":Taxable>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(this.Taxable.ToString().ToLower()));
+				sb.Append("<").Append(PreferredPrefix).Append(":Taxable>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(Convert.ToString(this.Taxable, DefaultCulture)));
 				sb.Append("</").Append(PreferredPrefix).Append(":Taxable>");
 			}
 			if(TaxRate != null)
@@ -29295,7 +29340,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(Reimbursable != null)
 			{
-				sb.Append("<").Append(PreferredPrefix).Append(":Reimbursable>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(this.Reimbursable.ToString().ToLower()));
+				sb.Append("<").Append(PreferredPrefix).Append(":Reimbursable>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(Convert.ToString(this.Reimbursable, DefaultCulture)));
 				sb.Append("</").Append(PreferredPrefix).Append(":Reimbursable>");
 			}
 			if(MPN != null)
@@ -29379,7 +29424,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'ItemCount']");
 			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.ItemCount = System.Convert.ToDecimal(ChildNode.InnerText);
+				this.ItemCount = System.Convert.ToDecimal(ChildNode.InnerText, DefaultCulture);
 			}
 			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'ItemCountUnit']");
 			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
@@ -29398,12 +29443,12 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'Taxable']");
 			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.Taxable = System.Convert.ToBoolean(ChildNode.InnerText);
+				this.Taxable = System.Convert.ToBoolean(ChildNode.InnerText, DefaultCulture);
 			}
 			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'TaxRate']");
 			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.TaxRate = System.Convert.ToDecimal(ChildNode.InnerText);
+				this.TaxRate = System.Convert.ToDecimal(ChildNode.InnerText, DefaultCulture);
 			}
 			ChildNodeList = xmlNode.SelectNodes("*[local-name() = 'AdditionalFees']");
 			if (ChildNodeList != null && ChildNodeList.Count > 0)
@@ -29417,7 +29462,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'Reimbursable']");
 			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.Reimbursable = System.Convert.ToBoolean(ChildNode.InnerText);
+				this.Reimbursable = System.Convert.ToBoolean(ChildNode.InnerText, DefaultCulture);
 			}
 			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'MPN']");
 			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
@@ -30504,12 +30549,12 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(BillingFrequency != null)
 			{
-				sb.Append("<").Append(PreferredPrefix).Append(":BillingFrequency>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(this.BillingFrequency));
+				sb.Append("<").Append(PreferredPrefix).Append(":BillingFrequency>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(Convert.ToString(this.BillingFrequency, DefaultCulture)));
 				sb.Append("</").Append(PreferredPrefix).Append(":BillingFrequency>");
 			}
 			if(TotalBillingCycles != null)
 			{
-				sb.Append("<").Append(PreferredPrefix).Append(":TotalBillingCycles>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(this.TotalBillingCycles));
+				sb.Append("<").Append(PreferredPrefix).Append(":TotalBillingCycles>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(Convert.ToString(this.TotalBillingCycles, DefaultCulture)));
 				sb.Append("</").Append(PreferredPrefix).Append(":TotalBillingCycles>");
 			}
 			if(Amount != null)
@@ -30553,12 +30598,12 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'BillingFrequency']");
 			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.BillingFrequency = System.Convert.ToInt32(ChildNode.InnerText);
+				this.BillingFrequency = System.Convert.ToInt32(ChildNode.InnerText, DefaultCulture);
 			}
 			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'TotalBillingCycles']");
 			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.TotalBillingCycles = System.Convert.ToInt32(ChildNode.InnerText);
+				this.TotalBillingCycles = System.Convert.ToInt32(ChildNode.InnerText, DefaultCulture);
 			}
 			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'Amount']");
 			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
@@ -34107,7 +34152,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(RefundAdvice != null)
 			{
-				sb.Append("<").Append(PreferredPrefix).Append(":RefundAdvice>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(this.RefundAdvice.ToString().ToLower()));
+				sb.Append("<").Append(PreferredPrefix).Append(":RefundAdvice>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(Convert.ToString(this.RefundAdvice, DefaultCulture)));
 				sb.Append("</").Append(PreferredPrefix).Append(":RefundAdvice>");
 			}
 			if(MerchantStoreDetails != null)
@@ -35308,7 +35353,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(ReturnFMFDetails != null)
 			{
-				sb.Append("<").Append(PreferredPrefix).Append(":ReturnFMFDetails>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(this.ReturnFMFDetails));
+				sb.Append("<").Append(PreferredPrefix).Append(":ReturnFMFDetails>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(Convert.ToString(this.ReturnFMFDetails, DefaultCulture)));
 				sb.Append("</").Append(PreferredPrefix).Append(":ReturnFMFDetails>");
 			}
 			if (name != null)
@@ -39476,7 +39521,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(ReturnFMFDetails != null)
 			{
-				sb.Append("<").Append(PreferredPrefix).Append(":ReturnFMFDetails>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(this.ReturnFMFDetails));
+				sb.Append("<").Append(PreferredPrefix).Append(":ReturnFMFDetails>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(Convert.ToString(this.ReturnFMFDetails, DefaultCulture)));
 				sb.Append("</").Append(PreferredPrefix).Append(":ReturnFMFDetails>");
 			}
 			if (name != null)
@@ -40162,7 +40207,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(ReturnFMFDetails != null)
 			{
-				sb.Append("<").Append(PreferredPrefix).Append(":ReturnFMFDetails>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(this.ReturnFMFDetails));
+				sb.Append("<").Append(PreferredPrefix).Append(":ReturnFMFDetails>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(Convert.ToString(this.ReturnFMFDetails, DefaultCulture)));
 				sb.Append("</").Append(PreferredPrefix).Append(":ReturnFMFDetails>");
 			}
 			if (name != null)
@@ -43296,17 +43341,17 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'IsActivated']");
 			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.IsActivated = System.Convert.ToInt32(ChildNode.InnerText);
+				this.IsActivated = System.Convert.ToInt32(ChildNode.InnerText, DefaultCulture);
 			}
 			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'IsPasswordSet']");
 			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.IsPasswordSet = System.Convert.ToInt32(ChildNode.InnerText);
+				this.IsPasswordSet = System.Convert.ToInt32(ChildNode.InnerText, DefaultCulture);
 			}
 			ChildNode = xmlNode.SelectSingleNode("*[local-name() = 'PaymentPending']");
 			if(ChildNode != null && !DeserializationUtils.isWhiteSpaceNode(ChildNode))
 			{
-				this.PaymentPending = System.Convert.ToInt32(ChildNode.InnerText);
+				this.PaymentPending = System.Convert.ToInt32(ChildNode.InnerText, DefaultCulture);
 			}
 	
 		}
@@ -44772,7 +44817,7 @@ namespace PayPal.PayPalAPIInterfaceService.Model
 			}
 			if(ReturnFMFDetails != null)
 			{
-				sb.Append("<").Append(PreferredPrefix).Append(":ReturnFMFDetails>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(this.ReturnFMFDetails));
+				sb.Append("<").Append(PreferredPrefix).Append(":ReturnFMFDetails>").Append(DeserializationUtils.escapeInvalidXmlCharsRegex(Convert.ToString(this.ReturnFMFDetails, DefaultCulture)));
 				sb.Append("</").Append(PreferredPrefix).Append(":ReturnFMFDetails>");
 			}
 			if (name != null)

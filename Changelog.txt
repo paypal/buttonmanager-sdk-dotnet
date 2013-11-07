@@ -1,3 +1,10 @@
+Version 2.7.109 - November 07, 2013
+ 
+ 	- Updated stubs
+	- Updated new version of core SDK.
+	
+You can see source code of this release in github under https://github.com/paypal/buttonmanager-sdk-dotnet/tree/v2.7.109.
+--------------------------------------------------------------------------------------------------
 Version 2.6.106 - August 22, 2013
  
  	- Updated stubs.

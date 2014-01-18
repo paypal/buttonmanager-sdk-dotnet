@@ -43,7 +43,11 @@ namespace PayPal.PayPalAPIInterfaceService
 		/// constructor for passing in a dynamic configuration object
 		/// </summary>
 		public PayPalAPIInterfaceServiceService(Dictionary<string, string> config) : base(config) {}
-		
+
+        public Dictionary<string, string> Config
+        {
+            get { return this.config; }
+        }
 	
 		private void setStandardParams(AbstractRequestType request) {
 			if (request.Version == null)

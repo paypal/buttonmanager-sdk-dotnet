@@ -8,7 +8,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("PayPal Button Manager API Sample for .NET")]
 [assembly: AssemblyCompany("eBay Inc.")]
 [assembly: AssemblyProduct("ButtonManagerAPISample")]
-[assembly: AssemblyCopyright("Copyright © eBay Inc., 2009-2013")]
+[assembly: AssemblyCopyright("Copyright © eBay Inc., 2009-2014")]
 
 // Setting ComVisible to false makes the types in this assembly not visible 
 // to COM components.  If you need to access a type in this assembly from 
@@ -27,5 +27,5 @@ using System.Runtime.InteropServices;
 //
 // You can specify all the values or you can default the Revision and Build Numbers 
 // by using the '*' as shown below:
-[assembly: AssemblyVersion("2.7.109.0")]
-[assembly: AssemblyFileVersion("2.7.109.0")]
+[assembly: AssemblyVersion("2.8.109.0")]
+[assembly: AssemblyFileVersion("2.8.109.0")]

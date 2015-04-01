@@ -1,8 +1,8 @@
 The repository contains the PayPal Button Manager SDK C#.NET Class Library Application and the ButtonManagerAPISample Sample ASP.NET C# Web Application.
 
 
-SDK Integration
----------------
+## SDK Integration
+
 *	Integrate the PayPal Button Manager SDK with an ASP.NET Web Application
 
 *	Use NuGet to install the 'PayPalButtonManagerSDK' package 
@@ -10,20 +10,23 @@ SDK Integration
 *	The NuGet package installs the dependencies to the solution and automatically updates the project
 
 *	Dependent library references:
-	•	'log4net.dll'
-	•	'PayPalCoreSDK.dll'
-	•	'PayPalButtonManagerSDK.dll'
+	â€¢	'log4net.dll'
+	â€¢	'PayPalCoreSDK.dll'
+	â€¢	'PayPalButtonManagerSDK.dll'
 	
 *	Namespaces:
-	•	PayPal
-	•	PayPal.PayPalAPIInterfaceService
-	•	PayPal.PayPalAPIInterfaceService.Model
-	•	PayPal.Util
-	•	PayPal.Exception
+	â€¢	PayPal
+	â€¢	PayPal.PayPalAPIInterfaceService
+	â€¢	PayPal.PayPalAPIInterfaceService.Model
+	â€¢	PayPal.Util
+	â€¢	PayPal.Exception
 
-	
-Help
-----
+## Using Classic SDKs and PayPal .NET SDK
+
+[See here](https://github.com/paypal/merchant-sdk-dotnet#using-classic-sdks-and-paypal-net-sdk) for instructions on how to use this SDK along with the [PayPal .NET SDK](https://github.com/paypal/PayPal-NET-SDK).
+
+## Help
+
 *	ButtonManager.bat - Automation script that builds the PayPal Button Manager SDK C#.NET Class Library Application in release mode and copies the built dlls to the lib folder in the ButtonManagerSampleApp Sample ASP.NET C# Web Application
 
 *	Changelog.txt - Release Notes

@@ -1,17 +1,14 @@
-# log files
-*.log
-
 # build files
 obj
 bin
 
-
-# IDE files
+# IDE files and folders
 *.user
 *.suo
 *.pdb
 *.bak
 *.FileListAbsolute.txt
+.vs
 
 # Windows image file caches
 Thumbs.db
@@ -20,5 +17,8 @@ ehthumbs.db
 # Folder config file
 Desktop.ini
 
-# Mac crap
+# Mac files
 .DS_Store
+
+# Log files
+*.log

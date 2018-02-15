@@ -5,6 +5,9 @@ The repository contains the PayPal Button Manager SDK C#.NET Class Library Appli
 
 > A new `mode` has been created to test if your server/machine handles TLSv1.2 connections. Please use `security-test-sandbox` mode instead of `sandbox` to verify. You can return back to `sandbox` mode once you have verified.
 
+## Support
+
+> Please contact [PayPal Technical Support](https://developer.paypal.com/support/) for any live or account issues.
 
 ## SDK Integration
 
